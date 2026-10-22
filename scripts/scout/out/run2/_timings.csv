@@ -1,0 +1,19 @@
+query,secs,status,rows_or_error
+01_counts,22.8,OK,1
+01_roles,3.2,OK,13
+02_ancestors,2.7,OK,13
+02_thesis,2.9,OK,9
+03_overlap,2.9,OK,6
+04_knows,3.4,OK,8
+05_sector_aggs,4.1,OK,3
+05_rank_decile,2.9,OK,13
+06_score,3.9,OK,13
+05_top3,3.1,OK,3
+07_graph_sizes,55.5,OK,4
+08_dist_seed,3.4,OK,2
+08_path_nodes,3.7,OK,3
+08_path_2hop,2.7,OK,1
+08_from_and_to,0.0,FAIL,"ValueError(""Simultaneous use of 'from_' and 'to' is not yet supported for distance. Use 'from_=subset' to constrain start nodes, 'to=subset' to constrain end nodes, or 'full=True' for all pairs. If you need the 'from_' and 'to' combination for distance, please reach out."")"
+09_jaccard,3.1,OK,2
+10_louvain,8.7,OK,13
+11_centrality,13.2,OK,18

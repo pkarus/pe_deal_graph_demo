@@ -1,0 +1,9 @@
+p1,p2,strength,n_sources,evidence
+P1,P2,1.0,1,"K1 overlap at Brightwater Dental, 4.33 years"
+P1,P4,1.0,1,"K1 overlap at Northwind Equity Partners, 6.74 years"
+P2,P3,0.3333333333333333,1,"K1 overlap at Walnut Dental, 1.33 years"
+P2,P7,0.3333333333333333,1,"K1 overlap at Walnut Dental, 1.33 years"
+P3,P7,1.0,1,"K1 overlap at Walnut Dental, 4.5 years"
+P4,P8,0.8,1,K3 2 positive interactions in 24m
+P7,P9,0.999315537303217,1,"K1 overlap at Ironbridge Capital, 4.0 years"
+P8,P9,0.7,1,K2 co-participated in deal D9

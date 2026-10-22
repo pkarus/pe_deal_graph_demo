@@ -1,0 +1,14 @@
+company,name,score,tier,n_none,why
+C1,Brightwater Dental,25,B,0,thesis fit 15; EBITDA 12.5M in band 10; score 25
+C10,Cust C,15,C,0,thesis fit 15; score 15
+C11,Cust D,20,B,0,EBITDA 7.0M in band 10; founder owned 10; score 20
+C12,Cust E,10,C,0,EBITDA 7.0M in band 10; score 10
+C13,Cust F,10,C,0,EBITDA 5.0M in band 10; score 10
+C2,Walnut Dental,35,A,0,thesis fit 15; EBITDA 18.0M in band 10; founder owned 10; score 35
+C3,Meridian Lab Services,25,B,0,thesis fit 15; EBITDA 9.0M in band 10; score 25
+C4,Granite TIC,25,B,0,thesis fit 15; EBITDA 30.0M in band 10; score 25
+C5,Envirolab,35,A,0,thesis fit 15; EBITDA 11.0M in band 10; founder owned 10; score 35
+C6,VetPharma Co,20,B,0,EBITDA 15.0M in band 10; founder owned 10; score 20
+C7,Samesite Testing,35,A,0,thesis fit 15; EBITDA 8.0M in band 10; founder owned 10; score 35
+C8,Cust A,15,C,0,thesis fit 15; score 15
+C9,Cust B,35,A,0,thesis fit 15; EBITDA 6.0M in band 10; founder owned 10; score 35

@@ -1,0 +1,5 @@
+graph,num_nodes,num_edges
+commercial,13,12
+dealflow,18,8
+knows_unweighted,9,8
+knows_weighted,9,8

@@ -1,5 +1,5 @@
 {
-  "phase": "P6/P7",
+  "phase": "P9 done",
   "started_at": "2026-10-21T22:02:13+02:00",
   "gates": {
     "G0": {
@@ -39,10 +39,10 @@
       "commit": "ed8ecc6"
     },
     "G6": {
-      "status": "GATEKEEPER_RUNNING",
+      "status": "PASS",
       "attempts": 1,
-      "evidence": null,
-      "commit": null
+      "evidence": "gates/G6.md",
+      "commit": "917d449"
     },
     "G7": {
       "status": "PASS WITH NOTE",
@@ -52,15 +52,15 @@
       "note": "Tier-1 on clean runs 4-6; condition: no make export/edits during demo, warm server up"
     },
     "G8": {
-      "status": "PENDING",
-      "attempts": 0,
-      "evidence": null,
-      "commit": null
+      "status": "PARTIAL PASS (reduced, no engine)",
+      "attempts": 1,
+      "evidence": "gates/G8.md",
+      "commit": "19b40ff"
     },
     "G9": {
-      "status": "PENDING",
+      "status": "NOT RUN (formal); four early reviews ran, BLOCKER/MAJOR fixed",
       "attempts": 0,
-      "evidence": null,
+      "evidence": "handoffs/25,26,34,35 early reviews + fixers",
       "commit": null
     }
   },
@@ -151,7 +151,7 @@
     },
     "P6": {
       "title": "Export + workspace + explorer + script",
-      "status": "in_progress (early skeletons)",
+      "status": "done",
       "gate": "G6,G7",
       "depends_on": [
         "G5"
@@ -172,7 +172,7 @@
     },
     "P7": {
       "title": "Cold rehearsal",
-      "status": "in_progress",
+      "status": "done (G7 PASS WITH NOTE; G8 PARTIAL PASS reduced)",
       "gate": "G8",
       "depends_on": [
         "G6",
@@ -185,7 +185,7 @@
     },
     "P8": {
       "title": "Review board + fixes",
-      "status": "in_progress (early reviews)",
+      "status": "early reviews done, BLOCKER/MAJOR fixed; formal G9 not run",
       "gate": "G9",
       "depends_on": [
         "G8"
@@ -200,11 +200,14 @@
       ]
     },
     "P9": {
-      "title": "Morning report, engine suspend, final commit + tag demo-v1",
-      "status": "pending",
+      "title": "Morning report, final commit + tag demo-v1 (engine left warm for user testing)",
+      "status": "done",
       "gate": null,
       "depends_on": [
         "G9 or hard stop"
+      ],
+      "agents": [
+        "P9 finalizer a1: make warm OK 4m09s (13:13-13:18), live finale_rescore + q_score = golden via warm server, report final, commit + tag demo-v1"
       ]
     }
   },
@@ -307,5 +310,18 @@
     "cowork": "optional, out of scope before 14:00 unless time allows",
     "source": "user 11:28"
   },
-  "p9_plan": "no engine suspend (user testing); R21 report + final commit/tag + make warm at ~13:28"
+  "p9_plan": "no engine suspend (user testing); R21 report + final commit/tag + make warm at ~13:28",
+  "engine_state": {
+    "engine": "pe_demo_logic",
+    "state": "READY, warm, NOT suspended (user testing from 13:35); auto-suspend 30 idle min",
+    "query_server": "running (make warm 13:14, 127.0.0.1)",
+    "suspend_cmd": ".venv/bin/python demo_workspace/ask.py --serve-stop && .venv/bin/rai reasoners suspend --type Logic --name pe_demo_logic",
+    "as_of": "2026-10-22T13:20+02:00"
+  },
+  "live_check_p9": {
+    "at": "2026-10-22T13:18+02:00",
+    "finale_rescore": "Tier A = golden FINALE, Tessmark flagged off Tier A, 13.6 s",
+    "q_score": "6 golden Tier A, 10.2 s"
+  },
+  "finished_at": "2026-10-22T13:22+02:00"
 }

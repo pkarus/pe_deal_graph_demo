@@ -1,0 +1,3 @@
+platform,candidate,jaccard
+C4,C3,0.2
+C4,C5,0.6

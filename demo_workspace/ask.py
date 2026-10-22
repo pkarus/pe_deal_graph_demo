@@ -58,6 +58,13 @@ SERVER_DIR = REPO / "demo_workspace" / "scratch" / ".ask_server"
 SERVER_STATE = SERVER_DIR / "state.json"
 SERVER_LOG = SERVER_DIR / "server.log"
 
+# One rule set for every process on the shared engine model (R20, handoffs/40 + 45): a process that
+# installs Act 1-4 rules only (no Finale) changes the model definition, and concurrent readers that
+# DO have the Finale (export, tests, finale_rescore) get empty frames. So every ask.py process (serve,
+# in-process, client, and any child it spawns) always installs the Finale too. rules.py honours this
+# env var at import; load_queries() also calls rules.enable_finale() explicitly (idempotent).
+os.environ["PE_DEAL_GRAPH_FINALE"] = "1"
+
 # Required by the contract (QUESTIONS.md v2: q_conflict is Act 4, q_addon is an optional backup).
 REQUIRED = ("q_score", "q_path", "q_flow", "q_conflict", "finale_rescore")
 ACT3_CHOICES = ()
@@ -137,8 +144,13 @@ def load_queries():
     sys.path.insert(0, str(REPO))
     try:
         import pe_deal_graph.queries as q  # noqa: PLC0415
+        from pe_deal_graph.model import rules as _rules  # noqa: PLC0415
+
+        _rules.enable_finale()  # same call queries.finale_rescore makes; no-op if the env var already did it
     except Exception as exc:  # show one line, not a stack trace, on stage
         fail(f"could not import pe_deal_graph.queries: {type(exc).__name__}: {exc}")
+    if not getattr(_rules, "FINALE_ENABLED", False):
+        fail("Finale rules are not enabled after import; refusing to run with a different rule set than export/tests.")
     return q
 
 

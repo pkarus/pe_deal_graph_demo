@@ -1,0 +1,14 @@
+role_id,person,org,start,end,eff_end,eff_end_match
+R1,Dana Okafor,Northwind Equity Partners,2020-01-06,,2026-10-01,
+R10,Grace Liu,Walnut Dental,2022-04-01,,2026-10-01,
+R11,Hal Harbor,Harbor Lane Advisors,2010-01-01,,2026-10-01,
+R12,Ivy Iron,Ironbridge Capital,2015-01-01,,2026-10-01,
+R13,Grace Liu,Ironbridge Capital,2018-01-01,2021-12-31,2021-12-31,2021-12-31
+R2,Dana Okafor,Brightwater Dental,2015-03-01,2019-06-30,2019-06-30,2019-06-30
+R3,Elena Marsh,Brightwater Dental,2014-01-01,2019-12-31,2019-12-31,2019-12-31
+R4,Elena Marsh,Walnut Dental,2025-06-01,,2026-10-01,
+R5,Walter Kim,Walnut Dental,2008-01-01,,2026-10-01,
+R6,Tom Brennan,Northwind Equity Partners,2012-01-09,,2026-10-01,
+R7,Tom Brennan,Meridian Lab Services,2008-01-07,2011-06-30,2011-06-30,2011-06-30
+R8,Victor Hale,Meridian Lab Services,2013-03-04,2020-08-31,2020-08-31,2020-08-31
+R9,Sam Short,Meridian Lab Services,2011-01-01,2011-08-31,2011-08-31,2011-08-31
