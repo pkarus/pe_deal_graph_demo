@@ -111,11 +111,23 @@ ul.run .prompt{margin:4px 0}
 .optional{border:1px dashed var(--muted); border-radius:6px; padding:6px 14px; margin:8px 0}
 .optional > h3{margin-top:6px}
 .opt-tag{font-size:12px; font-weight:700; color:var(--warn); background:var(--warnbg); border-radius:4px; padding:0 6px}
+.views{display:grid; grid-template-columns:1fr 1fr; gap:10px 14px; margin:8px 0}
+@media (max-width:760px){ .views{grid-template-columns:1fr} }
+.vcard{border:1px solid var(--line); border-radius:6px; padding:8px 12px; font-size:13.5px; line-height:1.45}
+.vcard.backup{border-style:dashed}
+.vcard h4{margin:0 0 6px; display:flex; flex-wrap:wrap; gap:4px 8px; align-items:baseline}
+.vcard dl{margin:0; display:grid; grid-template-columns:64px minmax(0,1fr); gap:3px 8px}
+.vcard dt{color:var(--muted); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; padding-top:2px}
+.vcard dd{margin:0}
+.cn{font:11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--muted)}
+.rz{font-size:12px; font-weight:700; border-radius:4px; padding:0 7px}
+.rz.rules{background:var(--okbg); color:var(--ok)} .rz.graph{background:var(--code); color:var(--accent)}
+.rz.both{background:var(--warnbg); color:var(--warn)}
 @media print{
   :root{--bg:#fff; --fg:#000; --panel:#f3f3f3; --code:#f0f0f0}
   body{font-size:11.5pt} .noprint{display:none!important}
   section.act, section.seg.pagebreak{break-before:page}
-  .prompt, table, .say, .contrast, .why{break-inside:avoid}
+  .prompt, table, .say, .contrast, .why, .vcard{break-inside:avoid}
   .tw{overflow:visible} a{color:inherit; text-decoration:none}
   .tabbar{display:none}
   #pane-steps, #pane-full{display:block!important}
@@ -145,7 +157,7 @@ Prompts come from [[prompt_src]].</p>
 <div id="pane-full">
 <nav class="toc noprint">
   <a href="#before">Before you start</a><a href="#ros">Run of show</a><a href="#cold">Cold open</a>
-  <a href="#model">The model</a><a href="#acts">Acts</a><a href="#finale">Finale</a><a href="#open-floor">Open floor</a><a href="#close">Close</a>
+  <a href="#model">The model</a><a href="#views">Explorer views</a><a href="#acts">Acts</a><a href="#finale">Finale</a><a href="#open-floor">Open floor</a><a href="#close">Close</a>
   <a href="#elevator">Elevator version</a><a href="#skeptics">Skeptic Q&amp;A</a>
 </nav>
 
@@ -189,6 +201,120 @@ Prompts come from [[prompt_src]].</p>
 
 [[slot:cold_open]]
 [[slot:model]]
+
+<section class="seg" id="views">
+  <div class="acthead"><h2>Explorer views: what you are looking at</h2><span class="pill">Reference</span></div>
+  <p class="small">One card per tab, in tab order. <span class="rz rules">Rules</span> means RelationalAI's rules
+    reasoner (business logic written as derived facts). <span class="rz graph">Graph</span> means its graph reasoner
+    (algorithms run over a network built from the model). <span class="rz both">Rules + Graph</span> means a graph
+    result feeds a rule, or the other way round, in the same model. Code names in small grey text are the rule ids in
+    <code>exports/rules.json</code>; click any highlighted fact in the explorer to read that rule's docstring.</p>
+  <div class="views">
+
+  <div class="vcard"><h4>Overview <span class="rz rules">Rules</span></h4><dl>
+    <dt>Shows</dt><dd>The whole deal universe in one picture: our firm and people, targets, platforms, bankers, and how
+      they connect. It answers "what is in the model" before any question is asked.</dd>
+    <dt>Read</dt><dd>Green: our firm and team. Blue: Tier A targets. Orange: platforms. Purple hexagon: intermediary.
+      Grey: everything else. Edge color is the relationship type, each with a toggle and count. Search, then
+      expand one or two hops; click an edge and the side panel shows the rule that made it. The layout is a fixed
+      picture computed at build time, not a reasoner output.</dd>
+    <dt>Uses</dt><dd>Who knows whom <span class="cn">KNOWS</span>: {{ rules.rules[id=K1_TENURE][0].name }}
+      <span class="cn">{{ rules.rules[id=K1_TENURE][0].id }}</span>, board co-service
+      <span class="cn">{{ rules.rules[id=K1_BOARD][0].id }}</span>, deal co-participation
+      <span class="cn">{{ rules.rules[id=K2_DEAL][0].id }}</span>, positive CRM contact
+      <span class="cn">{{ rules.rules[id=K3_CRM][0].id }}</span>; current role <span class="cn">EMPLOYMENT</span>,
+      ownership <span class="cn">OWNERSHIP</span>, commercial links <span class="cn">COMMERCIAL</span>.
+      <br>Data: Person, Role (ROLE_HISTORY), TransactionParty, CommercialLink, Interaction (CRM_INTERACTION), Ownership.
+      Shows {{ graph.stats.num_nodes | int }} of {{ graph.stats.model_nodes | int }} entities.</dd>
+    <dt>Not SQL</dt><dd>The edges are derived facts: a "knows" edge exists only where two dated tenures overlap, and no
+      table holds it.</dd></dl></div>
+
+  <div class="vcard"><h4>Scorecard <span class="pill">Q-SCORE</span> <span class="rz rules">Rules</span></h4><dl>
+    <dt>Shows</dt><dd>Fund IV targets ranked by thesis fit and readiness to transact now, and whether we already cover
+      them. Every point traces to a named rule and dated evidence.</dd>
+    <dt>Read</dt><dd>Tier chip (A at {{ q_score.tier_thresholds.A | int }}+, B at {{ q_score.tier_thresholds.B | int }}+),
+      stacked bar of blue Fit, orange Readiness, green Access, and a "No coverage" badge. Click a row for each
+      component with points and evidence, then a component for its rule. The Finale toggle shows the re-score.</dd>
+    <dt>Uses</dt><dd>Sector-hierarchy closure, recursive <span class="cn">SECTOR_CLOSURE</span>; thesis fit and
+      eligibility <span class="cn">FIT_THESIS, EligibleTarget</span>; fit points <span class="cn">FIT_EBITDA,
+      FIT_MARGIN</span>; readiness components, capped at {{ q_score.readiness_cap | int }}
+      <span class="cn">R_CFO_FROM_PE, R_EXIT_WINDOW, R_BANKER, R_DEBT, R_SUCCESSION, R_NEW_DIRECTOR</span>; access
+      <span class="cn">A_CRM</span>; composite Score and Tier <span class="cn">SCORE, ScoreComponent</span>; known to CRM
+      <span class="cn">IN_CRM</span>; why-not <span class="cn">WHY_NOT</span>. The Finale toggle adds warm-path points
+      from the graph distance <span class="cn">A_WARM_PATH</span>, so that one view is Rules + Graph.
+      <br>Data: Company, Sector, Region, FundFocus, Role (ROLE_HISTORY), Ownership, Signal (COMPANY_SIGNAL), PipelineEntry
+      (PIPELINE), Interaction (CRM_INTERACTION).</dd>
+    <dt>Not SQL</dt><dd>Hierarchy recursion, dated multi-table signals and a per-point explanation in one governed
+      definition; a keyword screen lets the decoys in.</dd></dl></div>
+
+  <div class="vcard"><h4>Warm path <span class="pill">Q-PATH</span> <span class="rz both">Rules + Graph</span></h4><dl>
+    <dt>Shows</dt><dd>For each top target, our warmest introduction route to the CEO (or the owner's board designee),
+      hop by hop with dated evidence, or an honest "cold".</dd>
+    <dt>Read</dt><dd>Pick a target. Green: our people, where routes start. Large blue: the decision-maker. Thick blue
+      line: warmest route; dashed grey: alternates; dashed red: a rejected claim (shared employer, no overlap); dashed
+      red ring: no route. Edge labels carry the evidence; the side panel lists each hop and its rule.</dd>
+    <dt>Uses</dt><dd>Knows with tenure overlap, board, deal and CRM evidence <span class="cn">KNOWS,
+      {{ rules.rules[id=K1_TENURE][0].id }}, {{ rules.rules[id=K2_DEAL][0].id }}, {{ rules.rules[id=K3_CRM][0].id }}</span>;
+      shared employer is not a tie <span class="cn">SHARED_EMPLOYER_REJECT</span>; decision-makers
+      <span class="cn">DECISION_MAKER</span>; distance from our people with path reconstruction, at most
+      {{ q_path.max_hops | int }} introductions, ranked by tie strength <span class="cn">SEED_DISTANCE, WARM_PATH:
+      distance(from_=seeds), distance(from_=decision-makers)</span>.
+      <br>Data: Person, Role (ROLE_HISTORY), TransactionParty (TRANSACTION_PARTY), Interaction (CRM_INTERACTION), OurSeed,
+      DecisionMaker.</dd>
+    <dt>Not SQL</dt><dd>Variable-length paths over a derived, time-qualified relationship; the shared-employer self-join
+      reports introductions that never existed.</dd></dl></div>
+
+  <div class="vcard"><h4>Deal flow <span class="pill">Q-FLOW</span> <span class="rz both">Rules + Graph</span></h4><dl>
+    <dt>Shows</dt><dd>Which banks and boutiques actually bridge deal flow between founders and sponsors in our sectors,
+      and which of them we barely call.</dd>
+    <dt>Read</dt><dd>Purple hexagons: intermediaries, sized by betweenness. Grey: sponsors and companies. Red ring:
+      coverage gap. Node labels show our recent touchpoints. The table ranks betweenness, PageRank, deals in sector and
+      touchpoints; "Compare with league table" shows the SQL deal count. The side panel lists the firm's deals.</dd>
+    <dt>Uses</dt><dd>Deal-flow scope, thesis deals closed {{ q_flow.window.start }} to {{ q_flow.window.end }}
+      <span class="cn">DEAL_FLOW_SCOPE</span>; exact betweenness centrality plus PageRank
+      <span class="cn">DEAL_FLOW: betweenness_centrality, pagerank</span>; CoverageGap, bridge rank
+      {{ q_flow.thresholds.top_decile_cutoff_rank | int }} or better with at most
+      {{ q_flow.thresholds.q1_touchpoints | int }} touchpoints <span class="cn">COVERAGE_GAP</span>; closest intermediary
+      <span class="cn">CLOSEST_INTERMEDIARY</span>.
+      <br>Data: Transaction, TransactionParty (TRANSACTION, TRANSACTION_PARTY), Intermediary, Sponsor, Role, Interaction
+      (CRM_INTERACTION).</dd>
+    <dt>Not SQL</dt><dd>Centrality is a property of the whole network; GROUP BY gives a deal count, and volume is not
+      control.</dd></dl></div>
+
+  <div class="vcard"><h4>Conflict check <span class="pill">Q-CONFLICT</span> <span class="rz both">Rules + Graph</span></h4><dl>
+    <dt>Shows</dt><dd>Before an IOI: does the bid subject trade with anything a Northwind fund owns today, and would our
+      check breach Fund IV's thesis-area concentration guideline?</dd>
+    <dt>Read</dt><dd>Large blue: the bid subject. Solid red edge: conflict (a direct link to another fund's holding);
+      dashed amber: informational (a shared counterparty); dashed grey: context. Hollow nodes were checked and set aside
+      (sold, or too far out). Bars: equity per thesis area, orange is this check, the dashed red line is the
+      {{ q_conflict.concentration.guideline_pct | pct }} guideline.</dd>
+    <dt>Uses</dt><dd>{{ q_conflict.max_distance | int }}-hop conflict reachability over the commercial network
+      <span class="cn">COMMERCIAL: distance(from_=ConflictSubject)</span>, feeding portfolio exposure
+      <span class="cn">PORTFOLIO_EXPOSURE</span>; current holdings only <span class="cn">NORTHWIND_HOLDING</span>;
+      cross-fund conflict flag <span class="cn">CONFLICT</span>; the concentration rule, rolled up by sector closure
+      <span class="cn">CONCENTRATION</span>.
+      <br>Data: CommercialLink (COMMERCIAL_LINK), Ownership, Fund, PipelineEntry (PIPELINE, equity check), Sector.</dd>
+    <dt>Not SQL</dt><dd>The one-hop join counts any ownership row ever recorded and misses the shared counterparty;
+      reach, "owned today" and a hierarchy rollup are not one query.</dd></dl></div>
+
+  <div class="vcard backup"><h4>Add-on map <span class="pill">Q-ADDON</span> <span class="opt-tag">Backup, hidden tab</span>
+    <span class="rz graph">Graph</span></h4><dl>
+    <dt>Shows</dt><dd>Which companies best extend a Fund IV platform, judged by shared customers and suppliers rather
+      than by sector label.</dd>
+    <dt>Read</dt><dd>Platform large in the center; candidates sized by similarity and colored by community; the side
+      panel lists shared customers and suppliers; the state grid marks the whitespace states a candidate adds.</dd>
+    <dt>Uses</dt><dd>Jaccard similarity from each platform plus Louvain communities
+      <span class="cn">ADDON_SIMILARITY: jaccard_similarity, louvain</span> over the commercial network
+      <span class="cn">COMMERCIAL</span>.
+      <br>Data: CommercialLink (COMMERCIAL_LINK), Ownership, company sites (COMPANY_SITE).</dd>
+    <dt>Not SQL</dt><dd>Neighborhood similarity across a network is not a join; a sector screen ranks the same-niche
+      decoy first.</dd>
+    <dt>Note</dt><dd class="small">Reached at <code>#addon</code>, and only built when <code>q_addon.json</code> is
+      exported. The current exports do not include it.</dd></dl></div>
+
+  </div>
+</section>
+
 <div id="acts"></div>
 [[slot:acts]]
 [[slot:finale]]
@@ -203,6 +329,13 @@ Do not edit this file by hand; run <code>make artifacts</code>.</p>
 </div>
 </div>
 <script>
+document.querySelectorAll('a[data-tab]').forEach(function (a) {
+  a.addEventListener('click', function (ev) {
+    var r = document.getElementById(a.getAttribute('data-tab')), t = document.querySelector(a.getAttribute('href'));
+    if (!r || !t) return;
+    ev.preventDefault(); r.checked = true; t.scrollIntoView(); history.replaceState(null, '', a.getAttribute('href'));
+  });
+});
 document.querySelectorAll('.copy').forEach(function (b) {
   b.addEventListener('click', function () {
     var pre = b.closest('.prompt').querySelector('pre');
@@ -224,6 +357,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
 <section class="seg" id="steps">
   <h2>Step by step</h2>
   <p class="small">One line per action. Tick as you go; ticks reset when the page reloads. Claude Code is the main stage; explorer lines are optional. Detail and fallbacks are in the Full script tab.</p>
+  <p class="small noprint">What each explorer tab shows and which RelationalAI reasoner powers it: <a href="#views" data-tab="tab-full">Explorer views: what you are looking at</a> (Full script tab).</p>
   <ol class="steps">
 <li><h3>Before the meeting</h3>
   <ul class="run">
