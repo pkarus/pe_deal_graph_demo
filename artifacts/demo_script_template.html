@@ -90,12 +90,37 @@ ol.hops{margin-top:2px} ol.fallback li{margin:6px 0}
 .onto-arrow{fill:var(--muted)}
 .grid2{display:grid; grid-template-columns:1fr 1fr; gap:6px 24px}
 @media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+.tabr{position:absolute; opacity:0; pointer-events:none}
+.tabbar{display:flex; gap:4px; border-bottom:2px solid var(--line); margin:14px 0 6px}
+.tabbar label{padding:7px 16px; border:1px solid var(--line); border-bottom:none; border-radius:6px 6px 0 0;
+  cursor:pointer; color:var(--muted); background:var(--panel); font-weight:600}
+#tab-steps:checked ~ .tabbar label[for="tab-steps"], #tab-full:checked ~ .tabbar label[for="tab-full"]{
+  background:var(--bg); color:var(--accent); border-color:var(--accent)}
+#tab-steps:focus-visible ~ .tabbar label[for="tab-steps"], #tab-full:focus-visible ~ .tabbar label[for="tab-full"]{
+  outline:2px solid var(--accent)}
+#tab-steps:checked ~ #pane-full, #tab-full:checked ~ #pane-steps{display:none}
+ol.steps{padding-left:26px} ol.steps > li{margin:10px 0 14px}
+ol.steps > li > h3{margin:0 0 4px}
+ul.run{list-style:none; padding-left:0; margin:4px 0}
+ul.run > li{margin:5px 0; display:flex; gap:8px; align-items:flex-start}
+ul.run > li > input{margin-top:5px; flex:none; width:16px; height:16px}
+ul.run > li > div{flex:1; min-width:0}
+ul.run .tag{display:inline-block; min-width:62px; font-size:12px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--muted)}
+ul.run .prompt{margin:4px 0}
+.optional{border:1px dashed var(--muted); border-radius:6px; padding:6px 14px; margin:8px 0}
+.optional > h3{margin-top:6px}
+.opt-tag{font-size:12px; font-weight:700; color:var(--warn); background:var(--warnbg); border-radius:4px; padding:0 6px}
 @media print{
   :root{--bg:#fff; --fg:#000; --panel:#f3f3f3; --code:#f0f0f0}
   body{font-size:11.5pt} .noprint{display:none!important}
   section.act, section.seg.pagebreak{break-before:page}
   .prompt, table, .say, .contrast, .why{break-inside:avoid}
   .tw{overflow:visible} a{color:inherit; text-decoration:none}
+  .tabbar{display:none}
+  #pane-steps, #pane-full{display:block!important}
+  #pane-full{break-before:page}
+  ul.run > li{break-inside:avoid}
 }
 </style>
 </head>
@@ -108,9 +133,19 @@ from engine {{ meta.engine | opt }}, relationalai {{ meta.relationalai_version |
 Every number on this page is injected from the exports by key path and re-checked at build time.
 Prompts come from [[prompt_src]].</p>
 
+<input type="radio" name="tab" id="tab-steps" class="tabr" checked>
+<input type="radio" name="tab" id="tab-full" class="tabr">
+<div class="tabbar" role="tablist"><label for="tab-steps" role="tab">Step by step</label><label for="tab-full"
+  role="tab">Full script</label></div>
+
+<div id="pane-steps">
+[[slot:steps]]
+</div>
+
+<div id="pane-full">
 <nav class="toc noprint">
   <a href="#before">Before you start</a><a href="#ros">Run of show</a><a href="#cold">Cold open</a>
-  <a href="#model">The model</a><a href="#acts">Acts</a><a href="#finale">Finale</a><a href="#close">Close</a>
+  <a href="#model">The model</a><a href="#acts">Acts</a><a href="#finale">Finale</a><a href="#open-floor">Open floor</a><a href="#close">Close</a>
   <a href="#elevator">Elevator version</a><a href="#skeptics">Skeptic Q&amp;A</a>
 </nav>
 
@@ -134,8 +169,10 @@ Prompts come from [[prompt_src]].</p>
     <li><strong>Ten minutes before:</strong> <code class="cmd">make warm</code> again, because the engine suspends after
       half an hour idle. Then start <code class="cmd">make keepalive</code> in its own terminal and leave it running
       until the Q&amp;A ends. Type <code>/clear</code> in the live session.</li>
-    <li><strong>During the demo:</strong> type <code>/clear</code> before each act's prompt and before the Finale prompt,
-      never between a prompt and its ad-lib. Paste prompts from this page with Copy; do not retype. If a typo lands, let
+    <li><strong>During the demo:</strong> Claude Code is the main stage; the explorer is supporting evidence. Type
+      <code>/clear</code> before each act's prompt and before the Finale prompt, never between a prompt and its
+      follow-ups. Follow-ups come from <code>demo_workspace/query_bank.md</code> (SHOWCASE); keep it open beside
+      this page. Paste prompts from this page with Copy; do not retype. If a typo lands, let
       it answer, or press Esc and paste again. While an act runs, talk through its business setup.</li>
     <li><strong>After the Q&amp;A:</strong> Ctrl-C the keepalive terminal, then
       <code class="cmd">.venv/bin/python demo_workspace/ask.py --serve-stop</code> and suspend the engine
@@ -155,6 +192,7 @@ Prompts come from [[prompt_src]].</p>
 <div id="acts"></div>
 [[slot:acts]]
 [[slot:finale]]
+[[slot:open_floor]]
 [[slot:close]]
 [[slot:elevator]]
 [[slot:skeptics]]
@@ -162,6 +200,7 @@ Prompts come from [[prompt_src]].</p>
 
 <p class="meta" style="margin-top:40px">Built by artifacts/build_script.py from artifacts/demo_script_template.html.
 Do not edit this file by hand; run <code>make artifacts</code>.</p>
+</div>
 </div>
 <script>
 document.querySelectorAll('.copy').forEach(function (b) {
@@ -181,16 +220,147 @@ document.querySelectorAll('.copy').forEach(function (b) {
 <!-- /BLOCK PAGE -->
 
 
+<!-- BLOCK STEPS -->
+<section class="seg" id="steps">
+  <h2>Step by step</h2>
+  <p class="small">One line per action. Tick as you go; ticks reset when the page reloads. Claude Code is the main stage; explorer lines are optional. Detail and fallbacks are in the Full script tab.</p>
+  <ol class="steps">
+<li><h3>Before the meeting</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Day before</span> Check the PAT expiry date at the top of RUNBOOK.md (rotate if the demo is on or after the day before it) and run the RUNBOOK venue-network checklist.</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-[[t:t_warm1]]</span> From the repo root: <code class="cmd">make warm</code>. It must end with "make warm: OK".</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-[[t:t_warm1]]</span> Open the explorer and the script: <code class="cmd">open artifacts/deal_graph_explorer.html artifacts/demo_script.html</code>. Do Not Disturb on, power connected, large terminal font.</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-[[t:t_launch]]</span> Pre-launch: <code class="cmd">cd demo_workspace &amp;&amp; claude</code>, accept the prompts, run <code>Run uv run python ask.py --list</code> once. Keep a second terminal in <code>demo_workspace/</code>. Open <code>demo_workspace/query_bank.md</code> beside this page.</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-[[t:t_warm2]]</span> From the repo root: <code class="cmd">make warm</code> again (the engine suspends after half an hour idle).</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-[[t:t_warm2]]</span> In a spare terminal: <code class="cmd">make keepalive</code>. Leave it running until the Q&amp;A ends.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Ready</span> Type <code class="cmd">/clear</code> in the live session. Claude Code on the main screen.</div></li>
+  </ul></li>
+<li><h3>Cold open</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Your pipeline has {{ meta.counts.pipeline_companies | int }} names. PitchBook, Grata and your bankers will hand you thousands more in your sweet spot. Which {{ q_score.summary.tier_a | int }} do you call on Monday, why now, and who gets us in?"</div></li>
+    <li><input type="checkbox"><div><span class="tag">Model</span> One picture in the explorer Global view, one sentence: "one model of your deal universe, in your Snowflake". Switch back to Claude Code.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "I'll ask it the questions your deal team asks, in plain English, and you can ask your own at the end."</div></li>
+  </ul></li>
+[[slot:steps_acts]]
+[[slot:steps_finale]]
+<li><h3>Open floor</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Your turn. Ask it something about your pipeline, your relationships or your portfolio, and I'll type it in."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> once before the first question.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Each</span> Say the question back in the model's words (Tier A, warm path, coverage gap, conflict, concentration), then type it. One question at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past [[t:open_floor_slow_s]] seconds: press Esc and offer the closest hero function (<code>q_score</code>, <code>q_path</code>, <code>q_flow</code>, <code>q_conflict</code>, <code>q_addon</code>).</div></li>
+  </ul></li>
+<li><h3>Close</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Governed, explainable, in your Snowflake, and Claude is the interface."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Leave</span> {{ q_score.summary.tier_a | int }} Tier A targets, {{ q_score.summary.tier_a_not_in_crm | int }} with no coverage; one coverage gap at {{ q_flow.intermediaries[is_gap=true][0].name }}; {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }} on hold until cleared.</div></li>
+  </ul></li>
+<li><h3>After the meeting</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Stop</span> Ctrl-C the keepalive terminal.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Stop</span> <code class="cmd">.venv/bin/python demo_workspace/ask.py --serve-stop</code></div></li>
+    <li><input type="checkbox"><div><span class="tag">Suspend</span> <code class="cmd">.venv/bin/rai reasoners suspend --type Logic --name pe_demo_logic</code>, then <code class="cmd">.venv/bin/rai reasoners get --type Logic --name pe_demo_logic</code> and expect SUSPENDED (RUNBOOK.md, "After the demo").</div></li>
+  </ul></li>
+  </ol>
+</section>
+<!-- /BLOCK STEPS -->
+
+
+<!-- BLOCK STEP_Q-SCORE -->
+<li><h3>Act [[act_no]]. Who fits and who is ready <span class="pill">Q-SCORE</span> <span class="pill">[[minutes]] min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:[[prompt:tier1]]</div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> {{ q_score.summary.tier_a | int }} Tier A, led by {{ q_score.rows[tier=A][0].name }} ({{ q_score.rows[tier=A][0].score | int }}), {{ q_score.rows[tier=A][1].name }} ({{ q_score.rows[tier=A][1].score | int }}) and {{ q_score.rows[tier=A][2].name }} ({{ q_score.rows[tier=A][2].score | int }}); {{ q_score.summary.tier_a_not_in_crm | int }} with no coverage. Fit, readiness and access per row, with a why line.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "{{ q_score.summary.tier_a_not_in_crm | int }} of your {{ q_score.summary.tier_a | int }} best targets have no pipeline entry and no touch from anyone here. Every point traces to a named rule."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds: Scorecard view, hover the stacked bar of {{ q_score.rows[tier=A][0].name }}.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past [[t:followup_slow_s]] seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_score and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_score</code>)</div></li>
+  </ul></li>
+<!-- /BLOCK STEP_Q-SCORE -->
+
+
+<!-- BLOCK STEP_Q-PATH -->
+<li><h3>Act [[act_no]]. Who gets us an edge <span class="pill">Q-PATH</span> <span class="pill">[[minutes]] min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:[[prompt:tier1]]</div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> {{ q_path.targets[status=warm][0].company_name }} warm, CEO {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].hops | int }} hops; {{ q_path.targets[status=warm][1].company_name }} warm, CEO {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].hops | int }} hops; {{ q_path.targets[status=cold][0].company_name }} cold, the way in is {{ q_path.targets[status=cold][0].closest_intermediary.name }}. Every hop with dated evidence.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "{{ q_path.targets[status=warm] | len }} of the top {{ q_path.targets | len }} have a warm route in. {{ q_path.targets[status=cold][0].company_name }} is cold, and the model says so instead of inventing a path."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds: Warm path view, pick {{ q_path.targets[status=warm][0].company_name }} and hover one edge for its dates.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past [[t:followup_slow_s]] seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_path and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_path</code>)</div></li>
+  </ul></li>
+<!-- /BLOCK STEP_Q-PATH -->
+
+
+<!-- BLOCK STEP_Q-FLOW -->
+<li><h3>Act [[act_no]]. Who controls deal flow <span class="pill">Q-FLOW</span> <span class="pill">[[minutes]] min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:[[prompt:tier1]]</div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> {{ q_flow.intermediaries[betweenness_rank=1][0].name }} is the top bridge ({{ q_flow.intermediaries[betweenness_rank=1][0].touchpoints_24m | int }} touchpoints); the gap is {{ q_flow.intermediaries[is_gap=true][0].name }}, rank {{ q_flow.intermediaries[is_gap=true][0].betweenness_rank | int }} by betweenness, touchpoints in two years: {{ q_flow.intermediaries[is_gap=true][0].touchpoints_24m | int }}.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Volume is not control. {{ q_flow.intermediaries[is_gap=true][0].name }} bridges deal flow in our sectors, it is engaged on {{ q_path.targets[status=cold][0].company_name }}, and we barely cover it."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds: Deal flow view, click {{ q_flow.intermediaries[is_gap=true][0].name }}.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past [[t:followup_slow_s]] seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_flow and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_flow</code>)</div></li>
+  </ul></li>
+<!-- /BLOCK STEP_Q-FLOW -->
+
+
+<!-- BLOCK STEP_Q-CONFLICT -->
+<li><h3>Act [[act_no]]. Before we bid <span class="pill">Q-CONFLICT</span> <span class="pill">[[minutes]] min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:[[prompt:tier1]]</div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> Conflict: {{ q_conflict.exposures[kind=conflict][0].name }} (cross-fund review). {{ q_conflict.concentration.subject_area }} goes to {{ q_conflict.concentration.areas[is_subject_area=true][0].after_pct | pct }} against a {{ q_conflict.concentration.guideline_pct | pct }} guideline at a {{ q_conflict.concentration.check_musd | musd }} check: over by {{ q_conflict.concentration.over_by_musd | musd }}, headroom {{ q_conflict.concentration.headroom_musd | musd }}.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Either size the check at {{ q_conflict.concentration.headroom_musd | musd }} or less and syndicate the rest as co-invest, or take it to IC as an exception."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds: Conflict check view: the red edge to {{ q_conflict.exposures[kind=conflict][0].name }} and the concentration gauge.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past [[t:followup_slow_s]] seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_conflict and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_conflict</code>)</div></li>
+  </ul></li>
+<!-- /BLOCK STEP_Q-CONFLICT -->
+
+
+<!-- BLOCK STEP_Q-ADDON -->
+<li><h3>Act [[act_no]]. What the platform buys next <span class="pill">Q-ADDON</span> <span class="pill">[[minutes]] min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:[[prompt:tier1]]</div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> {{ q_addon.candidates[0].name }} first: shares {{ q_addon.candidates[0].shared_count | int }} of {{ q_addon.platform.name }}'s {{ q_addon.platform.neighbor_count | int }} customers and suppliers, adds {{ q_addon.candidates[0].whitespace_states | list }}.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "The best add-on sits in a niche a sector screen never looks at."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds: Add-on map, click {{ q_addon.candidates[0].name }}.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past [[t:followup_slow_s]] seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_addon and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_addon</code>)</div></li>
+  </ul></li>
+<!-- /BLOCK STEP_Q-ADDON -->
+
+
+<!-- BLOCK STEP_FINALE -->
+<li><h3>Finale. Change the rules live <span class="pill">[[minutes]] min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the rule prompt into Claude Code:[[prompt:tier1]]</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "While it writes the rules, here is what they will do." Optional: walk the explorer Scorecard Finale toggle during the wait.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> {{ q_score.finale.rows[rank=1][0].name }} moves from #{{ q_score.finale.rows[rank=1][0].prev_rank | int }} to #{{ q_score.finale.rows[rank=1][0].rank | int }} at {{ q_score.finale.rows[rank=1][0].score | int }}; {{ q_score.finale.rows[prev_tier!=A][tier=A][0].name }} rises into Tier A at {{ q_score.finale.rows[prev_tier!=A][tier=A][0].score | int }}; {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }} keeps {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].score | int }} but is on hold until cross-fund clearance, off the Tier A rows.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Cutoff</span> One live attempt. At the first failure (error, empty or partial table, odd ranking) or at [[t:finale_cutoff]] minutes, press Esc and type <code class="cmd">use the prebuilt version</code>. Say "here is the same rule, prebuilt".</div></li>
+    <li><input type="checkbox"><div><span class="tag">If down</span> Engine or network down: <code class="cmd">Run uv run python ask.py --from-exports finale_rescore and show the result as a table with the why for each row.</code></div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "{{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}'s score did not change; it is on hold until the conflicts committee clears it. The check we ran by hand for one name now runs on every target."</div></li>
+  </ul></li>
+<!-- /BLOCK STEP_FINALE -->
+
+
 <!-- BLOCK COLD_OPEN -->
 <section class="seg" id="cold">
   <div class="acthead"><h2>Cold open</h2><span class="pill">[[minutes]] min</span></div>
-  <p>Explorer open on the overview, Claude Code ready but idle. Look at the room, not the screen.</p>
+  <p>Claude Code on the main screen, ready but idle; the explorer open behind it on the overview. Look at the room,
+    not the screen.</p>
   <div class="say">"Your pipeline has {{ meta.counts.pipeline_companies | int }} names. PitchBook, Grata and your
     bankers will hand you thousands more in your sweet spot. Which {{ q_score.summary.tier_a | int }} do you call on
     Monday, why now, and who gets us in?"</div>
   <p class="small">Do not quote a market size. The model scores a demo slice, not the market.</p>
-  <p class="small">Then: "We built one model of your deal universe and asked it the questions your deal team asks.
-    I'll type them in plain English."</p>
+  <p class="small">Then: "We built one model of your deal universe. I'll ask it the questions your deal team asks,
+    in plain English, and you can ask your own at the end."</p>
 </section>
 <!-- /BLOCK COLD_OPEN -->
 
@@ -207,7 +377,9 @@ document.querySelectorAll('.copy').forEach(function (b) {
     roles, deals, signals, CRM touches. The dashed boxes are not loaded from anywhere. Rules and graph algorithms
     derive them, and every derived fact points back to a rule you can read."</div>
   [[ontology]]
-  <h3>Click in the explorer</h3>
+  <p class="small">Keep this to one picture and one sentence, then switch to Claude Code. This is the only explorer
+    moment that is not optional.</p>
+  <h3>Click in the explorer (pick one)</h3>
   <ul>
     <li>Global view: search for a company, expand one hop, then two.</li>
     <li>Toggle the edge types on and off: tenure overlap, board, deal, commercial, CRM.</li>
@@ -224,17 +396,18 @@ document.querySelectorAll('.copy').forEach(function (b) {
 <section class="act" id="q-score">
   <div class="acthead"><h2>Act [[act_no]]. Who fits and who is ready</h2><span class="pill">[[minutes]] min</span>
     <span class="pill">Q-SCORE</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Say while it runs</h3>
   <p>Fund IV is actively investing. The partners want a short list of companies that fit the Fund IV thesis today
     and are likely to transact soon, with every point of the score explained. Partners distrust black-box scores,
     so each point has to trace to a named rule and dated evidence. Most names on the list will have a banker engaged.
     Banker engaged is not process launched. It is the window to get in front of the book: a pre-empt, a seat in a
     limited process, or at least the first call when the teaser goes out.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  [[prompt:tier1]]
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   <p><strong>{{ q_score.summary.tier_a | int }} Tier A companies</strong> (score {{ q_score.tier_thresholds.A | int }}
     or more out of {{ q_score.max_score | int }}). <strong>{{ q_score.summary.tier_a_not_in_crm | int }}</strong> of
     them have no pipeline entry and no logged touch: nobody here owns the relationship.</p>
@@ -250,13 +423,23 @@ document.querySelectorAll('.copy').forEach(function (b) {
     before a teaser would reach you. The value is position: who on our team knows that banker (the warm-path act) and whether
     we are on their call list.</p>
   [[story_why]]
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    [[t:followup_slow_s]] seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  [[followup_default]]
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds, explorer: [[view]]</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Scorecard view. Hover the stacked bar of {{ q_score.rows[tier=A][0].name }}: each component shows its evidence.</li>
     <li>Point at the "not in CRM" badges and say "no coverage": no pipeline entry, no logged touch.</li>
     <li>Click a component: the side panel shows the rule docstring.</li>
     <li>Toggle the naive SQL list: decoys struck through with the reason, misses marked.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>A keyword-and-signal-count screen returns <strong>{{ @sql.row_count | int }}</strong> companies, ranked by
@@ -276,8 +459,6 @@ document.querySelectorAll('.copy').forEach(function (b) {
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  [[prompt:tier2]]
   <h3>Hand-off</h3>
   <!-- NEXT Q-PATH -->
   <div class="say">"Knowing who to call is half the job. The other half is who gets us in. Take the top
@@ -292,16 +473,17 @@ document.querySelectorAll('.copy').forEach(function (b) {
   <div class="acthead"><h2>Act [[act_no]]. Who gets us an edge</h2><span class="pill">[[minutes]] min</span>
     <span class="pill">Q-PATH</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
   <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib passed once in two runs (one engine error). Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_path, or open the explorer view.</strong></p>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Say while it runs</h3>
   <p>For the top names, the deal team wants to know who on our side has a real, dated relationship that gives us an
     edge: the founder or CEO directly, the owner's deal partner, or the banker running the process. Affinity and
     DealCloud already show warm paths; the point here is that every hop is a real, dated relationship and the path
     feeds the same governed score.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  [[prompt:tier1]]
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   [[table:paths]]
   <ul>
     <li><strong>{{ q_path.targets[status=warm][0].company_name }}</strong>: CEO
@@ -333,7 +515,16 @@ document.querySelectorAll('.copy').forEach(function (b) {
     someone here knows {{ q_path.targets[status=cold][0].decision_makers[kind=OWNER_DESIGNEE][0].name }}, log it, and
     the path appears on the next run."</p>
   [[story_why]]
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    [[t:followup_slow_s]] seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  [[followup_default]]
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds, explorer: [[view]]</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Warm path view. Pick {{ q_path.targets[status=warm][0].company_name }}: the path from our people lights up.
       Hover each edge for its evidence and dates.</li>
@@ -342,6 +533,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
       claim, the owner-designee row, and the link to {{ q_path.targets[status=cold][0].closest_intermediary.name }}
       in the deal-flow view.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>A shared-employer join reports <strong>{{ @sql.row_count | int }}</strong> "connections". The model finds
@@ -369,8 +561,6 @@ document.querySelectorAll('.copy').forEach(function (b) {
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  [[prompt:tier2]]
   <h3>Hand-off</h3>
   <!-- NEXT Q-FLOW -->
   <div class="say">"{{ q_path.targets[status=warm] | len }} of the top {{ q_path.targets | len }} have a warm route in.
@@ -391,15 +581,16 @@ document.querySelectorAll('.copy').forEach(function (b) {
   <div class="acthead"><h2>Act [[act_no]]. Who controls deal flow</h2><span class="pill">[[minutes]] min</span>
     <span class="pill">Q-FLOW</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
   <p class="small"><strong>Second-tier ad-lib: OPTIONAL - one run only. This ad-lib passed its only run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_flow, or open the explorer view.</strong></p>
-  <h3>Business setup</h3>
-  <p>Firms invest in off-market flow to avoid fully competitive auctions, but most deals still pass through a banker,
-    boutique or broker. Coverage is a managed activity. The question is whether we cover the intermediaries that
-    actually bridge founders and sponsors in our sectors, not the ones with the most tombstones.</p>
-  <h3>Type this</h3>
+  <h3>Type this in Claude Code</h3>
   <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
     context (never between this prompt and its ad-lib).</p>
   [[prompt:tier1]]
-  <h3>Expected answer</h3>
+  <h3>Say while it runs</h3>
+  <p>Firms invest in off-market flow to avoid fully competitive auctions, but most deals still pass through a banker,
+    boutique or broker. Coverage is a managed activity. The question is whether we cover the intermediaries that
+    actually bridge founders and sponsors in our sectors, not the ones with the most tombstones.</p>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   <p>The model builds a deal network from thesis-sector transactions between {{ q_flow.window.start }} and
     {{ q_flow.window.end }}: {{ q_flow.graph_stats.num_nodes | int }} organizations and
     {{ q_flow.graph_stats.num_edges | int }} deal relationships, then ranks
@@ -420,7 +611,16 @@ document.querySelectorAll('.copy').forEach(function (b) {
     the buyer list. It goes on the coverage plan this week, starting with the banker who led their
     {{ q_path.targets[status=cold][0].company_name }} work."</div>
   [[story_why]]
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    [[t:followup_slow_s]] seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  [[followup_default]]
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds, explorer: [[view]]</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Deal flow view. Intermediaries are sized by betweenness, with our touchpoint count as a ring.</li>
     <li>Click {{ q_flow.intermediaries[is_gap=true][0].name }} (outlined as the coverage gap): its
@@ -428,6 +628,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
     <li>Follow its recap edge back to the cold card in the warm-path view.</li>
     <li>Leave "Compare with league table" closed unless someone asks.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>A deal-count league table lists <strong>{{ @sql.row_count | int }}</strong> advisors and puts
@@ -449,8 +650,6 @@ document.querySelectorAll('.copy').forEach(function (b) {
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  [[prompt:tier2]]
   <h3>Hand-off</h3>
   <!-- NEXT Q-CONFLICT -->
   <div class="say">"{{ q_flow.intermediaries[is_gap=true][0].name }} is the gap. Now take
@@ -470,16 +669,17 @@ document.querySelectorAll('.copy').forEach(function (b) {
   <div class="acthead"><h2>Act [[act_no]]. Before we bid</h2><span class="pill">[[minutes]] min</span>
     <span class="pill">Q-CONFLICT</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
   <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib was not run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_conflict, or open the explorer view.</strong></p>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Say while it runs</h3>
   <p>{{ q_conflict.subject.name }} is a real Tier A target and we are preparing an IOI. Before it goes in, the IC asks
     two things: does it trade with anything another Northwind fund owns today, and how much room is left under Fund
     IV's guideline for its thesis area? The second lives in the CFO's portfolio sheet. The first lives in our portfolio
     companies' vendor and customer lists, which nobody on the deal team reads.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  [[prompt:tier1]]
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   [[table:conflict]]
   <div class="say">"{{ q_conflict.exposures[kind=conflict][0].name }} is a direct link:
     {{ q_conflict.exposures[kind=conflict][0].evidence }} That needs cross-fund review. And at a
@@ -489,13 +689,23 @@ document.querySelectorAll('.copy').forEach(function (b) {
     Either size the check at {{ q_conflict.concentration.headroom_musd | musd }} or less and syndicate the rest as
     co-invest, or take it to IC as an exception."</div>
   [[story_why]]
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    [[t:followup_slow_s]] seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  [[followup_default]]
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds, explorer: [[view]]</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Conflict check view: {{ q_conflict.subject.name }} in the center with its two-hop commercial neighborhood.</li>
     <li>The red edge to {{ q_conflict.exposures[kind=conflict][0].name }}; the dashed shared-customer path;
       the greyed former holding and the out-of-range company at the rim.</li>
     <li>The concentration gauge beside it: one bar per thesis area, the guideline line, before and after.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>The associate's check joins commercial links to every ownership row ever recorded and groups exposure by niche.
@@ -514,8 +724,6 @@ document.querySelectorAll('.copy').forEach(function (b) {
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  [[prompt:tier2]]
   <h3>Hand-off</h3>
   <!-- NEXT FINALE -->
   <div class="say">"That check ran for one name because we asked. Let's make it part of the score for every target,
@@ -533,26 +741,37 @@ document.querySelectorAll('.copy').forEach(function (b) {
 <section class="act" id="q-addon">
   <div class="acthead"><h2>Act [[act_no]]. What the platform buys next</h2><span class="pill">[[minutes]] min</span>
     <span class="pill">Q-ADDON</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
-  <h3>Business setup</h3>
-  <p>Most deals in this market are add-ons. {{ q_addon.platform.name }} is a Fund IV platform in
-    {{ q_addon.platform.niche }}. The best add-on shares its customers and suppliers and adds new geography, and it
-    may sit in a sibling niche a sector screen never looks at.</p>
-  <h3>Type this</h3>
+  <h3>Type this in Claude Code</h3>
   <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
     context (never between this prompt and its ad-lib).</p>
   [[prompt:tier1]]
-  <h3>Expected answer</h3>
+  <h3>Say while it runs</h3>
+  <p>Most deals in this market are add-ons. {{ q_addon.platform.name }} is a Fund IV platform in
+    {{ q_addon.platform.niche }}. The best add-on shares its customers and suppliers and adds new geography, and it
+    may sit in a sibling niche a sector screen never looks at.</p>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   [[table:addon]]
   <div class="say">"{{ q_addon.candidates[0].name }} shares {{ q_addon.candidates[0].shared_count | int }} of
     {{ q_addon.platform.name }}'s {{ q_addon.platform.neighbor_count | int }} customers and suppliers and adds
     {{ q_addon.candidates[0].whitespace_states | list }}."</div>
   [[story_why]]
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    [[t:followup_slow_s]] seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  [[followup_default]]
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    [[t:evidence_min_s]]-[[t:evidence_max_s]] seconds, explorer: [[view]]</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Add-on map: {{ q_addon.platform.name }} in the center, candidates sized by similarity, colored by community.</li>
     <li>Click {{ q_addon.candidates[0].name }}: shared customers and the whitespace states light up.</li>
     <li>Point at {{ q_addon.excluded[0].name }}, greyed: {{ q_addon.excluded[0].reason }}</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>A same-niche screen returns <strong>{{ @sql.row_count | int }}</strong> companies and puts
@@ -585,15 +804,15 @@ document.querySelectorAll('.copy').forEach(function (b) {
 <section class="act" id="finale">
   <div class="acthead"><h2>Finale. Change the rules live</h2><span class="pill">[[minutes]] min</span>
     <span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context.</p>
+  [[prompt:tier1]]
+  <h3>Say while it runs</h3>
   <p>Two sentences of new policy, written live as rules. One turns the warm-path graph into access points. The other
     applies the cross-fund conflict check to every target. Nothing is re-engineered; the score just gains two named
     components.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  [[prompt:tier1]]
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
   [[table:finale]]
   <ul>
     <li><strong>{{ q_score.finale.rows[prev_tier!=A][tier=A][0].name }}</strong> rises from Tier
@@ -616,11 +835,13 @@ document.querySelectorAll('.copy').forEach(function (b) {
     back clean, and {{ q_score.finale.rows[conflict!=null][prev_tier!=A] | len }} smaller names outside Tier A are flagged too. A graph result from the warm-path act and a portfolio check from the conflict act now sit inside one
     explainable score."</div>
   [[story_why]]
-  <h3>Click in the explorer</h3>
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span> during the wait, explorer: [[view]]</h3>
   <ul>
     <li>Scorecard view, Finale toggle: before and after columns with movement arrows.</li>
     <li>Click {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}: it jumps to the conflict evidence.</li>
   </ul>
+  <p class="small">Switch back to Claude Code as soon as the answer lands; the audience reads the answer there.</p>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast"><p>No CRM view or thesis screen joins a target to the other fund's supply chain, or turns a
     relationship path into points. In a SQL stack this is a new pipeline; here it is two sentences.</p></div>
@@ -642,6 +863,35 @@ document.querySelectorAll('.copy').forEach(function (b) {
     morning".</p>
 </section>
 <!-- /BLOCK FINALE -->
+
+
+<!-- BLOCK OPEN_FLOOR -->
+<section class="seg" id="open-floor">
+  <div class="acthead"><h2>Open floor</h2><span class="pill">[[minutes]] min</span><span class="pill">Claude Code</span></div>
+  <div class="say">"Your turn. Ask it something about your pipeline, your relationships or your portfolio, and I'll
+    type it in."</div>
+  <p>The partner asks their own questions; you type them into Claude Code. Type <code>/clear</code> once before the
+    first question.</p>
+  <h3>Presenter guidance</h3>
+  <ul>
+    <li><strong>Rephrase into the model's vocabulary before you type.</strong> Say it back first: "So: which Tier A
+      targets are founder-owned?" Use the model's words: thesis fit, readiness, Tier A, score components, warm path,
+      CEO, board designee, intermediary, coverage gap, touchpoints, conflict, concentration guideline, Fund III, Fund
+      IV. Name companies, people and funds exactly as they appear on screen.</li>
+    <li><strong>One question at a time.</strong> If they ask two things, type the first and say "then the second".
+      Let the room read each answer before the next one.</li>
+    <li><strong>If it is slow</strong> (past [[t:open_floor_slow_s]] seconds, or it starts exploring), press Esc and
+      offer the closest hero function: "Let me show you the governed version of that." Then type <code class="cmd">Run
+      uv run python ask.py &lt;function&gt; and show the result as a table with the why for each row.</code> using
+      <code>q_score</code> (fit, readiness, Tier A), <code>q_path</code> (introductions, who knows whom),
+      <code>q_flow</code> (bankers, deal flow, coverage), <code>q_conflict</code> (conflicts, concentration) or
+      <code>q_addon</code> (add-ons for a platform).</li>
+    <li>If a question is outside the model (valuations, a company that is not in the data), say so plainly: "That is
+      not in this model yet; it is one more table and one more rule." Do not let Claude guess.</li>
+    <li>If nobody asks, type one SHOWCASE query from <code>demo_workspace/query_bank.md</code> you have not used yet.</li>
+  </ul>
+</section>
+<!-- /BLOCK OPEN_FLOOR -->
 
 
 <!-- BLOCK CLOSE -->
@@ -669,13 +919,14 @@ document.querySelectorAll('.copy').forEach(function (b) {
 <!-- BLOCK ELEVATOR -->
 <section class="seg pagebreak" id="elevator">
   <h2>Elevator version (thirty seconds)</h2>
-  <div class="say">"We modeled your deal universe as one knowledge graph inside Snowflake. Asked in plain English, it
-    found {{ q_score.summary.tier_a | int }} Tier A targets for Fund IV, {{ q_score.summary.tier_a_not_in_crm | int }}
-    of them with no coverage. It found a warm route in for {{ q_path.targets[status=warm] | len }} of the top
+  <div class="say">"Your deal team asks questions in plain English, and Claude answers them from one governed model of
+    your deal universe that lives in your Snowflake: same definitions every time, every answer with its reasons. We
+    asked who to call: it found {{ q_score.summary.tier_a | int }} Tier A targets for Fund IV,
+    {{ q_score.summary.tier_a_not_in_crm | int }} of them with no coverage. It found a warm route in for {{ q_path.targets[status=warm] | len }} of the top
     {{ q_path.targets | len }} and said honestly that one is cold. It showed that
     {{ q_flow.intermediaries[is_gap=true][0].name }} bridges flow in your sectors and you barely cover it. And when we
     added two rules in a sentence, it checked every target for cross-fund conflicts, with
-    {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}, the conflict-act target, the one Tier A name on hold until cleared. Every point traces to a rule you can read."</div>
+    {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}, the conflict-act target, the one Tier A name on hold until cleared. And any partner can ask the next question themselves. Every point traces to a rule you can read."</div>
 </section>
 <!-- /BLOCK ELEVATOR -->
 

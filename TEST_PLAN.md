@@ -65,6 +65,16 @@ If an act stalls: ask `Run uv run python ask.py <function> and show the result a
 - [ ] Cutoff: one live attempt. After the first error, empty table, or 3 minutes, type `use the prebuilt version`; it runs `ask.py finale_rescore` (about 14 s)
 - [ ] Time the run: ______ s; live or prebuilt: ______
 
+## 3b. Text queries (ad-hoc, not rehearsed yet; full bank in demo_workspace/query_bank.md)
+Ask each after the act shown, in the same session as that act. Expected values come from the offline pandas oracle (`scripts/query_bank_oracle.py`). Scratch-query questions run in-process: expect about 60-90 s; fail if over 120 s or if it defines a rule.
+- [ ] T1 (Act 1, hero rows): `Why is Fenwick Food Safety Labs Tier A when nobody here covers it?` Expect 70 = Fit 30 + Readiness 40 + Access 0; exit window (Sablewood Equity Fund II, 2015, held since 2020-06-30), banker engaged 2026-09-08 (Brackden Partners), debt 2027-08-15, new director Elise Marchetti 2026-01-20; no pipeline row, no CRM touch ("no coverage")
+- [ ] T2 (Act 1): `Which of our targets hired a CFO from a PE-backed company in the last 18 months, and from where?` Expect 4: Larkspur Revenue Partners (Rohan Falkner, Flintstead Payroll Services), Bayside Pediatric Therapy Group (Elena Marsh, "a former Northwind portfolio company"), Saltmarsh Home Infusion (Wes Okonkwo, Sorrhall Hospice), Quarry Records Retrieval (Leon Galloway, Kestwood Claims Services). Must NOT appear: Cobbleton Dental Group
+- [ ] T3 (Act 1): `Which of our scored targets are owned by a sponsor that is in its exit window?` Expect 4: Larkspur Revenue Partners (Kestrelmoor Capital Fund I, 7.5 years), Saltmarsh Home Infusion (Coppervale Partners Fund II, 6.1), Fenwick Food Safety Labs (Sablewood Equity Fund II, 6.3), Nettlewell Home Nursing (Tier B 55, Calfield Equity Fund III minority, 5.3). Must NOT appear: Cobalt Urgent Care Partners
+- [ ] T5 (Act 1): `Which Fund IV targets headquartered in Texas are Tier A or Tier B?` Expect 2: Larkspur Revenue Partners 90 A ($26.0M EBITDA), Fairhaven Revenue Cycle 50 B ($26.9M). Must NOT appear: Cobalt Urgent Care Partners
+- [ ] T6 (Act 2): `Who runs Saltmarsh Home Infusion today, and who sits on its board?` Expect Victor Hale CEO (since 2020-11-02), Wes Okonkwo CFO (2025-11-03), Graham Pike Board (2020-09-01, also at Coppervale Partners, the owner). Must NOT appear: Tom Harlowe, Varnell Lab Services
+- [ ] T11 (Act 4): `What does Fund IV own today, how much equity is in each, and in which thesis area?` Expect 5: Ironvale Testing Group $150M, Tullmere Chemical Distribution $140M, Flintmoor Industrial Supply $125M, Primdale Ingredients Co $120M, Quillmont Physical Therapy $110M; Specialty Distribution $385M = 32.1%. Must NOT appear: Cobbleton Dental Group, Redfern Imaging Centers
+- [ ] Time each: T1 ___ s, T2 ___ s, T3 ___ s, T5 ___ s, T6 ___ s, T11 ___ s
+
 ## 4. Report back (send to the build team)
 - [ ] Which act and which prompt (paste the exact text, note paraphrase or ad-lib)
 - [ ] Wall-clock time, and whether it said "ran in N s on the warm query server" or ran in-process

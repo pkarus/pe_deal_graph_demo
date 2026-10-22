@@ -80,12 +80,37 @@ ol.hops{margin-top:2px} ol.fallback li{margin:6px 0}
 .onto-arrow{fill:var(--muted)}
 .grid2{display:grid; grid-template-columns:1fr 1fr; gap:6px 24px}
 @media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+.tabr{position:absolute; opacity:0; pointer-events:none}
+.tabbar{display:flex; gap:4px; border-bottom:2px solid var(--line); margin:14px 0 6px}
+.tabbar label{padding:7px 16px; border:1px solid var(--line); border-bottom:none; border-radius:6px 6px 0 0;
+  cursor:pointer; color:var(--muted); background:var(--panel); font-weight:600}
+#tab-steps:checked ~ .tabbar label[for="tab-steps"], #tab-full:checked ~ .tabbar label[for="tab-full"]{
+  background:var(--bg); color:var(--accent); border-color:var(--accent)}
+#tab-steps:focus-visible ~ .tabbar label[for="tab-steps"], #tab-full:focus-visible ~ .tabbar label[for="tab-full"]{
+  outline:2px solid var(--accent)}
+#tab-steps:checked ~ #pane-full, #tab-full:checked ~ #pane-steps{display:none}
+ol.steps{padding-left:26px} ol.steps > li{margin:10px 0 14px}
+ol.steps > li > h3{margin:0 0 4px}
+ul.run{list-style:none; padding-left:0; margin:4px 0}
+ul.run > li{margin:5px 0; display:flex; gap:8px; align-items:flex-start}
+ul.run > li > input{margin-top:5px; flex:none; width:16px; height:16px}
+ul.run > li > div{flex:1; min-width:0}
+ul.run .tag{display:inline-block; min-width:62px; font-size:12px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--muted)}
+ul.run .prompt{margin:4px 0}
+.optional{border:1px dashed var(--muted); border-radius:6px; padding:6px 14px; margin:8px 0}
+.optional > h3{margin-top:6px}
+.opt-tag{font-size:12px; font-weight:700; color:var(--warn); background:var(--warnbg); border-radius:4px; padding:0 6px}
 @media print{
   :root{--bg:#fff; --fg:#000; --panel:#f3f3f3; --code:#f0f0f0}
   body{font-size:11.5pt} .noprint{display:none!important}
   section.act, section.seg.pagebreak{break-before:page}
   .prompt, table, .say, .contrast, .why{break-inside:avoid}
   .tw{overflow:visible} a{color:inherit; text-decoration:none}
+  .tabbar{display:none}
+  #pane-steps, #pane-full{display:block!important}
+  #pane-full{break-before:page}
+  ul.run > li{break-inside:avoid}
 }
 </style>
 </head>
@@ -98,9 +123,120 @@ from engine <span class="v" data-k="meta.engine" data-f="opt">pe_demo_logic</spa
 Every number on this page is injected from the exports by key path and re-checked at build time.
 Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 
+<input type="radio" name="tab" id="tab-steps" class="tabr" checked>
+<input type="radio" name="tab" id="tab-full" class="tabr">
+<div class="tabbar" role="tablist"><label for="tab-steps" role="tab">Step by step</label><label for="tab-full"
+  role="tab">Full script</label></div>
+
+<div id="pane-steps">
+
+<section class="seg" id="steps">
+  <h2>Step by step</h2>
+  <p class="small">One line per action. Tick as you go; ticks reset when the page reloads. Claude Code is the main stage; explorer lines are optional. Detail and fallbacks are in the Full script tab.</p>
+  <ol class="steps">
+<li><h3>Before the meeting</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Day before</span> Check the PAT expiry date at the top of RUNBOOK.md (rotate if the demo is on or after the day before it) and run the RUNBOOK venue-network checklist.</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-<span class="lit" data-lit="presenter timing">30</span></span> From the repo root: <code class="cmd">make warm</code>. It must end with "make warm: OK".</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-<span class="lit" data-lit="presenter timing">30</span></span> Open the explorer and the script: <code class="cmd">open artifacts/deal_graph_explorer.html artifacts/demo_script.html</code>. Do Not Disturb on, power connected, large terminal font.</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-<span class="lit" data-lit="presenter timing">15</span></span> Pre-launch: <code class="cmd">cd demo_workspace &amp;&amp; claude</code>, accept the prompts, run <code>Run uv run python ask.py --list</code> once. Keep a second terminal in <code>demo_workspace/</code>. Open <code>demo_workspace/query_bank.md</code> beside this page.</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-<span class="lit" data-lit="presenter timing">10</span></span> From the repo root: <code class="cmd">make warm</code> again (the engine suspends after half an hour idle).</div></li>
+    <li><input type="checkbox"><div><span class="tag">T-<span class="lit" data-lit="presenter timing">10</span></span> In a spare terminal: <code class="cmd">make keepalive</code>. Leave it running until the Q&amp;A ends.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Ready</span> Type <code class="cmd">/clear</code> in the live session. Claude Code on the main screen.</div></li>
+  </ul></li>
+<li><h3>Cold open</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Your pipeline has <span class="v" data-k="meta.counts.pipeline_companies" data-f="int">200</span> names. PitchBook, Grata and your bankers will hand you thousands more in your sweet spot. Which <span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> do you call on Monday, why now, and who gets us in?"</div></li>
+    <li><input type="checkbox"><div><span class="tag">Model</span> One picture in the explorer Global view, one sentence: "one model of your deal universe, in your Snowflake". Switch back to Claude Code.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "I'll ask it the questions your deal team asks, in plain English, and you can ask your own at the end."</div></li>
+  </ul></li>
+
+<li><h3>Act <span class="lit" data-lit="act number">1</span>. Who fits and who is ready <span class="pill">Q-SCORE</span> <span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:<div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Which companies fit the Fund IV thesis and look ready to transact in the next 12 to 18 months? Show the Tier A list with the score components behind each one, and flag any that are not in our CRM.</pre></div></div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> <span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> Tier A, led by <span class="v" data-k="q_score.rows[tier=A][0].name" data-f="">Larkspur Revenue Partners</span> (<span class="v" data-k="q_score.rows[tier=A][0].score" data-f="int">90</span>), <span class="v" data-k="q_score.rows[tier=A][1].name" data-f="">Bayside Pediatric Therapy Group</span> (<span class="v" data-k="q_score.rows[tier=A][1].score" data-f="int">85</span>) and <span class="v" data-k="q_score.rows[tier=A][2].name" data-f="">Saltmarsh Home Infusion</span> (<span class="v" data-k="q_score.rows[tier=A][2].score" data-f="int">80</span>); <span class="v" data-k="q_score.summary.tier_a_not_in_crm" data-f="int">2</span> with no coverage. Fit, readiness and access per row, with a why line.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "<span class="v" data-k="q_score.summary.tier_a_not_in_crm" data-f="int">2</span> of your <span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> best targets have no pipeline entry and no touch from anyone here. Every point traces to a named rule."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds: Scorecard view, hover the stacked bar of <span class="v" data-k="q_score.rows[tier=A][0].name" data-f="">Larkspur Revenue Partners</span>.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past <span class="lit" data-lit="presenter timing">90</span> seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_score and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_score</code>)</div></li>
+  </ul></li>
+
+
+<li><h3>Act <span class="lit" data-lit="act number">2</span>. Who gets us an edge <span class="pill">Q-PATH</span> <span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:<div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>For our top three targets, what is our warmest path to each CEO, and through whom? Show every hop with its evidence, check the owner&#x27;s board designee for sponsor-owned targets, and say plainly if a target is cold.</pre></div></div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> <span class="v" data-k="q_path.targets[status=warm][0].company_name" data-f="">Larkspur Revenue Partners</span> warm, CEO <span class="v" data-k="q_path.targets[status=warm][0].decision_makers[kind=CEO][0].hops" data-f="int">3</span> hops; <span class="v" data-k="q_path.targets[status=warm][1].company_name" data-f="">Bayside Pediatric Therapy Group</span> warm, CEO <span class="v" data-k="q_path.targets[status=warm][1].decision_makers[kind=CEO][0].hops" data-f="int">2</span> hops; <span class="v" data-k="q_path.targets[status=cold][0].company_name" data-f="">Saltmarsh Home Infusion</span> cold, the way in is <span class="v" data-k="q_path.targets[status=cold][0].closest_intermediary.name" data-f="">Harbor Lane Advisors</span>. Every hop with dated evidence.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "<span class="v" data-k="q_path.targets[status=warm]" data-f="len">2</span> of the top <span class="v" data-k="q_path.targets" data-f="len">3</span> have a warm route in. <span class="v" data-k="q_path.targets[status=cold][0].company_name" data-f="">Saltmarsh Home Infusion</span> is cold, and the model says so instead of inventing a path."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds: Warm path view, pick <span class="v" data-k="q_path.targets[status=warm][0].company_name" data-f="">Larkspur Revenue Partners</span> and hover one edge for its dates.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past <span class="lit" data-lit="presenter timing">90</span> seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_path and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_path</code>)</div></li>
+  </ul></li>
+
+
+<li><h3>Act <span class="lit" data-lit="act number">3</span>. Who controls deal flow <span class="pill">Q-FLOW</span> <span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:<div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Which intermediaries actually bridge deal flow in our Fund IV sectors, and where is our coverage weakest? Show the five that bridge the most deal flow, our touchpoints with each over the last 24 months, and any coverage gap.</pre></div></div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> <span class="v" data-k="q_flow.intermediaries[betweenness_rank=1][0].name" data-f="">Cedar Row Partners</span> is the top bridge (<span class="v" data-k="q_flow.intermediaries[betweenness_rank=1][0].touchpoints_24m" data-f="int">14</span> touchpoints); the gap is <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">Harbor Lane Advisors</span>, rank <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].betweenness_rank" data-f="int">2</span> by betweenness, touchpoints in two years: <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].touchpoints_24m" data-f="int">1</span>.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Volume is not control. <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">Harbor Lane Advisors</span> bridges deal flow in our sectors, it is engaged on <span class="v" data-k="q_path.targets[status=cold][0].company_name" data-f="">Saltmarsh Home Infusion</span>, and we barely cover it."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds: Deal flow view, click <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">Harbor Lane Advisors</span>.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past <span class="lit" data-lit="presenter timing">90</span> seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_flow and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_flow</code>)</div></li>
+  </ul></li>
+
+
+<li><h3>Act <span class="lit" data-lit="act number">4</span>. Before we bid <span class="pill">Q-CONFLICT</span> <span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the hero prompt into Claude Code:<div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Before we bid on Tessmark Clinical Supply, does it conflict with anything we own, and would the deal push Fund IV over its sector concentration guideline?</pre></div></div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> Conflict: <span class="v" data-k="q_conflict.exposures[kind=conflict][0].name" data-f="">Pinewick Dermatology Partners</span> (cross-fund review). <span class="v" data-k="q_conflict.concentration.subject_area" data-f="">Specialty Distribution</span> goes to <span class="v" data-k="q_conflict.concentration.areas[is_subject_area=true][0].after_pct" data-f="pct">36.7%</span> against a <span class="v" data-k="q_conflict.concentration.guideline_pct" data-f="pct">35.0%</span> guideline at a <span class="v" data-k="q_conflict.concentration.check_musd" data-f="musd">$55.0M</span> check: over by <span class="v" data-k="q_conflict.concentration.over_by_musd" data-f="musd">$20.0M</span>, headroom <span class="v" data-k="q_conflict.concentration.headroom_musd" data-f="musd">$35.0M</span>.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Either size the check at <span class="v" data-k="q_conflict.concentration.headroom_musd" data-f="musd">$35.0M</span> or less and syndicate the rest as co-invest, or take it to IC as an exception."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Follow-up</span> Pick one or two SHOWCASE text queries for this act from <code>demo_workspace/query_bank.md</code> and type them. No <code>/clear</code>. One at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag"><span class="opt-tag">Optional</span></span> Explorer, <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds: Conflict check view: the red edge to <span class="v" data-k="q_conflict.exposures[kind=conflict][0].name" data-f="">Pinewick Dermatology Partners</span> and the concentration gauge.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past <span class="lit" data-lit="presenter timing">90</span> seconds or an error: press Esc, then <code class="cmd">Run uv run python ask.py --from-exports q_conflict and show the result as a table with the why for each row.</code> (second terminal: <code class="cmd">uv run python ask.py --from-exports q_conflict</code>)</div></li>
+  </ul></li>
+
+
+<li><h3>Finale. Change the rules live <span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">4</span> min</span></h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> and press Enter.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Type</span> Paste the rule prompt into Claude Code:<div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company needs cross-fund clearance, so flag it &quot;hold until cross-fund clearance&quot; and keep it off the Tier A call list until it is cleared.</pre></div></div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "While it writes the rules, here is what they will do." Optional: walk the explorer Scorecard Finale toggle during the wait.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Expect</span> <span class="v" data-k="q_score.finale.rows[rank=1][0].name" data-f="">Bayside Pediatric Therapy Group</span> moves from #<span class="v" data-k="q_score.finale.rows[rank=1][0].prev_rank" data-f="int">2</span> to #<span class="v" data-k="q_score.finale.rows[rank=1][0].rank" data-f="int">1</span> at <span class="v" data-k="q_score.finale.rows[rank=1][0].score" data-f="int">95</span>; <span class="v" data-k="q_score.finale.rows[prev_tier!=A][tier=A][0].name" data-f="">Ashby Vale Dental Partners</span> rises into Tier A at <span class="v" data-k="q_score.finale.rows[prev_tier!=A][tier=A][0].score" data-f="int">75</span>; <span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier=A][0].name" data-f="">Tessmark Clinical Supply</span> keeps <span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier=A][0].score" data-f="int">75</span> but is on hold until cross-fund clearance, off the Tier A rows.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Cutoff</span> One live attempt. At the first failure (error, empty or partial table, odd ranking) or at <span class="lit" data-lit="presenter timing">4</span> minutes, press Esc and type <code class="cmd">use the prebuilt version</code>. Say "here is the same rule, prebuilt".</div></li>
+    <li><input type="checkbox"><div><span class="tag">If down</span> Engine or network down: <code class="cmd">Run uv run python ask.py --from-exports finale_rescore and show the result as a table with the why for each row.</code></div></li>
+    <li><input type="checkbox"><div><span class="tag">Say</span> "<span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier=A][0].name" data-f="">Tessmark Clinical Supply</span>'s score did not change; it is on hold until the conflicts committee clears it. The check we ran by hand for one name now runs on every target."</div></li>
+  </ul></li>
+
+<li><h3>Open floor</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Your turn. Ask it something about your pipeline, your relationships or your portfolio, and I'll type it in."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Clear</span> Type <code class="cmd">/clear</code> once before the first question.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Each</span> Say the question back in the model's words (Tier A, warm path, coverage gap, conflict, concentration), then type it. One question at a time.</div></li>
+    <li><input type="checkbox"><div><span class="tag">If slow</span> Past <span class="lit" data-lit="presenter timing">90</span> seconds: press Esc and offer the closest hero function (<code>q_score</code>, <code>q_path</code>, <code>q_flow</code>, <code>q_conflict</code>, <code>q_addon</code>).</div></li>
+  </ul></li>
+<li><h3>Close</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Say</span> "Governed, explainable, in your Snowflake, and Claude is the interface."</div></li>
+    <li><input type="checkbox"><div><span class="tag">Leave</span> <span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> Tier A targets, <span class="v" data-k="q_score.summary.tier_a_not_in_crm" data-f="int">2</span> with no coverage; one coverage gap at <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">Harbor Lane Advisors</span>; <span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier=A][0].name" data-f="">Tessmark Clinical Supply</span> on hold until cleared.</div></li>
+  </ul></li>
+<li><h3>After the meeting</h3>
+  <ul class="run">
+    <li><input type="checkbox"><div><span class="tag">Stop</span> Ctrl-C the keepalive terminal.</div></li>
+    <li><input type="checkbox"><div><span class="tag">Stop</span> <code class="cmd">.venv/bin/python demo_workspace/ask.py --serve-stop</code></div></li>
+    <li><input type="checkbox"><div><span class="tag">Suspend</span> <code class="cmd">.venv/bin/rai reasoners suspend --type Logic --name pe_demo_logic</code>, then <code class="cmd">.venv/bin/rai reasoners get --type Logic --name pe_demo_logic</code> and expect SUSPENDED (RUNBOOK.md, "After the demo").</div></li>
+  </ul></li>
+  </ol>
+</section>
+
+</div>
+
+<div id="pane-full">
 <nav class="toc noprint">
   <a href="#before">Before you start</a><a href="#ros">Run of show</a><a href="#cold">Cold open</a>
-  <a href="#model">The model</a><a href="#acts">Acts</a><a href="#finale">Finale</a><a href="#close">Close</a>
+  <a href="#model">The model</a><a href="#acts">Acts</a><a href="#finale">Finale</a><a href="#open-floor">Open floor</a><a href="#close">Close</a>
   <a href="#elevator">Elevator version</a><a href="#skeptics">Skeptic Q&amp;A</a>
 </nav>
 
@@ -124,8 +260,10 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     <li><strong>Ten minutes before:</strong> <code class="cmd">make warm</code> again, because the engine suspends after
       half an hour idle. Then start <code class="cmd">make keepalive</code> in its own terminal and leave it running
       until the Q&amp;A ends. Type <code>/clear</code> in the live session.</li>
-    <li><strong>During the demo:</strong> type <code>/clear</code> before each act's prompt and before the Finale prompt,
-      never between a prompt and its ad-lib. Paste prompts from this page with Copy; do not retype. If a typo lands, let
+    <li><strong>During the demo:</strong> Claude Code is the main stage; the explorer is supporting evidence. Type
+      <code>/clear</code> before each act's prompt and before the Finale prompt, never between a prompt and its
+      follow-ups. Follow-ups come from <code>demo_workspace/query_bank.md</code> (SHOWCASE); keep it open beside
+      this page. Paste prompts from this page with Copy; do not retype. If a typo lands, let
       it answer, or press Esc and paste again. While an act runs, talk through its business setup.</li>
     <li><strong>After the Q&amp;A:</strong> Ctrl-C the keepalive terminal, then
       <code class="cmd">.venv/bin/python demo_workspace/ask.py --serve-stop</code> and suspend the engine
@@ -137,19 +275,20 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 
 <section class="seg" id="ros">
   <h2>Run of show</h2>
-  <div class="tw"><table class=""><thead><tr><th>Segment</th><th>Question</th><th>Minutes</th><th>Fallback function</th><th>Explorer view</th></tr></thead><tbody><tr><td>Cold open</td><td>-</td><td><span class="lit" data-lit="minutes">1</span></td><td>-</td><td>Overview</td></tr><tr><td>The model</td><td>-</td><td><span class="lit" data-lit="minutes">1</span></td><td>-</td><td>Global</td></tr><tr><td>Act <span class="lit" data-lit="act number">1</span></td><td>Q-SCORE</td><td><span class="lit" data-lit="minutes">3</span></td><td><code>q_score</code></td><td>Scorecard</td></tr><tr><td>Act <span class="lit" data-lit="act number">2</span></td><td>Q-PATH</td><td><span class="lit" data-lit="minutes">3</span></td><td><code>q_path</code></td><td>Warm path</td></tr><tr><td>Act <span class="lit" data-lit="act number">3</span></td><td>Q-FLOW</td><td><span class="lit" data-lit="minutes">3</span></td><td><code>q_flow</code></td><td>Deal flow</td></tr><tr><td>Act <span class="lit" data-lit="act number">4</span></td><td>Q-CONFLICT</td><td><span class="lit" data-lit="minutes">2</span></td><td><code>q_conflict</code></td><td>Conflict check</td></tr><tr><td>Finale</td><td>Live rule</td><td><span class="lit" data-lit="minutes">4</span></td><td><code>finale_rescore</code></td><td>Scorecard, Finale toggle</td></tr><tr><td>Close</td><td>-</td><td><span class="lit" data-lit="minutes">1</span></td><td>-</td><td>-</td></tr></tbody></table></div><p class="small">Total <span class="lit" data-lit="minutes">18</span> minutes.</p>
+  <div class="tw"><table class=""><thead><tr><th>Segment</th><th>Question</th><th>Minutes</th><th>Main screen</th><th>Fallback function</th><th>Explorer view</th></tr></thead><tbody><tr><td>Cold open</td><td>-</td><td><span class="lit" data-lit="minutes">1</span></td><td>Room</td><td>-</td><td>-</td></tr><tr><td>The model</td><td>-</td><td><span class="lit" data-lit="minutes">1</span></td><td>Explorer</td><td>-</td><td>Global</td></tr><tr><td>Act <span class="lit" data-lit="act number">1</span></td><td>Q-SCORE</td><td><span class="lit" data-lit="minutes">2</span></td><td>Claude Code: hero prompt, then one or two typed follow-ups</td><td><code>q_score</code></td><td>Scorecard (optional, last <span class="lit" data-lit="seconds">20</span>-<span class="lit" data-lit="seconds">30</span> s)</td></tr><tr><td>Act <span class="lit" data-lit="act number">2</span></td><td>Q-PATH</td><td><span class="lit" data-lit="minutes">2</span></td><td>Claude Code: hero prompt, then one or two typed follow-ups</td><td><code>q_path</code></td><td>Warm path (optional, last <span class="lit" data-lit="seconds">20</span>-<span class="lit" data-lit="seconds">30</span> s)</td></tr><tr><td>Act <span class="lit" data-lit="act number">3</span></td><td>Q-FLOW</td><td><span class="lit" data-lit="minutes">2</span></td><td>Claude Code: hero prompt, then one or two typed follow-ups</td><td><code>q_flow</code></td><td>Deal flow (optional, last <span class="lit" data-lit="seconds">20</span>-<span class="lit" data-lit="seconds">30</span> s)</td></tr><tr><td>Act <span class="lit" data-lit="act number">4</span></td><td>Q-CONFLICT</td><td><span class="lit" data-lit="minutes">2</span></td><td>Claude Code: hero prompt, then one or two typed follow-ups</td><td><code>q_conflict</code></td><td>Conflict check (optional, last <span class="lit" data-lit="seconds">20</span>-<span class="lit" data-lit="seconds">30</span> s)</td></tr><tr><td>Finale</td><td>Live rule</td><td><span class="lit" data-lit="minutes">4</span></td><td>Claude Code: live rule authoring</td><td><code>finale_rescore</code></td><td>Scorecard, Finale toggle (optional, during the wait)</td></tr><tr><td>Open floor</td><td>Their questions</td><td><span class="lit" data-lit="minutes">3</span></td><td>Claude Code: the partner asks, you type</td><td>closest hero function</td><td>-</td></tr><tr><td>Close</td><td>-</td><td><span class="lit" data-lit="minutes">1</span></td><td>Room</td><td>-</td><td>-</td></tr></tbody></table></div><p class="small">Total <span class="lit" data-lit="minutes">18</span> minutes. Claude Code is on screen for about <span class="lit" data-lit="minutes">15</span> of them. The explorer gets at most <span class="lit" data-lit="seconds">180</span> seconds: the model overview plus the optional evidence moments, which come out of act time.</p>
 </section>
 
 
 <section class="seg" id="cold">
   <div class="acthead"><h2>Cold open</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">1</span> min</span></div>
-  <p>Explorer open on the overview, Claude Code ready but idle. Look at the room, not the screen.</p>
+  <p>Claude Code on the main screen, ready but idle; the explorer open behind it on the overview. Look at the room,
+    not the screen.</p>
   <div class="say">"Your pipeline has <span class="v" data-k="meta.counts.pipeline_companies" data-f="int">200</span> names. PitchBook, Grata and your
     bankers will hand you thousands more in your sweet spot. Which <span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> do you call on
     Monday, why now, and who gets us in?"</div>
   <p class="small">Do not quote a market size. The model scores a demo slice, not the market.</p>
-  <p class="small">Then: "We built one model of your deal universe and asked it the questions your deal team asks.
-    I'll type them in plain English."</p>
+  <p class="small">Then: "We built one model of your deal universe. I'll ask it the questions your deal team asks,
+    in plain English, and you can ask your own at the end."</p>
 </section>
 
 
@@ -220,7 +359,9 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     PortfolioExposure --&gt; Company : subject / company
     ProFormaExposure --&gt; Sector : area
 </pre></details>
-  <h3>Click in the explorer</h3>
+  <p class="small">Keep this to one picture and one sentence, then switch to Claude Code. This is the only explorer
+    moment that is not optional.</p>
+  <h3>Click in the explorer (pick one)</h3>
   <ul>
     <li>Global view: search for a company, expand one hop, then two.</li>
     <li>Toggle the edge types on and off: tenure overlap, board, deal, commercial, CRM.</li>
@@ -234,19 +375,20 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 <div id="acts"></div>
 
 <section class="act" id="q-score">
-  <div class="acthead"><h2>Act <span class="lit" data-lit="act number">1</span>. Who fits and who is ready</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">3</span> min</span>
+  <div class="acthead"><h2>Act <span class="lit" data-lit="act number">1</span>. Who fits and who is ready</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span>
     <span class="pill">Q-SCORE</span><span class="pill">Rules</span><span class="pill">Explorer: Scorecard</span></div>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Which companies fit the Fund IV thesis and look ready to transact in the next 12 to 18 months? Show the Tier A list with the score components behind each one, and flag any that are not in our CRM.</pre></div>
+  <h3>Say while it runs</h3>
   <p>Fund IV is actively investing. The partners want a short list of companies that fit the Fund IV thesis today
     and are likely to transact soon, with every point of the score explained. Partners distrust black-box scores,
     so each point has to trace to a named rule and dated evidence. Most names on the list will have a banker engaged.
     Banker engaged is not process launched. It is the window to get in front of the book: a pre-empt, a seat in a
     limited process, or at least the first call when the teaser goes out.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Which companies fit the Fund IV thesis and look ready to transact in the next 12 to 18 months? Show the Tier A list with the score components behind each one, and flag any that are not in our CRM.</pre></div>
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   <p><strong><span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> Tier A companies</strong> (score <span class="v" data-k="q_score.tier_thresholds.A" data-f="int">70</span>
     or more out of <span class="v" data-k="q_score.max_score" data-f="int">100</span>). <strong><span class="v" data-k="q_score.summary.tier_a_not_in_crm" data-f="int">2</span></strong> of
     them have no pipeline entry and no logged touch: nobody here owns the relationship.</p>
@@ -262,13 +404,23 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     before a teaser would reach you. The value is position: who on our team knows that banker (the warm-path act) and whether
     we are on their call list.</p>
   <p class="sowhat" data-src="data/golden/stories.md"><strong>So what for a partner.</strong> The list is explainable point by point and reaches past the CRM, and the near misses show their reason, so nobody has to trust a black box.</p>
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    <span class="lit" data-lit="presenter timing">90</span> seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  <p class="small">Rehearsed fallback follow-up from prompts.md, if the query bank is not to hand (see the status note at the top of the act):</p><div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>Only show the founder-owned names.</pre></div>
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds, explorer: Scorecard</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Scorecard view. Hover the stacked bar of <span class="v" data-k="q_score.rows[tier=A][0].name" data-f="">Larkspur Revenue Partners</span>: each component shows its evidence.</li>
     <li>Point at the "not in CRM" badges and say "no coverage": no pipeline entry, no logged touch.</li>
     <li>Click a component: the side panel shows the rule docstring.</li>
     <li>Toggle the naive SQL list: decoys struck through with the reason, misses marked.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>A keyword-and-signal-count screen returns <strong><span class="v" data-k="sql_baseline.questions.Q-SCORE.row_count" data-f="int">206</span></strong> companies, ranked by
@@ -288,8 +440,6 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>Only show the founder-owned names.</pre></div>
   <h3>Hand-off</h3>
   
   <div class="say">"Knowing who to call is half the job. The other half is who gets us in. Take the top
@@ -299,19 +449,20 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 
 
 <section class="act" id="q-path">
-  <div class="acthead"><h2>Act <span class="lit" data-lit="act number">2</span>. Who gets us an edge</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">3</span> min</span>
+  <div class="acthead"><h2>Act <span class="lit" data-lit="act number">2</span>. Who gets us an edge</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span>
     <span class="pill">Q-PATH</span><span class="pill">Graph and rules</span><span class="pill">Explorer: Warm path</span></div>
   <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib passed once in two runs (one engine error). Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_path, or open the explorer view.</strong></p>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>For our top three targets, what is our warmest path to each CEO, and through whom? Show every hop with its evidence, check the owner&#x27;s board designee for sponsor-owned targets, and say plainly if a target is cold.</pre></div>
+  <h3>Say while it runs</h3>
   <p>For the top names, the deal team wants to know who on our side has a real, dated relationship that gives us an
     edge: the founder or CEO directly, the owner's deal partner, or the banker running the process. Affinity and
     DealCloud already show warm paths; the point here is that every hop is a real, dated relationship and the path
     feeds the same governed score.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>For our top three targets, what is our warmest path to each CEO, and through whom? Show every hop with its evidence, check the owner&#x27;s board designee for sponsor-owned targets, and say plainly if a target is cold.</pre></div>
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   <div class="paths"><h4><span class="v" data-k="q_path.targets[0].company_name" data-f="">Larkspur Revenue Partners</span> <span class="small">score rank <span class="v" data-k="q_path.targets[0].score_rank" data-f="">1</span>, owned by <span class="v" data-k="q_path.targets[0].owner_name" data-f="">Kestrelmoor Capital</span></span> <span class="chip ok">warm</span></h4><p class="small"><span class="v" data-k="q_path.targets[0].summary" data-f="">Warmest route to the CEO has 3 hop(s).</span></p><p><strong><span class="v" data-k="q_path.targets[0].decision_makers[0].name" data-f="">Ruth Adeyemi</span></strong> (<span class="v" data-k="q_path.targets[0].decision_makers[0].role_label" data-f="">CEO</span>): <span class="v" data-k="q_path.targets[0].decision_makers[0].hops" data-f="">3</span> hops, best path strength <span class="v" data-k="q_path.targets[0].decision_makers[0].best_strength" data-f="f3">0.700</span></p><p class="small"><span class="chip ok">best path</span> <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].length" data-f="">3</span> hops, strength <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].strength" data-f="f3">0.700</span></p><ol class="hops"><li><span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[0].from_name" data-f="">Priya Raman</span> to <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[0].to_name" data-f="">Sofia Brandt</span>: <span class="small"><span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[0].evidence" data-f="">7 positive interactions 2024-11-14 to 2026-09-02</span> (tie strength <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[0].strength" data-f="f3">1.000</span>)</span></li><li><span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[1].from_name" data-f="">Sofia Brandt</span> to <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[1].to_name" data-f="">Nathan Cole</span>: <span class="small"><span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[1].evidence" data-f="">tenure overlap at Cedar Row Partners, 2017-01-09 to present, 9.72 years</span> (tie strength <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[1].strength" data-f="f3">1.000</span>)</span></li><li><span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[2].from_name" data-f="">Nathan Cole</span> to <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[2].to_name" data-f="">Ruth Adeyemi</span>: <span class="small"><span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[2].evidence" data-f="">lead sell-side advisor on the Larkspur Revenue Partners majority recap closed 2019-04-15 while Ruth Adeyemi was CEO</span> (tie strength <span class="v" data-k="q_path.targets[0].decision_makers[0].paths[0].hops[2].strength" data-f="f3">0.700</span>)</span></li></ol><p><strong><span class="v" data-k="q_path.targets[0].decision_makers[1].name" data-f="">Owen Lacey</span></strong> (<span class="v" data-k="q_path.targets[0].decision_makers[1].role_label" data-f="">Board designee, Kestrelmoor Capital</span>): <span class="chip bad">no path</span> <span class="v" data-k="q_path.targets[0].decision_makers[1].summary" data-f="">No path from our team to Owen Lacey within 3 hops.</span></p><h4><span class="v" data-k="q_path.targets[1].company_name" data-f="">Bayside Pediatric Therapy Group</span> <span class="small">score rank <span class="v" data-k="q_path.targets[1].score_rank" data-f="">2</span>, founder-owned</span> <span class="chip ok">warm</span></h4><p class="small"><span class="v" data-k="q_path.targets[1].summary" data-f="">Warmest route to the CEO has 2 hop(s).</span></p><p><strong><span class="v" data-k="q_path.targets[1].decision_makers[0].name" data-f="">Daniel Reyes</span></strong> (<span class="v" data-k="q_path.targets[1].decision_makers[0].role_label" data-f="">CEO</span>): <span class="v" data-k="q_path.targets[1].decision_makers[0].hops" data-f="">2</span> hops, best path strength <span class="v" data-k="q_path.targets[1].decision_makers[0].best_strength" data-f="f3">0.600</span></p><p class="small"><span class="chip ok">best path</span> <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].length" data-f="">2</span> hops, strength <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].strength" data-f="f3">0.600</span></p><ol class="hops"><li><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[0].from_name" data-f="">Marcus Whitfield</span> to <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[0].to_name" data-f="">Elena Marsh</span>: <span class="small"><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[0].evidence" data-f="">tenure overlap at a former Northwind portfolio company, 2015-03-01 to 2019-06-30, 4.33 years</span> (tie strength <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[0].strength" data-f="f3">1.000</span>)</span></li><li><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[1].from_name" data-f="">Elena Marsh</span> to <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[1].to_name" data-f="">Daniel Reyes</span>: <span class="small"><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[1].evidence" data-f="">tenure overlap at Bayside Pediatric Therapy Group, 2025-06-01 to present, 1.33 years</span> (tie strength <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[0].hops[1].strength" data-f="f3">0.600</span>)</span></li></ol><p class="small"><span class="chip">alternate</span> <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].length" data-f="">2</span> hops, strength <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].strength" data-f="f3">0.287</span></p><ol class="hops"><li><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[0].from_name" data-f="">Dana Okafor</span> to <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[0].to_name" data-f="">Walter Kim</span>: <span class="small"><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[0].evidence" data-f="">tenure overlap at Oldmere Health System, 1998-03-01 to 2000-06-30, 2.33 years</span> (tie strength <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[0].strength" data-f="f3">0.300</span>)</span></li><li><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[1].from_name" data-f="">Walter Kim</span> to <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[1].to_name" data-f="">Daniel Reyes</span>: <span class="small"><span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[1].evidence" data-f="">tenure overlap at Bayside Pediatric Therapy Group, 2023-01-15 to present, 3.71 years</span> (tie strength <span class="v" data-k="q_path.targets[1].decision_makers[0].paths[1].hops[1].strength" data-f="f3">0.956</span>)</span></li></ol><h4><span class="v" data-k="q_path.targets[2].company_name" data-f="">Saltmarsh Home Infusion</span> <span class="small">score rank <span class="v" data-k="q_path.targets[2].score_rank" data-f="">3</span>, owned by <span class="v" data-k="q_path.targets[2].owner_name" data-f="">Coppervale Partners</span></span> <span class="chip bad">cold</span></h4><p class="small"><span class="v" data-k="q_path.targets[2].summary" data-f="">No warm path to any decision-maker; closest door is the intermediary below.</span></p><p><strong><span class="v" data-k="q_path.targets[2].decision_makers[0].name" data-f="">Victor Hale</span></strong> (<span class="v" data-k="q_path.targets[2].decision_makers[0].role_label" data-f="">CEO</span>): <span class="chip bad">no path</span> <span class="v" data-k="q_path.targets[2].decision_makers[0].summary" data-f="">No path from our team to Victor Hale within 3 hops.</span></p><p><strong><span class="v" data-k="q_path.targets[2].decision_makers[1].name" data-f="">Graham Pike</span></strong> (<span class="v" data-k="q_path.targets[2].decision_makers[1].role_label" data-f="">Board designee, Coppervale Partners</span>): <span class="chip bad">no path</span> <span class="v" data-k="q_path.targets[2].decision_makers[1].summary" data-f="">No path from our team to Graham Pike within 3 hops.</span></p><p class="small">Closest intermediary: <strong><span class="v" data-k="q_path.targets[2].closest_intermediary.name" data-f="">Harbor Lane Advisors</span></strong>. <span class="v" data-k="q_path.targets[2].closest_intermediary.evidence" data-f="">engaged 2026-07-14; debt advisor on the 2023-05-18 dividend recap</span></p></div>
   <ul>
     <li><strong><span class="v" data-k="q_path.targets[status=warm][0].company_name" data-f="">Larkspur Revenue Partners</span></strong>: CEO
@@ -343,7 +494,16 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     someone here knows <span class="v" data-k="q_path.targets[status=cold][0].decision_makers[kind=OWNER_DESIGNEE][0].name" data-f="">Graham Pike</span>, log it, and
     the path appears on the next run."</p>
   <p class="sowhat" data-src="data/golden/stories.md"><strong>So what for a partner.</strong> Every hop shows when and where two people actually worked together. Stale ties rank below fresh ones, and false intros are rejected before they embarrass the deal team. On Larkspur Revenue Partners the path ends at the banker running the sale, so the play is an early look, not a back-channel to the CEO.</p>
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    <span class="lit" data-lit="presenter timing">90</span> seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  <p class="small">Rehearsed fallback follow-up from prompts.md, if the query bank is not to hand (see the status note at the top of the act):</p><div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds, explorer: Warm path</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Warm path view. Pick <span class="v" data-k="q_path.targets[status=warm][0].company_name" data-f="">Larkspur Revenue Partners</span>: the path from our people lights up.
       Hover each edge for its evidence and dates.</li>
@@ -352,6 +512,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
       claim, the owner-designee row, and the link to <span class="v" data-k="q_path.targets[status=cold][0].closest_intermediary.name" data-f="">Harbor Lane Advisors</span>
       in the deal-flow view.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>A shared-employer join reports <strong><span class="v" data-k="sql_baseline.questions.Q-PATH.row_count" data-f="int">1</span></strong> "connections". The model finds
@@ -379,8 +540,6 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
   <h3>Hand-off</h3>
   
   <div class="say">"<span class="v" data-k="q_path.targets[status=warm]" data-f="len">2</span> of the top <span class="v" data-k="q_path.targets" data-f="len">3</span> have a warm route in.
@@ -392,18 +551,19 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 
 
 <section class="act" id="q-flow">
-  <div class="acthead"><h2>Act <span class="lit" data-lit="act number">3</span>. Who controls deal flow</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">3</span> min</span>
+  <div class="acthead"><h2>Act <span class="lit" data-lit="act number">3</span>. Who controls deal flow</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span>
     <span class="pill">Q-FLOW</span><span class="pill">Graph and rules</span><span class="pill">Explorer: Deal flow</span></div>
   <p class="small"><strong>Second-tier ad-lib: OPTIONAL - one run only. This ad-lib passed its only run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_flow, or open the explorer view.</strong></p>
-  <h3>Business setup</h3>
-  <p>Firms invest in off-market flow to avoid fully competitive auctions, but most deals still pass through a banker,
-    boutique or broker. Coverage is a managed activity. The question is whether we cover the intermediaries that
-    actually bridge founders and sponsors in our sectors, not the ones with the most tombstones.</p>
-  <h3>Type this</h3>
+  <h3>Type this in Claude Code</h3>
   <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
     context (never between this prompt and its ad-lib).</p>
   <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Which intermediaries actually bridge deal flow in our Fund IV sectors, and where is our coverage weakest? Show the five that bridge the most deal flow, our touchpoints with each over the last 24 months, and any coverage gap.</pre></div>
-  <h3>Expected answer</h3>
+  <h3>Say while it runs</h3>
+  <p>Firms invest in off-market flow to avoid fully competitive auctions, but most deals still pass through a banker,
+    boutique or broker. Coverage is a managed activity. The question is whether we cover the intermediaries that
+    actually bridge founders and sponsors in our sectors, not the ones with the most tombstones.</p>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   <p>The model builds a deal network from thesis-sector transactions between <span class="v" data-k="q_flow.window.start" data-f="">2021-10-01</span> and
     <span class="v" data-k="q_flow.window.end" data-f="">2026-10-01</span>: <span class="v" data-k="q_flow.graph_stats.num_nodes" data-f="int">1,187</span> organizations and
     <span class="v" data-k="q_flow.graph_stats.num_edges" data-f="int">1,366</span> deal relationships, then ranks
@@ -424,7 +584,16 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     the buyer list. It goes on the coverage plan this week, starting with the banker who led their
     <span class="v" data-k="q_path.targets[status=cold][0].company_name" data-f="">Saltmarsh Home Infusion</span> work."</div>
   <p class="sowhat" data-src="data/golden/stories.md"><strong>So what for a partner.</strong> Volume is not control. The coverage call list changes, and Harbor Lane Advisors is also the way into the cold Saltmarsh Home Infusion.</p>
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    <span class="lit" data-lit="presenter timing">90</span> seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  <p class="small">Rehearsed fallback follow-up from prompts.md, if the query bank is not to hand (see the status note at the top of the act):</p><div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds, explorer: Deal flow</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Deal flow view. Intermediaries are sized by betweenness, with our touchpoint count as a ring.</li>
     <li>Click <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">Harbor Lane Advisors</span> (outlined as the coverage gap): its
@@ -432,6 +601,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     <li>Follow its recap edge back to the cold card in the warm-path view.</li>
     <li>Leave "Compare with league table" closed unless someone asks.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>A deal-count league table lists <strong><span class="v" data-k="sql_baseline.questions.Q-FLOW.row_count" data-f="int">43</span></strong> advisors and puts
@@ -453,8 +623,6 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
   <h3>Hand-off</h3>
   
   <div class="say">"<span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">Harbor Lane Advisors</span> is the gap. Now take
@@ -469,16 +637,17 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
   <div class="acthead"><h2>Act <span class="lit" data-lit="act number">4</span>. Before we bid</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span>
     <span class="pill">Q-CONFLICT</span><span class="pill">Graph and rules</span><span class="pill">Explorer: Conflict check</span></div>
   <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib was not run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_conflict, or open the explorer view.</strong></p>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Before we bid on Tessmark Clinical Supply, does it conflict with anything we own, and would the deal push Fund IV over its sector concentration guideline?</pre></div>
+  <h3>Say while it runs</h3>
   <p><span class="v" data-k="q_conflict.subject.name" data-f="">Tessmark Clinical Supply</span> is a real Tier A target and we are preparing an IOI. Before it goes in, the IC asks
     two things: does it trade with anything another Northwind fund owns today, and how much room is left under Fund
     IV's guideline for its thesis area? The second lives in the CFO's portfolio sheet. The first lives in our portfolio
     companies' vendor and customer lists, which nobody on the deal team reads.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Before we bid on Tessmark Clinical Supply, does it conflict with anything we own, and would the deal push Fund IV over its sector concentration guideline?</pre></div>
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
+  <p class="small">Claude answers with one table, a why line under each row with its evidence, and one sentence on what a CRM or SQL screen would miss. Let the room read it; read the top why line aloud. The rows should match this:</p>
   <div class="tw"><table class="num"><thead><tr><th>Current holding</th><th>Fund</th><th>Hops</th><th>Kind</th><th>Evidence</th></tr></thead><tbody><tr><td><span class="v" data-k="q_conflict.exposures[0].name" data-f="">Pinewick Dermatology Partners</span></td><td><span class="v" data-k="q_conflict.exposures[0].fund_name" data-f="">Northwind Equity Partners Fund III</span> <span class="small">since <span class="v" data-k="q_conflict.exposures[0].since" data-f="">2020-07-01</span></span></td><td><span class="v" data-k="q_conflict.exposures[0].distance" data-f="">1</span></td><td><span class="chip bad"><span class="v" data-k="q_conflict.exposures[0].kind_label" data-f="">Conflict - cross-fund review</span></span></td><td><span class="small"><span class="v" data-k="q_conflict.exposures[0].evidence" data-f="">Tessmark Clinical Supply supplies Pinewick Dermatology Partners</span></span></td></tr><tr><td><span class="v" data-k="q_conflict.exposures[1].name" data-f="">Ironvale Testing Group</span></td><td><span class="v" data-k="q_conflict.exposures[1].fund_name" data-f="">Northwind Equity Partners Fund IV</span> <span class="small">since <span class="v" data-k="q_conflict.exposures[1].since" data-f="">2024-03-15</span></span></td><td><span class="v" data-k="q_conflict.exposures[1].distance" data-f="">2</span></td><td><span class="chip warn"><span class="v" data-k="q_conflict.exposures[1].kind_label" data-f="">Informational</span></span></td><td><span class="small"><span class="v" data-k="q_conflict.exposures[1].evidence" data-f="">Tessmark Clinical Supply supplies Ravenholt Engineering Group; Ravenholt Engineering Group buys from Ironvale Testing Group</span></span></td></tr></tbody></table></div><p class="small">Correctly left out (presenter context, not in the live answer):</p><ul class="small"><li><span class="v" data-k="q_conflict.context[0].name" data-f="">Cobbleton Dental Group</span> (distance <span class="v" data-k="q_conflict.context[0].distance" data-f="">1</span>):<span class="v" data-k="q_conflict.context[0].reason" data-f="">Former holding of Northwind Equity Partners Fund II, sold on 2020-02-14; no longer a current exposure.</span></li><li><span class="v" data-k="q_conflict.context[1].name" data-f="">Redfern Imaging Centers</span> (distance <span class="v" data-k="q_conflict.context[1].distance" data-f="">3</span>):<span class="v" data-k="q_conflict.context[1].reason" data-f="">Held today but three commercial links away, outside the two-link review distance.</span></li></ul><p>Concentration, <span class="v" data-k="q_conflict.concentration.fund_name" data-f="">Northwind Equity Partners Fund IV</span> (<span class="v" data-k="q_conflict.concentration.fund_size_musd" data-f="musd">$1,200.0M</span> committed), guideline <span class="v" data-k="q_conflict.concentration.guideline_pct" data-f="pct">35.0%</span> per thesis area, with a <span class="v" data-k="q_conflict.concentration.check_musd" data-f="musd">$55.0M</span> check:</p><div class="tw"><table class="num"><thead><tr><th>Thesis area</th><th>Before</th><th>With the deal</th></tr></thead><tbody><tr><td><span class="v" data-k="q_conflict.concentration.areas[0].name" data-f="">Healthcare Services</span></td><td><span class="v" data-k="q_conflict.concentration.areas[0].before_musd" data-f="musd">$110.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[0].before_pct" data-f="pct">9.2%</span>)</td><td><span class="v" data-k="q_conflict.concentration.areas[0].after_musd" data-f="musd">$110.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[0].after_pct" data-f="pct">9.2%</span>) </td></tr><tr><td><strong><span class="v" data-k="q_conflict.concentration.areas[1].name" data-f="">Specialty Distribution</span></strong></td><td><span class="v" data-k="q_conflict.concentration.areas[1].before_musd" data-f="musd">$385.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[1].before_pct" data-f="pct">32.1%</span>)</td><td><span class="v" data-k="q_conflict.concentration.areas[1].after_musd" data-f="musd">$440.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[1].after_pct" data-f="pct">36.7%</span>) <span class="chip bad">over guideline</span></td></tr><tr><td><span class="v" data-k="q_conflict.concentration.areas[2].name" data-f="">Tech-Enabled Business Services</span></td><td><span class="v" data-k="q_conflict.concentration.areas[2].before_musd" data-f="musd">$0.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[2].before_pct" data-f="pct">0.0%</span>)</td><td><span class="v" data-k="q_conflict.concentration.areas[2].after_musd" data-f="musd">$0.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[2].after_pct" data-f="pct">0.0%</span>) </td></tr><tr><td><span class="v" data-k="q_conflict.concentration.areas[3].name" data-f="">Testing, Inspection &amp; Certification</span></td><td><span class="v" data-k="q_conflict.concentration.areas[3].before_musd" data-f="musd">$150.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[3].before_pct" data-f="pct">12.5%</span>)</td><td><span class="v" data-k="q_conflict.concentration.areas[3].after_musd" data-f="musd">$150.0M</span> (<span class="v" data-k="q_conflict.concentration.areas[3].after_pct" data-f="pct">12.5%</span>) </td></tr></tbody></table></div>
   <div class="say">"<span class="v" data-k="q_conflict.exposures[kind=conflict][0].name" data-f="">Pinewick Dermatology Partners</span> is a direct link:
     <span class="v" data-k="q_conflict.exposures[kind=conflict][0].evidence" data-f="">Tessmark Clinical Supply supplies Pinewick Dermatology Partners</span> That needs cross-fund review. And at a
@@ -488,13 +657,23 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     Either size the check at <span class="v" data-k="q_conflict.concentration.headroom_musd" data-f="musd">$35.0M</span> or less and syndicate the rest as
     co-invest, or take it to IC as an exception."</div>
   <p class="sowhat" data-src="data/golden/stories.md"><strong>So what for a partner.</strong> Cross-fund conflicts and guideline headroom are checked by rule before the IOI, not remembered at IC.</p>
-  <h3>Click in the explorer</h3>
+  <h3>Follow-up questions, typed live (one or two)</h3>
+  <p>Stay in the same session: no <code>/clear</code> between the hero prompt and its follow-ups. Pick one or two
+    for this act from <code>demo_workspace/query_bank.md</code> (SHOWCASE). Type one, let the room read the answer,
+    then decide on a second. Take only one if the hero answer was slow. If a follow-up runs past
+    <span class="lit" data-lit="presenter timing">90</span> seconds, press Esc, say "let me show the precomputed view" and move on.</p>
+  <p class="small">Rehearsed fallback follow-up from prompts.md, if the query bank is not to hand (see the status note at the top of the act):</p><div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span>
+    <span class="lit" data-lit="presenter timing">20</span>-<span class="lit" data-lit="presenter timing">30</span> seconds, explorer: Conflict check</h3>
+  <p class="small">Only if a partner asks "show me" or you are ahead of time. Do one or two of these clicks, then go
+    back to Claude Code. Skip it entirely if the act is running long.</p>
   <ul>
     <li>Conflict check view: <span class="v" data-k="q_conflict.subject.name" data-f="">Tessmark Clinical Supply</span> in the center with its two-hop commercial neighborhood.</li>
     <li>The red edge to <span class="v" data-k="q_conflict.exposures[kind=conflict][0].name" data-f="">Pinewick Dermatology Partners</span>; the dashed shared-customer path;
       the greyed former holding and the out-of-range company at the rim.</li>
     <li>The concentration gauge beside it: one bar per thesis area, the guideline line, before and after.</li>
   </ul>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
     <p>The associate's check joins commercial links to every ownership row ever recorded and groups exposure by niche.
@@ -513,8 +692,6 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
-  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
   <h3>Hand-off</h3>
   
   <div class="say">"That check ran for one name because we asked. Let's make it part of the score for every target,
@@ -527,15 +704,15 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 <section class="act" id="finale">
   <div class="acthead"><h2>Finale. Change the rules live</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">4</span> min</span>
     <span class="pill">Rules composing graph output</span><span class="pill">Explorer: Scorecard, Finale toggle</span></div>
-  <h3>Business setup</h3>
+  <h3>Type this in Claude Code</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context.</p>
+  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company needs cross-fund clearance, so flag it &quot;hold until cross-fund clearance&quot; and keep it off the Tier A call list until it is cleared.</pre></div>
+  <h3>Say while it runs</h3>
   <p>Two sentences of new policy, written live as rules. One turns the warm-path graph into access points. The other
     applies the cross-fund conflict check to every target. Nothing is re-engineered; the score just gains two named
     components.</p>
-  <h3>Type this</h3>
-  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
-    context (never between this prompt and its ad-lib).</p>
-  <div class="prompt" data-src="demo_workspace/prompts.md"><div class="plabel">Type this, verbatim<button type="button" class="copy noprint">Copy</button></div><pre>Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company needs cross-fund clearance, so flag it &quot;hold until cross-fund clearance&quot; and keep it off the Tier A call list until it is cleared.</pre></div>
-  <h3>Expected answer</h3>
+  <h3>What the audience reads</h3>
   <div class="tw"><table class="num"><thead><tr><th>New rank</th><th>Company</th><th>Before</th><th>After</th><th>Change</th></tr></thead><tbody><tr><td><span class="v" data-k="q_score.finale.rows[0].rank" data-f="">1</span></td><td><strong><span class="v" data-k="q_score.finale.rows[0].name" data-f="">Bayside Pediatric Therapy Group</span></strong></td><td><span class="v" data-k="q_score.finale.rows[0].prev_score" data-f="">85</span> (<span class="v" data-k="q_score.finale.rows[0].prev_tier" data-f="">A</span>)</td><td><span class="v" data-k="q_score.finale.rows[0].score" data-f="">95</span> (<span class="v" data-k="q_score.finale.rows[0].tier" data-f="">A</span>)</td><td>+<span class="v" data-k="q_score.finale.rows[0].delta" data-f="">10</span> <span class="v" data-k="q_score.finale.rows[0].added_components[0].evidence" data-f="">Thesis fit +15 (niche Pediatric Therapy Clinics under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $22.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Elena Marsh hired 2025-06-01 from a former Northwind portfolio company, owned by Northwind Equity Partners Fund II while the CFO worked there (2015-03-01 to 2025-04-30)); Banker engaged +10 (banker engaged 2026-05-15 (Salthorpe Capital Advisors)); Debt maturing +10 (debt matures 2027-06-30 (flagged 2026-01-20)); Founder succession +10 (founder CEO Daniel Reyes since 2008-01-01 (18.75 years), no President or COO); Positive CRM touch +10 (positive meeting with the company 2026-03-12 by a Northwind deal-team member); Warm path to the CEO +10 (CEO at 2 hops from our nearest seed)</span></td></tr><tr><td><span class="v" data-k="q_score.finale.rows[1].rank" data-f="">2</span></td><td><strong><span class="v" data-k="q_score.finale.rows[1].name" data-f="">Larkspur Revenue Partners</span></strong></td><td><span class="v" data-k="q_score.finale.rows[1].prev_score" data-f="">90</span> (<span class="v" data-k="q_score.finale.rows[1].prev_tier" data-f="">A</span>)</td><td><span class="v" data-k="q_score.finale.rows[1].score" data-f="">90</span> (<span class="v" data-k="q_score.finale.rows[1].tier" data-f="">A</span>)</td><td>no change</td></tr><tr><td><span class="v" data-k="q_score.finale.rows[2].rank" data-f="">3</span></td><td><strong><span class="v" data-k="q_score.finale.rows[2].name" data-f="">Saltmarsh Home Infusion</span></strong></td><td><span class="v" data-k="q_score.finale.rows[2].prev_score" data-f="">80</span> (<span class="v" data-k="q_score.finale.rows[2].prev_tier" data-f="">A</span>)</td><td><span class="v" data-k="q_score.finale.rows[2].score" data-f="">80</span> (<span class="v" data-k="q_score.finale.rows[2].tier" data-f="">A</span>)</td><td>no change</td></tr><tr><td><span class="v" data-k="q_score.finale.rows[3].rank" data-f="">4</span></td><td><strong><span class="v" data-k="q_score.finale.rows[3].name" data-f="">Quarry Records Retrieval</span></strong></td><td><span class="v" data-k="q_score.finale.rows[3].prev_score" data-f="">75</span> (<span class="v" data-k="q_score.finale.rows[3].prev_tier" data-f="">A</span>)</td><td><span class="v" data-k="q_score.finale.rows[3].score" data-f="">75</span> (<span class="v" data-k="q_score.finale.rows[3].tier" data-f="">A</span>)</td><td>no change</td></tr><tr><td><span class="v" data-k="q_score.finale.rows[4].rank" data-f="">5</span></td><td><strong><span class="v" data-k="q_score.finale.rows[4].name" data-f="">Ashby Vale Dental Partners</span></strong></td><td><span class="v" data-k="q_score.finale.rows[4].prev_score" data-f="">65</span> (<span class="v" data-k="q_score.finale.rows[4].prev_tier" data-f="">B</span>)</td><td><span class="v" data-k="q_score.finale.rows[4].score" data-f="">75</span> (<span class="v" data-k="q_score.finale.rows[4].tier" data-f="">A</span>)</td><td>+<span class="v" data-k="q_score.finale.rows[4].delta" data-f="">10</span> <span class="v" data-k="q_score.finale.rows[4].added_components[0].evidence" data-f="">Thesis fit +15 (niche Dental Service Organizations under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $16.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 16.0% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-07-29 (Vellholt Securities)); Debt maturing +10 (debt matures 2027-11-30 (flagged 2026-05-06)); Founder succession +10 (founder CEO Lydia Okoro since 2006-03-01 (20.59 years), no President or COO); New independent director +5 (new board member Iris Calloway since 2026-03-02); Warm path to the CEO +10 (CEO at 2 hops from our nearest seed)</span> <span class="chip ok">new to Tier A</span></td></tr><tr><td><span class="v" data-k="q_score.finale.rows[5].rank" data-f="">6</span></td><td><strong><span class="v" data-k="q_score.finale.rows[5].name" data-f="">Fenwick Food Safety Labs</span></strong></td><td><span class="v" data-k="q_score.finale.rows[5].prev_score" data-f="">70</span> (<span class="v" data-k="q_score.finale.rows[5].prev_tier" data-f="">A</span>)</td><td><span class="v" data-k="q_score.finale.rows[5].score" data-f="">70</span> (<span class="v" data-k="q_score.finale.rows[5].tier" data-f="">A</span>)</td><td>no change</td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[6].name" data-f="">Fairmarsh Health System</span></strong></td><td><span class="v" data-k="q_score.finale.rows[6].prev_score" data-f="">30</span> (<span class="v" data-k="q_score.finale.rows[6].prev_tier" data-f="">C</span>)</td><td><span class="v" data-k="q_score.finale.rows[6].score" data-f="">30</span> (<span class="v" data-k="q_score.finale.rows[6].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[6].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[6].conflict.reason" data-f="">buys from Stanvale Linen Services (Northwind Equity Partners Fund III since 2020-07-13)</span></span></td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[7].name" data-f="">Halbury Clinical Staffing</span></strong></td><td><span class="v" data-k="q_score.finale.rows[7].prev_score" data-f="">40</span> (<span class="v" data-k="q_score.finale.rows[7].prev_tier" data-f="">C</span>)</td><td><span class="v" data-k="q_score.finale.rows[7].score" data-f="">40</span> (<span class="v" data-k="q_score.finale.rows[7].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[7].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[7].conflict.reason" data-f="">supplies Dunley Home Infusion (Northwind Equity Partners Fund III since 2020-10-13)</span></span></td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[8].name" data-f="">Heathhurst Linen Services</span></strong></td><td><span class="v" data-k="q_score.finale.rows[8].prev_score" data-f="">45</span> (<span class="v" data-k="q_score.finale.rows[8].prev_tier" data-f="">C</span>)</td><td><span class="v" data-k="q_score.finale.rows[8].score" data-f="">45</span> (<span class="v" data-k="q_score.finale.rows[8].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[8].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[8].conflict.reason" data-f="">supplies Dunmere Home Health (Northwind Equity Partners Fund III since 2020-07-27)</span></span></td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[9].name" data-f="">Rookwell Home Infusion</span></strong></td><td><span class="v" data-k="q_score.finale.rows[9].prev_score" data-f="">40</span> (<span class="v" data-k="q_score.finale.rows[9].prev_tier" data-f="">C</span>)</td><td><span class="v" data-k="q_score.finale.rows[9].score" data-f="">40</span> (<span class="v" data-k="q_score.finale.rows[9].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[9].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[9].conflict.reason" data-f="">buys from Brackworth Chemical Supply (Northwind Equity Partners Fund III since 2020-10-28)</span></span></td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[10].name" data-f="">Tessmark Clinical Supply</span></strong></td><td><span class="v" data-k="q_score.finale.rows[10].prev_score" data-f="">75</span> (<span class="v" data-k="q_score.finale.rows[10].prev_tier" data-f="">A</span>)</td><td><span class="v" data-k="q_score.finale.rows[10].score" data-f="">75</span> (<span class="v" data-k="q_score.finale.rows[10].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[10].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[10].conflict.reason" data-f="">supplies Pinewick Dermatology Partners (Northwind Equity Partners Fund III since 2020-07-01)</span></span></td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[11].name" data-f="">Umberhaven Health System</span></strong></td><td><span class="v" data-k="q_score.finale.rows[11].prev_score" data-f="">30</span> (<span class="v" data-k="q_score.finale.rows[11].prev_tier" data-f="">C</span>)</td><td><span class="v" data-k="q_score.finale.rows[11].score" data-f="">30</span> (<span class="v" data-k="q_score.finale.rows[11].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[11].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[11].conflict.reason" data-f="">buys from Stanvale Linen Services (Northwind Equity Partners Fund III since 2020-07-13)</span></span></td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[12].name" data-f="">Wexley Medical Linen</span></strong></td><td><span class="v" data-k="q_score.finale.rows[12].prev_score" data-f="">25</span> (<span class="v" data-k="q_score.finale.rows[12].prev_tier" data-f="">C</span>)</td><td><span class="v" data-k="q_score.finale.rows[12].score" data-f="">25</span> (<span class="v" data-k="q_score.finale.rows[12].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[12].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[12].conflict.reason" data-f="">supplies a Fund III portfolio company (Northwind Equity Partners Fund III since 2021-03-01)</span></span></td></tr><tr><td>-</td><td><strong><span class="v" data-k="q_score.finale.rows[13].name" data-f="">Winstow Training Systems</span></strong></td><td><span class="v" data-k="q_score.finale.rows[13].prev_score" data-f="">20</span> (<span class="v" data-k="q_score.finale.rows[13].prev_tier" data-f="">C</span>)</td><td><span class="v" data-k="q_score.finale.rows[13].score" data-f="">20</span> (<span class="v" data-k="q_score.finale.rows[13].tier" data-f="">Conflict</span>)</td><td><span class="chip bad"><span class="v" data-k="q_score.finale.rows[13].tier" data-f="">Conflict</span></span> <span class="small"><span class="v" data-k="q_score.finale.rows[13].conflict.reason" data-f="">supplies Brackworth Chemical Supply (Northwind Equity Partners Fund III since 2020-10-28)</span></span></td></tr></tbody></table></div>
   <ul>
     <li><strong><span class="v" data-k="q_score.finale.rows[prev_tier!=A][tier=A][0].name" data-f="">Ashby Vale Dental Partners</span></strong> rises from Tier
@@ -558,11 +735,13 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     back clean, and <span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier!=A]" data-f="len">7</span> smaller names outside Tier A are flagged too. A graph result from the warm-path act and a portfolio check from the conflict act now sit inside one
     explainable score."</div>
   <p class="sowhat" data-src="data/golden/stories.md"><strong>So what for a partner.</strong> Graph output feeds a governed rule, and every target is checked for cross-fund conflicts before the bid, not in the IC memo; a flagged name is on hold, not dropped.</p>
-  <h3>Click in the explorer</h3>
+  <div class="optional"><h3>Show me the evidence <span class="opt-tag">OPTIONAL</span> during the wait, explorer: Scorecard, Finale toggle</h3>
   <ul>
     <li>Scorecard view, Finale toggle: before and after columns with movement arrows.</li>
     <li>Click <span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier=A][0].name" data-f="">Tessmark Clinical Supply</span>: it jumps to the conflict evidence.</li>
   </ul>
+  <p class="small">Switch back to Claude Code as soon as the answer lands; the audience reads the answer there.</p>
+  </div>
   <h3>SQL-screen contrast</h3>
   <div class="contrast"><p>No CRM view or thesis screen joins a target to the other fund's supply chain, or turns a
     relationship path into points. In a SQL stack this is a new pipeline; here it is two sentences.</p></div>
@@ -582,6 +761,33 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
+</section>
+
+
+<section class="seg" id="open-floor">
+  <div class="acthead"><h2>Open floor</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">3</span> min</span><span class="pill">Claude Code</span></div>
+  <div class="say">"Your turn. Ask it something about your pipeline, your relationships or your portfolio, and I'll
+    type it in."</div>
+  <p>The partner asks their own questions; you type them into Claude Code. Type <code>/clear</code> once before the
+    first question.</p>
+  <h3>Presenter guidance</h3>
+  <ul>
+    <li><strong>Rephrase into the model's vocabulary before you type.</strong> Say it back first: "So: which Tier A
+      targets are founder-owned?" Use the model's words: thesis fit, readiness, Tier A, score components, warm path,
+      CEO, board designee, intermediary, coverage gap, touchpoints, conflict, concentration guideline, Fund III, Fund
+      IV. Name companies, people and funds exactly as they appear on screen.</li>
+    <li><strong>One question at a time.</strong> If they ask two things, type the first and say "then the second".
+      Let the room read each answer before the next one.</li>
+    <li><strong>If it is slow</strong> (past <span class="lit" data-lit="presenter timing">90</span> seconds, or it starts exploring), press Esc and
+      offer the closest hero function: "Let me show you the governed version of that." Then type <code class="cmd">Run
+      uv run python ask.py &lt;function&gt; and show the result as a table with the why for each row.</code> using
+      <code>q_score</code> (fit, readiness, Tier A), <code>q_path</code> (introductions, who knows whom),
+      <code>q_flow</code> (bankers, deal flow, coverage), <code>q_conflict</code> (conflicts, concentration) or
+      <code>q_addon</code> (add-ons for a platform).</li>
+    <li>If a question is outside the model (valuations, a company that is not in the data), say so plainly: "That is
+      not in this model yet; it is one more table and one more rule." Do not let Claude guess.</li>
+    <li>If nobody asks, type one SHOWCASE query from <code>demo_workspace/query_bank.md</code> you have not used yet.</li>
+  </ul>
 </section>
 
 
@@ -607,13 +813,14 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 
 <section class="seg pagebreak" id="elevator">
   <h2>Elevator version (thirty seconds)</h2>
-  <div class="say">"We modeled your deal universe as one knowledge graph inside Snowflake. Asked in plain English, it
-    found <span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> Tier A targets for Fund IV, <span class="v" data-k="q_score.summary.tier_a_not_in_crm" data-f="int">2</span>
-    of them with no coverage. It found a warm route in for <span class="v" data-k="q_path.targets[status=warm]" data-f="len">2</span> of the top
+  <div class="say">"Your deal team asks questions in plain English, and Claude answers them from one governed model of
+    your deal universe that lives in your Snowflake: same definitions every time, every answer with its reasons. We
+    asked who to call: it found <span class="v" data-k="q_score.summary.tier_a" data-f="int">6</span> Tier A targets for Fund IV,
+    <span class="v" data-k="q_score.summary.tier_a_not_in_crm" data-f="int">2</span> of them with no coverage. It found a warm route in for <span class="v" data-k="q_path.targets[status=warm]" data-f="len">2</span> of the top
     <span class="v" data-k="q_path.targets" data-f="len">3</span> and said honestly that one is cold. It showed that
     <span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">Harbor Lane Advisors</span> bridges flow in your sectors and you barely cover it. And when we
     added two rules in a sentence, it checked every target for cross-fund conflicts, with
-    <span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier=A][0].name" data-f="">Tessmark Clinical Supply</span>, the conflict-act target, the one Tier A name on hold until cleared. Every point traces to a rule you can read."</div>
+    <span class="v" data-k="q_score.finale.rows[conflict!=null][prev_tier=A][0].name" data-f="">Tessmark Clinical Supply</span>, the conflict-act target, the one Tier A name on hold until cleared. And any partner can ask the next question themselves. Every point traces to a rule you can read."</div>
 </section>
 
 
@@ -656,6 +863,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 
 <p class="meta" style="margin-top:40px">Built by artifacts/build_script.py from artifacts/demo_script_template.html.
 Do not edit this file by hand; run <code>make artifacts</code>.</p>
+</div>
 </div>
 <script>
 document.querySelectorAll('.copy').forEach(function (b) {

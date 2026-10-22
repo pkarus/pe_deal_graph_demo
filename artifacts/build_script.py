@@ -72,7 +72,12 @@ QUESTIONS = {
 ORDER_ADDON = ["Q-SCORE", "Q-PATH", "Q-ADDON", "Q-FLOW"]          # QUESTIONS.md v1 (PROMPT.md 7.3)
 ORDER_CONFLICT = ["Q-SCORE", "Q-PATH", "Q-FLOW", "Q-CONFLICT"]    # QUESTIONS.md v2 (default)
 # PROMPT.md 7.5 minutes. Acts are timed by position, so a swap keeps the 15-18 minute arc.
-MINUTES = {"COLD_OPEN": 1, "MODEL": 1, "ACT": [3, 3, 3, 2], "FINALE": 4, "CLOSE": 1}
+# R16 a2: Claude Code is the main stage. Each act is the hero prompt plus one or two typed follow-ups, with an
+# optional explorer evidence moment; the explorer time moved into an Open floor segment typed into Claude Code.
+MINUTES = {"COLD_OPEN": 1, "MODEL": 1, "ACT": [2, 2, 2, 2], "FINALE": 4, "OPEN_FLOOR": 3, "CLOSE": 1}
+# Presenter timings shown on the page (rendered as literals, not export values).
+TIMING = {"t_warm1": 30, "t_launch": 15, "t_warm2": 10, "finale_cutoff": 4, "evidence_min_s": 20, "evidence_max_s": 30,
+          "followup_slow_s": 90, "open_floor_slow_s": 90}
 REQUIRED_FILES = ["meta", "q_score", "q_path", "q_flow", "sql_baseline", "graph", "rules"]
 
 
@@ -980,7 +985,8 @@ def load_template(path: Path) -> dict:
         fail(f"template not found: {path}")
     text = path.read_text(encoding="utf-8")
     blocks = {m.group(1): m.group(2) for m in BLOCK_RE.finditer(text)}
-    for need in ["PAGE", "COLD_OPEN", "MODEL", "FINALE", "CLOSE", "ELEVATOR", "SKEPTICS", "STORIES",
+    for need in ["PAGE", "COLD_OPEN", "MODEL", "FINALE", "OPEN_FLOOR", "CLOSE", "ELEVATOR", "SKEPTICS", "STORIES",
+                 "STEPS", "STEP_FINALE", *[f"STEP_{q}" for q in QUESTIONS if q != "FINALE"],
                  *[q for q in QUESTIONS if q != "FINALE"]]:
         if need not in blocks:
             fail(f"template block missing: {need}")
@@ -1028,6 +1034,16 @@ class Renderer:
                 return self.c.lit(act_no, "act number")
             if name == "minutes":
                 return self.c.lit(minutes, "minutes, PROMPT.md 7.5")
+            if name == "t":
+                if arg not in TIMING:
+                    fail(f"unknown timing directive: {arg}")
+                return self.c.lit(TIMING[arg], "presenter timing")
+            if name == "followup_default":
+                tier2 = self.prompt(qid, "tier2")
+                if not tier2:
+                    return ""
+                return ('<p class="small">Rehearsed fallback follow-up from prompts.md, if the query bank is not to '
+                        'hand (see the status note at the top of the act):</p>' + tier2)
             if name == "fn":
                 return f"<code>{QUESTIONS[qid]['fn']}</code>"
             if name == "fallback":
@@ -1126,18 +1142,34 @@ def build(data: dict, order: list[str], prompts: tuple[dict, str], brief: dict, 
     for i, qid in enumerate(order):
         acts_html.append(r.render(blocks[qid], qid=qid, act_no=i + 1, minutes=MINUTES["ACT"][i],
                                   next_qid=seq[i + 1]))
-    # Run-of-show summary.
-    ros = [["Cold open", "-", ctx.lit(MINUTES["COLD_OPEN"], "minutes"), "-", "Overview"],
-           ["The model", "-", ctx.lit(MINUTES["MODEL"], "minutes"), "-", "Global"]]
+    # Run-of-show summary. Claude Code is the main stage; the explorer is supporting evidence.
+    L = ctx.lit
+    ev = (f'optional, last {L(TIMING["evidence_min_s"], "seconds")}-{L(TIMING["evidence_max_s"], "seconds")} s')
+    ros = [["Cold open", "-", L(MINUTES["COLD_OPEN"], "minutes"), "Room", "-", "-"],
+           ["The model", "-", L(MINUTES["MODEL"], "minutes"), "Explorer", "-", "Global"]]
     for i, qid in enumerate(order):
-        ros.append([f"Act {ctx.lit(i + 1, 'act number')}", qid, ctx.lit(MINUTES["ACT"][i], "minutes"),
-                    f"<code>{QUESTIONS[qid]['fn']}</code>", QUESTIONS[qid]["view"]])
-    ros.append(["Finale", "Live rule", ctx.lit(MINUTES["FINALE"], "minutes"), "<code>finale_rescore</code>",
-                QUESTIONS["FINALE"]["view"]])
-    ros.append(["Close", "-", ctx.lit(MINUTES["CLOSE"], "minutes"), "-", "-"])
-    total = MINUTES["COLD_OPEN"] + MINUTES["MODEL"] + sum(MINUTES["ACT"]) + MINUTES["FINALE"] + MINUTES["CLOSE"]
-    ros_html = table(["Segment", "Question", "Minutes", "Fallback function", "Explorer view"], ros)
-    ros_html += f'<p class="small">Total {ctx.lit(total, "minutes")} minutes.</p>'
+        ros.append([f"Act {L(i + 1, 'act number')}", qid, L(MINUTES["ACT"][i], "minutes"),
+                    "Claude Code: hero prompt, then one or two typed follow-ups",
+                    f"<code>{QUESTIONS[qid]['fn']}</code>", f"{QUESTIONS[qid]['view']} ({ev})"])
+    ros.append(["Finale", "Live rule", L(MINUTES["FINALE"], "minutes"), "Claude Code: live rule authoring",
+                "<code>finale_rescore</code>", QUESTIONS["FINALE"]["view"] + " (optional, during the wait)"])
+    ros.append(["Open floor", "Their questions", L(MINUTES["OPEN_FLOOR"], "minutes"),
+                "Claude Code: the partner asks, you type", "closest hero function", "-"])
+    ros.append(["Close", "-", L(MINUTES["CLOSE"], "minutes"), "Room", "-", "-"])
+    total = (MINUTES["COLD_OPEN"] + MINUTES["MODEL"] + sum(MINUTES["ACT"]) + MINUTES["FINALE"]
+             + MINUTES["OPEN_FLOOR"] + MINUTES["CLOSE"])
+    claude_min = sum(MINUTES["ACT"]) + MINUTES["FINALE"] + MINUTES["OPEN_FLOOR"]
+    explorer_max_s = MINUTES["MODEL"] * 60 + TIMING["evidence_max_s"] * len(order)
+    ros_html = table(["Segment", "Question", "Minutes", "Main screen", "Fallback function", "Explorer view"], ros)
+    ros_html += (f'<p class="small">Total {L(total, "minutes")} minutes. Claude Code is on screen for about '
+                 f'{L(claude_min, "minutes")} of them. The explorer gets at most {L(explorer_max_s, "seconds")} '
+                 'seconds: the model overview plus the optional evidence moments, which come out of act time.</p>')
+
+    steps_acts = "\n".join(r.render(blocks[f"STEP_{qid}"], qid=qid, act_no=i + 1, minutes=MINUTES["ACT"][i])
+                           for i, qid in enumerate(order))
+    steps = r.render(blocks["STEPS"].replace("[[slot:steps_acts]]", steps_acts)
+                     .replace("[[slot:steps_finale]]",
+                              r.render(blocks["STEP_FINALE"], qid="FINALE", minutes=MINUTES["FINALE"])))
 
     meta = data["meta"]
     source = str(meta.get("source", "")).upper()
@@ -1158,7 +1190,9 @@ def build(data: dict, order: list[str], prompts: tuple[dict, str], brief: dict, 
         "model": r.render(blocks["MODEL"], minutes=MINUTES["MODEL"]),
         "acts": "\n".join(acts_html),
         "finale": r.render(blocks["FINALE"], qid="FINALE", minutes=MINUTES["FINALE"]),
+        "open_floor": r.render(blocks["OPEN_FLOOR"], minutes=MINUTES["OPEN_FLOOR"]),
         "close": r.render(blocks["CLOSE"], minutes=MINUTES["CLOSE"]),
+        "steps": steps,
         "elevator": r.render(blocks["ELEVATOR"]),
         "skeptics": r.render(blocks["SKEPTICS"]),
         "stories": r.render(blocks["STORIES"]) if stories["appendix"] else "",

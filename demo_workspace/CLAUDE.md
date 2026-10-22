@@ -37,6 +37,15 @@ You are answering a private equity deal team live, on screen. Be fast, short and
    - For "add a rule ... re-score" (the Finale): write it live using the building blocks below, on top of the existing score, then show the new Tier-A list. One attempt only: if it errors, returns an empty or partial table, or the presenter says "use the prebuilt version", stop and run `uv run python ask.py finale_rescore` (if that fails, `uv run python ask.py --from-exports finale_rescore`) and say it is the prebuilt version of the same rule. Never run `finale_rescore` first unless told to.
 4. Python: always `uv run python ...` from this folder. The venv is `../.venv` (Python 3.13, relationalai 1.27.1). Do not install packages, do not use `pip`, do not touch the engine or Snowflake directly.
 
+## Ad-hoc questions (not a hero function)
+
+- If a hero function's rows answer it (Tier A names, their components and why, the top-3 paths, the top-5 bridges, the Tessmark check), run that function via `ask.py` and answer from its rows. Hero rows cover Tier A only.
+- Otherwise load `rai-querying` and write ONE PyRel query in `scratch/<name>.py` against the existing model: the script start from "Finale building blocks", then `import pe_deal_graph.queries` (without it every derived name is empty) and import the names you need from `pe_deal_graph.model.core`.
+- Use only names in `../ONTOLOGY.md` and the patterns in `query_bank.md` (this folder). Never define or redefine a rule for a question; a new rule is only for the Finale.
+- Answer as one table of 10 rows or fewer plus one why line per row, quoting `why`, `evidence` or `Knows.evidence` columns rather than rebuilding evidence from raw Role rows.
+- Target under 60 s. If the query fails twice, say so plainly and offer the closest hero function (`ask.py <function>`, or `--from-exports` if the engine is down). Never answer from memory or from other files.
+- The answer-from-rows rule and the decoy guard in "Answer format" apply here too.
+
 ## Finale building blocks (do not explore the repo for these)
 
 - Script start: `import os, sys; os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")); sys.path.insert(0, ".")`, then `import pe_deal_graph.queries` (loads core, rules and graphs) and `from pe_deal_graph.model.core import model, Company, Person, EligibleTarget, NorthwindHolding, BuyingFund`.

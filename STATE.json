@@ -247,7 +247,11 @@
     "ask.py warm-server fingerprint includes export.py; editing export.py makes the server stale (rehearsal runs 1-3 degraded)",
     "Tier-2 follow-ups write slow scratch PyRel instead of filtering hero rows; T2-PATH 1/2, T2-CONFLICT not run -> mark optional",
     "DEMO RISK: processes with different rule sets on the shared model cause empty reads; live Finale authoring in a separate process may disturb the warm server - rely on 3-min cutoff + prebuilt finale_rescore",
-    "prompts.md vs QUESTIONS.md wording differs for Q-CONFLICT/Q-ADDON; stories.md L87 numbers not in exports (appendix omitted)"
+    "prompts.md vs QUESTIONS.md wording differs for Q-CONFLICT/Q-ADDON; stories.md L87 numbers not in exports (appendix omitted)",
+    "needs export re-run after testing: Act 1 decoy reasons in exports; sql_baseline.json warm count/agrees label",
+    "explorer default fit: verify on real screen",
+    "final review minors m1-m9 (handoffs/47)",
+    "exit-window rule counts minority stakes (query bank finding)"
   ],
   "engine_hours_estimate": 0,
   "checkpoints": {
@@ -291,7 +295,9 @@
     "R07 reload -> R08 make ontology-check -> R11 pytest twice -> G5 Gatekeeper"
   ],
   "p5_flip": "Makefile data: `$(PY) data/generate.py` -> `$(PY) data/generate.py --noise --out data/csv`; do NOT run plain make data before flip (9 cells differ from committed csv)",
-  "queued": [],
+  "queued": [
+    "live rehearsal of query_bank SHOWCASE prompts (2-3 runs each) after user finishes testing"
+  ],
   "plan_G4_G5": "after R19c data fixer (30) + decoy fixer (32): flip agent (Makefile flip, make data, load, oracle, ontology-check, pytest x2, naive-sql, export) -> G4 Gatekeeper and G5 Gatekeeper",
   "engine_policy": "serialize engine-heavy agents; lock errors seen with concurrent writers",
   "perf_track": {
@@ -326,6 +332,10 @@
   "post_p9": [
     "TEST_PLAN.md written (46)",
     "final review 47: 1 BLOCKER, 6 MAJOR, 9 MINOR",
-    "R20 final-review fixer running (48)"
+    "R20 final-review fixer running (48)",
+    "post-tag fixes committed 7cede41 (Tessmark Finale target, warm count, 4-min cutoff, CLAUDE.md 3-hop wording, TEST_PLAN)",
+    "user direction 13:35: Claude Code text queries central, explorer supporting",
+    "R16 script restructure PASS self (Claude Code leads, Open floor, Step by step default tab; CHECK OK 719 values) - uncommitted",
+    "R14 query bank PASS self (11 prompts, 6 SHOWCASE; fresh queries 60-90 s expected)"
   ]
 }
