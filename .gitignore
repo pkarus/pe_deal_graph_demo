@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+*.egg-info/
+
+# PyRel runtime caches (regenerated on demand)
+build/
+rai_code/manual/build/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Secrets / local env
+.env
+.env.*.local
+
+# Jupyter
+.ipynb_checkpoints/
+*.executed.ipynb
+
+# Claude Code local overrides
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# Demo-day artifacts that should be regenerated, not committed
+query_results/
+*.log
+
+# RAI / Snowflake credentials and config
+# NOTE for R14/G8: raiconfig.yaml is untracked, so a fresh `git worktree` has no config.
+# The cold-run steps in RUNBOOK.md must copy it in: cp ../pe_deal_graph_demo/raiconfig.yaml .
+raiconfig.yaml
+raiconfig.yml
+raiconfig.toml
+*.p8
+*.pem
+pat_token
+
+# Playwright output (R15 click-through tests)
+test-results/
+playwright-report/

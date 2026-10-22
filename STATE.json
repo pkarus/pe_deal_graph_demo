@@ -1,0 +1,196 @@
+{
+  "phase": "P1",
+  "started_at": "2026-10-21T22:02:13+02:00",
+  "gates": {
+    "G0": {
+      "status": "GATEKEEPER_RUNNING",
+      "attempts": 2,
+      "evidence": "handoffs/03-R01-a2.md",
+      "commit": null
+    },
+    "G1": {
+      "status": "IN_PROGRESS",
+      "attempts": 1,
+      "evidence": "handoffs/05-R04-a1.md (critic FAIL)",
+      "commit": null
+    },
+    "G2": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    },
+    "G3": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    },
+    "G4": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    },
+    "G5": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    },
+    "G6": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    },
+    "G7": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    },
+    "G8": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    },
+    "G9": {
+      "status": "PENDING",
+      "attempts": 0,
+      "evidence": null,
+      "commit": null
+    }
+  },
+  "phase_tasks": {
+    "P0": {
+      "title": "Environment preflight + research + bootstrap approval",
+      "status": "in_progress",
+      "gate": "G0",
+      "agents": [
+        "R01 a1 PASS (preflight, bootstrap drafted, not run)",
+        "R02 a1 PASS (domain brief, self-reported)",
+        "R01 a2 BLOCKED: PAT session restricted, USE ROLE not allowed (003107); nothing created",
+        "R01 a3 PASS self-reported (engine READY, smoke 3); R18 verifying G0"
+      ]
+    },
+    "P1": {
+      "title": "Hero questions + critic",
+      "status": "in_progress",
+      "gate": "G1",
+      "depends_on": [
+        "R02"
+      ],
+      "agents": [
+        "R03 a1 done",
+        "R04 a1 FAIL (Q-ADDON reasoning 2; 1 BLOCKER, 6 MAJOR)",
+        "R20 a1 running (QUESTIONS.md v2)"
+      ]
+    },
+    "P2": {
+      "title": "Schema + signal data + oracle + load",
+      "status": "in_progress (speculative, pre-G1)",
+      "gate": "G2",
+      "depends_on": [
+        "G0",
+        "G1"
+      ],
+      "agents": [
+        "R05 a1 running (schema + signal data + golden)"
+      ]
+    },
+    "P3": {
+      "title": "Ontology",
+      "status": "pending",
+      "gate": "G3",
+      "depends_on": [
+        "G2"
+      ]
+    },
+    "P4": {
+      "title": "Rules + graph + queries + tests",
+      "status": "pending",
+      "gate": "G4",
+      "depends_on": [
+        "G3"
+      ]
+    },
+    "P5": {
+      "title": "Noise + decoys + reload + re-test",
+      "status": "pending",
+      "gate": "G5",
+      "depends_on": [
+        "G4"
+      ]
+    },
+    "P6": {
+      "title": "Export + workspace + explorer + script",
+      "status": "in_progress (early skeletons)",
+      "gate": "G6,G7",
+      "depends_on": [
+        "G5"
+      ],
+      "agents": [
+        "R14 a1 running (workspace + RUNBOOK skeleton)",
+        "R15 a1 running (explorer shell on fixture)"
+      ]
+    },
+    "P7": {
+      "title": "Cold rehearsal",
+      "status": "pending",
+      "gate": "G8",
+      "depends_on": [
+        "G6",
+        "G7"
+      ]
+    },
+    "P8": {
+      "title": "Review board + fixes",
+      "status": "pending",
+      "gate": "G9",
+      "depends_on": [
+        "G8"
+      ]
+    },
+    "P9": {
+      "title": "Morning report, engine suspend, final commit + tag demo-v1",
+      "status": "pending",
+      "gate": null,
+      "depends_on": [
+        "G9 or hard stop"
+      ]
+    }
+  },
+  "hero_questions": [
+    "Q-SCORE",
+    "Q-PATH",
+    "Q-ADDON",
+    "Q-FLOW"
+  ],
+  "bootstrap_approval": "APPROVED 2026-10-22T07:46+02:00; applying via R01 a2",
+  "degradations": [],
+  "open_findings": [
+    "G1: R04 a1 BLOCKER Q-ADDON + 6 MAJOR, fix in progress"
+  ],
+  "engine_hours_estimate": 0,
+  "checkpoints": {
+    "G1": "2026-10-22T08:51+02:00",
+    "G3": "2026-10-22T09:55+02:00",
+    "G5": "2026-10-22T11:22+02:00",
+    "G7": "2026-10-22T12:25+02:00",
+    "G8": "2026-10-22T13:08+02:00",
+    "soft_finish": "2026-10-22T13:30+02:00",
+    "hard_stop": "2026-10-22T14:00+02:00"
+  },
+  "run_mode": "daytime rerun approved by user at 07:46; overnight window lost waiting on the Phase 0 question",
+  "timebox_restart_at": "2026-10-22T07:46:31+02:00",
+  "timebox_note": "User set hard stop 14:00 Warsaw; checkpoints scaled by 0.72 from the 07:46 restart; P9 must start by 13:30",
+  "concurrency": {
+    "max_agents": 6,
+    "max_engine_agents": 2,
+    "reason": "user asked to maximize parallelism at 08:05"
+  },
+  "critic_loops": 1,
+  "engine_started_at": "2026-10-22T08:20+02:00 (approx, pe_demo_logic READY)"
+}
