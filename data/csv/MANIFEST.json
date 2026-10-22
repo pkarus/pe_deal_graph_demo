@@ -4,33 +4,33 @@
   "tables": {
     "COMMERCIAL_LINK": {
       "file": "COMMERCIAL_LINK.csv",
-      "rows": 58,
-      "sha256": "993cfecc9216324d75e56875eeffdc5d14489d431245470467044cc8c88a443c"
+      "rows": 1994,
+      "sha256": "6959560efbcab62cb7ef83c8fc7c4510d989ac86ce0ca508e849591b1117b8cc"
     },
     "COMPANY": {
       "file": "COMPANY.csv",
-      "rows": 204,
-      "sha256": "732c5e884dfc6416e0a023e45ce99eb122e2dc003120c52846536f8cf19bb3a6"
+      "rows": 1096,
+      "sha256": "e80859d2feb267997eb93b1368950fe44010557b17378e882b069a90f60f0f33"
     },
     "COMPANY_SIGNAL": {
       "file": "COMPANY_SIGNAL.csv",
-      "rows": 29,
-      "sha256": "c70794316d020ddf3b731407bddacf853bfc0f8bdec36276265693f6ff24572e"
+      "rows": 788,
+      "sha256": "3b6039ccf569338f53b03ce11ab67c53f73d5bc55cd932e55e14f377fef4c708"
     },
     "COMPANY_SITE": {
       "file": "COMPANY_SITE.csv",
-      "rows": 243,
-      "sha256": "383db8d6767846960f8af14fb852441bbcf4ae49df4e1b3f22fc7e872362a5d2"
+      "rows": 1206,
+      "sha256": "1b49abd71d6162687718e2891f9e2e9af9ccf16f5413c368faa85567502dfd8e"
     },
     "CRM_INTERACTION": {
       "file": "CRM_INTERACTION.csv",
-      "rows": 175,
-      "sha256": "6e4d20428f671ead8c477319cae4db2a0d826be7cb0fc638d311f912c7b499b5"
+      "rows": 1357,
+      "sha256": "c7fe790d88edeaab1debb2f0518313b733dafff149952fc18430cd1c1be03448"
     },
     "FUND": {
       "file": "FUND.csv",
-      "rows": 31,
-      "sha256": "a5d92780948ff790aad2197a410440e7bdf53de0c279e6b940b0ce940cdf825a"
+      "rows": 80,
+      "sha256": "103a1ab7006b970a32db8398aac7fec5973781e188497424eef1f792cae2548f"
     },
     "FUND_FOCUS": {
       "file": "FUND_FOCUS.csv",
@@ -44,18 +44,18 @@
     },
     "OWNERSHIP": {
       "file": "OWNERSHIP.csv",
-      "rows": 151,
-      "sha256": "39dad9de3c288eef49aca0093c98a129e304cd435628ea4d037a14bbbfdcfdee"
+      "rows": 265,
+      "sha256": "c7553fa9b25a7395476d5a64b17ba9ee7f07c043dd0b6280a82d2f72c7d2b879"
     },
     "PERSON": {
       "file": "PERSON.csv",
-      "rows": 48,
-      "sha256": "e4c07b39cbb6033ca93c10c6ba596ee34db972a87321afeafc836d9735cdade0"
+      "rows": 2506,
+      "sha256": "431dbe359a2f97d0c306dabbbcc021d907e17167afa4f1d2fd25eff4137b6058"
     },
     "PIPELINE": {
       "file": "PIPELINE.csv",
-      "rows": 5,
-      "sha256": "c184dfe130ad5ae93c5b36872624a061501a70e5fc434e939b6c7cace9d321ed"
+      "rows": 200,
+      "sha256": "66ead24de40fc38e83b08a20e3518b267cd548528ba3797966999dcea26b87ea"
     },
     "REGION": {
       "file": "REGION.csv",
@@ -64,8 +64,8 @@
     },
     "ROLE_HISTORY": {
       "file": "ROLE_HISTORY.csv",
-      "rows": 72,
-      "sha256": "6c6b6913e7e8fced26e2b0826fd66945b013c42c826b90fa70c485bda3e63a87"
+      "rows": 3202,
+      "sha256": "0810813881e32337a52b77a052e02970017f06ae13e55fc956a8ac9335dd0d6b"
     },
     "SECTOR": {
       "file": "SECTOR.csv",
@@ -74,19 +74,19 @@
     },
     "SPONSOR": {
       "file": "SPONSOR.csv",
-      "rows": 26,
-      "sha256": "f322f947c73375099d6cc1d29c75cc29ef415a3808c34556b09eaae897d68b2f"
+      "rows": 40,
+      "sha256": "852c326e7a667e70dfc9da18cbb8d86ba4d1ba85e4589872310e42d90a867cfd"
     },
     "TRANSACTION": {
       "file": "TRANSACTION.csv",
-      "rows": 141,
-      "sha256": "111c3f2c91136a79cdf009c97ef580d430e7129ced92ad88510111fc43f40ddb"
+      "rows": 635,
+      "sha256": "25cc6aabdafe05403110d1c9ef60ca6bd49c96b51852a719de3207eaa6783d57"
     },
     "TRANSACTION_PARTY": {
       "file": "TRANSACTION_PARTY.csv",
-      "rows": 283,
-      "sha256": "b3fe5c4cad5520e8cf0e38803a4d6b9777ad34159f359083f70211b099f3b913"
+      "rows": 1032,
+      "sha256": "298f7d267ccd33743d7eb13f2787f25e8e18ca4f4b815678d31e130cc94d5862"
     }
   },
-  "total_rows": 1668
+  "total_rows": 14603
 }

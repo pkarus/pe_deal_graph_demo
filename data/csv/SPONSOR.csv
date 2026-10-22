@@ -1,27 +1,41 @@
 sponsor_id,name,hq_region_id,aum_musd,strategy
-S113,Kestfield Equity,US-OH,878.58,lower_mid_market_buyout
+S113,Kestfield Equity,US-OH,1212.13,lower_mid_market_buyout
 S115,Kestrelmoor Capital,US-MA,1100.0,lower_mid_market_buyout
-S164,Merrton Equity,US-MI,950.01,lower_mid_market_buyout
+S164,Merrton Equity,US-MI,1636.19,lower_mid_market_buyout
+S192,Ravenwick Capital,US-FL,463.84,lower_mid_market_buyout
 S210,Yarvale Equity,US-UT,359.65,lower_mid_market_buyout
 S259,Claywell Capital Partners,US-AL,585.81,lower_mid_market_buyout
+S277,Loamcombe Partners,US-IL,723.22,lower_mid_market_buyout
 S279,Ostwood Capital Partners,US-NC,898.11,lower_mid_market_buyout
+S298,Vellhall Capital,US-TX,2088.14,middle_market_buyout
 S303,Nettleford Partners,US-AZ,299.15,lower_mid_market_buyout
 S306,Briswick Partners,US-MA,4486.1,middle_market_buyout
 S316,Hartbury Capital Partners,US-UT,456.38,lower_mid_market_buyout
 S347,Brammoor Capital,US-NC,640.46,lower_mid_market_buyout
 S358,Salstead Partners,US-OH,1461.69,lower_mid_market_buyout
+S406,Bramhaven Capital,US-MO,4619.29,middle_market_buyout
 S437,Nettleridge Partners,US-MO,664.96,lower_mid_market_buyout
-S465,Radgate Equity Partners,US-NV,423.7,lower_mid_market_buyout
+S459,Heathgate Equity,US-NM,1565.98,lower_mid_market_buyout
+S463,Pellcrest Capital,US-WA,1155.94,lower_mid_market_buyout
+S465,Radgate Equity Partners,US-NV,728.26,lower_mid_market_buyout
 S516,Millstead Equity Partners,US-WA,477.26,lower_mid_market_buyout
+S551,Calfield Equity,US-TX,4501.41,middle_market_buyout
 S558,Mosswood Equity,US-IL,4189.42,middle_market_buyout
 S613,Merrholt Capital,US-MA,4035.9,middle_market_buyout
 S632,Pellwood Partners,US-OR,487.22,lower_mid_market_buyout
 S641,Ridgeback Partners,US-NY,1600.0,middle_market_buyout
+S740,Briscombe Investment Partners,US-AZ,679.71,lower_mid_market_buyout
 S743,Tullbrook Capital,US-AL,662.43,lower_mid_market_buyout
+S758,Emberwick Investment Partners,US-TX,702.54,lower_mid_market_buyout
+S795,Larkbury Capital,US-PA,440.6,lower_mid_market_buyout
 S796,Northwind Equity Partners,US-IL,2500.0,lower_mid_market_buyout
 S798,Marmarsh Capital,US-TX,1400.0,middle_market_buyout
+S830,Shelridge Capital Partners,US-IN,3830.43,middle_market_buyout
 S859,Sablewood Equity,US-MN,800.0,lower_mid_market_buyout
+S884,Dunmere Investment Partners,US-KY,5428.2,middle_market_buyout
 S885,Winstow Capital,US-CA,5899.08,middle_market_buyout
 S916,Walfield Capital,US-MA,5634.8,middle_market_buyout
 S938,Coppervale Partners,US-TN,950.0,lower_mid_market_buyout
+S971,Winbury Equity Partners,US-WA,1816.27,lower_mid_market_buyout
 S976,Glenhallow Partners,US-GA,1300.0,lower_mid_market_buyout
+S990,Ashton Investment Partners,US-FL,915.53,lower_mid_market_buyout

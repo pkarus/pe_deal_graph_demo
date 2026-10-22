@@ -13,7 +13,7 @@ All data is synthetic and fictional, as of 2026-10-01. Spec: QUESTIONS.md v2. He
 - Keystone Clinical Supply -> **Tessmark Clinical Supply**
 - Alder Creek Dental Partners -> **Ashby Vale Dental Partners**
 - Brightwater Dental -> **Cobbleton Dental Group**
-- Pinecrest Dental Partners -> **Pinewick Dental Partners**
+- Pinecrest Dental Partners -> **Pinewick Dermatology Partners**
 - Granite Testing Group -> **Ironvale Testing Group**
 - Meadowbrook Physical Therapy -> **Quillmont Physical Therapy**
 - Tidewater Chemical Distribution -> **Tullmere Chemical Distribution**
@@ -32,9 +32,9 @@ All data is synthetic and fictional, as of 2026-10-01. Spec: QUESTIONS.md v2. He
 - Tom Brennan -> **Tom Harlowe**
 - Unchanged: Larkspur Revenue Partners, Bayside Pediatric Therapy Group, Saltmarsh Home Infusion, Quarry Records Retrieval, Fenwick Food Safety Labs, Pembrook Veterinary Pharmaceuticals, Northgate Behavioral Health, Cobalt Urgent Care Partners, Linden Hollow Senior Care, Redfern Imaging Centers, Harbor Lane Advisors, Cedar Row Partners, Ridgeback Partners, and all other people.
 
-## Q-SCORE: Act 1. Six names to call on Monday, two of them unknown to the CRM
+## Q-SCORE: Act 1. Six names to call on Monday, two of them with no coverage
 
-**Who.** The Fund IV Tier A list is Larkspur Revenue Partners (90), Bayside Pediatric Therapy Group (85), Saltmarsh Home Infusion (80), Quarry Records Retrieval (75), Tessmark Clinical Supply (75) and Fenwick Food Safety Labs (70). Saltmarsh Home Infusion and Fenwick Food Safety Labs have no pipeline row and no CRM touch at all.
+**Who.** The Fund IV Tier A list is Larkspur Revenue Partners (90), Bayside Pediatric Therapy Group (85), Saltmarsh Home Infusion (80), Quarry Records Retrieval (75), Tessmark Clinical Supply (75) and Fenwick Food Safety Labs (70). Saltmarsh Home Infusion and Fenwick Food Safety Labs have no pipeline row and no CRM touch at all: no coverage, so nobody here owns the relationship.
 
 **What.** Each score is Fit plus Readiness plus Access. Fit means a thesis node, the EBITDA band and margin against the focus-area benchmark. Readiness means a CFO hired from a PE-backed company, an exit window, a banker engaged, debt maturing within 18 months, founder succession, or a new independent director. Access means a positive CRM touch in the last 24 months. Example: Larkspur Revenue Partners has been held by Kestrelmoor Capital Fund I (2016 vintage) since April 2019, has Cedar Row Partners engaged, has debt due September 2027, and hired a CFO from a sponsor-backed company in July 2025.
 
@@ -44,7 +44,7 @@ All data is synthetic and fictional, as of 2026-10-01. Spec: QUESTIONS.md v2. He
 
 **Why it matters to a partner.** The list is explainable point by point and reaches past the CRM, and the near misses show their reason, so nobody has to trust a black box.
 
-## Q-PATH: Act 2. Who makes the introduction
+## Q-PATH: Act 2. Who gets us an edge
 
 **Larkspur Revenue Partners (3 hops, 0.700).** Partner Priya Raman worked with Sofia Brandt at Kellbrook Securities from 2012 to 2016 and has met her seven times in the last two years. Sofia Brandt and Nathan Cole have worked together at Cedar Row Partners since 2017. Nathan Cole led the 2019 majority recap of Larkspur Revenue Partners with founder-CEO Ruth Adeyemi. The owner's board designee, Owen Lacey of Kestrelmoor Capital, is more than 3 hops away.
 
@@ -52,7 +52,7 @@ All data is synthetic and fictional, as of 2026-10-01. Spec: QUESTIONS.md v2. He
 
 **Saltmarsh Home Infusion (cold).** There is no path within 3 hops to CEO Victor Hale or to Coppervale Partners's board designee Graham Pike, even though the CRM shows a meeting with Coppervale Partners in March 2025. A shared-employer join claims Tom Harlowe knows Victor Hale through Varnell Lab Services. In fact Tom Harlowe left in June 2011 and Victor Hale arrived in March 2013. The closest intermediary is Harbor Lane Advisors: it was engaged in July 2026 and advised the 2023 dividend recap.
 
-**Why it matters to a partner.** Every hop shows when and where two people actually worked together. Stale ties rank below fresh ones, and false intros are rejected before they embarrass the deal team.
+**Why it matters to a partner.** Every hop shows when and where two people actually worked together. Stale ties rank below fresh ones, and false intros are rejected before they embarrass the deal team. On Larkspur Revenue Partners the path ends at the banker running the sale, so the play is an early look, not a back-channel to the CEO.
 
 ## Q-FLOW: Act 3. Who bridges deal flow, and the coverage gap
 
@@ -66,7 +66,7 @@ All data is synthetic and fictional, as of 2026-10-01. Spec: QUESTIONS.md v2. He
 
 ## Q-CONFLICT: Act 4. Before we bid
 
-**What.** Cedar Row Partners is engaged on Tessmark Clinical Supply, and Northwind is preparing an IOI with a $55M check. Tessmark Clinical Supply supplies Pinewick Dental Partners, a Fund III company since July 2020, one hop away, which triggers a cross-fund review. It also supplies Ravenholt Engineering Group, which buys from Fund IV's Ironvale Testing Group; that two-hop link is informational only.
+**What.** Cedar Row Partners is engaged on Tessmark Clinical Supply, and Northwind is preparing an IOI with a $55M check. Tessmark Clinical Supply supplies Pinewick Dermatology Partners, a Fund III dermatology practice group since July 2020, one hop away, which triggers a cross-fund review. It also supplies Ravenholt Engineering Group, which buys from Fund IV's Ironvale Testing Group; that two-hop link is informational only.
 
 **Concentration.** Fund IV holds Tullmere Chemical Distribution ($140M), Flintmoor Industrial Supply ($125M) and Primdale Ingredients Co ($120M) in Specialty Distribution: $385M, or 32.1% of $1,200M. The $55M check takes the area to $440M, 36.7%, over the 35% IC guideline by $20M. The headroom is $35M.
 
@@ -78,9 +78,9 @@ All data is synthetic and fictional, as of 2026-10-01. Spec: QUESTIONS.md v2. He
 
 **What.** A warm-path rule (our people within two hops of the CEO) adds 10 access points. It lifts Bayside Pediatric Therapy Group to 95 and first place. It also lifts Ashby Vale Dental Partners from 65 into Tier A at 75, through Operating Partner Grace Liu, who worked with Lucas Ferreira at Lakeholm Orthodontics from 2016 to 2020; Lucas Ferreira now sits on the board with founder-CEO Lydia Okoro.
 
-**Conflict.** Tessmark Clinical Supply supplies Pinewick Dental Partners, a current Fund III holding. It keeps its score of 75 but is flagged for cross-fund review and taken off the Tier A call list.
+**Conflict.** Tessmark Clinical Supply supplies Pinewick Dermatology Partners, a current Fund III holding and a dermatology practice group, so it is not a competitor of Ashby Vale Dental Partners. Tessmark Clinical Supply keeps its score of 75 but is flagged for cross-fund review: hold until cross-fund clearance, off the Tier A call list until it is cleared. The other Tier A names come back clear.
 
-**Why it matters to a partner.** Graph output feeds a governed rule, and portfolio conflicts surface before the bid, not in the IC memo.
+**Why it matters to a partner.** Graph output feeds a governed rule, and every target is checked for cross-fund conflicts before the bid, not in the IC memo; a flagged name is on hold, not dropped.
 
 ## Q-ADDON: Backup. What the platform should buy next
 

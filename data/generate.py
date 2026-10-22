@@ -5,13 +5,16 @@ Usage
     python data/generate.py            # writes data/csv/*.csv, data/csv/MANIFEST.json,
                                        # data/golden/expected.json, data/golden/stories.md
     python data/generate.py --check    # R05 self-check of the written CSVs against golden intent
+    python data/generate.py --noise --out data/csv_noise   # R12: signal + noise into DIR (golden unchanged)
+    python data/generate.py --check --out data/csv_noise   # R05 self-check on DIR
+    python data/generate.py --noise-check --out data/csv_noise   # R12 extra checks on DIR
 
 Layout of this file
     1. CONSTANTS and helpers (seeded RNG, shuffled ID pools, name generator)
     2. REFERENCE data (sector tree, regions)
     3. SIGNAL section: shared cast, then one planting function per question ID
        (STORIES registry). Swapping a question means replacing one function.
-    4. NOISE section: empty stub, filled by R12 in P5
+    4. NOISE section (R12): opt-in via --noise --out DIR; default output is signal-only
     5. Writers (CSV, manifest, golden, stories)
     6. Self-check (pandas/networkx; NOT the oracle - R06 builds that independently)
 
@@ -330,10 +333,21 @@ class World:
         return name
 
     # ---- procedural names -------------------------------------------------------------
+    @staticmethod
+    def tidy(word):
+        """R20 (R19c m4): collapse a letter tripled at the stem/suffix join ("Millley" -> "Milley").
+        Pure string post-processing: consumes no random number, and no stem pair collides after it."""
+        out = []
+        for ch in word:
+            if len(out) >= 2 and out[-1].lower() == ch.lower() and out[-2].lower() == ch.lower():
+                continue
+            out.append(ch)
+        return "".join(out)
+
     def coined(self, rng=None):
         rng = rng or self.rng
         for _ in range(1000):
-            w = rng.choice(NAME_A) + rng.choice(NAME_B)
+            w = self.tidy(rng.choice(NAME_A) + rng.choice(NAME_B))
             if not any(kw in w.lower() for kw in NAIVE_KEYWORDS):
                 return w
         raise RuntimeError("name space exhausted")
@@ -440,8 +454,12 @@ class World:
         return self.reg(key, pid, full_name)
 
     def role(self, person_id, org_id, role_type, start, end=None, title=None, founder=False):
-        rid = self.ids.next("R")
         prefix = org_id.rstrip("0123456789")
+        start_d = d(start) if isinstance(start, str) else start
+        if prefix == "C":  # R20 guard: nobody holds a role at a company before the company was founded
+            fy = self.company_row[org_id]["founded_year"]
+            assert start_d >= date(fy, 1, 1), f"role at {org_id} starts {start_d}, before its founding year {fy}"
+        rid = self.ids.next("R")
         self.t["ROLE_HISTORY"].append({"role_id": rid, "person_id": person_id, "org_id": org_id,
                                        "org_type": ORG_TYPE[prefix], "role_type": role_type,
                                        "title": title or role_type, "start_date": d(start) if isinstance(start, str) else start,
@@ -587,7 +605,7 @@ HERO_NAMES = {
     "D_SNF": "Linden Hollow Senior Care",
     # Portfolio, conflict and path context
     "BRIGHT": "Cobbleton Dental Group",            # replaces "Brightwater Dental" (real practice)
-    "PINE": "Pinewick Dental Partners",            # replaces "Pinecrest Dental Partners" (close real match)
+    "PINE": "Pinewick Dermatology Partners",       # replaces "Pinecrest Dental Partners" (close real match); R20: not dental, so no DSO lookalike of NM_B (R19a B2)
     "REDFERN": "Redfern Imaging Centers",
     "GRANITE": "Ironvale Testing Group",           # replaces "Granite Testing Group"
     "MEADOW": "Quillmont Physical Therapy",        # replaces "Meadowbrook Physical Therapy" (generic, likely real)
@@ -987,7 +1005,7 @@ def plant_portfolio(w: World):
     H, k = HERO_NAMES, w.k
     rng = random.Random(f"{w.seed}-portfolio")
     f3, f4 = k("NW_F3"), k("NW_F4")
-    pine = w.company("PINE", H["PINE"], "Dental Service Organizations", "MO", 120.0, 17.5, founded=2001,
+    pine = w.company("PINE", H["PINE"], "Dermatology Practices", "MO", 120.0, 17.5, founded=2001,
                      sites=["KS", "OK"])
     w.own(pine, f3, "2020-07-01", equity=88.0)
     p = w.person(None); w.role(p, pine, "CEO", "2016-05-02", title="Chief Executive Officer")
@@ -1046,7 +1064,7 @@ def plant_q_conflict(w: World):
         "subject": "CONF",
         "exposure_rows": [
             {"row": 1, "key": "PINE", "fund": "NW_F3", "distance": 1, "kind": "CONFLICT - cross-fund review",
-             "evidence": "Tessmark Clinical Supply supplies Pinewick Dental Partners"},
+             "evidence": "Tessmark Clinical Supply supplies Pinewick Dermatology Partners"},
             {"row": 2, "key": "GRANITE", "fund": "NW_F4", "distance": 2, "kind": "SHARED COUNTERPARTY (informational)",
              "via": "C07", "evidence": "Tessmark Clinical Supply supplies Ravenholt Engineering Group; Ravenholt buys from Ironvale Testing Group"}],
         "fund_iv_holdings": [
@@ -1288,8 +1306,11 @@ def plant_q_addon(w: World):
             c = w.filler_company(rng.choice(own_niches), rng, state=st)
             w.link(comp, c, rng.choice(["<1M", "1-5M"]), rng=rng)
     for key in ("A1", "A2", "A3", "D_SAME"):
-        p = w.person(None); w.role(p, k(key), "CEO", f"{rng.randint(2003, 2015)}-0{rng.randint(1, 9)}-01",
-                                    title="Founder and CEO", founder=True)
+        # R20: a founder CEO cannot start before the company was founded; clamp the drawn year to the
+        # founding year (same RNG draws, so every other planted value is unchanged).
+        yr, mo = rng.randint(2003, 2015), rng.randint(1, 9)
+        yr = max(yr, w.company_row[k(key)]["founded_year"])
+        p = w.person(None); w.role(p, k(key), "CEO", f"{yr}-0{mo}-01", title="Founder and CEO", founder=True)
     w.golden["Q-ADDON"] = {
         "status": "backup (v2)",
         "question": "Which add-ons best extend our Ironvale Testing Group platform, beyond the obvious same-niche names?",
@@ -1316,6 +1337,114 @@ STORIES = {
     "Q-FLOW": plant_q_flow,
     "FINALE": plant_finale,
 }
+
+
+def right_size_funds(w: World):
+    """R20: a fund cannot invest more equity than it raised. The Q-FLOW sponsors' fund sizes are drawn
+    before their deals are planted, so a few ended at 141-157% deployed. Re-size every non-Northwind
+    fund that is over 100% to 84-93% deployed (rounded to $10M) and keep its sponsor's AUM at least
+    1.5x its fund commitments. Only FUND.size_musd and SPONSOR.aum_musd move; no deal, ownership or
+    equity check changes, and Northwind's funds (Fund IV size is golden) are never touched."""
+    rng = random.Random(f"{w.seed}-fundsize")
+    deployed = defaultdict(float)
+    for o in w.t["OWNERSHIP"]:
+        deployed[o["fund_id"]] += float(o["equity_invested_musd"] or 0)
+    nw = w.k("NW")
+    resized = set()
+    for f in sorted(w.t["FUND"], key=lambda r: r["fund_id"]):
+        if f["sponsor_id"] == nw or deployed[f["fund_id"]] <= f["size_musd"]:
+            continue
+        f["size_musd"] = round(round(deployed[f["fund_id"]] / rng.uniform(0.84, 0.93), -1), 2)
+        resized.add(f["sponsor_id"])
+    for sp in sorted(w.t["SPONSOR"], key=lambda r: r["sponsor_id"]):
+        if sp["sponsor_id"] in resized:
+            commit = sum(f["size_musd"] for f in w.t["FUND"] if f["sponsor_id"] == sp["sponsor_id"])
+            if sp["aum_musd"] < 1.5 * commit:
+                sp["aum_musd"] = round(commit * rng.uniform(1.6, 1.9), 2)
+
+
+# R20 (R19c M3): TEV/EBITDA by deal size. Platform medians follow GF Data 2025 (domain brief: $10-25M 5.9x,
+# $25-50M 6.6x, $50-100M 8.7x, $100-250M 10.0x, $250-500M 9.8x) inside the brief's 6.0-12.5x clamp; add-ons
+# price below a platform of the same size (buy-and-build arbitrage); sector spreads per the brief table.
+EV_PLATFORM_ANCHORS = [(5.0, 6.4), (17.0, 6.7), (35.0, 7.3), (70.0, 8.9), (160.0, 10.1), (350.0, 10.0)]
+EV_ADDON_DISCOUNT = [(5.0, 0.4), (35.0, 0.8), (70.0, 1.3), (160.0, 1.6), (350.0, 1.6)]
+EV_SECTOR_PREMIUM = {"Healthcare Services": 0.3, "Tech-Enabled Business Services": 0.6,
+                     "Testing, Inspection & Certification": 0.6, "Specialty Distribution": -0.6,
+                     "Broadline Distribution": -0.8, "Technology": 0.8, "Life Sciences": 0.3, "Consumer": -0.3}
+EV_EQUITY_MAX_SHARE = 0.70       # a sponsor's equity check is at most 70% of the purchase price
+
+
+def _interp_log(anchors, ev):
+    x = math.log(max(ev, 0.1))
+    pts = [(math.log(a), b) for a, b in anchors]
+    if x <= pts[0][0]:
+        return pts[0][1]
+    for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+        if x <= x1:
+            return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+    return pts[-1][1]
+
+
+def reprice_deals(w: World):
+    """R20 (R19c M3): redraw TRANSACTION.ev_ebitda by TEV band and deal role, keeping each deal's EBITDA at
+    close (old ev_musd / old ev_ebitda) and recomputing ev_musd. Each deal draws from its own RNG seeded by
+    its txn_id, so a signal deal gets the same price in the signal-only and the noise build. Only ev_musd and
+    ev_ebitda move: no rule, query, oracle or golden field reads either. Where a sponsor's equity check would
+    exceed EV_EQUITY_MAX_SHARE of the price, a noise check is trimmed; a signal check (fixed by the stories) instead
+    floors the multiple."""
+    sig_own = getattr(w, "signal_ownership_ids", set())
+    own_at = {(o["company_id"], o["fund_id"], o["start_date"]): o for o in w.t["OWNERSHIP"]}
+    buyer_fund = {}
+    for p in w.t["TRANSACTION_PARTY"]:
+        if p["party_role"] == "buyer" and p["fund_id"]:
+            buyer_fund[p["txn_id"]] = p["fund_id"]
+    for t in sorted(w.t["TRANSACTION"], key=lambda r: r["txn_id"]):
+        if t["ev_musd"] is None or not t["ev_ebitda"]:
+            continue
+        rng = random.Random(f"{w.seed}-ev-{t['txn_id']}")
+        e = t["ev_musd"] / t["ev_ebitda"]                    # EBITDA at close
+        names = []
+        sid = w.company_row[t["target_id"]]["sector_id"]
+        while sid:
+            names.append(w.sector_name[sid]); sid = w.sector_parent[sid]
+        prem = next((EV_SECTOR_PREMIUM[n] for n in names if n in EV_SECTOR_PREMIUM), 0.0)
+        addon = t["deal_role"] == "add_on"
+
+        def med(ev):
+            m = _interp_log(EV_PLATFORM_ANCHORS, ev) + prem * min(1.0, ev / 70.0)
+            return m - (_interp_log(EV_ADDON_DISCOUNT, ev) if addon else 0.0)
+        m = 8.0
+        for _ in range(40):                                   # median multiple consistent with its own TEV
+            m = 0.5 * m + 0.5 * med(e * m)
+        m = m + rng.gauss(0.0, 0.07 * m)
+        if m < 6.0:                                           # reflect off the brief's 6.0x floor (no pile-up)
+            m = 6.0 + 0.6 * (6.0 - m)
+        m = min(12.5, m)
+        o = own_at.get((t["target_id"], buyer_fund.get(t["txn_id"]), t["close_date"]))
+        if o is not None and o["equity_invested_musd"]:
+            if o["ownership_id"] in sig_own:
+                m = min(12.5, max(m, o["equity_invested_musd"] / (EV_EQUITY_MAX_SHARE * e)))
+            elif o["equity_invested_musd"] > EV_EQUITY_MAX_SHARE * e * m:
+                o["equity_invested_musd"] = round(EV_EQUITY_MAX_SHARE * e * m * rng.uniform(0.80, 0.95), 1)
+        m = round(m, 1)
+        t["ev_ebitda"] = m
+        t["ev_musd"] = round(e * m, 1)
+
+
+def realism_guards(w: World):
+    """R20 generator-level guards, run after signal (and noise) so later edits are covered too:
+    no role at a company starts before its founding year, and no fund has invested more than 100%
+    of its size."""
+    for r in w.t["ROLE_HISTORY"]:
+        if r["org_type"] == "company":
+            fy = w.company_row[r["org_id"]]["founded_year"]
+            assert r["start_date"] >= date(fy, 1, 1), f"role {r['role_id']} at {r['org_id']} starts before founding {fy}"
+    deployed = defaultdict(float)
+    for o in w.t["OWNERSHIP"]:
+        deployed[o["fund_id"]] += float(o["equity_invested_musd"] or 0)
+    for f in w.t["FUND"]:
+        assert deployed[f["fund_id"]] <= f["size_musd"] + 1e-6, \
+            f"fund {f['fund_id']} invested {deployed[f['fund_id']]:.1f} of {f['size_musd']}"
 
 
 def golden_extras(w: World):
@@ -1369,15 +1498,1268 @@ def golden_extras(w: World):
 
 
 # =====================================================================================
-# 4. NOISE SECTION (R12, phase P5). Intentionally empty in P2.
-#    Rules for R12: draw IDs from w.ids AFTER the signal layer (never shift planted IDs), use
-#    w.filler_company / w.person / w.role etc., keep every invariant in data/golden/expected.json
-#    and QUESTIONS.md, and stay inside DATA_CAPS.
+# 4. NOISE SECTION (R12, phase P5)
+#    Opt-in: `python data/generate.py --noise --out data/csv_noise` (make data-noise).
+#    Without --noise, add_noise() returns before drawing any ID or random number, so the
+#    default `make data` output stays byte-identical to the signal-only layer.
+#
+#    Design (R12 a1, see DECISIONS.md):
+#    * Noise only ADDS rows. It never edits or deletes a signal row, never targets a signal
+#      company with a deal, link, signal, CRM touch or pipeline row, and never adds people to
+#      an org that has signal-layer roles. The single exception is one CEO per signal company
+#      that has none (R08 invariant "exactly one current CEO"); those CEOs start after every
+#      earlier role at the org ended, are not founders and hold no other role, so they are
+#      Knows leaves and change no distance and no score component.
+#    * Knows safety: person-level CRM (K3) goes only to sponsor business-development people who
+#      lead no deal and sit on no board, so nobody within 2 hops of a seed is a target CEO.
+#    * Score safety: every eligible noise company is planned to score <= 55 (Guard F1 window
+#      60-69 stays empty; +10 warm path can never reach 70).
+#    * Q-FLOW safety: in-window thesis deals avoid HL, CEDAR, BIGBANK, the HL sponsors and the
+#      cast sponsors, use only well-covered advisors, and are capped (NOISE_FLOW_THESIS_DEALS).
+#    * Commercial safety: no noise link touches a keyed company or CONF's 2-hop ball
+#      (one deliberate Q-ADDON near-miss links two GRANITE customers, never C07).
 # =====================================================================================
 
-def add_noise(w: World):
-    rng = random.Random(f"{w.seed}-noise")  # noqa: F841  (reserved for R12)
-    return
+import calendar as _calendar
+
+NOISE_COMPANIES = 880            # bulk noise companies (plus a handful of crafted near-misses)
+NOISE_FLOW_THESIS_DEALS = 34     # cap on new in-window (last 5y) deals with a Fund IV thesis target
+NOISE_FLOW_PER_ADVISOR = 1       # at most this many of those per regional advisor (keeps HL #2 by a wide margin)
+NOISE_LINKS = 1930
+NOISE_SIGNAL_RATE = 1.6          # mean signals per noise company
+NOISE_PIPELINE = 195
+NOISE_SCORE_CAP = 55
+NOISE_SPONSORS = 14
+NOISE_PLATFORM_MUSD = 700.0     # R20: about one noise platform per $700M of fund commitments
+NOISE_ADDON_COUNTS = [3, 3, 4, 4, 5]   # R20: in-window add-ons per platform (buy-and-build)
+NOISE_RECAPS = 4                 # R20: dividend recaps on current non-thesis platforms
+NOISE_MAX_CHECK_PCT = 0.25       # R20: no single noise equity check above 25% of its fund
+# R20 (R19c M1): CEO tenure realism (domain brief: LMM founder CEOs 12-30 years, PE-appointed CEOs 3-6)
+FOUNDER_TENURE_MED, FOUNDER_TENURE_SIG, FOUNDER_TENURE_MIN, FOUNDER_TENURE_MAX = 15.0, 0.32, 8.0, 34.0
+NOISE_CEO_TENURE_MED, NOISE_CEO_TENURE_SIG = 6.0, 0.42
+
+T5Y = date(2021, 10, 1)          # T-5y
+T10Y = date(2016, 10, 1)         # T-10y (transactions table covers the last 10 years)
+NOISE_L1_WEIGHT = {"Healthcare Services": 0.19, "Business Services": 0.15, "Industrials": 0.24,
+                   "Distribution": 0.11, "Life Sciences": 0.08, "Technology": 0.13, "Consumer": 0.10}
+NOISE_SUPPLY = {  # supplier level-2 (or level-1) -> customer level-1/level-2 names
+    "Specialty Distribution": ["Healthcare Services", "Industrial Manufacturing", "Engineering & Construction",
+                               "Aerospace & Defense", "Food & Beverage", "Life Sciences"],
+    "Broadline Distribution": ["Consumer", "Acute Care", "Post-Acute Care", "Industrial Manufacturing"],
+    "Testing, Inspection & Certification": ["Industrial Manufacturing", "Engineering & Construction",
+                                            "Aerospace & Defense", "Food & Beverage", "Life Sciences"],
+    "Tech-Enabled Business Services": ["Healthcare Services", "Business Services", "Industrials", "Distribution"],
+    "Healthcare Support Services": ["Acute Care", "Post-Acute Care", "Outpatient Clinical Services"],
+    "Facilities Services": ["Healthcare Services", "Industrials", "Consumer", "Technology"],
+    "Marketing Services": ["Consumer", "Business Services", "Healthcare Services"],
+    "Technology": ["Healthcare Services", "Business Services", "Industrials", "Distribution", "Consumer"],
+    "Industrial Manufacturing": ["Industrials", "Food & Beverage", "Distribution"],
+    "Life Sciences": ["Specialty Distribution", "Life Sciences", "Healthcare Services"],
+    "Research & Lab Services": ["Life Sciences", "Healthcare Services"],
+}
+DT_TITLES = ["Managing Partner", "Partner", "Partner", "Principal", "Principal", "Vice President"]
+BANKER_TITLES = ["Managing Director", "Managing Director", "Director", "Vice President"]
+
+
+def _addm(dt: date, n: int) -> date:
+    m = dt.month - 1 + n
+    y = dt.year + m // 12
+    m = m % 12 + 1
+    return date(y, m, min(dt.day, _calendar.monthrange(y, m)[1]))
+
+
+T_6M, T_12M, T_18M, T_24M, T_15Y, T_P18M = (_addm(AS_OF, -6), _addm(AS_OF, -12), _addm(AS_OF, -18),
+                                             _addm(AS_OF, -24), _addm(AS_OF, -180), _addm(AS_OF, 18))
+
+
+def add_noise(w: World, enabled: bool = False):
+    """Fill the market toward PROMPT.md 8.1 sizes without creating competing answers (opt-in)."""
+    if not enabled:
+        return
+    Noise(w, random.Random(f"{w.seed}-noise")).run()
+
+
+class Noise:
+    def __init__(self, w: World, rng: random.Random):
+        self.w, self.rng = w, rng
+        k = w.k
+        self.k = k
+        self.sig_companies = sorted(r["company_id"] for r in w.t["COMPANY"])
+        self.sig_role_orgs = {r["org_id"] for r in w.t["ROLE_HISTORY"]}
+        self.keyed = set(w.key.values())
+        self.nw = k("NW")
+        self.nw_funds = [k("NW_F2"), k("NW_F3"), k("NW_F4")]
+        self.cast_sponsors = {k(x) for x in ("NW", "IRONBRIDGE", "COPPERLINE", "TAMARACK", "RIDGEBACK", "ASHGROVE")}
+        self.hl_sponsors = {k("COPPERLINE")} | {k(f"HS{i}") for i in range(2, 6)}
+        self.seeds = [k(x) for x in ("MP", "MD_MER", "VP", "OP", "OP2")]
+        self.no_touch_interm = {k("HL"), k("CEDAR"), k("BIGBANK")}
+        self.covered_interm = [k(f"ADV{i}") for i in range(1, 9)] + [k(f"RADV{i}") for i in range(1, 23)]
+        self.other_interm = sorted(r["intermediary_id"] for r in w.t["INTERMEDIARY"]
+                                   if r["intermediary_id"] not in self.no_touch_interm
+                                   and r["intermediary_id"] not in self.covered_interm)
+        # commercial protection: keyed companies plus CONF's 2-hop ball
+        adj = defaultdict(set)
+        for l in w.t["COMMERCIAL_LINK"]:
+            adj[l["supplier_id"]].add(l["customer_id"]); adj[l["customer_id"]].add(l["supplier_id"])
+        ball, frontier = {k("CONF")}, {k("CONF")}
+        for _ in range(2):
+            frontier = {n for f in frontier for n in adj[f]} - ball
+            ball |= frontier
+        self.link_protected = self.keyed | ball
+        self.f4_inc, self.f4_exc = {}, set()
+        for r in w.t["FUND_FOCUS"]:
+            if r["fund_id"] == k("NW_F4"):
+                if r["mode"] == "include":
+                    self.f4_inc[r["sector_id"]] = r["margin_benchmark_pct"]
+                else:
+                    self.f4_exc.add(r["sector_id"])
+        self.noise_cos = []            # bulk noise companies (ordered)
+        self.crafted = []              # crafted near-miss companies (excluded from bulk pools)
+        self.no_career = set()         # companies nobody else may have worked at (seed-adjacent)
+        self.sponsor_people = defaultdict(list)   # sponsor -> [(pid, start, end, kind)]
+        self.bankers = defaultdict(list)          # intermediary -> [(pid, start, end)]
+        self.bd_people = []
+        self.flow_thesis_deals = 0
+        self.flow_adv_use = defaultdict(int)
+        self.funds = []                # noise-usable funds: (fid, sponsor, vintage, size, band, focus)
+        self.sponsor_focus = {}
+        self.platforms = []            # (company, fund, start, end)
+        self.league = []
+        self.near_miss = {}            # label -> company id (reported in the handoff only)
+        self.addon_close = {}          # R20: add-on target -> (close date, buying platform)
+        # R20: CEO-history draws use a side RNG so tenure realism does not depend on the main stream
+        self.crng = random.Random(f"{w.seed}-noise-ceo")
+
+    # ---------------------------------------------------------------- helpers
+    def anc(self, sid):
+        out = []
+        while sid:
+            out.append(sid); sid = self.w.sector_parent[sid]
+        return out
+
+    def names_up(self, cid):
+        return [self.w.sector_name[s] for s in self.anc(self.w.company_row[cid]["sector_id"])]
+
+    def in_thesis(self, cid):
+        a = set(self.anc(self.w.company_row[cid]["sector_id"]))
+        return bool(a & set(self.f4_inc)) and not (a & self.f4_exc)
+
+    def nw_owned_now(self, cid):
+        return any(o["company_id"] == cid and o["end_date"] is None and o["fund_id"] in self.nw_funds
+                   for o in self.own_by_co.get(cid, []))
+
+    def eligible(self, cid):
+        r = self.w.company_row[cid]
+        return (self.in_thesis(cid) and 5.0 <= r["ebitda_musd"] <= 40.0 and r["hq_region_id"].startswith("US-")
+                and not r["is_public"] and not self.nw_owned_now(cid))
+
+    def naive_row(self, cid):
+        r = self.w.company_row[cid]
+        txt = (r["name"] + " " + self.w.sector_name[r["sector_id"]]).lower()
+        return (any(kw in txt for kw in NAIVE_KEYWORDS) and 5 <= r["ebitda_musd"] <= 40
+                and r["hq_region_id"].startswith("US-") and not self.nw_owned_now(cid))
+
+    def fit(self, cid):
+        r = self.w.company_row[cid]
+        e = r["ebitda_musd"]
+        bench = [self.f4_inc[s] for s in self.anc(r["sector_id"]) if s in self.f4_inc][0]
+        return 15 + (10 if 10.0 <= e <= 30.0 else 5) + (5 if e / r["revenue_musd"] * 100 >= bench else 0)
+
+    def rdate(self, lo: date, hi: date) -> date:
+        if hi <= lo:
+            return lo
+        return lo + timedelta(days=self.rng.randint(0, (hi - lo).days))
+
+    def new_company(self, niche, ebitda, state=None, sites=None):
+        w = self.w
+        cid = w.filler_company(niche, self.rng, ebitda=ebitda, state=state, sites=sites)
+        return cid
+
+    # ---------------------------------------------------------------- 1. sponsors and funds
+    def sponsors_and_funds(self):
+        w, rng = self.w, self.rng
+        focus_pool = [["Healthcare Services"], ["Business Services"], ["Industrials"], ["Distribution", "Industrials"],
+                      ["Healthcare Services", "Life Sciences"], ["Technology", "Business Services"],
+                      ["Consumer"], ["Industrials", "Business Services"], ["Healthcare Services", "Business Services"]]
+        # R20 (R19c m5): a noise sponsor never shares its first word with a signal-layer org name (two
+        # "Claywell ..." sponsors confuse a live name filter). Redraws use a side RNG, so the main noise
+        # stream is unchanged.
+        alt = random.Random(f"{w.seed}-noise-sponsor-names")
+        sig_stems = {r["name"].split()[0] for t_ in ("SPONSOR", "INTERMEDIARY", "COMPANY") for r in w.t[t_]}
+        for i in range(1, NOISE_SPONSORS + 1):
+            mm = rng.random() < 0.3
+            name = f"{w.coined(rng)} {rng.choice(SPONSOR_SUFFIX)}"
+            while name in w.used_names:
+                name = f"{w.coined(rng)} {rng.choice(SPONSOR_SUFFIX)}"
+            while name in w.used_names or name.split()[0] in sig_stems:
+                name = f"{w.coined(alt)} {alt.choice(SPONSOR_SUFFIX)}"
+            states = list(US_STATES)
+            st = rng.choices(states, weights=[STATE_WEIGHT[s] for s in states])[0]
+            n_funds = rng.choice([2, 2, 3, 3, 3])
+            first_v = rng.randint(2007, 2014)
+            sizes, vint = [], []
+            size = rng.uniform(900, 1500) if mm else rng.uniform(220, 520)
+            v = first_v
+            for _ in range(n_funds):
+                if v > 2025:
+                    break
+                vint.append(v); sizes.append(size)
+                v += rng.randint(3, 5); size *= rng.uniform(1.15, 1.5)
+            aum = sum(sizes) * rng.uniform(0.8, 1.05)
+            sid = w.sponsor(None, name, st, aum, "middle_market_buyout" if mm else "lower_mid_market_buyout")
+            self.sponsor_focus[sid] = rng.choice(focus_pool)
+            roman = ["I", "II", "III", "IV", "V", "VI"]
+            start_num = rng.choice([1, 1, 2])
+            for j, (v_, sz) in enumerate(zip(vint, sizes)):
+                band = (10.0, 75.0) if mm else rng.choice([(3.0, 25.0), (5.0, 40.0), (4.0, 30.0)])
+                fid = w.fund(None, sid, f"{name} Fund {roman[start_num - 1 + j]}", v_, round(sz, -1), band=band)
+                self.funds.append((fid, sid, v_, sz, band))
+        # Older predecessor funds for the Q-FLOW sponsors (no people today; they get noise people).
+        flow_keys = [f"BS{i}" for i in range(1, 6)] + [f"MS{i}" for i in range(1, 5)] + [f"RS{i}" for i in range(1, 7)]
+        for key in flow_keys:
+            sid = self.k(key)
+            cur_fid = self.k(key + "_F")
+            row = next(r for r in w.t["FUND"] if r["fund_id"] == cur_fid)
+            self.sponsor_focus[sid] = ["Healthcare Services", "Business Services", "Industrials", "Distribution",
+                                       "Technology", "Consumer"] if key.startswith("BS") else \
+                rng.choice(focus_pool)
+            band = (row["ebitda_min_musd"], row["ebitda_max_musd"])
+            self.funds.append((cur_fid, sid, row["vintage_year"], row["size_musd"], band))
+            if len([f for f in w.t["FUND"]]) < 80:
+                v_old = row["vintage_year"] - rng.randint(4, 6)
+                base, cur_num = row["name"].rsplit(" Fund ", 1)
+                # (the draw below is kept so the noise RNG stream does not move)
+                _ = rng.choice(['I', 'Legacy I']) if not key.startswith("BS") else rng.choice(['II', 'III'])
+                # R20 (R19c m3): the predecessor is the previous numeral of the current (cast) fund, with no
+                # "Legacy" label, so numbering ascends with vintage (Fund IV 2015 -> Fund V 2020).
+                roman = ["I", "II", "III", "IV", "V", "VI", "VII"]
+                nm = f"{base} Fund {roman[roman.index(cur_num) - 1]}" if cur_num in roman[1:] else f"{base} Founders Fund"
+                while nm in w.used_names:
+                    nm += " A"
+                fid = w.fund(None, sid, nm, v_old, round(row["size_musd"] * rng.uniform(0.55, 0.8), -1), band=band)
+                self.funds.append((fid, sid, v_old, row["size_musd"] * 0.7, band))
+        for hs in sorted(self.hl_sponsors - self.cast_sponsors):
+            self.sponsor_focus[hs] = ["Healthcare Services"]
+
+    # ---------------------------------------------------------------- 2. companies
+    def companies(self):
+        w, rng = self.w, self.rng
+        l1s = list(NOISE_L1_WEIGHT)
+        niches_by_l1 = defaultdict(list)
+        for l1, subs in SECTOR_TREE.items():
+            for l2, niches in subs.items():
+                for n in niches:
+                    wt = 0.35 if n == "Skilled Nursing Facilities" else 1.0
+                    niches_by_l1[l1].append((n, wt))
+        states = list(US_STATES)
+        sw = [STATE_WEIGHT[s] for s in states]
+        for i in range(NOISE_COMPANIES):
+            l1 = rng.choices(l1s, weights=[NOISE_L1_WEIGHT[x] for x in l1s])[0]
+            ns = niches_by_l1[l1]
+            niche = rng.choices([n for n, _ in ns], weights=[x for _, x in ns])[0]
+            ebitda = round(min(180.0, max(0.8, rng.lognormvariate(math.log(3.4), 1.0))), 1)
+            st = rng.choices(states, weights=sw)[0]
+            n_sites = 0 if ebitda < 5 else min(4, int(rng.expovariate(1.0 / (0.25 + ebitda / 40.0))))
+            census = US_STATES[st][1]
+            near = [s for s in states if US_STATES[s][1] == census and s != st]
+            sites = rng.sample(near, min(n_sites, len(near)))
+            cid = self.new_company(niche, ebitda, state=st, sites=sites)
+            row = w.company_row[cid]
+            if ebitda >= 60 and rng.random() < 0.35:
+                row["is_public"] = True
+            self.noise_cos.append(cid)
+        # A few Canadian-headquartered companies (the US gate) - non-thesis market context.
+        for niche in ["Precision Machining", "Specialty Foods", "Managed IT Services"]:
+            cid = self.new_company(niche, round(rng.uniform(6, 25), 1), state="CA-ON")
+            self._fix_canada(cid, "CA-ON")
+            self.noise_cos.append(cid)
+
+    def _fix_canada(self, cid, region):
+        for s in self.w.t["COMPANY_SITE"]:
+            if s["company_id"] == cid and s["region_id"] == f"US-{region}":
+                s["region_id"] = region
+
+    # ---------------------------------------------------------------- 3. people at sponsors and banks
+    def sponsor_and_bank_people(self):
+        w, rng = self.w, self.rng
+        sponsors = [r["sponsor_id"] for r in w.t["SPONSOR"] if r["sponsor_id"] not in self.cast_sponsors
+                    and r["sponsor_id"] not in self.sig_role_orgs]
+        for sid in sponsors:
+            first_v = min([f[2] for f in self.funds if f[1] == sid] or [2012])
+            founded = date(first_v - 1, rng.randint(1, 12), 1)
+            n_dt = rng.choice([3, 4, 4, 5, 5, 6])
+            for j in range(n_dt):
+                p = w.person(None, rng=rng)
+                start = self.rdate(founded, date(2024, 6, 1)) if j else founded
+                end = None
+                if j and rng.random() < 0.2:
+                    end = self.rdate(start + timedelta(days=500), date(2026, 6, 30))
+                title = "Managing Partner" if j == 0 else rng.choice(DT_TITLES[1:])
+                w.role(p, sid, "Deal Team", start, end, title=title)
+                self.sponsor_people[sid].append((p, start, end, "dt"))
+            p = w.person(None, rng=rng)
+            start = self.rdate(founded, date(2023, 1, 1))
+            w.role(p, sid, "Operating Partner", start, title="Operating Partner")
+            self.sponsor_people[sid].append((p, start, None, "op"))
+            # business development partner: our CRM counterpart; leads no deal, sits on no board
+            p = w.person(None, rng=rng)
+            start = self.rdate(max(founded, date(2010, 1, 1)), date(2023, 6, 1))
+            w.role(p, sid, "Deal Team", start, title="Partner, Business Development")
+            self.sponsor_people[sid].append((p, start, None, "bd"))
+            self.bd_people.append((p, sid))
+        banks = [r["intermediary_id"] for r in w.t["INTERMEDIARY"]
+                 if r["intermediary_id"] not in self.no_touch_interm and r["intermediary_id"] not in self.sig_role_orgs]
+        for iid in banks:
+            for j in range(rng.choice([1, 1, 2, 2, 3])):
+                p = w.person(None, rng=rng)
+                start = self.rdate(date(2004, 1, 1), date(2020, 1, 1))
+                w.role(p, iid, "Banker", start, title=BANKER_TITLES[min(j, 3)] if j else "Managing Director")
+                self.bankers[iid].append((p, start, None))
+
+    def sponsor_lead(self, sid, when):
+        cands = [p for p, s, e, kind in self.sponsor_people.get(sid, []) if kind == "dt" and s <= when
+                 and (e is None or e >= when)]
+        return self.rng.choice(cands) if cands else None
+
+    def banker_lead(self, iid, when):
+        cands = [p for p, s, e in self.bankers.get(iid, []) if s <= when]
+        return self.rng.choice(cands) if cands else None
+
+    # ---------------------------------------------------------------- 4. ownership and deals
+    def ownership_and_deals(self):
+        w, rng = self.w, self.rng
+        self.owned = set()
+        self.fund_size = {r["fund_id"]: float(r["size_musd"]) for r in w.t["FUND"]}
+        self.deployed = defaultdict(float)
+        for o in w.t["OWNERSHIP"]:
+            self.deployed[o["fund_id"]] += float(o["equity_invested_musd"] or 0)
+        cos_by_l1 = defaultdict(list)
+        for cid in self.noise_cos:
+            cos_by_l1[self.names_up(cid)[-1]].append(cid)
+        self.cos_by_l1 = cos_by_l1
+        self.addon_targets_used = set()
+        # league advisors for in-window non-thesis volume (HL lands around 10th in a raw league table)
+        self.league = [self.k("ADV1"), self.k("ADV2"), self.k("ADV3"), self.k("ADV4")] + self.other_interm[:3]
+        self.league_quota = {i: rng.randint(8, 11) if i in self.covered_interm else rng.randint(10, 13)
+                             for i in self.league}
+
+        def pick_target(focus, band, when, want_thesis=None):
+            pool = [c for l1 in focus for c in cos_by_l1.get(l1, [])]
+            pool = [c for c in pool if c not in self.owned and band[0] * 0.7 <= w.company_row[c]["ebitda_musd"] <= band[1] * 1.2
+                    and not w.company_row[c]["is_public"] and w.company_row[c]["hq_region_id"].startswith("US-")
+                    and w.company_row[c]["founded_year"] <= when.year - 3
+                    and (want_thesis is None or self.in_thesis(c) == want_thesis)]
+            return rng.choice(pool) if pool else None
+
+        # Northwind noise: Fund II realized holdings, Fund III current and realized holdings.
+        nw_plan = [("NW_F2", 2014, 2018, True)] * 7 + [("NW_F3", 2019, 2021, False)] * 6 + [("NW_F3", 2019, 2020, True)] * 2
+        for fkey, y0, y1, exited in nw_plan:
+            fid = self.k(fkey)
+            when = self.rdate(date(y0, 3, 1), date(y1, 9, 1) if y1 < 2021 else date(2021, 8, 31))
+            tgt = pick_target(["Healthcare Services", "Distribution"], (6.0, 30.0), when, want_thesis=True)
+            if tgt is None:
+                continue
+            exit_d = self.rdate(date(max(2018, when.year + 4), 1, 15), date(2025, 6, 30)) if exited else None
+            if fkey == "NW_F2" and exit_d is None:
+                exit_d = self.rdate(date(when.year + 4, 1, 15), date(2024, 6, 30))
+            self._platform(tgt, fid, self.nw, when, exit_d, allow_sbo=False, nw=True)
+
+        # Competitor funds: platforms, exits (SBO or strategic). R20: fewer platforms per fund (about one
+        # per NOISE_PLATFORM_MUSD of commitments) so that add-ons, not platforms, are the majority of deals.
+        flow_funds = {self.k(f"{p}{i}_F") for p in ("BS", "MS", "RS") for i in range(1, 7) if f"{p}{i}_F" in w.key}
+        for fid, sid, vint, size, band in list(self.funds):
+            n = max(1, min(6, int(round(size / NOISE_PLATFORM_MUSD * rng.uniform(0.7, 1.2)))))
+            if fid in flow_funds:
+                n = rng.randint(1, 2)
+            focus = self.sponsor_focus.get(sid, ["Industrials"])
+            for _ in range(n):
+                lo = date(vint, 4, 1)
+                hi = min(date(vint + 5, 12, 31), date(2026, 8, 31))
+                when = self.rdate(lo, hi)
+                want = None
+                if when >= T5Y and (sid in self.hl_sponsors or self.flow_thesis_deals >= NOISE_FLOW_THESIS_DEALS):
+                    want = False
+                tgt = pick_target(focus, band, when, want)
+                if tgt is None:
+                    continue
+                hold = rng.lognormvariate(math.log(5.8), 0.28)
+                exit_d = when + timedelta(days=int(hold * 365.25))
+                if exit_d > date(2026, 9, 15):
+                    exit_d = None
+                self._platform(tgt, fid, sid, when, exit_d, allow_sbo=True)
+
+        # Companies that are the target of an in-window Fund IV thesis deal are nodes of the Q-FLOW
+        # graph. An unadvised add-on by a platform that is NOT such a node forms its own small
+        # component (platform plus add-ons), which changes no intermediary's betweenness.
+        self.flow_graph_cos = {t_["target_id"] for t_ in w.t["TRANSACTION"]
+                               if T5Y <= t_["close_date"] <= AS_OF and self.in_thesis(t_["target_id"])}
+
+        # In-window non-thesis volume for the league advisors (not in the Q-FLOW graph). R20: run as
+        # add-ons by sponsor-owned platforms (buy-and-build), falling back to a platform deal only when
+        # no platform can buy a suitable target.
+        for iid in self.league:
+            have = sum(1 for t_ in w.t["TRANSACTION"] if t_["close_date"] >= T5Y and any(
+                p["txn_id"] == t_["txn_id"] and p["org_id"] == iid for p in self._parties_of(t_["txn_id"])))
+            need = self.league_quota[iid] - have
+            for _ in range(max(0, need)):
+                when = self.rdate(date(2021, 11, 1), date(2026, 8, 31))
+                buyers = [x for x in self.platforms if x[2] + timedelta(days=120) <= when
+                          and (x[3] is None or when <= x[3]) and x[4] not in self.hl_sponsors]
+                done = False
+                for cid, fid, s, e, sid in rng.sample(buyers, min(6, len(buyers))):
+                    if self._addon(cid, sid, when, forced_adv=iid, want_thesis=False):
+                        done = True
+                        break
+                if done:
+                    continue
+                funds = [f for f in self.funds if f[2] <= when.year <= f[2] + 5 and f[1] not in self.hl_sponsors
+                         and self.deployed[f[0]] < 0.85 * self.fund_size[f[0]]]
+                if not funds:
+                    continue
+                fid, sid, vint, size, band = rng.choice(funds)
+                tgt = pick_target(["Technology", "Consumer", "Industrials", "Life Sciences", "Business Services",
+                                   "Distribution"], band, when, want_thesis=False)
+                if tgt is None:
+                    continue
+                self._platform(tgt, fid, sid, when, None, allow_sbo=False, forced_adv=iid)
+
+        # Add-ons by platform companies during their hold (only the ones inside the 10-year window are
+        # drawn; earlier history is not in the TRANSACTION table). R20: buy-and-build platforms do
+        # several add-ons each (NOISE_ADDON_COUNTS), so add-ons are the majority of deals.
+        for cid, fid, s, e, sid in list(self.platforms):
+            for _ in range(rng.choice(NOISE_ADDON_COUNTS)):
+                lo = max(s + timedelta(days=120), T10Y)
+                hi = min(e or date(2026, 8, 31), date(2026, 8, 31))
+                if (hi - lo).days < 120:
+                    break
+                self._addon(cid, sid, self.rdate(lo, hi))
+
+        # A few dividend recaps (owner + debt advisor) on current platforms, outside the Q-FLOW scope.
+        cur = [(c, f, s, sid) for c, f, s, e, sid in self.platforms if e is None and s < date(2023, 1, 1)
+               and not self.in_thesis(c) and sid not in self.cast_sponsors]
+        for c, f, s, sid in rng.sample(cur, min(NOISE_RECAPS, len(cur))):
+            when = self.rdate(s + timedelta(days=500), date(2026, 6, 30))
+            if when < T10Y:
+                continue
+            iid = self._pick_adv(when, False)
+            parties = [(sid, "owner", f, self.sponsor_lead(sid, when))]
+            if iid:
+                parties.append((iid, "debt_advisor", None, self.banker_lead(iid, when)))
+            w.txn(c, when, "platform", "sponsor", "dividend_recap", parties, rng=rng)
+
+    def _addon(self, cid, sid, when, forced_adv=None, want_thesis=None):
+        """R20: platform `cid` (owned by sponsor `sid`) buys a smaller company: same level-2 niche when
+        possible, else the same level-1 sector; founded at least 2 years before the deal; never owned by a
+        fund and never bought before. In-window Fund IV thesis add-ons are unadvised and only by platforms
+        outside the Q-FLOW graph, so the graph's intermediary betweenness cannot move.
+        Returns True if a deal was written."""
+        w, rng = self.w, self.rng
+        up = self.names_up(cid)
+        cap = min(6.0, w.company_row[cid]["ebitda_musd"])
+
+        def ok(c):
+            r = w.company_row[c]
+            if c in self.owned or c in self.addon_targets_used or c == cid or r["ebitda_musd"] >= cap \
+                    or r["founded_year"] > when.year - 2 or not r["hq_region_id"].startswith("US-"):
+                return False
+            th = when >= T5Y and self.in_thesis(c)
+            if want_thesis is not None and self.in_thesis(c) != want_thesis:
+                return False
+            if th and (forced_adv or cid in self.flow_graph_cos):
+                return False
+            return True
+        pool = [c for c in self.cos_by_l1.get(up[-1], []) if self.names_up(c)[1] == up[1] and ok(c)]
+        if not pool:
+            pool = [c for c in self.cos_by_l1.get(up[-1], []) if ok(c)]
+        if not pool:
+            return False
+        tgt = rng.choice(pool)
+        thesis_win = when >= T5Y and self.in_thesis(tgt)
+        advs = []
+        if forced_adv:
+            advs.append((forced_adv, "sell_side_advisor", self.banker_lead(forced_adv, when)))
+        elif not thesis_win and rng.random() < (0.3 if when >= T5Y else 0.45):
+            iid = self._pick_adv(when, False)
+            if iid:
+                advs.append((iid, "sell_side_advisor", self.banker_lead(iid, when)))
+        w.buyout(tgt, when, None, advisors=advs, deal_role="add_on", platform_id=cid, buyer_lead=None, rng=rng)
+        self.addon_targets_used.add(tgt)
+        self.addon_close[tgt] = (when, cid)
+        return True
+
+    def _parties_of(self, tid):
+        if not hasattr(self, "_pcache") or self._pcache_n != len(self.w.t["TRANSACTION_PARTY"]):
+            self._pcache = defaultdict(list)
+            for p in self.w.t["TRANSACTION_PARTY"]:
+                self._pcache[p["txn_id"]].append(p)
+            self._pcache_n = len(self.w.t["TRANSACTION_PARTY"])
+        return self._pcache[tid]
+
+    def _pick_adv(self, when, thesis_win, forced=None):
+        rng = self.rng
+        if forced:
+            return forced
+        if thesis_win:
+            # regional advisors only, at most two new thesis deals each, so no one advisor becomes a new hub
+            pool = [i for i in self.covered_interm[8:] if self.flow_adv_use[i] < NOISE_FLOW_PER_ADVISOR]
+            if not pool:
+                return None
+            i = rng.choice(pool)
+            self.flow_adv_use[i] += 1
+            return i
+        if when >= T5Y:
+            pool = self.covered_interm + self.other_interm
+            return rng.choice(pool)
+        return rng.choice(self.covered_interm + self.other_interm + [self.k("CEDAR"), self.k("BIGBANK")])
+
+    def _platform(self, tgt, fid, sid, when, exit_d, allow_sbo=True, nw=False, forced_adv=None, seller=None):
+        """Record a platform buyout (transaction if in the last 10 years), ownership, and its exit."""
+        w, rng = self.w, self.rng
+        thesis_win = when >= T5Y and self.in_thesis(tgt)
+        if thesis_win and (nw or sid in self.hl_sponsors or sid in self.cast_sponsors or seller and (
+                seller[1] in self.hl_sponsors or seller[1] in self.cast_sponsors)):
+            return False
+        if thesis_win and self.flow_thesis_deals >= NOISE_FLOW_THESIS_DEALS:
+            return False
+        equity = round(w.company_row[tgt]["ebitda_musd"] * rng.uniform(0.75, 0.95) * w.multiple(
+            w.sector_name[w.company_row[tgt]["sector_id"]], w.company_row[tgt]["ebitda_musd"], rng) * rng.uniform(0.4, 0.55), 1)
+        if self.deployed[fid] + equity > self.fund_size[fid] or equity > NOISE_MAX_CHECK_PCT * self.fund_size[fid]:
+            return False   # the fund is fully invested (or the check is too large for it): no new platform
+        self.deployed[fid] += equity
+        self.owned.add(tgt)
+        stake = "minority" if (not nw and rng.random() < 0.05 and seller is None) else "majority"
+        structure = "minority" if stake == "minority" else rng.choices(["control_buyout", "majority_recap"], [0.82, 0.18])[0]
+        if when >= T10Y:
+            advs = []
+            if forced_adv or rng.random() < (0.85 if when >= T5Y else 0.75):
+                iid = self._pick_adv(when, thesis_win, forced_adv)
+                if iid:
+                    advs.append((iid, "sell_side_advisor", self.banker_lead(iid, when)))
+                    if rng.random() < 0.18 and not thesis_win:
+                        iid2 = self._pick_adv(when, False)
+                        if iid2 and iid2 != iid:
+                            advs.append((iid2, "buy_side_advisor", self.banker_lead(iid2, when)))
+            buyer_lead = None if nw else self.sponsor_lead(sid, when)
+            seller_lead = self.sponsor_lead(seller[1], when) if seller else None
+            parties = [(sid, "buyer", fid, buyer_lead)]
+            seller_type = "founder_family" if rng.random() < 0.88 else "corporate"
+            if seller:
+                parties.append((seller[1], "seller", seller[0], seller_lead))
+                seller_type = "sponsor"
+            for a in advs:
+                parties.append((a[0], a[1], None, a[2]))
+            if stake == "minority":
+                structure = "minority"
+            w.txn(tgt, when, "platform", seller_type, structure, parties, rng=rng)
+            if thesis_win:
+                self.flow_thesis_deals += 1
+        oid_row = {"ownership_id": w.ids.next("O"), "company_id": tgt, "fund_id": fid, "start_date": when,
+                   "end_date": exit_d, "stake_type": stake, "equity_invested_musd": round(equity, 2)}
+        w.t["OWNERSHIP"].append(oid_row)
+        self.platforms.append((tgt, fid, when, exit_d, sid))
+        if exit_d is not None and allow_sbo and exit_d < date(2026, 9, 1) and rng.random() < 0.38:
+            buyers = [f for f in self.funds if f[2] <= exit_d.year <= f[2] + 5 and f[1] != sid
+                      and f[4][0] * 0.7 <= w.company_row[tgt]["ebitda_musd"] <= f[4][1] * 1.3]
+            if buyers:
+                bf = rng.choice(buyers)
+                hold = rng.lognormvariate(math.log(5.5), 0.28)
+                ex2 = exit_d + timedelta(days=int(hold * 365.25))
+                ok = self._platform(tgt, bf[0], bf[1], exit_d, ex2 if ex2 <= date(2026, 9, 15) else None,
+                                    allow_sbo=False, seller=(fid, sid))
+                if ok:
+                    return True
+        return True
+
+    # ---------------------------------------------------------------- 5. company people
+    def _ceo_history(self, founded, start0, founder_ceo, sponsor_owned, want_pred):
+        """R20 (R19c M1): the recorded CEO history of a noise company, oldest first, as
+        (start, end, is_founder); the last entry is the current CEO (end None).
+        * A founder serves FOUNDER_TENURE_* years (lognormal, median 15, capped 34). A founder whose
+          tenure reaches AS_OF (within a year) is still in seat; otherwise a non-founder successor is.
+        * Successors serve NOISE_CEO_TENURE_* years (lognormal, median 6, p5 about 3, p95 about 12).
+        * A non-founder never starts within 2 years of founding (the first CEO is the founder).
+        * At most one predecessor is recorded; history before it is simply not in the data."""
+        crng = self.crng
+        yrs = lambda x: timedelta(days=int(round(x * 365.25)))  # noqa: E731
+        clamp = lambda x, lo, hi: min(hi, max(lo, x))  # noqa: E731
+        succ_len = lambda: clamp(crng.lognormvariate(math.log(NOISE_CEO_TENURE_MED), NOISE_CEO_TENURE_SIG), 2.0, 15.0)  # noqa: E731
+        tf = clamp(crng.lognormvariate(math.log(FOUNDER_TENURE_MED), FOUNDER_TENURE_SIG),
+                   FOUNDER_TENURE_MIN, FOUNDER_TENURE_MAX)
+        if founder_ceo:
+            f_end = start0 + yrs(tf)
+            if f_end >= AS_OF - timedelta(days=365):
+                return [(start0, None, True)]
+            cur_len = clamp(crng.lognormvariate(math.log(5.0), 0.6), 0.5, 14.0)
+            s_cur = min(max(AS_OF - yrs(cur_len), f_end + timedelta(days=crng.randint(20, 150))), date(2026, 6, 1))
+            p_end = s_cur - timedelta(days=crng.randint(1, 60))
+            if p_end <= f_end + yrs(1.0):                     # the founder handed over directly
+                return [(start0, p_end, True), (s_cur, None, False)]
+            if crng.random() < 0.55:
+                p_start = p_end - yrs(succ_len())
+                if p_start <= f_end + yrs(1.0):               # the predecessor followed the founder
+                    return [(start0, f_end, True), (f_end + timedelta(days=crng.randint(20, 120)), p_end, False),
+                            (s_cur, None, False)]
+                return [(p_start, p_end, False), (s_cur, None, False)]
+            return [(s_cur, None, False)]
+        s_cur = start0
+        if not sponsor_owned:                                  # independent company: professional CEO
+            s_cur = AS_OF - yrs(clamp(crng.lognormvariate(math.log(6.0), 0.6), 0.5, 20.0))
+        s_cur = min(max(s_cur, founded + yrs(2.0)), date(2026, 6, 1))
+        if want_pred and s_cur > founded + yrs(4.0):
+            p_end = s_cur - timedelta(days=crng.randint(1, 60))
+            p_start = p_end - yrs(succ_len())
+            if p_start > founded + yrs(2.0):
+                return [(p_start, p_end, False), (s_cur, None, False)]
+            fs = founded + timedelta(days=crng.randint(0, 400))
+            if (p_end - fs).days / 365.25 <= FOUNDER_TENURE_MAX:  # reaches back to founding: the founder
+                return [(fs, p_end, True), (s_cur, None, False)]
+        return [(s_cur, None, False)]
+
+    def company_people(self):
+        w, rng = self.w, self.rng
+        own_by = defaultdict(list)
+        for o in w.t["OWNERSHIP"]:
+            own_by[o["company_id"]].append(o)
+        self.own_by_co = own_by
+        f3 = self.k("NW_F3")
+        career_pool = []   # (person, current company, current start) eligible to have a prior role
+        for cid in self.noise_cos:
+            row = w.company_row[cid]
+            rev = row["revenue_musd"]
+            owners = sorted(own_by.get(cid, []), key=lambda o: o["start_date"])
+            cur = [o for o in owners if o["end_date"] is None]
+            nw_f3_now = any(o["fund_id"] == f3 for o in cur)
+            founded = date(row["founded_year"], rng.randint(1, 12), 1)
+            sponsor_ever = bool(owners)
+            # CEO (exactly one current)
+            founder_ceo = (not sponsor_ever or rng.random() < 0.25) and rng.random() < 0.5 and founded >= date(1975, 1, 1)
+            if founder_ceo:
+                start = founded + timedelta(days=rng.randint(0, 400))
+            elif cur:
+                start = self.rdate(cur[0]["start_date"] - timedelta(days=400), min(cur[0]["start_date"] + timedelta(days=900), date(2026, 6, 1)))
+            else:
+                start = self.rdate(max(founded, date(2004, 1, 1)), date(2025, 6, 1))
+            start = max(start, founded)
+            # R20 (R19c M1): realistic CEO history. Founders serve FOUNDER_TENURE_* years, successors
+            # NOISE_CEO_TENURE_*; at most the current CEO and one predecessor are recorded.
+            hist = self._ceo_history(founded, start, founder_ceo, bool(cur), rng.random() < 0.3)
+            ceo = w.person(None, rng=rng)
+            for j, (s_, e_, fnd) in enumerate(hist[:-1]):
+                prev = w.person(None, rng=self.crng)
+                w.role(prev, cid, "CEO", s_, e_, title="Founder and CEO" if fnd else "Chief Executive Officer",
+                       founder=fnd)
+            s_, _e, fnd = hist[-1]
+            title = "Founder and CEO" if fnd else "Chief Executive Officer"
+            acq = self.addon_close.get(cid)
+            if acq:
+                # R20 (R19c M2): an acquired add-on is a division of its buyer. Its top executive keeps the
+                # CEO role type (R08 invariant: one current CEO per company) but, from the close, runs it
+                # as division president; the pre-close tenure (a founder's included) ends at the close.
+                close, plat = acq
+                div = f"President, {w.name_of[plat]} division"
+                if s_ < close - timedelta(days=365):
+                    w.role(ceo, cid, "CEO", s_, close, title=title, founder=fnd)
+                    w.role(ceo, cid, "CEO", close, title=div)
+                else:   # appointed at (or after) the acquisition: no sub-year stub tenure before it
+                    w.role(ceo, cid, "CEO", max(s_, close), title=div)
+                    s_ = max(s_, close)
+            else:
+                w.role(ceo, cid, "CEO", s_, title=title, founder=fnd)
+            if len(hist) == 1 and not nw_f3_now:
+                career_pool.append((ceo, cid, s_))
+            # CFO
+            if rng.random() < (0.85 if rev >= 40 else 0.4):
+                cstart = self.rdate(max(founded, date(2012, 1, 1)), date(2026, 7, 1))
+                if rng.random() < 0.5:
+                    cstart = self.rdate(max(founded, date(2018, 1, 1)), date(2024, 12, 31))
+                cfo = w.person(None, rng=rng)
+                w.role(cfo, cid, "CFO", cstart, title="Chief Financial Officer")
+                if not nw_f3_now:
+                    career_pool.append((cfo, cid, cstart))
+            # COO / President
+            if rev >= 50 and rng.random() < 0.32:
+                rt = rng.choice(["COO", "COO", "President"])
+                cstart = self.rdate(max(founded, date(2014, 1, 1)), date(2025, 12, 1))
+                p = w.person(None, rng=rng)
+                w.role(p, cid, rt, cstart, title="Chief Operating Officer" if rt == "COO" else "President")
+                if not nw_f3_now:
+                    career_pool.append((p, cid, cstart))
+            # Board: owner designees and independents
+            for o in cur:
+                sid = w.fund_sponsor[o["fund_id"]]
+                if sid == self.nw:
+                    if o["fund_id"] == f3:
+                        w.role(rng.choice(self.seeds[:4]), cid, "Board", o["start_date"], title="Director")
+                        self.no_career.add(cid)
+                    continue
+                lead = self.sponsor_lead(sid, o["start_date"])
+                if lead:
+                    w.role(lead, cid, "Board", o["start_date"], title="Director")
+            for o in owners:
+                if o["end_date"] is not None and w.fund_sponsor[o["fund_id"]] != self.nw:
+                    lead = self.sponsor_lead(w.fund_sponsor[o["fund_id"]], o["start_date"])
+                    if lead and o["end_date"] > o["start_date"]:
+                        w.role(lead, cid, "Board", o["start_date"], o["end_date"], title="Director")
+            if not nw_f3_now and rng.random() < (0.35 if sponsor_ever else 0.15):
+                bstart = self.rdate(max(founded, date(2015, 1, 1)), date(2025, 6, 30))
+                acq = self.addon_close.get(cid)
+                # R20 (R19c M2): an acquired add-on has no board of its own after the close
+                if acq is None or bstart < acq[0] - timedelta(days=365):
+                    p = w.person(None, rng=rng)
+                    w.role(p, cid, "Board", bstart, acq[0] if acq else None, title="Independent Director")
+        # prior careers: a role at another noise company that ended before the current one started
+        pool_cos = [c for c in self.noise_cos if c not in self.no_career]
+        for p, cid, start in career_pool:
+            if rng.random() > 0.33 or start < date(2008, 1, 1):
+                continue
+            other = rng.choice(pool_cos)
+            if other == cid:
+                continue
+            end = start - timedelta(days=rng.randint(15, 300))
+            pstart = end - timedelta(days=rng.randint(700, 2900))
+            founded = date(w.company_row[other]["founded_year"], 1, 1)
+            if pstart < founded:
+                continue
+            rt = rng.choice(["CFO", "COO", "President", "CFO"])
+            w.role(p, other, rt, pstart, end, title={"CFO": "Chief Financial Officer", "COO": "Chief Operating Officer",
+                                                      "President": "President"}[rt])
+        # signal companies without a current CEO: one non-founder CEO, a Knows leaf
+        roles_by_org = defaultdict(list)
+        for r in w.t["ROLE_HISTORY"]:
+            roles_by_org[r["org_id"]].append(r)
+        for cid in self.sig_companies:
+            rs = roles_by_org.get(cid, [])
+            if any(r["role_type"] == "CEO" and r["end_date"] is None for r in rs):
+                continue
+            row = w.company_row[cid]
+            lo = date(max(row["founded_year"], 2004), 1, 1)
+            ends = [r["end_date"] for r in rs if r["end_date"] is not None]
+            assert all(r["end_date"] is not None for r in rs), cid
+            if ends:
+                lo = max(lo, max(ends) + timedelta(days=rng.randint(20, 120)))
+            start = self.rdate(lo, max(lo, date(2024, 6, 1)))
+            p = w.person(None, rng=rng)
+            w.role(p, cid, "CEO", start, title="Chief Executive Officer")
+
+    # ---------------------------------------------------------------- 6. crafted near-misses
+    def near_misses(self):
+        """Entities one condition away from qualifying, so the rules visibly do the work (8.3)."""
+        w, rng, k = self.w, self.rng, self.k
+        ctx = [k("ADV2"), k("RADV5"), k("ADV6")]
+
+        def mk(label, niche, ebitda, revenue, state, founded, sites=None, public=False, region=None):
+            name = w.company_name(niche, rng)
+            cid = w.company(None, name, niche, state if region is None else region, revenue, ebitda, founded=founded,
+                            sites=sites, rng=rng, is_public=public)
+            if region:
+                self._fix_canada(cid, region)
+            self.crafted.append(cid); self.no_career.add(cid); self.near_miss[label] = cid
+            return cid
+
+        def founder_team(cid, ceo_start, director_start=None):
+            p = w.person(None, rng=rng); w.role(p, cid, "CEO", ceo_start, title="Founder and CEO", founder=True)
+            p = w.person(None, rng=rng); w.role(p, cid, "CFO", "2017-03-06", title="Chief Financial Officer")
+            if director_start:
+                p = w.person(None, rng=rng); w.role(p, cid, "Board", director_start, title="Independent Director")
+
+        # (a) EBITDA just over the band: would score 70 (Tier A) at EBITDA <= 40.0
+        c = mk("EBITDA_40_6", "Hospice Providers", 40.6, 268.0, "GA", 2003, sites=["SC", "AL"])
+        founder_team(c, "2003-05-01", "2026-01-12")
+        w.signal(c, "BANKER_ENGAGED", "2026-07-02", interm=ctx[0])
+        w.signal(c, "DEBT_MATURITY", "2025-08-14", event="2027-09-30", magnitude=160.0)
+        w.crm(k("MD_MER"), "2026-04-09", "meeting", "positive", org=c)
+        # (b) US gate: Ontario HQ, would score 75
+        c = mk("CANADA_HQ", "Payroll & HR Outsourcing", 18.0, 88.0, None, 2004, region="CA-ON")
+        founder_team(c, "2004-02-02", "2025-12-01")
+        w.signal(c, "BANKER_ENGAGED", "2026-05-27", interm=ctx[1])
+        w.signal(c, "DEBT_MATURITY", "2025-09-18", event="2027-06-30", magnitude=70.0)
+        w.crm(k("VP"), "2026-02-19", "call", "positive", org=c)
+        # (c) public company: would score 70
+        c = mk("PUBLIC", "Environmental Testing", 28.0, 152.0, "CO", 1996, sites=["UT"], public=True)
+        founder_team(c, "1996-09-03")
+        w.signal(c, "BANKER_ENGAGED", "2026-08-03", interm=ctx[2])
+        w.signal(c, "DEBT_MATURITY", "2025-06-12", event="2027-11-30", magnitude=110.0)
+        w.crm(k("OP"), "2026-01-28", "meeting", "positive", org=c)
+        # (d) exit window: held 4.9 years by a 2016-vintage fund (needs 5+). Act-1 score 50.
+        old = sorted([f for f in self.funds if 2015 <= f[2] <= 2018 and f[1] not in self.hl_sponsors
+                      and f[1] not in self.cast_sponsors], key=lambda f: (abs(f[2] - 2016), f[0]))[0]
+        c = mk("EXIT_4_9Y", "Insurance Claims Processing", 14.0, 70.0, "OH", 2001)
+        p = w.person(None, rng=rng); w.role(p, c, "CEO", "2015-04-06", title="Chief Executive Officer")
+        p = w.person(None, rng=rng); w.role(p, c, "President", "2019-01-07", title="President")
+        lead = self.sponsor_lead(old[1], date(2021, 11, 15))
+        w.txn(c, "2021-11-15", "platform", "founder_family", "control_buyout", [(old[1], "buyer", old[0], lead)], rng=rng)
+        self.flow_thesis_deals += 1
+        w.t["OWNERSHIP"].append({"ownership_id": w.ids.next("O"), "company_id": c, "fund_id": old[0],
+                                 "start_date": date(2021, 11, 15), "end_date": None, "stake_type": "majority",
+                                 "equity_invested_musd": 61.0})
+        if lead:
+            w.role(lead, c, "Board", "2021-11-15", title="Director")
+        w.signal(c, "BANKER_ENGAGED", "2026-06-15", interm=ctx[0])
+        w.signal(c, "DEBT_MATURITY", "2025-12-03", event="2027-05-31", magnitude=55.0)
+        # (e) CFO from a company that became PE-backed only after she left (temporal join rejects). Score 50.
+        prior = mk("CFO_PRIOR_EMPLOYER", "Precision Machining", 11.0, 78.0, "MI", 1988)
+        p0 = w.person(None, rng=rng); w.role(p0, prior, "CEO", "2012-05-07", title="Chief Executive Officer")
+        nfund = sorted([f for f in self.funds if f[2] >= 2021 and f[1] not in self.hl_sponsors
+                        and f[1] not in self.cast_sponsors], key=lambda f: f[0])[0]
+        w.txn(prior, "2025-09-15", "platform", "founder_family", "control_buyout",
+              [(nfund[1], "buyer", nfund[0], self.sponsor_lead(nfund[1], date(2025, 9, 15)))], rng=rng)
+        w.t["OWNERSHIP"].append({"ownership_id": w.ids.next("O"), "company_id": prior, "fund_id": nfund[0],
+                                 "start_date": date(2025, 9, 15), "end_date": None, "stake_type": "majority",
+                                 "equity_invested_musd": 42.0})
+        c = mk("CFO_NOT_PE", "Compliance & Training Services", 12.5, 64.0, "IN", 2006)
+        p = w.person(None, rng=rng); w.role(p, c, "CEO", "2014-10-06", title="Chief Executive Officer")
+        cfo = w.person(None, rng=rng)
+        w.role(cfo, prior, "CFO", "2019-02-04", "2025-06-27", title="Chief Financial Officer")
+        w.role(cfo, c, "CFO", "2025-08-04", title="Chief Financial Officer")
+        w.signal(c, "DEBT_MATURITY", "2026-02-10", event="2027-08-31", magnitude=30.0)
+        w.crm(k("VP"), "2026-03-03", "meeting", "positive", org=c)
+        # (f) 11-month tenure overlap with a seed: Marcus Whitfield and this CEO overlapped 333 days.
+        c = mk("OVERLAP_11M", "Healthcare Revenue Cycle Services", 15.0, 82.0, "KY", 2002)
+        w.role(k("OP"), c, "COO", "2009-03-02", "2014-08-15", title="Chief Operating Officer")
+        p = w.person(None, rng=rng); w.role(p, c, "CEO", "2013-09-16", title="Chief Executive Officer")
+        p = w.person(None, rng=rng); w.role(p, c, "CFO", "2016-01-11", title="Chief Financial Officer")
+        w.signal(c, "BANKER_ENGAGED", "2026-05-06", interm=ctx[1])
+        w.signal(c, "DEBT_MATURITY", "2026-01-15", event="2027-10-31", magnitude=40.0)
+        # (g) similarity just under the Q-ADDON cutoff: 2 shared of 21 = 0.0952 < 0.10
+        c = mk("JACCARD_0_095", "Calibration Services", 7.5, 41.0, "TX", 2008, sites=["NM"])
+        p = w.person(None, rng=rng); w.role(p, c, "CEO", "2008-06-02", title="Founder and CEO", founder=True)
+        p = w.person(None, rng=rng); w.role(p, c, "COO", "2018-04-02", title="Chief Operating Officer")
+        for key in ("C02", "C05"):
+            w.link(c, k(key), "<1M", rng=rng)
+        self.jaccard_nm = c
+        # (h) supplies a FORMER Fund III holding (exited 2024): the conflict rule is current-only
+        self.former_f3_nm = mk("SUPPLIES_FORMER_F3", "Medical & Lab Supply Distribution", 9.0, 105.0, "MO", 1999)
+        p = w.person(None, rng=rng); w.role(p, self.former_f3_nm, "CEO", "2011-11-07", title="Chief Executive Officer")
+        p = w.person(None, rng=rng); w.role(p, self.former_f3_nm, "COO", "2019-08-05", title="Chief Operating Officer")
+
+    # ---------------------------------------------------------------- 7. commercial links
+    def links(self):
+        w, rng = self.w, self.rng
+        pool = [c for c in self.noise_cos] + [c for c in self.sig_companies if c not in self.link_protected]
+        by_group = defaultdict(list)
+        for c in pool:
+            for n in self.names_up(c):
+                by_group[n].append(c)
+        sup_classes = []
+        for c in pool:
+            names = self.names_up(c)
+            cls = next((n for n in names if n in NOISE_SUPPLY), None)
+            if cls:
+                sup_classes.append((c, cls))
+        sw = [w.company_row[c]["revenue_musd"] ** 0.75 for c, _ in sup_classes]
+        existing = {(l["supplier_id"], l["customer_id"]) for l in w.t["COMMERCIAL_LINK"]}
+        made, tries = 0, 0
+        while made < NOISE_LINKS and tries < NOISE_LINKS * 20:
+            tries += 1
+            s, cls = rng.choices(sup_classes, weights=sw)[0]
+            grp = rng.choice(NOISE_SUPPLY[cls])
+            cands = by_group.get(grp, [])
+            if not cands:
+                continue
+            c = cands[rng.randrange(len(cands))]
+            if c == s or (s, c) in existing or (c, s) in existing:
+                continue
+            if w.company_row[c]["revenue_musd"] < 8 and rng.random() < 0.7:
+                continue
+            rev = w.company_row[s]["revenue_musd"]
+            band = "<1M" if rev < 30 else rng.choice(["<1M", "1-5M"]) if rev < 120 else rng.choice(["1-5M", "1-5M", "5-20M", "20M+"])
+            w.link(s, c, band, since=rng.randint(2008, 2025), rng=rng)
+            existing.add((s, c)); made += 1
+        # crafted: the Q-ADDON near-miss gets 3 own customers; the former-F3 near-miss supplies the exited holding
+        own3 = [c for c in self.noise_cos if "Industrials" in self.names_up(c) and not self.in_thesis(c)][:3]
+        for c in own3:
+            w.link(self.jaccard_nm, c, "<1M", rng=rng)
+        f3 = self.k("NW_F3")
+        exited = sorted(o["company_id"] for o in w.t["OWNERSHIP"] if o["fund_id"] == f3 and o["end_date"] is not None
+                        and o["company_id"] in set(self.noise_cos))
+        if exited:
+            w.link(self.former_f3_nm, exited[0], "1-5M", since=2018, rng=rng)
+
+    # ---------------------------------------------------------------- 8. score plan, signals, CRM, pipeline
+    def _index(self):
+        w = self.w
+        self.roles_by_org, self.roles_by_person = defaultdict(list), defaultdict(list)
+        for r in w.t["ROLE_HISTORY"]:
+            self.roles_by_org[r["org_id"]].append(r); self.roles_by_person[r["person_id"]].append(r)
+        self.own_by_co = defaultdict(list)
+        for o in w.t["OWNERSHIP"]:
+            self.own_by_co[o["company_id"]].append(o)
+
+    def structural(self, cid):
+        """Readiness components that come from roles and ownership (mirrors QUESTIONS.md v2)."""
+        w = self.w
+        comps = {}
+        rs = self.roles_by_org.get(cid, [])
+        cur_own = [o for o in self.own_by_co.get(cid, []) if o["end_date"] is None]
+        for cf in rs:
+            if cf["role_type"] == "CFO" and cf["end_date"] is None and T_18M <= cf["start_date"] <= AS_OF:
+                for pr in self.roles_by_person[cf["person_id"]]:
+                    if pr["org_id"] == cid or pr["end_date"] is None:
+                        continue
+                    if _addm(cf["start_date"], -12) <= pr["end_date"] <= cf["start_date"]:
+                        for o in self.own_by_co.get(pr["org_id"], []):
+                            if min(pr["end_date"], o["end_date"] or AS_OF) >= max(pr["start_date"], o["start_date"]):
+                                comps["R_CFO_FROM_PE"] = 15
+        for o in cur_own:
+            if o["start_date"] <= T5Y and w.fund_vintage[o["fund_id"]] <= AS_OF.year - 8:
+                comps["R_EXIT_WINDOW"] = 15
+        ceo_f = [r for r in rs if r["role_type"] == "CEO" and r["end_date"] is None and r["is_founder"]
+                 and r["start_date"] <= T_15Y]
+        if ceo_f and not [r for r in rs if r["role_type"] in ("President", "COO") and r["end_date"] is None]:
+            comps["R_SUCCESSION"] = 10
+        owner_sp = {w.fund_sponsor[o["fund_id"]] for o in cur_own}
+        for b in rs:
+            if b["role_type"] == "Board" and T_12M <= b["start_date"] <= AS_OF:
+                pr = self.roles_by_person[b["person_id"]]
+                if not any(x["org_id"] == cid and x["role_type"] != "Board" for x in pr) and \
+                        not any(x["org_id"] in owner_sp and x["end_date"] is None for x in pr):
+                    comps["R_NEW_DIRECTOR"] = 5
+        return comps
+
+    def plan_scores(self):
+        """Every eligible bulk noise company ends at <= NOISE_SCORE_CAP; fix structure if needed."""
+        w, rng = self.w, self.rng
+        self._index()
+        self.budget = {}
+        for cid in self.noise_cos:
+            if not self.eligible(cid):
+                continue
+            for _ in range(4):
+                comps = self.structural(cid)
+                total = self.fit(cid) + sum(comps.values())
+                if total <= NOISE_SCORE_CAP:
+                    break
+                rs = self.roles_by_org[cid]
+                if "R_NEW_DIRECTOR" in comps:
+                    for b in rs:
+                        if b["role_type"] == "Board" and b["start_date"] >= T_12M:
+                            b["start_date"] = self.rdate(date(2022, 1, 1), date(2025, 3, 1))
+                elif "R_CFO_FROM_PE" in comps:
+                    for cf in rs:
+                        if cf["role_type"] == "CFO" and cf["end_date"] is None and cf["start_date"] >= T_18M:
+                            cf["start_date"] = self.rdate(date(2023, 1, 1), date(2024, 12, 1))
+                            for pr in self.roles_by_person[cf["person_id"]]:
+                                if pr is not cf and pr["end_date"] and pr["end_date"] > cf["start_date"]:
+                                    pr["end_date"] = cf["start_date"] - timedelta(days=30)
+                                    pr["start_date"] = min(pr["start_date"], pr["end_date"] - timedelta(days=400))
+                elif "R_SUCCESSION" in comps:
+                    p = w.person(None, rng=rng)
+                    w.role(p, cid, "COO", self.rdate(date(2016, 1, 1), date(2024, 6, 1)), title="Chief Operating Officer")
+                    self._index()
+                else:
+                    break
+            comps = self.structural(cid)
+            used = self.fit(cid) + sum(comps.values())
+            assert used <= NOISE_SCORE_CAP, (cid, used, comps)
+            self.budget[cid] = NOISE_SCORE_CAP - used
+
+    def signals_crm(self):
+        w, rng, k = self.w, self.rng, self.k
+        types = ["PRESS_RELEASE", "HIRING_SURGE", "AWARD", "ADDON_ANNOUNCED", "DEBT_REFINANCED", "BANKER_ENGAGED",
+                 "DEBT_MATURITY"]
+        tw = [24, 15, 9, 12, 10, 13, 17]
+        banks = self.covered_interm + self.other_interm
+        sponsor_owned = {c for c in self.noise_cos if any(o["end_date"] is None for o in self.own_by_co.get(c, []))}
+        addon_buyers = {plat for _c, plat in self.addon_close.values()}
+        # R20: a noise company linked to a CURRENT Fund III holding is flagged by the Finale conflict rule, and a
+        # flagged extra must stay Tier C (< 50), so its scored-signal budget stops at 45 instead of 55
+        f3_now = {o["company_id"] for o in w.t["OWNERSHIP"] if o["fund_id"] == k("NW_F3") and o["end_date"] is None}
+        f3_touch = {l_["supplier_id"] for l_ in w.t["COMMERCIAL_LINK"] if l_["customer_id"] in f3_now} | \
+                   {l_["customer_id"] for l_ in w.t["COMMERCIAL_LINK"] if l_["supplier_id"] in f3_now}
+        self.active = {}
+        for cid in self.noise_cos:
+            size = w.company_row[cid]["ebitda_musd"]
+            lam = NOISE_SIGNAL_RATE * (0.55 + min(1.6, size / 18.0))
+            n = min(7, int(rng.expovariate(1.0 / lam) + 0.5)) if rng.random() < 0.82 else 0
+            acq = self.addon_close.get(cid)
+            elig = cid in self.budget
+            budget = self.budget.get(cid, 99)
+            if cid in f3_touch:
+                budget -= NOISE_SCORE_CAP - 45
+            # choose which scored components may fire (each 10 points); R20 (R19c M2): none on an acquired add-on
+            want = set()
+            if elig and acq is None:
+                for comp, p in (("R_BANKER", 0.35), ("R_DEBT", 0.45), ("A_CRM", 0.3)):
+                    if budget >= 10 and rng.random() < p:
+                        want.add(comp); budget -= 10
+            self.active[cid] = want
+            rows = []
+            for _ in range(n):
+                t_ = rng.choices(types, weights=tw)[0]
+                if t_ == "ADDON_ANNOUNCED" and (cid not in sponsor_owned or cid not in addon_buyers):
+                    t_ = "PRESS_RELEASE"
+                sd = self.rdate(date(2022, 7, 1), date(2026, 9, 28))
+                if rng.random() < 0.4:
+                    sd = self.rdate(date(2025, 4, 1), date(2026, 9, 28))
+                rows.append([t_, sd, None])
+            if elig:
+                for r in rows:
+                    if r[0] == "BANKER_ENGAGED" and T_6M <= r[1] <= AS_OF and "R_BANKER" not in want:
+                        r[1] = self.rdate(_addm(AS_OF, -12), _addm(AS_OF, -7))   # engaged 7-12 months ago
+                    if r[0] == "DEBT_MATURITY":
+                        r[2] = self.rdate(_addm(T_P18M, 1), _addm(AS_OF, 48)) if "R_DEBT" not in want else \
+                            self.rdate(AS_OF + timedelta(days=30), T_P18M - timedelta(days=10))
+                        if "R_DEBT" not in want and rng.random() < 0.3:
+                            r[2] = self.rdate(_addm(AS_OF, 19), _addm(AS_OF, 20))   # just past 18 months
+                if "R_BANKER" in want and not any(r[0] == "BANKER_ENGAGED" and T_6M <= r[1] for r in rows):
+                    rows.append(["BANKER_ENGAGED", self.rdate(T_6M + timedelta(days=5), date(2026, 9, 25)), None])
+                if "R_DEBT" in want and not any(r[0] == "DEBT_MATURITY" and r[2] and AS_OF < r[2] <= T_P18M for r in rows):
+                    rows.append(["DEBT_MATURITY", self.rdate(date(2025, 3, 1), date(2026, 8, 31)),
+                                 self.rdate(AS_OF + timedelta(days=30), T_P18M - timedelta(days=10))])
+            for r in rows:
+                if r[0] == "DEBT_MATURITY" and r[2] is None:
+                    r[2] = r[1] + timedelta(days=rng.randint(200, 1500))
+            if acq:
+                # R20 (R19c M2): after the close the target reports through its buyer: no signal of its own
+                # dated after the close, and its debt was repaid at the close (no maturity past it)
+                rows = [r for r in rows if r[1] <= acq[0] and not (r[0] == "DEBT_MATURITY" and r[2] and r[2] > acq[0])]
+            # naive keyword screen: at most 2 rows in [T-12m, T] for any keyword match in band
+            if self.naive_row(cid):
+                win = [r for r in rows if T_12M <= r[1] <= AS_OF]
+                keep = [r for r in win if (r[0] == "BANKER_ENGAGED" and "R_BANKER" in want)][:1]
+                keep += [r for r in win if r not in keep][:max(0, 2 - len(keep))]
+                for r in win:
+                    if r not in keep:
+                        r[1] = self.rdate(date(2023, 1, 1), date(2025, 8, 31))
+                        if r[0] == "DEBT_MATURITY" and r[2] and r[2] <= r[1]:
+                            r[2] = r[1] + timedelta(days=500)
+            rows.sort(key=lambda r: (r[1], r[0]))
+            for t_, sd, ev in rows:
+                mag = None
+                if t_ in ("DEBT_MATURITY", "DEBT_REFINANCED"):
+                    mag = round(size * rng.uniform(2.5, 4.5), 1)
+                interm = rng.choice(banks) if t_ == "BANKER_ENGAGED" else None
+                w.signal(cid, t_, sd.isoformat(), event=ev.isoformat() if ev else None, interm=interm, magnitude=mag)
+
+        # ---- CRM
+        seeds = self.seeds
+        sw_ = [0.2, 0.25, 0.3, 0.12, 0.13]
+        # R20 (R19c M2): a company already bought as an add-on is never an independent pipeline target
+        pipe_pool = [c for c in self.noise_cos if self.in_thesis(c) and not self.nw_owned_now(c)
+                     and 3.0 <= w.company_row[c]["ebitda_musd"] <= 60 and c not in self.addon_close]
+        rng.shuffle(pipe_pool)
+        elig_first = [c for c in pipe_pool if c in self.budget] + [c for c in pipe_pool if c not in self.budget]
+        self.pipe = elig_first[:int(NOISE_PIPELINE * 0.8)]
+        rest = [c for c in self.noise_cos if c not in set(self.pipe) and not self.nw_owned_now(c)
+                and not self.in_thesis(c) and w.company_row[c]["ebitda_musd"] >= 5 and c not in self.addon_close]
+        self.pipe += rest[:NOISE_PIPELINE - len(self.pipe)]
+        for cid in self.noise_cos:
+            in_pipe = cid in set(self.pipe)
+            want_crm = "A_CRM" in self.active.get(cid, set())
+            elig = cid in self.budget
+            acq = self.addon_close.get(cid)
+            n = rng.choice([1, 2, 3, 3, 4, 5, 6]) if in_pipe else (1 if rng.random() < 0.18 else 0)
+            if want_crm:
+                n = max(n, 1)
+            got_pos = False
+            for j in range(n):
+                when = self.rdate(date(2020, 1, 1), date(2026, 9, 25))
+                sent = rng.choices(["positive", "neutral", "negative"], [0.35, 0.55, 0.10])[0]
+                if elig and T_24M <= when <= AS_OF and sent == "positive" and not want_crm:
+                    sent = "neutral"
+                if want_crm and not got_pos and j == n - 1:
+                    when, sent = self.rdate(T_24M + timedelta(days=10), date(2026, 9, 20)), "positive"
+                if sent == "positive" and T_24M <= when <= AS_OF:
+                    got_pos = True
+                if acq and when > acq[0]:
+                    continue   # R20 (R19c M2): no company-level touch with an add-on after it was acquired
+                w.crm(rng.choices(seeds, sw_)[0], when, rng.choice(["meeting", "call", "email", "conference"]),
+                      sent, org=cid)
+            # occasional person-level touch with an exec: never positive (no Knows edge, no access point)
+            if in_pipe and rng.random() < 0.25:
+                execs = sorted(r["person_id"] for r in self.roles_by_org.get(cid, []) if r["end_date"] is None
+                               and r["role_type"] in ("CEO", "CFO"))
+                if execs:
+                    w.crm(rng.choices(seeds, sw_)[0], self.rdate(date(2021, 1, 1), date(2026, 9, 20)), "call",
+                          rng.choice(["neutral", "neutral", "negative"]), person=rng.choice(execs))
+        # sponsors (never the cast sponsors) and their business-development partners (the only K3 edges)
+        sponsors = sorted(r["sponsor_id"] for r in w.t["SPONSOR"] if r["sponsor_id"] not in self.cast_sponsors)
+        for sid in sponsors:
+            for _ in range(rng.choice([3, 4, 5, 6, 8, 10])):
+                w.crm(rng.choices(seeds, sw_)[0], self.rdate(date(2020, 6, 1), date(2026, 9, 25)),
+                      rng.choice(["meeting", "call", "conference", "email"]),
+                      rng.choices(["positive", "neutral", "negative"], [0.3, 0.62, 0.08])[0], org=sid)
+        for p, sid in self.bd_people:
+            for _ in range(rng.choice([1, 2, 3, 4, 5])):
+                w.crm(rng.choices(seeds, sw_)[0], self.rdate(date(2022, 1, 1), date(2026, 9, 25)),
+                      rng.choice(["meeting", "call", "email"]),
+                      rng.choices(["positive", "neutral"], [0.55, 0.45])[0], person=p)
+        # older intermediary coverage (before the 24-month window, so Q1 and the gap rule are unchanged)
+        cov = sorted(r["intermediary_id"] for r in w.t["INTERMEDIARY"] if r["intermediary_id"] not in self.no_touch_interm)
+        for _ in range(45):
+            w.crm(rng.choices(seeds, sw_)[0], self.rdate(date(2019, 1, 1), date(2024, 9, 15)),
+                  rng.choice(["meeting", "call", "conference"]), rng.choice(["neutral", "positive"]), org=rng.choice(cov))
+        # ---- PIPELINE (never stage "IOI prep": that is Tessmark's alone)
+        stages = ["Tracking", "Contacted", "Engaged", "IOI Submitted", "Passed"]
+        for cid in self.pipe:
+            st = rng.choices(stages, [0.45, 0.25, 0.09, 0.03, 0.18])[0]
+            e = w.company_row[cid]["ebitda_musd"]
+            check = None if st == "Tracking" and rng.random() < 0.6 else round(e * rng.uniform(3.0, 5.5) / 5) * 5.0
+            w.pipe(cid, st, self.rdate(date(2019, 1, 1), date(2026, 8, 31)).isoformat(),
+                   rng.choices(seeds, sw_)[0], check)
+
+    # ---------------------------------------------------------------- run
+    def run(self):
+        self.sponsors_and_funds()
+        self.companies()
+        self.sponsor_and_bank_people()
+        self.own_by_co = {}
+        self.ownership_and_deals()
+        self.company_people()
+        self.near_misses()
+        self.links()
+        self.plan_scores()
+        self.signals_crm()
+        # bookkeeping for the handoff (not written to CSV)
+        self.w.noise_info = {"near_miss": {kk: (v, self.w.name_of.get(v)) for kk, v in self.near_miss.items()},
+                             "flow_thesis_deals": self.flow_thesis_deals}
+
+
+def noise_check(csv_dir: Path) -> int:
+    """R12 checks on a noise build, on top of the R05 self-check (`--check --out DIR`):
+    R08 invariants, caps, decoys still returned by their naive screens, near-misses present,
+    no noise company in the 60-69 riser window, realism ranges, and the SQL-vs-KG numbers for G5."""
+    import pandas as pd
+    ok = True
+
+    def report(name, cond, detail=""):
+        nonlocal ok
+        ok &= bool(cond)
+        print(f"{'PASS' if cond else 'FAIL'}  {name}{('  ' + str(detail)) if detail else ''}")
+
+    tb = {n: pd.read_csv(csv_dir / f"{n}.csv", dtype=str, keep_default_na=False) for n in TABLES}
+    gold = json.loads((GOLDEN_DIR / "expected.json").read_text())
+    cast = {key: v["id"] for key, v in gold["cast"].items()}
+    tot = sum(len(v) for v in tb.values())
+    report("caps (<= 4000 per table, <= 16000 total)", tot <= 16000 and all(len(v) <= 4000 for v in tb.values()),
+           f"total={tot}; " + ", ".join(f"{n}={len(v)}" for n, v in tb.items()))
+    # R08 invariants
+    pipe = tb["PIPELINE"]
+    report("R08: Tessmark is the only IOI prep pipeline row",
+           list(pipe[pipe.stage == "IOI prep"].company_id) == [cast["CONF"]])
+    own = tb["OWNERSHIP"]
+    cm = own[(own.end_date == "") & (own.stake_type == "majority")].groupby("company_id").size()
+    report("R08: at most one current majority owner per company (founder-owned have none)", (cm <= 1).all(),
+           f"{int((cm == 1).sum())} companies with one, {len(tb['COMPANY']) - int((cm == 1).sum())} with none")
+    r = tb["ROLE_HISTORY"]
+    ceo = r[(r.end_date == "") & (r.role_type == "CEO")].groupby("org_id").size()
+    comp_ids = set(tb["COMPANY"].company_id)
+    report("R08: every company has exactly one current CEO",
+           set(ceo.index) >= comp_ids and (ceo[ceo.index.isin(comp_ids)] == 1).all(),
+           f"missing={len(comp_ids - set(ceo.index))}, multi={int((ceo > 1).sum())}")
+    report("roles end after they start", (r[r.end_date != ""].end_date > r[r.end_date != ""].start_date).all())
+    report("ownership ends after it starts", (own[own.end_date != ""].end_date > own[own.end_date != ""].start_date).all())
+    # realism ranges
+    c = tb["COMPANY"].copy()
+    c["m"] = c.ebitda_musd.astype(float) / c.revenue_musd.astype(float)
+    report("EBITDA margins within 4-30%", c.m.between(0.04, 0.30).all(), f"min={c.m.min():.3f} max={c.m.max():.3f}")
+    tx = tb["TRANSACTION"]
+    mult = tx[tx.ev_ebitda != ""].ev_ebitda.astype(float)
+    report("EV/EBITDA within 6.0-12.5x", mult.between(6.0, 12.5).all(), f"{mult.min()}-{mult.max()}")
+    tp = tb["TRANSACTION_PARTY"]
+    _share = (tx.deal_role == "add_on").mean()
+    report("add-ons are the majority of deals: 60-70% of TRANSACTION, at most 640 rows (R20)",
+           0.60 <= _share <= 0.70 and len(tx) <= 640, f"{_share:.1%} add-ons of {len(tx)} deals")
+    # decoys
+    win = tx[tx.close_date >= "2021-10-01"]
+    lt = tp[tp.txn_id.isin(win.txn_id) & (tp.org_type == "intermediary")].groupby("org_id").txn_id.nunique() \
+        .sort_values(ascending=False)
+    im = tb["INTERMEDIARY"].set_index("intermediary_id")["name"]
+    ranks = list(lt.index)
+    report("Q-FLOW decoy: Brayford tops the raw league table", ranks[0] == cast["BIGBANK"],
+           f"top 12: {[(im[i], int(n)) for i, n in lt.head(12).items()]}; HL rank {ranks.index(cast['HL']) + 1}")
+    # signal layer preserved: every signal row appears unchanged; new rows never touch the cast
+    sw = build(noise=False)
+    keyed = set(sw.key.values())
+    seeds = {cast[x] for x in ("MP", "MD_MER", "VP", "OP", "OP2")}
+    new_rows = {}
+    for n, (pk, cols) in TABLES.items():
+        sig_lines = {tuple(fmt(r[c_]) for c_ in cols) for r in sw.t[n]}
+        got = {tuple(x) for x in tb[n][cols].itertuples(index=False)}
+        report(f"signal rows preserved {n}", sig_lines <= got, len(sig_lines - got))
+        new_rows[n] = pd.DataFrame(sorted(got - sig_lines), columns=cols)
+    nl = new_rows["COMMERCIAL_LINK"]
+    bad = nl[nl.supplier_id.isin(keyed) | nl.customer_id.isin(keyed)]
+    report("new links touch no cast company except the Q-ADDON near-miss (2 GRANITE customers)",
+           len(bad) == 2 and set(bad.customer_id) <= {cast["C02"], cast["C05"]}, len(bad))
+    for n, cols_ in [("COMPANY_SIGNAL", ["company_id"]), ("PIPELINE", ["company_id"]), ("TRANSACTION", ["target_id"]),
+                     ("OWNERSHIP", ["company_id"])]:
+        hit = new_rows[n][new_rows[n][cols_].isin(set(sw.company_row)).any(axis=1)]
+        report(f"new {n} rows touch no signal company", hit.empty, len(hit))
+    cast_sp = {cast[x] for x in ("NW", "IRONBRIDGE", "COPPERLINE", "TAMARACK", "RIDGEBACK", "ASHGROVE")}
+    nc = new_rows["CRM_INTERACTION"]
+    hit = nc[nc.counterparty_org_id.isin(set(sw.company_row) | cast_sp) |
+             nc.counterparty_person_id.isin({r_["person_id"] for r_ in sw.t["PERSON"]})]
+    report("new CRM rows touch no signal company, cast sponsor or signal person", hit.empty, len(hit))
+    nr = new_rows["ROLE_HISTORY"]
+    sig_people = {r["person_id"] for r in sw.t["PERSON"]}
+    on_sig = nr[nr.org_id.isin(set(sw.company_row) | set(r["sponsor_id"] for r in sw.t["SPONSOR"] if r["sponsor_id"] in {r2["org_id"] for r2 in sw.t["ROLE_HISTORY"]}))]
+    report("new roles at signal orgs are only the filler CEOs (non-founder, new people)",
+           (on_sig.role_type == "CEO").all() and (on_sig.is_founder == "FALSE").all() and not on_sig.person_id.isin(sig_people).any(),
+           f"{len(on_sig)} filler CEOs")
+    seed_new = nr[nr.person_id.isin(seeds)]
+    report("new seed roles: one 11-month near-miss COO role plus Fund III board seats", len(seed_new) >= 1
+           and set(seed_new.role_type) <= {"COO", "Board"} and (seed_new.role_type == "COO").sum() == 1, len(seed_new))
+    nx_ = new_rows["CRM_INTERACTION"]
+    report("no new CRM touch with an intermediary inside the 24-month window",
+           nx_[(nx_.counterparty_org_type == "intermediary") & (nx_.interaction_date >= "2024-10-01")].empty)
+    # near-misses, found by rule (not by name)
+    comp = tb["COMPANY"].set_index("company_id")
+    sec = tb["SECTOR"].set_index("sector_id")
+    foc = tb["FUND_FOCUS"][tb["FUND_FOCUS"].fund_id == cast["NW_F4"]]
+    inc, exc = set(foc[foc["mode"] == "include"].sector_id), set(foc[foc["mode"] == "exclude"].sector_id)
+
+    def thesis(cid):
+        a, x = [], comp.at[cid, "sector_id"]
+        while x:
+            a.append(x); x = sec.at[x, "parent_id"]
+        return bool(set(a) & inc) and not set(a) & exc
+    sig = tb["COMPANY_SIGNAL"]
+    sig_win = sig[(sig.signal_date >= "2026-04-01") & (sig.signal_type == "BANKER_ENGAGED")].company_id
+    th = [c_ for c_ in comp.index if thesis(c_)]
+    over = [c_ for c_ in th if 40.0 < float(comp.at[c_, "ebitda_musd"]) <= 41.0 and c_ in set(sig_win)]
+    report("near-miss: thesis company with EBITDA just over $40M and a live banker", len(over) >= 1, comp.loc[over, "name"].tolist())
+    ca = [c_ for c_ in th if not comp.at[c_, "hq_region_id"].startswith("US-") and c_ in set(sig_win)]
+    report("near-miss: thesis company outside the US gate with a live banker", len(ca) >= 1, comp.loc[ca, "name"].tolist())
+    pub = [c_ for c_ in th if comp.at[c_, "is_public"] == "TRUE" and 5 <= float(comp.at[c_, "ebitda_musd"]) <= 40]
+    report("near-miss: public thesis company in band", len(pub) >= 1, comp.loc[pub, "name"].tolist())
+    rr = r.copy()
+    rr["e2"] = rr.end_date.where(rr.end_date != "", "2026-10-01")
+    sr = rr[rr.person_id.isin(seeds)]
+    ceos = rr[(rr.role_type == "CEO") & (rr.end_date == "")]
+    m11 = sr.merge(ceos, on="org_id")
+    m11["ov"] = (pd.to_datetime(m11[["e2_x", "e2_y"]].min(axis=1)) - pd.to_datetime(m11[["start_date_x", "start_date_y"]].max(axis=1))).dt.days
+    near = m11[(m11.ov >= 300) & (m11.ov < 365)]
+    report("near-miss: a seed overlapped a current CEO 300-364 days (no Knows edge)", len(near) >= 1,
+           [(comp.at[o_, "name"], int(v)) for o_, v in zip(near.org_id, near.ov)])
+    cl = tb["COMMERCIAL_LINK"]
+    nb = defaultdict(set)
+    for a_, b_ in zip(cl.supplier_id, cl.customer_id):
+        nb[a_].add(b_); nb[b_].add(a_)
+    g_ = cast["GRANITE"]
+    jac = sorted((round(len(nb[g_] & nb[c_]) / len(nb[g_] | nb[c_]), 4), comp.at[c_, "name"]) for c_ in list(nb)
+                 if c_ != g_ and c_ not in nb[g_] and nb[g_] & nb[c_])
+    report("near-miss: an add-on candidate just under the 0.10 Jaccard cutoff", any(0.09 <= j < 0.10 for j, _ in jac),
+           [x for x in jac if 0.09 <= x[0] < 0.10])
+    # SQL-vs-KG contrast numbers for G5 (the naive screens as QUESTIONS.md v2 states them)
+    nw_f = set(tb["FUND"][tb["FUND"].sponsor_id == cast["NW"]].fund_id)
+    nw_now = set(own[(own.end_date == "") & own.fund_id.isin(nw_f)].company_id)
+    cnt = sig[(sig.signal_date >= "2025-10-01") & (sig.signal_date <= "2026-10-01")].groupby("company_id").size()
+    naive = []
+    for cid_, row in comp.iterrows():
+        txt = (row["name"] + " " + sec.at[row.sector_id, "name"]).lower()
+        if any(k_ in txt for k_ in NAIVE_KEYWORDS) and 5 <= float(row.ebitda_musd) <= 40 and row.hq_region_id.startswith("US-") \
+                and cid_ not in nw_now:
+            naive.append((-int(cnt.get(cid_, 0)), row["name"]))
+    naive.sort()
+    report("G5 contrast Q-SCORE", True, f"keyword screen returns {len(naive)} companies, top 3 {[n_ for _, n_ in naive[:3]]}; "
+           f"KG Tier A = 6, 2 not in CRM, 2 missed by the screen")
+    report("G5 contrast Q-FLOW", True, f"league table #1 {im[ranks[0]]} ({int(lt.iloc[0])} deals), Harbor Lane #{ranks.index(cast['HL']) + 1} "
+           f"({int(lt[cast['HL']])}); KG betweenness: Cedar Row #1, Harbor Lane #2, the only coverage gap")
+    pl = tb["PIPELINE"]
+    report("G5 context", True, f"pipeline {len(pl)} companies; market {len(comp)} companies, {len(th)} in Fund IV thesis sectors")
+    print("NOISE-CHECK", "PASS" if ok else "FAIL")
+    return 0 if ok else 1
 
 
 # =====================================================================================
@@ -1447,10 +2829,10 @@ def write_golden(w: World):
 def write_stories(w: World):
     N = lambda key: w.name_of[w.key[key]]  # noqa: E731
     cards = [
-        ("Q-SCORE", "Act 1. Six names to call on Monday, two of them unknown to the CRM", [
+        ("Q-SCORE", "Act 1. Six names to call on Monday, two of them with no coverage", [
             f"**Who.** The Fund IV Tier A list is {N('T_BANKER')} (90), {N('T_WARM')} (85), {N('T_COLD')} (80), "
             f"{N('T_5')} (75), {N('CONF')} (75) and {N('T_6')} (70). {N('T_COLD')} and {N('T_6')} have no pipeline "
-            "row and no CRM touch at all.",
+            "row and no CRM touch at all: no coverage, so nobody here owns the relationship.",
             f"**What.** Each score is Fit plus Readiness plus Access. Fit means a thesis node, the EBITDA band and margin "
             f"against the focus-area benchmark. Readiness means a CFO hired from a PE-backed company, an exit window, a "
             f"banker engaged, debt maturing within 18 months, founder succession, or a new independent director. Access "
@@ -1466,7 +2848,7 @@ def write_stories(w: World):
             f"{N('T_5')}. {N('D_BIG')} has every signal, but its EBITDA of $44.0M is above the band.",
             "**Why it matters to a partner.** The list is explainable point by point and reaches past the CRM, and the "
             "near misses show their reason, so nobody has to trust a black box."]),
-        ("Q-PATH", "Act 2. Who makes the introduction", [
+        ("Q-PATH", "Act 2. Who gets us an edge", [
             f"**{N('T_BANKER')} (3 hops, 0.700).** Partner {N('VP')} worked with {N('Y_BANK')} at {N('LAKESHORE')} "
             f"from 2012 to 2016 and has met her seven times in the last two years. {N('Y_BANK')} and {N('B_BANK')} have "
             f"worked together at {N('CEDAR')} since 2017. {N('B_BANK')} led the 2019 majority recap of "
@@ -1482,7 +2864,8 @@ def write_stories(w: World):
             f"{N('MD_MER')} left in June 2011 and {N('CEO_C')} arrived in March 2013. The closest intermediary is "
             f"{N('HL')}: it was engaged in July 2026 and advised the 2023 dividend recap.",
             "**Why it matters to a partner.** Every hop shows when and where two people actually worked together. Stale "
-            "ties rank below fresh ones, and false intros are rejected before they embarrass the deal team."]),
+            f"ties rank below fresh ones, and false intros are rejected before they embarrass the deal team. On {N('T_BANKER')} "
+            "the path ends at the banker running the sale, so the play is an early look, not a back-channel to the CEO."]),
         ("Q-FLOW", "Act 3. Who bridges deal flow, and the coverage gap", [
             f"**Who.** Over the last five years in Fund IV sectors, {N('CEDAR')} is the top bridge by betweenness. "
             f"{N('HL')} is second with only 9 deals: 8 founder-owned healthcare sell-side mandates to buyers from five "
@@ -1496,7 +2879,7 @@ def write_stories(w: World):
             f"is also the way into the cold {N('T_COLD')}."]),
         ("Q-CONFLICT", "Act 4. Before we bid", [
             f"**What.** {N('CEDAR')} is engaged on {N('CONF')}, and Northwind is preparing an IOI with a $55M check. "
-            f"{N('CONF')} supplies {N('PINE')}, a Fund III company since July 2020, one hop away, which triggers a "
+            f"{N('CONF')} supplies {N('PINE')}, a Fund III dermatology practice group since July 2020, one hop away, which triggers a "
             f"cross-fund review. It also supplies {N('C07')}, which buys from Fund IV's {N('GRANITE')}; that "
             "two-hop link is informational only.",
             f"**Concentration.** Fund IV holds {N('DIST1')} ($140M), {N('DIST2')} ($125M) and {N('DIST3')} ($120M) in "
@@ -1512,10 +2895,12 @@ def write_stories(w: World):
             f"{N('T_WARM')} to 95 and first place. It also lifts {N('NM_B')} from 65 into Tier A at 75, through "
             f"Operating Partner {N('OP2')}, who worked with {N('Z')} at {N('LAKEMONT')} from 2016 to 2020; {N('Z')} "
             f"now sits on the board with founder-CEO {N('CEO_NMB')}.",
-            f"**Conflict.** {N('CONF')} supplies {N('PINE')}, a current Fund III holding. It keeps its score of 75 but "
-            "is flagged for cross-fund review and taken off the Tier A call list.",
-            "**Why it matters to a partner.** Graph output feeds a governed rule, and portfolio conflicts surface "
-            "before the bid, not in the IC memo."]),
+            f"**Conflict.** {N('CONF')} supplies {N('PINE')}, a current Fund III holding and a dermatology practice group, "
+            f"so it is not a competitor of {N('NM_B')}. {N('CONF')} keeps its score of 75 but is flagged for cross-fund "
+            "review: hold until cross-fund clearance, off the Tier A call list until it is cleared. The other Tier A "
+            "names come back clear.",
+            "**Why it matters to a partner.** Graph output feeds a governed rule, and every target is checked for "
+            "cross-fund conflicts before the bid, not in the IC memo; a flagged name is on hold, not dropped."]),
         ("Q-ADDON", "Backup. What the platform should buy next", [
             f"**Who.** {N('A1')} shares 6 of {N('GRANITE')}'s 15 customers (Jaccard 0.2727) and adds Colorado, Utah "
             f"and New Mexico. {N('A2')} (0.1304) and {N('A3')} (0.1000) follow.",
@@ -1583,6 +2968,16 @@ def selfcheck() -> int:
         report(f"manifest rows {n}", man["tables"][n]["rows"] == len(tb[n]))
     report("caps", man["total_rows"] <= DATA_CAPS["max_rows_total"]
            and all(v["rows"] <= DATA_CAPS["max_rows_per_table"] for v in man["tables"].values()))
+    # ---- realism guards (R20) ----
+    _rh, _co = tb["ROLE_HISTORY"], tb["COMPANY"].set_index("company_id")
+    _rc = _rh[_rh.org_type == "company"]
+    _early = _rc[_rc.start_date.str[:4].astype(int) < _rc.org_id.map(_co.founded_year).astype(int)]
+    report("no role at a company starts before its founding year", _early.empty, _early.role_id.tolist()[:5])
+    _own, _fund = tb["OWNERSHIP"], tb["FUND"].set_index("fund_id")
+    _dep = _own.equity_invested_musd.replace("", "0").astype(float).groupby(_own.fund_id).sum()
+    _pct = (100 * _dep / _fund.size_musd.astype(float).reindex(_dep.index))
+    report("no fund has invested more than 100% of its size", (_pct <= 100.0 + 1e-6).all(),
+           f"max {_pct.max():.1f}% ({_pct.idxmax()})")
     ids = {"company": set(tb["COMPANY"].company_id), "sponsor": set(tb["SPONSOR"].sponsor_id),
            "intermediary": set(tb["INTERMEDIARY"].intermediary_id)}
     single_fks = [("SECTOR", "parent_id", "SECTOR", "sector_id"), ("REGION", "parent_id", "REGION", "region_id"),
@@ -2012,24 +3407,53 @@ def selfcheck() -> int:
 # Build
 # =====================================================================================
 
-def build() -> World:
+def build(noise: bool = False) -> World:
     w = World(RANDOM_SEED)
     build_reference(w)
     plant_shared_cast(w)
     for _q, fn in STORIES.items():
         fn(w)
+    right_size_funds(w)
     golden_extras(w)
-    add_noise(w)
+    w.signal_ownership_ids = {o["ownership_id"] for o in w.t["OWNERSHIP"]}
+    add_noise(w, enabled=noise)
+    reprice_deals(w)
+    realism_guards(w)
     return w
 
 
 def main(argv):
+    # CLI plumbing (R12): --out DIR redirects CSVs (and --check / --noise-check) to DIR;
+    # --noise adds the P5 noise layer and requires --out (data/csv/ stays signal-only until P5).
+    global CSV_DIR, GOLDEN_DIR
+    if "--out" in argv:
+        CSV_DIR = Path(argv[argv.index("--out") + 1]).resolve()
+    if "--noise-check" in argv:
+        sys.exit(noise_check(CSV_DIR))
     if "--check" in argv:
         sys.exit(selfcheck())
-    w = build()
+    noise = "--noise" in argv
+    if noise and "--out" not in argv:
+        sys.exit("--noise needs an explicit --out DIR (data/csv/ stays signal-only until the orchestrator flips the default; "
+                 "the P5 flip is: --noise --out data/csv)")
+    w = build(noise)
     m = write_csvs(w)
-    write_golden(w)
-    write_stories(w)
+    if noise:
+        # golden is generator intent and must not move with noise: rebuild it in a temp dir and compare bytes
+        import tempfile
+        real = GOLDEN_DIR
+        with tempfile.TemporaryDirectory() as td:
+            GOLDEN_DIR = Path(td)
+            write_golden(w)
+            write_stories(w)
+            same = all((Path(td) / f).read_bytes() == (real / f).read_bytes() for f in ("expected.json", "stories.md"))
+        GOLDEN_DIR = real
+        print(f"golden unchanged by noise: {same}")
+        if not same:
+            sys.exit("noise changed the golden intent; fix the noise, never golden")
+    else:
+        write_golden(w)
+        write_stories(w)
     print(f"wrote {len(m['tables'])} tables, {m['total_rows']} rows to {CSV_DIR}")
 
 
