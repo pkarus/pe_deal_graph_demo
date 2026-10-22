@@ -39,16 +39,17 @@
       "commit": "ed8ecc6"
     },
     "G6": {
-      "status": "PENDING",
-      "attempts": 0,
-      "evidence": null,
-      "commit": null
-    },
-    "G7": {
       "status": "GATEKEEPER_RUNNING",
       "attempts": 1,
       "evidence": null,
       "commit": null
+    },
+    "G7": {
+      "status": "PASS WITH NOTE",
+      "attempts": 1,
+      "evidence": "gates/G7.md",
+      "commit": "c899cde",
+      "note": "Tier-1 on clean runs 4-6; condition: no make export/edits during demo, warm server up"
     },
     "G8": {
       "status": "PENDING",
@@ -163,7 +164,10 @@
         "R13 a2 BLOCKED (Q-PATH DecisionMaker rows missing; engine contention)",
         "R20 export fixer running (40)",
         "R20 ask.py fallback PASS (retry once, then auto --from-exports)",
-        "R20 Tier-2 optional PASS (T2-PATH/CONFLICT/FLOW optional with fallbacks)"
+        "R20 Tier-2 optional PASS (T2-PATH/CONFLICT/FLOW optional with fallbacks)",
+        "R20 export fixer PASS self (40)",
+        "R18 G6 running",
+        "R20 ask.py one-rule-set fixer running (45)"
       ]
     },
     "P7": {
@@ -238,7 +242,9 @@
     "P9 cleanup: delete RAI models pe_deal_graph_perf_a (and any _deploy leftovers) from pe_demo_logic",
     "QUESTIONS.md modified but uncommitted; tests/out not gitignored",
     "ask.py warm-server fingerprint includes export.py; editing export.py makes the server stale (rehearsal runs 1-3 degraded)",
-    "Tier-2 follow-ups write slow scratch PyRel instead of filtering hero rows; T2-PATH 1/2, T2-CONFLICT not run -> mark optional"
+    "Tier-2 follow-ups write slow scratch PyRel instead of filtering hero rows; T2-PATH 1/2, T2-CONFLICT not run -> mark optional",
+    "DEMO RISK: processes with different rule sets on the shared model cause empty reads; live Finale authoring in a separate process may disturb the warm server - rely on 3-min cutoff + prebuilt finale_rescore",
+    "prompts.md vs QUESTIONS.md wording differs for Q-CONFLICT/Q-ADDON; stories.md L87 numbers not in exports (appendix omitted)"
   ],
   "engine_hours_estimate": 0,
   "checkpoints": {

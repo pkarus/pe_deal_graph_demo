@@ -1,0 +1,419 @@
+{
+ "rules": [
+  {
+   "id": "ADDON_SIMILARITY",
+   "name": "Add-on similarity (backup)",
+   "kind": "graph",
+   "questions": [
+    "Q-ADDON"
+   ],
+   "docstring": "Backup (Q-ADDON): which companies share the most customers and suppliers with our platforms. Platforms are the companies Fund IV holds today. Jaccard similarity = shared commercial neighbors divided by all commercial neighbors of the pair; pairs with nothing in common are absent (not zero), and a platform is never compared with itself. Louvain communities (optional) color the commercial ecosystem in the explorer.",
+   "source": "pe_deal_graph/model/graphs.py::define_addon_similarity"
+  },
+  {
+   "id": "A_CRM",
+   "name": "Positive CRM touch (10 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "10 points when we had a positive interaction in the last 24 months with the company or with someone who currently works there.",
+   "source": "pe_deal_graph/model/rules.py::access_components"
+  },
+  {
+   "id": "A_WARM_PATH",
+   "name": "Warm path to the CEO (Finale, 10 points)",
+   "kind": "rule",
+   "questions": [
+    "FINALE"
+   ],
+   "docstring": "Finale only: 10 points when the current CEO is two Knows hops or fewer from any Northwind deal-team or operating-partner seed (graph distance feeding a rule).",
+   "source": "pe_deal_graph/model/rules.py::finale_warm_path_points"
+  },
+  {
+   "id": "CLOSEST_INTERMEDIARY",
+   "name": "Closest intermediary",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH",
+    "Q-FLOW"
+   ],
+   "docstring": "Closest intermediary. For a company, the bank or boutique with the most recent dated tie in the last 5 years: an engagement signal, or an advisor seat (sell-side, buy-side or debt advisor) on a deal for the company. Ties go to the name first alphabetically. It is the route into a cold target: Harbor Lane Advisors for Saltmarsh.",
+   "source": "pe_deal_graph/model/rules.py::closest_intermediary"
+  },
+  {
+   "id": "COMMERCIAL",
+   "name": "Commercial links and reach",
+   "kind": "graph",
+   "questions": [
+    "Q-CONFLICT",
+    "Q-ADDON"
+   ],
+   "docstring": "The commercial network: companies linked when one supplies the other. Every company is a node. Each supplier-customer link (Company.supplies) becomes one undirected edge per pair, because a conflict or a shared counterparty matters whichever way the goods flow; the direction stays in the source data as evidence for R09's exposure text. How many commercial links separate a bid subject from every other company. The bid subject is R09's ConflictSubject (the pipeline company at IOI prep). One single-sided distance call writes Company.commercial_hops(subject, company, hops) for every reachable company. R09 keeps our current holdings at 1 link (a conflict, or a same-fund link) or 2 links (a shared customer or supplier, informational); 3 links and beyond are outside the check.",
+   "source": "pe_deal_graph/model/graphs.py::define_conflict_reach"
+  },
+  {
+   "id": "CONCENTRATION",
+   "name": "Thesis-area concentration guideline",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT"
+   ],
+   "docstring": "Concentration guideline. Fund IV's current equity per thesis area (the hierarchy rollup from Act 1, not the company's own niche) as a share of fund size, against the IC guideline (35%). Pro forma adds the bid subject's estimated equity check to its own thesis area. Headroom is the largest check that stays within the guideline; over-by is how far the deal would breach it.",
+   "source": "pe_deal_graph/model/rules.py::concentration"
+  },
+  {
+   "id": "CONFLICT",
+   "name": "Cross-fund conflict flag",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT",
+    "FINALE"
+   ],
+   "docstring": "Cross-fund conflict (Finale). A target that supplies or buys from a company held today by a Northwind fund other than Fund IV (today: Fund III) needs cross-fund clearance: it keeps its score, is flagged 'Conflict - cross-fund review' and is held off the Tier A call list until cleared. This is the Q-CONFLICT one-link exposure, applied to every target at once.",
+   "source": "pe_deal_graph/model/rules.py::finale_conflict"
+  },
+  {
+   "id": "COVERAGE_GAP",
+   "name": "Coverage gap",
+   "kind": "rule",
+   "questions": [
+    "Q-FLOW"
+   ],
+   "docstring": "Coverage gap. Touchpoints are our CRM interactions in the last 24 months with the intermediary or with anyone who works there today (0 when none). The bottom-quartile line is the touchpoint count at position ceil(25% of N) over all intermediaries; the top decile of bridges is ceil(10% of the intermediaries in the deal-flow graph), by betweenness rank from the graph. A gap is a top-decile bridge we touch no more than the bottom quartile: it moves deals in our sectors and we barely call it. Volume is not control: the league-table leader is not a bridge.",
+   "source": "pe_deal_graph/model/rules.py::coverage_gap"
+  },
+  {
+   "id": "DEAL_FLOW",
+   "name": "Deal-flow bridges",
+   "kind": "graph",
+   "questions": [
+    "Q-FLOW"
+   ],
+   "docstring": "Who sat across the table from whom on thesis-sector deals in the last 5 years. Deals are R09's DealFlowTransaction (closed in the 5 years before AS_OF, target in the Fund IV thesis). On each deal we link every advisor (sell-side, buy-side or debt advisor; lenders are not advisors) to the target and to the buyer, seller and owner, and we link the buyer to the target. In a recap with no change of control the owner stands in for the buyer. A sponsor party is the sponsor itself (its fund is only the vehicle) and an add-on buyer is the platform company. Each pair is one link however many deals it shares: Organization.deal_flow_partner(a, b), a.id < b.id. The deal-flow network: firms linked by shared thesis-sector deals in the last 5 years. Nodes are only the organizations that appear on at least one such deal (intermediaries, sponsors, companies), so \"intermediaries in the graph\" means intermediaries active in our sectors. Undirected and unweighted, because betweenness needs an unweighted graph and the question is who connects whom, not how often. Which intermediaries actually bridge deal flow in our sectors. Betweenness counts, for every pair of firms, the share of shortest connections that pass through a firm: a high value means deals between otherwise separate founders and sponsors run through it. It is computed exactly (num_pivots = BETWEENNESS_PIVOTS, which exceeds any possible node count) and unnormalized, so it equals networkx betweenness_centrality(normalized=False). PageRank is a secondary \"reach\" column for display only. Intermediary.bridge_rank ranks intermediaries in the graph by betweenness (highest first, then name), which R09's CoverageGap rule reads. Louvain communities (optional) only color the explorer.",
+   "source": "pe_deal_graph/model/graphs.py::define_deal_flow_centrality"
+  },
+  {
+   "id": "DEAL_FLOW_SCOPE",
+   "name": "Deal-flow scope",
+   "kind": "rule",
+   "questions": [
+    "Q-FLOW"
+   ],
+   "docstring": "Deal-flow scope. A deal counts when it closed in the last 5 years and its target is in the Fund IV thesis (the same hierarchy rule as Q-SCORE). For each intermediary: thesis deals advised (sell-side, buy-side or debt advisor; lenders are not advisors) and all deals advised in 5 years (the league-table count, shown only as a contrast).",
+   "source": "pe_deal_graph/model/rules.py::deal_flow_scope"
+  },
+  {
+   "id": "DECISION_MAKER",
+   "name": "Decision-makers",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "Decision-makers. For every eligible target: its current CEO, and, when a sponsor fund owns it, each person who sits on its board today and is on the owning sponsor's deal team today (the owner's board designee). CFOs, COOs and independent directors are routes, not outcomes.",
+   "source": "pe_deal_graph/model/rules.py::decision_makers"
+  },
+  {
+   "id": "EMPLOYMENT",
+   "name": "Current role",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE",
+    "Q-PATH"
+   ],
+   "docstring": "Current role. A person holds a role at an organization from its start date to its end date (open means current at AS_OF). Roles drive CEOs and decision-makers, readiness signals (CFO hire, succession, new director), our seeds and tenure overlap.",
+   "source": "pe_deal_graph/model/rules.py::who_we_are"
+  },
+  {
+   "id": "EVIDENCE_NAMES",
+   "name": "How evidence names companies and our people",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE",
+    "Q-PATH"
+   ],
+   "docstring": "How evidence text names organizations and our own people. A company that a Northwind fund owned in the past but not today is cited as \"a former Northwind portfolio company\"; every other organization by its name. A person with a current Northwind role is cited by that role (\"a Northwind operating partner\" or \"a Northwind deal-team member\") when they logged a CRM touch: the score is about the target, not about which of us made the call.",
+   "source": "pe_deal_graph/model/rules.py::evidence_names"
+  },
+  {
+   "id": "FINALE_RESCORE",
+   "name": "Finale re-score",
+   "kind": "rule",
+   "questions": [
+    "FINALE"
+   ],
+   "docstring": "Finale re-score. Finale score = Act-1 score + warm-path points; the tier uses the Act-1 thresholds. The finale Tier-A list ranks eligible targets without a conflict flag by finale score, then readiness, then fit, then name. Conflicted targets keep their score and their explanation says why they are off the list: the score did not change; the eligibility to be on Monday's call list did.",
+   "source": "pe_deal_graph/model/rules.py::finale_rescore"
+  },
+  {
+   "id": "FIT_EBITDA",
+   "name": "EBITDA size (10 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "10 points for EBITDA of $10-30M (the sweet spot), 5 points at the edges of the $5-40M band.",
+   "source": "pe_deal_graph/model/rules.py::fit_components"
+  },
+  {
+   "id": "FIT_MARGIN",
+   "name": "Margin vs benchmark (5 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "5 points when the EBITDA margin meets the benchmark of the company's Fund IV focus area.",
+   "source": "pe_deal_graph/model/rules.py::fit_components"
+  },
+  {
+   "id": "FIT_THESIS",
+   "name": "Thesis fit and eligibility",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "Thesis fit. A company is in the Fund IV thesis when its niche sits under a Fund IV include node (at any level) and under no Fund IV exclude node: Skilled Nursing Facilities is excluded inside Healthcare Services, and a veterinary drug maker never reaches a focus node at all. Its thesis area is the deepest include node above the niche; the area's margin benchmark is the bar for the margin point. A company is US-based when its HQ region rolls up to the fund's geography. Eligible targets are in thesis, inside the fund's EBITDA band, US, private and not already owned by a Northwind fund; only they are scored. Every other company gets the first reason it fails, in the order thesis, band, US, public, ours.",
+   "source": "pe_deal_graph/model/rules.py::thesis_fit"
+  },
+  {
+   "id": "IN_CRM",
+   "name": "Known to our CRM",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "Known to our CRM. A company is known when it has a pipeline row, or when any CRM interaction touched the company itself or a person who currently works there. \"Not in CRM\" is the opposite: Tier A names with no coverage, meaning no pipeline row and no CRM touch on the company or its people.",
+   "source": "pe_deal_graph/model/rules.py::known_to_crm"
+  },
+  {
+   "id": "K1_BOARD",
+   "name": "Board co-service",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "Board co-service. The K1 tenure-overlap rule labels a tie board co-service when both people held board seats at the same organization for 12 months or more at the same time; strength and recency are as for any tenure overlap.",
+   "source": "pe_deal_graph/model/rules.py::knows_tenure_overlap"
+  },
+  {
+   "id": "K1_TENURE",
+   "name": "Tenure overlap (12 months or more)",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "K1 tenure overlap. Two people know each other when they held roles at the same organization at the same time for 12 months or more (an open role runs to AS_OF). Strength rises with the length of the overlap (0.4 + 0.15 per year, capped at 1.0) and fades with age: full weight if the overlap ended within 10 years, 0.7 within 20 years, 0.4 before that. It reads \"board co-service\" when both roles are board seats, otherwise \"tenure overlap\". A shared employer without overlapping dates is rejected: two people who worked at the same company years apart (for example, one left 613 days before the other arrived) are not a warm intro, which is the false lead a shared-employer join reports.",
+   "source": "pe_deal_graph/model/rules.py::knows_tenure_overlap"
+  },
+  {
+   "id": "K2_DEAL",
+   "name": "Deal co-participation",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "K2 deal co-participation. Two people know each other when both led a side of the same deal, or when one led a side and the other was the target's CEO or CFO on the closing date (the banker who ran a recap knows the founder who sold). Strength 0.7, faded by the age of the deal like K1.",
+   "source": "pe_deal_graph/model/rules.py::knows_deal_coparticipation"
+  },
+  {
+   "id": "K3_CRM",
+   "name": "Positive CRM contact",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "K3 positive CRM. A Northwind seed knows a person after positive person-level interactions (meetings, calls, emails or conferences) in the last 24 months: 0.6 for one, 0.8 for two, 1.0 for three or more. Org-level touches (a meeting with a firm, no named person) create no personal tie. Each seed's log is its own piece of evidence, so two seeds who logged each other never collide.",
+   "source": "pe_deal_graph/model/rules.py::knows_positive_crm"
+  },
+  {
+   "id": "KNOWS",
+   "name": "Who knows whom",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH",
+    "FINALE"
+   ],
+   "docstring": "Knows. Two people know each other when at least one piece of evidence links them (tenure overlap, a shared deal, or positive CRM contact). One row per pair; the tie strength is the strongest evidence, and the evidence shown is that strongest item. The symmetric view feeds the warm-path graph and the hop-by-hop path strengths.",
+   "source": "pe_deal_graph/model/rules.py::knows_relationship"
+  },
+  {
+   "id": "NORTHWIND_HOLDING",
+   "name": "Northwind holding (current only)",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT",
+    "FINALE"
+   ],
+   "docstring": "Northwind holding. A company counts as ours only while a Northwind fund owns it today (ownership started on or before AS_OF and has not ended). Time-bounded: a company a Northwind fund sold in 2020 is not a holding. The bid subject of the conflict check is the pipeline company at stage IOI prep.",
+   "source": "pe_deal_graph/model/rules.py::northwind_holding_and_subject"
+  },
+  {
+   "id": "OWNERSHIP",
+   "name": "Ownership",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE",
+    "Q-CONFLICT"
+   ],
+   "docstring": "Ownership. A fund owns a company from its start date to its end date (open means still owned at AS_OF). Ownership drives the exit window, the owner's board designee, Northwind holdings and the concentration guideline.",
+   "source": "pe_deal_graph/model/rules.py::who_we_are"
+  },
+  {
+   "id": "PORTFOLIO_EXPOSURE",
+   "name": "Portfolio exposure within two links",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT"
+   ],
+   "docstring": "Portfolio exposure. For the bid subject, every current Northwind holding within two commercial links (supplier or customer, either direction; the distance comes from the commercial graph). One link to a company held by another Northwind fund is a conflict for cross-fund review; one link to a Fund IV company is a same-fund link; two links is a shared counterparty, shown for information. The evidence states the link directions through the middle company. A holding three links out, or a former holding, never appears.",
+   "source": "pe_deal_graph/model/rules.py::portfolio_exposure"
+  },
+  {
+   "id": "R_BANKER",
+   "name": "Banker engaged (10 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "10 points when a bank or boutique was reported engaged in the last 6 months.",
+   "source": "pe_deal_graph/model/rules.py::readiness_components"
+  },
+  {
+   "id": "R_CFO_FROM_PE",
+   "name": "CFO from a PE-backed company (15 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "15 points when the current CFO joined in the last 18 months straight from a company that was sponsor-owned while the CFO worked there (a three-way dated join: the CFO role, the prior role ending within 12 months before, and the prior employer's ownership during it).",
+   "source": "pe_deal_graph/model/rules.py::readiness_components"
+  },
+  {
+   "id": "R_DEBT",
+   "name": "Debt maturing (10 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "10 points when known debt matures within the next 18 months.",
+   "source": "pe_deal_graph/model/rules.py::readiness_components"
+  },
+  {
+   "id": "R_EXIT_WINDOW",
+   "name": "Sponsor exit window (15 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "15 points when the current owner is a sponsor fund that has held the company 5+ years and whose fund is 8+ years past vintage (vintage 2018 or earlier).",
+   "source": "pe_deal_graph/model/rules.py::readiness_components"
+  },
+  {
+   "id": "R_NEW_DIRECTOR",
+   "name": "New independent director (5 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "5 points when a board member joined in the last 12 months who holds no other role at the company and no current role at its owning sponsor.",
+   "source": "pe_deal_graph/model/rules.py::readiness_components"
+  },
+  {
+   "id": "R_SUCCESSION",
+   "name": "Founder succession (10 points)",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "10 points when a founder has been CEO for 15+ years and there is no President or COO in place. Tenure, never age.",
+   "source": "pe_deal_graph/model/rules.py::readiness_components"
+  },
+  {
+   "id": "SCORE",
+   "name": "Composite score, tier and explanation",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE",
+    "FINALE"
+   ],
+   "docstring": "Composite score. Score = Fit (max 30) + Readiness (sum of readiness points, capped at 50) + Access (Act 1: A_CRM only). Tier A at 70 or more, B at 50-69, C below 50. Rank: score, then readiness, then fit (all high first), then name. The explanation lists every awarded component with its points and evidence, in a fixed order, so every point is traceable.",
+   "source": "pe_deal_graph/model/rules.py::composite_score"
+  },
+  {
+   "id": "SECTOR_CLOSURE",
+   "name": "Sector and region hierarchy closure",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE",
+    "Q-FLOW",
+    "Q-CONFLICT"
+   ],
+   "docstring": "Sector hierarchy closure. A niche is within itself, its subsector and its sector, at any depth. This recursive rule lets the Fund IV thesis name focus nodes at mixed levels (a whole sector, a subsector, or a single excluded niche) and still classify every company on its niche. Region closure works the same way: a state is within its census region and the country. Used by Q-SCORE (thesis fit, US gate), Q-FLOW (deal-flow scope) and Q-CONFLICT (thesis areas).",
+   "source": "pe_deal_graph/model/rules.py::sector_closure"
+  },
+  {
+   "id": "SEED_DISTANCE",
+   "name": "Introductions from our nearest seed",
+   "kind": "graph",
+   "questions": [
+    "Q-PATH",
+    "FINALE"
+   ],
+   "docstring": "How many introductions each person is from each of our deal-team members and operating partners. Seeds are R09's OurSeed (current Northwind Deal Team or Operating Partner). One single-sided distance call from the seed set gives Person.seed_hops(seed, person, hops); the nearest seed's count is Person.nearest_seed_hops, which the Finale reuses for \"reach the CEO in two hops or fewer\". People nobody on our team can reach get no distance at all (they are cold).",
+   "source": "pe_deal_graph/model/graphs.py::define_seed_distances"
+  },
+  {
+   "id": "SHARED_EMPLOYER_REJECT",
+   "name": "Shared employer without overlap is not a tie",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "Shared employer is not a relationship. The tenure-overlap rule requires the two roles to overlap in time by 12 months or more. Working at the same company years apart creates no Knows edge, so the shared-employer intro a SQL self-join reports (two people at the same lab-services company, 613 days apart) is rejected.",
+   "source": "pe_deal_graph/model/rules.py::knows_tenure_overlap"
+  },
+  {
+   "id": "WARM_PATH",
+   "name": "Warm introduction path",
+   "kind": "graph",
+   "questions": [
+    "Q-PATH",
+    "FINALE"
+   ],
+   "docstring": "Who knows whom: one link per pair of people with any evidence of knowing each other. People are the nodes (everyone, including people nobody knows). A link means R09's Knows rule found overlapping tenure, board co-service, a shared deal or positive CRM contact. Links carry no direction and no weight here: the graph measures how many introductions apart two people are, and tie strength is applied afterwards when routes of the same length are compared. How many introductions each person is from each of our deal-team members and operating partners. Seeds are R09's OurSeed (current Northwind Deal Team or Operating Partner). One single-sided distance call from the seed set gives Person.seed_hops(seed, person, hops); the nearest seed's count is Person.nearest_seed_hops, which the Finale reuses for \"reach the CEO in two hops or fewer\". People nobody on our team can reach get no distance at all (they are cold). How far each person is from the people who decide on a sale of our priority targets. Decision-makers are R09's DecisionMaker (the CEO, plus the owning sponsor's board designee), limited to targets scoring PATH_SCOPE_MIN_SCORE or more (Tier A today, or Tier A once the finale's warm-path points are added). This is the second single-sided distance call: together with the seed distances it tells us which people sit on a shortest route. It also writes DecisionMaker.hops (introductions from our nearest seed) and flags decision-makers with no route within MAX_PATH_HOPS as cold. Our warmest introduction routes to each decision-maker, hop by hop, with evidence. A route is a chain of people who know each other, from one of our seeds to the decision-maker, exactly as long as the decision-maker's distance from our nearest seed (so only shortest routes, at most MAX_PATH_HOPS introductions). Every middle person m must satisfy the distance identity seed_hops(seed, m) + dm_hops(decision-maker, m) == route length, which is how the routes are rebuilt from the two distance calls. A route's strength is the product of its tie strengths; routes of equal length are ranked strongest first (then by route, for a stable order), and the best plus up to two alternates become WarmPath rows with one WarmPathHop per introduction.",
+   "source": "pe_deal_graph/model/graphs.py::define_warm_paths"
+  },
+  {
+   "id": "WARM_PATH_POINTS",
+   "name": "Warm-path access points",
+   "kind": "rule",
+   "questions": [
+    "FINALE"
+   ],
+   "docstring": "Warm-path points (Finale). A target earns 10 access points when its current CEO is two Knows hops or fewer from any current Northwind deal-team member or operating partner; otherwise 0. The distance is the graph output from Act 2 (Person.nearest_seed_hops), so a graph result feeds a governed rule.",
+   "source": "pe_deal_graph/model/rules.py::finale_warm_path_points"
+  },
+  {
+   "id": "WHO_WE_ARE",
+   "name": "Northwind, its funds, seeds and holdings",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE",
+    "Q-PATH",
+    "Q-CONFLICT"
+   ],
+   "docstring": "Who \"we\" are. Northwind Equity Partners is our sponsor; its funds are ours; the buying fund is our fund with the latest vintage (Fund IV). Our seeds are the people who can make an introduction today: current Deal Team members and Operating Partners at Northwind (former partners are not). A Northwind holding is a company one of our funds owns today; sold companies do not count. Thesis areas are the Fund IV include nodes. Each company's current majority owner fund and current CEO are also derived here.",
+   "source": "pe_deal_graph/model/rules.py::who_we_are"
+  },
+  {
+   "id": "WHY_NOT",
+   "name": "Why-not explanations",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "Why-not explanations for scored companies. (a) Unscored activity: three or more signals in the last 12 months but none of a scored readiness type, listed by type with counts. (b) Exit window not met: sponsor-owned, but not long enough or the fund is too young. A busy news feed is not readiness, and a recent buyout is not an exit.",
+   "source": "pe_deal_graph/model/rules.py::why_not_templates"
+  }
+ ]
+}

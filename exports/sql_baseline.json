@@ -1,0 +1,334 @@
+{
+ "questions": {
+  "Q-SCORE": {
+   "sql_file": "data/naive_sql/q_score.sql",
+   "description": "Keyword sector screen (no hierarchy): niche or company name matches a sector keyword, EBITDA $5-40M, HQ in a hard-coded US state list, not a current Northwind holding, ranked by the count of any signal in the last 12 months.",
+   "metric_label": "Signals in the last 12 months (any type)",
+   "row_count": 206,
+   "kg_count": 6,
+   "kg_label": "Tier A",
+   "rows": [
+    {
+     "entity_id": "C2804",
+     "name": "Cobalt Urgent Care Partners",
+     "rank": 1,
+     "metric": 5.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C1495",
+     "name": "Pembrook Veterinary Pharmaceuticals",
+     "rank": 2,
+     "metric": 4.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C1888",
+     "name": "Linden Hollow Senior Care",
+     "rank": 3,
+     "metric": 3.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C4685",
+     "name": "Ashby Vale Dental Partners",
+     "rank": 4,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C8457",
+     "name": "Ashwell Counseling Centers",
+     "rank": 5,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C6334",
+     "name": "Bayside Pediatric Therapy Group",
+     "rank": 6,
+     "metric": 2.0,
+     "verdict": "agrees",
+     "note": null
+    },
+    {
+     "entity_id": "C4525",
+     "name": "Belwick Food Ingredients",
+     "rank": 7,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C7732",
+     "name": "Carridge Rehab Partners",
+     "rank": 8,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C7168",
+     "name": "Cinderwick Geotechnical Labs",
+     "rank": 9,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C7185",
+     "name": "Dunbury Revenue Cycle",
+     "rank": 10,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C9175",
+     "name": "Fairthorpe Chemicals",
+     "rank": 11,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C3429",
+     "name": "Fenwick Food Safety Labs",
+     "rank": 12,
+     "metric": 2.0,
+     "verdict": "agrees",
+     "note": null
+    },
+    {
+     "entity_id": "C2423",
+     "name": "Flintbury Animal Hospitals",
+     "rank": 13,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C7145",
+     "name": "Flintworth Behavioral Health",
+     "rank": 14,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "C8797",
+     "name": "Foxbury MRO Supply",
+     "rank": 15,
+     "metric": 2.0,
+     "verdict": "other",
+     "note": null
+    }
+   ],
+   "missed": [
+    {
+     "entity_id": "C5441",
+     "name": "Saltmarsh Home Infusion",
+     "note": "Not returned by the SQL screen."
+    },
+    {
+     "entity_id": "C6895",
+     "name": "Quarry Records Retrieval",
+     "note": "Not returned by the SQL screen."
+    }
+   ]
+  },
+  "Q-PATH": {
+   "sql_file": "data/naive_sql/q_path.sql",
+   "description": "Shared-employer join: any current Northwind deal-team or operating-partner person who ever worked at the same organization as the current CEO of a top-three target, ignoring dates.",
+   "metric_label": "Claimed hops (shared employer)",
+   "row_count": 1,
+   "kg_count": 3,
+   "kg_label": "Warm targets",
+   "rows": [
+    {
+     "entity_id": "C5441",
+     "name": "Saltmarsh Home Infusion",
+     "rank": 1,
+     "metric": 1.0,
+     "verdict": "agrees",
+     "note": "claims Tom Harlowe knows Victor Hale via Varnell Lab Services (2008-01-07 to 2011-06-30 vs 2013-03-04 to 2020-08-31)"
+    }
+   ],
+   "missed": [
+    {
+     "entity_id": "C3225",
+     "name": "Larkspur Revenue Partners",
+     "note": "Not returned by the SQL screen."
+    },
+    {
+     "entity_id": "C6334",
+     "name": "Bayside Pediatric Therapy Group",
+     "note": "Not returned by the SQL screen."
+    }
+   ]
+  },
+  "Q-FLOW": {
+   "sql_file": "data/naive_sql/q_flow.sql",
+   "description": "League table: distinct deals per advisor (sell-side, buy-side or debt advisor) over all transactions in the last 5 years, any sector, most deals first.",
+   "metric_label": "Deals advised in 5 years (all sectors)",
+   "row_count": 43,
+   "kg_count": 5,
+   "kg_label": "Top bridges",
+   "rows": [
+    {
+     "entity_id": "I736",
+     "name": "Brayford Capital Markets",
+     "rank": 1,
+     "metric": 40.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I210",
+     "name": "Cedar Row Partners",
+     "rank": 2,
+     "metric": 14.0,
+     "verdict": "agrees",
+     "note": null
+    },
+    {
+     "entity_id": "I252",
+     "name": "Glenley & Co.",
+     "rank": 3,
+     "metric": 12.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I191",
+     "name": "Thornport Advisors",
+     "rank": 4,
+     "metric": 12.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I103",
+     "name": "Amberhurst Partners",
+     "rank": 5,
+     "metric": 11.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I538",
+     "name": "Birchwick Advisors",
+     "rank": 6,
+     "metric": 11.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I229",
+     "name": "Orrby Business Advisors",
+     "rank": 7,
+     "metric": 11.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I737",
+     "name": "Umberby & Co.",
+     "rank": 8,
+     "metric": 11.0,
+     "verdict": "agrees",
+     "note": null
+    },
+    {
+     "entity_id": "I845",
+     "name": "Wilby Securities",
+     "rank": 9,
+     "metric": 10.0,
+     "verdict": "agrees",
+     "note": null
+    },
+    {
+     "entity_id": "I139",
+     "name": "Harbor Lane Advisors",
+     "rank": 10,
+     "metric": 9.0,
+     "verdict": "agrees",
+     "note": null
+    },
+    {
+     "entity_id": "I489",
+     "name": "Junhaven Advisors",
+     "rank": 11,
+     "metric": 6.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I936",
+     "name": "Quillwood Partners",
+     "rank": 12,
+     "metric": 6.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I523",
+     "name": "Fairmont Advisors",
+     "rank": 13,
+     "metric": 5.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I670",
+     "name": "Kestcombe Advisors",
+     "rank": 14,
+     "metric": 5.0,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "I648",
+     "name": "Loamhurst Bank Capital",
+     "rank": 15,
+     "metric": 5.0,
+     "verdict": "other",
+     "note": null
+    }
+   ],
+   "missed": []
+  },
+  "Q-CONFLICT": {
+   "sql_file": "data/naive_sql/q_conflict.sql",
+   "description": "One-hop conflict join: companies linked to the bid subject (pipeline stage IOI prep) by a commercial link in either direction that appear in any Northwind ownership row ever recorded (no current-ownership filter).",
+   "metric_label": "Commercial links to the bid subject",
+   "row_count": 2,
+   "kg_count": 1,
+   "kg_label": "Conflicts",
+   "rows": [
+    {
+     "entity_id": "C4874",
+     "name": "Cobbleton Dental Group",
+     "rank": 1,
+     "metric": 1.0,
+     "verdict": "other",
+     "note": "Northwind Equity Partners Fund II 2014-06-30 to 2020-02-14"
+    },
+    {
+     "entity_id": "C2514",
+     "name": "Pinewick Dermatology Partners",
+     "rank": 2,
+     "metric": 1.0,
+     "verdict": "agrees",
+     "note": "Northwind Equity Partners Fund III 2020-07-01 to present"
+    }
+   ],
+   "missed": []
+  }
+ }
+}

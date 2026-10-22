@@ -1,0 +1,300 @@
+{
+ "question_id": "Q-CONFLICT",
+ "business_question": "Before we bid on Tessmark Clinical Supply, does it conflict with anything we own, and does it breach our concentration guideline?",
+ "subject": {
+  "company_id": "C8200",
+  "name": "Tessmark Clinical Supply",
+  "thesis_area": "Specialty Distribution"
+ },
+ "max_distance": 2,
+ "rule_ids": [
+  "NORTHWIND_HOLDING",
+  "PORTFOLIO_EXPOSURE",
+  "CONCENTRATION"
+ ],
+ "exposures": [
+  {
+   "company_id": "C2514",
+   "name": "Pinewick Dermatology Partners",
+   "fund_name": "Northwind Equity Partners Fund III",
+   "since": "2020-07-01",
+   "distance": 1,
+   "kind": "conflict",
+   "kind_label": "Conflict - cross-fund review",
+   "evidence": "Tessmark Clinical Supply supplies Pinewick Dermatology Partners",
+   "path_node_ids": [
+    "C8200",
+    "C2514"
+   ],
+   "edge_ids": [
+    "CL:L14308"
+   ],
+   "rule_id": "PORTFOLIO_EXPOSURE"
+  },
+  {
+   "company_id": "C7633",
+   "name": "Ironvale Testing Group",
+   "fund_name": "Northwind Equity Partners Fund IV",
+   "since": "2024-03-15",
+   "distance": 2,
+   "kind": "informational",
+   "kind_label": "Informational",
+   "evidence": "Tessmark Clinical Supply supplies Ravenholt Engineering Group; Ravenholt Engineering Group buys from Ironvale Testing Group",
+   "path_node_ids": [
+    "C8200",
+    "C8773",
+    "C7633"
+   ],
+   "edge_ids": [
+    "CL:L68241",
+    "CL:L38076"
+   ],
+   "rule_id": "PORTFOLIO_EXPOSURE"
+  }
+ ],
+ "context": [
+  {
+   "company_id": "C4874",
+   "name": "Cobbleton Dental Group",
+   "distance": 1,
+   "reason": "Former holding of Northwind Equity Partners Fund II, sold on 2020-02-14; no longer a current exposure.",
+   "edge_ids": [
+    "CL:L39739"
+   ]
+  },
+  {
+   "company_id": "C1074",
+   "name": "Redfern Imaging Centers",
+   "distance": 3,
+   "reason": "Held today but three commercial links away, outside the two-link review distance.",
+   "edge_ids": [
+    "CL:L66952",
+    "CL:L38719",
+    "CL:L38336"
+   ]
+  }
+ ],
+ "concentration": {
+  "fund_name": "Northwind Equity Partners Fund IV",
+  "fund_size_musd": 1200.0,
+  "guideline_pct": 35.0,
+  "check_musd": 55.0,
+  "subject_area": "Specialty Distribution",
+  "breach": true,
+  "headroom_musd": 35.0,
+  "over_by_musd": 20.0,
+  "rule_id": "CONCENTRATION",
+  "areas": [
+   {
+    "name": "Healthcare Services",
+    "before_musd": 110.0,
+    "before_pct": 9.166667,
+    "after_musd": 110.0,
+    "after_pct": 9.166667,
+    "is_subject_area": false,
+    "breach": false
+   },
+   {
+    "name": "Specialty Distribution",
+    "before_musd": 385.0,
+    "before_pct": 32.083333,
+    "after_musd": 440.0,
+    "after_pct": 36.666667,
+    "is_subject_area": true,
+    "breach": true
+   },
+   {
+    "name": "Tech-Enabled Business Services",
+    "before_musd": 0.0,
+    "before_pct": 0.0,
+    "after_musd": 0.0,
+    "after_pct": 0.0,
+    "is_subject_area": false,
+    "breach": false
+   },
+   {
+    "name": "Testing, Inspection & Certification",
+    "before_musd": 150.0,
+    "before_pct": 12.5,
+    "after_musd": 150.0,
+    "after_pct": 12.5,
+    "is_subject_area": false,
+    "breach": false
+   }
+  ],
+  "holdings": [
+   {
+    "company_id": "C7633",
+    "name": "Ironvale Testing Group",
+    "area": "Testing, Inspection & Certification",
+    "niche": "Materials Testing",
+    "since": "2024-03-15",
+    "equity_musd": 150.0,
+    "pct": 12.5
+   },
+   {
+    "company_id": "C2059",
+    "name": "Tullmere Chemical Distribution",
+    "area": "Specialty Distribution",
+    "niche": "Specialty Chemicals Distribution",
+    "since": "2023-11-01",
+    "equity_musd": 140.0,
+    "pct": 11.666667
+   },
+   {
+    "company_id": "C2199",
+    "name": "Flintmoor Industrial Supply",
+    "area": "Specialty Distribution",
+    "niche": "Industrial MRO Distribution",
+    "since": "2024-08-20",
+    "equity_musd": 125.0,
+    "pct": 10.416667
+   },
+   {
+    "company_id": "C2950",
+    "name": "Primdale Ingredients Co",
+    "area": "Specialty Distribution",
+    "niche": "Specialty Food Ingredients Distribution",
+    "since": "2025-06-02",
+    "equity_musd": 120.0,
+    "pct": 10.0
+   },
+   {
+    "company_id": "C2262",
+    "name": "Quillmont Physical Therapy",
+    "area": "Healthcare Services",
+    "niche": "Physical Therapy Clinics",
+    "since": "2023-09-12",
+    "equity_musd": 110.0,
+    "pct": 9.166667
+   }
+  ]
+ },
+ "view_graph": {
+  "nodes": [
+   {
+    "id": "C1074",
+    "label": "Redfern Imaging Centers",
+    "type": "company",
+    "tags": [
+     "context"
+    ],
+    "x": 500.0,
+    "y": 219.72
+   },
+   {
+    "id": "C2514",
+    "label": "Pinewick Dermatology Partners",
+    "type": "company",
+    "tags": [
+     "conflict"
+    ],
+    "x": -168.13,
+    "y": 169.55
+   },
+   {
+    "id": "C4874",
+    "label": "Cobbleton Dental Group",
+    "type": "company",
+    "tags": [
+     "context"
+    ],
+    "x": -291.37,
+    "y": 9.78
+   },
+   {
+    "id": "C5653",
+    "label": "Carrowmere Community Hospital",
+    "type": "company",
+    "tags": [],
+    "x": 126.88,
+    "y": 76.89
+   },
+   {
+    "id": "C7633",
+    "label": "Ironvale Testing Group",
+    "type": "company",
+    "tags": [],
+    "x": -226.84,
+    "y": -401.34
+   },
+   {
+    "id": "C8200",
+    "label": "Tessmark Clinical Supply",
+    "type": "company",
+    "tags": [
+     "subject"
+    ],
+    "x": -104.95,
+    "y": -3.93
+   },
+   {
+    "id": "C8203",
+    "label": "Wexley Medical Linen",
+    "type": "company",
+    "tags": [],
+    "x": 332.09,
+    "y": 154.68
+   },
+   {
+    "id": "C8773",
+    "label": "Ravenholt Engineering Group",
+    "type": "company",
+    "tags": [],
+    "x": -167.66,
+    "y": -225.35
+   }
+  ],
+  "edges": [
+   {
+    "id": "CL:L14308",
+    "source": "C8200",
+    "target": "C2514",
+    "type": "commercial",
+    "label": "supplies"
+   },
+   {
+    "id": "CL:L38076",
+    "source": "C7633",
+    "target": "C8773",
+    "type": "commercial",
+    "label": "supplies"
+   },
+   {
+    "id": "CL:L38336",
+    "source": "C8203",
+    "target": "C1074",
+    "type": "commercial",
+    "label": "supplies"
+   },
+   {
+    "id": "CL:L38719",
+    "source": "C8203",
+    "target": "C5653",
+    "type": "commercial",
+    "label": "supplies"
+   },
+   {
+    "id": "CL:L39739",
+    "source": "C8200",
+    "target": "C4874",
+    "type": "commercial",
+    "label": "supplies"
+   },
+   {
+    "id": "CL:L66952",
+    "source": "C8200",
+    "target": "C5653",
+    "type": "commercial",
+    "label": "supplies"
+   },
+   {
+    "id": "CL:L68241",
+    "source": "C8200",
+    "target": "C8773",
+    "type": "commercial",
+    "label": "supplies"
+   }
+  ]
+ }
+}

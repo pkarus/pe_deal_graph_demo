@@ -1,0 +1,2038 @@
+{
+ "question_id": "Q-SCORE",
+ "business_question": "Which companies fit the Fund IV thesis and look ready to transact in the next 12 months?",
+ "tier_thresholds": {
+  "A": 70,
+  "B": 50
+ },
+ "readiness_cap": 50,
+ "max_score": 100,
+ "components": [
+  {
+   "id": "FIT_THESIS",
+   "label": "Thesis fit",
+   "group": "fit",
+   "max_points": 15,
+   "rule_id": "FIT_THESIS"
+  },
+  {
+   "id": "FIT_EBITDA",
+   "label": "EBITDA size",
+   "group": "fit",
+   "max_points": 10,
+   "rule_id": "FIT_EBITDA"
+  },
+  {
+   "id": "FIT_MARGIN",
+   "label": "Margin vs benchmark",
+   "group": "fit",
+   "max_points": 5,
+   "rule_id": "FIT_MARGIN"
+  },
+  {
+   "id": "R_CFO_FROM_PE",
+   "label": "CFO from a PE-backed company",
+   "group": "readiness",
+   "max_points": 15,
+   "rule_id": "R_CFO_FROM_PE"
+  },
+  {
+   "id": "R_EXIT_WINDOW",
+   "label": "Sponsor exit window",
+   "group": "readiness",
+   "max_points": 15,
+   "rule_id": "R_EXIT_WINDOW"
+  },
+  {
+   "id": "R_BANKER",
+   "label": "Banker engaged",
+   "group": "readiness",
+   "max_points": 10,
+   "rule_id": "R_BANKER"
+  },
+  {
+   "id": "R_DEBT",
+   "label": "Debt maturing",
+   "group": "readiness",
+   "max_points": 10,
+   "rule_id": "R_DEBT"
+  },
+  {
+   "id": "R_SUCCESSION",
+   "label": "Founder succession",
+   "group": "readiness",
+   "max_points": 10,
+   "rule_id": "R_SUCCESSION"
+  },
+  {
+   "id": "R_NEW_DIRECTOR",
+   "label": "New independent director",
+   "group": "readiness",
+   "max_points": 5,
+   "rule_id": "R_NEW_DIRECTOR"
+  },
+  {
+   "id": "A_CRM",
+   "label": "Positive CRM touch",
+   "group": "access",
+   "max_points": 10,
+   "rule_id": "A_CRM"
+  },
+  {
+   "id": "A_WARM_PATH",
+   "label": "Warm path to the CEO",
+   "group": "access",
+   "max_points": 10,
+   "rule_id": "A_WARM_PATH"
+  }
+ ],
+ "summary": {
+  "scored": 248,
+  "tier_a": 6,
+  "tier_b": 15,
+  "tier_c": 227,
+  "tier_a_not_in_crm": 2,
+  "ineligible": 1096
+ },
+ "rows": [
+  {
+   "company_id": "C3225",
+   "name": "Larkspur Revenue Partners",
+   "rank": 1,
+   "score": 90,
+   "tier": "A",
+   "fit": 30,
+   "readiness": 50,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Contacted",
+   "sector_path": [
+    "Business Services",
+    "Tech-Enabled Business Services",
+    "Healthcare Revenue Cycle Services"
+   ],
+   "ebitda_musd": 26.0,
+   "revenue_musd": 130.0,
+   "owner": "Priya Raman",
+   "why": "Thesis fit +15 (niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services); EBITDA size +10 (EBITDA $26.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 20.0% vs 18.0% benchmark for Tech-Enabled Business Services); CFO from a PE-backed company +15 (CFO Rohan Falkner hired 2025-07-01 from Flintstead Payroll Services, owned by Kestrelmoor Capital Fund II while the CFO worked there (2019-03-04 to 2025-05-30)); Sponsor exit window +15 (Kestrelmoor Capital Fund I, vintage 2016, held since 2019-04-15 = 7.5 years); Banker engaged +10 (banker engaged 2026-08-10 (Cedar Row Partners)); Debt maturing +10 (debt matures 2027-09-30 (flagged 2026-02-15)); Positive CRM touch +10 (positive meeting with the company 2026-05-20 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $26.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 20.0% vs 18.0% benchmark for Tech-Enabled Business Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "CFO Rohan Falkner hired 2025-07-01 from Flintstead Payroll Services, owned by Kestrelmoor Capital Fund II while the CFO worked there (2019-03-04 to 2025-05-30)"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 15,
+     "evidence": "Kestrelmoor Capital Fund I, vintage 2016, held since 2019-04-15 = 7.5 years"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-08-10 (Cedar Row Partners)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-09-30 (flagged 2026-02-15)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive meeting with the company 2026-05-20 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C6334",
+   "name": "Bayside Pediatric Therapy Group",
+   "rank": 2,
+   "score": 85,
+   "tier": "A",
+   "fit": 30,
+   "readiness": 45,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Engaged",
+   "sector_path": [
+    "Healthcare Services",
+    "Outpatient Clinical Services",
+    "Pediatric Therapy Clinics"
+   ],
+   "ebitda_musd": 22.0,
+   "revenue_musd": 140.0,
+   "owner": "Dana Okafor",
+   "why": "Thesis fit +15 (niche Pediatric Therapy Clinics under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $22.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Elena Marsh hired 2025-06-01 from a former Northwind portfolio company, owned by Northwind Equity Partners Fund II while the CFO worked there (2015-03-01 to 2025-04-30)); Banker engaged +10 (banker engaged 2026-05-15 (Salthorpe Capital Advisors)); Debt maturing +10 (debt matures 2027-06-30 (flagged 2026-01-20)); Founder succession +10 (founder CEO Daniel Reyes since 2008-01-01 (18.75 years), no President or COO); Positive CRM touch +10 (positive meeting with the company 2026-03-12 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Pediatric Therapy Clinics under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $22.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 15.7% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "CFO Elena Marsh hired 2025-06-01 from a former Northwind portfolio company, owned by Northwind Equity Partners Fund II while the CFO worked there (2015-03-01 to 2025-04-30)"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-05-15 (Salthorpe Capital Advisors)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-06-30 (flagged 2026-01-20)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "founder CEO Daniel Reyes since 2008-01-01 (18.75 years), no President or COO"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive meeting with the company 2026-03-12 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C5441",
+   "name": "Saltmarsh Home Infusion",
+   "rank": 3,
+   "score": 80,
+   "tier": "A",
+   "fit": 30,
+   "readiness": 50,
+   "access": 0,
+   "in_crm": false,
+   "pipeline_stage": null,
+   "sector_path": [
+    "Healthcare Services",
+    "Post-Acute Care",
+    "Home Infusion Services"
+   ],
+   "ebitda_musd": 18.0,
+   "revenue_musd": 115.0,
+   "owner": null,
+   "why": "Thesis fit +15 (niche Home Infusion Services under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $18.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Wes Okonkwo hired 2025-11-03 from Sorrhall Hospice, owned by Ridgeback Partners Fund III while the CFO worked there (2021-01-11 to 2025-09-26)); Sponsor exit window +15 (Coppervale Partners Fund II, vintage 2017, held since 2020-09-01 = 6.1 years); Banker engaged +10 (banker engaged 2026-07-14 (Harbor Lane Advisors)); Debt maturing +10 (debt matures 2027-12-31 (flagged 2026-03-10))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Home Infusion Services under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $18.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 15.7% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "CFO Wes Okonkwo hired 2025-11-03 from Sorrhall Hospice, owned by Ridgeback Partners Fund III while the CFO worked there (2021-01-11 to 2025-09-26)"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 15,
+     "evidence": "Coppervale Partners Fund II, vintage 2017, held since 2020-09-01 = 6.1 years"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-07-14 (Harbor Lane Advisors)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-12-31 (flagged 2026-03-10)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C6895",
+   "name": "Quarry Records Retrieval",
+   "rank": 4,
+   "score": 75,
+   "tier": "A",
+   "fit": 25,
+   "readiness": 40,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Contacted",
+   "sector_path": [
+    "Business Services",
+    "Tech-Enabled Business Services",
+    "Records Retrieval & Litigation Support"
+   ],
+   "ebitda_musd": 8.5,
+   "revenue_musd": 42.0,
+   "owner": "Priya Raman",
+   "why": "Thesis fit +15 (niche Records Retrieval & Litigation Support under Fund IV focus Tech-Enabled Business Services); EBITDA size +5 (EBITDA $8.5M at the edge of the $5-40M band); Margin vs benchmark +5 (margin 20.2% vs 18.0% benchmark for Tech-Enabled Business Services); CFO from a PE-backed company +15 (CFO Leon Galloway hired 2025-05-05 from Kestwood Claims Services, owned by Glenhallow Partners Fund IV while the CFO worked there (2018-09-04 to 2025-04-11)); Debt maturing +10 (debt matures 2027-03-31 (flagged 2026-04-22)); Founder succession +10 (founder CEO Esme Wakefield since 2009-09-01 (17.08 years), no President or COO); New independent director +5 (new board member Rafael Ortiz since 2026-03-16); Positive CRM touch +10 (positive call with the company 2025-12-04 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Records Retrieval & Litigation Support under Fund IV focus Tech-Enabled Business Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 5,
+     "evidence": "EBITDA $8.5M at the edge of the $5-40M band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 20.2% vs 18.0% benchmark for Tech-Enabled Business Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "CFO Leon Galloway hired 2025-05-05 from Kestwood Claims Services, owned by Glenhallow Partners Fund IV while the CFO worked there (2018-09-04 to 2025-04-11)"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-03-31 (flagged 2026-04-22)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "founder CEO Esme Wakefield since 2009-09-01 (17.08 years), no President or COO"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 5,
+     "evidence": "new board member Rafael Ortiz since 2026-03-16"
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive call with the company 2025-12-04 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C8200",
+   "name": "Tessmark Clinical Supply",
+   "rank": 5,
+   "score": 75,
+   "tier": "A",
+   "fit": 30,
+   "readiness": 35,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "IOI prep",
+   "sector_path": [
+    "Distribution",
+    "Specialty Distribution",
+    "Medical & Lab Supply Distribution"
+   ],
+   "ebitda_musd": 14.0,
+   "revenue_musd": 140.0,
+   "owner": "a Northwind deal-team member",
+   "why": "Thesis fit +15 (niche Medical & Lab Supply Distribution under Fund IV focus Specialty Distribution); EBITDA size +10 (EBITDA $14.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 10.0% vs 9.0% benchmark for Specialty Distribution); Banker engaged +10 (banker engaged 2026-06-02 (Cedar Row Partners)); Debt maturing +10 (debt matures 2028-02-28 (flagged 2025-11-05)); Founder succession +10 (founder CEO Alicia Albrecht since 1999-05-01 (27.42 years), no President or COO); New independent director +5 (new board member Helen Voss since 2026-02-17); Positive CRM touch +10 (positive meeting with the company 2026-06-10 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Medical & Lab Supply Distribution under Fund IV focus Specialty Distribution"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $14.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 10.0% vs 9.0% benchmark for Specialty Distribution"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-06-02 (Cedar Row Partners)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2028-02-28 (flagged 2025-11-05)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "founder CEO Alicia Albrecht since 1999-05-01 (27.42 years), no President or COO"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 5,
+     "evidence": "new board member Helen Voss since 2026-02-17"
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive meeting with the company 2026-06-10 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C3429",
+   "name": "Fenwick Food Safety Labs",
+   "rank": 6,
+   "score": 70,
+   "tier": "A",
+   "fit": 30,
+   "readiness": 40,
+   "access": 0,
+   "in_crm": false,
+   "pipeline_stage": null,
+   "sector_path": [
+    "Industrials",
+    "Testing, Inspection & Certification",
+    "Food Safety Testing"
+   ],
+   "ebitda_musd": 12.0,
+   "revenue_musd": 66.0,
+   "owner": null,
+   "why": "Thesis fit +15 (niche Food Safety Testing under Fund IV focus Testing, Inspection & Certification); EBITDA size +10 (EBITDA $12.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 18.2% vs 17.0% benchmark for Testing, Inspection & Certification); Sponsor exit window +15 (Sablewood Equity Fund II, vintage 2015, held since 2020-06-30 = 6.3 years); Banker engaged +10 (banker engaged 2026-09-08 (Brackden Partners)); Debt maturing +10 (debt matures 2027-08-15 (flagged 2026-02-02)); New independent director +5 (new board member Elise Marchetti since 2026-01-20)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Food Safety Testing under Fund IV focus Testing, Inspection & Certification"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $12.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 18.2% vs 17.0% benchmark for Testing, Inspection & Certification"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 15,
+     "evidence": "Sablewood Equity Fund II, vintage 2015, held since 2020-06-30 = 6.3 years"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-09-08 (Brackden Partners)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-08-15 (flagged 2026-02-02)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 5,
+     "evidence": "new board member Elise Marchetti since 2026-01-20"
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C4685",
+   "name": "Ashby Vale Dental Partners",
+   "rank": 7,
+   "score": 65,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 35,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "Tracking",
+   "sector_path": [
+    "Healthcare Services",
+    "Outpatient Clinical Services",
+    "Dental Service Organizations"
+   ],
+   "ebitda_musd": 16.0,
+   "revenue_musd": 100.0,
+   "owner": "Marcus Whitfield",
+   "why": "Thesis fit +15 (niche Dental Service Organizations under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $16.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 16.0% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-07-29 (Vellholt Securities)); Debt maturing +10 (debt matures 2027-11-30 (flagged 2026-05-06)); Founder succession +10 (founder CEO Lydia Okoro since 2006-03-01 (20.59 years), no President or COO); New independent director +5 (new board member Iris Calloway since 2026-03-02)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Dental Service Organizations under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $16.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 16.0% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-07-29 (Vellholt Securities)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-11-30 (flagged 2026-05-06)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "founder CEO Lydia Okoro since 2006-03-01 (20.59 years), no President or COO"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 5,
+     "evidence": "new board member Iris Calloway since 2026-03-02"
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C9820",
+   "name": "Nettlewell Home Nursing",
+   "rank": 8,
+   "score": 55,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 25,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "Tracking",
+   "sector_path": [
+    "Healthcare Services",
+    "Post-Acute Care",
+    "Home Health Agencies"
+   ],
+   "ebitda_musd": 10.9,
+   "revenue_musd": 59.0,
+   "owner": "Priya Raman",
+   "why": "Thesis fit +15 (niche Home Health Agencies under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $10.9M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 18.5% vs 14.0% benchmark for Healthcare Services); Sponsor exit window +15 (Calfield Equity Fund III, vintage 2016, held since 2021-06-29 = 5.3 years); Banker engaged +10 (banker engaged 2026-09-14 (Junhaven Advisors))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Home Health Agencies under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $10.9M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 18.5% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 15,
+     "evidence": "Calfield Equity Fund III, vintage 2016, held since 2021-06-29 = 5.3 years"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-09-14 (Junhaven Advisors)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C2423",
+   "name": "Flintbury Animal Hospitals",
+   "rank": 9,
+   "score": 55,
+   "tier": "B",
+   "fit": 25,
+   "readiness": 20,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Contacted",
+   "sector_path": [
+    "Healthcare Services",
+    "Animal Health Services",
+    "Veterinary Clinics"
+   ],
+   "ebitda_musd": 8.2,
+   "revenue_musd": 52.4,
+   "owner": "Dana Okafor",
+   "why": "Thesis fit +15 (niche Veterinary Clinics under Fund IV focus Healthcare Services); EBITDA size +5 (EBITDA $8.2M at the edge of the $5-40M band); Margin vs benchmark +5 (margin 15.6% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-04-29 (Dunby Bank Capital)); Debt maturing +10 (debt matures 2026-12-07 (flagged 2026-07-21)); Positive CRM touch +10 (positive meeting with the company 2025-06-18 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Veterinary Clinics under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 5,
+     "evidence": "EBITDA $8.2M at the edge of the $5-40M band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 15.6% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-04-29 (Dunby Bank Capital)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2026-12-07 (flagged 2026-07-21)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive meeting with the company 2025-06-18 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C6732",
+   "name": "Nettlehurst Dermatology",
+   "rank": 10,
+   "score": 55,
+   "tier": "B",
+   "fit": 25,
+   "readiness": 20,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Contacted",
+   "sector_path": [
+    "Healthcare Services",
+    "Outpatient Clinical Services",
+    "Dermatology Practices"
+   ],
+   "ebitda_musd": 5.5,
+   "revenue_musd": 29.0,
+   "owner": "Priya Raman",
+   "why": "Thesis fit +15 (niche Dermatology Practices under Fund IV focus Healthcare Services); EBITDA size +5 (EBITDA $5.5M at the edge of the $5-40M band); Margin vs benchmark +5 (margin 19.0% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-07-07 (Shelmere Advisors)); Debt maturing +10 (debt matures 2027-03-07 (flagged 2026-06-09)); Positive CRM touch +10 (positive conference with the company 2026-07-09 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Dermatology Practices under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 5,
+     "evidence": "EBITDA $5.5M at the edge of the $5-40M band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 19.0% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-07-07 (Shelmere Advisors)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-03-07 (flagged 2026-06-09)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive conference with the company 2026-07-09 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C8769",
+   "name": "Salstow Lab Supply",
+   "rank": 11,
+   "score": 55,
+   "tier": "B",
+   "fit": 25,
+   "readiness": 20,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Tracking",
+   "sector_path": [
+    "Distribution",
+    "Specialty Distribution",
+    "Medical & Lab Supply Distribution"
+   ],
+   "ebitda_musd": 20.1,
+   "revenue_musd": 236.1,
+   "owner": "Dana Okafor",
+   "why": "Thesis fit +15 (niche Medical & Lab Supply Distribution under Fund IV focus Specialty Distribution); EBITDA size +10 (EBITDA $20.1M in the $10-30M sweet spot); Banker engaged +10 (banker engaged 2026-04-12 (Wilby Securities)); Debt maturing +10 (debt matures 2027-05-05 (flagged 2023-12-28)); Positive CRM touch +10 (positive conference with the company 2025-08-07 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Medical & Lab Supply Distribution under Fund IV focus Specialty Distribution"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $20.1M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-04-12 (Wilby Securities)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-05-05 (flagged 2023-12-28)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive conference with the company 2025-08-07 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C3475",
+   "name": "Wilhall Health System",
+   "rank": 12,
+   "score": 55,
+   "tier": "B",
+   "fit": 25,
+   "readiness": 20,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Contacted",
+   "sector_path": [
+    "Healthcare Services",
+    "Acute Care",
+    "Community Hospitals"
+   ],
+   "ebitda_musd": 9.7,
+   "revenue_musd": 50.6,
+   "owner": "a Northwind deal-team member",
+   "why": "Thesis fit +15 (niche Community Hospitals under Fund IV focus Healthcare Services); EBITDA size +5 (EBITDA $9.7M at the edge of the $5-40M band); Margin vs benchmark +5 (margin 19.2% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-08-25 (Pellbury Partners)); Debt maturing +10 (debt matures 2027-03-24 (flagged 2026-04-25)); Positive CRM touch +10 (positive conference with the company 2026-07-06 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Community Hospitals under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 5,
+     "evidence": "EBITDA $9.7M at the edge of the $5-40M band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 19.2% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-08-25 (Pellbury Partners)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-03-24 (flagged 2026-04-25)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive conference with the company 2026-07-06 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C7185",
+   "name": "Dunbury Revenue Cycle",
+   "rank": 13,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 20,
+   "access": 0,
+   "in_crm": false,
+   "pipeline_stage": null,
+   "sector_path": [
+    "Business Services",
+    "Tech-Enabled Business Services",
+    "Healthcare Revenue Cycle Services"
+   ],
+   "ebitda_musd": 15.0,
+   "revenue_musd": 82.0,
+   "owner": null,
+   "why": "Thesis fit +15 (niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services); EBITDA size +10 (EBITDA $15.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 18.3% vs 18.0% benchmark for Tech-Enabled Business Services); Banker engaged +10 (banker engaged 2026-05-06 (Quillwood Partners)); Debt maturing +10 (debt matures 2027-10-31 (flagged 2026-01-15))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $15.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 18.3% vs 18.0% benchmark for Tech-Enabled Business Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-05-06 (Quillwood Partners)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-10-31 (flagged 2026-01-15)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C9094",
+   "name": "Elmbury Calibration",
+   "rank": 14,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 20,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "Tracking",
+   "sector_path": [
+    "Industrials",
+    "Testing, Inspection & Certification",
+    "Calibration Services"
+   ],
+   "ebitda_musd": 13.2,
+   "revenue_musd": 67.2,
+   "owner": "Grace Liu",
+   "why": "Thesis fit +15 (niche Calibration Services under Fund IV focus Testing, Inspection & Certification); EBITDA size +10 (EBITDA $13.2M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 19.6% vs 17.0% benchmark for Testing, Inspection & Certification); Banker engaged +10 (banker engaged 2026-08-04 (Glenley & Co.)); Debt maturing +10 (debt matures 2027-09-13 (flagged 2023-07-29))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Calibration Services under Fund IV focus Testing, Inspection & Certification"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $13.2M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 19.6% vs 17.0% benchmark for Testing, Inspection & Certification"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-08-04 (Glenley & Co.)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-09-13 (flagged 2023-07-29)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C8822",
+   "name": "Fairhaven Revenue Cycle",
+   "rank": 15,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 20,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "Tracking",
+   "sector_path": [
+    "Business Services",
+    "Tech-Enabled Business Services",
+    "Healthcare Revenue Cycle Services"
+   ],
+   "ebitda_musd": 26.9,
+   "revenue_musd": 132.1,
+   "owner": "Priya Raman",
+   "why": "Thesis fit +15 (niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services); EBITDA size +10 (EBITDA $26.9M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 20.4% vs 18.0% benchmark for Tech-Enabled Business Services); Banker engaged +10 (banker engaged 2026-09-12 (Salmoor Advisors)); Debt maturing +10 (debt matures 2027-05-28 (flagged 2025-05-19))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $26.9M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 20.4% vs 18.0% benchmark for Tech-Enabled Business Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-09-12 (Salmoor Advisors)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-05-28 (flagged 2025-05-19)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C7145",
+   "name": "Flintworth Behavioral Health",
+   "rank": 16,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 20,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "Tracking",
+   "sector_path": [
+    "Healthcare Services",
+    "Outpatient Clinical Services",
+    "Behavioral Health Clinics"
+   ],
+   "ebitda_musd": 10.9,
+   "revenue_musd": 77.8,
+   "owner": "Dana Okafor",
+   "why": "Thesis fit +15 (niche Behavioral Health Clinics under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $10.9M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 14.0% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-08-01 (Emberfield Capital Advisors)); Debt maturing +10 (debt matures 2027-11-01 (flagged 2025-07-25))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Behavioral Health Clinics under Fund IV focus Healthcare Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $10.9M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 14.0% vs 14.0% benchmark for Healthcare Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-08-01 (Emberfield Capital Advisors)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-11-01 (flagged 2025-07-25)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C5026",
+   "name": "Glenton Adjusting Services",
+   "rank": 17,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 20,
+   "access": 0,
+   "in_crm": false,
+   "pipeline_stage": null,
+   "sector_path": [
+    "Business Services",
+    "Tech-Enabled Business Services",
+    "Insurance Claims Processing"
+   ],
+   "ebitda_musd": 14.0,
+   "revenue_musd": 70.0,
+   "owner": null,
+   "why": "Thesis fit +15 (niche Insurance Claims Processing under Fund IV focus Tech-Enabled Business Services); EBITDA size +10 (EBITDA $14.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 20.0% vs 18.0% benchmark for Tech-Enabled Business Services); Banker engaged +10 (banker engaged 2026-06-15 (Birchwick Advisors)); Debt maturing +10 (debt matures 2027-05-31 (flagged 2025-12-03))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Insurance Claims Processing under Fund IV focus Tech-Enabled Business Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $14.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 20.0% vs 18.0% benchmark for Tech-Enabled Business Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-06-15 (Birchwick Advisors)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-05-31 (flagged 2025-12-03)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C9993",
+   "name": "Milley Calibration",
+   "rank": 18,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 20,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "Passed",
+   "sector_path": [
+    "Industrials",
+    "Testing, Inspection & Certification",
+    "Calibration Services"
+   ],
+   "ebitda_musd": 22.6,
+   "revenue_musd": 115.6,
+   "owner": "Priya Raman",
+   "why": "Thesis fit +15 (niche Calibration Services under Fund IV focus Testing, Inspection & Certification); EBITDA size +10 (EBITDA $22.6M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 19.6% vs 17.0% benchmark for Testing, Inspection & Certification); Banker engaged +10 (banker engaged 2026-09-09 (Quillwood Partners)); Debt maturing +10 (debt matures 2027-08-16 (flagged 2023-10-17))",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Calibration Services under Fund IV focus Testing, Inspection & Certification"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $22.6M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 19.6% vs 17.0% benchmark for Testing, Inspection & Certification"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "banker engaged 2026-09-09 (Quillwood Partners)"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-08-16 (flagged 2023-10-17)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C6041",
+   "name": "Belvale Compliance Services",
+   "rank": 19,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 10,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": null,
+   "sector_path": [
+    "Business Services",
+    "Tech-Enabled Business Services",
+    "Compliance & Training Services"
+   ],
+   "ebitda_musd": 12.5,
+   "revenue_musd": 64.0,
+   "owner": null,
+   "why": "Thesis fit +15 (niche Compliance & Training Services under Fund IV focus Tech-Enabled Business Services); EBITDA size +10 (EBITDA $12.5M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 19.5% vs 18.0% benchmark for Tech-Enabled Business Services); Debt maturing +10 (debt matures 2027-08-31 (flagged 2026-02-10)); Positive CRM touch +10 (positive meeting with the company 2026-03-03 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Compliance & Training Services under Fund IV focus Tech-Enabled Business Services"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $12.5M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 19.5% vs 18.0% benchmark for Tech-Enabled Business Services"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-08-31 (flagged 2026-02-10)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive meeting with the company 2026-03-03 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C6442",
+   "name": "Bramstow Ingredients",
+   "rank": 20,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 10,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Tracking",
+   "sector_path": [
+    "Distribution",
+    "Specialty Distribution",
+    "Specialty Food Ingredients Distribution"
+   ],
+   "ebitda_musd": 19.4,
+   "revenue_musd": 209.0,
+   "owner": "Grace Liu",
+   "why": "Thesis fit +15 (niche Specialty Food Ingredients Distribution under Fund IV focus Specialty Distribution); EBITDA size +10 (EBITDA $19.4M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 9.3% vs 9.0% benchmark for Specialty Distribution); Debt maturing +10 (debt matures 2027-05-21 (flagged 2026-07-24)); Positive CRM touch +10 (positive email with the company 2024-11-06 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Specialty Food Ingredients Distribution under Fund IV focus Specialty Distribution"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $19.4M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 9.3% vs 9.0% benchmark for Specialty Distribution"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2027-05-21 (flagged 2026-07-24)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive email with the company 2024-11-06 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  },
+  {
+   "company_id": "C3689",
+   "name": "Eldermont Chemicals",
+   "rank": 21,
+   "score": 50,
+   "tier": "B",
+   "fit": 30,
+   "readiness": 10,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "Contacted",
+   "sector_path": [
+    "Distribution",
+    "Specialty Distribution",
+    "Specialty Chemicals Distribution"
+   ],
+   "ebitda_musd": 22.0,
+   "revenue_musd": 198.2,
+   "owner": "a Northwind deal-team member",
+   "why": "Thesis fit +15 (niche Specialty Chemicals Distribution under Fund IV focus Specialty Distribution); EBITDA size +10 (EBITDA $22.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 11.1% vs 9.0% benchmark for Specialty Distribution); Debt maturing +10 (debt matures 2028-02-26 (flagged 2025-07-28)); Positive CRM touch +10 (positive meeting with the company 2026-08-12 by a Northwind deal-team member)",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "niche Specialty Chemicals Distribution under Fund IV focus Specialty Distribution"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "EBITDA $22.0M in the $10-30M sweet spot"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "margin 11.1% vs 9.0% benchmark for Specialty Distribution"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_BANKER",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "debt matures 2028-02-26 (flagged 2025-07-28)"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "positive meeting with the company 2026-08-12 by a Northwind deal-team member"
+    },
+    {
+     "id": "A_WARM_PATH",
+     "points": 0,
+     "evidence": "Not awarded: no qualifying evidence on record."
+    }
+   ]
+  }
+ ],
+ "ineligible": [
+  {
+   "company_id": "C1834",
+   "name": "Amberbury Auto Spa",
+   "reason": "niche Car Wash Chains is outside the Fund IV thesis tree"
+  },
+  {
+   "company_id": "C1988",
+   "name": "Amberby Dental Group",
+   "reason": "EBITDA $1.2M is below the $5.0M band"
+  },
+  {
+   "company_id": "C7137",
+   "name": "Ambercombe Litigation Support",
+   "reason": "EBITDA $1.7M is below the $5.0M band"
+  },
+  {
+   "company_id": "C9581",
+   "name": "Amberdale Adjusting Services",
+   "reason": "EBITDA $2.2M is below the $5.0M band"
+  },
+  {
+   "company_id": "C8292",
+   "name": "Amberdale Dental Group",
+   "reason": "EBITDA $2.3M is below the $5.0M band"
+  },
+  {
+   "company_id": "C5453",
+   "name": "Amberfield Branded Products",
+   "reason": "niche Promotional Products is outside the Fund IV thesis tree"
+  },
+  {
+   "company_id": "C9244",
+   "name": "Ambergate Packaging",
+   "reason": "niche Packaging Manufacturing is outside the Fund IV thesis tree"
+  },
+  {
+   "company_id": "C7346",
+   "name": "Amberhall Security Software",
+   "reason": "niche Cybersecurity Software is outside the Fund IV thesis tree"
+  },
+  {
+   "company_id": "C3074",
+   "name": "Amberholt Brewing",
+   "reason": "niche Craft Beverages is outside the Fund IV thesis tree"
+  },
+  {
+   "company_id": "C2338",
+   "name": "Amberley Security Software",
+   "reason": "niche Cybersecurity Software is outside the Fund IV thesis tree"
+  },
+  {
+   "company_id": "C9124",
+   "name": "Ambermarsh Lab Services",
+   "reason": "niche Clinical Laboratory Services is outside the Fund IV thesis tree"
+  },
+  {
+   "company_id": "C9605",
+   "name": "Ambermere Facility Services",
+   "reason": "niche Commercial Janitorial Services is outside the Fund IV thesis tree"
+  }
+ ],
+ "finale": {
+  "description": "Warm-path access points added and cross-fund conflicts flagged: hold until cross-fund clearance.",
+  "rows": [
+   {
+    "company_id": "C6334",
+    "name": "Bayside Pediatric Therapy Group",
+    "rank": 1,
+    "score": 95,
+    "tier": "A",
+    "prev_rank": 2,
+    "prev_score": 85,
+    "prev_tier": "A",
+    "delta": 10,
+    "conflict": null,
+    "added_components": [
+     {
+      "id": "A_WARM_PATH",
+      "points": 10,
+      "evidence": "Thesis fit +15 (niche Pediatric Therapy Clinics under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $22.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Elena Marsh hired 2025-06-01 from a former Northwind portfolio company, owned by Northwind Equity Partners Fund II while the CFO worked there (2015-03-01 to 2025-04-30)); Banker engaged +10 (banker engaged 2026-05-15 (Salthorpe Capital Advisors)); Debt maturing +10 (debt matures 2027-06-30 (flagged 2026-01-20)); Founder succession +10 (founder CEO Daniel Reyes since 2008-01-01 (18.75 years), no President or COO); Positive CRM touch +10 (positive meeting with the company 2026-03-12 by a Northwind deal-team member); Warm path to the CEO +10 (CEO at 2 hops from our nearest seed)"
+     }
+    ]
+   },
+   {
+    "company_id": "C3225",
+    "name": "Larkspur Revenue Partners",
+    "rank": 2,
+    "score": 90,
+    "tier": "A",
+    "prev_rank": 1,
+    "prev_score": 90,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": []
+   },
+   {
+    "company_id": "C5441",
+    "name": "Saltmarsh Home Infusion",
+    "rank": 3,
+    "score": 80,
+    "tier": "A",
+    "prev_rank": 3,
+    "prev_score": 80,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": []
+   },
+   {
+    "company_id": "C6895",
+    "name": "Quarry Records Retrieval",
+    "rank": 4,
+    "score": 75,
+    "tier": "A",
+    "prev_rank": 4,
+    "prev_score": 75,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": []
+   },
+   {
+    "company_id": "C4685",
+    "name": "Ashby Vale Dental Partners",
+    "rank": 5,
+    "score": 75,
+    "tier": "A",
+    "prev_rank": 7,
+    "prev_score": 65,
+    "prev_tier": "B",
+    "delta": 10,
+    "conflict": null,
+    "added_components": [
+     {
+      "id": "A_WARM_PATH",
+      "points": 10,
+      "evidence": "Thesis fit +15 (niche Dental Service Organizations under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $16.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 16.0% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-07-29 (Vellholt Securities)); Debt maturing +10 (debt matures 2027-11-30 (flagged 2026-05-06)); Founder succession +10 (founder CEO Lydia Okoro since 2006-03-01 (20.59 years), no President or COO); New independent director +5 (new board member Iris Calloway since 2026-03-02); Warm path to the CEO +10 (CEO at 2 hops from our nearest seed)"
+     }
+    ]
+   },
+   {
+    "company_id": "C3429",
+    "name": "Fenwick Food Safety Labs",
+    "rank": 6,
+    "score": 70,
+    "tier": "A",
+    "prev_rank": 6,
+    "prev_score": 70,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": []
+   },
+   {
+    "company_id": "C2596",
+    "name": "Fairmarsh Health System",
+    "rank": null,
+    "score": 30,
+    "tier": "Conflict",
+    "prev_rank": 95,
+    "prev_score": 30,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": {
+     "reason": "buys from Stanvale Linen Services (Northwind Equity Partners Fund III since 2020-07-13)",
+     "counterparty_id": "C9452",
+     "counterparty_name": "Stanvale Linen Services",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   },
+   {
+    "company_id": "C5353",
+    "name": "Halbury Clinical Staffing",
+    "rank": null,
+    "score": 40,
+    "tier": "Conflict",
+    "prev_rank": 59,
+    "prev_score": 40,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": {
+     "reason": "supplies Dunley Home Infusion (Northwind Equity Partners Fund III since 2020-10-13)",
+     "counterparty_id": "C8624",
+     "counterparty_name": "Dunley Home Infusion",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   },
+   {
+    "company_id": "C6294",
+    "name": "Heathhurst Linen Services",
+    "rank": null,
+    "score": 45,
+    "tier": "Conflict",
+    "prev_rank": 29,
+    "prev_score": 45,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": {
+     "reason": "supplies Dunmere Home Health (Northwind Equity Partners Fund III since 2020-07-27)",
+     "counterparty_id": "C3382",
+     "counterparty_name": "Dunmere Home Health",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   },
+   {
+    "company_id": "C6795",
+    "name": "Rookwell Home Infusion",
+    "rank": null,
+    "score": 40,
+    "tier": "Conflict",
+    "prev_rank": 48,
+    "prev_score": 40,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": {
+     "reason": "buys from Brackworth Chemical Supply (Northwind Equity Partners Fund III since 2020-10-28)",
+     "counterparty_id": "C1555",
+     "counterparty_name": "Brackworth Chemical Supply",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   },
+   {
+    "company_id": "C8200",
+    "name": "Tessmark Clinical Supply",
+    "rank": null,
+    "score": 75,
+    "tier": "Conflict",
+    "prev_rank": 5,
+    "prev_score": 75,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": {
+     "reason": "supplies Pinewick Dermatology Partners (Northwind Equity Partners Fund III since 2020-07-01)",
+     "counterparty_id": "C2514",
+     "counterparty_name": "Pinewick Dermatology Partners",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   },
+   {
+    "company_id": "C5706",
+    "name": "Umberhaven Health System",
+    "rank": null,
+    "score": 30,
+    "tier": "Conflict",
+    "prev_rank": 106,
+    "prev_score": 30,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": {
+     "reason": "buys from Stanvale Linen Services (Northwind Equity Partners Fund III since 2020-07-13)",
+     "counterparty_id": "C9452",
+     "counterparty_name": "Stanvale Linen Services",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   },
+   {
+    "company_id": "C8203",
+    "name": "Wexley Medical Linen",
+    "rank": null,
+    "score": 25,
+    "tier": "Conflict",
+    "prev_rank": 227,
+    "prev_score": 25,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": {
+     "reason": "supplies a Fund III portfolio company (Northwind Equity Partners Fund III since 2021-03-01)",
+     "counterparty_id": "C1074",
+     "counterparty_name": "Redfern Imaging Centers",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   },
+   {
+    "company_id": "C7032",
+    "name": "Winstow Training Systems",
+    "rank": null,
+    "score": 20,
+    "tier": "Conflict",
+    "prev_rank": 247,
+    "prev_score": 20,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": {
+     "reason": "supplies Brackworth Chemical Supply (Northwind Equity Partners Fund III since 2020-10-28)",
+     "counterparty_id": "C1555",
+     "counterparty_name": "Brackworth Chemical Supply",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": []
+   }
+  ]
+ }
+}

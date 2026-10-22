@@ -37,7 +37,7 @@ Every changed section carries a "v2 change" note. Numbers in brackets are R04 fi
    - Guard F1: NM_B is the only Act-1 score in [60, 69] in the signal layer.
    - Guard F2: d(seeds, every current role-holder) >= 3 for every other cast company that could matter.
    - "Reach" is defined as CEO-only distance <= 2. F2 makes every other reading give the same set.
-   - The prompt is reworded to "flag it and take it off the Tier A list", which matches the golden.
+   - The prompt is reworded to "flag it 'hold until cross-fund clearance' and keep it off the Tier A call list until it is cleared", which matches the golden.
    - The decoy check for CONF is row-based.
 
 **MINOR fixes**
@@ -162,11 +162,11 @@ std.aggregates: count, sum, min, max, avg, rank, rank_desc, top, bottom, string_
 
 > v2 change: Q-ADDON is replaced by Q-CONFLICT as Act 4, and Q-FLOW moves to Act 3.
 
-"Your CRM has about 200 companies in pipeline; the market has about 1,200 in your sweet spot."
+"Your pipeline has about 200 names. PitchBook, Grata and your bankers will hand you thousands more. Which six do you call on Monday, why now, and who gets us in?" (Do not quote a market size.)
 
-- **Act 1, Q-SCORE (3 min)**: six Tier-A targets. Two are not in your CRM (Saltmarsh, Fenwick). Two are missed by the keyword screen (Saltmarsh, Quarry). The screen's top three are all wrong.
+- **Act 1, Q-SCORE (3 min)**: six Tier-A targets. Two have no coverage: no pipeline entry and no logged touch (Saltmarsh, Fenwick). Two are missed by the keyword screen (Saltmarsh, Quarry). The screen's top three are all wrong.
 - **Act 2, Q-PATH (3 min)**: for the top three:
-  - #1 Larkspur is three hops away through a banker Priya Raman knows well.
+  - #1 Larkspur is three hops away through a banker Priya Raman knows well. Cedar Row is running the sale, so the edge is an early look and a shot at a pre-empt, not a back-channel to the CEO.
   - #2 Bayside is two hops away through our Operating Partner; a stale 1990s tie is correctly ranked second.
   - #3 Saltmarsh is honestly **cold**, both to its CEO and to Copperline's board designee, even though a shared-employer SQL join says "warm". The intermediary closest to Saltmarsh is Harbor Lane.
 - **Act 3, Q-FLOW (3 min)**: Harbor Lane bridges founder-owned healthcare flow to five sponsors, and we have touched it once in two years: the only coverage gap. Cedar Row, the #1 bridge, is well covered.
@@ -175,7 +175,7 @@ std.aggregates: count, sum, min, max, avg, rank, rank_desc, top, bottom, string_
   - share a customer with Granite (informational);
   - push Fund IV's Specialty Distribution exposure to 36.7%, over the 35% guideline.
   The SQL check flags the wrong company (Brightwater, sold in 2020) and sees no concentration issue.
-- **Finale (3 min)**: two sentences of new rules for every target. The warm path flips the top of the list (Bayside #1), Alder Creek rises from Tier B into Tier A, and Keystone is flagged and taken off Tier A.
+- **Finale (3 min)**: two sentences of new rules for every target. The warm path flips the top of the list (Bayside #1), Alder Creek rises from Tier B into Tier A, and Keystone is flagged: hold until cross-fund clearance.
 
 ---
 
@@ -227,8 +227,8 @@ Other planted actors:
 | HL | Harbor Lane Advisors | healthcare-services boutique. `debt_advisor` on T_COLD's 2023-05-18 dividend recap; BANKER_ENGAGED on T_COLD 2026-07-14 |
 | HL_MD | Celia Navarro | Harbor Lane MD, lead on T_COLD's dividend recap |
 | CEDAR | Cedar Row Partners | boutique; betweenness #1; well covered (14 touchpoints, all specified in Q-PATH). BANKER_ENGAGED on T_BANKER 2026-08-10 and CONF 2026-06-02 |
-| BIGBANK | Continental Capital Markets | high-volume bank, **about 40** deals in 5 years (8 in thesis sectors) |
-| PINE | Pinecrest Dental Partners | Northwind Fund III portfolio company since 2020-07-01; CONF supplies it |
+| BIGBANK | Continental Capital Markets | the busiest name in the league table, **about 40** deals in 5 years (8 in thesis sectors) |
+| PINE | Pinewick Dermatology Partners (placeholder was Pinecrest Dental Partners) | Northwind Fund III portfolio company since 2020-07-01, a dermatology practice group; CONF supplies it |
 | REDFERN | Redfern Imaging Centers | Northwind Fund III portfolio company since 2021-03-01; commercial distance exactly 3 from CONF (bound check) |
 | GRANITE | Granite Testing Group | Northwind Fund IV platform since 2024-03-15, equity $150M; niche Materials Testing (Industrial TIC) |
 | MEADOW | Meadowbrook Physical Therapy | Fund IV since 2023-09-12, equity $110M; Healthcare services > Physical Therapy Clinics |
@@ -376,7 +376,7 @@ All of it must yield per-point explanations from one governed definition that Q-
 **Explorer view.** Scorecard:
 - The ranked list with A/B/C tier chips.
 - A stacked bar per company (Fit / Readiness / Access). Hovering shows each component's evidence.
-- A "not in CRM" badge on T_COLD and T_6.
+- A "No coverage" badge (not in CRM) on T_COLD and T_6.
 - A toggle reveals the naive SQL list next to it, with D_SHORT, D_VET and D_SNF struck through and the reason shown, and T_COLD and T_5 marked "missed by screen".
 - The side panel shows each rule's business-language docstring.
 
@@ -388,15 +388,17 @@ All of it must yield per-point explanations from one governed definition that Q-
 - Must not appear: Pembrook Veterinary Pharmaceuticals, Cobalt Urgent Care Partners, Linden Hollow Senior Care.
 - R11's `q_score()` returns Tier-A rows only.
 
-Tier-2 ad-lib suggestion: "Only show the healthcare services names." (Answer: Bayside, Saltmarsh.) Second suggestion: "What would a keyword screen have given us?" Here naming the decoys is correct, so the check is row-based.
+Tier-2 ad-lib suggestion: "Only show the founder-owned names." (Answer: Bayside, Quarry, Keystone.) Second suggestion: "What would a keyword screen have given us?" Here naming the decoys is correct, so the check is row-based.
 
-**Chains into Q-PATH.** "Two of your six best targets are names your CRM has never logged. Knowing who to call is half the job; the other half is who makes the introduction. Take the top three."
+**Chains into Q-PATH.** "Two of your six best targets have no coverage: no pipeline entry and no logged touch, so nobody here owns the relationship. Knowing who to call is half the job; the other half is who gets us in. Take the top three."
 
 ---
 
 ### Q-PATH (graph + rules). Act 2
 
 **Business question (MD voice).** "For our top three, what is our warmest path to each CEO, and through whom? And if the company is sponsor-owned, do we know the owner's deal partner?"
+
+**Act 2 framing: who gets us an edge.** The point is who on our side has a real, dated relationship that gives us an edge: the founder or CEO directly, the owner's deal partner, or the banker running the process. On Larkspur the path ends at the banker running the sale, so the play is an early look and a shot at a pre-empt, not a back-channel to the CEO. On Bayside the Operating Partner's history with the CFO is our inside track with the founder.
 
 > v2 change (R04 item 6): the path target is a set of **decision-makers**, not only the CEO.
 > - **CEO** = the person holding a current CEO role at the target.
@@ -500,7 +502,7 @@ Tier-2 ad-lib suggestions:
 - "Why isn't Tom Brennan's Meridian connection a path to Victor Hale?" Here naming the decoy is correct, so the check is row-based.
 - "We know Copperline. Doesn't that get us into Saltmarsh?"
 
-**Chains into Q-FLOW.** "Two of three are reachable this quarter. Saltmarsh is cold to us, and we don't know Copperline's partner either. But it is not cold to everyone: Harbor Lane is engaged on it and advised its 2023 recap. Which intermediaries actually move deals in our sectors, and are we covering them?"
+**Chains into Q-FLOW.** "Two of the top three have a warm route in. Saltmarsh is cold to us, and we don't know Copperline's partner either. But it is not cold to everyone: Harbor Lane is engaged on it and advised its 2023 recap. Which intermediaries actually move deals in our sectors, and are we covering them?"
 
 ---
 
@@ -572,7 +574,7 @@ Tier-2 ad-lib suggestions:
 - "How does that compare with a simple deal-count league table?" Expected: Continental Capital Markets tops the count with about 40 deals and is not a top-decile bridge. Naming it is correct here, so the check is row-based.
 - "Which of Harbor Lane's deals involve companies on our Tier A list?" (Answer: Saltmarsh.)
 
-**Chains into Q-CONFLICT.** "Harbor Lane is the gap: one call this week. Cedar Row is the opposite: our best-covered bridge. Cedar Row has just been engaged on Keystone, #5 on our list, and we are preparing an IOI. Before we spend Cedar Row's time, the question every IC asks first: does it conflict with anything we own, and does it fit the fund?"
+**Chains into Q-CONFLICT.** "Harbor Lane is the gap: it goes on the coverage plan this week. Cedar Row is the opposite: our best-covered bridge. Cedar Row has just been engaged on Keystone, #5 on our list, and we are preparing an IOI. Before our IOI goes to Cedar Row, the question every IC asks first: does it conflict with anything we own, and does it fit the fund?"
 
 ---
 
@@ -618,7 +620,7 @@ Fund IV holds nothing else. Fund III's current holdings include PINE and REDFERN
 
 | Row | Company | Fund | Commercial distance | Kind | Evidence |
 |---|---|---|---|---|---|
-| 1 | PINE Pinecrest Dental Partners | Fund III (since 2020-07-01) | 1 | **CONFLICT - cross-fund review** | Keystone supplies Pinecrest (COMMERCIAL_LINK supplier CONF, customer PINE) |
+| 1 | PINE Pinewick Dermatology Partners | Fund III (since 2020-07-01) | 1 | **CONFLICT - cross-fund review** | Keystone supplies Pinewick (COMMERCIAL_LINK supplier CONF, customer PINE) |
 | 2 | GRANITE Granite Testing Group | Fund IV (since 2024-03-15) | 2 | informational: shared customer | Keystone supplies Bluestem Engineering Group (C07); Bluestem buys from Granite |
 
 | Concentration (Fund IV, guideline 35%) | Before | With Keystone ($55M check) |
@@ -628,7 +630,7 @@ Fund IV holds nothing else. Fund III's current holdings include PINE and REDFERN
 | Healthcare Services | 9.2% | 9.2% |
 | Tech-Enabled Business Services | 0.0% | 0.0% |
 
-- **So what (talk track):** "Keystone is a real Tier-A target, but it needs cross-fund review because it supplies Pinecrest, and at a $55M check it takes Specialty Distribution over our 35% guideline. Either size the check at $35M or less and syndicate the rest as co-invest, or take it to IC as an exception."
+- **So what (talk track):** "Keystone is a real Tier-A target, but it needs cross-fund clearance because it supplies Pinewick, and at a $55M check it takes Specialty Distribution over our 35% guideline. Either size the check at $35M or less and syndicate the rest as co-invest, or take it to IC as an exception."
 - **CONF's commercial neighborhood (exact).** Customers: PINE, C07, H1, BRIGHT, plus 4 context customers. Suppliers: 2 context manufacturers. None of the context neighbors is a Northwind holding or adjacent to one, except C07 (adjacent to GRANITE).
 - **Invariants (R12 must preserve):**
   - The set of NorthwindHolding companies at commercial distance <= 2 from CONF is exactly {PINE (1), GRANITE (2)}.
@@ -665,25 +667,25 @@ All of this is one governed definition that the Finale then applies to every tar
 > Before we bid on Keystone Clinical Supply, does it conflict with anything we own, and would the deal push Fund IV over its sector concentration guideline?
 
 **Rehearsal check (9.3).**
-- Must appear: Keystone Clinical Supply, Pinecrest Dental Partners, Granite Testing Group, Specialty Distribution.
+- Must appear: Keystone Clinical Supply, Pinewick Dermatology Partners, Granite Testing Group, Specialty Distribution.
 - Must not appear: Brightwater Dental, Redfern Imaging Centers. `q_conflict()` returns only current-holding exposure rows and the area table, so neither name is in its output.
 
 Tier-2 ad-lib suggestion: "Our old portfolio list says Brightwater is a Keystone conflict. Is it?" Expected: no, Brightwater was sold 2020-02-14. Naming it is correct here, so the check is row-based. Second suggestion: "What is the largest check we could write without breaching the guideline?" (Answer: $35M.)
 
-**Chains into the Finale.** "That check should not depend on someone remembering to ask it. Let's make it part of the score for every target, together with what we learned about access in Act 2."
+**Chains into the Finale.** "That check ran for one name because we asked. Let's make it part of the score for every target, together with what we learned about access in Act 2."
 
 ---
 
 ### Finale (rules composing graph output; Tier-2 live authoring)
 
 > v2 change (R04 items 5, 8, 9):
-> - The prompt is reworded to define "reach" (CEO, two hops) and to say "flag it and take it off the Tier A list", matching the golden.
+> - The prompt is reworded to define "reach" (CEO, two hops) and to say "hold until cross-fund clearance" and keep it off the Tier A call list until it is cleared, matching the golden.
 > - Guards F1 and F2 are added.
 > - The decoy check is row-based.
 > - The conflict rule reuses the Q-CONFLICT definitions.
 
 **Prompt the presenter types (verbatim).** This refines the section 7.3 wording so the golden answer and the words match.
-> Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company is a conflict, so flag it and take it off the Tier A list.
+> Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company needs cross-fund clearance, so flag it "hold until cross-fund clearance" and keep it off the Tier A call list until it is cleared.
 
 **Technique.**
 - Claude Code uses `rai-rules-authoring` to add two derived properties.
@@ -693,8 +695,8 @@ Tier-2 ad-lib suggestion: "Our old portfolio list says Brightwater is a Keystone
   - Guard F2 makes the other readings give the identical set {T_WARM, NM_B}: "any current role-holder", "decision-makers incl. owner designee", "any Northwind person".
 - **`Conflict(company)`** iff a COMMERCIAL_LINK exists in either direction between the company and a `NorthwindHolding` of Fund III. This is Q-CONFLICT's `PortfolioExposure` with d = 1, Fund III.
   - Conflicted companies keep their score.
-  - They get the flag "Conflict - cross-fund review" and are removed from the Tier-A list ("flag and take off Tier A").
-  - The demo says: "the score did not change; the eligibility to be on Monday's call list did".
+  - They get the flag "Conflict - cross-fund review" and are held off the Tier-A call list until cross-fund clearance ("hold until cross-fund clearance"). It is a disclosure and clearance step for the conflicts committee, not a dropped deal.
+  - The demo says: "the score did not change; it is on hold until the conflicts committee clears it, and the other targets come back clean".
 - Score and tier are then re-derived.
 - **Fallback**: R09 ships the same two rules in `rules.py` behind a `FINALE` flag, and `queries.py` has `finale_rescore()`. A failed live authoring step still lands on the identical answer.
 
@@ -708,7 +710,7 @@ Tier-2 ad-lib suggestion: "Our old portfolio list says Brightwater is a Keystone
 | 4 | T_5 | 75 | no change (CEO at >= 3) |
 | 5 | NM_B | **75** | +10 warm path; **rises from Tier B (65) into Tier A**; ranks below T_5 on readiness (35 vs 40) |
 | 6 | T_6 | 70 | no change (CEO at >= 3) |
-| - | CONF | (75, score unchanged) | **flagged "Conflict - cross-fund review" and off the Tier-A list**: supplies PINE Pinecrest Dental Partners (Fund III since 2020-07-01) |
+| - | CONF | (75, score unchanged) | **flagged "Conflict - cross-fund review", hold until cross-fund clearance**: supplies PINE Pinewick Dermatology Partners (Fund III since 2020-07-01) |
 
 - NM_B's planted path:
   - OP2 Grace Liu -[K1 tenure overlap: Lakemont Orthodontics, 2016-02-01 to 2020-05-31, 4.33 years -> 1.00]- Z (Board at NM_B since 2022-04-01; at Lakemont 2015-08-03 to 2021-03-31).
@@ -726,7 +728,7 @@ Tier-2 ad-lib suggestion: "Our old portfolio list says Brightwater is a Keystone
 
 **Why SQL alone fails.** The new access points come from a graph distance computed in Act 2. The conflict comes from commercial links joined to time-bounded fund ownership, defined in Act 4. Both slot into the existing score as named, explained components. The ranking changes in two sentences, with no new pipeline.
 
-**Explorer view.** The scorecard re-renders with a "Finale" toggle. Before and after columns show the rank movement arrows: T_WARM up, NM_B new, CONF struck with a "Conflict - cross-fund review" chip. Clicking CONF jumps to the Conflict check view.
+**Explorer view.** The scorecard re-renders with a "Finale" toggle. Before and after columns show the rank movement arrows: T_WARM up, NM_B new, CONF with a "Hold until cross-fund clearance" chip. Clicking CONF jumps to the Conflict check view.
 
 **Chains into the close.** "Governed, explainable, in your Snowflake; and Claude is the interface."
 
@@ -841,7 +843,7 @@ Tier-2 ad-lib suggestion: "Our old portfolio list says Brightwater is a Keystone
   - The commercial graph is shared by Q-CONFLICT and the Q-ADDON backup.
   - Pass `num_pivots=16000` for betweenness.
   - Do not use `rank()` in graph selects. Sort in pandas (rai-graph-analysis pitfall).
-  - Docstrings: the FINALE reach rule says "CEO, Knows distance from any Northwind deal-team or operating-partner seed, two hops or fewer". The Conflict rule says "a conflict flag keeps the score but takes the target off the Tier-A call list pending cross-fund review".
+  - Docstrings: the FINALE reach rule says "CEO, Knows distance from any Northwind deal-team or operating-partner seed, two hops or fewer". The Conflict rule says "a conflict flag keeps the score and holds the target off the Tier-A call list until cross-fund clearance".
 - **R11**: ranking assertions:
   - Q-SCORE: full order with the tie-break; T_5 before CONF.
   - Q-PATH: strength order, with no T_BANKER alternate.

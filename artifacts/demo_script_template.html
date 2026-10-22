@@ -1,0 +1,726 @@
+<!--
+  Demo script template (owner: R16). Rendered by artifacts/build_script.py.
+  Syntax:  {{ export.key.path | fmt }}  injected value     [[directive]]  builder-generated content
+           @q.  = the block's own export file             @sql. = sql_baseline.questions.<QID>.
+  Rule: no digit may appear in visible template text (outside <style> and <script>). Every number comes
+  from exports. One block per question ID; an act swap or reorder never edits another block.
+  Hand-off lines live in NEXT variants keyed by the question that follows in the arc.
+-->
+
+<!-- BLOCK PAGE -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>[[slot:title_prefix]]Deal graph demo script</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#1b1f24; --muted:#5b6470; --line:#d9dde3; --panel:#f5f7f9; --accent:#1f5f99;
+  --ok:#1d6b3a; --okbg:#e6f3ea; --bad:#9b2c1f; --badbg:#fbe9e6; --warn:#7a5200; --warnbg:#fdf2d8;
+  --code:#eef1f4; color-scheme: light;
+}
+@media screen and (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181c; --fg:#e4e7eb; --muted:#9aa3ad; --line:#2f353c; --panel:#1d2126; --accent:#7fb2e5;
+    --ok:#8fd3a5; --okbg:#1c3325; --bad:#f0a093; --badbg:#3a201c; --warn:#f0cf7a; --warnbg:#3a3019;
+    --code:#22272d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181c; --fg:#e4e7eb; --muted:#9aa3ad; --line:#2f353c; --panel:#1d2126; --accent:#7fb2e5;
+  --ok:#8fd3a5; --okbg:#1c3325; --bad:#f0a093; --badbg:#3a201c; --warn:#f0cf7a; --warnbg:#3a3019;
+  --code:#22272d; color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--fg);
+  font:15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif}
+.wrap{max-width:1000px; margin:0 auto; padding-block:24px 64px; padding-inline:20px}
+h1{font-size:26px; margin:0 0 4px} h2{font-size:21px; margin:0 0 6px}
+h3{font-size:15px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:22px 0 6px}
+h4{font-size:15px; margin:14px 0 4px}
+p{margin:6px 0 10px} ul,ol{margin:6px 0 12px; padding-left:22px} li{margin:3px 0}
+.meta,.small{color:var(--muted); font-size:13px}
+code{background:var(--code); padding:1px 5px; border-radius:4px; font-size:13px;
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+code.cmd{display:inline-block; white-space:pre-wrap}
+.stamp{background:var(--warnbg); color:var(--warn); border:2px solid var(--warn); padding:10px 14px;
+  font-weight:700; border-radius:6px; margin:0 0 16px; letter-spacing:.02em}
+body.fixture .wrap{background-image:repeating-linear-gradient(-35deg, transparent 0 220px,
+  rgba(155,44,31,.06) 220px 260px)}
+body.fixture section.act::before, body.fixture section.seg::before{content:"FIXTURE"; float:right;
+  color:var(--bad); font-weight:700; border:1px solid var(--bad); padding:0 6px; border-radius:4px; font-size:12px}
+nav.toc{display:flex; flex-wrap:wrap; gap:6px 14px; margin:10px 0 18px; font-size:14px}
+nav.toc a{color:var(--accent); text-decoration:none}
+section.seg, section.act{border-top:1px solid var(--line); padding-top:18px; margin-top:26px}
+.acthead{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}
+.pill{font-size:12px; border:1px solid var(--line); border-radius:999px; padding:1px 9px; color:var(--muted)}
+.say{border-left:4px solid var(--accent); background:var(--panel); padding:8px 14px; margin:8px 0 12px;
+  font-size:16px}
+.prompt{border:1px solid var(--accent); border-radius:6px; margin:8px 0 10px; overflow:hidden}
+.prompt.alt{border-color:var(--line)}
+.plabel{display:flex; justify-content:space-between; align-items:center; background:var(--panel);
+  font-size:12px; color:var(--muted); padding:4px 10px; text-transform:uppercase; letter-spacing:.04em}
+.prompt pre{margin:0; padding:10px 12px; white-space:pre-wrap; font:15px/1.5 ui-monospace, SFMono-Regular,
+  Menlo, Consolas, monospace}
+.copy{font:12px sans-serif; border:1px solid var(--line); background:var(--bg); color:var(--fg);
+  border-radius:4px; padding:1px 8px; cursor:pointer}
+.tw{overflow-x:auto; margin:6px 0 12px}
+table{border-collapse:collapse; width:100%; font-size:14px}
+th,td{border-bottom:1px solid var(--line); padding:5px 8px; text-align:left; vertical-align:top}
+th{background:var(--panel); font-weight:600; font-size:13px}
+.chip{display:inline-block; font-size:12px; border-radius:4px; padding:0 6px; border:1px solid var(--line)}
+.chip.ok{background:var(--okbg); color:var(--ok); border-color:transparent}
+.chip.bad{background:var(--badbg); color:var(--bad); border-color:transparent}
+.chip.warn{background:var(--warnbg); color:var(--warn); border-color:transparent}
+.contrast{background:var(--badbg); border-radius:6px; padding:8px 14px; margin:8px 0}
+.why{background:var(--okbg); border-radius:6px; padding:8px 14px; margin:8px 0}
+.sowhat{font-style:italic}
+ol.hops{margin-top:2px} ol.fallback li{margin:6px 0}
+.paths h4:first-child{margin-top:4px}
+.qa{border-bottom:1px solid var(--line); padding:6px 0}
+.qa .q{font-weight:600; margin-bottom:2px}
+.onto{width:100%; min-width:640px; height:auto}
+.onto-node{fill:var(--panel); stroke:var(--accent); stroke-width:1.4}
+.onto-node.derived{stroke-dasharray:5 4; stroke:var(--ok)}
+.onto-nlabel{font:600 13px sans-serif; fill:var(--fg)}
+.onto-elabel{font:11px sans-serif; fill:var(--muted)}
+.onto-edge{stroke:var(--muted); stroke-width:1.2; fill:none}
+.onto-edge.derived{stroke-dasharray:4 4; stroke:var(--ok)}
+.onto-arrow{fill:var(--muted)}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:6px 24px}
+@media (max-width:700px){ .grid2{grid-template-columns:1fr} }
+@media print{
+  :root{--bg:#fff; --fg:#000; --panel:#f3f3f3; --code:#f0f0f0}
+  body{font-size:11.5pt} .noprint{display:none!important}
+  section.act, section.seg.pagebreak{break-before:page}
+  .prompt, table, .say, .contrast, .why{break-inside:avoid}
+  .tw{overflow:visible} a{color:inherit; text-decoration:none}
+}
+</style>
+</head>
+<body class="[[slot:fixture_class]]">
+<div class="wrap">
+[[slot:banner]]
+<h1>{{ meta.customer_display_name }}: deal graph demo, run of show</h1>
+<p class="meta">Synthetic data as of {{ meta.as_of_date }}. Exports generated {{ meta.generated_at }}
+from engine {{ meta.engine | opt }}, relationalai {{ meta.relationalai_version | opt }}.
+Every number on this page is injected from the exports by key path and re-checked at build time.
+Prompts come from [[prompt_src]].</p>
+
+<nav class="toc noprint">
+  <a href="#before">Before you start</a><a href="#ros">Run of show</a><a href="#cold">Cold open</a>
+  <a href="#model">The model</a><a href="#acts">Acts</a><a href="#finale">Finale</a><a href="#close">Close</a>
+  <a href="#elevator">Elevator version</a><a href="#skeptics">Skeptic Q&amp;A</a>
+</nav>
+
+<section class="seg" id="before">
+  <h2>Before you start</h2>
+  <ul>
+    <li><strong>The day before:</strong> check the PAT expiry date at the top of RUNBOOK.md and rotate the token if the
+      demo is on or after the day before it. Run the RUNBOOK venue-network checklist: <code class="cmd">make warm</code>
+      from the venue network or the phone hotspot must end with "make warm: OK". Freeze the data: no
+      <code>make data</code>, <code>make load</code> or <code>make export</code> from then on.</li>
+    <li><strong>Half an hour before:</strong> from the repo root, <code class="cmd">make warm</code>. It checks Snowflake
+      auth first (auth or network errors are printed verbatim), resumes the engine, starts the warm query server and
+      runs every hero query twice. It must end with "make warm: OK". The "ready" times it prints are what each act
+      will take. Open the explorer on Overview and this script:
+      <code class="cmd">open artifacts/deal_graph_explorer.html artifacts/demo_script.html</code>. Do Not Disturb on,
+      chat and mail closed, power connected, a large terminal font.</li>
+    <li><strong>A quarter of an hour before:</strong> pre-launch the live session,
+      <code class="cmd">cd demo_workspace &amp;&amp; claude</code>, accept the folder-trust and plugin prompts, and run
+      one throwaway prompt (<code>Run uv run python ask.py --list</code>). Keep that session open. Keep a second
+      terminal in <code>demo_workspace/</code> for the fallback commands.</li>
+    <li><strong>Ten minutes before:</strong> <code class="cmd">make warm</code> again, because the engine suspends after
+      half an hour idle. Then start <code class="cmd">make keepalive</code> in its own terminal and leave it running
+      until the Q&amp;A ends. Type <code>/clear</code> in the live session.</li>
+    <li><strong>During the demo:</strong> type <code>/clear</code> before each act's prompt and before the Finale prompt,
+      never between a prompt and its ad-lib. Paste prompts from this page with Copy; do not retype. If a typo lands, let
+      it answer, or press Esc and paste again. While an act runs, talk through its business setup.</li>
+    <li><strong>After the Q&amp;A:</strong> Ctrl-C the keepalive terminal, then
+      <code class="cmd">.venv/bin/python demo_workspace/ask.py --serve-stop</code> and suspend the engine
+      (RUNBOOK.md, "After the demo").</li>
+    <li>Say once, early: everything on screen is synthetic data about a fictional firm. Nothing is shown in
+      Snowflake; Snowflake stores the data and runs RelationalAI.</li>
+  </ul>
+</section>
+
+<section class="seg" id="ros">
+  <h2>Run of show</h2>
+  [[slot:run_of_show]]
+</section>
+
+[[slot:cold_open]]
+[[slot:model]]
+<div id="acts"></div>
+[[slot:acts]]
+[[slot:finale]]
+[[slot:close]]
+[[slot:elevator]]
+[[slot:skeptics]]
+[[slot:stories]]
+
+<p class="meta" style="margin-top:40px">Built by artifacts/build_script.py from artifacts/demo_script_template.html.
+Do not edit this file by hand; run <code>make artifacts</code>.</p>
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.prompt').querySelector('pre');
+    var text = pre.textContent;
+    function done(ok) { b.textContent = ok ? 'Copied' : 'Select and copy'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); }
+    try {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { selectPre(); done(false); });
+    } catch (e) { selectPre(); done(false); }
+    function selectPre() { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+});
+</script>
+</body>
+</html>
+<!-- /BLOCK PAGE -->
+
+
+<!-- BLOCK COLD_OPEN -->
+<section class="seg" id="cold">
+  <div class="acthead"><h2>Cold open</h2><span class="pill">[[minutes]] min</span></div>
+  <p>Explorer open on the overview, Claude Code ready but idle. Look at the room, not the screen.</p>
+  <div class="say">"Your pipeline has {{ meta.counts.pipeline_companies | int }} names. PitchBook, Grata and your
+    bankers will hand you thousands more in your sweet spot. Which {{ q_score.summary.tier_a | int }} do you call on
+    Monday, why now, and who gets us in?"</div>
+  <p class="small">Do not quote a market size. The model scores a demo slice, not the market.</p>
+  <p class="small">Then: "We built one model of your deal universe and asked it the questions your deal team asks.
+    I'll type them in plain English."</p>
+</section>
+<!-- /BLOCK COLD_OPEN -->
+
+
+<!-- BLOCK MODEL -->
+<section class="seg" id="model">
+  <div class="acthead"><h2>The model</h2><span class="pill">[[minutes]] min</span><span class="pill">Explorer: Global</span></div>
+  <h3>Setup</h3>
+  <p>One semantic layer over CRM, deal history, people and commercial data, living in your Snowflake. The
+    knowledge graph holds {{ graph.stats.model_nodes | int }} entities and {{ graph.stats.model_edges | int }}
+    relationships; the explorer shows a {{ graph.stats.num_nodes | int }}-node slice with
+    {{ graph.stats.num_edges | int }} edges, laid out the same way every time.</p>
+  <div class="say">"These are your concepts: companies, sponsors, funds, intermediaries, people and their dated
+    roles, deals, signals, CRM touches. The dashed boxes are not loaded from anywhere. Rules and graph algorithms
+    derive them, and every derived fact points back to a rule you can read."</div>
+  [[ontology]]
+  <h3>Click in the explorer</h3>
+  <ul>
+    <li>Global view: search for a company, expand one hop, then two.</li>
+    <li>Toggle the edge types on and off: tenure overlap, board, deal, commercial, CRM.</li>
+    <li>Click any highlighted edge: the side panel shows the business-language rule that produced it.</li>
+  </ul>
+  [[table:edge_types]]
+  <p class="small">The model carries {{ rules.rules | len }} named rules and graph analyses, each with a
+    docstring in business language. The explorer and Claude Code both surface them.</p>
+</section>
+<!-- /BLOCK MODEL -->
+
+
+<!-- BLOCK Q-SCORE -->
+<section class="act" id="q-score">
+  <div class="acthead"><h2>Act [[act_no]]. Who fits and who is ready</h2><span class="pill">[[minutes]] min</span>
+    <span class="pill">Q-SCORE</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
+  <h3>Business setup</h3>
+  <p>Fund IV is actively investing. The partners want a short list of companies that fit the Fund IV thesis today
+    and are likely to transact soon, with every point of the score explained. Partners distrust black-box scores,
+    so each point has to trace to a named rule and dated evidence. Most names on the list will have a banker engaged.
+    Banker engaged is not process launched. It is the window to get in front of the book: a pre-empt, a seat in a
+    limited process, or at least the first call when the teaser goes out.</p>
+  <h3>Type this</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Expected answer</h3>
+  <p><strong>{{ q_score.summary.tier_a | int }} Tier A companies</strong> (score {{ q_score.tier_thresholds.A | int }}
+    or more out of {{ q_score.max_score | int }}). <strong>{{ q_score.summary.tier_a_not_in_crm | int }}</strong> of
+    them have no pipeline entry and no logged touch: nobody here owns the relationship.</p>
+  [[table:score_tier_a]]
+  <p>Talk over the top name, {{ q_score.rows[tier=A][0].name }}, component by component:</p>
+  [[table:score_breakdown]]
+  <p>Near misses the rules reject, each with its reason (good for a "what about X?" question):</p>
+  [[table:score_ineligible]]
+  <div class="say">"Fit, readiness and access, each a named rule. {{ q_score.summary.tier_a_not_in_crm | int }} of
+    your {{ q_score.summary.tier_a | int }} best targets have no pipeline entry and no touch from anyone here, and each
+    is sponsor-backed with a banker already engaged. Those processes will run with or without us."</div>
+  <p class="small">If asked "my bankers send me those teasers anyway": the model saw the banker engagement months
+    before a teaser would reach you. The value is position: who on our team knows that banker (the warm-path act) and whether
+    we are on their call list.</p>
+  [[story_why]]
+  <h3>Click in the explorer</h3>
+  <ul>
+    <li>Scorecard view. Hover the stacked bar of {{ q_score.rows[tier=A][0].name }}: each component shows its evidence.</li>
+    <li>Point at the "not in CRM" badges and say "no coverage": no pipeline entry, no logged touch.</li>
+    <li>Click a component: the side panel shows the rule docstring.</li>
+    <li>Toggle the naive SQL list: decoys struck through with the reason, misses marked.</li>
+  </ul>
+  <h3>SQL-screen contrast</h3>
+  <div class="contrast">
+    <p>A keyword-and-signal-count screen returns <strong>{{ @sql.row_count | int }}</strong> companies, ranked by
+      raw signal rows. The model returns <strong>{{ @sql.kg_count | int }}</strong> ({{ @sql.kg_label }}). The
+      screen's top name is {{ @sql.rows[0].name }}: {{ @sql.rows[0].note | opt }}</p>
+    [[table:sql]]
+  </div>
+  <h3>Why a knowledge graph</h3>
+  <p class="why">The thesis is a tree with includes and an exclude at different levels, so fit needs recursion.
+    Readiness is dated evidence across people, owners, funds and signals: a CFO who came from a company that was
+    sponsor-backed while they were there is a three-way temporal join. The model keeps all of it as one governed
+    definition that every later act reuses, with a reason attached to every point.</p>
+  <h3>If live fails</h3>
+  [[fallback_steps]]
+  <p class="small">If step one fails because the engine, Snowflake or the network is down, keep Claude Code as the
+    interface and type: <code class="cmd">Run uv run python ask.py --from-exports [[fn]] and show the result as a table
+    with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
+    engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
+    morning".</p>
+  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
+  [[prompt:tier2]]
+  <h3>Hand-off</h3>
+  <!-- NEXT Q-PATH -->
+  <div class="say">"Knowing who to call is half the job. The other half is who gets us in. Take the top
+    {{ q_path.targets | len }}."</div>
+  <!-- /NEXT -->
+</section>
+<!-- /BLOCK Q-SCORE -->
+
+
+<!-- BLOCK Q-PATH -->
+<section class="act" id="q-path">
+  <div class="acthead"><h2>Act [[act_no]]. Who gets us an edge</h2><span class="pill">[[minutes]] min</span>
+    <span class="pill">Q-PATH</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
+  <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib passed once in two runs (one engine error). Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_path, or open the explorer view.</strong></p>
+  <h3>Business setup</h3>
+  <p>For the top names, the deal team wants to know who on our side has a real, dated relationship that gives us an
+    edge: the founder or CEO directly, the owner's deal partner, or the banker running the process. Affinity and
+    DealCloud already show warm paths; the point here is that every hop is a real, dated relationship and the path
+    feeds the same governed score.</p>
+  <h3>Type this</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Expected answer</h3>
+  [[table:paths]]
+  <ul>
+    <li><strong>{{ q_path.targets[status=warm][0].company_name }}</strong>: CEO
+      {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].hops | int }} hops away,
+      {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].paths[0] | chain }}.</li>
+    <li><strong>{{ q_path.targets[status=warm][1].company_name }}</strong>: CEO
+      {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].hops | int }} hops away,
+      {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].paths[0] | chain }}, strength
+      {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].paths[0].strength | f3 }}. The alternate through
+      {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].paths[1] | via }} rests on an older tie and ranks
+      second at {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].paths[1].strength | f3 }}.</li>
+    <li><strong>{{ q_path.targets[status=cold][0].company_name }}</strong> is cold:
+      {{ q_path.targets[status=cold][0].summary }} "We know {{ q_path.targets[status=cold][0].owner_name }}" does not
+      help: their board designee, {{ q_path.targets[status=cold][0].decision_makers[kind=OWNER_DESIGNEE][0].name }}, is
+      out of reach too. The way in is {{ q_path.targets[status=cold][0].closest_intermediary.name }}.</li>
+  </ul>
+  <div class="say">"{{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].paths[0].hops[1].org_name | text }}
+    is running {{ q_path.targets[status=warm][0].company_name }}. {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].paths[0] | seed }}
+    does not go around them to {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].name }}.
+    {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].paths[0] | seed }} calls
+    {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].paths[0].hops[0].to_name }} this week, and we get
+    the book early and a shot at a pre-empt. For {{ q_path.targets[status=warm][1].company_name }},
+    {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].paths[0] | seed }}'s history with
+    {{ q_path.targets[status=warm][1].decision_makers[kind=CEO][0].paths[0].hops[0].to_name }} is our inside track
+    with the founder."</div>
+  <p class="small">The play is an early look, not a back-channel to the CEO around the banker. If someone says "we
+    know {{ q_path.targets[status=cold][0].owner_name }}": "The CRM logged a meeting with
+    {{ q_path.targets[status=cold][0].owner_name }}, not with whom. The model will not invent a relationship. If
+    someone here knows {{ q_path.targets[status=cold][0].decision_makers[kind=OWNER_DESIGNEE][0].name }}, log it, and
+    the path appears on the next run."</p>
+  [[story_why]]
+  <h3>Click in the explorer</h3>
+  <ul>
+    <li>Warm path view. Pick {{ q_path.targets[status=warm][0].company_name }}: the path from our people lights up.
+      Hover each edge for its evidence and dates.</li>
+    <li>Pick {{ q_path.targets[status=warm][1].company_name }}: the best path is solid, the alternate dimmed with its strength.</li>
+    <li>Pick {{ q_path.targets[status=cold][0].company_name }}: the "no path" banner, the struck-through shared-employer
+      claim, the owner-designee row, and the link to {{ q_path.targets[status=cold][0].closest_intermediary.name }}
+      in the deal-flow view.</li>
+  </ul>
+  <h3>SQL-screen contrast</h3>
+  <div class="contrast">
+    <p>A shared-employer join reports <strong>{{ @sql.row_count | int }}</strong> "connections". The model keeps
+      <strong>{{ @sql.kg_count | int }}</strong> ({{ @sql.kg_label }}). Its worst claim: it says
+      {{ q_path.targets[status=cold][0].rejected_claims[0].from_name }} knows
+      {{ q_path.targets[status=cold][0].rejected_claims[0].to_name }} through
+      {{ q_path.targets[status=cold][0].rejected_claims[0].org_name }}. They were there
+      {{ q_path.targets[status=cold][0].rejected_claims[0].intervals[0].start_date | year }} to
+      {{ q_path.targets[status=cold][0].rejected_claims[0].intervals[0].end_date | year }} and
+      {{ q_path.targets[status=cold][0].rejected_claims[0].intervals[1].start_date | year }} to
+      {{ q_path.targets[status=cold][0].rejected_claims[0].intervals[1].end_date | year }}: never at the same time,
+      {{ q_path.targets[status=cold][0].rejected_claims[0].gap_days | int }} days apart.</p>
+    <p class="small">Say this only if asked or in the ad-lib follow-up. The live answer should not name the
+      rejected tie.</p>
+    [[table:sql]]
+  </div>
+  <h3>Why a knowledge graph</h3>
+  <p class="why">"Knows" is derived by rules from overlapping tenure, deal co-work and positive CRM contact, each with
+    dates and a strength. Path finding runs on that derived graph, so the path length can differ per target, every hop
+    keeps its evidence, fresh ties outrank stale ones, and the same company at different times is not a relationship.</p>
+  <h3>If live fails</h3>
+  [[fallback_steps]]
+  <p class="small">If step one fails because the engine, Snowflake or the network is down, keep Claude Code as the
+    interface and type: <code class="cmd">Run uv run python ask.py --from-exports [[fn]] and show the result as a table
+    with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
+    engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
+    morning".</p>
+  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
+  [[prompt:tier2]]
+  <h3>Hand-off</h3>
+  <!-- NEXT Q-FLOW -->
+  <div class="say">"{{ q_path.targets[status=warm] | len }} of the top {{ q_path.targets | len }} have a warm route in.
+    {{ q_path.targets[status=cold][0].company_name }} is cold to us, but not to everyone. Which intermediaries actually
+    move deals in our sectors, and are we covering them?"</div>
+  <!-- /NEXT -->
+  <!-- NEXT Q-ADDON -->
+  <div class="say">"{{ q_path.targets[status=warm] | len }} of the top {{ q_path.targets | len }} have a warm route in,
+    and we will come back to {{ q_path.targets[status=cold][0].company_name }}. Platforms are half of buy-and-build;
+    most deals in this market are add-ons. So what should {{ q_addon.platform.name }} buy next?"</div>
+  <!-- /NEXT -->
+</section>
+<!-- /BLOCK Q-PATH -->
+
+
+<!-- BLOCK Q-FLOW -->
+<section class="act" id="q-flow">
+  <div class="acthead"><h2>Act [[act_no]]. Who controls deal flow</h2><span class="pill">[[minutes]] min</span>
+    <span class="pill">Q-FLOW</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
+  <p class="small"><strong>Second-tier ad-lib: OPTIONAL - one run only. This ad-lib passed its only run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_flow, or open the explorer view.</strong></p>
+  <h3>Business setup</h3>
+  <p>Firms invest in off-market flow to avoid fully competitive auctions, but most deals still pass through a banker,
+    boutique or broker. Coverage is a managed activity. The question is whether we cover the intermediaries that
+    actually bridge founders and sponsors in our sectors, not the ones with the most tombstones.</p>
+  <h3>Type this</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Expected answer</h3>
+  <p>The model builds a deal network from thesis-sector transactions between {{ q_flow.window.start }} and
+    {{ q_flow.window.end }}: {{ q_flow.graph_stats.num_nodes | int }} organizations and
+    {{ q_flow.graph_stats.num_edges | int }} deal relationships, then ranks
+    {{ q_flow.graph_stats.num_intermediaries | int }} intermediaries by betweenness.</p>
+  [[table:flow]]
+  <ul>
+    <li><strong>{{ q_flow.intermediaries[is_gap=true][0].name }}</strong> ranks
+      {{ q_flow.intermediaries[is_gap=true][0].betweenness_rank | int }} by betweenness with only
+      {{ q_flow.intermediaries[is_gap=true][0].deals_in_window | int }} thesis deals, and we have touched it
+      {{ q_flow.intermediaries[is_gap=true][0].touchpoints_24m | int }} time(s) in two years. Coverage gaps found:
+      {{ q_flow.intermediaries[is_gap=true] | len }}.</li>
+    <li>The top bridge, {{ q_flow.intermediaries[betweenness_rank=1][0].name }}, has
+      {{ q_flow.intermediaries[betweenness_rank=1][0].touchpoints_24m | int }} touchpoints in the same window.</li>
+  </ul>
+  <div class="say">"Volume is not control. {{ q_flow.intermediaries[is_gap=true][0].name }} brings founder-owned companies in exactly our
+    sectors to a range of sponsors, and we are not one of them. It is engaged on {{ q_path.targets[status=cold][0].company_name }}, our
+    #{{ q_path.targets[status=cold][0].score_rank | int }} target, right now. If that becomes a process, today we are not on
+    the buyer list. It goes on the coverage plan this week, starting with the banker who led their
+    {{ q_path.targets[status=cold][0].company_name }} work."</div>
+  [[story_why]]
+  <h3>Click in the explorer</h3>
+  <ul>
+    <li>Deal flow view. Intermediaries are sized by betweenness, with our touchpoint count as a ring.</li>
+    <li>Click {{ q_flow.intermediaries[is_gap=true][0].name }} (outlined as the coverage gap): its
+      {{ q_flow.intermediaries[is_gap=true][0].deals_in_window | int }} deals list out.</li>
+    <li>Follow its recap edge back to the cold card in the warm-path view.</li>
+    <li>Leave "Compare with league table" closed unless someone asks.</li>
+  </ul>
+  <h3>SQL-screen contrast</h3>
+  <div class="contrast">
+    <p>A deal-count league table lists <strong>{{ @sql.row_count | int }}</strong> advisors and puts
+      {{ @sql.rows[0].name }} first with {{ @sql.rows[0].metric | int }} deals. In the sector-scoped network it ranks
+      {{ q_flow.intermediaries[org_id={@sql.rows[0].entity_id}][0].betweenness_rank | int }} by betweenness. The model
+      flags <strong>{{ @sql.kg_count | int }}</strong> ({{ @sql.kg_label }}).</p>
+    <p class="small">The live answer should not name the league-table leader. Use this in the ad-lib follow-up.</p>
+    [[table:sql]]
+  </div>
+  <h3>Why a knowledge graph</h3>
+  <p class="why">Betweenness measures who sits on the routes between sellers and buyers across the whole sector
+    network, not who has the most tombstones. You could approximate pieces of it with filtered counts; the model
+    computes it on the full network, joins it to our dated CRM touches in one coverage-gap rule, and re-runs when deal
+    data changes.</p>
+  <h3>If live fails</h3>
+  [[fallback_steps]]
+  <p class="small">If step one fails because the engine, Snowflake or the network is down, keep Claude Code as the
+    interface and type: <code class="cmd">Run uv run python ask.py --from-exports [[fn]] and show the result as a table
+    with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
+    engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
+    morning".</p>
+  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
+  [[prompt:tier2]]
+  <h3>Hand-off</h3>
+  <!-- NEXT Q-CONFLICT -->
+  <div class="say">"{{ q_flow.intermediaries[is_gap=true][0].name }} is the gap. Now take
+    {{ q_conflict.subject.name }}: Tier A, a banker running the process, and our IOI in preparation. Before it goes in,
+    the question every IC asks: does it touch anything we own, and how much room is left in the fund?"</div>
+  <!-- /NEXT -->
+  <!-- NEXT FINALE -->
+  <div class="say">"{{ q_flow.intermediaries[is_gap=true][0].name }} is the gap, and it goes on the coverage plan this
+    week. Now let's make what we just learned part of the score."</div>
+  <!-- /NEXT -->
+</section>
+<!-- /BLOCK Q-FLOW -->
+
+
+<!-- BLOCK Q-CONFLICT -->
+<section class="act" id="q-conflict">
+  <div class="acthead"><h2>Act [[act_no]]. Before we bid</h2><span class="pill">[[minutes]] min</span>
+    <span class="pill">Q-CONFLICT</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
+  <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib was not run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_conflict, or open the explorer view.</strong></p>
+  <h3>Business setup</h3>
+  <p>{{ q_conflict.subject.name }} is a real Tier A target and we are preparing an IOI. Before it goes in, the IC asks
+    two things: does it trade with anything another Northwind fund owns today, and how much room is left under Fund
+    IV's guideline for its thesis area? The second lives in the CFO's portfolio sheet. The first lives in our portfolio
+    companies' vendor and customer lists, which nobody on the deal team reads.</p>
+  <h3>Type this</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Expected answer</h3>
+  [[table:conflict]]
+  <div class="say">"{{ q_conflict.exposures[kind=conflict][0].name }} is a direct link:
+    {{ q_conflict.exposures[kind=conflict][0].evidence }} That needs cross-fund review. And at a
+    {{ q_conflict.concentration.check_musd | musd }} check, {{ q_conflict.concentration.subject_area }} goes to
+    {{ q_conflict.concentration.areas[is_subject_area=true][0].after_pct | pct }} against a
+    {{ q_conflict.concentration.guideline_pct | pct }} guideline, over by {{ q_conflict.concentration.over_by_musd | musd }}.
+    Either size the check at {{ q_conflict.concentration.headroom_musd | musd }} or less and syndicate the rest as
+    co-invest, or take it to IC as an exception."</div>
+  [[story_why]]
+  <h3>Click in the explorer</h3>
+  <ul>
+    <li>Conflict check view: {{ q_conflict.subject.name }} in the center with its two-hop commercial neighborhood.</li>
+    <li>The red edge to {{ q_conflict.exposures[kind=conflict][0].name }}; the dashed shared-customer path;
+      the greyed former holding and the out-of-range company at the rim.</li>
+    <li>The concentration gauge beside it: one bar per thesis area, the guideline line, before and after.</li>
+  </ul>
+  <h3>SQL-screen contrast</h3>
+  <div class="contrast">
+    <p>The associate's check joins commercial links to every ownership row ever recorded and groups exposure by niche.
+      It returns <strong>{{ @sql.row_count | int }}</strong> conflict row(s) and sees no concentration issue. The model
+      returns <strong>{{ @sql.kg_count | int }}</strong> ({{ @sql.kg_label }}) plus the guideline breach.</p>
+    [[table:sql]]
+  </div>
+  <h3>Why a knowledge graph</h3>
+  <p class="why">"Ours", "current" and "thesis area" are defined once in the model. Reach is a bounded graph distance
+    with path evidence, ownership is time-bounded so a company sold years ago is not a conflict, and concentration
+    rolls up the same sector tree the scorecard used.</p>
+  <h3>If live fails</h3>
+  [[fallback_steps]]
+  <p class="small">If step one fails because the engine, Snowflake or the network is down, keep Claude Code as the
+    interface and type: <code class="cmd">Run uv run python ask.py --from-exports [[fn]] and show the result as a table
+    with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
+    engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
+    morning".</p>
+  <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
+  [[prompt:tier2]]
+  <h3>Hand-off</h3>
+  <!-- NEXT FINALE -->
+  <div class="say">"That check ran for one name because we asked. Let's make it part of the score for every target,
+    together with what we learned about access."</div>
+  <!-- /NEXT -->
+  <!-- NEXT Q-FLOW -->
+  <div class="say">"That is one target checked by rule. Now, where does our next {{ q_conflict.subject.name }} come
+    from? Which intermediaries actually move deals in our sectors?"</div>
+  <!-- /NEXT -->
+</section>
+<!-- /BLOCK Q-CONFLICT -->
+
+
+<!-- BLOCK Q-ADDON -->
+<section class="act" id="q-addon">
+  <div class="acthead"><h2>Act [[act_no]]. What the platform buys next</h2><span class="pill">[[minutes]] min</span>
+    <span class="pill">Q-ADDON</span><span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
+  <h3>Business setup</h3>
+  <p>Most deals in this market are add-ons. {{ q_addon.platform.name }} is a Fund IV platform in
+    {{ q_addon.platform.niche }}. The best add-on shares its customers and suppliers and adds new geography, and it
+    may sit in a sibling niche a sector screen never looks at.</p>
+  <h3>Type this</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Expected answer</h3>
+  [[table:addon]]
+  <div class="say">"{{ q_addon.candidates[0].name }} shares {{ q_addon.candidates[0].shared_count | int }} of
+    {{ q_addon.platform.name }}'s {{ q_addon.platform.neighbor_count | int }} customers and suppliers and adds
+    {{ q_addon.candidates[0].whitespace_states | list }}."</div>
+  [[story_why]]
+  <h3>Click in the explorer</h3>
+  <ul>
+    <li>Add-on map: {{ q_addon.platform.name }} in the center, candidates sized by similarity, colored by community.</li>
+    <li>Click {{ q_addon.candidates[0].name }}: shared customers and the whitespace states light up.</li>
+    <li>Point at {{ q_addon.excluded[0].name }}, greyed: {{ q_addon.excluded[0].reason }}</li>
+  </ul>
+  <h3>SQL-screen contrast</h3>
+  <div class="contrast">
+    <p>A same-niche screen returns <strong>{{ @sql.row_count | int }}</strong> companies and puts
+      {{ @sql.rows[0].name }} first. The model returns <strong>{{ @sql.kg_count | int }}</strong>
+      ({{ @sql.kg_label }}).</p>
+    [[table:sql]]
+  </div>
+  <h3>Why a knowledge graph</h3>
+  <p class="why">Similarity of commercial neighborhoods is a set computation over the customer and supplier network for
+    every candidate, and the candidate pool itself comes from the sector tree. A join on a sector code sees neither.</p>
+  <h3>If live fails</h3>
+  [[fallback_steps]]
+  <p class="small">If step one fails because the engine, Snowflake or the network is down, keep Claude Code as the
+    interface and type: <code class="cmd">Run uv run python ask.py --from-exports [[fn]] and show the result as a table
+    with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
+    engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
+    morning".</p>
+  <h3>Hand-off</h3>
+  <!-- NEXT Q-FLOW -->
+  <div class="say">"So who sees these deals first in our sectors, and are we covering them?"</div>
+  <!-- /NEXT -->
+  <!-- NEXT FINALE -->
+  <div class="say">"Now let's make what we just learned part of the score."</div>
+  <!-- /NEXT -->
+</section>
+<!-- /BLOCK Q-ADDON -->
+
+
+<!-- BLOCK FINALE -->
+<section class="act" id="finale">
+  <div class="acthead"><h2>Finale. Change the rules live</h2><span class="pill">[[minutes]] min</span>
+    <span class="pill">[[reasoner]]</span><span class="pill">Explorer: [[view]]</span></div>
+  <h3>Business setup</h3>
+  <p>Two sentences of new policy, written live as rules. One turns the warm-path graph into access points. The other
+    applies the cross-fund conflict check to every target. Nothing is re-engineered; the score just gains two named
+    components.</p>
+  <h3>Type this</h3>
+  <p class="small">First type <code class="cmd">/clear</code> and press Enter, so the act starts from an empty
+    context (never between this prompt and its ad-lib).</p>
+  [[prompt:tier1]]
+  <h3>Expected answer</h3>
+  [[table:finale]]
+  <ul>
+    <li><strong>{{ q_score.finale.rows[prev_tier!=A][tier=A][0].name }}</strong> rises from Tier
+      {{ q_score.finale.rows[prev_tier!=A][tier=A][0].prev_tier }}
+      ({{ q_score.finale.rows[prev_tier!=A][tier=A][0].prev_score | int }}) into Tier A at
+      {{ q_score.finale.rows[prev_tier!=A][tier=A][0].score | int }}:
+      {{ q_score.finale.rows[prev_tier!=A][tier=A][0].added_components[0].evidence }}</li>
+    <li><strong>{{ q_score.finale.rows[rank=1][0].name }}</strong> moves from
+      #{{ q_score.finale.rows[rank=1][0].prev_rank | int }} to #{{ q_score.finale.rows[rank=1][0].rank | int }} at
+      {{ q_score.finale.rows[rank=1][0].score | int }}.</li>
+    <li><strong>{{ q_score.finale.rows[conflict!=null][0].name }}</strong> keeps its score of
+      {{ q_score.finale.rows[conflict!=null][0].score | int }} but is flagged "hold until cross-fund clearance", so it
+      comes off the Tier A call list until it is cleared:
+      {{ q_score.finale.rows[conflict!=null][0].conflict.reason }}</li>
+  </ul>
+  <div class="say">"{{ q_score.finale.rows[prev_tier!=A][tier=A][0].name }} has been on our tracking list for years
+    and nobody has called. Now we know who on our team can. That is Monday's call."</div>
+  <div class="say">"{{ q_score.finale.rows[conflict!=null][0].name }}'s score did not change; it is on hold until the
+    conflicts committee clears it. The check we ran by hand for one name now runs on every target, and the others come
+    back clean. A graph result from the warm-path act and a portfolio check from the conflict act now sit inside one
+    explainable score."</div>
+  [[story_why]]
+  <h3>Click in the explorer</h3>
+  <ul>
+    <li>Scorecard view, Finale toggle: before and after columns with movement arrows.</li>
+    <li>Click {{ q_score.finale.rows[conflict!=null][0].name }}: it jumps to the conflict evidence.</li>
+  </ul>
+  <h3>SQL-screen contrast</h3>
+  <div class="contrast"><p>No CRM view or thesis screen joins a target to the other fund's supply chain, or turns a
+    relationship path into points. In a SQL stack this is a new pipeline; here it is two sentences.</p></div>
+  <h3>Why a knowledge graph</h3>
+  <p class="why">Reasoners compose: a graph distance computed for access and a time-bounded ownership rule defined for
+    conflicts feed the same governed score, and every point still carries its reason.</p>
+  <h3>If live fails</h3>
+  <p>Realistic timing is about three minutes (rehearsal runs took over three minutes, one via the prebuilt fallback). This is the riskiest act, so it has one cutoff: one live attempt, at most three minutes. Fall back at the first
+    failure (an error, an empty or partial table, a ranking that looks wrong) or at three minutes on the clock,
+    whichever comes first. At three minutes, press Esc and type <code class="cmd">use the prebuilt version</code>.
+    Claude then runs the prebuilt function; say "here is the same rule, prebuilt". The prebuilt answer is identical by
+    construction.</p>
+  [[fallback_steps]]
+  <p class="small">If step one fails because the engine, Snowflake or the network is down, keep Claude Code as the
+    interface and type: <code class="cmd">Run uv run python ask.py --from-exports [[fn]] and show the result as a table
+    with the why for each row.</code> It prints the same rows from the governed exports, labelled precomputed, with no
+    engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
+    morning".</p>
+</section>
+<!-- /BLOCK FINALE -->
+
+
+<!-- BLOCK CLOSE -->
+<section class="seg" id="close">
+  <div class="acthead"><h2>Close</h2><span class="pill">[[minutes]] min</span></div>
+  <div class="say">"Governed, explainable, in your Snowflake, and Claude is the interface."</div>
+  <ul>
+    <li><strong>Governed.</strong> One definition of thesis fit, readiness, access and conflict, reused by every
+      question you saw.</li>
+    <li><strong>Explainable.</strong> Every point and every hop traces to a named rule and dated evidence.</li>
+    <li><strong>In your Snowflake.</strong> The data, the model and the reasoning run inside your account, with no
+      copy to a vendor's cloud; your CRM, deal history and vendor feeds become inputs. Claude sees the results of the
+      queries it runs, not your tables. Claude models are also available inside Snowflake through Cortex if you want
+      the interface within the boundary too.</li>
+    <li><strong>Claude is the interface.</strong> Plain English in, governed answers out, new rules in a sentence.</li>
+  </ul>
+  <p class="small">Leave them with: {{ q_score.summary.tier_a | int }} Tier A targets,
+    {{ q_score.summary.tier_a_not_in_crm | int }} with no coverage; one coverage gap at
+    {{ q_flow.intermediaries[is_gap=true][0].name }}; and every target checked for cross-fund conflicts, with only
+    {{ q_score.finale.rows[conflict!=null][0].name }} on hold.</p>
+</section>
+<!-- /BLOCK CLOSE -->
+
+
+<!-- BLOCK ELEVATOR -->
+<section class="seg pagebreak" id="elevator">
+  <h2>Elevator version (thirty seconds)</h2>
+  <div class="say">"We modeled your deal universe as one knowledge graph inside Snowflake. Asked in plain English, it
+    found {{ q_score.summary.tier_a | int }} Tier A targets for Fund IV, {{ q_score.summary.tier_a_not_in_crm | int }}
+    of them with no coverage. It found a warm route in for {{ q_path.targets[status=warm] | len }} of the top
+    {{ q_path.targets | len }} and said honestly that one is cold. It showed that
+    {{ q_flow.intermediaries[is_gap=true][0].name }} bridges flow in your sectors and you barely cover it. And when we
+    added two rules in a sentence, it checked every target for cross-fund conflicts, with only
+    {{ q_score.finale.rows[conflict!=null][0].name }} on hold. Every point traces to a rule you can read."</div>
+</section>
+<!-- /BLOCK ELEVATOR -->
+
+
+<!-- BLOCK SKEPTICS -->
+<section class="seg" id="skeptics">
+  <h2>Skeptic Q&amp;A</h2>
+  <p class="small">Answer short, then offer to show it.</p>
+  <div class="qa"><p class="q">"Affinity or DealCloud already shows me warm intros."</p>
+    <p>Keep them; a path is one signal. Affinity knows who you know. It does not know
+    {{ q_path.targets[status=warm][0].decision_makers[kind=CEO][0].paths[0].hops[1].org_name | text }} is running
+    {{ q_path.targets[status=warm][0].company_name }},
+    {{ q_path.targets[status=cold][0].closest_intermediary.name }} is engaged on
+    {{ q_path.targets[status=cold][0].company_name }}, or that {{ q_conflict.subject.name }} takes you over your
+    {{ q_conflict.concentration.subject_area }} guideline. Here each path is weighted by tenure overlap and recency,
+    false ties are rejected, and access is combined with fit, readiness and conflicts in one governed score. Affinity
+    and PitchBook become inputs, not rivals.</p></div>
+  <div class="qa"><p class="q">"Half your Tier A list already has a banker. That's not sourcing."</p>
+    <p>Right, and the model knew a banker was engaged months before a teaser would reach you. The value is position:
+    who on our team knows that banker (the warm-path act) and whether we are on their call list (the deal-flow
+    act).</p></div>
+  <div class="qa"><p class="q">"DealCloud already has a scoring field."</p>
+    <p>A field an associate types is stale by Friday. This score is re-derived from dated facts every run, with the
+    reason attached.</p></div>
+  <div class="qa"><p class="q">"Grata would have found {{ q_path.targets[status=cold][0].company_name }}."</p>
+    <p>Grata finds companies. It does not rank them by readiness and access with evidence, or check them against your
+    portfolio.</p></div>
+  <div class="qa"><p class="q">"Where does debt maturity come from on a founder-owned company?"</p>
+    <p>Vendor debt data for sponsor-backed names, lender and banker conversations logged in the CRM, UCC filings.
+    Where you do not have it, the point is not awarded, and the scorecard shows that.</p></div>
+  <div class="qa"><p class="q">"Does our deal data leave Snowflake?"</p>
+    <p>The data, the model and the reasoning stay in your account. Claude sees the results of the queries it runs, the
+    answer rows on screen, not your tables. If those rows must stay inside the boundary too, Claude models are
+    available inside Snowflake through Cortex.</p></div>
+  <p class="small">From the domain brief:</p>
+  [[brief:qa_rest]]
+  <h3>Say this, not that</h3>
+  [[brief:vocab]]
+</section>
+<!-- /BLOCK SKEPTICS -->
+
+
+<!-- BLOCK STORIES -->
+<section class="seg pagebreak" id="stories">
+  <h2>Story cards (backstage)</h2>
+  <p class="small">From the golden story cards. Included only because every number in them matches the exports.</p>
+  [[stories]]
+</section>
+<!-- /BLOCK STORIES -->

@@ -62,6 +62,10 @@ EM_DASH = "—"
 # Shared engine: on a lock, a 503, a suspending engine or an empty hero frame, wait and retry.
 RETRY_WAIT_S = 60
 RETRY_MAX = 3
+EMPTY_RECHECK_S = 15
+# populated in every valid model state; an empty read of these is contention, never an answer
+REQUIRED_READS = {"in_crm", "has_conflict", "conflict_evidence", "name", "score", "tier", "score_rank",
+                  "finale_score", "finale_tier", "finale_rank", "current_owner_fund", "sponsor"}
 TRANSIENT = ("currently locked", "503", "upstream connect", "SUSPENDING", "CREATE_TRANSACTION",
              "engine is not ready", "timed out", "Too Many Requests", "429")
 
@@ -246,16 +250,36 @@ class Live:
         expr = getattr(concept, attr)
         if via:
             expr = getattr(expr, via)
-        d = self.df(concept.id.alias("id"), expr.alias("v"))
-        out = {str(r.id): nn(r.v) for r in d.itertuples(index=False)}
+        d = self._nonempty(f"{attr}{'.' + via if via else ''}",
+                           lambda: self.df(concept.id.alias("id"), expr.alias("v")), attr in REQUIRED_READS)
+        out = {str(r.id): nn(r.v) for r in d.itertuples(index=False)} if "id" in d.columns else {}
         self._cache[key] = out
         return out
 
     def flag(self, concept, attr: str) -> set:
-        d = self.df(concept.id.alias("id"), where=[getattr(concept, attr)()])
+        d = self._nonempty(attr, lambda: self.df(concept.id.alias("id"), where=[getattr(concept, attr)()]),
+                           attr in REQUIRED_READS)
         if "id" not in d.columns:  # an empty result comes back without columns
             return set()
         return {str(x) for x in d["id"]}
+
+    @staticmethod
+    def _nonempty(what: str, fn, required: bool):
+        """Under contention the engine can hand back an empty frame for a populated relation. A required
+        read retries RETRY_MAX times at RETRY_WAIT_S and then fails; any other empty read is retried once
+        after EMPTY_RECHECK_S (it may be legitimately empty) and then accepted with a warning."""
+        tries, wait = (RETRY_MAX, RETRY_WAIT_S) if required else (1, EMPTY_RECHECK_S)
+        for attempt in range(tries + 1):
+            d = fn()
+            if len(d):
+                return d
+            if attempt < tries:
+                print(f"export: read {what}: empty; re-reading in {wait}s ({attempt + 1}/{tries})", file=sys.stderr)
+                time.sleep(wait)
+        if required:
+            raise ExportError(f"read {what}: still empty after {tries} retries (engine contention?)")
+        warn(f"read {what}: empty after a re-read; treated as legitimately empty")
+        return d
 
     def ids(self, concept) -> list[str]:
         return sorted(str(x) for x in self.df(concept.id.alias("id"))["id"])
@@ -1895,7 +1919,8 @@ def run_export(out: Path, naive_dir: Path, target: int) -> int:
     flow_doc, flow_ctx = build_q_flow(cx, hero)
     conflict_doc, conflict_ctx = (build_q_conflict(cx, hero) if "q_conflict" in hero else (None, {}))
     # hero entities for the explorer subgraph
-    hero_ids = set(score_ctx["tier_a_ids"]) | path_ctx["path_people"] | path_ctx["dm_people"] | path_ctx["closest"] \
+    # every scored row (Tier A and B) is a hero entity: the contract requires each q_score row in graph.json
+    hero_ids = {r["company_id"] for r in score_ctx["rows"]} | path_ctx["path_people"] | path_ctx["dm_people"] | path_ctx["closest"] \
         | set(path_ctx["target_ids"]) | cx.seed_ids | set(flow_ctx["top"]) | set(flow_ctx["gap"])
     if conflict_doc:
         hero_ids |= {conflict_ctx["subject"]} | conflict_ctx["exposure_ids"]

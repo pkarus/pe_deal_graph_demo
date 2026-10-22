@@ -1,0 +1,8637 @@
+{
+ "question_id": "Q-FLOW",
+ "business_question": "Which intermediaries actually bridge deal flow between founders and sponsors, and where do we have no coverage?",
+ "window": {
+  "start": "2021-10-01",
+  "end": "2026-10-01"
+ },
+ "graph_stats": {
+  "num_nodes": 1187,
+  "num_edges": 1366,
+  "num_intermediaries": 50
+ },
+ "thresholds": {
+  "top_decile_cutoff_rank": 4,
+  "q1_touchpoints": 1
+ },
+ "intermediaries": [
+  {
+   "org_id": "I210",
+   "name": "Cedar Row Partners",
+   "betweenness": 7507.43639,
+   "betweenness_rank": 1,
+   "pagerank": 0.021025,
+   "deals_in_window": 14,
+   "deals_5y_all_sectors": 14,
+   "touchpoints_24m": 14,
+   "top_decile": true,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1413",
+    "T2873",
+    "T3326",
+    "T3344",
+    "T4826",
+    "T5019",
+    "T5300",
+    "T7012",
+    "T7155",
+    "T8270",
+    "T8545",
+    "T9229",
+    "T9305",
+    "T9378"
+   ]
+  },
+  {
+   "org_id": "I139",
+   "name": "Harbor Lane Advisors",
+   "betweenness": 1667.391337,
+   "betweenness_rank": 2,
+   "pagerank": 0.012589,
+   "deals_in_window": 9,
+   "deals_5y_all_sectors": 9,
+   "touchpoints_24m": 1,
+   "top_decile": true,
+   "is_gap": true,
+   "gap_reason": "Top-decile bridge with 1 touchpoint(s) in 24 months, at or below the bottom-quartile level of 1.",
+   "deal_ids": [
+    "T2230",
+    "T2304",
+    "T3234",
+    "T4878",
+    "T6023",
+    "T6076",
+    "T7236",
+    "T8225",
+    "T8344"
+   ]
+  },
+  {
+   "org_id": "I845",
+   "name": "Wilby Securities",
+   "betweenness": 1113.117192,
+   "betweenness_rank": 3,
+   "pagerank": 0.00605,
+   "deals_in_window": 4,
+   "deals_5y_all_sectors": 10,
+   "touchpoints_24m": 5,
+   "top_decile": true,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1169",
+    "T2009",
+    "T4910",
+    "T8806"
+   ]
+  },
+  {
+   "org_id": "I737",
+   "name": "Umberby & Co.",
+   "betweenness": 1061.205432,
+   "betweenness_rank": 4,
+   "pagerank": 0.006046,
+   "deals_in_window": 4,
+   "deals_5y_all_sectors": 11,
+   "touchpoints_24m": 7,
+   "top_decile": true,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1849",
+    "T3313",
+    "T5007",
+    "T9720"
+   ]
+  },
+  {
+   "org_id": "I653",
+   "name": "Wexhall Bank Capital",
+   "betweenness": 777.314769,
+   "betweenness_rank": 5,
+   "pagerank": 0.005978,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1087",
+    "T7070",
+    "T8150"
+   ]
+  },
+  {
+   "org_id": "I241",
+   "name": "Wexcrest Capital Advisors",
+   "betweenness": 691.062108,
+   "betweenness_rank": 6,
+   "pagerank": 0.005333,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T3748",
+    "T5303",
+    "T7899"
+   ]
+  },
+  {
+   "org_id": "I670",
+   "name": "Kestcombe Advisors",
+   "betweenness": 686.019047,
+   "betweenness_rank": 7,
+   "pagerank": 0.005275,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 5,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1275",
+    "T3276",
+    "T8827"
+   ]
+  },
+  {
+   "org_id": "I489",
+   "name": "Junhaven Advisors",
+   "betweenness": 558.432737,
+   "betweenness_rank": 8,
+   "pagerank": 0.005796,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 6,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1744",
+    "T2237",
+    "T7917"
+   ]
+  },
+  {
+   "org_id": "I191",
+   "name": "Thornport Advisors",
+   "betweenness": 546.671606,
+   "betweenness_rank": 9,
+   "pagerank": 0.004529,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 12,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T5226",
+    "T5355",
+    "T7565"
+   ]
+  },
+  {
+   "org_id": "I854",
+   "name": "Kestcrest Securities",
+   "betweenness": 473.843465,
+   "betweenness_rank": 10,
+   "pagerank": 0.005418,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T3740",
+    "T6722",
+    "T9741"
+   ]
+  },
+  {
+   "org_id": "I494",
+   "name": "Dunby Bank Capital",
+   "betweenness": 472.351872,
+   "betweenness_rank": 11,
+   "pagerank": 0.005371,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T2965",
+    "T5408",
+    "T9892"
+   ]
+  },
+  {
+   "org_id": "I936",
+   "name": "Quillwood Partners",
+   "betweenness": 463.180235,
+   "betweenness_rank": 12,
+   "pagerank": 0.00586,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 6,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T3934",
+    "T6113",
+    "T7709"
+   ]
+  },
+  {
+   "org_id": "I523",
+   "name": "Fairmont Advisors",
+   "betweenness": 432.281296,
+   "betweenness_rank": 13,
+   "pagerank": 0.005422,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 5,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1709",
+    "T4360",
+    "T5789"
+   ]
+  },
+  {
+   "org_id": "I991",
+   "name": "Jungate Bank Capital",
+   "betweenness": 391.772074,
+   "betweenness_rank": 14,
+   "pagerank": 0.005545,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T3395",
+    "T6956",
+    "T9050"
+   ]
+  },
+  {
+   "org_id": "I390",
+   "name": "Gantton Capital Advisors",
+   "betweenness": 323.846328,
+   "betweenness_rank": 15,
+   "pagerank": 0.003829,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T4541",
+    "T7266"
+   ]
+  },
+  {
+   "org_id": "I368",
+   "name": "Walbury Advisors",
+   "betweenness": 310.685604,
+   "betweenness_rank": 16,
+   "pagerank": 0.003837,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 5,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T3511",
+    "T7090"
+   ]
+  },
+  {
+   "org_id": "I364",
+   "name": "Ravenmont Advisors",
+   "betweenness": 250.896888,
+   "betweenness_rank": 17,
+   "pagerank": 0.003756,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 2,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1865",
+    "T7505"
+   ]
+  },
+  {
+   "org_id": "I616",
+   "name": "Rushcombe & Co.",
+   "betweenness": 224.432745,
+   "betweenness_rank": 18,
+   "pagerank": 0.003801,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T7430",
+    "T8329"
+   ]
+  },
+  {
+   "org_id": "I538",
+   "name": "Birchwick Advisors",
+   "betweenness": 214.681474,
+   "betweenness_rank": 19,
+   "pagerank": 0.006016,
+   "deals_in_window": 4,
+   "deals_5y_all_sectors": 11,
+   "touchpoints_24m": 6,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T5173",
+    "T5696",
+    "T6452",
+    "T9813"
+   ]
+  },
+  {
+   "org_id": "I974",
+   "name": "Yarholt Capital Advisors",
+   "betweenness": 206.621654,
+   "betweenness_rank": 20,
+   "pagerank": 0.003734,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1614",
+    "T9444"
+   ]
+  },
+  {
+   "org_id": "I373",
+   "name": "Ivoford & Co.",
+   "betweenness": 202.081532,
+   "betweenness_rank": 21,
+   "pagerank": 0.003806,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T2798",
+    "T7648"
+   ]
+  },
+  {
+   "org_id": "I617",
+   "name": "Pellgate & Co.",
+   "betweenness": 202.081532,
+   "betweenness_rank": 22,
+   "pagerank": 0.003806,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 5,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T4082",
+    "T9829"
+   ]
+  },
+  {
+   "org_id": "I830",
+   "name": "Sorrwell & Co.",
+   "betweenness": 195.205323,
+   "betweenness_rank": 23,
+   "pagerank": 0.003732,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T2691",
+    "T7756"
+   ]
+  },
+  {
+   "org_id": "I907",
+   "name": "Hobden Partners",
+   "betweenness": 164.463415,
+   "betweenness_rank": 24,
+   "pagerank": 0.00373,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T7322",
+    "T7560"
+   ]
+  },
+  {
+   "org_id": "I971",
+   "name": "Coleden Advisors",
+   "betweenness": 164.162551,
+   "betweenness_rank": 25,
+   "pagerank": 0.003807,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T3266",
+    "T8612"
+   ]
+  },
+  {
+   "org_id": "I777",
+   "name": "Emberfield Capital Advisors",
+   "betweenness": 164.162551,
+   "betweenness_rank": 26,
+   "pagerank": 0.003807,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 2,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T3895",
+    "T8905"
+   ]
+  },
+  {
+   "org_id": "I648",
+   "name": "Loamhurst Bank Capital",
+   "betweenness": 153.469975,
+   "betweenness_rank": 27,
+   "pagerank": 0.003734,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 5,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T5349",
+    "T9333"
+   ]
+  },
+  {
+   "org_id": "I776",
+   "name": "Emberholt Partners",
+   "betweenness": 150.396107,
+   "betweenness_rank": 28,
+   "pagerank": 0.003735,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 2,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T5666",
+    "T7209"
+   ]
+  },
+  {
+   "org_id": "I993",
+   "name": "Pellfield Partners",
+   "betweenness": 150.396107,
+   "betweenness_rank": 29,
+   "pagerank": 0.003735,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T2317",
+    "T4976"
+   ]
+  },
+  {
+   "org_id": "I117",
+   "name": "Fenbrook & Co.",
+   "betweenness": 79.314888,
+   "betweenness_rank": 30,
+   "pagerank": 0.004513,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T6063",
+    "T6603",
+    "T8057"
+   ]
+  },
+  {
+   "org_id": "I810",
+   "name": "Flintworth Capital Advisors",
+   "betweenness": 56.654759,
+   "betweenness_rank": 31,
+   "pagerank": 0.003862,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 2,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T7439",
+    "T7949"
+   ]
+  },
+  {
+   "org_id": "I736",
+   "name": "Brayford Capital Markets",
+   "betweenness": 13.999995,
+   "betweenness_rank": 32,
+   "pagerank": 0.008097,
+   "deals_in_window": 8,
+   "deals_5y_all_sectors": 40,
+   "touchpoints_24m": 9,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T1094",
+    "T1523",
+    "T2610",
+    "T3379",
+    "T3471",
+    "T4149",
+    "T7016",
+    "T9464"
+   ]
+  },
+  {
+   "org_id": "I551",
+   "name": "Dunbury & Co.",
+   "betweenness": 5.500002,
+   "betweenness_rank": 33,
+   "pagerank": 0.004081,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 4,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T5711",
+    "T7105"
+   ]
+  },
+  {
+   "org_id": "I252",
+   "name": "Glenley & Co.",
+   "betweenness": 0.0,
+   "betweenness_rank": 34,
+   "pagerank": 0.003472,
+   "deals_in_window": 1,
+   "deals_5y_all_sectors": 12,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "T2026"
+   ]
+  }
+ ],
+ "deals": [
+  {
+   "txn_id": "T9488",
+   "close_date": "2021-10-05",
+   "target_id": "C8523",
+   "target_name": "Primden Training Systems",
+   "buyer_name": "Marton HR Solutions",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9488:C8510"
+   ]
+  },
+  {
+   "txn_id": "T2898",
+   "close_date": "2021-10-07",
+   "target_id": "C2620",
+   "target_name": "Nettlewell Inspection Services",
+   "buyer_name": "Larkwick Construction",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2898:C8591"
+   ]
+  },
+  {
+   "txn_id": "T2298",
+   "close_date": "2021-10-09",
+   "target_id": "C9659",
+   "target_name": "Mossgate Ingredients",
+   "buyer_name": "Walgate Lab Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2298:C9608"
+   ]
+  },
+  {
+   "txn_id": "T8146",
+   "close_date": "2021-11-11",
+   "target_id": "C4458",
+   "target_name": "Shelbury Food Ingredients",
+   "buyer_name": "Larkholt Industrial Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8146:C7999"
+   ]
+  },
+  {
+   "txn_id": "T1131",
+   "close_date": "2021-11-15",
+   "target_id": "C5026",
+   "target_name": "Glenton Adjusting Services",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T1131:S306"
+   ]
+  },
+  {
+   "txn_id": "T9117",
+   "close_date": "2021-11-19",
+   "target_id": "C2847",
+   "target_name": "Pellford Hospice",
+   "buyer_name": "Hartgate Infusion Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9117:C8087"
+   ]
+  },
+  {
+   "txn_id": "T8329",
+   "close_date": "2021-12-06",
+   "target_id": "C6102",
+   "target_name": "Wexden NDT Services",
+   "buyer_name": "Nettleford Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I616"
+   ],
+   "advisor_names": [
+    "Rushcombe & Co."
+   ],
+   "edge_ids": [
+    "DF:T8329:I616",
+    "DF:T8329:S303"
+   ]
+  },
+  {
+   "txn_id": "T3395",
+   "close_date": "2021-12-18",
+   "target_id": "C9262",
+   "target_name": "Junley Dermatology",
+   "buyer_name": "Nettleridge Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I991"
+   ],
+   "advisor_names": [
+    "Jungate Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T3395:I991",
+    "DF:T3395:S437"
+   ]
+  },
+  {
+   "txn_id": "T2251",
+   "close_date": "2021-12-29",
+   "target_id": "C1550",
+   "target_name": "Gantwick Urgent Care",
+   "buyer_name": "Primley Imaging",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2251:C2069"
+   ]
+  },
+  {
+   "txn_id": "T4321",
+   "close_date": "2022-01-01",
+   "target_id": "C2999",
+   "target_name": "Fenley Home Infusion",
+   "buyer_name": "Rookwell Home Infusion",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4321:C6795"
+   ]
+  },
+  {
+   "txn_id": "T8824",
+   "close_date": "2022-01-04",
+   "target_id": "C3380",
+   "target_name": "Junthorpe Inspection Services",
+   "buyer_name": "Larkworth Food Labs",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8824:C4338"
+   ]
+  },
+  {
+   "txn_id": "T7861",
+   "close_date": "2022-01-05",
+   "target_id": "C5143",
+   "target_name": "Halwick Animal Hospitals",
+   "buyer_name": "Fenstead Infusion Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7861:C5651"
+   ]
+  },
+  {
+   "txn_id": "T2811",
+   "close_date": "2022-01-24",
+   "target_id": "C3714",
+   "target_name": "Tidwick Electrical Supply",
+   "buyer_name": "Walgate Lab Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2811:C9608"
+   ]
+  },
+  {
+   "txn_id": "T6603",
+   "close_date": "2022-01-28",
+   "target_id": "C6438",
+   "target_name": "Fenhall Kids Therapy Group",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I117"
+   ],
+   "advisor_names": [
+    "Fenbrook & Co."
+   ],
+   "edge_ids": [
+    "DF:T6603:I117",
+    "DF:T6603:S306"
+   ]
+  },
+  {
+   "txn_id": "T9050",
+   "close_date": "2022-02-03",
+   "target_id": "C7032",
+   "target_name": "Winstow Training Systems",
+   "buyer_name": "Ostwood Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I991"
+   ],
+   "advisor_names": [
+    "Jungate Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T9050:I991",
+    "DF:T9050:S279"
+   ]
+  },
+  {
+   "txn_id": "T3471",
+   "close_date": "2022-02-11",
+   "target_id": "C8663",
+   "target_name": "Larkmont Electric Supply",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T3471:I736",
+    "DF:T3471:S885"
+   ]
+  },
+  {
+   "txn_id": "T4300",
+   "close_date": "2022-02-18",
+   "target_id": "C8643",
+   "target_name": "Galwick Materials Testing",
+   "buyer_name": "Elmbury Calibration",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4300:C9094"
+   ]
+  },
+  {
+   "txn_id": "T5735",
+   "close_date": "2022-02-28",
+   "target_id": "C5307",
+   "target_name": "Keststead Pediatric Therapy",
+   "buyer_name": "Yarmoor Skin Specialists",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5735:C3637"
+   ]
+  },
+  {
+   "txn_id": "T8882",
+   "close_date": "2022-03-06",
+   "target_id": "C4322",
+   "target_name": "Nettlebury Compliance Services",
+   "buyer_name": "Larkmere Records Retrieval",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8882:C1361"
+   ]
+  },
+  {
+   "txn_id": "T2798",
+   "close_date": "2022-03-08",
+   "target_id": "C1055",
+   "target_name": "Goldmere Chemical Supply",
+   "buyer_name": "Nettleford Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I373"
+   ],
+   "advisor_names": [
+    "Ivoford & Co."
+   ],
+   "edge_ids": [
+    "DF:T2798:I373",
+    "DF:T2798:S303"
+   ]
+  },
+  {
+   "txn_id": "T1523",
+   "close_date": "2022-04-01",
+   "target_id": "C6018",
+   "target_name": "Millmoor Counseling Centers",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T1523:I736",
+    "DF:T1523:S885"
+   ]
+  },
+  {
+   "txn_id": "T7949",
+   "close_date": "2022-04-04",
+   "target_id": "C7574",
+   "target_name": "Goldhurst Calibration",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I810"
+   ],
+   "advisor_names": [
+    "Flintworth Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7949:I810",
+    "DF:T7949:S358"
+   ]
+  },
+  {
+   "txn_id": "T3313",
+   "close_date": "2022-04-06",
+   "target_id": "C9374",
+   "target_name": "Carhaven Veterinary Group",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I737"
+   ],
+   "advisor_names": [
+    "Umberby & Co."
+   ],
+   "edge_ids": [
+    "DF:T3313:I737",
+    "DF:T3313:S613"
+   ]
+  },
+  {
+   "txn_id": "T9287",
+   "close_date": "2022-04-08",
+   "target_id": "C2219",
+   "target_name": "Primwood NDT Services",
+   "buyer_name": "Larkworth Food Labs",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9287:C4338"
+   ]
+  },
+  {
+   "txn_id": "T6116",
+   "close_date": "2022-04-11",
+   "target_id": "C7882",
+   "target_name": "Rookfield Walk-In Clinics",
+   "buyer_name": "Rushvale Urgent Care",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T6116:C3180"
+   ]
+  },
+  {
+   "txn_id": "T2162",
+   "close_date": "2022-04-15",
+   "target_id": "C6679",
+   "target_name": "Glenmarsh Litigation Support",
+   "buyer_name": "Fairwood Litigation Support",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2162:C9473"
+   ]
+  },
+  {
+   "txn_id": "T4101",
+   "close_date": "2022-04-15",
+   "target_id": "C6401",
+   "target_name": "Glenthorpe Adjusting Services",
+   "buyer_name": "Larkmere Records Retrieval",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4101:C1361"
+   ]
+  },
+  {
+   "txn_id": "T7709",
+   "close_date": "2022-04-18",
+   "target_id": "C5777",
+   "target_name": "Ravenport Chemical Supply",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I936"
+   ],
+   "advisor_names": [
+    "Quillwood Partners"
+   ],
+   "edge_ids": [
+    "DF:T7709:I936",
+    "DF:T7709:S885"
+   ]
+  },
+  {
+   "txn_id": "T7182",
+   "close_date": "2022-04-28",
+   "target_id": "C2596",
+   "target_name": "Fairmarsh Health System",
+   "buyer_name": "Yarvale Equity",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7182:S210"
+   ]
+  },
+  {
+   "txn_id": "T2807",
+   "close_date": "2022-05-07",
+   "target_id": "C8688",
+   "target_name": "Umberwell Kids Therapy Group",
+   "buyer_name": "Rushvale Urgent Care",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2807:C3180"
+   ]
+  },
+  {
+   "txn_id": "T5789",
+   "close_date": "2022-05-07",
+   "target_id": "C2525",
+   "target_name": "Hazelmarsh Electric Supply",
+   "buyer_name": "Hartbury Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I523"
+   ],
+   "advisor_names": [
+    "Fairmont Advisors"
+   ],
+   "edge_ids": [
+    "DF:T5789:I523",
+    "DF:T5789:S316"
+   ]
+  },
+  {
+   "txn_id": "T9892",
+   "close_date": "2022-05-27",
+   "target_id": "C6395",
+   "target_name": "Rushley Dental Group",
+   "buyer_name": "Mosswood Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I494"
+   ],
+   "advisor_names": [
+    "Dunby Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T9892:I494",
+    "DF:T9892:S558"
+   ]
+  },
+  {
+   "txn_id": "T8905",
+   "close_date": "2022-06-09",
+   "target_id": "C7657",
+   "target_name": "Ostden Pediatric Therapy",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I777"
+   ],
+   "advisor_names": [
+    "Emberfield Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T8905:I777",
+    "DF:T8905:S358"
+   ]
+  },
+  {
+   "txn_id": "T8225",
+   "close_date": "2022-06-20",
+   "target_id": "C8332",
+   "target_name": "Langport Dermatology",
+   "buyer_name": "Coppervale Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T8225:I139",
+    "DF:T8225:S938"
+   ]
+  },
+  {
+   "txn_id": "T9378",
+   "close_date": "2022-07-03",
+   "target_id": "C8465",
+   "target_name": "Winholt Inspection Services",
+   "buyer_name": "Merrton Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T9378:I210",
+    "DF:T9378:S164"
+   ]
+  },
+  {
+   "txn_id": "T2710",
+   "close_date": "2022-07-13",
+   "target_id": "C4056",
+   "target_name": "Norridge Industrial Supply",
+   "buyer_name": "Stanwell Food Ingredients",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2710:C8116"
+   ]
+  },
+  {
+   "txn_id": "T7565",
+   "close_date": "2022-08-03",
+   "target_id": "C7922",
+   "target_name": "Carmoor Chemical Supply",
+   "buyer_name": "Mosswood Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I191"
+   ],
+   "advisor_names": [
+    "Thornport Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7565:I191",
+    "DF:T7565:S558"
+   ]
+  },
+  {
+   "txn_id": "T5408",
+   "close_date": "2022-08-13",
+   "target_id": "C7730",
+   "target_name": "Elderford Materials Testing",
+   "buyer_name": "Yarvale Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I494"
+   ],
+   "advisor_names": [
+    "Dunby Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T5408:I494",
+    "DF:T5408:S210"
+   ]
+  },
+  {
+   "txn_id": "T1275",
+   "close_date": "2022-08-16",
+   "target_id": "C6884",
+   "target_name": "Fenwick Chemical Supply",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I670"
+   ],
+   "advisor_names": [
+    "Kestcombe Advisors"
+   ],
+   "edge_ids": [
+    "DF:T1275:I670",
+    "DF:T1275:S306"
+   ]
+  },
+  {
+   "txn_id": "T2830",
+   "close_date": "2022-08-16",
+   "target_id": "C3503",
+   "target_name": "Ivoby Kids Therapy Group",
+   "buyer_name": "Nettlewell Home Nursing",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2830:C9820"
+   ]
+  },
+  {
+   "txn_id": "T2691",
+   "close_date": "2022-08-22",
+   "target_id": "C5956",
+   "target_name": "Vellwell Chemicals",
+   "buyer_name": "Radgate Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I830"
+   ],
+   "advisor_names": [
+    "Sorrwell & Co."
+   ],
+   "edge_ids": [
+    "DF:T2691:I830",
+    "DF:T2691:S465"
+   ]
+  },
+  {
+   "txn_id": "T4520",
+   "close_date": "2022-08-22",
+   "target_id": "C4175",
+   "target_name": "Flintstow Inspection Services",
+   "buyer_name": "Dungate Construction",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4520:C1366"
+   ]
+  },
+  {
+   "txn_id": "T7236",
+   "close_date": "2022-08-24",
+   "target_id": "C5448",
+   "target_name": "Foxmont Dermatology",
+   "buyer_name": "Tullbrook Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7236:I139",
+    "DF:T7236:S743"
+   ]
+  },
+  {
+   "txn_id": "T6722",
+   "close_date": "2022-09-03",
+   "target_id": "C1985",
+   "target_name": "Gantstow Urgent Care",
+   "buyer_name": "Millstead Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I854"
+   ],
+   "advisor_names": [
+    "Kestcrest Securities"
+   ],
+   "edge_ids": [
+    "DF:T6722:I854",
+    "DF:T6722:S516"
+   ]
+  },
+  {
+   "txn_id": "T9821",
+   "close_date": "2022-09-03",
+   "target_id": "C3969",
+   "target_name": "Kelstead Counseling Centers",
+   "buyer_name": "Primley Imaging",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9821:C2069"
+   ]
+  },
+  {
+   "txn_id": "T7899",
+   "close_date": "2022-09-07",
+   "target_id": "C8121",
+   "target_name": "Winford Home Health",
+   "buyer_name": "Walfield Capital",
+   "seller_type": "founder_family",
+   "structure": "majority_recap",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I241"
+   ],
+   "advisor_names": [
+    "Wexcrest Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7899:I241",
+    "DF:T7899:S916"
+   ]
+  },
+  {
+   "txn_id": "T3745",
+   "close_date": "2022-09-19",
+   "target_id": "C2083",
+   "target_name": "Sorrby Counseling Centers",
+   "buyer_name": "Rushvale Urgent Care",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3745:C3180"
+   ]
+  },
+  {
+   "txn_id": "T3599",
+   "close_date": "2022-09-27",
+   "target_id": "C5967",
+   "target_name": "Goldford Electric Supply",
+   "buyer_name": "Stanwell Food Ingredients",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3599:C8116"
+   ]
+  },
+  {
+   "txn_id": "T8806",
+   "close_date": "2022-09-27",
+   "target_id": "C1705",
+   "target_name": "Kestmont Electrical Supply",
+   "buyer_name": "Walfield Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I845"
+   ],
+   "advisor_names": [
+    "Wilby Securities"
+   ],
+   "edge_ids": [
+    "DF:T8806:I845",
+    "DF:T8806:S916"
+   ]
+  },
+  {
+   "txn_id": "T8571",
+   "close_date": "2022-10-08",
+   "target_id": "C5527",
+   "target_name": "Umberholt Kids Therapy Group",
+   "buyer_name": "Yarmoor Skin Specialists",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8571:C3637"
+   ]
+  },
+  {
+   "txn_id": "T4809",
+   "close_date": "2022-11-07",
+   "target_id": "C2238",
+   "target_name": "Goldcrest Litigation Support",
+   "buyer_name": "Marton HR Solutions",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4809:C8510"
+   ]
+  },
+  {
+   "txn_id": "T5405",
+   "close_date": "2022-11-07",
+   "target_id": "C4769",
+   "target_name": "Ashstead Chemicals",
+   "buyer_name": "Walgate Lab Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5405:C9608"
+   ]
+  },
+  {
+   "txn_id": "T7505",
+   "close_date": "2022-11-19",
+   "target_id": "C5347",
+   "target_name": "Wexby Calibration",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I364"
+   ],
+   "advisor_names": [
+    "Ravenmont Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7505:I364",
+    "DF:T7505:S885"
+   ]
+  },
+  {
+   "txn_id": "T4149",
+   "close_date": "2022-11-22",
+   "target_id": "C8156",
+   "target_name": "Hobvale Metrology",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T4149:I736",
+    "DF:T4149:S885"
+   ]
+  },
+  {
+   "txn_id": "T6076",
+   "close_date": "2023-01-02",
+   "target_id": "C9966",
+   "target_name": "Tidbrook Urgent Care",
+   "buyer_name": "Brammoor Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T6076:I139",
+    "DF:T6076:S347"
+   ]
+  },
+  {
+   "txn_id": "T5355",
+   "close_date": "2023-01-11",
+   "target_id": "C5038",
+   "target_name": "Tullmont Dental Group",
+   "buyer_name": "Mosswood Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I191"
+   ],
+   "advisor_names": [
+    "Thornport Advisors"
+   ],
+   "edge_ids": [
+    "DF:T5355:I191",
+    "DF:T5355:S558"
+   ]
+  },
+  {
+   "txn_id": "T1087",
+   "close_date": "2023-01-20",
+   "target_id": "C5507",
+   "target_name": "Ostwell Animal Hospitals",
+   "buyer_name": "Millstead Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I653"
+   ],
+   "advisor_names": [
+    "Wexhall Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T1087:I653",
+    "DF:T1087:S516"
+   ]
+  },
+  {
+   "txn_id": "T1614",
+   "close_date": "2023-02-04",
+   "target_id": "C6837",
+   "target_name": "Heathworth NDT Services",
+   "buyer_name": "Walfield Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I974"
+   ],
+   "advisor_names": [
+    "Yarholt Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T1614:I974",
+    "DF:T1614:S916"
+   ]
+  },
+  {
+   "txn_id": "T7636",
+   "close_date": "2023-02-06",
+   "target_id": "C1133",
+   "target_name": "Radwell Environmental Labs",
+   "buyer_name": "Larkworth Food Labs",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7636:C4338"
+   ]
+  },
+  {
+   "txn_id": "T7209",
+   "close_date": "2023-02-14",
+   "target_id": "C5790",
+   "target_name": "Mosscombe Calibration",
+   "buyer_name": "Merrton Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I776"
+   ],
+   "advisor_names": [
+    "Emberholt Partners"
+   ],
+   "edge_ids": [
+    "DF:T7209:I776",
+    "DF:T7209:S164"
+   ]
+  },
+  {
+   "txn_id": "T3296",
+   "close_date": "2023-02-16",
+   "target_id": "C1941",
+   "target_name": "Fenport Textile Services",
+   "buyer_name": "Fenstead Infusion Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3296:C5651"
+   ]
+  },
+  {
+   "txn_id": "T8119",
+   "close_date": "2023-02-20",
+   "target_id": "C3500",
+   "target_name": "Bramhaven Lab Supply",
+   "buyer_name": "Tidmont Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8119:C6704"
+   ]
+  },
+  {
+   "txn_id": "T9522",
+   "close_date": "2023-03-10",
+   "target_id": "C7350",
+   "target_name": "Carport Home Nursing",
+   "buyer_name": "Dunmere Home Health",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9522:C3382"
+   ]
+  },
+  {
+   "txn_id": "T7090",
+   "close_date": "2023-03-16",
+   "target_id": "C9902",
+   "target_name": "Amberhall HR Solutions",
+   "buyer_name": "Walfield Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I368"
+   ],
+   "advisor_names": [
+    "Walbury Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7090:I368",
+    "DF:T7090:S916"
+   ]
+  },
+  {
+   "txn_id": "T4774",
+   "close_date": "2023-03-18",
+   "target_id": "C6627",
+   "target_name": "Cinderworth Infusion Partners",
+   "buyer_name": "Nettlewell Home Nursing",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4774:C9820"
+   ]
+  },
+  {
+   "txn_id": "T1744",
+   "close_date": "2023-03-25",
+   "target_id": "C9353",
+   "target_name": "Wilvale Industrial Supply",
+   "buyer_name": "Winbury Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I489"
+   ],
+   "advisor_names": [
+    "Junhaven Advisors"
+   ],
+   "edge_ids": [
+    "DF:T1744:I489",
+    "DF:T1744:S971"
+   ]
+  },
+  {
+   "txn_id": "T7105",
+   "close_date": "2023-03-25",
+   "target_id": "C4529",
+   "target_name": "Quillmont Home Health",
+   "buyer_name": "Brammoor Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I551"
+   ],
+   "advisor_names": [
+    "Dunbury & Co."
+   ],
+   "edge_ids": [
+    "DF:T7105:I551",
+    "DF:T7105:S347"
+   ]
+  },
+  {
+   "txn_id": "T1891",
+   "close_date": "2023-04-01",
+   "target_id": "C7019",
+   "target_name": "Stanstow MRO Supply",
+   "buyer_name": "Brackworth Chemical Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T1891:C1555"
+   ]
+  },
+  {
+   "txn_id": "T4541",
+   "close_date": "2023-04-02",
+   "target_id": "C3955",
+   "target_name": "Fenley Electrical Supply",
+   "buyer_name": "Pellwood Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I390"
+   ],
+   "advisor_names": [
+    "Gantton Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T4541:I390",
+    "DF:T4541:S632"
+   ]
+  },
+  {
+   "txn_id": "T9305",
+   "close_date": "2023-04-16",
+   "target_id": "C4111",
+   "target_name": "Hazelwell Adjusting Services",
+   "buyer_name": "Tullbrook Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T9305:I210",
+    "DF:T9305:S743"
+   ]
+  },
+  {
+   "txn_id": "T9229",
+   "close_date": "2023-04-23",
+   "target_id": "C9206",
+   "target_name": "Glenmere Skin Specialists",
+   "buyer_name": "Nettleridge Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T9229:I210",
+    "DF:T9229:S437"
+   ]
+  },
+  {
+   "txn_id": "T3377",
+   "close_date": "2023-04-24",
+   "target_id": "C5853",
+   "target_name": "Hobthorpe Analytical Labs",
+   "buyer_name": "Elmbury Calibration",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3377:C9094"
+   ]
+  },
+  {
+   "txn_id": "T6129",
+   "close_date": "2023-04-29",
+   "target_id": "C7127",
+   "target_name": "Winholt Lab Supply",
+   "buyer_name": "Larkholt Industrial Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T6129:C7999"
+   ]
+  },
+  {
+   "txn_id": "T6285",
+   "close_date": "2023-04-30",
+   "target_id": "C6447",
+   "target_name": "Sedgedale Calibration",
+   "buyer_name": "Larkbury Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T6285:S795"
+   ]
+  },
+  {
+   "txn_id": "T3895",
+   "close_date": "2023-05-01",
+   "target_id": "C3208",
+   "target_name": "Ivomont Animal Hospitals",
+   "buyer_name": "Yarvale Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I777"
+   ],
+   "advisor_names": [
+    "Emberfield Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T3895:I777",
+    "DF:T3895:S210"
+   ]
+  },
+  {
+   "txn_id": "T2703",
+   "close_date": "2023-05-18",
+   "target_id": "C4157",
+   "target_name": "Orrmoor Lab Supply",
+   "buyer_name": "Tidmont Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2703:C6704"
+   ]
+  },
+  {
+   "txn_id": "T6023",
+   "close_date": "2023-05-18",
+   "target_id": "C5441",
+   "target_name": "Saltmarsh Home Infusion",
+   "buyer_name": null,
+   "seller_type": "sponsor",
+   "structure": "dividend_recap",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T6023:I139"
+   ]
+  },
+  {
+   "txn_id": "T7070",
+   "close_date": "2023-05-20",
+   "target_id": "C7777",
+   "target_name": "Marworth Electrical Supply",
+   "buyer_name": "Mosswood Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I653"
+   ],
+   "advisor_names": [
+    "Wexhall Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T7070:I653",
+    "DF:T7070:S558"
+   ]
+  },
+  {
+   "txn_id": "T6063",
+   "close_date": "2023-06-02",
+   "target_id": "C6960",
+   "target_name": "Ivowell NDT Services",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I117"
+   ],
+   "advisor_names": [
+    "Fenbrook & Co."
+   ],
+   "edge_ids": [
+    "DF:T6063:I117",
+    "DF:T6063:S306"
+   ]
+  },
+  {
+   "txn_id": "T5476",
+   "close_date": "2023-06-21",
+   "target_id": "C8132",
+   "target_name": "Glenstead Infusion Partners",
+   "buyer_name": "Dunley Home Infusion",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5476:C8624"
+   ]
+  },
+  {
+   "txn_id": "T1849",
+   "close_date": "2023-06-23",
+   "target_id": "C1204",
+   "target_name": "Wilthorpe Walk-In Clinics",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I737"
+   ],
+   "advisor_names": [
+    "Umberby & Co."
+   ],
+   "edge_ids": [
+    "DF:T1849:I737",
+    "DF:T1849:S885"
+   ]
+  },
+  {
+   "txn_id": "T9444",
+   "close_date": "2023-07-18",
+   "target_id": "C2636",
+   "target_name": "Dunden Metrology",
+   "buyer_name": "Millstead Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I974"
+   ],
+   "advisor_names": [
+    "Yarholt Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T9444:I974",
+    "DF:T9444:S516"
+   ]
+  },
+  {
+   "txn_id": "T9325",
+   "close_date": "2023-07-31",
+   "target_id": "C8365",
+   "target_name": "Vellridge Medical Courier",
+   "buyer_name": "Stanvale Linen Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9325:C9452"
+   ]
+  },
+  {
+   "txn_id": "T3661",
+   "close_date": "2023-08-02",
+   "target_id": "C4750",
+   "target_name": "Gantden Textile Services",
+   "buyer_name": "Stanvale Linen Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3661:C9452"
+   ]
+  },
+  {
+   "txn_id": "T3941",
+   "close_date": "2023-08-04",
+   "target_id": "C4126",
+   "target_name": "Galwick Claims Services",
+   "buyer_name": "Larkmere Records Retrieval",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3941:C1361"
+   ]
+  },
+  {
+   "txn_id": "T5007",
+   "close_date": "2023-08-24",
+   "target_id": "C9586",
+   "target_name": "Elmdale NDT Services",
+   "buyer_name": "Walfield Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I737"
+   ],
+   "advisor_names": [
+    "Umberby & Co."
+   ],
+   "edge_ids": [
+    "DF:T5007:I737",
+    "DF:T5007:S916"
+   ]
+  },
+  {
+   "txn_id": "T7266",
+   "close_date": "2023-08-24",
+   "target_id": "C4544",
+   "target_name": "Brackgate Payroll Services",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I390"
+   ],
+   "advisor_names": [
+    "Gantton Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7266:I390",
+    "DF:T7266:S613"
+   ]
+  },
+  {
+   "txn_id": "T4082",
+   "close_date": "2023-09-08",
+   "target_id": "C6633",
+   "target_name": "Fairmoor Home Health",
+   "buyer_name": "Nettleford Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I617"
+   ],
+   "advisor_names": [
+    "Pellgate & Co."
+   ],
+   "edge_ids": [
+    "DF:T4082:I617",
+    "DF:T4082:S303"
+   ]
+  },
+  {
+   "txn_id": "T2479",
+   "close_date": "2023-09-12",
+   "target_id": "C2262",
+   "target_name": "Quillmont Physical Therapy",
+   "buyer_name": "Northwind Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2479:S796"
+   ]
+  },
+  {
+   "txn_id": "T5349",
+   "close_date": "2023-10-11",
+   "target_id": "C2005",
+   "target_name": "Primstead Dental Partners",
+   "buyer_name": "Millstead Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I648"
+   ],
+   "advisor_names": [
+    "Loamhurst Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T5349:I648",
+    "DF:T5349:S516"
+   ]
+  },
+  {
+   "txn_id": "T9720",
+   "close_date": "2023-10-17",
+   "target_id": "C3711",
+   "target_name": "Calden Electric Supply",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I737"
+   ],
+   "advisor_names": [
+    "Umberby & Co."
+   ],
+   "edge_ids": [
+    "DF:T9720:I737",
+    "DF:T9720:S885"
+   ]
+  },
+  {
+   "txn_id": "T5666",
+   "close_date": "2023-11-01",
+   "target_id": "C3656",
+   "target_name": "Orrcombe Home Health",
+   "buyer_name": "Hartbury Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I776"
+   ],
+   "advisor_names": [
+    "Emberholt Partners"
+   ],
+   "edge_ids": [
+    "DF:T5666:I776",
+    "DF:T5666:S316"
+   ]
+  },
+  {
+   "txn_id": "T7155",
+   "close_date": "2023-11-01",
+   "target_id": "C2059",
+   "target_name": "Tullmere Chemical Distribution",
+   "buyer_name": "Northwind Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T7155:I210",
+    "DF:T7155:S796"
+   ]
+  },
+  {
+   "txn_id": "T8057",
+   "close_date": "2023-11-01",
+   "target_id": "C5249",
+   "target_name": "Tullstow Dermatology",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I117"
+   ],
+   "advisor_names": [
+    "Fenbrook & Co."
+   ],
+   "edge_ids": [
+    "DF:T8057:I117",
+    "DF:T8057:S613"
+   ]
+  },
+  {
+   "txn_id": "T1724",
+   "close_date": "2023-11-13",
+   "target_id": "C8055",
+   "target_name": "Marby Industrial Supply",
+   "buyer_name": "Kestworth Chemical Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T1724:C4953"
+   ]
+  },
+  {
+   "txn_id": "T7016",
+   "close_date": "2023-11-17",
+   "target_id": "C4042",
+   "target_name": "Gantmoor Dental Group",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T7016:I736",
+    "DF:T7016:S885"
+   ]
+  },
+  {
+   "txn_id": "T3186",
+   "close_date": "2023-12-04",
+   "target_id": "C7577",
+   "target_name": "Primby Kids Therapy Group",
+   "buyer_name": "Primley Imaging",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3186:C2069"
+   ]
+  },
+  {
+   "txn_id": "T8150",
+   "close_date": "2023-12-23",
+   "target_id": "C5386",
+   "target_name": "Marley Payroll Services",
+   "buyer_name": "Hartbury Capital Partners",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I653"
+   ],
+   "advisor_names": [
+    "Wexhall Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T8150:I653",
+    "DF:T8150:S316"
+   ]
+  },
+  {
+   "txn_id": "T8344",
+   "close_date": "2024-01-03",
+   "target_id": "C1630",
+   "target_name": "Holmere Dermatology",
+   "buyer_name": "Tullbrook Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T8344:I139",
+    "DF:T8344:S743"
+   ]
+  },
+  {
+   "txn_id": "T6113",
+   "close_date": "2024-01-22",
+   "target_id": "C3537",
+   "target_name": "Halstow Pediatric Therapy",
+   "buyer_name": "Heathgate Equity",
+   "seller_type": "founder_family",
+   "structure": "majority_recap",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I936"
+   ],
+   "advisor_names": [
+    "Quillwood Partners"
+   ],
+   "edge_ids": [
+    "DF:T6113:I936",
+    "DF:T6113:S459"
+   ]
+  },
+  {
+   "txn_id": "T4826",
+   "close_date": "2024-01-26",
+   "target_id": "C1635",
+   "target_name": "Pellwell Adjusting Services",
+   "buyer_name": "Claywell Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T4826:I210",
+    "DF:T4826:S259"
+   ]
+  },
+  {
+   "txn_id": "T4878",
+   "close_date": "2024-02-11",
+   "target_id": "C1870",
+   "target_name": "Millwood Home Health",
+   "buyer_name": "Coppervale Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T4878:I139",
+    "DF:T4878:S938"
+   ]
+  },
+  {
+   "txn_id": "T2304",
+   "close_date": "2024-02-19",
+   "target_id": "C8516",
+   "target_name": "Winbrook Home Health",
+   "buyer_name": "Claywell Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T2304:I139",
+    "DF:T2304:S259"
+   ]
+  },
+  {
+   "txn_id": "T7214",
+   "close_date": "2024-03-14",
+   "target_id": "C7727",
+   "target_name": "Holwell Home Health",
+   "buyer_name": "Dunstow Home Nursing",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7214:C1960"
+   ]
+  },
+  {
+   "txn_id": "T8270",
+   "close_date": "2024-03-15",
+   "target_id": "C7633",
+   "target_name": "Ironvale Testing Group",
+   "buyer_name": "Northwind Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T8270:I210",
+    "DF:T8270:S796"
+   ]
+  },
+  {
+   "txn_id": "T7430",
+   "close_date": "2024-03-28",
+   "target_id": "C5138",
+   "target_name": "Radfield Inspection Services",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I616"
+   ],
+   "advisor_names": [
+    "Rushcombe & Co."
+   ],
+   "edge_ids": [
+    "DF:T7430:I616",
+    "DF:T7430:S358"
+   ]
+  },
+  {
+   "txn_id": "T8541",
+   "close_date": "2024-04-02",
+   "target_id": "C2648",
+   "target_name": "Langbrook Claims Services",
+   "buyer_name": "Quilley Compliance Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8541:C7806"
+   ]
+  },
+  {
+   "txn_id": "T8226",
+   "close_date": "2024-04-03",
+   "target_id": "C7640",
+   "target_name": "Tiddale Hospice",
+   "buyer_name": "Dunmere Home Health",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8226:C3382"
+   ]
+  },
+  {
+   "txn_id": "T2688",
+   "close_date": "2024-04-09",
+   "target_id": "C1847",
+   "target_name": "Fairworth Dental Partners",
+   "buyer_name": "Primley Imaging",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2688:C2069"
+   ]
+  },
+  {
+   "txn_id": "T6837",
+   "close_date": "2024-04-11",
+   "target_id": "C1921",
+   "target_name": "Loammoor Linen Services",
+   "buyer_name": "Stanvale Linen Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T6837:C9452"
+   ]
+  },
+  {
+   "txn_id": "T3740",
+   "close_date": "2024-05-19",
+   "target_id": "C9551",
+   "target_name": "Galley Industrial Supply",
+   "buyer_name": "Dunmere Investment Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I854"
+   ],
+   "advisor_names": [
+    "Kestcrest Securities"
+   ],
+   "edge_ids": [
+    "DF:T3740:I854",
+    "DF:T3740:S884"
+   ]
+  },
+  {
+   "txn_id": "T8287",
+   "close_date": "2024-05-19",
+   "target_id": "C1776",
+   "target_name": "Calwood Counseling Centers",
+   "buyer_name": "Yarmoor Skin Specialists",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8287:C3637"
+   ]
+  },
+  {
+   "txn_id": "T3276",
+   "close_date": "2024-06-07",
+   "target_id": "C2839",
+   "target_name": "Colehurst Geotechnical Labs",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I670"
+   ],
+   "advisor_names": [
+    "Kestcombe Advisors"
+   ],
+   "edge_ids": [
+    "DF:T3276:I670",
+    "DF:T3276:S358"
+   ]
+  },
+  {
+   "txn_id": "T2317",
+   "close_date": "2024-06-12",
+   "target_id": "C1329",
+   "target_name": "Holstead Home Nursing",
+   "buyer_name": "Merrton Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I993"
+   ],
+   "advisor_names": [
+    "Pellfield Partners"
+   ],
+   "edge_ids": [
+    "DF:T2317:I993",
+    "DF:T2317:S164"
+   ]
+  },
+  {
+   "txn_id": "T4935",
+   "close_date": "2024-06-12",
+   "target_id": "C3105",
+   "target_name": "Marvale Hospice",
+   "buyer_name": "Dunmere Home Health",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4935:C3382"
+   ]
+  },
+  {
+   "txn_id": "T7491",
+   "close_date": "2024-06-19",
+   "target_id": "C1415",
+   "target_name": "Rushstow Ingredients",
+   "buyer_name": "Tidmont Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7491:C6704"
+   ]
+  },
+  {
+   "txn_id": "T2796",
+   "close_date": "2024-06-23",
+   "target_id": "C6449",
+   "target_name": "Emberwick Animal Hospitals",
+   "buyer_name": "Ravenwood Vet Labs",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2796:C7990"
+   ]
+  },
+  {
+   "txn_id": "T1094",
+   "close_date": "2024-06-28",
+   "target_id": "C3348",
+   "target_name": "Stanhall Payroll Services",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T1094:I736",
+    "DF:T1094:S885"
+   ]
+  },
+  {
+   "txn_id": "T9333",
+   "close_date": "2024-07-04",
+   "target_id": "C7800",
+   "target_name": "Yarworth Dermatology",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I648"
+   ],
+   "advisor_names": [
+    "Loamhurst Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T9333:I648",
+    "DF:T9333:S306"
+   ]
+  },
+  {
+   "txn_id": "T4360",
+   "close_date": "2024-07-08",
+   "target_id": "C8797",
+   "target_name": "Foxbury MRO Supply",
+   "buyer_name": "Dunmere Investment Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I523"
+   ],
+   "advisor_names": [
+    "Fairmont Advisors"
+   ],
+   "edge_ids": [
+    "DF:T4360:I523",
+    "DF:T4360:S884"
+   ]
+  },
+  {
+   "txn_id": "T9766",
+   "close_date": "2024-07-16",
+   "target_id": "C6491",
+   "target_name": "Millstow Behavioral Health",
+   "buyer_name": "Rushvale Urgent Care",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9766:C3180"
+   ]
+  },
+  {
+   "txn_id": "T3843",
+   "close_date": "2024-07-29",
+   "target_id": "C2852",
+   "target_name": "Sedgewell Chemicals",
+   "buyer_name": "Tidby Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3843:C9211"
+   ]
+  },
+  {
+   "txn_id": "T4910",
+   "close_date": "2024-08-13",
+   "target_id": "C7059",
+   "target_name": "Winmarsh Home Nursing",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I845"
+   ],
+   "advisor_names": [
+    "Wilby Securities"
+   ],
+   "edge_ids": [
+    "DF:T4910:I845",
+    "DF:T4910:S885"
+   ]
+  },
+  {
+   "txn_id": "T7876",
+   "close_date": "2024-08-20",
+   "target_id": "C2199",
+   "target_name": "Flintmoor Industrial Supply",
+   "buyer_name": "Northwind Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7876:S796"
+   ]
+  },
+  {
+   "txn_id": "T9829",
+   "close_date": "2024-08-20",
+   "target_id": "C2408",
+   "target_name": "Carton Claims Services",
+   "buyer_name": "Merrton Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I617"
+   ],
+   "advisor_names": [
+    "Pellgate & Co."
+   ],
+   "edge_ids": [
+    "DF:T9829:I617",
+    "DF:T9829:S164"
+   ]
+  },
+  {
+   "txn_id": "T5267",
+   "close_date": "2024-08-23",
+   "target_id": "C5808",
+   "target_name": "Walworth Training Systems",
+   "buyer_name": "Quilley Compliance Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5267:C7806"
+   ]
+  },
+  {
+   "txn_id": "T4633",
+   "close_date": "2024-08-25",
+   "target_id": "C1901",
+   "target_name": "Vellvale Materials Testing",
+   "buyer_name": "Larkwick Construction",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4633:C8591"
+   ]
+  },
+  {
+   "txn_id": "T7648",
+   "close_date": "2024-08-28",
+   "target_id": "C1060",
+   "target_name": "Flintdale Veterinary Group",
+   "buyer_name": "Merrton Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I373"
+   ],
+   "advisor_names": [
+    "Ivoford & Co."
+   ],
+   "edge_ids": [
+    "DF:T7648:I373",
+    "DF:T7648:S164"
+   ]
+  },
+  {
+   "txn_id": "T3379",
+   "close_date": "2024-09-02",
+   "target_id": "C5894",
+   "target_name": "Salvale Rehab Partners",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T3379:I736",
+    "DF:T3379:S885"
+   ]
+  },
+  {
+   "txn_id": "T1169",
+   "close_date": "2024-09-03",
+   "target_id": "C7432",
+   "target_name": "Ashby Training Systems",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I845"
+   ],
+   "advisor_names": [
+    "Wilby Securities"
+   ],
+   "edge_ids": [
+    "DF:T1169:I845",
+    "DF:T1169:S306"
+   ]
+  },
+  {
+   "txn_id": "T7917",
+   "close_date": "2024-09-19",
+   "target_id": "C2014",
+   "target_name": "Brammoor Kids Therapy Group",
+   "buyer_name": "Nettleford Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I489"
+   ],
+   "advisor_names": [
+    "Junhaven Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7917:I489",
+    "DF:T7917:S303"
+   ]
+  },
+  {
+   "txn_id": "T8827",
+   "close_date": "2024-09-19",
+   "target_id": "C3407",
+   "target_name": "Hazelfield Dental Partners",
+   "buyer_name": "Radgate Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I670"
+   ],
+   "advisor_names": [
+    "Kestcombe Advisors"
+   ],
+   "edge_ids": [
+    "DF:T8827:I670",
+    "DF:T8827:S465"
+   ]
+  },
+  {
+   "txn_id": "T1880",
+   "close_date": "2024-09-28",
+   "target_id": "C5594",
+   "target_name": "Wexcrest Counseling Centers",
+   "buyer_name": "Yarmoor Skin Specialists",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T1880:C3637"
+   ]
+  },
+  {
+   "txn_id": "T5300",
+   "close_date": "2024-10-11",
+   "target_id": "C2701",
+   "target_name": "Umberridge Hospice",
+   "buyer_name": "Mosswood Equity",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T5300:I210",
+    "DF:T5300:S558"
+   ]
+  },
+  {
+   "txn_id": "T3934",
+   "close_date": "2024-10-25",
+   "target_id": "C1092",
+   "target_name": "Galport Training Systems",
+   "buyer_name": "Pellwood Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I936"
+   ],
+   "advisor_names": [
+    "Quillwood Partners"
+   ],
+   "edge_ids": [
+    "DF:T3934:I936",
+    "DF:T3934:S632"
+   ]
+  },
+  {
+   "txn_id": "T5101",
+   "close_date": "2024-11-12",
+   "target_id": "C5923",
+   "target_name": "Linholt Calibration",
+   "buyer_name": "Elmbury Calibration",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5101:C9094"
+   ]
+  },
+  {
+   "txn_id": "T1551",
+   "close_date": "2024-11-17",
+   "target_id": "C5405",
+   "target_name": "Calmere HR Solutions",
+   "buyer_name": "Fairwood Litigation Support",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T1551:C9473"
+   ]
+  },
+  {
+   "txn_id": "T3511",
+   "close_date": "2024-11-22",
+   "target_id": "C6247",
+   "target_name": "Primmoor Chemical Supply",
+   "buyer_name": "Pellwood Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I368"
+   ],
+   "advisor_names": [
+    "Walbury Advisors"
+   ],
+   "edge_ids": [
+    "DF:T3511:I368",
+    "DF:T3511:S632"
+   ]
+  },
+  {
+   "txn_id": "T7991",
+   "close_date": "2024-12-01",
+   "target_id": "C6695",
+   "target_name": "Vellbury Electric Supply",
+   "buyer_name": "Tidby Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7991:C9211"
+   ]
+  },
+  {
+   "txn_id": "T2143",
+   "close_date": "2024-12-23",
+   "target_id": "C3281",
+   "target_name": "Winport Dermatology",
+   "buyer_name": "Yarmoor Skin Specialists",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2143:C3637"
+   ]
+  },
+  {
+   "txn_id": "T3326",
+   "close_date": "2025-01-09",
+   "target_id": "C4158",
+   "target_name": "Amberwell Kids Therapy Group",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T3326:I210",
+    "DF:T3326:S306"
+   ]
+  },
+  {
+   "txn_id": "T1754",
+   "close_date": "2025-01-15",
+   "target_id": "C1994",
+   "target_name": "Salvale Inspection Services",
+   "buyer_name": "Larkwick Construction",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T1754:C8591"
+   ]
+  },
+  {
+   "txn_id": "T7560",
+   "close_date": "2025-01-25",
+   "target_id": "C6238",
+   "target_name": "Ivocrest Claims Services",
+   "buyer_name": "Hartbury Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I907"
+   ],
+   "advisor_names": [
+    "Hobden Partners"
+   ],
+   "edge_ids": [
+    "DF:T7560:I907",
+    "DF:T7560:S316"
+   ]
+  },
+  {
+   "txn_id": "T1413",
+   "close_date": "2025-01-26",
+   "target_id": "C4159",
+   "target_name": "Orrbrook NDT Services",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T1413:I210",
+    "DF:T1413:S358"
+   ]
+  },
+  {
+   "txn_id": "T5019",
+   "close_date": "2025-02-16",
+   "target_id": "C3784",
+   "target_name": "Ashley Dermatology",
+   "buyer_name": "Walfield Capital",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T5019:I210",
+    "DF:T5019:S916"
+   ]
+  },
+  {
+   "txn_id": "T2965",
+   "close_date": "2025-03-18",
+   "target_id": "C9351",
+   "target_name": "Oakridge Adjusting Services",
+   "buyer_name": "Radgate Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I494"
+   ],
+   "advisor_names": [
+    "Dunby Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T2965:I494",
+    "DF:T2965:S465"
+   ]
+  },
+  {
+   "txn_id": "T2026",
+   "close_date": "2025-04-01",
+   "target_id": "C2804",
+   "target_name": "an urgent care operator",
+   "buyer_name": "Marmarsh Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I252"
+   ],
+   "advisor_names": [
+    "Glenley & Co."
+   ],
+   "edge_ids": [
+    "DF:T2026:I252",
+    "DF:T2026:S798"
+   ]
+  },
+  {
+   "txn_id": "T5089",
+   "close_date": "2025-04-02",
+   "target_id": "C8053",
+   "target_name": "Tullcrest Environmental Labs",
+   "buyer_name": "Larkwick Construction",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5089:C8591"
+   ]
+  },
+  {
+   "txn_id": "T5173",
+   "close_date": "2025-04-23",
+   "target_id": "C2524",
+   "target_name": "Birchwick Dental Group",
+   "buyer_name": "Mosswood Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I538"
+   ],
+   "advisor_names": [
+    "Birchwick Advisors"
+   ],
+   "edge_ids": [
+    "DF:T5173:I538",
+    "DF:T5173:S558"
+   ]
+  },
+  {
+   "txn_id": "T2809",
+   "close_date": "2025-05-06",
+   "target_id": "C8784",
+   "target_name": "Vellhall Chemical Supply",
+   "buyer_name": "Brackworth Chemical Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2809:C1555"
+   ]
+  },
+  {
+   "txn_id": "T5987",
+   "close_date": "2025-05-24",
+   "target_id": "C6591",
+   "target_name": "Radden Payroll Services",
+   "buyer_name": "Quilley Compliance Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5987:C7806"
+   ]
+  },
+  {
+   "txn_id": "T8545",
+   "close_date": "2025-05-24",
+   "target_id": "C2892",
+   "target_name": "Oakgate Counseling Centers",
+   "buyer_name": "Mosswood Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T8545:I210",
+    "DF:T8545:S558"
+   ]
+  },
+  {
+   "txn_id": "T3411",
+   "close_date": "2025-06-02",
+   "target_id": "C2950",
+   "target_name": "Primdale Ingredients Co",
+   "buyer_name": "Northwind Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3411:S796"
+   ]
+  },
+  {
+   "txn_id": "T2237",
+   "close_date": "2025-06-19",
+   "target_id": "C4859",
+   "target_name": "Nettlevale Training Systems",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I489"
+   ],
+   "advisor_names": [
+    "Junhaven Advisors"
+   ],
+   "edge_ids": [
+    "DF:T2237:I489",
+    "DF:T2237:S358"
+   ]
+  },
+  {
+   "txn_id": "T7598",
+   "close_date": "2025-06-22",
+   "target_id": "C3565",
+   "target_name": "Umberwood Food Ingredients",
+   "buyer_name": "Larkholt Industrial Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7598:C7999"
+   ]
+  },
+  {
+   "txn_id": "T6387",
+   "close_date": "2025-07-04",
+   "target_id": "C5684",
+   "target_name": "Radmont Hospice",
+   "buyer_name": "Dunmere Home Health",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T6387:C3382"
+   ]
+  },
+  {
+   "txn_id": "T1978",
+   "close_date": "2025-07-22",
+   "target_id": "C5326",
+   "target_name": "Bramhurst Food Labs",
+   "buyer_name": "Heathmarsh Packaging",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T1978:C3632"
+   ]
+  },
+  {
+   "txn_id": "T2009",
+   "close_date": "2025-07-28",
+   "target_id": "C2233",
+   "target_name": "Larkwood Home Health",
+   "buyer_name": "Walfield Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I845"
+   ],
+   "advisor_names": [
+    "Wilby Securities"
+   ],
+   "edge_ids": [
+    "DF:T2009:I845",
+    "DF:T2009:S916"
+   ]
+  },
+  {
+   "txn_id": "T8438",
+   "close_date": "2025-08-20",
+   "target_id": "C4652",
+   "target_name": "Belley HR Solutions",
+   "buyer_name": "Quilley Compliance Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T8438:C7806"
+   ]
+  },
+  {
+   "txn_id": "T2073",
+   "close_date": "2025-08-21",
+   "target_id": "C1727",
+   "target_name": "Norridge Lab Supply",
+   "buyer_name": "Brackworth Chemical Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2073:C1555"
+   ]
+  },
+  {
+   "txn_id": "T7756",
+   "close_date": "2025-08-25",
+   "target_id": "C8953",
+   "target_name": "Kelstead Physical Therapy",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I830"
+   ],
+   "advisor_names": [
+    "Sorrwell & Co."
+   ],
+   "edge_ids": [
+    "DF:T7756:I830",
+    "DF:T7756:S613"
+   ]
+  },
+  {
+   "txn_id": "T1709",
+   "close_date": "2025-08-28",
+   "target_id": "C9266",
+   "target_name": "Kelden Adjusting Services",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I523"
+   ],
+   "advisor_names": [
+    "Fairmont Advisors"
+   ],
+   "edge_ids": [
+    "DF:T1709:I523",
+    "DF:T1709:S358"
+   ]
+  },
+  {
+   "txn_id": "T6037",
+   "close_date": "2025-09-03",
+   "target_id": "C7462",
+   "target_name": "Cinderworth NDT Services",
+   "buyer_name": "Ashwell Machine Works",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T6037:C1248"
+   ]
+  },
+  {
+   "txn_id": "T9871",
+   "close_date": "2025-09-06",
+   "target_id": "C3830",
+   "target_name": "Fairridge Environmental Labs",
+   "buyer_name": "Heathmarsh Packaging",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T9871:C3632"
+   ]
+  },
+  {
+   "txn_id": "T3344",
+   "close_date": "2025-10-03",
+   "target_id": "C2821",
+   "target_name": "Quillridge Pediatric Therapy",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T3344:I210",
+    "DF:T3344:S613"
+   ]
+  },
+  {
+   "txn_id": "T8612",
+   "close_date": "2025-10-09",
+   "target_id": "C4038",
+   "target_name": "Galmont Physical Therapy",
+   "buyer_name": "Yarvale Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I971"
+   ],
+   "advisor_names": [
+    "Coleden Advisors"
+   ],
+   "edge_ids": [
+    "DF:T8612:I971",
+    "DF:T8612:S210"
+   ]
+  },
+  {
+   "txn_id": "T9741",
+   "close_date": "2025-10-17",
+   "target_id": "C1556",
+   "target_name": "Coleden Analytical Labs",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I854"
+   ],
+   "advisor_names": [
+    "Kestcrest Securities"
+   ],
+   "edge_ids": [
+    "DF:T9741:I854",
+    "DF:T9741:S613"
+   ]
+  },
+  {
+   "txn_id": "T2067",
+   "close_date": "2025-10-23",
+   "target_id": "C7196",
+   "target_name": "Wexfield Dental Group",
+   "buyer_name": "Fenstead Infusion Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2067:C5651"
+   ]
+  },
+  {
+   "txn_id": "T1865",
+   "close_date": "2025-11-08",
+   "target_id": "C6007",
+   "target_name": "Birchwick Veterinary Group",
+   "buyer_name": "Radgate Equity Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I364"
+   ],
+   "advisor_names": [
+    "Ravenmont Advisors"
+   ],
+   "edge_ids": [
+    "DF:T1865:I364",
+    "DF:T1865:S465"
+   ]
+  },
+  {
+   "txn_id": "T3234",
+   "close_date": "2025-12-14",
+   "target_id": "C1180",
+   "target_name": "Northorpe Animal Hospitals",
+   "buyer_name": "Ostwood Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T3234:I139",
+    "DF:T3234:S279"
+   ]
+  },
+  {
+   "txn_id": "T4976",
+   "close_date": "2026-01-03",
+   "target_id": "C2871",
+   "target_name": "Nettlegate HR Solutions",
+   "buyer_name": "Hartbury Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I993"
+   ],
+   "advisor_names": [
+    "Pellfield Partners"
+   ],
+   "edge_ids": [
+    "DF:T4976:I993",
+    "DF:T4976:S316"
+   ]
+  },
+  {
+   "txn_id": "T7322",
+   "close_date": "2026-01-17",
+   "target_id": "C9207",
+   "target_name": "Hazelmont Calibration",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I907"
+   ],
+   "advisor_names": [
+    "Hobden Partners"
+   ],
+   "edge_ids": [
+    "DF:T7322:I907",
+    "DF:T7322:S358"
+   ]
+  },
+  {
+   "txn_id": "T7404",
+   "close_date": "2026-01-26",
+   "target_id": "C3554",
+   "target_name": "Yarcrest Linen Services",
+   "buyer_name": "Stanvale Linen Services",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7404:C9452"
+   ]
+  },
+  {
+   "txn_id": "T3020",
+   "close_date": "2026-02-04",
+   "target_id": "C8434",
+   "target_name": "Kestgate Electric Supply",
+   "buyer_name": "Tidby Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3020:C9211"
+   ]
+  },
+  {
+   "txn_id": "T7012",
+   "close_date": "2026-02-08",
+   "target_id": "C1291",
+   "target_name": "Brisbrook Physical Therapy",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T7012:I210",
+    "DF:T7012:S306"
+   ]
+  },
+  {
+   "txn_id": "T5711",
+   "close_date": "2026-02-20",
+   "target_id": "C6184",
+   "target_name": "Ostby Environmental Labs",
+   "buyer_name": "Coppervale Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I551"
+   ],
+   "advisor_names": [
+    "Dunbury & Co."
+   ],
+   "edge_ids": [
+    "DF:T5711:I551",
+    "DF:T5711:S938"
+   ]
+  },
+  {
+   "txn_id": "T2610",
+   "close_date": "2026-02-27",
+   "target_id": "C9002",
+   "target_name": "Amberton Training Systems",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T2610:I736",
+    "DF:T2610:S885"
+   ]
+  },
+  {
+   "txn_id": "T9813",
+   "close_date": "2026-03-07",
+   "target_id": "C7570",
+   "target_name": "Loammarsh Counseling Centers",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I538"
+   ],
+   "advisor_names": [
+    "Birchwick Advisors"
+   ],
+   "edge_ids": [
+    "DF:T9813:I538",
+    "DF:T9813:S613"
+   ]
+  },
+  {
+   "txn_id": "T3678",
+   "close_date": "2026-03-17",
+   "target_id": "C7677",
+   "target_name": "Shelmarsh Home Infusion",
+   "buyer_name": "Dunley Home Infusion",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3678:C8624"
+   ]
+  },
+  {
+   "txn_id": "T3748",
+   "close_date": "2026-03-22",
+   "target_id": "C6093",
+   "target_name": "Tidcombe Skin Specialists",
+   "buyer_name": "Yarvale Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I241"
+   ],
+   "advisor_names": [
+    "Wexcrest Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T3748:I241",
+    "DF:T3748:S210"
+   ]
+  },
+  {
+   "txn_id": "T3570",
+   "close_date": "2026-03-30",
+   "target_id": "C5834",
+   "target_name": "Galton Industrial Supply",
+   "buyer_name": "Brackworth Chemical Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3570:C1555"
+   ]
+  },
+  {
+   "txn_id": "T4347",
+   "close_date": "2026-04-03",
+   "target_id": "C1560",
+   "target_name": "Birchby Metrology",
+   "buyer_name": "Elmbury Calibration",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4347:C9094"
+   ]
+  },
+  {
+   "txn_id": "T4945",
+   "close_date": "2026-04-03",
+   "target_id": "C9228",
+   "target_name": "Hartworth Electric Supply",
+   "buyer_name": "Tidby Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T4945:C9211"
+   ]
+  },
+  {
+   "txn_id": "T6956",
+   "close_date": "2026-04-23",
+   "target_id": "C3054",
+   "target_name": "Marwell Kids Therapy Group",
+   "buyer_name": "Merrton Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I991"
+   ],
+   "advisor_names": [
+    "Jungate Bank Capital"
+   ],
+   "edge_ids": [
+    "DF:T6956:I991",
+    "DF:T6956:S164"
+   ]
+  },
+  {
+   "txn_id": "T7439",
+   "close_date": "2026-05-09",
+   "target_id": "C7530",
+   "target_name": "Clayworth Dermatology",
+   "buyer_name": "Kestfield Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I810"
+   ],
+   "advisor_names": [
+    "Flintworth Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T7439:I810",
+    "DF:T7439:S113"
+   ]
+  },
+  {
+   "txn_id": "T7495",
+   "close_date": "2026-05-09",
+   "target_id": "C5992",
+   "target_name": "Vellcrest Home Health",
+   "buyer_name": "Dunstow Home Nursing",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T7495:C1960"
+   ]
+  },
+  {
+   "txn_id": "T3464",
+   "close_date": "2026-05-19",
+   "target_id": "C2075",
+   "target_name": "Heathdale Infusion Partners",
+   "buyer_name": "Dunmere Home Health",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3464:C3382"
+   ]
+  },
+  {
+   "txn_id": "T3985",
+   "close_date": "2026-05-21",
+   "target_id": "C8910",
+   "target_name": "Calfield Vet Labs",
+   "buyer_name": "Nettlewell Home Nursing",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T3985:C9820"
+   ]
+  },
+  {
+   "txn_id": "T2497",
+   "close_date": "2026-05-24",
+   "target_id": "C3981",
+   "target_name": "Kestgate Food Labs",
+   "buyer_name": "Larkwick Construction",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2497:C8591"
+   ]
+  },
+  {
+   "txn_id": "T9464",
+   "close_date": "2026-06-08",
+   "target_id": "C5043",
+   "target_name": "Nettlestead Physical Therapy",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I736"
+   ],
+   "advisor_names": [
+    "a generalist investment bank"
+   ],
+   "edge_ids": [
+    "DF:T9464:I736",
+    "DF:T9464:S885"
+   ]
+  },
+  {
+   "txn_id": "T5303",
+   "close_date": "2026-06-09",
+   "target_id": "C1292",
+   "target_name": "Lincombe Home Health",
+   "buyer_name": "Merrton Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I241"
+   ],
+   "advisor_names": [
+    "Wexcrest Capital Advisors"
+   ],
+   "edge_ids": [
+    "DF:T5303:I241",
+    "DF:T5303:S164"
+   ]
+  },
+  {
+   "txn_id": "T2873",
+   "close_date": "2026-06-24",
+   "target_id": "C8430",
+   "target_name": "Loamhurst Veterinary Group",
+   "buyer_name": "Kestfield Equity",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I210"
+   ],
+   "advisor_names": [
+    "Cedar Row Partners"
+   ],
+   "edge_ids": [
+    "DF:T2873:I210",
+    "DF:T2873:S113"
+   ]
+  },
+  {
+   "txn_id": "T6452",
+   "close_date": "2026-06-24",
+   "target_id": "C3579",
+   "target_name": "Briscrest Compliance Services",
+   "buyer_name": "Merrholt Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I538"
+   ],
+   "advisor_names": [
+    "Birchwick Advisors"
+   ],
+   "edge_ids": [
+    "DF:T6452:I538",
+    "DF:T6452:S613"
+   ]
+  },
+  {
+   "txn_id": "T3266",
+   "close_date": "2026-07-07",
+   "target_id": "C1823",
+   "target_name": "Embergate Home Health",
+   "buyer_name": "Salstead Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I971"
+   ],
+   "advisor_names": [
+    "Coleden Advisors"
+   ],
+   "edge_ids": [
+    "DF:T3266:I971",
+    "DF:T3266:S358"
+   ]
+  },
+  {
+   "txn_id": "T2434",
+   "close_date": "2026-07-22",
+   "target_id": "C2543",
+   "target_name": "Holstead Revenue Cycle",
+   "buyer_name": "Marton HR Solutions",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T2434:C8510"
+   ]
+  },
+  {
+   "txn_id": "T2230",
+   "close_date": "2026-07-24",
+   "target_id": "C2830",
+   "target_name": "Cinderford Veterinary Group",
+   "buyer_name": "Claywell Capital Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I139"
+   ],
+   "advisor_names": [
+    "Harbor Lane Advisors"
+   ],
+   "edge_ids": [
+    "DF:T2230:I139",
+    "DF:T2230:S259"
+   ]
+  },
+  {
+   "txn_id": "T5226",
+   "close_date": "2026-08-10",
+   "target_id": "C2170",
+   "target_name": "Birchgate Dental Partners",
+   "buyer_name": "Winstow Capital",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I191"
+   ],
+   "advisor_names": [
+    "Thornport Advisors"
+   ],
+   "edge_ids": [
+    "DF:T5226:I191",
+    "DF:T5226:S885"
+   ]
+  },
+  {
+   "txn_id": "T5027",
+   "close_date": "2026-08-15",
+   "target_id": "C4486",
+   "target_name": "Dunley Chemicals",
+   "buyer_name": "Tidmont Packaging Supply",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "add_on",
+   "advisor_ids": [],
+   "advisor_names": [],
+   "edge_ids": [
+    "DF:T5027:C6704"
+   ]
+  },
+  {
+   "txn_id": "T5696",
+   "close_date": "2026-08-18",
+   "target_id": "C2226",
+   "target_name": "Halbury Electric Supply",
+   "buyer_name": "Briswick Partners",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "I538"
+   ],
+   "advisor_names": [
+    "Birchwick Advisors"
+   ],
+   "edge_ids": [
+    "DF:T5696:I538",
+    "DF:T5696:S306"
+   ]
+  }
+ ],
+ "view_graph": {
+  "nodes": [
+   {
+    "id": "C1055",
+    "label": "Goldmere Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 2.31,
+    "y": 96.89
+   },
+   {
+    "id": "C1060",
+    "label": "Flintdale Veterinary Group",
+    "type": "company",
+    "tags": [],
+    "x": 14.99,
+    "y": 70.2
+   },
+   {
+    "id": "C1092",
+    "label": "Galport Training Systems",
+    "type": "company",
+    "tags": [],
+    "x": 55.4,
+    "y": -103.76
+   },
+   {
+    "id": "C1133",
+    "label": "Radwell Environmental Labs",
+    "type": "company",
+    "tags": [],
+    "x": -234.03,
+    "y": 354.13
+   },
+   {
+    "id": "C1180",
+    "label": "Northorpe Animal Hospitals",
+    "type": "company",
+    "tags": [],
+    "x": -9.22,
+    "y": 46.67
+   },
+   {
+    "id": "C1204",
+    "label": "Wilthorpe Walk-In Clinics",
+    "type": "company",
+    "tags": [],
+    "x": 74.93,
+    "y": -59.43
+   },
+   {
+    "id": "C1248",
+    "label": "Ashwell Machine Works",
+    "type": "company",
+    "tags": [],
+    "x": -155.15,
+    "y": -441.48
+   },
+   {
+    "id": "C1291",
+    "label": "Brisbrook Physical Therapy",
+    "type": "company",
+    "tags": [],
+    "x": 7.13,
+    "y": -26.14
+   },
+   {
+    "id": "C1292",
+    "label": "Lincombe Home Health",
+    "type": "company",
+    "tags": [],
+    "x": 16.58,
+    "y": 35.68
+   },
+   {
+    "id": "C1329",
+    "label": "Holstead Home Nursing",
+    "type": "company",
+    "tags": [],
+    "x": 6.25,
+    "y": 55.85
+   },
+   {
+    "id": "C1361",
+    "label": "Larkmere Records Retrieval",
+    "type": "company",
+    "tags": [],
+    "x": -231.36,
+    "y": -389.83
+   },
+   {
+    "id": "C1366",
+    "label": "Dungate Construction",
+    "type": "company",
+    "tags": [],
+    "x": 428.54,
+    "y": -120.61
+   },
+   {
+    "id": "C1415",
+    "label": "Rushstow Ingredients",
+    "type": "company",
+    "tags": [],
+    "x": 278.28,
+    "y": -333.96
+   },
+   {
+    "id": "C1550",
+    "label": "Gantwick Urgent Care",
+    "type": "company",
+    "tags": [],
+    "x": -432.84,
+    "y": 138.4
+   },
+   {
+    "id": "C1555",
+    "label": "Brackworth Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": -85.28,
+    "y": -464.85
+   },
+   {
+    "id": "C1556",
+    "label": "Coleden Analytical Labs",
+    "type": "company",
+    "tags": [],
+    "x": 3.43,
+    "y": -49.44
+   },
+   {
+    "id": "C1560",
+    "label": "Birchby Metrology",
+    "type": "company",
+    "tags": [],
+    "x": 23.81,
+    "y": 489.57
+   },
+   {
+    "id": "C1630",
+    "label": "Holmere Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": -27.27,
+    "y": 30.94
+   },
+   {
+    "id": "C1635",
+    "label": "Pellwell Adjusting Services",
+    "type": "company",
+    "tags": [],
+    "x": -7.45,
+    "y": 6.37
+   },
+   {
+    "id": "C1705",
+    "label": "Kestmont Electrical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 35.56,
+    "y": -43.36
+   },
+   {
+    "id": "C1727",
+    "label": "Norridge Lab Supply",
+    "type": "company",
+    "tags": [],
+    "x": -83.78,
+    "y": -457.6
+   },
+   {
+    "id": "C1776",
+    "label": "Calwood Counseling Centers",
+    "type": "company",
+    "tags": [],
+    "x": -6.74,
+    "y": 421.95
+   },
+   {
+    "id": "C1823",
+    "label": "Embergate Home Health",
+    "type": "company",
+    "tags": [],
+    "x": -38.79,
+    "y": 46.64
+   },
+   {
+    "id": "C1847",
+    "label": "Fairworth Dental Partners",
+    "type": "company",
+    "tags": [],
+    "x": -434.59,
+    "y": 143.9
+   },
+   {
+    "id": "C1870",
+    "label": "Millwood Home Health",
+    "type": "company",
+    "tags": [],
+    "x": -38.5,
+    "y": 54.89
+   },
+   {
+    "id": "C1901",
+    "label": "Vellvale Materials Testing",
+    "type": "company",
+    "tags": [],
+    "x": 192.7,
+    "y": -349.36
+   },
+   {
+    "id": "C1921",
+    "label": "Loammoor Linen Services",
+    "type": "company",
+    "tags": [],
+    "x": 356.77,
+    "y": -233.65
+   },
+   {
+    "id": "C1941",
+    "label": "Fenport Textile Services",
+    "type": "company",
+    "tags": [],
+    "x": 405.96,
+    "y": 176.22
+   },
+   {
+    "id": "C1960",
+    "label": "Dunstow Home Nursing",
+    "type": "company",
+    "tags": [],
+    "x": -415.41,
+    "y": 48.23
+   },
+   {
+    "id": "C1985",
+    "label": "Gantstow Urgent Care",
+    "type": "company",
+    "tags": [],
+    "x": -33.09,
+    "y": -49.63
+   },
+   {
+    "id": "C1994",
+    "label": "Salvale Inspection Services",
+    "type": "company",
+    "tags": [],
+    "x": 193.23,
+    "y": -361.74
+   },
+   {
+    "id": "C2005",
+    "label": "Primstead Dental Partners",
+    "type": "company",
+    "tags": [],
+    "x": -27.86,
+    "y": -54.41
+   },
+   {
+    "id": "C2014",
+    "label": "Brammoor Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": -24.57,
+    "y": 92.76
+   },
+   {
+    "id": "C2059",
+    "label": "Tullmere Chemical Distribution",
+    "type": "company",
+    "tags": [],
+    "x": -9.43,
+    "y": -28.32
+   },
+   {
+    "id": "C2069",
+    "label": "Primley Imaging",
+    "type": "company",
+    "tags": [],
+    "x": -426.22,
+    "y": 141.52
+   },
+   {
+    "id": "C2075",
+    "label": "Heathdale Infusion Partners",
+    "type": "company",
+    "tags": [],
+    "x": 108.63,
+    "y": -423.0
+   },
+   {
+    "id": "C2083",
+    "label": "Sorrby Counseling Centers",
+    "type": "company",
+    "tags": [],
+    "x": -394.15,
+    "y": -211.54
+   },
+   {
+    "id": "C2170",
+    "label": "Birchgate Dental Partners",
+    "type": "company",
+    "tags": [],
+    "x": 76.27,
+    "y": -41.14
+   },
+   {
+    "id": "C2199",
+    "label": "Flintmoor Industrial Supply",
+    "type": "company",
+    "tags": [],
+    "x": -18.79,
+    "y": -60.67
+   },
+   {
+    "id": "C2219",
+    "label": "Primwood NDT Services",
+    "type": "company",
+    "tags": [],
+    "x": -223.45,
+    "y": 346.42
+   },
+   {
+    "id": "C2226",
+    "label": "Halbury Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": 25.56,
+    "y": -39.98
+   },
+   {
+    "id": "C2233",
+    "label": "Larkwood Home Health",
+    "type": "company",
+    "tags": [],
+    "x": 34.17,
+    "y": -45.1
+   },
+   {
+    "id": "C2238",
+    "label": "Goldcrest Litigation Support",
+    "type": "company",
+    "tags": [],
+    "x": 198.41,
+    "y": 388.02
+   },
+   {
+    "id": "C2262",
+    "label": "Quillmont Physical Therapy",
+    "type": "company",
+    "tags": [],
+    "x": -22.13,
+    "y": -59.87
+   },
+   {
+    "id": "C2408",
+    "label": "Carton Claims Services",
+    "type": "company",
+    "tags": [],
+    "x": 18.83,
+    "y": 69.35
+   },
+   {
+    "id": "C2524",
+    "label": "Birchwick Dental Group",
+    "type": "company",
+    "tags": [],
+    "x": 35.36,
+    "y": -20.32
+   },
+   {
+    "id": "C2525",
+    "label": "Hazelmarsh Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": -49.12,
+    "y": 22.03
+   },
+   {
+    "id": "C2543",
+    "label": "Holstead Revenue Cycle",
+    "type": "company",
+    "tags": [],
+    "x": 205.21,
+    "y": 403.24
+   },
+   {
+    "id": "C2596",
+    "label": "Fairmarsh Health System",
+    "type": "company",
+    "tags": [],
+    "x": -6.84,
+    "y": 67.08
+   },
+   {
+    "id": "C2620",
+    "label": "Nettlewell Inspection Services",
+    "type": "company",
+    "tags": [],
+    "x": 182.94,
+    "y": -355.02
+   },
+   {
+    "id": "C2636",
+    "label": "Dunden Metrology",
+    "type": "company",
+    "tags": [],
+    "x": -24.96,
+    "y": -47.16
+   },
+   {
+    "id": "C2648",
+    "label": "Langbrook Claims Services",
+    "type": "company",
+    "tags": [],
+    "x": 429.12,
+    "y": 45.25
+   },
+   {
+    "id": "C2701",
+    "label": "Umberridge Hospice",
+    "type": "company",
+    "tags": [],
+    "x": 15.04,
+    "y": -7.56
+   },
+   {
+    "id": "C2804",
+    "label": "Cobalt Urgent Care Partners",
+    "type": "company",
+    "tags": [],
+    "x": -319.12,
+    "y": 386.5
+   },
+   {
+    "id": "C2821",
+    "label": "Quillridge Pediatric Therapy",
+    "type": "company",
+    "tags": [],
+    "x": 15.39,
+    "y": -29.12
+   },
+   {
+    "id": "C2830",
+    "label": "Cinderford Veterinary Group",
+    "type": "company",
+    "tags": [],
+    "x": -21.21,
+    "y": 34.11
+   },
+   {
+    "id": "C2839",
+    "label": "Colehurst Geotechnical Labs",
+    "type": "company",
+    "tags": [],
+    "x": -11.83,
+    "y": 17.21
+   },
+   {
+    "id": "C2847",
+    "label": "Pellford Hospice",
+    "type": "company",
+    "tags": [],
+    "x": -213.31,
+    "y": 437.87
+   },
+   {
+    "id": "C2852",
+    "label": "Sedgewell Chemicals",
+    "type": "company",
+    "tags": [],
+    "x": -407.65,
+    "y": -77.03
+   },
+   {
+    "id": "C2871",
+    "label": "Nettlegate HR Solutions",
+    "type": "company",
+    "tags": [],
+    "x": -20.14,
+    "y": 43.62
+   },
+   {
+    "id": "C2892",
+    "label": "Oakgate Counseling Centers",
+    "type": "company",
+    "tags": [],
+    "x": 15.78,
+    "y": -10.19
+   },
+   {
+    "id": "C2950",
+    "label": "Primdale Ingredients Co",
+    "type": "company",
+    "tags": [],
+    "x": -24.55,
+    "y": -57.38
+   },
+   {
+    "id": "C2999",
+    "label": "Fenley Home Infusion",
+    "type": "company",
+    "tags": [],
+    "x": -317.76,
+    "y": -378.46
+   },
+   {
+    "id": "C3054",
+    "label": "Marwell Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": 28.75,
+    "y": 53.51
+   },
+   {
+    "id": "C3105",
+    "label": "Marvale Hospice",
+    "type": "company",
+    "tags": [],
+    "x": 102.78,
+    "y": -409.16
+   },
+   {
+    "id": "C3180",
+    "label": "Rushvale Urgent Care",
+    "type": "company",
+    "tags": [],
+    "x": -389.14,
+    "y": -215.44
+   },
+   {
+    "id": "C3208",
+    "label": "Ivomont Animal Hospitals",
+    "type": "company",
+    "tags": [],
+    "x": -22.99,
+    "y": 58.81
+   },
+   {
+    "id": "C3281",
+    "label": "Winport Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": -8.15,
+    "y": 416.18
+   },
+   {
+    "id": "C3348",
+    "label": "Stanhall Payroll Services",
+    "type": "company",
+    "tags": [],
+    "x": 101.18,
+    "y": -61.59
+   },
+   {
+    "id": "C3380",
+    "label": "Junthorpe Inspection Services",
+    "type": "company",
+    "tags": [],
+    "x": -230.52,
+    "y": 360.03
+   },
+   {
+    "id": "C3382",
+    "label": "Dunmere Home Health",
+    "type": "company",
+    "tags": [],
+    "x": 104.34,
+    "y": -415.51
+   },
+   {
+    "id": "C3407",
+    "label": "Hazelfield Dental Partners",
+    "type": "company",
+    "tags": [],
+    "x": 34.18,
+    "y": 4.25
+   },
+   {
+    "id": "C3500",
+    "label": "Bramhaven Lab Supply",
+    "type": "company",
+    "tags": [],
+    "x": 291.78,
+    "y": -341.67
+   },
+   {
+    "id": "C3503",
+    "label": "Ivoby Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": 123.18,
+    "y": 417.38
+   },
+   {
+    "id": "C3537",
+    "label": "Halstow Pediatric Therapy",
+    "type": "company",
+    "tags": [],
+    "x": 66.64,
+    "y": -111.64
+   },
+   {
+    "id": "C3554",
+    "label": "Yarcrest Linen Services",
+    "type": "company",
+    "tags": [],
+    "x": 357.64,
+    "y": -245.23
+   },
+   {
+    "id": "C3565",
+    "label": "Umberwood Food Ingredients",
+    "type": "company",
+    "tags": [],
+    "x": 272.49,
+    "y": 341.68
+   },
+   {
+    "id": "C3579",
+    "label": "Briscrest Compliance Services",
+    "type": "company",
+    "tags": [],
+    "x": 36.98,
+    "y": -41.05
+   },
+   {
+    "id": "C3632",
+    "label": "Heathmarsh Packaging",
+    "type": "company",
+    "tags": [],
+    "x": -124.13,
+    "y": 436.16
+   },
+   {
+    "id": "C3637",
+    "label": "Yarmoor Skin Specialists",
+    "type": "company",
+    "tags": [],
+    "x": -12.83,
+    "y": 419.15
+   },
+   {
+    "id": "C3656",
+    "label": "Orrcombe Home Health",
+    "type": "company",
+    "tags": [],
+    "x": -23.07,
+    "y": 47.13
+   },
+   {
+    "id": "C3711",
+    "label": "Calden Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": 75.54,
+    "y": -56.66
+   },
+   {
+    "id": "C3714",
+    "label": "Tidwick Electrical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 340.3,
+    "y": 262.21
+   },
+   {
+    "id": "C3784",
+    "label": "Ashley Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": 12.06,
+    "y": -23.24
+   },
+   {
+    "id": "C3830",
+    "label": "Fairridge Environmental Labs",
+    "type": "company",
+    "tags": [],
+    "x": -129.37,
+    "y": 436.15
+   },
+   {
+    "id": "C3955",
+    "label": "Fenley Electrical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 40.48,
+    "y": -96.95
+   },
+   {
+    "id": "C3969",
+    "label": "Kelstead Counseling Centers",
+    "type": "company",
+    "tags": [],
+    "x": -418.49,
+    "y": 139.33
+   },
+   {
+    "id": "C3981",
+    "label": "Kestgate Food Labs",
+    "type": "company",
+    "tags": [],
+    "x": 196.02,
+    "y": -356.75
+   },
+   {
+    "id": "C4038",
+    "label": "Galmont Physical Therapy",
+    "type": "company",
+    "tags": [],
+    "x": -20.7,
+    "y": 62.2
+   },
+   {
+    "id": "C4042",
+    "label": "Gantmoor Dental Group",
+    "type": "company",
+    "tags": [],
+    "x": 97.8,
+    "y": -64.09
+   },
+   {
+    "id": "C4056",
+    "label": "Norridge Industrial Supply",
+    "type": "company",
+    "tags": [],
+    "x": -407.64,
+    "y": -313.83
+   },
+   {
+    "id": "C4111",
+    "label": "Hazelwell Adjusting Services",
+    "type": "company",
+    "tags": [],
+    "x": -11.94,
+    "y": 3.77
+   },
+   {
+    "id": "C4126",
+    "label": "Galwick Claims Services",
+    "type": "company",
+    "tags": [],
+    "x": -226.63,
+    "y": -385.85
+   },
+   {
+    "id": "C4157",
+    "label": "Orrmoor Lab Supply",
+    "type": "company",
+    "tags": [],
+    "x": 290.27,
+    "y": -346.97
+   },
+   {
+    "id": "C4158",
+    "label": "Amberwell Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": 4.97,
+    "y": -26.9
+   },
+   {
+    "id": "C4159",
+    "label": "Orrbrook NDT Services",
+    "type": "company",
+    "tags": [],
+    "x": -17.7,
+    "y": 10.59
+   },
+   {
+    "id": "C4175",
+    "label": "Flintstow Inspection Services",
+    "type": "company",
+    "tags": [],
+    "x": 436.08,
+    "y": -122.17
+   },
+   {
+    "id": "C4322",
+    "label": "Nettlebury Compliance Services",
+    "type": "company",
+    "tags": [],
+    "x": -234.89,
+    "y": -397.15
+   },
+   {
+    "id": "C4338",
+    "label": "Larkworth Food Labs",
+    "type": "company",
+    "tags": [],
+    "x": -227.98,
+    "y": 352.52
+   },
+   {
+    "id": "C4458",
+    "label": "Shelbury Food Ingredients",
+    "type": "company",
+    "tags": [],
+    "x": 281.71,
+    "y": 355.7
+   },
+   {
+    "id": "C4486",
+    "label": "Dunley Chemicals",
+    "type": "company",
+    "tags": [],
+    "x": 284.75,
+    "y": -347.83
+   },
+   {
+    "id": "C4529",
+    "label": "Quillmont Home Health",
+    "type": "company",
+    "tags": [],
+    "x": -72.84,
+    "y": 72.23
+   },
+   {
+    "id": "C4544",
+    "label": "Brackgate Payroll Services",
+    "type": "company",
+    "tags": [],
+    "x": 34.88,
+    "y": -68.08
+   },
+   {
+    "id": "C4652",
+    "label": "Belley HR Solutions",
+    "type": "company",
+    "tags": [],
+    "x": 415.44,
+    "y": 39.5
+   },
+   {
+    "id": "C4750",
+    "label": "Gantden Textile Services",
+    "type": "company",
+    "tags": [],
+    "x": 347.01,
+    "y": -237.19
+   },
+   {
+    "id": "C4769",
+    "label": "Ashstead Chemicals",
+    "type": "company",
+    "tags": [],
+    "x": 345.0,
+    "y": 258.31
+   },
+   {
+    "id": "C4859",
+    "label": "Nettlevale Training Systems",
+    "type": "company",
+    "tags": [],
+    "x": -37.34,
+    "y": 58.31
+   },
+   {
+    "id": "C4953",
+    "label": "Kestworth Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 2.5,
+    "y": -492.12
+   },
+   {
+    "id": "C5026",
+    "label": "Glenton Adjusting Services",
+    "type": "company",
+    "tags": [],
+    "x": 10.22,
+    "y": -52.6
+   },
+   {
+    "id": "C5038",
+    "label": "Tullmont Dental Group",
+    "type": "company",
+    "tags": [],
+    "x": 46.41,
+    "y": -15.83
+   },
+   {
+    "id": "C5043",
+    "label": "Nettlestead Physical Therapy",
+    "type": "company",
+    "tags": [],
+    "x": 99.17,
+    "y": -67.52
+   },
+   {
+    "id": "C5138",
+    "label": "Radfield Inspection Services",
+    "type": "company",
+    "tags": [],
+    "x": -32.38,
+    "y": 52.86
+   },
+   {
+    "id": "C5143",
+    "label": "Halwick Animal Hospitals",
+    "type": "company",
+    "tags": [],
+    "x": 391.4,
+    "y": 167.65
+   },
+   {
+    "id": "C5249",
+    "label": "Tullstow Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": 29.06,
+    "y": -60.78
+   },
+   {
+    "id": "C5307",
+    "label": "Keststead Pediatric Therapy",
+    "type": "company",
+    "tags": [],
+    "x": -11.88,
+    "y": 427.51
+   },
+   {
+    "id": "C5326",
+    "label": "Bramhurst Food Labs",
+    "type": "company",
+    "tags": [],
+    "x": -118.89,
+    "y": 435.74
+   },
+   {
+    "id": "C5347",
+    "label": "Wexby Calibration",
+    "type": "company",
+    "tags": [],
+    "x": 89.58,
+    "y": -39.81
+   },
+   {
+    "id": "C5386",
+    "label": "Marley Payroll Services",
+    "type": "company",
+    "tags": [],
+    "x": -27.56,
+    "y": 12.64
+   },
+   {
+    "id": "C5405",
+    "label": "Calmere HR Solutions",
+    "type": "company",
+    "tags": [],
+    "x": -376.65,
+    "y": 211.57
+   },
+   {
+    "id": "C5441",
+    "label": "Saltmarsh Home Infusion",
+    "type": "company",
+    "tags": [],
+    "x": -31.7,
+    "y": 50.35
+   },
+   {
+    "id": "C5448",
+    "label": "Foxmont Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": -29.68,
+    "y": 30.07
+   },
+   {
+    "id": "C5507",
+    "label": "Ostwell Animal Hospitals",
+    "type": "company",
+    "tags": [],
+    "x": -25.94,
+    "y": -23.63
+   },
+   {
+    "id": "C5527",
+    "label": "Umberholt Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": -19.04,
+    "y": 417.85
+   },
+   {
+    "id": "C5594",
+    "label": "Wexcrest Counseling Centers",
+    "type": "company",
+    "tags": [],
+    "x": -17.39,
+    "y": 425.69
+   },
+   {
+    "id": "C5651",
+    "label": "Fenstead Infusion Partners",
+    "type": "company",
+    "tags": [],
+    "x": 400.03,
+    "y": 170.94
+   },
+   {
+    "id": "C5684",
+    "label": "Radmont Hospice",
+    "type": "company",
+    "tags": [],
+    "x": 98.99,
+    "y": -419.87
+   },
+   {
+    "id": "C5777",
+    "label": "Ravenport Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 79.08,
+    "y": -79.37
+   },
+   {
+    "id": "C5790",
+    "label": "Mosscombe Calibration",
+    "type": "company",
+    "tags": [],
+    "x": 3.94,
+    "y": 59.12
+   },
+   {
+    "id": "C5808",
+    "label": "Walworth Training Systems",
+    "type": "company",
+    "tags": [],
+    "x": 429.78,
+    "y": 35.74
+   },
+   {
+    "id": "C5834",
+    "label": "Galton Industrial Supply",
+    "type": "company",
+    "tags": [],
+    "x": -86.92,
+    "y": -473.32
+   },
+   {
+    "id": "C5853",
+    "label": "Hobthorpe Analytical Labs",
+    "type": "company",
+    "tags": [],
+    "x": 27.73,
+    "y": 500.0
+   },
+   {
+    "id": "C5894",
+    "label": "Salvale Rehab Partners",
+    "type": "company",
+    "tags": [],
+    "x": 97.43,
+    "y": -60.84
+   },
+   {
+    "id": "C5923",
+    "label": "Linholt Calibration",
+    "type": "company",
+    "tags": [],
+    "x": 30.66,
+    "y": 484.38
+   },
+   {
+    "id": "C5956",
+    "label": "Vellwell Chemicals",
+    "type": "company",
+    "tags": [],
+    "x": 61.18,
+    "y": -6.7
+   },
+   {
+    "id": "C5967",
+    "label": "Goldford Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": -403.41,
+    "y": -304.23
+   },
+   {
+    "id": "C5992",
+    "label": "Vellcrest Home Health",
+    "type": "company",
+    "tags": [],
+    "x": -406.64,
+    "y": 47.84
+   },
+   {
+    "id": "C6007",
+    "label": "Birchwick Veterinary Group",
+    "type": "company",
+    "tags": [],
+    "x": 73.02,
+    "y": -6.11
+   },
+   {
+    "id": "C6018",
+    "label": "Millmoor Counseling Centers",
+    "type": "company",
+    "tags": [],
+    "x": 101.96,
+    "y": -58.61
+   },
+   {
+    "id": "C6093",
+    "label": "Tidcombe Skin Specialists",
+    "type": "company",
+    "tags": [],
+    "x": 3.91,
+    "y": 37.8
+   },
+   {
+    "id": "C6102",
+    "label": "Wexden NDT Services",
+    "type": "company",
+    "tags": [],
+    "x": -19.83,
+    "y": 87.0
+   },
+   {
+    "id": "C6184",
+    "label": "Ostby Environmental Labs",
+    "type": "company",
+    "tags": [],
+    "x": -60.88,
+    "y": 73.42
+   },
+   {
+    "id": "C6238",
+    "label": "Ivocrest Claims Services",
+    "type": "company",
+    "tags": [],
+    "x": -49.71,
+    "y": 35.65
+   },
+   {
+    "id": "C6247",
+    "label": "Primmoor Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 30.51,
+    "y": -93.06
+   },
+   {
+    "id": "C6395",
+    "label": "Rushley Dental Group",
+    "type": "company",
+    "tags": [],
+    "x": 31.42,
+    "y": 11.1
+   },
+   {
+    "id": "C6401",
+    "label": "Glenthorpe Adjusting Services",
+    "type": "company",
+    "tags": [],
+    "x": -236.88,
+    "y": -388.52
+   },
+   {
+    "id": "C6438",
+    "label": "Fenhall Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": 15.32,
+    "y": -56.57
+   },
+   {
+    "id": "C6447",
+    "label": "Sedgedale Calibration",
+    "type": "company",
+    "tags": [],
+    "x": 432.69,
+    "y": -295.56
+   },
+   {
+    "id": "C6449",
+    "label": "Emberwick Animal Hospitals",
+    "type": "company",
+    "tags": [],
+    "x": 0.62,
+    "y": -424.74
+   },
+   {
+    "id": "C6491",
+    "label": "Millstow Behavioral Health",
+    "type": "company",
+    "tags": [],
+    "x": -383.11,
+    "y": -213.81
+   },
+   {
+    "id": "C6591",
+    "label": "Radden Payroll Services",
+    "type": "company",
+    "tags": [],
+    "x": 432.56,
+    "y": 40.72
+   },
+   {
+    "id": "C6627",
+    "label": "Cinderworth Infusion Partners",
+    "type": "company",
+    "tags": [],
+    "x": 118.84,
+    "y": 405.12
+   },
+   {
+    "id": "C6633",
+    "label": "Fairmoor Home Health",
+    "type": "company",
+    "tags": [],
+    "x": 5.34,
+    "y": 95.05
+   },
+   {
+    "id": "C6679",
+    "label": "Glenmarsh Litigation Support",
+    "type": "company",
+    "tags": [],
+    "x": -378.75,
+    "y": 221.58
+   },
+   {
+    "id": "C6695",
+    "label": "Vellbury Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": -421.89,
+    "y": -80.73
+   },
+   {
+    "id": "C6704",
+    "label": "Tidmont Packaging Supply",
+    "type": "company",
+    "tags": [],
+    "x": 284.26,
+    "y": -340.42
+   },
+   {
+    "id": "C6795",
+    "label": "Rookwell Home Infusion",
+    "type": "company",
+    "tags": [],
+    "x": -318.59,
+    "y": -382.99
+   },
+   {
+    "id": "C6837",
+    "label": "Heathworth NDT Services",
+    "type": "company",
+    "tags": [],
+    "x": 4.37,
+    "y": -40.9
+   },
+   {
+    "id": "C6884",
+    "label": "Fenwick Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 13.25,
+    "y": -19.66
+   },
+   {
+    "id": "C6960",
+    "label": "Ivowell NDT Services",
+    "type": "company",
+    "tags": [],
+    "x": 19.6,
+    "y": -54.66
+   },
+   {
+    "id": "C7019",
+    "label": "Stanstow MRO Supply",
+    "type": "company",
+    "tags": [],
+    "x": -91.17,
+    "y": -469.32
+   },
+   {
+    "id": "C7032",
+    "label": "Winstow Training Systems",
+    "type": "company",
+    "tags": [],
+    "x": 24.82,
+    "y": 51.25
+   },
+   {
+    "id": "C7059",
+    "label": "Winmarsh Home Nursing",
+    "type": "company",
+    "tags": [],
+    "x": 67.82,
+    "y": -55.79
+   },
+   {
+    "id": "C7127",
+    "label": "Winholt Lab Supply",
+    "type": "company",
+    "tags": [],
+    "x": 285.89,
+    "y": 351.77
+   },
+   {
+    "id": "C7196",
+    "label": "Wexfield Dental Group",
+    "type": "company",
+    "tags": [],
+    "x": 407.86,
+    "y": 170.84
+   },
+   {
+    "id": "C7350",
+    "label": "Carport Home Nursing",
+    "type": "company",
+    "tags": [],
+    "x": 103.53,
+    "y": -424.1
+   },
+   {
+    "id": "C7432",
+    "label": "Ashby Training Systems",
+    "type": "company",
+    "tags": [],
+    "x": 30.23,
+    "y": -50.15
+   },
+   {
+    "id": "C7462",
+    "label": "Cinderworth NDT Services",
+    "type": "company",
+    "tags": [],
+    "x": -157.53,
+    "y": -446.45
+   },
+   {
+    "id": "C7530",
+    "label": "Clayworth Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": -47.61,
+    "y": -6.15
+   },
+   {
+    "id": "C7570",
+    "label": "Loammarsh Counseling Centers",
+    "type": "company",
+    "tags": [],
+    "x": 39.25,
+    "y": -43.16
+   },
+   {
+    "id": "C7574",
+    "label": "Goldhurst Calibration",
+    "type": "company",
+    "tags": [],
+    "x": -45.67,
+    "y": 18.14
+   },
+   {
+    "id": "C7577",
+    "label": "Primby Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": -430.16,
+    "y": 147.64
+   },
+   {
+    "id": "C7633",
+    "label": "Ironvale Testing Group",
+    "type": "company",
+    "tags": [],
+    "x": -7.46,
+    "y": -29.21
+   },
+   {
+    "id": "C7640",
+    "label": "Tiddale Hospice",
+    "type": "company",
+    "tags": [],
+    "x": 110.97,
+    "y": -417.2
+   },
+   {
+    "id": "C7657",
+    "label": "Ostden Pediatric Therapy",
+    "type": "company",
+    "tags": [],
+    "x": -42.56,
+    "y": 44.02
+   },
+   {
+    "id": "C7677",
+    "label": "Shelmarsh Home Infusion",
+    "type": "company",
+    "tags": [],
+    "x": -315.45,
+    "y": 288.29
+   },
+   {
+    "id": "C7727",
+    "label": "Holwell Home Health",
+    "type": "company",
+    "tags": [],
+    "x": -423.2,
+    "y": 48.56
+   },
+   {
+    "id": "C7730",
+    "label": "Elderford Materials Testing",
+    "type": "company",
+    "tags": [],
+    "x": 12.45,
+    "y": 42.88
+   },
+   {
+    "id": "C7777",
+    "label": "Marworth Electrical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 6.08,
+    "y": -5.93
+   },
+   {
+    "id": "C7800",
+    "label": "Yarworth Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": -0.87,
+    "y": -53.29
+   },
+   {
+    "id": "C7806",
+    "label": "Quilley Compliance Services",
+    "type": "company",
+    "tags": [],
+    "x": 423.82,
+    "y": 40.09
+   },
+   {
+    "id": "C7882",
+    "label": "Rookfield Walk-In Clinics",
+    "type": "company",
+    "tags": [],
+    "x": -392.28,
+    "y": -222.09
+   },
+   {
+    "id": "C7922",
+    "label": "Carmoor Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": 47.49,
+    "y": -13.78
+   },
+   {
+    "id": "C7990",
+    "label": "Ravenwood Vet Labs",
+    "type": "company",
+    "tags": [],
+    "x": 4.85,
+    "y": -426.56
+   },
+   {
+    "id": "C7999",
+    "label": "Larkholt Industrial Supply",
+    "type": "company",
+    "tags": [],
+    "x": 278.82,
+    "y": 348.43
+   },
+   {
+    "id": "C8053",
+    "label": "Tullcrest Environmental Labs",
+    "type": "company",
+    "tags": [],
+    "x": 187.58,
+    "y": -361.65
+   },
+   {
+    "id": "C8055",
+    "label": "Marby Industrial Supply",
+    "type": "company",
+    "tags": [],
+    "x": 2.61,
+    "y": -497.22
+   },
+   {
+    "id": "C8087",
+    "label": "Hartgate Infusion Partners",
+    "type": "company",
+    "tags": [],
+    "x": -217.58,
+    "y": 436.14
+   },
+   {
+    "id": "C8116",
+    "label": "Stanwell Food Ingredients",
+    "type": "company",
+    "tags": [],
+    "x": -407.2,
+    "y": -308.82
+   },
+   {
+    "id": "C8121",
+    "label": "Winford Home Health",
+    "type": "company",
+    "tags": [],
+    "x": 18.23,
+    "y": -7.07
+   },
+   {
+    "id": "C8132",
+    "label": "Glenstead Infusion Partners",
+    "type": "company",
+    "tags": [],
+    "x": -302.59,
+    "y": 278.11
+   },
+   {
+    "id": "C8156",
+    "label": "Hobvale Metrology",
+    "type": "company",
+    "tags": [],
+    "x": 95.06,
+    "y": -65.73
+   },
+   {
+    "id": "C8332",
+    "label": "Langport Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": -40.05,
+    "y": 52.59
+   },
+   {
+    "id": "C8365",
+    "label": "Vellridge Medical Courier",
+    "type": "company",
+    "tags": [],
+    "x": 361.66,
+    "y": -241.01
+   },
+   {
+    "id": "C8430",
+    "label": "Loamhurst Veterinary Group",
+    "type": "company",
+    "tags": [],
+    "x": -17.87,
+    "y": -12.01
+   },
+   {
+    "id": "C8434",
+    "label": "Kestgate Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": -411.89,
+    "y": -71.01
+   },
+   {
+    "id": "C8465",
+    "label": "Winholt Inspection Services",
+    "type": "company",
+    "tags": [],
+    "x": 8.56,
+    "y": 20.34
+   },
+   {
+    "id": "C8510",
+    "label": "Marton HR Solutions",
+    "type": "company",
+    "tags": [],
+    "x": 202.89,
+    "y": 395.33
+   },
+   {
+    "id": "C8516",
+    "label": "Winbrook Home Health",
+    "type": "company",
+    "tags": [],
+    "x": -23.47,
+    "y": 32.76
+   },
+   {
+    "id": "C8523",
+    "label": "Primden Training Systems",
+    "type": "company",
+    "tags": [],
+    "x": 208.75,
+    "y": 397.76
+   },
+   {
+    "id": "C8591",
+    "label": "Larkwick Construction",
+    "type": "company",
+    "tags": [],
+    "x": 188.92,
+    "y": -354.07
+   },
+   {
+    "id": "C8624",
+    "label": "Dunley Home Infusion",
+    "type": "company",
+    "tags": [],
+    "x": -309.42,
+    "y": 283.52
+   },
+   {
+    "id": "C8643",
+    "label": "Galwick Materials Testing",
+    "type": "company",
+    "tags": [],
+    "x": 33.33,
+    "y": 498.86
+   },
+   {
+    "id": "C8663",
+    "label": "Larkmont Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": 96.21,
+    "y": -68.73
+   },
+   {
+    "id": "C8688",
+    "label": "Umberwell Kids Therapy Group",
+    "type": "company",
+    "tags": [],
+    "x": -397.07,
+    "y": -218.29
+   },
+   {
+    "id": "C8784",
+    "label": "Vellhall Chemical Supply",
+    "type": "company",
+    "tags": [],
+    "x": -81.4,
+    "y": -470.56
+   },
+   {
+    "id": "C8797",
+    "label": "Foxbury MRO Supply",
+    "type": "company",
+    "tags": [],
+    "x": -60.28,
+    "y": -10.47
+   },
+   {
+    "id": "C8910",
+    "label": "Calfield Vet Labs",
+    "type": "company",
+    "tags": [],
+    "x": 127.88,
+    "y": 412.73
+   },
+   {
+    "id": "C8953",
+    "label": "Kelstead Physical Therapy",
+    "type": "company",
+    "tags": [],
+    "x": 45.67,
+    "y": -35.25
+   },
+   {
+    "id": "C9002",
+    "label": "Amberton Training Systems",
+    "type": "company",
+    "tags": [],
+    "x": 99.05,
+    "y": -57.67
+   },
+   {
+    "id": "C9094",
+    "label": "Elmbury Calibration",
+    "type": "company",
+    "tags": [],
+    "x": 29.34,
+    "y": 491.73
+   },
+   {
+    "id": "C9206",
+    "label": "Glenmere Skin Specialists",
+    "type": "company",
+    "tags": [],
+    "x": 16.62,
+    "y": 4.58
+   },
+   {
+    "id": "C9207",
+    "label": "Hazelmont Calibration",
+    "type": "company",
+    "tags": [],
+    "x": -50.54,
+    "y": 32.75
+   },
+   {
+    "id": "C9211",
+    "label": "Tidby Packaging Supply",
+    "type": "company",
+    "tags": [],
+    "x": -415.39,
+    "y": -76.22
+   },
+   {
+    "id": "C9228",
+    "label": "Hartworth Electric Supply",
+    "type": "company",
+    "tags": [],
+    "x": -423.28,
+    "y": -74.97
+   },
+   {
+    "id": "C9262",
+    "label": "Junley Dermatology",
+    "type": "company",
+    "tags": [],
+    "x": 37.38,
+    "y": 33.04
+   },
+   {
+    "id": "C9266",
+    "label": "Kelden Adjusting Services",
+    "type": "company",
+    "tags": [],
+    "x": -49.64,
+    "y": 19.99
+   },
+   {
+    "id": "C9351",
+    "label": "Oakridge Adjusting Services",
+    "type": "company",
+    "tags": [],
+    "x": 45.59,
+    "y": 19.32
+   },
+   {
+    "id": "C9353",
+    "label": "Wilvale Industrial Supply",
+    "type": "company",
+    "tags": [],
+    "x": -44.96,
+    "y": 97.05
+   },
+   {
+    "id": "C9374",
+    "label": "Carhaven Veterinary Group",
+    "type": "company",
+    "tags": [],
+    "x": 45.9,
+    "y": -54.76
+   },
+   {
+    "id": "C9452",
+    "label": "Stanvale Linen Services",
+    "type": "company",
+    "tags": [],
+    "x": 353.41,
+    "y": -238.62
+   },
+   {
+    "id": "C9473",
+    "label": "Fairwood Litigation Support",
+    "type": "company",
+    "tags": [],
+    "x": -379.29,
+    "y": 216.46
+   },
+   {
+    "id": "C9551",
+    "label": "Galley Industrial Supply",
+    "type": "company",
+    "tags": [],
+    "x": -41.04,
+    "y": -39.56
+   },
+   {
+    "id": "C9586",
+    "label": "Elmdale NDT Services",
+    "type": "company",
+    "tags": [],
+    "x": 42.38,
+    "y": -45.65
+   },
+   {
+    "id": "C9608",
+    "label": "Walgate Lab Supply",
+    "type": "company",
+    "tags": [],
+    "x": 337.3,
+    "y": 255.96
+   },
+   {
+    "id": "C9659",
+    "label": "Mossgate Ingredients",
+    "type": "company",
+    "tags": [],
+    "x": 330.05,
+    "y": 250.83
+   },
+   {
+    "id": "C9820",
+    "label": "Nettlewell Home Nursing",
+    "type": "company",
+    "tags": [],
+    "x": 122.41,
+    "y": 409.15
+   },
+   {
+    "id": "C9902",
+    "label": "Amberhall HR Solutions",
+    "type": "company",
+    "tags": [],
+    "x": 21.55,
+    "y": -57.79
+   },
+   {
+    "id": "C9966",
+    "label": "Tidbrook Urgent Care",
+    "type": "company",
+    "tags": [],
+    "x": -48.23,
+    "y": 53.29
+   },
+   {
+    "id": "I117",
+    "label": "Fenbrook & Co.",
+    "type": "intermediary",
+    "tags": [],
+    "x": 21.68,
+    "y": -63.9
+   },
+   {
+    "id": "I139",
+    "label": "Harbor Lane Advisors",
+    "type": "intermediary",
+    "tags": [
+     "coverage_gap",
+     "top_decile"
+    ],
+    "x": -29.8,
+    "y": 43.52
+   },
+   {
+    "id": "I191",
+    "label": "Thornport Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 60.86,
+    "y": -24.97
+   },
+   {
+    "id": "I210",
+    "label": "Cedar Row Partners",
+    "type": "intermediary",
+    "tags": [
+     "top_decile"
+    ],
+    "x": 1.06,
+    "y": -9.4
+   },
+   {
+    "id": "I241",
+    "label": "Wexcrest Capital Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 13.39,
+    "y": 19.55
+   },
+   {
+    "id": "I252",
+    "label": "Glenley & Co.",
+    "type": "intermediary",
+    "tags": [],
+    "x": -324.51,
+    "y": 392.34
+   },
+   {
+    "id": "I364",
+    "label": "Ravenmont Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 84.83,
+    "y": -21.75
+   },
+   {
+    "id": "I368",
+    "label": "Walbury Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 24.27,
+    "y": -77.59
+   },
+   {
+    "id": "I373",
+    "label": "Ivoford & Co.",
+    "type": "intermediary",
+    "tags": [],
+    "x": 11.08,
+    "y": 86.58
+   },
+   {
+    "id": "I390",
+    "label": "Gantton Capital Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 38.47,
+    "y": -84.71
+   },
+   {
+    "id": "I489",
+    "label": "Junhaven Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": -37.07,
+    "y": 81.92
+   },
+   {
+    "id": "I494",
+    "label": "Dunby Bank Capital",
+    "type": "intermediary",
+    "tags": [],
+    "x": 29.72,
+    "y": 27.88
+   },
+   {
+    "id": "I523",
+    "label": "Fairmont Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": -57.12,
+    "y": 8.21
+   },
+   {
+    "id": "I538",
+    "label": "Birchwick Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 35.8,
+    "y": -33.97
+   },
+   {
+    "id": "I551",
+    "label": "Dunbury & Co.",
+    "type": "intermediary",
+    "tags": [],
+    "x": -71.1,
+    "y": 78.65
+   },
+   {
+    "id": "I616",
+    "label": "Rushcombe & Co.",
+    "type": "intermediary",
+    "tags": [],
+    "x": -27.79,
+    "y": 72.45
+   },
+   {
+    "id": "I617",
+    "label": "Pellgate & Co.",
+    "type": "intermediary",
+    "tags": [],
+    "x": 15.79,
+    "y": 85.57
+   },
+   {
+    "id": "I648",
+    "label": "Loamhurst Bank Capital",
+    "type": "intermediary",
+    "tags": [],
+    "x": -14.87,
+    "y": -58.44
+   },
+   {
+    "id": "I653",
+    "label": "Wexhall Bank Capital",
+    "type": "intermediary",
+    "tags": [],
+    "x": -16.47,
+    "y": -5.62
+   },
+   {
+    "id": "I670",
+    "label": "Kestcombe Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 10.82,
+    "y": 2.24
+   },
+   {
+    "id": "I736",
+    "label": "Brayford Capital Markets",
+    "type": "intermediary",
+    "tags": [],
+    "x": 102.24,
+    "y": -64.57
+   },
+   {
+    "id": "I737",
+    "label": "Umberby & Co.",
+    "type": "intermediary",
+    "tags": [
+     "top_decile"
+    ],
+    "x": 60.13,
+    "y": -54.46
+   },
+   {
+    "id": "I776",
+    "label": "Emberholt Partners",
+    "type": "intermediary",
+    "tags": [],
+    "x": -10.17,
+    "y": 57.46
+   },
+   {
+    "id": "I777",
+    "label": "Emberfield Capital Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": -38.94,
+    "y": 56.51
+   },
+   {
+    "id": "I810",
+    "label": "Flintworth Capital Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": -51.71,
+    "y": 5.11
+   },
+   {
+    "id": "I830",
+    "label": "Sorrwell & Co.",
+    "type": "intermediary",
+    "tags": [],
+    "x": 56.91,
+    "y": -20.98
+   },
+   {
+    "id": "I845",
+    "label": "Wilby Securities",
+    "type": "intermediary",
+    "tags": [
+     "top_decile"
+    ],
+    "x": 46.51,
+    "y": -50.74
+   },
+   {
+    "id": "I854",
+    "label": "Kestcrest Securities",
+    "type": "intermediary",
+    "tags": [],
+    "x": -21.49,
+    "y": -47.17
+   },
+   {
+    "id": "I907",
+    "label": "Hobden Partners",
+    "type": "intermediary",
+    "tags": [],
+    "x": -59.53,
+    "y": 35.51
+   },
+   {
+    "id": "I936",
+    "label": "Quillwood Partners",
+    "type": "intermediary",
+    "tags": [],
+    "x": 68.47,
+    "y": -97.34
+   },
+   {
+    "id": "I971",
+    "label": "Coleden Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": -34.82,
+    "y": 60.19
+   },
+   {
+    "id": "I974",
+    "label": "Yarholt Capital Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": -11.77,
+    "y": -44.87
+   },
+   {
+    "id": "I991",
+    "label": "Jungate Bank Capital",
+    "type": "intermediary",
+    "tags": [],
+    "x": 35.15,
+    "y": 46.81
+   },
+   {
+    "id": "I993",
+    "label": "Pellfield Partners",
+    "type": "intermediary",
+    "tags": [],
+    "x": -6.02,
+    "y": 51.75
+   },
+   {
+    "id": "S113",
+    "label": "Kestfield Equity",
+    "type": "sponsor",
+    "tags": [],
+    "x": -34.78,
+    "y": -11.42
+   },
+   {
+    "id": "S164",
+    "label": "Merrton Equity",
+    "type": "sponsor",
+    "tags": [],
+    "x": 14.79,
+    "y": 50.03
+   },
+   {
+    "id": "S210",
+    "label": "Yarvale Equity",
+    "type": "sponsor",
+    "tags": [],
+    "x": -6.05,
+    "y": 54.0
+   },
+   {
+    "id": "S259",
+    "label": "Claywell Capital Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -15.95,
+    "y": 22.17
+   },
+   {
+    "id": "S279",
+    "label": "Ostwood Capital Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": 9.48,
+    "y": 49.79
+   },
+   {
+    "id": "S303",
+    "label": "Nettleford Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -9.34,
+    "y": 95.11
+   },
+   {
+    "id": "S306",
+    "label": "Briswick Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": 13.6,
+    "y": -41.58
+   },
+   {
+    "id": "S316",
+    "label": "Hartbury Capital Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -33.98,
+    "y": 32.56
+   },
+   {
+    "id": "S347",
+    "label": "Brammoor Capital",
+    "type": "sponsor",
+    "tags": [],
+    "x": -63.08,
+    "y": 63.48
+   },
+   {
+    "id": "S358",
+    "label": "Salstead Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -34.73,
+    "y": 31.85
+   },
+   {
+    "id": "S437",
+    "label": "Nettleridge Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": 29.74,
+    "y": 18.48
+   },
+   {
+    "id": "S459",
+    "label": "Heathgate Equity",
+    "type": "sponsor",
+    "tags": [],
+    "x": 65.51,
+    "y": -122.24
+   },
+   {
+    "id": "S465",
+    "label": "Radgate Equity Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": 54.95,
+    "y": 4.58
+   },
+   {
+    "id": "S516",
+    "label": "Millstead Equity Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -30.37,
+    "y": -41.51
+   },
+   {
+    "id": "S558",
+    "label": "Mosswood Equity",
+    "type": "sponsor",
+    "tags": [],
+    "x": 29.04,
+    "y": -7.95
+   },
+   {
+    "id": "S613",
+    "label": "Merrholt Capital",
+    "type": "sponsor",
+    "tags": [],
+    "x": 29.23,
+    "y": -47.79
+   },
+   {
+    "id": "S632",
+    "label": "Pellwood Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": 41.38,
+    "y": -102.15
+   },
+   {
+    "id": "S743",
+    "label": "Tullbrook Capital",
+    "type": "sponsor",
+    "tags": [],
+    "x": -22.59,
+    "y": 18.69
+   },
+   {
+    "id": "S795",
+    "label": "Larkbury Capital",
+    "type": "sponsor",
+    "tags": [],
+    "x": 430.27,
+    "y": -299.49
+   },
+   {
+    "id": "S796",
+    "label": "Northwind Equity Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -15.8,
+    "y": -46.72
+   },
+   {
+    "id": "S798",
+    "label": "Marmarsh Capital",
+    "type": "sponsor",
+    "tags": [],
+    "x": -313.15,
+    "y": 380.02
+   },
+   {
+    "id": "S884",
+    "label": "Dunmere Investment Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -54.57,
+    "y": -27.2
+   },
+   {
+    "id": "S885",
+    "label": "Winstow Capital",
+    "type": "sponsor",
+    "tags": [],
+    "x": 87.5,
+    "y": -58.8
+   },
+   {
+    "id": "S916",
+    "label": "Walfield Capital",
+    "type": "sponsor",
+    "tags": [],
+    "x": 23.28,
+    "y": -35.81
+   },
+   {
+    "id": "S938",
+    "label": "Coppervale Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -47.89,
+    "y": 63.29
+   },
+   {
+    "id": "S971",
+    "label": "Winbury Equity Partners",
+    "type": "sponsor",
+    "tags": [],
+    "x": -50.51,
+    "y": 107.97
+   }
+  ],
+  "edges": [
+   {
+    "id": "DF:T1087:I653",
+    "source": "I653",
+    "target": "C5507",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1087:S516",
+    "source": "S516",
+    "target": "C5507",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1094:I736",
+    "source": "I736",
+    "target": "C3348",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1094:S885",
+    "source": "S885",
+    "target": "C3348",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1131:S306",
+    "source": "S306",
+    "target": "C5026",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1169:I845",
+    "source": "I845",
+    "target": "C7432",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1169:S306",
+    "source": "S306",
+    "target": "C7432",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1275:I670",
+    "source": "I670",
+    "target": "C6884",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1275:S306",
+    "source": "S306",
+    "target": "C6884",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1413:I210",
+    "source": "I210",
+    "target": "C4159",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1413:S358",
+    "source": "S358",
+    "target": "C4159",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1523:I736",
+    "source": "I736",
+    "target": "C6018",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1523:S885",
+    "source": "S885",
+    "target": "C6018",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1551:C9473",
+    "source": "C9473",
+    "target": "C5405",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1614:I974",
+    "source": "I974",
+    "target": "C6837",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1614:S916",
+    "source": "S916",
+    "target": "C6837",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1709:I523",
+    "source": "I523",
+    "target": "C9266",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1709:S358",
+    "source": "S358",
+    "target": "C9266",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1724:C4953",
+    "source": "C4953",
+    "target": "C8055",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1744:I489",
+    "source": "I489",
+    "target": "C9353",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1744:S971",
+    "source": "S971",
+    "target": "C9353",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1754:C8591",
+    "source": "C8591",
+    "target": "C1994",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1849:I737",
+    "source": "I737",
+    "target": "C1204",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1849:S885",
+    "source": "S885",
+    "target": "C1204",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1865:I364",
+    "source": "I364",
+    "target": "C6007",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T1865:S465",
+    "source": "S465",
+    "target": "C6007",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1880:C3637",
+    "source": "C3637",
+    "target": "C5594",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1891:C1555",
+    "source": "C1555",
+    "target": "C7019",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T1978:C3632",
+    "source": "C3632",
+    "target": "C5326",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2009:I845",
+    "source": "I845",
+    "target": "C2233",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2009:S916",
+    "source": "S916",
+    "target": "C2233",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2026:I252",
+    "source": "I252",
+    "target": "C2804",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2026:S798",
+    "source": "S798",
+    "target": "C2804",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2067:C5651",
+    "source": "C5651",
+    "target": "C7196",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2073:C1555",
+    "source": "C1555",
+    "target": "C1727",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2143:C3637",
+    "source": "C3637",
+    "target": "C3281",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2162:C9473",
+    "source": "C9473",
+    "target": "C6679",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2230:I139",
+    "source": "I139",
+    "target": "C2830",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2230:S259",
+    "source": "S259",
+    "target": "C2830",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2237:I489",
+    "source": "I489",
+    "target": "C4859",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2237:S358",
+    "source": "S358",
+    "target": "C4859",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2251:C2069",
+    "source": "C2069",
+    "target": "C1550",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2298:C9608",
+    "source": "C9608",
+    "target": "C9659",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2304:I139",
+    "source": "I139",
+    "target": "C8516",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2304:S259",
+    "source": "S259",
+    "target": "C8516",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2317:I993",
+    "source": "I993",
+    "target": "C1329",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2317:S164",
+    "source": "S164",
+    "target": "C1329",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2434:C8510",
+    "source": "C8510",
+    "target": "C2543",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2479:S796",
+    "source": "S796",
+    "target": "C2262",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2497:C8591",
+    "source": "C8591",
+    "target": "C3981",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2610:I736",
+    "source": "I736",
+    "target": "C9002",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2610:S885",
+    "source": "S885",
+    "target": "C9002",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2688:C2069",
+    "source": "C2069",
+    "target": "C1847",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2691:I830",
+    "source": "I830",
+    "target": "C5956",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2691:S465",
+    "source": "S465",
+    "target": "C5956",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2703:C6704",
+    "source": "C6704",
+    "target": "C4157",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2710:C8116",
+    "source": "C8116",
+    "target": "C4056",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2796:C7990",
+    "source": "C7990",
+    "target": "C6449",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2798:I373",
+    "source": "I373",
+    "target": "C1055",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2798:S303",
+    "source": "S303",
+    "target": "C1055",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2807:C3180",
+    "source": "C3180",
+    "target": "C8688",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2809:C1555",
+    "source": "C1555",
+    "target": "C8784",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2811:C9608",
+    "source": "C9608",
+    "target": "C3714",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2830:C9820",
+    "source": "C9820",
+    "target": "C3503",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2873:I210",
+    "source": "I210",
+    "target": "C8430",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2873:S113",
+    "source": "S113",
+    "target": "C8430",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2898:C8591",
+    "source": "C8591",
+    "target": "C2620",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T2965:I494",
+    "source": "I494",
+    "target": "C9351",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T2965:S465",
+    "source": "S465",
+    "target": "C9351",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3020:C9211",
+    "source": "C9211",
+    "target": "C8434",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3186:C2069",
+    "source": "C2069",
+    "target": "C7577",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3234:I139",
+    "source": "I139",
+    "target": "C1180",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3234:S279",
+    "source": "S279",
+    "target": "C1180",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3266:I971",
+    "source": "I971",
+    "target": "C1823",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3266:S358",
+    "source": "S358",
+    "target": "C1823",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3276:I670",
+    "source": "I670",
+    "target": "C2839",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3276:S358",
+    "source": "S358",
+    "target": "C2839",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3296:C5651",
+    "source": "C5651",
+    "target": "C1941",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3313:I737",
+    "source": "I737",
+    "target": "C9374",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3313:S613",
+    "source": "S613",
+    "target": "C9374",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3326:I210",
+    "source": "I210",
+    "target": "C4158",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3326:S306",
+    "source": "S306",
+    "target": "C4158",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3344:I210",
+    "source": "I210",
+    "target": "C2821",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3344:S613",
+    "source": "S613",
+    "target": "C2821",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3377:C9094",
+    "source": "C9094",
+    "target": "C5853",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3379:I736",
+    "source": "I736",
+    "target": "C5894",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3379:S885",
+    "source": "S885",
+    "target": "C5894",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3395:I991",
+    "source": "I991",
+    "target": "C9262",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3395:S437",
+    "source": "S437",
+    "target": "C9262",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3411:S796",
+    "source": "S796",
+    "target": "C2950",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3464:C3382",
+    "source": "C3382",
+    "target": "C2075",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3471:I736",
+    "source": "I736",
+    "target": "C8663",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3471:S885",
+    "source": "S885",
+    "target": "C8663",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3511:I368",
+    "source": "I368",
+    "target": "C6247",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3511:S632",
+    "source": "S632",
+    "target": "C6247",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3570:C1555",
+    "source": "C1555",
+    "target": "C5834",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3599:C8116",
+    "source": "C8116",
+    "target": "C5967",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3661:C9452",
+    "source": "C9452",
+    "target": "C4750",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3678:C8624",
+    "source": "C8624",
+    "target": "C7677",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3740:I854",
+    "source": "I854",
+    "target": "C9551",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3740:S884",
+    "source": "S884",
+    "target": "C9551",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3745:C3180",
+    "source": "C3180",
+    "target": "C2083",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3748:I241",
+    "source": "I241",
+    "target": "C6093",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3748:S210",
+    "source": "S210",
+    "target": "C6093",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3843:C9211",
+    "source": "C9211",
+    "target": "C2852",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3895:I777",
+    "source": "I777",
+    "target": "C3208",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3895:S210",
+    "source": "S210",
+    "target": "C3208",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3934:I936",
+    "source": "I936",
+    "target": "C1092",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T3934:S632",
+    "source": "S632",
+    "target": "C1092",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3941:C1361",
+    "source": "C1361",
+    "target": "C4126",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T3985:C9820",
+    "source": "C9820",
+    "target": "C8910",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4082:I617",
+    "source": "I617",
+    "target": "C6633",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4082:S303",
+    "source": "S303",
+    "target": "C6633",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4101:C1361",
+    "source": "C1361",
+    "target": "C6401",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4149:I736",
+    "source": "I736",
+    "target": "C8156",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4149:S885",
+    "source": "S885",
+    "target": "C8156",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4300:C9094",
+    "source": "C9094",
+    "target": "C8643",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4321:C6795",
+    "source": "C6795",
+    "target": "C2999",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4347:C9094",
+    "source": "C9094",
+    "target": "C1560",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4360:I523",
+    "source": "I523",
+    "target": "C8797",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4360:S884",
+    "source": "S884",
+    "target": "C8797",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4520:C1366",
+    "source": "C1366",
+    "target": "C4175",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4541:I390",
+    "source": "I390",
+    "target": "C3955",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4541:S632",
+    "source": "S632",
+    "target": "C3955",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4633:C8591",
+    "source": "C8591",
+    "target": "C1901",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4774:C9820",
+    "source": "C9820",
+    "target": "C6627",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4809:C8510",
+    "source": "C8510",
+    "target": "C2238",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4826:I210",
+    "source": "I210",
+    "target": "C1635",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4826:S259",
+    "source": "S259",
+    "target": "C1635",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4878:I139",
+    "source": "I139",
+    "target": "C1870",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4878:S938",
+    "source": "S938",
+    "target": "C1870",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4910:I845",
+    "source": "I845",
+    "target": "C7059",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4910:S885",
+    "source": "S885",
+    "target": "C7059",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4935:C3382",
+    "source": "C3382",
+    "target": "C3105",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4945:C9211",
+    "source": "C9211",
+    "target": "C9228",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T4976:I993",
+    "source": "I993",
+    "target": "C2871",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T4976:S316",
+    "source": "S316",
+    "target": "C2871",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5007:I737",
+    "source": "I737",
+    "target": "C9586",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5007:S916",
+    "source": "S916",
+    "target": "C9586",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5019:I210",
+    "source": "I210",
+    "target": "C3784",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5019:S916",
+    "source": "S916",
+    "target": "C3784",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5027:C6704",
+    "source": "C6704",
+    "target": "C4486",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5089:C8591",
+    "source": "C8591",
+    "target": "C8053",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5101:C9094",
+    "source": "C9094",
+    "target": "C5923",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5173:I538",
+    "source": "I538",
+    "target": "C2524",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5173:S558",
+    "source": "S558",
+    "target": "C2524",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5226:I191",
+    "source": "I191",
+    "target": "C2170",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5226:S885",
+    "source": "S885",
+    "target": "C2170",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5267:C7806",
+    "source": "C7806",
+    "target": "C5808",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5300:I210",
+    "source": "I210",
+    "target": "C2701",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5300:S558",
+    "source": "S558",
+    "target": "C2701",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5303:I241",
+    "source": "I241",
+    "target": "C1292",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5303:S164",
+    "source": "S164",
+    "target": "C1292",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5349:I648",
+    "source": "I648",
+    "target": "C2005",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5349:S516",
+    "source": "S516",
+    "target": "C2005",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5355:I191",
+    "source": "I191",
+    "target": "C5038",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5355:S558",
+    "source": "S558",
+    "target": "C5038",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5405:C9608",
+    "source": "C9608",
+    "target": "C4769",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5408:I494",
+    "source": "I494",
+    "target": "C7730",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5408:S210",
+    "source": "S210",
+    "target": "C7730",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5476:C8624",
+    "source": "C8624",
+    "target": "C8132",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5666:I776",
+    "source": "I776",
+    "target": "C3656",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5666:S316",
+    "source": "S316",
+    "target": "C3656",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5696:I538",
+    "source": "I538",
+    "target": "C2226",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5696:S306",
+    "source": "S306",
+    "target": "C2226",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5711:I551",
+    "source": "I551",
+    "target": "C6184",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5711:S938",
+    "source": "S938",
+    "target": "C6184",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5735:C3637",
+    "source": "C3637",
+    "target": "C5307",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5789:I523",
+    "source": "I523",
+    "target": "C2525",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T5789:S316",
+    "source": "S316",
+    "target": "C2525",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T5987:C7806",
+    "source": "C7806",
+    "target": "C6591",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6023:I139",
+    "source": "I139",
+    "target": "C5441",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6037:C1248",
+    "source": "C1248",
+    "target": "C7462",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6063:I117",
+    "source": "I117",
+    "target": "C6960",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6063:S306",
+    "source": "S306",
+    "target": "C6960",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6076:I139",
+    "source": "I139",
+    "target": "C9966",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6076:S347",
+    "source": "S347",
+    "target": "C9966",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6113:I936",
+    "source": "I936",
+    "target": "C3537",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6113:S459",
+    "source": "S459",
+    "target": "C3537",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6116:C3180",
+    "source": "C3180",
+    "target": "C7882",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6129:C7999",
+    "source": "C7999",
+    "target": "C7127",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6285:S795",
+    "source": "S795",
+    "target": "C6447",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6387:C3382",
+    "source": "C3382",
+    "target": "C5684",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6452:I538",
+    "source": "I538",
+    "target": "C3579",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6452:S613",
+    "source": "S613",
+    "target": "C3579",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6603:I117",
+    "source": "I117",
+    "target": "C6438",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6603:S306",
+    "source": "S306",
+    "target": "C6438",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6722:I854",
+    "source": "I854",
+    "target": "C1985",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6722:S516",
+    "source": "S516",
+    "target": "C1985",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6837:C9452",
+    "source": "C9452",
+    "target": "C1921",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T6956:I991",
+    "source": "I991",
+    "target": "C3054",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T6956:S164",
+    "source": "S164",
+    "target": "C3054",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7012:I210",
+    "source": "I210",
+    "target": "C1291",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7012:S306",
+    "source": "S306",
+    "target": "C1291",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7016:I736",
+    "source": "I736",
+    "target": "C4042",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7016:S885",
+    "source": "S885",
+    "target": "C4042",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7070:I653",
+    "source": "I653",
+    "target": "C7777",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7070:S558",
+    "source": "S558",
+    "target": "C7777",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7090:I368",
+    "source": "I368",
+    "target": "C9902",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7090:S916",
+    "source": "S916",
+    "target": "C9902",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7105:I551",
+    "source": "I551",
+    "target": "C4529",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7105:S347",
+    "source": "S347",
+    "target": "C4529",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7155:I210",
+    "source": "I210",
+    "target": "C2059",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7155:S796",
+    "source": "S796",
+    "target": "C2059",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7182:S210",
+    "source": "S210",
+    "target": "C2596",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7209:I776",
+    "source": "I776",
+    "target": "C5790",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7209:S164",
+    "source": "S164",
+    "target": "C5790",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7214:C1960",
+    "source": "C1960",
+    "target": "C7727",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7236:I139",
+    "source": "I139",
+    "target": "C5448",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7236:S743",
+    "source": "S743",
+    "target": "C5448",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7266:I390",
+    "source": "I390",
+    "target": "C4544",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7266:S613",
+    "source": "S613",
+    "target": "C4544",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7322:I907",
+    "source": "I907",
+    "target": "C9207",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7322:S358",
+    "source": "S358",
+    "target": "C9207",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7404:C9452",
+    "source": "C9452",
+    "target": "C3554",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7430:I616",
+    "source": "I616",
+    "target": "C5138",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7430:S358",
+    "source": "S358",
+    "target": "C5138",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7439:I810",
+    "source": "I810",
+    "target": "C7530",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7439:S113",
+    "source": "S113",
+    "target": "C7530",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7491:C6704",
+    "source": "C6704",
+    "target": "C1415",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7495:C1960",
+    "source": "C1960",
+    "target": "C5992",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7505:I364",
+    "source": "I364",
+    "target": "C5347",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7505:S885",
+    "source": "S885",
+    "target": "C5347",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7560:I907",
+    "source": "I907",
+    "target": "C6238",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7560:S316",
+    "source": "S316",
+    "target": "C6238",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7565:I191",
+    "source": "I191",
+    "target": "C7922",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7565:S558",
+    "source": "S558",
+    "target": "C7922",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7598:C7999",
+    "source": "C7999",
+    "target": "C3565",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7636:C4338",
+    "source": "C4338",
+    "target": "C1133",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7648:I373",
+    "source": "I373",
+    "target": "C1060",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7648:S164",
+    "source": "S164",
+    "target": "C1060",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7709:I936",
+    "source": "I936",
+    "target": "C5777",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7709:S885",
+    "source": "S885",
+    "target": "C5777",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7756:I830",
+    "source": "I830",
+    "target": "C8953",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7756:S613",
+    "source": "S613",
+    "target": "C8953",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7861:C5651",
+    "source": "C5651",
+    "target": "C5143",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7876:S796",
+    "source": "S796",
+    "target": "C2199",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7899:I241",
+    "source": "I241",
+    "target": "C8121",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7899:S916",
+    "source": "S916",
+    "target": "C8121",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7917:I489",
+    "source": "I489",
+    "target": "C2014",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7917:S303",
+    "source": "S303",
+    "target": "C2014",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7949:I810",
+    "source": "I810",
+    "target": "C7574",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T7949:S358",
+    "source": "S358",
+    "target": "C7574",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T7991:C9211",
+    "source": "C9211",
+    "target": "C6695",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8057:I117",
+    "source": "I117",
+    "target": "C5249",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8057:S613",
+    "source": "S613",
+    "target": "C5249",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8119:C6704",
+    "source": "C6704",
+    "target": "C3500",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8146:C7999",
+    "source": "C7999",
+    "target": "C4458",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8150:I653",
+    "source": "I653",
+    "target": "C5386",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8150:S316",
+    "source": "S316",
+    "target": "C5386",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8225:I139",
+    "source": "I139",
+    "target": "C8332",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8225:S938",
+    "source": "S938",
+    "target": "C8332",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8226:C3382",
+    "source": "C3382",
+    "target": "C7640",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8270:I210",
+    "source": "I210",
+    "target": "C7633",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8270:S796",
+    "source": "S796",
+    "target": "C7633",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8287:C3637",
+    "source": "C3637",
+    "target": "C1776",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8329:I616",
+    "source": "I616",
+    "target": "C6102",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8329:S303",
+    "source": "S303",
+    "target": "C6102",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8344:I139",
+    "source": "I139",
+    "target": "C1630",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8344:S743",
+    "source": "S743",
+    "target": "C1630",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8438:C7806",
+    "source": "C7806",
+    "target": "C4652",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8541:C7806",
+    "source": "C7806",
+    "target": "C2648",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8545:I210",
+    "source": "I210",
+    "target": "C2892",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8545:S558",
+    "source": "S558",
+    "target": "C2892",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8571:C3637",
+    "source": "C3637",
+    "target": "C5527",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8612:I971",
+    "source": "I971",
+    "target": "C4038",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8612:S210",
+    "source": "S210",
+    "target": "C4038",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8806:I845",
+    "source": "I845",
+    "target": "C1705",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8806:S916",
+    "source": "S916",
+    "target": "C1705",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8824:C4338",
+    "source": "C4338",
+    "target": "C3380",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8827:I670",
+    "source": "I670",
+    "target": "C3407",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8827:S465",
+    "source": "S465",
+    "target": "C3407",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8882:C1361",
+    "source": "C1361",
+    "target": "C4322",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T8905:I777",
+    "source": "I777",
+    "target": "C7657",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T8905:S358",
+    "source": "S358",
+    "target": "C7657",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9050:I991",
+    "source": "I991",
+    "target": "C7032",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9050:S279",
+    "source": "S279",
+    "target": "C7032",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9117:C8087",
+    "source": "C8087",
+    "target": "C2847",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9229:I210",
+    "source": "I210",
+    "target": "C9206",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9229:S437",
+    "source": "S437",
+    "target": "C9206",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9287:C4338",
+    "source": "C4338",
+    "target": "C2219",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9305:I210",
+    "source": "I210",
+    "target": "C4111",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9305:S743",
+    "source": "S743",
+    "target": "C4111",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9325:C9452",
+    "source": "C9452",
+    "target": "C8365",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9333:I648",
+    "source": "I648",
+    "target": "C7800",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9333:S306",
+    "source": "S306",
+    "target": "C7800",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9378:I210",
+    "source": "I210",
+    "target": "C8465",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9378:S164",
+    "source": "S164",
+    "target": "C8465",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9444:I974",
+    "source": "I974",
+    "target": "C2636",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9444:S516",
+    "source": "S516",
+    "target": "C2636",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9464:I736",
+    "source": "I736",
+    "target": "C5043",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9464:S885",
+    "source": "S885",
+    "target": "C5043",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9488:C8510",
+    "source": "C8510",
+    "target": "C8523",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9522:C3382",
+    "source": "C3382",
+    "target": "C7350",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9720:I737",
+    "source": "I737",
+    "target": "C3711",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9720:S885",
+    "source": "S885",
+    "target": "C3711",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9741:I854",
+    "source": "I854",
+    "target": "C1556",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9741:S613",
+    "source": "S613",
+    "target": "C1556",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9766:C3180",
+    "source": "C3180",
+    "target": "C6491",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9813:I538",
+    "source": "I538",
+    "target": "C7570",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9813:S613",
+    "source": "S613",
+    "target": "C7570",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9821:C2069",
+    "source": "C2069",
+    "target": "C3969",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9829:I617",
+    "source": "I617",
+    "target": "C2408",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9829:S164",
+    "source": "S164",
+    "target": "C2408",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9871:C3632",
+    "source": "C3632",
+    "target": "C3830",
+    "type": "bought",
+    "label": "bought"
+   },
+   {
+    "id": "DF:T9892:I494",
+    "source": "I494",
+    "target": "C6395",
+    "type": "advised",
+    "label": "advised"
+   },
+   {
+    "id": "DF:T9892:S558",
+    "source": "S558",
+    "target": "C6395",
+    "type": "bought",
+    "label": "bought"
+   }
+  ]
+ }
+}

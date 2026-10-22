@@ -1,0 +1,634 @@
+{
+ "question_id": "Q-PATH",
+ "business_question": "For our top three, what is our warmest path to each CEO, and through whom?",
+ "max_hops": 3,
+ "seeds": [
+  {
+   "person_id": "P19079",
+   "name": "Marcus Whitfield",
+   "title": "Operating Partner"
+  },
+  {
+   "person_id": "P25319",
+   "name": "Priya Raman",
+   "title": "Director"
+  },
+  {
+   "person_id": "P26028",
+   "name": "Tom Harlowe",
+   "title": "Director"
+  },
+  {
+   "person_id": "P26070",
+   "name": "Dana Okafor",
+   "title": "Director"
+  },
+  {
+   "person_id": "P95007",
+   "name": "Grace Liu",
+   "title": "Operating Partner"
+  }
+ ],
+ "tie_types": [
+  {
+   "id": "K1",
+   "label": "Tenure overlap",
+   "rule_id": "K1_TENURE"
+  },
+  {
+   "id": "K2",
+   "label": "Deal",
+   "rule_id": "K2_DEAL"
+  },
+  {
+   "id": "K3",
+   "label": "CRM",
+   "rule_id": "K3_CRM"
+  }
+ ],
+ "targets": [
+  {
+   "company_id": "C3225",
+   "company_name": "Larkspur Revenue Partners",
+   "score_rank": 1,
+   "owner_name": "Kestrelmoor Capital",
+   "status": "warm",
+   "summary": "Warmest route to the CEO has 3 hop(s).",
+   "decision_makers": [
+    {
+     "person_id": "P67052",
+     "name": "Ruth Adeyemi",
+     "kind": "CEO",
+     "role_label": "CEO",
+     "status": "warm",
+     "hops": 3,
+     "best_strength": 0.7,
+     "summary": "Ruth Adeyemi is reachable in 3 hop(s) at strength 0.700.",
+     "paths": [
+      {
+       "path_id": "C3225:P67052:1",
+       "rank": 1,
+       "length": 3,
+       "strength": 0.7,
+       "node_ids": [
+        "P25319",
+        "P72919",
+        "P78788",
+        "P67052"
+       ],
+       "hops": [
+        {
+         "edge_id": "PE:P25319:P72919:K3",
+         "from_id": "P25319",
+         "from_name": "Priya Raman",
+         "to_id": "P72919",
+         "to_name": "Sofia Brandt",
+         "tie_type": "K3",
+         "tie_label": "CRM",
+         "org_id": null,
+         "org_name": null,
+         "start_date": "2024-11-14",
+         "end_date": "2026-09-02",
+         "years": 1.799,
+         "recency": null,
+         "strength": 1.0,
+         "evidence": "7 positive interactions 2024-11-14 to 2026-09-02",
+         "rule_id": "K3_CRM"
+        },
+        {
+         "edge_id": "PE:P72919:P78788:K1",
+         "from_id": "P72919",
+         "from_name": "Sofia Brandt",
+         "to_id": "P78788",
+         "to_name": "Nathan Cole",
+         "tie_type": "K1",
+         "tie_label": "Tenure overlap",
+         "org_id": "I210",
+         "org_name": "Cedar Row Partners",
+         "start_date": "2017-01-09",
+         "end_date": "2026-10-01",
+         "years": 9.725,
+         "recency": null,
+         "strength": 1.0,
+         "evidence": "tenure overlap at Cedar Row Partners, 2017-01-09 to present, 9.72 years",
+         "rule_id": "K1_TENURE"
+        },
+        {
+         "edge_id": "PE:P67052:P78788:K2",
+         "from_id": "P78788",
+         "from_name": "Nathan Cole",
+         "to_id": "P67052",
+         "to_name": "Ruth Adeyemi",
+         "tie_type": "K2",
+         "tie_label": "Deal",
+         "org_id": null,
+         "org_name": null,
+         "start_date": "2019-04-15",
+         "end_date": "2019-04-15",
+         "years": 0.0,
+         "recency": null,
+         "strength": 0.7,
+         "evidence": "lead sell-side advisor on the Larkspur Revenue Partners majority recap closed 2019-04-15 while Ruth Adeyemi was CEO",
+         "rule_id": "K2_DEAL"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "person_id": "P79001",
+     "name": "Owen Lacey",
+     "kind": "OWNER_DESIGNEE",
+     "role_label": "Board designee, Kestrelmoor Capital",
+     "status": "cold",
+     "hops": null,
+     "best_strength": null,
+     "summary": "No path from our team to Owen Lacey within 3 hops.",
+     "paths": []
+    }
+   ],
+   "rejected_claims": [
+    {
+     "edge_id": "PE:P79001:P89893:rejected:C3225",
+     "from_id": "P89893",
+     "from_name": "Martin Greer",
+     "to_id": "P79001",
+     "to_name": "Owen Lacey",
+     "org_name": "Larkspur Revenue Partners",
+     "claim": "Both worked at Larkspur Revenue Partners.",
+     "reason": "Their tenures at Larkspur Revenue Partners never overlapped; the gap was 1 days.",
+     "intervals": [
+      {
+       "person_id": "P89893",
+       "name": "Martin Greer",
+       "start_date": "2019-04-15",
+       "end_date": "2021-05-31"
+      },
+      {
+       "person_id": "P79001",
+       "name": "Owen Lacey",
+       "start_date": "2021-06-01",
+       "end_date": null
+      }
+     ],
+     "gap_days": 1,
+     "rule_id": "SHARED_EMPLOYER_REJECT"
+    }
+   ],
+   "closest_intermediary": null,
+   "next_step": null
+  },
+  {
+   "company_id": "C6334",
+   "company_name": "Bayside Pediatric Therapy Group",
+   "score_rank": 2,
+   "owner_name": null,
+   "status": "warm",
+   "summary": "Warmest route to the CEO has 2 hop(s).",
+   "decision_makers": [
+    {
+     "person_id": "P37955",
+     "name": "Daniel Reyes",
+     "kind": "CEO",
+     "role_label": "CEO",
+     "status": "warm",
+     "hops": 2,
+     "best_strength": 0.6,
+     "summary": "Daniel Reyes is reachable in 2 hop(s) at strength 0.600.",
+     "paths": [
+      {
+       "path_id": "C6334:P37955:1",
+       "rank": 1,
+       "length": 2,
+       "strength": 0.6,
+       "node_ids": [
+        "P19079",
+        "P88768",
+        "P37955"
+       ],
+       "hops": [
+        {
+         "edge_id": "PE:P19079:P88768:K1",
+         "from_id": "P19079",
+         "from_name": "Marcus Whitfield",
+         "to_id": "P88768",
+         "to_name": "Elena Marsh",
+         "tie_type": "K1",
+         "tie_label": "Tenure overlap",
+         "org_id": "C4874",
+         "org_name": "Cobbleton Dental Group",
+         "start_date": "2015-03-01",
+         "end_date": "2019-06-30",
+         "years": 4.331,
+         "recency": null,
+         "strength": 1.0,
+         "evidence": "tenure overlap at a former Northwind portfolio company, 2015-03-01 to 2019-06-30, 4.33 years",
+         "rule_id": "K1_TENURE"
+        },
+        {
+         "edge_id": "PE:P37955:P88768:K1",
+         "from_id": "P88768",
+         "from_name": "Elena Marsh",
+         "to_id": "P37955",
+         "to_name": "Daniel Reyes",
+         "tie_type": "K1",
+         "tie_label": "Tenure overlap",
+         "org_id": "C6334",
+         "org_name": "Bayside Pediatric Therapy Group",
+         "start_date": "2025-06-01",
+         "end_date": "2026-10-01",
+         "years": 1.333,
+         "recency": null,
+         "strength": 0.6,
+         "evidence": "tenure overlap at Bayside Pediatric Therapy Group, 2025-06-01 to present, 1.33 years",
+         "rule_id": "K1_TENURE"
+        }
+       ]
+      },
+      {
+       "path_id": "C6334:P37955:2",
+       "rank": 2,
+       "length": 2,
+       "strength": 0.286901,
+       "node_ids": [
+        "P26070",
+        "P19465",
+        "P37955"
+       ],
+       "hops": [
+        {
+         "edge_id": "PE:P19465:P26070:K1",
+         "from_id": "P26070",
+         "from_name": "Dana Okafor",
+         "to_id": "P19465",
+         "to_name": "Walter Kim",
+         "tie_type": "K1",
+         "tie_label": "Tenure overlap",
+         "org_id": "C7366",
+         "org_name": "Oldmere Health System",
+         "start_date": "1998-03-01",
+         "end_date": "2000-06-30",
+         "years": 2.333,
+         "recency": null,
+         "strength": 0.299959,
+         "evidence": "tenure overlap at Oldmere Health System, 1998-03-01 to 2000-06-30, 2.33 years",
+         "rule_id": "K1_TENURE"
+        },
+        {
+         "edge_id": "PE:P19465:P37955:K1",
+         "from_id": "P19465",
+         "from_name": "Walter Kim",
+         "to_id": "P37955",
+         "to_name": "Daniel Reyes",
+         "tie_type": "K1",
+         "tie_label": "Tenure overlap",
+         "org_id": "C6334",
+         "org_name": "Bayside Pediatric Therapy Group",
+         "start_date": "2023-01-15",
+         "end_date": "2026-10-01",
+         "years": 3.71,
+         "recency": null,
+         "strength": 0.956468,
+         "evidence": "tenure overlap at Bayside Pediatric Therapy Group, 2023-01-15 to present, 3.71 years",
+         "rule_id": "K1_TENURE"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "rejected_claims": [],
+   "closest_intermediary": null,
+   "next_step": null
+  },
+  {
+   "company_id": "C5441",
+   "company_name": "Saltmarsh Home Infusion",
+   "score_rank": 3,
+   "owner_name": "Coppervale Partners",
+   "status": "cold",
+   "summary": "No warm path to any decision-maker; closest door is the intermediary below.",
+   "decision_makers": [
+    {
+     "person_id": "P23882",
+     "name": "Victor Hale",
+     "kind": "CEO",
+     "role_label": "CEO",
+     "status": "cold",
+     "hops": null,
+     "best_strength": null,
+     "summary": "No path from our team to Victor Hale within 3 hops.",
+     "paths": []
+    },
+    {
+     "person_id": "P81174",
+     "name": "Graham Pike",
+     "kind": "OWNER_DESIGNEE",
+     "role_label": "Board designee, Coppervale Partners",
+     "status": "cold",
+     "hops": null,
+     "best_strength": null,
+     "summary": "No path from our team to Graham Pike within 3 hops.",
+     "paths": []
+    }
+   ],
+   "rejected_claims": [
+    {
+     "edge_id": "PE:P23882:P26028:rejected:C9784",
+     "from_id": "P26028",
+     "from_name": "a Northwind deal-team member",
+     "to_id": "P23882",
+     "to_name": "Victor Hale",
+     "org_name": "Varnell Lab Services",
+     "claim": "Both worked at an earlier employer.",
+     "reason": "Their tenures at an earlier employer never overlapped; the gap was 613 days.",
+     "intervals": [
+      {
+       "person_id": "P26028",
+       "name": "Tom Harlowe",
+       "start_date": "2008-01-07",
+       "end_date": "2011-06-30"
+      },
+      {
+       "person_id": "P23882",
+       "name": "Victor Hale",
+       "start_date": "2013-03-04",
+       "end_date": "2020-08-31"
+      }
+     ],
+     "gap_days": 613,
+     "rule_id": "SHARED_EMPLOYER_REJECT"
+    },
+    {
+     "edge_id": "PE:P23882:P43498:rejected:C9784",
+     "from_id": "P43498",
+     "from_name": "Lionel Underhill",
+     "to_id": "P23882",
+     "to_name": "Victor Hale",
+     "org_name": "Varnell Lab Services",
+     "claim": "Both worked at an earlier employer.",
+     "reason": "Their tenures at an earlier employer never overlapped; the gap was 752 days.",
+     "intervals": [
+      {
+       "person_id": "P23882",
+       "name": "Victor Hale",
+       "start_date": "2013-03-04",
+       "end_date": "2020-08-31"
+      },
+      {
+       "person_id": "P43498",
+       "name": "Lionel Underhill",
+       "start_date": "2022-09-22",
+       "end_date": null
+      }
+     ],
+     "gap_days": 752,
+     "rule_id": "SHARED_EMPLOYER_REJECT"
+    }
+   ],
+   "closest_intermediary": {
+    "org_id": "I139",
+    "name": "Harbor Lane Advisors",
+    "evidence": "engaged 2026-07-14; debt advisor on the 2023-05-18 dividend recap",
+    "rule_id": "CLOSEST_INTERMEDIARY"
+   },
+   "next_step": {
+    "label": "See who covers this sponsor in deal flow",
+    "view": "flow",
+    "node_id": "I139"
+   }
+  }
+ ],
+ "view_graph": {
+  "nodes": [
+   {
+    "id": "I139",
+    "label": "Harbor Lane Advisors",
+    "type": "intermediary",
+    "tags": [],
+    "x": 160.32,
+    "y": 494.04
+   },
+   {
+    "id": "P19079",
+    "label": "Marcus Whitfield",
+    "type": "person",
+    "tags": [
+     "our_person"
+    ],
+    "x": 216.29,
+    "y": -322.25
+   },
+   {
+    "id": "P19465",
+    "label": "Walter Kim",
+    "type": "person",
+    "tags": [],
+    "x": 160.12,
+    "y": -377.72
+   },
+   {
+    "id": "P23882",
+    "label": "Victor Hale",
+    "type": "person",
+    "tags": [
+     "decision_maker"
+    ],
+    "x": -430.69,
+    "y": 210.53
+   },
+   {
+    "id": "P25319",
+    "label": "Priya Raman",
+    "type": "person",
+    "tags": [
+     "our_person"
+    ],
+    "x": 42.96,
+    "y": -0.5
+   },
+   {
+    "id": "P26028",
+    "label": "Tom Harlowe",
+    "type": "person",
+    "tags": [
+     "our_person"
+    ],
+    "x": -452.38,
+    "y": 220.19
+   },
+   {
+    "id": "P26070",
+    "label": "Dana Okafor",
+    "type": "person",
+    "tags": [
+     "our_person"
+    ],
+    "x": 150.54,
+    "y": -400.96
+   },
+   {
+    "id": "P37955",
+    "label": "Daniel Reyes",
+    "type": "person",
+    "tags": [
+     "decision_maker"
+    ],
+    "x": 175.24,
+    "y": -353.76
+   },
+   {
+    "id": "P43498",
+    "label": "Lionel Underhill",
+    "type": "person",
+    "tags": [],
+    "x": -407.69,
+    "y": 200.27
+   },
+   {
+    "id": "P67052",
+    "label": "Ruth Adeyemi",
+    "type": "person",
+    "tags": [
+     "decision_maker"
+    ],
+    "x": -20.02,
+    "y": -37.27
+   },
+   {
+    "id": "P72919",
+    "label": "Sofia Brandt",
+    "type": "person",
+    "tags": [],
+    "x": 23.47,
+    "y": -13.7
+   },
+   {
+    "id": "P78788",
+    "label": "Nathan Cole",
+    "type": "person",
+    "tags": [],
+    "x": 1.08,
+    "y": -26.77
+   },
+   {
+    "id": "P79001",
+    "label": "Owen Lacey",
+    "type": "person",
+    "tags": [
+     "decision_maker"
+    ],
+    "x": 392.27,
+    "y": 245.0
+   },
+   {
+    "id": "P81174",
+    "label": "Graham Pike",
+    "type": "person",
+    "tags": [
+     "decision_maker"
+    ],
+    "x": -443.21,
+    "y": -237.94
+   },
+   {
+    "id": "P88768",
+    "label": "Elena Marsh",
+    "type": "person",
+    "tags": [],
+    "x": 195.02,
+    "y": -334.04
+   },
+   {
+    "id": "P89893",
+    "label": "Martin Greer",
+    "type": "person",
+    "tags": [],
+    "x": 376.17,
+    "y": 234.86
+   },
+   {
+    "id": "P95007",
+    "label": "Grace Liu",
+    "type": "person",
+    "tags": [
+     "our_person"
+    ],
+    "x": -139.51,
+    "y": 500.0
+   }
+  ],
+  "edges": [
+   {
+    "id": "PE:P19079:P88768:K1",
+    "source": "P19079",
+    "target": "P88768",
+    "type": "tenure",
+    "label": "tenure overlap at a former Northwind portfolio company, 2015-03-01 to 2019-06-30, 4.33 years"
+   },
+   {
+    "id": "PE:P19465:P26070:K1",
+    "source": "P26070",
+    "target": "P19465",
+    "type": "tenure",
+    "label": "tenure overlap at Oldmere Health System, 1998-03-01 to 2000-06-30, 2.33 years"
+   },
+   {
+    "id": "PE:P19465:P37955:K1",
+    "source": "P19465",
+    "target": "P37955",
+    "type": "tenure",
+    "label": "tenure overlap at Bayside Pediatric Therapy Group, 2023-01-15 to present, 3.71 years"
+   },
+   {
+    "id": "PE:P23882:P26028:rejected:C9784",
+    "source": "P26028",
+    "target": "P23882",
+    "type": "rejected",
+    "label": "shared employer, no overlap"
+   },
+   {
+    "id": "PE:P23882:P43498:rejected:C9784",
+    "source": "P43498",
+    "target": "P23882",
+    "type": "rejected",
+    "label": "shared employer, no overlap"
+   },
+   {
+    "id": "PE:P25319:P72919:K3",
+    "source": "P25319",
+    "target": "P72919",
+    "type": "crm",
+    "label": "7 positive interactions 2024-11-14 to 2026-09-02"
+   },
+   {
+    "id": "PE:P37955:P88768:K1",
+    "source": "P88768",
+    "target": "P37955",
+    "type": "tenure",
+    "label": "tenure overlap at Bayside Pediatric Therapy Group, 2025-06-01 to present, 1.33 years"
+   },
+   {
+    "id": "PE:P67052:P78788:K2",
+    "source": "P78788",
+    "target": "P67052",
+    "type": "deal",
+    "label": "lead sell-side advisor on the Larkspur Revenue Partners majority recap closed 2019-04-15 while Ruth Adeyemi was CEO"
+   },
+   {
+    "id": "PE:P72919:P78788:K1",
+    "source": "P72919",
+    "target": "P78788",
+    "type": "tenure",
+    "label": "tenure overlap at Cedar Row Partners, 2017-01-09 to present, 9.72 years"
+   },
+   {
+    "id": "PE:P79001:P89893:rejected:C3225",
+    "source": "P89893",
+    "target": "P79001",
+    "type": "rejected",
+    "label": "shared employer, no overlap"
+   }
+  ]
+ }
+}

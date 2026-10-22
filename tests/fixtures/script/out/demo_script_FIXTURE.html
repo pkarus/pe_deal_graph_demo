@@ -301,6 +301,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 <section class="act" id="q-path">
   <div class="acthead"><h2>Act <span class="lit" data-lit="act number">2</span>. Who gets us an edge</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">3</span> min</span>
     <span class="pill">Q-PATH</span><span class="pill">Graph and rules</span><span class="pill">Explorer: Warm path</span></div>
+  <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib passed once in two runs (one engine error). Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_path, or open the explorer view.</strong></p>
   <h3>Business setup</h3>
   <p>For the top names, the deal team wants to know who on our side has a real, dated relationship that gives us an
     edge: the founder or CEO directly, the owner's deal partner, or the banker running the process. Affinity and
@@ -379,7 +380,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
   <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>Why isn&#x27;t Tom Harlowe&#x27;s Varnell Lab Services connection a path to Victor Hale?</pre></div>
+  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
   <h3>Hand-off</h3>
   
   <div class="say">"<span class="v" data-k="q_path.targets[status=warm]" data-f="len">2</span> of the top <span class="v" data-k="q_path.targets" data-f="len">3</span> have a warm route in.
@@ -393,6 +394,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 <section class="act" id="q-flow">
   <div class="acthead"><h2>Act <span class="lit" data-lit="act number">3</span>. Who controls deal flow</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">3</span> min</span>
     <span class="pill">Q-FLOW</span><span class="pill">Graph and rules</span><span class="pill">Explorer: Deal flow</span></div>
+  <p class="small"><strong>Second-tier ad-lib: OPTIONAL - one run only. This ad-lib passed its only run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_flow, or open the explorer view.</strong></p>
   <h3>Business setup</h3>
   <p>Firms invest in off-market flow to avoid fully competitive auctions, but most deals still pass through a banker,
     boutique or broker. Coverage is a managed activity. The question is whether we cover the intermediaries that
@@ -452,7 +454,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
   <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>Which of Harbor Lane Advisors&#x27; deals involve companies on our Tier A list?</pre></div>
+  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
   <h3>Hand-off</h3>
   
   <div class="say">"<span class="v" data-k="q_flow.intermediaries[is_gap=true][0].name" data-f="">FIXTURE Boutique Gap</span> is the gap. Now take
@@ -466,6 +468,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
 <section class="act" id="q-conflict">
   <div class="acthead"><h2>Act <span class="lit" data-lit="act number">4</span>. Before we bid</h2><span class="pill"><span class="lit" data-lit="minutes, PROMPT.md 7.5">2</span> min</span>
     <span class="pill">Q-CONFLICT</span><span class="pill">Graph and rules</span><span class="pill">Explorer: Conflict check</span></div>
+  <p class="small"><strong>Second-tier ad-lib: OPTIONAL - not rehearsed to threshold. This ad-lib was not run. Fallback: If the answer takes over a minute and a half or wanders, say "let me show the precomputed view" and run uv run python ask.py --from-exports q_conflict, or open the explorer view.</strong></p>
   <h3>Business setup</h3>
   <p><span class="v" data-k="q_conflict.subject.name" data-f="">FIXTURE Target Delta</span> is a real Tier A target and we are preparing an IOI. Before it goes in, the IC asks
     two things: does it trade with anything another Northwind fund owns today, and how much room is left under Fund
@@ -511,7 +514,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
     engine. In the second terminal the same command works without Claude. Say "this is the governed export from this
     morning".</p>
   <p class="small">Ad-lib follow-up, only if the room is engaged:</p>
-  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>What is the largest check we could write without breaching the guideline?</pre></div>
+  <div class="prompt alt" data-src="demo_workspace/prompts.md"><div class="plabel">Optional ad-lib follow-up<button type="button" class="copy noprint">Copy</button></div><pre>let me show the precomputed view</pre></div>
   <h3>Hand-off</h3>
   
   <div class="say">"That check ran for one name because we asked. Let's make it part of the score for every target,
@@ -567,7 +570,7 @@ Prompts come from <code>demo_workspace/prompts.md</code>.</p>
   <p class="why">Reasoners compose: a graph distance computed for access and a time-bounded ownership rule defined for
     conflicts feed the same governed score, and every point still carries its reason.</p>
   <h3>If live fails</h3>
-  <p>This is the riskiest act, so it has one cutoff: one live attempt, at most three minutes. Fall back at the first
+  <p>Realistic timing is about three minutes (rehearsal runs took over three minutes, one via the prebuilt fallback). This is the riskiest act, so it has one cutoff: one live attempt, at most three minutes. Fall back at the first
     failure (an error, an empty or partial table, a ranking that looks wrong) or at three minutes on the clock,
     whichever comes first. At three minutes, press Esc and type <code class="cmd">use the prebuilt version</code>.
     Claude then runs the prebuilt function; say "here is the same rule, prebuilt". The prebuilt answer is identical by
