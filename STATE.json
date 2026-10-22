@@ -1,5 +1,5 @@
 {
-  "phase": "P4",
+  "phase": "P5",
   "started_at": "2026-10-21T22:02:13+02:00",
   "gates": {
     "G0": {
@@ -15,10 +15,10 @@
       "commit": "6330f15"
     },
     "G2": {
-      "status": "GATEKEEPER_RUNNING",
+      "status": "PASS",
       "attempts": 1,
-      "evidence": null,
-      "commit": null
+      "evidence": "gates/G2.md",
+      "commit": "d1de7ec"
     },
     "G3": {
       "status": "PASS",
@@ -27,14 +27,14 @@
       "commit": "24a56ce"
     },
     "G4": {
-      "status": "PENDING",
-      "attempts": 0,
-      "evidence": null,
+      "status": "GATEKEEPER_RUNNING",
+      "attempts": 1,
+      "evidence": "handoffs/23-R11-a1.md (41/43, 2 = Pinewick name drift)",
       "commit": null
     },
     "G5": {
-      "status": "PENDING",
-      "attempts": 0,
+      "status": "GATEKEEPER_RUNNING",
+      "attempts": 1,
       "evidence": null,
       "commit": null
     },
@@ -91,7 +91,7 @@
     },
     "P2": {
       "title": "Schema + signal data + oracle + load",
-      "status": "in_progress (speculative, pre-G1)",
+      "status": "done",
       "gate": "G2",
       "depends_on": [
         "G0",
@@ -126,9 +126,10 @@
       ],
       "agents": [
         "Scout a1 PASS (cheatsheet)",
-        "R09 a1 running (rules.py)",
-        "R10 a1 running (graphs.py)",
-        "R11 a1 running (queries.py, tests, naive_sql)"
+        "R10 a1 PASS self (check_graphs 48/0, all intermediary ranks = oracle)",
+        "R09 a1 PASS self (check_rules 67/0 incl graphs+finale, identical over 2 runs)",
+        "R11 a1 41/43 (2 fail = golden rename ahead of data); RAI=oracle=golden",
+        "R20 decoy fixer PASS (0 decoy hits in hero outputs; 41/44 pending reload)"
       ]
     },
     "P5": {
@@ -139,7 +140,12 @@
         "G4"
       ],
       "agents": [
-        "R12 a1 running (noise -> data/csv_noise/)"
+        "R12 a1 PASS self (14,835 rows in data/csv_noise/, oracle=golden on noise, decoys hold)",
+        "R20 a1 realism PASS self (roles-before-founding 0, funds <=100%, add-ons 63.8%, oracle 40/40 on noise)",
+        "R20 R19c data fixer PASS self (30)",
+        "R20 P5 flip: data flipped + reloaded (14,603 rows), oracle 40/40, ontology PASS; tests 43/1 (over-specified naive order test)",
+        "R20 technical fixer PASS self (44/44 x2)",
+        "R18 G4+G5 running"
       ]
     },
     "P6": {
@@ -154,7 +160,9 @@
         "R16 a1 PASS self (template+builder, fixture OK; real build waits on exports)",
         "R15 a1 PASS self (explorer builder + tests on fixture)",
         "R14 a2 PASS self (prompts FINAL v2, CLAUDE.md answer-from-rows rule)",
-        "R13 a1 BLOCKED-expected (export.py written; live path waits on R09/R10/R11; needs fix pass)"
+        "R13 a2 BLOCKED (Q-PATH DecisionMaker rows missing; engine contention)",
+        "R20 export fixer running (40)",
+        "R20 ask.py fallback PASS (retry once, then auto --from-exports)"
       ]
     },
     "P7": {
@@ -168,10 +176,18 @@
     },
     "P8": {
       "title": "Review board + fixes",
-      "status": "pending",
+      "status": "in_progress (early reviews)",
       "gate": "G9",
       "depends_on": [
         "G8"
+      ],
+      "agents": [
+        "R19a a1 FAIL (2 BLOCKER, 7 MAJOR, 9 MINOR)",
+        "R20 Pinewick fixer PASS self (niche->Dermatology, golden numbers unchanged, 6 name strings renamed)",
+        "R20 prose fixer PASS self (all R19a B/M wording fixed in script, prompts, CLAUDE.md, RUNBOOK)",
+        "R19d a1 FAIL (1 BLOCKER, 6 MAJOR, 6 MINOR)",
+        "R19b a1 FAIL (3 MAJOR, 15 MINOR)",
+        "R20 demo-ops fixer PASS self (keepalive, warm w/ auth check, warm query server: q_score 64->11 s, --from-exports, one Finale cutoff, /clear per act, venue checklist)"
       ]
     },
     "P9": {
@@ -199,15 +215,22 @@
     }
   ],
   "open_findings": [
-    "R11: q_path.sql must return the stale-tie and we-know-the-sponsor decoys, or golden relabels them near_miss",
-    "R11: q_flow() returns betweenness top 5 only (PageRank may surface decoy bank)",
     "R14/R17: watch transcript decoy leakage",
     "R16: talk track - Cedar Row is sell-side",
-    "R13: export meta.counts.pipeline_companies, meta.counts.market_companies, meta.source='RAI', meta.act_order (R16 needs)",
     "R05: 20 names not web-checked (quota) - collision check needed before G6",
     "cleanup: scripts/scout/out/dev* stale folders; possible lingering data streams for dropped SCOUT_* tables",
-    "R11: q_path must include owner-designee rows (Owen Lacey); q_flow betweenness top 5 only; HERO_QUERIES=(q_score,q_path,q_flow,q_conflict,finale_rescore)",
-    "R17: decoy check must cover Tier-1 and paraphrase transcripts; Tier-2 Q-PATH ad-lib may need live PyRel (2/3 bar)"
+    "R17: decoy check must cover Tier-1 and paraphrase transcripts; Tier-2 Q-PATH ad-lib may need live PyRel (2/3 bar)",
+    "MINOR data: OWNERSHIP 265 rows vs 600 target; some signal equity checks 25-45% of fund",
+    "FLAKE watch: one R10 run returned zero conflict-reach rows (suspected data-stream resync); G4 two-run determinism must catch",
+    "R13: export meta.counts.pipeline_companies, meta.source='RAI', meta.act_order; market_companies now OPTIONAL (cold open no longer states market size)",
+    "Makefile: add check-rules / check-graphs targets (R09/R10 lacked scope); whitespace regions not built (no contract name)",
+    "G5 Gatekeeper must sign off on golden/expected.json name-string edit (Pinewick rename) per 9.1",
+    "stale 'Pinewick Dental Partners' in data/naive_sql/q_conflict.sql comment (R11) and scripts/audit_realism.py",
+    "R15 explorer strikes through conflicted names (should read 'hold until cross-fund clearance')",
+    "MINOR data: acquired add-ons have no OWNERSHIP rows (needs R08/R09 decision); Tier B and near-miss lists shifted, R13/R16 re-derive by id; remaining R19c minors (ownership volume, 2007-09 vintages, m6-m12)",
+    "check for a lingering ask.py query-server process before P9; Finale live script vs server lock untested",
+    "user: chmod 600 ~/.snowflake/pat_token_pe_demo; PAT network-policy check",
+    "P9 cleanup: delete RAI models pe_deal_graph_perf_a (and any _deploy leftovers) from pe_demo_logic"
   ],
   "engine_hours_estimate": 0,
   "checkpoints": {
@@ -244,5 +267,31 @@
       "at": "2026-10-22T08:29+02:00",
       "what": "API session limit; R05, R15, R16, Scout stopped; resumed after re-login 08:31"
     }
-  ]
+  ],
+  "p5_plan_after_G4": [
+    "flip make data to noise (one-line change from handoffs/24-R20-a1.md) and regenerate data/csv + MANIFEST",
+    "R07 reload -> R08 make ontology-check -> R11 pytest twice -> G5 Gatekeeper"
+  ],
+  "p5_flip": "Makefile data: `$(PY) data/generate.py` -> `$(PY) data/generate.py --noise --out data/csv`; do NOT run plain make data before flip (9 cells differ from committed csv)",
+  "queued": [
+    "R17 rehearsal (Tier-1 priority) after G4/G5 gatekeeper returns"
+  ],
+  "plan_G4_G5": "after R19c data fixer (30) + decoy fixer (32): flip agent (Makefile flip, make data, load, oracle, ontology-check, pytest x2, naive-sql, export) -> G4 Gatekeeper and G5 Gatekeeper",
+  "engine_policy": "serialize engine-heavy agents; lock errors seen with concurrent writers",
+  "perf_track": {
+    "requested_by_user": "2026-10-22 ~11:21",
+    "agents": [
+      "PerfA latest package (38)",
+      "PerfB deploy mode (39)"
+    ],
+    "isolation": "/private/tmp copies, distinct model names, schema DEAL_GRAPH_DEPLOY",
+    "PerfB": "DO NOT ADOPT on 1.27.1: package export bug, 0 rows / GraphOutputMissing, needs EXECUTE TASK on account; deploy reads 4.8 s vs 64 s cold when it works",
+    "PerfA": "UPGRADE LATER: 1.36.0 green (67/48/44, identical outputs), no measurable speed-up; one-line pin change"
+  },
+  "demo_surface": {
+    "primary": "Claude Code in demo_workspace/ on this laptop",
+    "no_snowsight": true,
+    "cowork": "optional, out of scope before 14:00 unless time allows",
+    "source": "user 11:28"
+  }
 }

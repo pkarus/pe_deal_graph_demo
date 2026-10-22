@@ -1,0 +1,180 @@
+{
+ "questions": {
+  "Q-SCORE": {
+   "sql_file": "data/naive_sql/q_score.sql",
+   "description": "FIXTURE keyword and signal-count screen",
+   "metric_label": "Signals (12 months)",
+   "row_count": 41,
+   "kg_count": 6,
+   "kg_label": "Tier A",
+   "rows": [
+    {
+     "entity_id": "C_X3",
+     "name": "FIXTURE Busy Decoy",
+     "rank": 1,
+     "metric": 9,
+     "verdict": "decoy",
+     "note": "FIXTURE. Lots of signals, none that matter."
+    },
+    {
+     "entity_id": "C_X2",
+     "name": "FIXTURE Off Thesis Co",
+     "rank": 2,
+     "metric": 7,
+     "verdict": "decoy",
+     "note": "FIXTURE. Keyword match outside the thesis."
+    },
+    {
+     "entity_id": "C_T1",
+     "name": "FIXTURE Target Alpha",
+     "rank": 3,
+     "metric": 4,
+     "verdict": "agrees",
+     "note": null
+    }
+   ],
+   "missed": [
+    {
+     "entity_id": "C_T5",
+     "name": "FIXTURE Target Echo",
+     "note": "FIXTURE. No keyword in its name."
+    }
+   ]
+  },
+  "Q-PATH": {
+   "sql_file": "data/naive_sql/q_path.sql",
+   "description": "FIXTURE shared-employer join",
+   "metric_label": "Shared employers",
+   "row_count": 7,
+   "kg_count": 2,
+   "kg_label": "Warm targets",
+   "rows": [
+    {
+     "entity_id": "C_T3",
+     "name": "FIXTURE Seed Person Three to FIXTURE CEO Charlie",
+     "rank": 1,
+     "metric": 1,
+     "verdict": "decoy",
+     "note": "FIXTURE. Never overlapped."
+    }
+   ],
+   "missed": []
+  },
+  "Q-FLOW": {
+   "sql_file": "data/naive_sql/q_flow.sql",
+   "description": "FIXTURE deal-count league table",
+   "metric_label": "Deals (5 years)",
+   "row_count": 8,
+   "kg_count": 1,
+   "kg_label": "Coverage gaps",
+   "rows": [
+    {
+     "entity_id": "O_I3",
+     "name": "FIXTURE Big Bank",
+     "rank": 1,
+     "metric": 43,
+     "verdict": "decoy",
+     "note": null
+    },
+    {
+     "entity_id": "O_I1",
+     "name": "FIXTURE Boutique Gap",
+     "rank": 2,
+     "metric": 8,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "O_I2",
+     "name": "FIXTURE Boutique Two",
+     "rank": 3,
+     "metric": 4,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "O_I4",
+     "name": "FIXTURE Regional Bank",
+     "rank": 4,
+     "metric": 4,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "O_I8",
+     "name": "FIXTURE Advisor Eight",
+     "rank": 5,
+     "metric": 3,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "O_I7",
+     "name": "FIXTURE Advisor Seven",
+     "rank": 6,
+     "metric": 3,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "O_I5",
+     "name": "FIXTURE Broker Five",
+     "rank": 7,
+     "metric": 3,
+     "verdict": "other",
+     "note": null
+    },
+    {
+     "entity_id": "O_I6",
+     "name": "FIXTURE Broker Six",
+     "rank": 8,
+     "metric": 3,
+     "verdict": "other",
+     "note": null
+    }
+   ],
+   "missed": []
+  },
+  "Q-ADDON": {
+   "sql_file": "data/naive_sql/q_addon.sql",
+   "description": "FIXTURE same-niche screen",
+   "metric_label": "Revenue ($M)",
+   "row_count": 3,
+   "kg_count": 3,
+   "kg_label": "Candidates",
+   "rows": [
+    {
+     "entity_id": "C_D1",
+     "name": "FIXTURE Same Niche Co",
+     "rank": 1,
+     "metric": 55.5,
+     "verdict": "decoy",
+     "note": "FIXTURE. No overlap."
+    }
+   ],
+   "missed": [
+    {
+     "entity_id": "C_A1",
+     "name": "FIXTURE Addon Alpha",
+     "note": "FIXTURE. Sibling niche."
+    }
+   ]
+  },
+  "Q-CONFLICT": {
+   "sql_file": "data/naive_sql/q_conflict.sql",
+   "description": "FIXTURE direct-ownership check",
+   "metric_label": "Owned by us",
+   "row_count": 0,
+   "kg_count": 1,
+   "kg_label": "Conflicts",
+   "rows": [],
+   "missed": [
+    {
+     "entity_id": "C_P3",
+     "name": "FIXTURE Portfolio Three",
+     "note": "FIXTURE. Two-hop link."
+    }
+   ]
+  }
+ }
+}

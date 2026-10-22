@@ -317,8 +317,8 @@ def core_relationship_names(core):
     derived = set(core.DERIVED_RELATIONSHIPS)
     names = []
     for c in schema.concepts:
-        if c.name in core.DERIVED_CONCEPTS:
-            continue
+        if c.name in core.DERIVED_CONCEPTS or getattr(core, c.name, None) is None:
+            continue  # contract concepts, and helper concepts declared outside core.py
         for r in tuple(c.properties) + tuple(c.relationships):
             if r.is_identity or r.reading.split()[0].split(":")[0] != c.name:
                 continue  # identity fields and properties inherited from a parent concept
@@ -329,10 +329,16 @@ def core_relationship_names(core):
 
 
 def check_engine(core, use_sql=True, derived=False):
-    if derived:
-        import pe_deal_graph.model.rules  # noqa: F401  (R09)
-        import pe_deal_graph.model.graphs  # noqa: F401  (R10)
     from relationalai.semantics.std import aggregates as aggs
+
+    # Source-layer names are read from the schema BEFORE rules.py and graphs.py are imported: those
+    # modules add private helpers (TenureOverlap, ScoreCandidate, Company.why_upto, WarmPathCandidate, ...)
+    # that are not in core.py and not in the contract, and must not be checked as core relationships.
+    rel_names = core_relationship_names(core)
+    if derived:
+        import pe_deal_graph.model.rules as rules  # (R09)
+        import pe_deal_graph.model.graphs  # noqa: F401  (R10)
+        rules.enable_finale()  # the finale_* contract names are opt-in; the contract check covers them too
 
     expected = {}
     if use_sql:
@@ -340,7 +346,6 @@ def check_engine(core, use_sql=True, derived=False):
         expected = sql_counts(core)
         print(f"INFO  Snowflake source counts read in {time.time() - t0:.1f}s", flush=True)
 
-    rel_names = core_relationship_names(core)
     missing_spec = sorted(set(rel_names) - set(EXPECTED_FACTS))
     record(not missing_spec, "every core relationship has an expected-fact spec in validate_ontology.py",
            f"missing={missing_spec}" if missing_spec else f"{len(rel_names)} core relationships", warn=True)

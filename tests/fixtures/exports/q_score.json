@@ -1,0 +1,814 @@
+{
+ "question_id": "Q-SCORE",
+ "business_question": "FIXTURE. Which companies fit the thesis and look ready to transact, and why?",
+ "tier_thresholds": {
+  "A": 70,
+  "B": 50
+ },
+ "readiness_cap": 50,
+ "max_score": 100,
+ "components": [
+  {
+   "id": "FIT_THESIS",
+   "label": "Thesis fit",
+   "group": "fit",
+   "max_points": 15,
+   "rule_id": "FIT_THESIS"
+  },
+  {
+   "id": "FIT_EBITDA",
+   "label": "EBITDA band",
+   "group": "fit",
+   "max_points": 10,
+   "rule_id": "FIT_EBITDA"
+  },
+  {
+   "id": "FIT_MARGIN",
+   "label": "Margin benchmark",
+   "group": "fit",
+   "max_points": 5,
+   "rule_id": "FIT_MARGIN"
+  },
+  {
+   "id": "R_CFO_FROM_PE",
+   "label": "CFO from PE-backed company",
+   "group": "readiness",
+   "max_points": 15,
+   "rule_id": "R_CFO_FROM_PE"
+  },
+  {
+   "id": "R_EXIT_WINDOW",
+   "label": "Exit window",
+   "group": "readiness",
+   "max_points": 15,
+   "rule_id": "R_EXIT_WINDOW"
+  },
+  {
+   "id": "R_BANKER",
+   "label": "Banker engaged",
+   "group": "readiness",
+   "max_points": 10,
+   "rule_id": "R_BANKER"
+  },
+  {
+   "id": "R_DEBT",
+   "label": "Debt maturity",
+   "group": "readiness",
+   "max_points": 10,
+   "rule_id": "R_DEBT"
+  },
+  {
+   "id": "R_SUCCESSION",
+   "label": "Succession",
+   "group": "readiness",
+   "max_points": 10,
+   "rule_id": "R_SUCCESSION"
+  },
+  {
+   "id": "R_NEW_DIRECTOR",
+   "label": "New director",
+   "group": "readiness",
+   "max_points": 5,
+   "rule_id": "R_NEW_DIRECTOR"
+  },
+  {
+   "id": "A_CRM",
+   "label": "CRM touch",
+   "group": "access",
+   "max_points": 10,
+   "rule_id": "A_CRM"
+  }
+ ],
+ "summary": {
+  "scored": 8,
+  "tier_a": 6,
+  "tier_b": 1,
+  "tier_c": 1,
+  "tier_a_not_in_crm": 2,
+  "ineligible": 2
+ },
+ "rows": [
+  {
+   "company_id": "C_T1",
+   "name": "FIXTURE Target Alpha",
+   "score": 90,
+   "fit": 30,
+   "readiness": 50,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "FIXTURE Stage",
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Alpha"
+   ],
+   "ebitda_musd": 11.1,
+   "revenue_musd": 99.9,
+   "owner": "FIXTURE Owner",
+   "why": "FIXTURE why line for FIXTURE Target Alpha",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "FIXTURE evidence for margin benchmark"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "FIXTURE evidence for cfo from pe-backed company"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 15,
+     "evidence": "FIXTURE evidence for exit window"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "FIXTURE evidence for banker engaged"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "FIXTURE reason succession not awarded"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "FIXTURE reason new director not awarded"
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "FIXTURE evidence for crm touch"
+    }
+   ],
+   "rank": 1,
+   "tier": "A"
+  },
+  {
+   "company_id": "C_T2",
+   "name": "FIXTURE Target Bravo",
+   "score": 85,
+   "fit": 30,
+   "readiness": 45,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "FIXTURE Stage",
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Bravo"
+   ],
+   "ebitda_musd": 22.2,
+   "revenue_musd": 99.9,
+   "owner": null,
+   "why": "FIXTURE why line for FIXTURE Target Bravo",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "FIXTURE evidence for margin benchmark"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "FIXTURE evidence for cfo from pe-backed company"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "FIXTURE reason exit window not awarded"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "FIXTURE evidence for banker engaged"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "FIXTURE evidence for succession"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "FIXTURE reason new director not awarded"
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "FIXTURE evidence for crm touch"
+    }
+   ],
+   "rank": 2,
+   "tier": "A"
+  },
+  {
+   "company_id": "C_T3",
+   "name": "FIXTURE Target Charlie",
+   "score": 80,
+   "fit": 30,
+   "readiness": 50,
+   "access": 0,
+   "in_crm": false,
+   "pipeline_stage": null,
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Charlie"
+   ],
+   "ebitda_musd": 33.3,
+   "revenue_musd": 99.9,
+   "owner": "FIXTURE Owner",
+   "why": "FIXTURE why line for FIXTURE Target Charlie",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "FIXTURE evidence for margin benchmark"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "FIXTURE evidence for cfo from pe-backed company"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 15,
+     "evidence": "FIXTURE evidence for exit window"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "FIXTURE evidence for banker engaged"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "FIXTURE reason succession not awarded"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "FIXTURE reason new director not awarded"
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "FIXTURE reason crm touch not awarded"
+    }
+   ],
+   "rank": 3,
+   "tier": "A"
+  },
+  {
+   "company_id": "C_T4",
+   "name": "FIXTURE Target Delta",
+   "score": 75,
+   "fit": 30,
+   "readiness": 45,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "FIXTURE Stage",
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Delta"
+   ],
+   "ebitda_musd": 44.4,
+   "revenue_musd": 99.9,
+   "owner": null,
+   "why": "FIXTURE why line for FIXTURE Target Delta",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "FIXTURE evidence for margin benchmark"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "FIXTURE evidence for cfo from pe-backed company"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "FIXTURE reason exit window not awarded"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "FIXTURE evidence for banker engaged"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "FIXTURE evidence for succession"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "FIXTURE reason new director not awarded"
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "FIXTURE reason crm touch not awarded"
+    }
+   ],
+   "rank": 4,
+   "tier": "A"
+  },
+  {
+   "company_id": "C_T5",
+   "name": "FIXTURE Target Echo",
+   "score": 75,
+   "fit": 25,
+   "readiness": 40,
+   "access": 10,
+   "in_crm": true,
+   "pipeline_stage": "FIXTURE Stage",
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Echo"
+   ],
+   "ebitda_musd": 55.5,
+   "revenue_musd": 99.9,
+   "owner": null,
+   "why": "FIXTURE why line for FIXTURE Target Echo",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 5,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "FIXTURE evidence for margin benchmark"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "FIXTURE evidence for cfo from pe-backed company"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "FIXTURE reason exit window not awarded"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 0,
+     "evidence": "FIXTURE reason banker engaged not awarded"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "FIXTURE evidence for succession"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 5,
+     "evidence": "FIXTURE evidence for new director"
+    },
+    {
+     "id": "A_CRM",
+     "points": 10,
+     "evidence": "FIXTURE evidence for crm touch"
+    }
+   ],
+   "rank": 5,
+   "tier": "A"
+  },
+  {
+   "company_id": "C_T6",
+   "name": "FIXTURE Target Foxtrot",
+   "score": 70,
+   "fit": 30,
+   "readiness": 40,
+   "access": 0,
+   "in_crm": false,
+   "pipeline_stage": null,
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Foxtrot"
+   ],
+   "ebitda_musd": 66.6,
+   "revenue_musd": 99.9,
+   "owner": "FIXTURE Owner",
+   "why": "FIXTURE why line for FIXTURE Target Foxtrot",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "FIXTURE evidence for margin benchmark"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "FIXTURE reason cfo from pe-backed company not awarded"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 15,
+     "evidence": "FIXTURE evidence for exit window"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "FIXTURE evidence for banker engaged"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "FIXTURE reason succession not awarded"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 5,
+     "evidence": "FIXTURE evidence for new director"
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "FIXTURE reason crm touch not awarded"
+    }
+   ],
+   "rank": 6,
+   "tier": "A"
+  },
+  {
+   "company_id": "C_T7",
+   "name": "FIXTURE Target Golf",
+   "score": 65,
+   "fit": 30,
+   "readiness": 35,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "FIXTURE Stage",
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Golf"
+   ],
+   "ebitda_musd": 77.7,
+   "revenue_musd": 99.9,
+   "owner": null,
+   "why": "FIXTURE why line for FIXTURE Target Golf",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 5,
+     "evidence": "FIXTURE evidence for margin benchmark"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 15,
+     "evidence": "FIXTURE evidence for cfo from pe-backed company"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "FIXTURE reason exit window not awarded"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 0,
+     "evidence": "FIXTURE reason banker engaged not awarded"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 10,
+     "evidence": "FIXTURE evidence for succession"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "FIXTURE reason new director not awarded"
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "FIXTURE reason crm touch not awarded"
+    }
+   ],
+   "rank": 7,
+   "tier": "B"
+  },
+  {
+   "company_id": "C_T8",
+   "name": "FIXTURE Target Hotel",
+   "score": 45,
+   "fit": 25,
+   "readiness": 20,
+   "access": 0,
+   "in_crm": true,
+   "pipeline_stage": "FIXTURE Stage",
+   "sector_path": [
+    "FIXTURE Sector",
+    "FIXTURE Subsector",
+    "FIXTURE Niche Hotel"
+   ],
+   "ebitda_musd": 88.8,
+   "revenue_musd": 99.9,
+   "owner": null,
+   "why": "FIXTURE why line for FIXTURE Target Hotel",
+   "components": [
+    {
+     "id": "FIT_THESIS",
+     "points": 15,
+     "evidence": "FIXTURE evidence for thesis fit"
+    },
+    {
+     "id": "FIT_EBITDA",
+     "points": 10,
+     "evidence": "FIXTURE evidence for ebitda band"
+    },
+    {
+     "id": "FIT_MARGIN",
+     "points": 0,
+     "evidence": "FIXTURE reason margin benchmark not awarded"
+    },
+    {
+     "id": "R_CFO_FROM_PE",
+     "points": 0,
+     "evidence": "FIXTURE reason cfo from pe-backed company not awarded"
+    },
+    {
+     "id": "R_EXIT_WINDOW",
+     "points": 0,
+     "evidence": "FIXTURE reason exit window not awarded"
+    },
+    {
+     "id": "R_BANKER",
+     "points": 10,
+     "evidence": "FIXTURE evidence for banker engaged"
+    },
+    {
+     "id": "R_DEBT",
+     "points": 10,
+     "evidence": "FIXTURE evidence for debt maturity"
+    },
+    {
+     "id": "R_SUCCESSION",
+     "points": 0,
+     "evidence": "FIXTURE reason succession not awarded"
+    },
+    {
+     "id": "R_NEW_DIRECTOR",
+     "points": 0,
+     "evidence": "FIXTURE reason new director not awarded"
+    },
+    {
+     "id": "A_CRM",
+     "points": 0,
+     "evidence": "FIXTURE reason crm touch not awarded"
+    }
+   ],
+   "rank": 8,
+   "tier": "C"
+  }
+ ],
+ "ineligible": [
+  {
+   "company_id": "C_X1",
+   "name": "FIXTURE Too Big Co",
+   "reason": "FIXTURE. EBITDA $99.9M is above the band."
+  },
+  {
+   "company_id": "C_X2",
+   "name": "FIXTURE Off Thesis Co",
+   "reason": "FIXTURE. Niche is outside the thesis tree."
+  }
+ ],
+ "finale": {
+  "description": "FIXTURE. Warm-path access points added and cross-fund conflicts flagged.",
+  "rows": [
+   {
+    "company_id": "C_T2",
+    "name": "FIXTURE Target Bravo",
+    "score": 95,
+    "prev_rank": 2,
+    "prev_score": 85,
+    "prev_tier": "A",
+    "delta": 10,
+    "conflict": null,
+    "added_components": [
+     {
+      "id": "A_WARM_PATH",
+      "points": 10,
+      "evidence": "FIXTURE. Reachable in two hops."
+     }
+    ],
+    "rank": 1,
+    "tier": "A"
+   },
+   {
+    "company_id": "C_T1",
+    "name": "FIXTURE Target Alpha",
+    "score": 90,
+    "prev_rank": 1,
+    "prev_score": 90,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": [],
+    "rank": 2,
+    "tier": "A"
+   },
+   {
+    "company_id": "C_T3",
+    "name": "FIXTURE Target Charlie",
+    "score": 80,
+    "prev_rank": 3,
+    "prev_score": 80,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": [],
+    "rank": 3,
+    "tier": "A"
+   },
+   {
+    "company_id": "C_T5",
+    "name": "FIXTURE Target Echo",
+    "score": 75,
+    "prev_rank": 5,
+    "prev_score": 75,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": [],
+    "rank": 4,
+    "tier": "A"
+   },
+   {
+    "company_id": "C_T7",
+    "name": "FIXTURE Target Golf",
+    "score": 75,
+    "prev_rank": 7,
+    "prev_score": 65,
+    "prev_tier": "B",
+    "delta": 10,
+    "conflict": null,
+    "added_components": [
+     {
+      "id": "A_WARM_PATH",
+      "points": 10,
+      "evidence": "FIXTURE. Reachable in two hops."
+     }
+    ],
+    "rank": 5,
+    "tier": "A"
+   },
+   {
+    "company_id": "C_T6",
+    "name": "FIXTURE Target Foxtrot",
+    "score": 70,
+    "prev_rank": 6,
+    "prev_score": 70,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": null,
+    "added_components": [],
+    "rank": 6,
+    "tier": "A"
+   },
+   {
+    "company_id": "C_T8",
+    "name": "FIXTURE Target Hotel",
+    "score": 45,
+    "prev_rank": 8,
+    "prev_score": 45,
+    "prev_tier": "C",
+    "delta": 0,
+    "conflict": null,
+    "added_components": [],
+    "rank": 7,
+    "tier": "C"
+   },
+   {
+    "company_id": "C_T4",
+    "name": "FIXTURE Target Delta",
+    "score": 75,
+    "prev_rank": 4,
+    "prev_score": 75,
+    "prev_tier": "A",
+    "delta": 0,
+    "conflict": {
+     "reason": "FIXTURE. Supplies a Fund III portfolio company.",
+     "counterparty_id": "C_P3",
+     "counterparty_name": "FIXTURE Portfolio Three",
+     "rule_id": "CONFLICT"
+    },
+    "added_components": [],
+    "rank": null,
+    "tier": "Conflict"
+   }
+  ]
+ }
+}

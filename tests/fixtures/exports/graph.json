@@ -1,0 +1,3365 @@
+{
+ "layout": {
+  "algorithm": "networkx.spring_layout",
+  "seed": 42,
+  "scale": 1000.0
+ },
+ "stats": {
+  "num_nodes": 131,
+  "num_edges": 187,
+  "model_nodes": 9999,
+  "model_edges": 99999
+ },
+ "node_types": [
+  {
+   "id": "company",
+   "label": "Company"
+  },
+  {
+   "id": "person",
+   "label": "Person"
+  },
+  {
+   "id": "sponsor",
+   "label": "Sponsor"
+  },
+  {
+   "id": "intermediary",
+   "label": "Intermediary"
+  },
+  {
+   "id": "fund",
+   "label": "Fund"
+  }
+ ],
+ "edge_types": [
+  {
+   "id": "tenure",
+   "label": "Tenure overlap",
+   "rule_id": "K1_TENURE",
+   "count": 32
+  },
+  {
+   "id": "board",
+   "label": "Board co-service",
+   "rule_id": "K1_BOARD",
+   "count": 24
+  },
+  {
+   "id": "deal",
+   "label": "Deal",
+   "rule_id": "K2_DEAL",
+   "count": 25
+  },
+  {
+   "id": "commercial",
+   "label": "Commercial",
+   "rule_id": "COMMERCIAL",
+   "count": 18
+  },
+  {
+   "id": "crm",
+   "label": "CRM",
+   "rule_id": "K3_CRM",
+   "count": 12
+  },
+  {
+   "id": "ownership",
+   "label": "Ownership",
+   "rule_id": "OWNERSHIP",
+   "count": 4
+  },
+  {
+   "id": "employment",
+   "label": "Current role",
+   "rule_id": "EMPLOYMENT",
+   "count": 72
+  }
+ ],
+ "nodes": [
+  {
+   "id": "C_T1",
+   "label": "FIXTURE Target Alpha",
+   "type": "company",
+   "tags": [
+    "tier_a"
+   ],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 90,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "A"
+    },
+    {
+     "label": "EBITDA",
+     "value": 11.1,
+     "fmt": "musd1"
+    }
+   ],
+   "x": 618.75,
+   "y": 418.34
+  },
+  {
+   "id": "C_T2",
+   "label": "FIXTURE Target Bravo",
+   "type": "company",
+   "tags": [
+    "tier_a"
+   ],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 85,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "A"
+    },
+    {
+     "label": "EBITDA",
+     "value": 22.2,
+     "fmt": "musd1"
+    }
+   ],
+   "x": 98.44,
+   "y": -83.46
+  },
+  {
+   "id": "C_T3",
+   "label": "FIXTURE Target Charlie",
+   "type": "company",
+   "tags": [
+    "tier_a",
+    "not_in_crm"
+   ],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 80,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "A"
+    },
+    {
+     "label": "EBITDA",
+     "value": 33.3,
+     "fmt": "musd1"
+    }
+   ],
+   "x": 96.5,
+   "y": 240.11
+  },
+  {
+   "id": "C_T4",
+   "label": "FIXTURE Target Delta",
+   "type": "company",
+   "tags": [
+    "tier_a"
+   ],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 75,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "A"
+    },
+    {
+     "label": "EBITDA",
+     "value": 44.4,
+     "fmt": "musd1"
+    }
+   ],
+   "x": -226.83,
+   "y": -1000.0
+  },
+  {
+   "id": "C_T5",
+   "label": "FIXTURE Target Echo",
+   "type": "company",
+   "tags": [
+    "tier_a"
+   ],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 75,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "A"
+    },
+    {
+     "label": "EBITDA",
+     "value": 55.5,
+     "fmt": "musd1"
+    }
+   ],
+   "x": -767.01,
+   "y": 33.5
+  },
+  {
+   "id": "C_T6",
+   "label": "FIXTURE Target Foxtrot",
+   "type": "company",
+   "tags": [
+    "tier_a",
+    "not_in_crm"
+   ],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 70,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "A"
+    },
+    {
+     "label": "EBITDA",
+     "value": 66.6,
+     "fmt": "musd1"
+    }
+   ],
+   "x": -321.02,
+   "y": -65.48
+  },
+  {
+   "id": "C_T7",
+   "label": "FIXTURE Target Golf",
+   "type": "company",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 65,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "B"
+    },
+    {
+     "label": "EBITDA",
+     "value": 77.7,
+     "fmt": "musd1"
+    }
+   ],
+   "x": 159.75,
+   "y": 82.66
+  },
+  {
+   "id": "C_T8",
+   "label": "FIXTURE Target Hotel",
+   "type": "company",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Score",
+     "value": 45,
+     "fmt": "int",
+     "rule_id": "FIT_THESIS"
+    },
+    {
+     "label": "Tier",
+     "value": "C"
+    },
+    {
+     "label": "EBITDA",
+     "value": 88.8,
+     "fmt": "musd1"
+    }
+   ],
+   "x": -650.15,
+   "y": 522.77
+  },
+  {
+   "id": "P_S1",
+   "label": "FIXTURE Seed Person One",
+   "type": "person",
+   "tags": [
+    "our_person",
+    "northwind"
+   ],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Operating Partner"
+    }
+   ],
+   "x": 96.65,
+   "y": -314.98
+  },
+  {
+   "id": "P_S2",
+   "label": "FIXTURE Seed Person Two",
+   "type": "person",
+   "tags": [
+    "our_person",
+    "northwind"
+   ],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Principal"
+    }
+   ],
+   "x": -104.8,
+   "y": -116.41
+  },
+  {
+   "id": "P_S3",
+   "label": "FIXTURE Seed Person Three",
+   "type": "person",
+   "tags": [
+    "our_person",
+    "northwind"
+   ],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Managing Director"
+    }
+   ],
+   "x": -135.39,
+   "y": -363.51
+  },
+  {
+   "id": "P_S4",
+   "label": "FIXTURE Seed Person Four",
+   "type": "person",
+   "tags": [
+    "our_person",
+    "northwind"
+   ],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Managing Partner"
+    }
+   ],
+   "x": -148.58,
+   "y": -511.27
+  },
+  {
+   "id": "P_M1",
+   "label": "FIXTURE Bridge CFO",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "CFO"
+    }
+   ],
+   "x": 73.24,
+   "y": -529.14
+  },
+  {
+   "id": "P_M2",
+   "label": "FIXTURE Bridge Banker",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Banker"
+    }
+   ],
+   "x": -335.88,
+   "y": -249.8
+  },
+  {
+   "id": "P_M3",
+   "label": "FIXTURE Bridge Banker MD",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Managing Director"
+    }
+   ],
+   "x": -515.32,
+   "y": -362.99
+  },
+  {
+   "id": "P_M4",
+   "label": "FIXTURE Stale Director",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Board"
+    }
+   ],
+   "x": -90.29,
+   "y": -670.29
+  },
+  {
+   "id": "P_C1",
+   "label": "FIXTURE CEO Alpha",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "CEO"
+    }
+   ],
+   "x": -638.86,
+   "y": -442.56
+  },
+  {
+   "id": "P_C2",
+   "label": "FIXTURE CEO Bravo",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "CEO"
+    }
+   ],
+   "x": 20.85,
+   "y": -681.04
+  },
+  {
+   "id": "P_C3",
+   "label": "FIXTURE CEO Charlie",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "CEO"
+    }
+   ],
+   "x": -88.62,
+   "y": -592.59
+  },
+  {
+   "id": "P_D1",
+   "label": "FIXTURE Designee Alpha",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Board"
+    }
+   ],
+   "x": -41.02,
+   "y": -595.79
+  },
+  {
+   "id": "P_D3",
+   "label": "FIXTURE Designee Charlie",
+   "type": "person",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Title",
+     "value": "Board"
+    }
+   ],
+   "x": -135.41,
+   "y": -581.74
+  },
+  {
+   "id": "O_I1",
+   "label": "FIXTURE Boutique Gap",
+   "type": "intermediary",
+   "tags": [
+    "coverage_gap"
+   ],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 1,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": -126.68,
+   "y": 374.95
+  },
+  {
+   "id": "O_I2",
+   "label": "FIXTURE Boutique Two",
+   "type": "intermediary",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 9,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": -174.65,
+   "y": 627.0
+  },
+  {
+   "id": "O_I3",
+   "label": "FIXTURE Big Bank",
+   "type": "intermediary",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 8,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": 222.07,
+   "y": 676.09
+  },
+  {
+   "id": "O_I4",
+   "label": "FIXTURE Regional Bank",
+   "type": "intermediary",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 0,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": -299.95,
+   "y": 257.06
+  },
+  {
+   "id": "O_I5",
+   "label": "FIXTURE Broker Five",
+   "type": "intermediary",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 3,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": 13.86,
+   "y": -176.28
+  },
+  {
+   "id": "O_I6",
+   "label": "FIXTURE Broker Six",
+   "type": "intermediary",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 0,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": 105.14,
+   "y": 748.76
+  },
+  {
+   "id": "O_I7",
+   "label": "FIXTURE Advisor Seven",
+   "type": "intermediary",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 5,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": -42.9,
+   "y": 404.72
+  },
+  {
+   "id": "O_I8",
+   "label": "FIXTURE Advisor Eight",
+   "type": "intermediary",
+   "tags": [],
+   "facts": [
+    {
+     "label": "Touchpoints (24 months)",
+     "value": 2,
+     "fmt": "int",
+     "rule_id": "COVERAGE_GAP"
+    }
+   ],
+   "x": 413.68,
+   "y": -189.63
+  },
+  {
+   "id": "O_S1",
+   "label": "FIXTURE Sponsor Alpha",
+   "type": "sponsor",
+   "tags": [],
+   "facts": [],
+   "x": -635.32,
+   "y": -28.12
+  },
+  {
+   "id": "O_S2",
+   "label": "FIXTURE Sponsor Bravo",
+   "type": "sponsor",
+   "tags": [],
+   "facts": [],
+   "x": -17.66,
+   "y": -39.42
+  },
+  {
+   "id": "O_S3",
+   "label": "FIXTURE Sponsor Charlie",
+   "type": "sponsor",
+   "tags": [],
+   "facts": [],
+   "x": -758.83,
+   "y": -99.71
+  },
+  {
+   "id": "O_S4",
+   "label": "FIXTURE Sponsor Delta",
+   "type": "sponsor",
+   "tags": [],
+   "facts": [],
+   "x": -796.3,
+   "y": -24.27
+  },
+  {
+   "id": "O_S5",
+   "label": "FIXTURE Sponsor Echo",
+   "type": "sponsor",
+   "tags": [],
+   "facts": [],
+   "x": -759.8,
+   "y": -10.54
+  },
+  {
+   "id": "O_S6",
+   "label": "FIXTURE Sponsor Foxtrot",
+   "type": "sponsor",
+   "tags": [],
+   "facts": [],
+   "x": -257.89,
+   "y": -361.44
+  },
+  {
+   "id": "O_NW",
+   "label": "FIXTURE Capital",
+   "type": "sponsor",
+   "tags": [
+    "northwind"
+   ],
+   "facts": [],
+   "x": -54.0,
+   "y": -449.61
+  },
+  {
+   "id": "F_III",
+   "label": "FIXTURE Fund III",
+   "type": "fund",
+   "tags": [
+    "northwind"
+   ],
+   "facts": [],
+   "x": -136.17,
+   "y": -689.38
+  },
+  {
+   "id": "F_IV",
+   "label": "Fixture Fund IV",
+   "type": "fund",
+   "tags": [
+    "northwind"
+   ],
+   "facts": [],
+   "x": 165.06,
+   "y": -467.79
+  },
+  {
+   "id": "C_P1",
+   "label": "FIXTURE Platform Co",
+   "type": "company",
+   "tags": [
+    "platform"
+   ],
+   "facts": [],
+   "x": 369.07,
+   "y": -390.71
+  },
+  {
+   "id": "C_P3",
+   "label": "FIXTURE Portfolio Three",
+   "type": "company",
+   "tags": [
+    "fund_iii_portfolio"
+   ],
+   "facts": [],
+   "x": -190.39,
+   "y": -873.47
+  },
+  {
+   "id": "C_K01",
+   "label": "FIXTURE Customer Alpha",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 245.11,
+   "y": -324.02
+  },
+  {
+   "id": "C_K02",
+   "label": "FIXTURE Customer Bravo",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 440.91,
+   "y": -468.36
+  },
+  {
+   "id": "C_K03",
+   "label": "FIXTURE Customer Charlie",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 463.79,
+   "y": -512.06
+  },
+  {
+   "id": "C_K04",
+   "label": "FIXTURE Customer Delta",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 156.67,
+   "y": -354.38
+  },
+  {
+   "id": "C_K05",
+   "label": "FIXTURE Customer Echo",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 333.67,
+   "y": -203.7
+  },
+  {
+   "id": "C_K06",
+   "label": "FIXTURE Customer Foxtrot",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 518.52,
+   "y": -381.25
+  },
+  {
+   "id": "C_K07",
+   "label": "FIXTURE Customer Golf",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 533.87,
+   "y": -354.58
+  },
+  {
+   "id": "C_K08",
+   "label": "FIXTURE Customer Hotel",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 430.48,
+   "y": -413.36
+  },
+  {
+   "id": "C_K09",
+   "label": "FIXTURE Customer India",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 330.92,
+   "y": -520.81
+  },
+  {
+   "id": "C_K10",
+   "label": "FIXTURE Customer Juliet",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -774.5,
+   "y": -62.94
+  },
+  {
+   "id": "C_K11",
+   "label": "FIXTURE Customer Kilo",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 424.68,
+   "y": 236.79
+  },
+  {
+   "id": "C_K12",
+   "label": "FIXTURE Customer Lima",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -258.47,
+   "y": 187.01
+  },
+  {
+   "id": "C_A1",
+   "label": "FIXTURE Addon Alpha",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 334.64,
+   "y": -388.46
+  },
+  {
+   "id": "C_A2",
+   "label": "FIXTURE Addon Bravo",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 494.75,
+   "y": -245.22
+  },
+  {
+   "id": "C_A3",
+   "label": "FIXTURE Addon Charlie",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 355.78,
+   "y": -301.02
+  },
+  {
+   "id": "P_N00",
+   "label": "FIXTURE Person Alpha 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -364.23,
+   "y": 519.16
+  },
+  {
+   "id": "P_N01",
+   "label": "FIXTURE Person Bravo 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -530.75,
+   "y": 429.95
+  },
+  {
+   "id": "P_N02",
+   "label": "FIXTURE Person Charlie 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -38.98,
+   "y": -189.29
+  },
+  {
+   "id": "P_N03",
+   "label": "FIXTURE Person Delta 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -88.67,
+   "y": 69.31
+  },
+  {
+   "id": "P_N04",
+   "label": "FIXTURE Person Echo 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 20.2,
+   "y": -103.76
+  },
+  {
+   "id": "P_N05",
+   "label": "FIXTURE Person Foxtrot 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 276.8,
+   "y": -277.03
+  },
+  {
+   "id": "P_N06",
+   "label": "FIXTURE Person Golf 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -25.91,
+   "y": 545.84
+  },
+  {
+   "id": "P_N07",
+   "label": "FIXTURE Person Hotel 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -353.73,
+   "y": 303.56
+  },
+  {
+   "id": "P_N08",
+   "label": "FIXTURE Person India 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -328.02,
+   "y": 401.66
+  },
+  {
+   "id": "P_N09",
+   "label": "FIXTURE Person Juliet 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 205.91,
+   "y": 40.82
+  },
+  {
+   "id": "P_N10",
+   "label": "FIXTURE Person Kilo 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 318.34,
+   "y": -10.13
+  },
+  {
+   "id": "P_N11",
+   "label": "FIXTURE Person Lima 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -361.05,
+   "y": 366.21
+  },
+  {
+   "id": "P_N12",
+   "label": "FIXTURE Person Mike 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 543.88,
+   "y": 321.94
+  },
+  {
+   "id": "P_N13",
+   "label": "FIXTURE Person November 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -248.85,
+   "y": -191.67
+  },
+  {
+   "id": "P_N14",
+   "label": "FIXTURE Person Oscar 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 450.03,
+   "y": -224.11
+  },
+  {
+   "id": "P_N15",
+   "label": "FIXTURE Person Papa 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 9.52,
+   "y": -378.0
+  },
+  {
+   "id": "P_N16",
+   "label": "FIXTURE Person Quebec 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 127.83,
+   "y": 10.93
+  },
+  {
+   "id": "P_N17",
+   "label": "FIXTURE Person Romeo 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -13.56,
+   "y": 55.83
+  },
+  {
+   "id": "P_N18",
+   "label": "FIXTURE Person Sierra 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -323.47,
+   "y": 73.34
+  },
+  {
+   "id": "P_N19",
+   "label": "FIXTURE Person Tango 1",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 90.57,
+   "y": 892.42
+  },
+  {
+   "id": "P_N20",
+   "label": "FIXTURE Person Alpha 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -26.79,
+   "y": 181.28
+  },
+  {
+   "id": "P_N21",
+   "label": "FIXTURE Person Bravo 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 216.9,
+   "y": -464.44
+  },
+  {
+   "id": "P_N22",
+   "label": "FIXTURE Person Charlie 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 411.51,
+   "y": -455.55
+  },
+  {
+   "id": "P_N23",
+   "label": "FIXTURE Person Delta 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 292.76,
+   "y": -86.96
+  },
+  {
+   "id": "P_N24",
+   "label": "FIXTURE Person Echo 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -132.73,
+   "y": 139.77
+  },
+  {
+   "id": "P_N25",
+   "label": "FIXTURE Person Foxtrot 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -167.13,
+   "y": -190.38
+  },
+  {
+   "id": "P_N26",
+   "label": "FIXTURE Person Golf 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 274.35,
+   "y": 963.68
+  },
+  {
+   "id": "P_N27",
+   "label": "FIXTURE Person Hotel 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -112.8,
+   "y": 758.01
+  },
+  {
+   "id": "P_N28",
+   "label": "FIXTURE Person India 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 170.85,
+   "y": 546.31
+  },
+  {
+   "id": "P_N29",
+   "label": "FIXTURE Person Juliet 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 252.25,
+   "y": 118.72
+  },
+  {
+   "id": "P_N30",
+   "label": "FIXTURE Person Kilo 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 576.42,
+   "y": -620.7
+  },
+  {
+   "id": "P_N31",
+   "label": "FIXTURE Person Lima 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 136.97,
+   "y": 267.46
+  },
+  {
+   "id": "P_N32",
+   "label": "FIXTURE Person Mike 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 251.32,
+   "y": 58.31
+  },
+  {
+   "id": "P_N33",
+   "label": "FIXTURE Person November 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 345.54,
+   "y": -101.4
+  },
+  {
+   "id": "P_N34",
+   "label": "FIXTURE Person Oscar 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 5.19,
+   "y": 35.71
+  },
+  {
+   "id": "P_N35",
+   "label": "FIXTURE Person Papa 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -284.27,
+   "y": -59.67
+  },
+  {
+   "id": "P_N36",
+   "label": "FIXTURE Person Quebec 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 489.84,
+   "y": 344.99
+  },
+  {
+   "id": "P_N37",
+   "label": "FIXTURE Person Romeo 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -222.29,
+   "y": -177.15
+  },
+  {
+   "id": "P_N38",
+   "label": "FIXTURE Person Sierra 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -46.2,
+   "y": 33.36
+  },
+  {
+   "id": "P_N39",
+   "label": "FIXTURE Person Tango 2",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 294.14,
+   "y": 799.54
+  },
+  {
+   "id": "P_N40",
+   "label": "FIXTURE Person Alpha 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 86.74,
+   "y": 138.26
+  },
+  {
+   "id": "P_N41",
+   "label": "FIXTURE Person Bravo 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -73.61,
+   "y": -232.44
+  },
+  {
+   "id": "P_N42",
+   "label": "FIXTURE Person Charlie 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -177.52,
+   "y": -243.07
+  },
+  {
+   "id": "P_N43",
+   "label": "FIXTURE Person Delta 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -88.35,
+   "y": -17.2
+  },
+  {
+   "id": "P_N44",
+   "label": "FIXTURE Person Echo 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -122.73,
+   "y": 443.09
+  },
+  {
+   "id": "P_N45",
+   "label": "FIXTURE Person Foxtrot 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 138.13,
+   "y": 888.24
+  },
+  {
+   "id": "P_N46",
+   "label": "FIXTURE Person Golf 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -175.17,
+   "y": 20.88
+  },
+  {
+   "id": "P_N47",
+   "label": "FIXTURE Person Hotel 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -163.99,
+   "y": -339.23
+  },
+  {
+   "id": "P_N48",
+   "label": "FIXTURE Person India 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 104.19,
+   "y": -51.77
+  },
+  {
+   "id": "P_N49",
+   "label": "FIXTURE Person Juliet 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -181.91,
+   "y": -49.72
+  },
+  {
+   "id": "P_N50",
+   "label": "FIXTURE Person Kilo 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 84.5,
+   "y": -184.2
+  },
+  {
+   "id": "P_N51",
+   "label": "FIXTURE Person Lima 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 104.12,
+   "y": 187.28
+  },
+  {
+   "id": "P_N52",
+   "label": "FIXTURE Person Mike 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 480.03,
+   "y": -347.5
+  },
+  {
+   "id": "P_N53",
+   "label": "FIXTURE Person November 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -124.75,
+   "y": 123.76
+  },
+  {
+   "id": "P_N54",
+   "label": "FIXTURE Person Oscar 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 499.63,
+   "y": -323.55
+  },
+  {
+   "id": "P_N55",
+   "label": "FIXTURE Person Papa 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 236.99,
+   "y": -79.93
+  },
+  {
+   "id": "P_N56",
+   "label": "FIXTURE Person Quebec 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -301.68,
+   "y": -18.58
+  },
+  {
+   "id": "P_N57",
+   "label": "FIXTURE Person Romeo 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -198.7,
+   "y": -319.44
+  },
+  {
+   "id": "P_N58",
+   "label": "FIXTURE Person Sierra 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": 306.59,
+   "y": 242.41
+  },
+  {
+   "id": "P_N59",
+   "label": "FIXTURE Person Tango 3",
+   "type": "person",
+   "tags": [],
+   "facts": [],
+   "x": -66.04,
+   "y": 219.21
+  },
+  {
+   "id": "C_F01",
+   "label": "FIXTURE Deal Co Alpha",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -258.77,
+   "y": 368.3
+  },
+  {
+   "id": "C_F02",
+   "label": "FIXTURE Deal Co Bravo",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -243.41,
+   "y": 421.92
+  },
+  {
+   "id": "C_F03",
+   "label": "FIXTURE Deal Co Charlie",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -92.26,
+   "y": 611.28
+  },
+  {
+   "id": "C_F04",
+   "label": "FIXTURE Deal Co Delta",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -165.33,
+   "y": 541.73
+  },
+  {
+   "id": "C_F05",
+   "label": "FIXTURE Deal Co Echo",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 246.41,
+   "y": -144.01
+  },
+  {
+   "id": "C_F06",
+   "label": "FIXTURE Deal Co Foxtrot",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 96.68,
+   "y": 430.2
+  },
+  {
+   "id": "C_F07",
+   "label": "FIXTURE Deal Co Golf",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 217.94,
+   "y": 831.32
+  },
+  {
+   "id": "C_F08",
+   "label": "FIXTURE Deal Co Hotel",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 25.28,
+   "y": 498.36
+  },
+  {
+   "id": "C_F09",
+   "label": "FIXTURE Deal Co India",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -224.84,
+   "y": 283.27
+  },
+  {
+   "id": "C_F10",
+   "label": "FIXTURE Deal Co Juliet",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -278.41,
+   "y": 39.59
+  },
+  {
+   "id": "C_F11",
+   "label": "FIXTURE Deal Co Kilo",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -200.69,
+   "y": 504.02
+  },
+  {
+   "id": "C_F12",
+   "label": "FIXTURE Deal Co Lima",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -234.22,
+   "y": 767.17
+  },
+  {
+   "id": "C_F13",
+   "label": "FIXTURE Deal Co Mike",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -142.97,
+   "y": -139.07
+  },
+  {
+   "id": "C_F14",
+   "label": "FIXTURE Deal Co November",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 579.04,
+   "y": -179.99
+  },
+  {
+   "id": "C_F15",
+   "label": "FIXTURE Deal Co Oscar",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": 329.78,
+   "y": 768.78
+  },
+  {
+   "id": "C_F16",
+   "label": "FIXTURE Deal Co Papa",
+   "type": "company",
+   "tags": [],
+   "facts": [],
+   "x": -146.53,
+   "y": 274.57
+  }
+ ],
+ "edges": [
+  {
+   "id": "GE0001",
+   "source": "P_S1",
+   "target": "P_M1",
+   "type": "tenure",
+   "evidence": "FIXTURE K1 evidence",
+   "rule_id": "K1_TENURE",
+   "facts": [
+    {
+     "label": "Strength",
+     "value": 0.5,
+     "fmt": "f3",
+     "rule_id": "K1_TENURE"
+    }
+   ]
+  },
+  {
+   "id": "GE0002",
+   "source": "P_M1",
+   "target": "P_C2",
+   "type": "tenure",
+   "evidence": "FIXTURE K1 evidence",
+   "rule_id": "K1_TENURE",
+   "facts": [
+    {
+     "label": "Strength",
+     "value": 0.5,
+     "fmt": "f3",
+     "rule_id": "K1_TENURE"
+    }
+   ]
+  },
+  {
+   "id": "GE0003",
+   "source": "P_S2",
+   "target": "P_M2",
+   "type": "tenure",
+   "evidence": "FIXTURE K1 evidence",
+   "rule_id": "K1_TENURE",
+   "facts": [
+    {
+     "label": "Strength",
+     "value": 0.5,
+     "fmt": "f3",
+     "rule_id": "K1_TENURE"
+    }
+   ]
+  },
+  {
+   "id": "GE0004",
+   "source": "P_M2",
+   "target": "P_M3",
+   "type": "tenure",
+   "evidence": "FIXTURE K1 evidence",
+   "rule_id": "K1_TENURE",
+   "facts": [
+    {
+     "label": "Strength",
+     "value": 0.5,
+     "fmt": "f3",
+     "rule_id": "K1_TENURE"
+    }
+   ]
+  },
+  {
+   "id": "GE0005",
+   "source": "P_M3",
+   "target": "P_C1",
+   "type": "deal",
+   "evidence": "FIXTURE K2 evidence",
+   "rule_id": "K2_DEAL",
+   "facts": [
+    {
+     "label": "Strength",
+     "value": 0.5,
+     "fmt": "f3",
+     "rule_id": "K2_DEAL"
+    }
+   ]
+  },
+  {
+   "id": "GE0006",
+   "source": "P_S4",
+   "target": "P_M4",
+   "type": "tenure",
+   "evidence": "FIXTURE K1 evidence",
+   "rule_id": "K1_TENURE",
+   "facts": [
+    {
+     "label": "Strength",
+     "value": 0.5,
+     "fmt": "f3",
+     "rule_id": "K1_TENURE"
+    }
+   ]
+  },
+  {
+   "id": "GE0007",
+   "source": "P_M4",
+   "target": "P_C2",
+   "type": "tenure",
+   "evidence": "FIXTURE K1 evidence",
+   "rule_id": "K1_TENURE",
+   "facts": [
+    {
+     "label": "Strength",
+     "value": 0.5,
+     "fmt": "f3",
+     "rule_id": "K1_TENURE"
+    }
+   ]
+  },
+  {
+   "id": "GE0008",
+   "source": "P_S1",
+   "target": "O_NW",
+   "type": "employment",
+   "evidence": "FIXTURE current role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0009",
+   "source": "P_S2",
+   "target": "O_NW",
+   "type": "employment",
+   "evidence": "FIXTURE current role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0010",
+   "source": "P_S3",
+   "target": "O_NW",
+   "type": "employment",
+   "evidence": "FIXTURE current role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0011",
+   "source": "P_S4",
+   "target": "O_NW",
+   "type": "employment",
+   "evidence": "FIXTURE current role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0012",
+   "source": "O_NW",
+   "target": "F_III",
+   "type": "ownership",
+   "evidence": "FIXTURE manages fund",
+   "rule_id": "OWNERSHIP",
+   "facts": []
+  },
+  {
+   "id": "GE0013",
+   "source": "O_NW",
+   "target": "F_IV",
+   "type": "ownership",
+   "evidence": "FIXTURE manages fund",
+   "rule_id": "OWNERSHIP",
+   "facts": []
+  },
+  {
+   "id": "GE0014",
+   "source": "F_IV",
+   "target": "C_P1",
+   "type": "ownership",
+   "evidence": "FIXTURE owns since 2000-01-01",
+   "rule_id": "OWNERSHIP",
+   "facts": []
+  },
+  {
+   "id": "GE0015",
+   "source": "F_III",
+   "target": "C_P3",
+   "type": "ownership",
+   "evidence": "FIXTURE owns since 2000-01-01",
+   "rule_id": "OWNERSHIP",
+   "facts": []
+  },
+  {
+   "id": "GE0016",
+   "source": "C_T4",
+   "target": "C_P3",
+   "type": "commercial",
+   "evidence": "FIXTURE supplies",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0017",
+   "source": "C_K01",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0018",
+   "source": "C_K02",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0019",
+   "source": "C_K03",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0020",
+   "source": "C_K04",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0021",
+   "source": "C_K05",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0022",
+   "source": "C_K06",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0023",
+   "source": "C_K07",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0024",
+   "source": "C_K08",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0025",
+   "source": "C_K09",
+   "target": "C_P1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from platform",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0026",
+   "source": "C_K01",
+   "target": "C_A1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0027",
+   "source": "C_K02",
+   "target": "C_A1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0028",
+   "source": "C_K03",
+   "target": "C_A1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0029",
+   "source": "C_K04",
+   "target": "C_A1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0030",
+   "source": "C_K05",
+   "target": "C_A1",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0031",
+   "source": "C_K06",
+   "target": "C_A2",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0032",
+   "source": "C_K07",
+   "target": "C_A2",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0033",
+   "source": "C_K08",
+   "target": "C_A3",
+   "type": "commercial",
+   "evidence": "FIXTURE buys from candidate",
+   "rule_id": "COMMERCIAL",
+   "facts": []
+  },
+  {
+   "id": "GE0034",
+   "source": "O_I1",
+   "target": "C_F01",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX01",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0035",
+   "source": "O_I4",
+   "target": "C_F02",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX02",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0036",
+   "source": "O_I7",
+   "target": "C_F03",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX03",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0037",
+   "source": "O_I2",
+   "target": "C_F04",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX04",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0038",
+   "source": "O_I5",
+   "target": "C_F05",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX05",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0039",
+   "source": "O_I1",
+   "target": "C_F06",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX06",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0040",
+   "source": "O_I3",
+   "target": "C_F07",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX07",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0041",
+   "source": "O_I6",
+   "target": "C_F08",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX08",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0042",
+   "source": "O_I1",
+   "target": "C_F09",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX09",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0043",
+   "source": "O_I4",
+   "target": "C_F10",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX10",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0044",
+   "source": "O_I1",
+   "target": "C_F11",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX11",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0045",
+   "source": "O_I2",
+   "target": "C_F12",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX12",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0046",
+   "source": "O_I5",
+   "target": "C_F13",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX13",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0047",
+   "source": "O_I8",
+   "target": "C_F14",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX14",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0048",
+   "source": "O_I3",
+   "target": "C_F15",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX15",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0049",
+   "source": "O_I1",
+   "target": "C_F16",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX16",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0050",
+   "source": "O_I1",
+   "target": "C_T3",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX17",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0051",
+   "source": "O_I4",
+   "target": "C_F01",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX18",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0052",
+   "source": "O_I7",
+   "target": "C_F02",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX19",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0053",
+   "source": "O_I2",
+   "target": "C_F03",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX20",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0054",
+   "source": "O_I1",
+   "target": "C_F04",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX21",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0055",
+   "source": "O_I8",
+   "target": "C_F05",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX22",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0056",
+   "source": "O_I3",
+   "target": "C_F06",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX23",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0057",
+   "source": "O_I6",
+   "target": "C_F07",
+   "type": "deal",
+   "evidence": "FIXTURE advised TX24",
+   "rule_id": "K2_DEAL",
+   "facts": []
+  },
+  {
+   "id": "GE0058",
+   "source": "P_N00",
+   "target": "C_F02",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0059",
+   "source": "P_N01",
+   "target": "C_T8",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0060",
+   "source": "P_N02",
+   "target": "C_T2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0061",
+   "source": "P_N03",
+   "target": "C_F09",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0062",
+   "source": "P_N04",
+   "target": "O_S2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0063",
+   "source": "P_N05",
+   "target": "O_I8",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0064",
+   "source": "P_N06",
+   "target": "O_I7",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0065",
+   "source": "P_N07",
+   "target": "O_I1",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0066",
+   "source": "P_N08",
+   "target": "C_F09",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0067",
+   "source": "P_N09",
+   "target": "C_T7",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0068",
+   "source": "P_N10",
+   "target": "C_F05",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0069",
+   "source": "P_N11",
+   "target": "C_F09",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0070",
+   "source": "P_N12",
+   "target": "C_K11",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0071",
+   "source": "P_N13",
+   "target": "C_T6",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0072",
+   "source": "P_N14",
+   "target": "C_A2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0073",
+   "source": "P_N15",
+   "target": "C_K04",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0074",
+   "source": "P_N16",
+   "target": "C_T3",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0075",
+   "source": "P_N17",
+   "target": "C_T2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0076",
+   "source": "P_N18",
+   "target": "C_T6",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0077",
+   "source": "P_N19",
+   "target": "O_I6",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0078",
+   "source": "P_N20",
+   "target": "O_I7",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0079",
+   "source": "P_N21",
+   "target": "C_K09",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0080",
+   "source": "P_N22",
+   "target": "C_A3",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0081",
+   "source": "P_N23",
+   "target": "C_T2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0082",
+   "source": "P_N24",
+   "target": "C_K12",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0083",
+   "source": "P_N25",
+   "target": "O_I5",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0084",
+   "source": "P_N26",
+   "target": "C_F07",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0085",
+   "source": "P_N27",
+   "target": "C_F03",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0086",
+   "source": "P_N28",
+   "target": "C_F06",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0087",
+   "source": "P_N29",
+   "target": "C_K11",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0088",
+   "source": "P_N30",
+   "target": "C_K03",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0089",
+   "source": "P_N31",
+   "target": "O_I7",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0090",
+   "source": "P_N32",
+   "target": "C_K05",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0091",
+   "source": "P_N33",
+   "target": "C_A2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0092",
+   "source": "P_N34",
+   "target": "O_S2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0093",
+   "source": "P_N35",
+   "target": "C_F13",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0094",
+   "source": "P_N36",
+   "target": "C_T1",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0095",
+   "source": "P_N37",
+   "target": "C_F10",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0096",
+   "source": "P_N38",
+   "target": "C_F13",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0097",
+   "source": "P_N39",
+   "target": "O_I3",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0098",
+   "source": "P_N40",
+   "target": "C_F06",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0099",
+   "source": "P_N41",
+   "target": "C_K04",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0100",
+   "source": "P_N42",
+   "target": "O_S6",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0101",
+   "source": "P_N43",
+   "target": "O_S2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0102",
+   "source": "P_N44",
+   "target": "O_I2",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0103",
+   "source": "P_N45",
+   "target": "O_I6",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0104",
+   "source": "P_N46",
+   "target": "C_F10",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0105",
+   "source": "P_N47",
+   "target": "O_S6",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0106",
+   "source": "P_N48",
+   "target": "C_T7",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0107",
+   "source": "P_N49",
+   "target": "C_T6",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0108",
+   "source": "P_N50",
+   "target": "C_K01",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0109",
+   "source": "P_N51",
+   "target": "C_T7",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0110",
+   "source": "P_N52",
+   "target": "C_P1",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0111",
+   "source": "P_N53",
+   "target": "C_F16",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0112",
+   "source": "P_N54",
+   "target": "C_P1",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0113",
+   "source": "P_N55",
+   "target": "C_A3",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0114",
+   "source": "P_N56",
+   "target": "O_S1",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0115",
+   "source": "P_N57",
+   "target": "C_F13",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0116",
+   "source": "P_N58",
+   "target": "C_T3",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0117",
+   "source": "P_N59",
+   "target": "C_F08",
+   "type": "employment",
+   "evidence": "FIXTURE role",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0118",
+   "source": "P_N29",
+   "target": "P_N34",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0119",
+   "source": "P_N59",
+   "target": "P_N24",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0120",
+   "source": "P_N35",
+   "target": "P_N18",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0121",
+   "source": "P_N36",
+   "target": "P_N12",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0122",
+   "source": "P_N02",
+   "target": "P_N42",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0123",
+   "source": "P_N49",
+   "target": "P_N18",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0124",
+   "source": "P_N54",
+   "target": "P_N14",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0125",
+   "source": "P_N24",
+   "target": "P_N17",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0126",
+   "source": "P_N40",
+   "target": "P_N53",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0127",
+   "source": "P_N10",
+   "target": "P_N23",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0128",
+   "source": "P_N13",
+   "target": "P_N42",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0129",
+   "source": "P_N44",
+   "target": "P_N59",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0130",
+   "source": "P_N38",
+   "target": "P_N40",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0131",
+   "source": "P_N34",
+   "target": "P_N46",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0132",
+   "source": "P_N10",
+   "target": "P_N29",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0133",
+   "source": "P_N17",
+   "target": "P_N59",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0134",
+   "source": "P_N43",
+   "target": "P_N20",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0135",
+   "source": "P_N14",
+   "target": "P_N52",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0136",
+   "source": "P_N51",
+   "target": "P_N20",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0137",
+   "source": "P_N17",
+   "target": "P_N04",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0138",
+   "source": "P_N58",
+   "target": "P_N36",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0139",
+   "source": "P_N13",
+   "target": "P_N41",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0140",
+   "source": "P_N25",
+   "target": "P_N56",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0141",
+   "source": "P_N09",
+   "target": "P_N16",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0142",
+   "source": "P_N15",
+   "target": "P_N47",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0143",
+   "source": "P_N47",
+   "target": "P_N37",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0144",
+   "source": "P_N57",
+   "target": "P_N37",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0145",
+   "source": "P_N23",
+   "target": "P_N14",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0146",
+   "source": "P_N32",
+   "target": "P_N31",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0147",
+   "source": "P_N48",
+   "target": "P_N03",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0148",
+   "source": "P_N09",
+   "target": "P_N40",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0149",
+   "source": "P_N50",
+   "target": "P_N43",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0150",
+   "source": "P_N38",
+   "target": "P_N04",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0151",
+   "source": "P_N24",
+   "target": "P_N38",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0152",
+   "source": "P_N33",
+   "target": "P_N16",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0153",
+   "source": "P_N43",
+   "target": "P_N46",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0154",
+   "source": "P_N43",
+   "target": "P_N56",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0155",
+   "source": "P_N49",
+   "target": "P_N41",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0156",
+   "source": "P_N07",
+   "target": "P_N18",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0157",
+   "source": "P_N10",
+   "target": "P_N29",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0158",
+   "source": "P_N46",
+   "target": "P_N56",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0159",
+   "source": "P_N32",
+   "target": "P_N48",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0160",
+   "source": "P_N32",
+   "target": "P_N58",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0161",
+   "source": "P_N55",
+   "target": "P_N40",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0162",
+   "source": "P_N53",
+   "target": "P_N40",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0163",
+   "source": "P_N09",
+   "target": "P_N23",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0164",
+   "source": "P_N34",
+   "target": "P_N49",
+   "type": "tenure",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_TENURE",
+   "facts": []
+  },
+  {
+   "id": "GE0165",
+   "source": "P_N38",
+   "target": "P_N20",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0166",
+   "source": "P_N01",
+   "target": "P_N07",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0167",
+   "source": "P_N56",
+   "target": "P_N53",
+   "type": "board",
+   "evidence": "FIXTURE overlap",
+   "rule_id": "K1_BOARD",
+   "facts": []
+  },
+  {
+   "id": "GE0168",
+   "source": "P_S2",
+   "target": "P_N03",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 2,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0169",
+   "source": "P_S1",
+   "target": "P_N05",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 4,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0170",
+   "source": "P_S1",
+   "target": "P_N48",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 2,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0171",
+   "source": "P_S2",
+   "target": "P_N42",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 4,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0172",
+   "source": "P_S2",
+   "target": "P_N16",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 4,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0173",
+   "source": "P_S2",
+   "target": "P_N59",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 2,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0174",
+   "source": "P_S3",
+   "target": "P_N25",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 3,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0175",
+   "source": "P_S4",
+   "target": "P_N57",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 4,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0176",
+   "source": "P_S1",
+   "target": "P_N15",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 2,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0177",
+   "source": "P_S1",
+   "target": "P_N21",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 1,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0178",
+   "source": "P_S2",
+   "target": "P_N37",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 2,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0179",
+   "source": "P_S1",
+   "target": "P_N04",
+   "type": "crm",
+   "evidence": "FIXTURE positive meetings",
+   "rule_id": "K3_CRM",
+   "facts": [
+    {
+     "label": "Meetings (24 months)",
+     "value": 1,
+     "fmt": "int",
+     "rule_id": "K3_CRM"
+    }
+   ]
+  },
+  {
+   "id": "GE0180",
+   "source": "C_K10",
+   "target": "O_S1",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0181",
+   "source": "C_T5",
+   "target": "O_S1",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0182",
+   "source": "O_S3",
+   "target": "O_S1",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0183",
+   "source": "O_S4",
+   "target": "O_S1",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0184",
+   "source": "O_S5",
+   "target": "O_S1",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0185",
+   "source": "P_C3",
+   "target": "O_NW",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0186",
+   "source": "P_D1",
+   "target": "O_NW",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  },
+  {
+   "id": "GE0187",
+   "source": "P_D3",
+   "target": "O_NW",
+   "type": "employment",
+   "evidence": "FIXTURE link so no node is isolated",
+   "rule_id": "EMPLOYMENT",
+   "facts": []
+  }
+ ]
+}

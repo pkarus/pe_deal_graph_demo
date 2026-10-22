@@ -1,0 +1,14 @@
+{
+ "schema_version": "1",
+ "source": "FIXTURE",
+ "generated_at": "2000-01-01T00:00:00+00:00",
+ "as_of_date": "2000-01-01",
+ "customer_display_name": "FIXTURE Capital",
+ "fund_name": "Fixture Fund IV",
+ "relationalai_version": null,
+ "engine": null,
+ "counts": {
+  "pipeline_companies": 99,
+  "market_companies": 999
+ }
+}

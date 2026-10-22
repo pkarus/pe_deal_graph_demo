@@ -19,6 +19,9 @@ Conventions
 - Identity: every source concept is identified by its source primary key as ``id`` (String).
   Company, Sponsor and Intermediary share one ``Organization.id`` space (C*, S*, I* prefixes
   never collide), so polymorphic org_id columns resolve with Organization.filter_by(id=...).
+  filter_by is deprecated in relationalai 1.27.1 and constrains the concept's base variable; the
+  bindings below are safe because each statement uses each concept once. New code should use
+  Concept.lookup(id=...) (a fresh ref) or explicit Concept.ref() variables instead of copying this.
 - Money is USD millions (``*_musd``, Float). Percentages are 0-100 Floats (``*_pct``).
 - BOOLEAN columns are unary flags (``Company.is_public()``, ``Role.is_founder()``).
 - Nullable columns are bound in separate define() calls so a NULL never drops the entity.
@@ -427,7 +430,7 @@ Company.closest_intermediary = model.Property(f"{Company} is closest to {Interme
 Company.closest_intermediary_evidence = model.Property(f"{Company} links to its intermediary by {String:closest_intermediary_evidence}")  # R09
 Person.seed_hops = model.Property(f"{Person:seed} reaches {Person:person} in {Integer:hops} hops")  # R10 distance(from_=OurSeed)
 Person.nearest_seed_hops = model.Property(f"{Person} is {Integer:nearest_seed_hops} hops from our nearest seed")  # R10 min over seeds
-Person.dm_hops = model.Property(f"{Person:decision_maker} is {Integer:hops} hops from {Person:person}")  # R10 distance(from_=decision-makers)
+Person.dm_hops = model.Property(f"{Person:decision_maker} reaches {Person:person} in {Integer:dm_hops} hops")  # R10 distance(from_=decision-makers); hops last so (decision_maker, person) is the key
 DecisionMaker.hops = model.Property(f"{DecisionMaker} is {Integer:hops} hops from our nearest seed")  # R10 absent if unreachable
 DecisionMaker.is_cold = model.Relationship(f"{DecisionMaker} has no path within 3 hops")  # R10
 WarmPath = model.Concept("WarmPath", identify_by={"target": Company, "decision_maker": Person, "route": String})  # R10 route = person ids joined by '>'
@@ -458,7 +461,7 @@ CoverageGap = model.Concept("CoverageGap", extends=[Intermediary])  # R09 top-de
 
 # ---- 3.6 Conflict and concentration (R09 rules, R10 graph) ---------------------------------
 ConflictSubject = model.Concept("ConflictSubject", extends=[Company])  # R09 pipeline stage 'IOI prep' or 'IOI Submitted'
-Company.commercial_hops = model.Property(f"{Company:subject} is {Integer:hops} commercial links from {Company:company}")  # R10 distance(from_=ConflictSubject)
+Company.commercial_hops = model.Property(f"{Company:subject} reaches {Company:company} in {Integer:commercial_hops} commercial links")  # R10 distance(from_=ConflictSubject); hops last so (subject, company) is the key
 PortfolioExposure = model.Concept("PortfolioExposure", identify_by={"subject": Company, "company": Company})  # R09 holdings within 2 links
 PortfolioExposure.fund = model.Property(f"{PortfolioExposure} is held by {Fund:fund}")  # R09
 PortfolioExposure.hops = model.Property(f"{PortfolioExposure} is {Integer:hops} links away")  # R09 1 or 2

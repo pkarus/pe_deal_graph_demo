@@ -1,0 +1,521 @@
+{
+ "question_id": "Q-PATH",
+ "business_question": "FIXTURE. For the top three, what is our warmest path to the CEO, and through whom?",
+ "max_hops": 3,
+ "seeds": [
+  {
+   "person_id": "P_S1",
+   "name": "FIXTURE Seed Person One",
+   "title": "Operating Partner"
+  },
+  {
+   "person_id": "P_S2",
+   "name": "FIXTURE Seed Person Two",
+   "title": "Principal"
+  },
+  {
+   "person_id": "P_S3",
+   "name": "FIXTURE Seed Person Three",
+   "title": "Managing Director"
+  },
+  {
+   "person_id": "P_S4",
+   "name": "FIXTURE Seed Person Four",
+   "title": "Managing Partner"
+  }
+ ],
+ "tie_types": [
+  {
+   "id": "K1",
+   "label": "Tenure overlap",
+   "rule_id": "K1_TENURE"
+  },
+  {
+   "id": "K2",
+   "label": "Deal co-participation",
+   "rule_id": "K2_DEAL"
+  },
+  {
+   "id": "K3",
+   "label": "Positive CRM contact",
+   "rule_id": "K3_CRM"
+  }
+ ],
+ "targets": [
+  {
+   "company_id": "C_T1",
+   "company_name": "FIXTURE Target Alpha",
+   "score_rank": 1,
+   "owner_name": "FIXTURE Sponsor Alpha",
+   "status": "warm",
+   "summary": "FIXTURE. CEO reachable in three hops through two bankers.",
+   "decision_makers": [
+    {
+     "person_id": "P_C1",
+     "name": "FIXTURE CEO Alpha",
+     "kind": "CEO",
+     "role_label": "CEO",
+     "status": "warm",
+     "hops": 3,
+     "best_strength": 0.111,
+     "summary": "FIXTURE. Three hops through two bankers.",
+     "paths": [
+      {
+       "path_id": "T1-1",
+       "rank": 1,
+       "length": 3,
+       "strength": 0.111,
+       "node_ids": [
+        "P_S2",
+        "P_M2",
+        "P_M3",
+        "P_C1"
+       ],
+       "hops": [
+        {
+         "edge_id": "PE3",
+         "from_id": "P_S2",
+         "from_name": "FIXTURE Seed Person Two",
+         "to_id": "P_M2",
+         "to_name": "FIXTURE Bridge Banker",
+         "tie_type": "K1",
+         "org_id": "O_B1",
+         "org_name": "FIXTURE Bank One",
+         "start_date": "2001-01-01",
+         "end_date": "2004-01-01",
+         "years": 3.0,
+         "recency": 0.7,
+         "strength": 0.333,
+         "evidence": "FIXTURE. Overlapped at FIXTURE Bank One, 2001-01-01 to 2004-01-01.",
+         "rule_id": "K1_TENURE"
+        },
+        {
+         "edge_id": "PE4",
+         "from_id": "P_M2",
+         "from_name": "FIXTURE Bridge Banker",
+         "to_id": "P_M3",
+         "to_name": "FIXTURE Bridge Banker MD",
+         "tie_type": "K1",
+         "org_id": "O_I2",
+         "org_name": "FIXTURE Boutique Two",
+         "start_date": "2005-01-01",
+         "end_date": "2010-01-01",
+         "years": 5.0,
+         "recency": 1.0,
+         "strength": 0.555,
+         "evidence": "FIXTURE. Overlapped at FIXTURE Boutique Two, 2005-01-01 to 2010-01-01.",
+         "rule_id": "K1_TENURE"
+        },
+        {
+         "edge_id": "PE5",
+         "from_id": "P_M3",
+         "from_name": "FIXTURE Bridge Banker MD",
+         "to_id": "P_C1",
+         "to_name": "FIXTURE CEO Alpha",
+         "tie_type": "K2",
+         "org_id": "O_I2",
+         "org_name": "FIXTURE Boutique Two",
+         "start_date": "2006-06-06",
+         "end_date": null,
+         "years": null,
+         "recency": 1.0,
+         "strength": 0.666,
+         "evidence": "FIXTURE. Worked together at FIXTURE Boutique Two, 2006-06-06 to present.",
+         "rule_id": "K2_DEAL"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "person_id": "P_D1",
+     "name": "FIXTURE Designee Alpha",
+     "kind": "OWNER_DESIGNEE",
+     "role_label": "Board designee, FIXTURE Sponsor Alpha",
+     "status": "cold",
+     "hops": null,
+     "best_strength": null,
+     "summary": "FIXTURE. No path within 3 hops.",
+     "paths": []
+    }
+   ],
+   "rejected_claims": [],
+   "closest_intermediary": null,
+   "next_step": null
+  },
+  {
+   "company_id": "C_T2",
+   "company_name": "FIXTURE Target Bravo",
+   "score_rank": 2,
+   "owner_name": null,
+   "status": "warm",
+   "summary": "FIXTURE. CEO reachable in two hops through a former CFO.",
+   "decision_makers": [
+    {
+     "person_id": "P_C2",
+     "name": "FIXTURE CEO Bravo",
+     "kind": "CEO",
+     "role_label": "CEO",
+     "status": "warm",
+     "hops": 2,
+     "best_strength": 0.222,
+     "summary": "FIXTURE. Two hops through a former CFO.",
+     "paths": [
+      {
+       "path_id": "T2-1",
+       "rank": 1,
+       "length": 2,
+       "strength": 0.222,
+       "node_ids": [
+        "P_S1",
+        "P_M1",
+        "P_C2"
+       ],
+       "hops": [
+        {
+         "edge_id": "PE1",
+         "from_id": "P_S1",
+         "from_name": "FIXTURE Seed Person One",
+         "to_id": "P_M1",
+         "to_name": "FIXTURE Bridge CFO",
+         "tie_type": "K1",
+         "org_id": "C_P1",
+         "org_name": "FIXTURE Portfolio One",
+         "start_date": "2002-02-02",
+         "end_date": "2006-06-06",
+         "years": 4.3,
+         "recency": 1.0,
+         "strength": 0.444,
+         "evidence": "FIXTURE. Overlapped at FIXTURE Portfolio One, 2002-02-02 to 2006-06-06.",
+         "rule_id": "K1_TENURE"
+        },
+        {
+         "edge_id": "PE2",
+         "from_id": "P_M1",
+         "from_name": "FIXTURE Bridge CFO",
+         "to_id": "P_C2",
+         "to_name": "FIXTURE CEO Bravo",
+         "tie_type": "K1",
+         "org_id": "C_T2",
+         "org_name": "FIXTURE Target Bravo",
+         "start_date": "2007-07-07",
+         "end_date": null,
+         "years": 1.3,
+         "recency": 1.0,
+         "strength": 0.5,
+         "evidence": "FIXTURE. Overlapped at FIXTURE Target Bravo, 2007-07-07 to present.",
+         "rule_id": "K1_TENURE"
+        }
+       ]
+      },
+      {
+       "path_id": "T2-2",
+       "rank": 2,
+       "length": 2,
+       "strength": 0.099,
+       "node_ids": [
+        "P_S4",
+        "P_M4",
+        "P_C2"
+       ],
+       "hops": [
+        {
+         "edge_id": "PE6",
+         "from_id": "P_S4",
+         "from_name": "FIXTURE Seed Person Four",
+         "to_id": "P_M4",
+         "to_name": "FIXTURE Stale Director",
+         "tie_type": "K1",
+         "org_id": "O_X9",
+         "org_name": "FIXTURE Old Employer",
+         "start_date": "1990-01-01",
+         "end_date": "1992-01-01",
+         "years": 2.0,
+         "recency": 0.4,
+         "strength": 0.3,
+         "evidence": "FIXTURE. Overlapped at FIXTURE Old Employer, 1990-01-01 to 1992-01-01.",
+         "rule_id": "K1_TENURE"
+        },
+        {
+         "edge_id": "PE7",
+         "from_id": "P_M4",
+         "from_name": "FIXTURE Stale Director",
+         "to_id": "P_C2",
+         "to_name": "FIXTURE CEO Bravo",
+         "tie_type": "K1",
+         "org_id": "C_T2",
+         "org_name": "FIXTURE Target Bravo",
+         "start_date": "2008-08-08",
+         "end_date": null,
+         "years": 3.7,
+         "recency": 1.0,
+         "strength": 0.33,
+         "evidence": "FIXTURE. Overlapped at FIXTURE Target Bravo, 2008-08-08 to present.",
+         "rule_id": "K1_TENURE"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "rejected_claims": [],
+   "closest_intermediary": null,
+   "next_step": null
+  },
+  {
+   "company_id": "C_T3",
+   "company_name": "FIXTURE Target Charlie",
+   "score_rank": 3,
+   "owner_name": "FIXTURE Sponsor Charlie",
+   "status": "cold",
+   "summary": "FIXTURE. Cold to the CEO and to the owner's designee.",
+   "decision_makers": [
+    {
+     "person_id": "P_C3",
+     "name": "FIXTURE CEO Charlie",
+     "kind": "CEO",
+     "role_label": "CEO",
+     "status": "cold",
+     "hops": null,
+     "best_strength": null,
+     "summary": "FIXTURE. No path within 3 hops.",
+     "paths": []
+    },
+    {
+     "person_id": "P_D3",
+     "name": "FIXTURE Designee Charlie",
+     "kind": "OWNER_DESIGNEE",
+     "role_label": "Board designee, FIXTURE Sponsor Charlie",
+     "status": "cold",
+     "hops": null,
+     "best_strength": null,
+     "summary": "FIXTURE. No path within 3 hops.",
+     "paths": []
+    }
+   ],
+   "rejected_claims": [
+    {
+     "edge_id": "PE8",
+     "from_id": "P_S3",
+     "from_name": "FIXTURE Seed Person Three",
+     "to_id": "P_C3",
+     "to_name": "FIXTURE CEO Charlie",
+     "org_name": "FIXTURE Shared Employer",
+     "claim": "FIXTURE. A shared-employer join says these two know each other.",
+     "reason": "FIXTURE. Same employer, never at the same time.",
+     "intervals": [
+      {
+       "person_id": "P_S3",
+       "name": "FIXTURE Seed Person Three",
+       "start_date": "1990-01-01",
+       "end_date": "1991-01-01"
+      },
+      {
+       "person_id": "P_C3",
+       "name": "FIXTURE CEO Charlie",
+       "start_date": "1995-01-01",
+       "end_date": "1999-01-01"
+      }
+     ],
+     "gap_days": 1461,
+     "rule_id": "SHARED_EMPLOYER_REJECT"
+    }
+   ],
+   "closest_intermediary": {
+    "org_id": "O_I1",
+    "name": "FIXTURE Boutique Gap",
+    "evidence": "FIXTURE. Engaged on this company and advised its last recap.",
+    "rule_id": "CLOSEST_INTERMEDIARY"
+   },
+   "next_step": {
+    "label": "Open deal flow at FIXTURE Boutique Gap",
+    "view": "flow",
+    "node_id": "O_I1"
+   }
+  }
+ ],
+ "view_graph": {
+  "nodes": [
+   {
+    "id": "P_S1",
+    "label": "FIXTURE Seed Person One",
+    "type": "person",
+    "x": 0,
+    "y": -300,
+    "tags": [
+     "our_person"
+    ]
+   },
+   {
+    "id": "P_S2",
+    "label": "FIXTURE Seed Person Two",
+    "type": "person",
+    "x": 0,
+    "y": -100,
+    "tags": [
+     "our_person"
+    ]
+   },
+   {
+    "id": "P_S3",
+    "label": "FIXTURE Seed Person Three",
+    "type": "person",
+    "x": 0,
+    "y": 100,
+    "tags": [
+     "our_person"
+    ]
+   },
+   {
+    "id": "P_S4",
+    "label": "FIXTURE Seed Person Four",
+    "type": "person",
+    "x": 0,
+    "y": 300,
+    "tags": [
+     "our_person"
+    ]
+   },
+   {
+    "id": "P_M1",
+    "label": "FIXTURE Bridge CFO",
+    "type": "person",
+    "x": 350,
+    "y": -300,
+    "tags": []
+   },
+   {
+    "id": "P_M2",
+    "label": "FIXTURE Bridge Banker",
+    "type": "person",
+    "x": 300,
+    "y": -100,
+    "tags": []
+   },
+   {
+    "id": "P_M3",
+    "label": "FIXTURE Bridge Banker MD",
+    "type": "person",
+    "x": 600,
+    "y": -100,
+    "tags": []
+   },
+   {
+    "id": "P_M4",
+    "label": "FIXTURE Stale Director",
+    "type": "person",
+    "x": 350,
+    "y": 300,
+    "tags": []
+   },
+   {
+    "id": "P_C1",
+    "label": "FIXTURE CEO Alpha",
+    "type": "person",
+    "x": 900,
+    "y": -100,
+    "tags": [
+     "path_target"
+    ]
+   },
+   {
+    "id": "P_C2",
+    "label": "FIXTURE CEO Bravo",
+    "type": "person",
+    "x": 700,
+    "y": -300,
+    "tags": [
+     "path_target"
+    ]
+   },
+   {
+    "id": "P_C3",
+    "label": "FIXTURE CEO Charlie",
+    "type": "person",
+    "x": 900,
+    "y": 150,
+    "tags": [
+     "path_target"
+    ]
+   },
+   {
+    "id": "P_D1",
+    "label": "FIXTURE Designee Alpha",
+    "type": "person",
+    "x": 900,
+    "y": -220,
+    "tags": [
+     "path_target"
+    ]
+   },
+   {
+    "id": "P_D3",
+    "label": "FIXTURE Designee Charlie",
+    "type": "person",
+    "x": 900,
+    "y": 300,
+    "tags": [
+     "path_target"
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "PE1",
+    "source": "P_S1",
+    "target": "P_M1",
+    "type": "tenure",
+    "label": "FIXTURE tie"
+   },
+   {
+    "id": "PE2",
+    "source": "P_M1",
+    "target": "P_C2",
+    "type": "tenure",
+    "label": "FIXTURE tie"
+   },
+   {
+    "id": "PE3",
+    "source": "P_S2",
+    "target": "P_M2",
+    "type": "tenure",
+    "label": "FIXTURE tie"
+   },
+   {
+    "id": "PE4",
+    "source": "P_M2",
+    "target": "P_M3",
+    "type": "tenure",
+    "label": "FIXTURE tie"
+   },
+   {
+    "id": "PE5",
+    "source": "P_M3",
+    "target": "P_C1",
+    "type": "deal",
+    "label": "FIXTURE tie"
+   },
+   {
+    "id": "PE6",
+    "source": "P_S4",
+    "target": "P_M4",
+    "type": "tenure",
+    "label": "FIXTURE tie"
+   },
+   {
+    "id": "PE7",
+    "source": "P_M4",
+    "target": "P_C2",
+    "type": "tenure",
+    "label": "FIXTURE tie"
+   },
+   {
+    "id": "PE8",
+    "source": "P_S3",
+    "target": "P_C3",
+    "type": "rejected",
+    "label": "FIXTURE shared employer"
+   }
+  ]
+ }
+}

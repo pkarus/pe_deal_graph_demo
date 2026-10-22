@@ -1,0 +1,8 @@
+{
+ "_note": "R16 FIXTURE overlay, deep-merged into tests/fixtures/exports/meta.json by build_script.py --fixture. Keys R13 must also export.",
+ "act_order": ["Q-SCORE", "Q-PATH", "Q-FLOW", "Q-CONFLICT"],
+ "counts": {
+  "pipeline_companies": 222,
+  "market_companies": 1111
+ }
+}

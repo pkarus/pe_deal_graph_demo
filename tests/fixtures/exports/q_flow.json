@@ -1,0 +1,1347 @@
+{
+ "question_id": "Q-FLOW",
+ "business_question": "FIXTURE. Which intermediaries control deal flow in our sectors, and where is coverage weakest?",
+ "window": {
+  "start": "1996-01-01",
+  "end": "2000-01-01"
+ },
+ "graph_stats": {
+  "num_nodes": 31,
+  "num_edges": 70,
+  "num_intermediaries": 8
+ },
+ "thresholds": {
+  "top_decile_cutoff_rank": 1,
+  "q1_touchpoints": 1
+ },
+ "intermediaries": [
+  {
+   "org_id": "O_I1",
+   "name": "FIXTURE Boutique Gap",
+   "betweenness": 112.213,
+   "betweenness_rank": 1,
+   "pagerank": 0.08571,
+   "deals_in_window": 7,
+   "deals_5y_all_sectors": 8,
+   "touchpoints_24m": 1,
+   "top_decile": true,
+   "is_gap": true,
+   "gap_reason": "FIXTURE. Top decile by centrality, bottom quartile by touchpoints.",
+   "deal_ids": [
+    "TX01",
+    "TX06",
+    "TX09",
+    "TX11",
+    "TX16",
+    "TX17",
+    "TX21"
+   ]
+  },
+  {
+   "org_id": "O_I2",
+   "name": "FIXTURE Boutique Two",
+   "betweenness": 25.073,
+   "betweenness_rank": 2,
+   "pagerank": 0.04286,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 9,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "TX04",
+    "TX12",
+    "TX20"
+   ]
+  },
+  {
+   "org_id": "O_I4",
+   "name": "FIXTURE Regional Bank",
+   "betweenness": 24.989,
+   "betweenness_rank": 3,
+   "pagerank": 0.04286,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 4,
+   "touchpoints_24m": 0,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "TX02",
+    "TX10",
+    "TX18"
+   ]
+  },
+  {
+   "org_id": "O_I3",
+   "name": "FIXTURE Big Bank",
+   "betweenness": 23.017,
+   "betweenness_rank": 4,
+   "pagerank": 0.04286,
+   "deals_in_window": 3,
+   "deals_5y_all_sectors": 43,
+   "touchpoints_24m": 8,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "TX07",
+    "TX15",
+    "TX23"
+   ]
+  },
+  {
+   "org_id": "O_I8",
+   "name": "FIXTURE Advisor Eight",
+   "betweenness": 17.765,
+   "betweenness_rank": 5,
+   "pagerank": 0.02857,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 2,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "TX14",
+    "TX22"
+   ]
+  },
+  {
+   "org_id": "O_I6",
+   "name": "FIXTURE Broker Six",
+   "betweenness": 16.224,
+   "betweenness_rank": 6,
+   "pagerank": 0.02857,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 0,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "TX08",
+    "TX24"
+   ]
+  },
+  {
+   "org_id": "O_I5",
+   "name": "FIXTURE Broker Five",
+   "betweenness": 9.492,
+   "betweenness_rank": 7,
+   "pagerank": 0.02857,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 3,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "TX05",
+    "TX13"
+   ]
+  },
+  {
+   "org_id": "O_I7",
+   "name": "FIXTURE Advisor Seven",
+   "betweenness": 8.151,
+   "betweenness_rank": 8,
+   "pagerank": 0.02857,
+   "deals_in_window": 2,
+   "deals_5y_all_sectors": 3,
+   "touchpoints_24m": 5,
+   "top_decile": false,
+   "is_gap": false,
+   "gap_reason": null,
+   "deal_ids": [
+    "TX03",
+    "TX19"
+   ]
+  }
+ ],
+ "deals": [
+  {
+   "txn_id": "TX01",
+   "close_date": "2001-01-15",
+   "target_id": "C_F01",
+   "target_name": "FIXTURE Deal Co Alpha",
+   "buyer_name": "FIXTURE Sponsor Alpha",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I1"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Gap"
+   ],
+   "edge_ids": [
+    "FE_O_I1_C_F01",
+    "FE_O_I1_O_S1",
+    "FE_O_S1_C_F01"
+   ]
+  },
+  {
+   "txn_id": "TX02",
+   "close_date": "2001-02-15",
+   "target_id": "C_F02",
+   "target_name": "FIXTURE Deal Co Bravo",
+   "buyer_name": "FIXTURE Sponsor Bravo",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I4"
+   ],
+   "advisor_names": [
+    "FIXTURE Regional Bank"
+   ],
+   "edge_ids": [
+    "FE_O_I4_C_F02",
+    "FE_O_I4_O_S2",
+    "FE_O_S2_C_F02"
+   ]
+  },
+  {
+   "txn_id": "TX03",
+   "close_date": "2001-03-15",
+   "target_id": "C_F03",
+   "target_name": "FIXTURE Deal Co Charlie",
+   "buyer_name": "FIXTURE Sponsor Charlie",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I7"
+   ],
+   "advisor_names": [
+    "FIXTURE Advisor Seven"
+   ],
+   "edge_ids": [
+    "FE_O_I7_C_F03",
+    "FE_O_I7_O_S3",
+    "FE_O_S3_C_F03"
+   ]
+  },
+  {
+   "txn_id": "TX04",
+   "close_date": "2001-04-15",
+   "target_id": "C_F04",
+   "target_name": "FIXTURE Deal Co Delta",
+   "buyer_name": "FIXTURE Sponsor Delta",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I2"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Two"
+   ],
+   "edge_ids": [
+    "FE_O_I2_C_F04",
+    "FE_O_I2_O_S4",
+    "FE_O_S4_C_F04"
+   ]
+  },
+  {
+   "txn_id": "TX05",
+   "close_date": "2001-05-15",
+   "target_id": "C_F05",
+   "target_name": "FIXTURE Deal Co Echo",
+   "buyer_name": "FIXTURE Sponsor Echo",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I5"
+   ],
+   "advisor_names": [
+    "FIXTURE Broker Five"
+   ],
+   "edge_ids": [
+    "FE_O_I5_C_F05",
+    "FE_O_I5_O_S5",
+    "FE_O_S5_C_F05"
+   ]
+  },
+  {
+   "txn_id": "TX06",
+   "close_date": "2001-06-15",
+   "target_id": "C_F06",
+   "target_name": "FIXTURE Deal Co Foxtrot",
+   "buyer_name": "FIXTURE Sponsor Foxtrot",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I1"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Gap"
+   ],
+   "edge_ids": [
+    "FE_O_I1_C_F06",
+    "FE_O_I1_O_S6",
+    "FE_O_S6_C_F06"
+   ]
+  },
+  {
+   "txn_id": "TX07",
+   "close_date": "2001-07-15",
+   "target_id": "C_F07",
+   "target_name": "FIXTURE Deal Co Golf",
+   "buyer_name": "FIXTURE Sponsor Alpha",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I3"
+   ],
+   "advisor_names": [
+    "FIXTURE Big Bank"
+   ],
+   "edge_ids": [
+    "FE_O_I3_C_F07",
+    "FE_O_I3_O_S1",
+    "FE_O_S1_C_F07"
+   ]
+  },
+  {
+   "txn_id": "TX08",
+   "close_date": "2001-08-15",
+   "target_id": "C_F08",
+   "target_name": "FIXTURE Deal Co Hotel",
+   "buyer_name": "FIXTURE Sponsor Bravo",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I6"
+   ],
+   "advisor_names": [
+    "FIXTURE Broker Six"
+   ],
+   "edge_ids": [
+    "FE_O_I6_C_F08",
+    "FE_O_I6_O_S2",
+    "FE_O_S2_C_F08"
+   ]
+  },
+  {
+   "txn_id": "TX09",
+   "close_date": "2001-09-15",
+   "target_id": "C_F09",
+   "target_name": "FIXTURE Deal Co India",
+   "buyer_name": "FIXTURE Sponsor Charlie",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I1"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Gap"
+   ],
+   "edge_ids": [
+    "FE_O_I1_C_F09",
+    "FE_O_I1_O_S3",
+    "FE_O_S3_C_F09"
+   ]
+  },
+  {
+   "txn_id": "TX10",
+   "close_date": "2001-10-15",
+   "target_id": "C_F10",
+   "target_name": "FIXTURE Deal Co Juliet",
+   "buyer_name": "FIXTURE Sponsor Delta",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I4"
+   ],
+   "advisor_names": [
+    "FIXTURE Regional Bank"
+   ],
+   "edge_ids": [
+    "FE_O_I4_C_F10",
+    "FE_O_I4_O_S4",
+    "FE_O_S4_C_F10"
+   ]
+  },
+  {
+   "txn_id": "TX11",
+   "close_date": "2001-11-15",
+   "target_id": "C_F11",
+   "target_name": "FIXTURE Deal Co Kilo",
+   "buyer_name": "FIXTURE Sponsor Echo",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I1"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Gap"
+   ],
+   "edge_ids": [
+    "FE_O_I1_C_F11",
+    "FE_O_I1_O_S5",
+    "FE_O_S5_C_F11"
+   ]
+  },
+  {
+   "txn_id": "TX12",
+   "close_date": "2001-12-15",
+   "target_id": "C_F12",
+   "target_name": "FIXTURE Deal Co Lima",
+   "buyer_name": "FIXTURE Sponsor Foxtrot",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I2"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Two"
+   ],
+   "edge_ids": [
+    "FE_O_I2_C_F12",
+    "FE_O_I2_O_S6",
+    "FE_O_S6_C_F12"
+   ]
+  },
+  {
+   "txn_id": "TX13",
+   "close_date": "2001-01-15",
+   "target_id": "C_F13",
+   "target_name": "FIXTURE Deal Co Mike",
+   "buyer_name": "FIXTURE Sponsor Alpha",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I5"
+   ],
+   "advisor_names": [
+    "FIXTURE Broker Five"
+   ],
+   "edge_ids": [
+    "FE_O_I5_C_F13",
+    "FE_O_I5_O_S1",
+    "FE_O_S1_C_F13"
+   ]
+  },
+  {
+   "txn_id": "TX14",
+   "close_date": "2001-02-15",
+   "target_id": "C_F14",
+   "target_name": "FIXTURE Deal Co November",
+   "buyer_name": "FIXTURE Sponsor Bravo",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I8"
+   ],
+   "advisor_names": [
+    "FIXTURE Advisor Eight"
+   ],
+   "edge_ids": [
+    "FE_O_I8_C_F14",
+    "FE_O_I8_O_S2",
+    "FE_O_S2_C_F14"
+   ]
+  },
+  {
+   "txn_id": "TX15",
+   "close_date": "2001-03-15",
+   "target_id": "C_F15",
+   "target_name": "FIXTURE Deal Co Oscar",
+   "buyer_name": "FIXTURE Sponsor Charlie",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I3"
+   ],
+   "advisor_names": [
+    "FIXTURE Big Bank"
+   ],
+   "edge_ids": [
+    "FE_O_I3_C_F15",
+    "FE_O_I3_O_S3",
+    "FE_O_S3_C_F15"
+   ]
+  },
+  {
+   "txn_id": "TX16",
+   "close_date": "2001-04-15",
+   "target_id": "C_F16",
+   "target_name": "FIXTURE Deal Co Papa",
+   "buyer_name": "FIXTURE Sponsor Delta",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I1"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Gap"
+   ],
+   "edge_ids": [
+    "FE_O_I1_C_F16",
+    "FE_O_I1_O_S4",
+    "FE_O_S4_C_F16"
+   ]
+  },
+  {
+   "txn_id": "TX17",
+   "close_date": "2001-05-15",
+   "target_id": "C_T3",
+   "target_name": "FIXTURE Target Charlie",
+   "buyer_name": "FIXTURE Sponsor Charlie",
+   "seller_type": "sponsor",
+   "structure": "dividend_recap",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I1"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Gap"
+   ],
+   "edge_ids": [
+    "FE_O_I1_C_T3",
+    "FE_O_I1_O_S3",
+    "FE_O_S3_C_T3"
+   ]
+  },
+  {
+   "txn_id": "TX18",
+   "close_date": "2001-06-15",
+   "target_id": "C_F01",
+   "target_name": "FIXTURE Deal Co Alpha",
+   "buyer_name": "FIXTURE Sponsor Foxtrot",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I4"
+   ],
+   "advisor_names": [
+    "FIXTURE Regional Bank"
+   ],
+   "edge_ids": [
+    "FE_O_I4_C_F01",
+    "FE_O_I4_O_S6",
+    "FE_O_S6_C_F01"
+   ]
+  },
+  {
+   "txn_id": "TX19",
+   "close_date": "2001-07-15",
+   "target_id": "C_F02",
+   "target_name": "FIXTURE Deal Co Bravo",
+   "buyer_name": "FIXTURE Sponsor Alpha",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I7"
+   ],
+   "advisor_names": [
+    "FIXTURE Advisor Seven"
+   ],
+   "edge_ids": [
+    "FE_O_I7_C_F02",
+    "FE_O_I7_O_S1",
+    "FE_O_S1_C_F02"
+   ]
+  },
+  {
+   "txn_id": "TX20",
+   "close_date": "2001-08-15",
+   "target_id": "C_F03",
+   "target_name": "FIXTURE Deal Co Charlie",
+   "buyer_name": "FIXTURE Sponsor Bravo",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I2"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Two"
+   ],
+   "edge_ids": [
+    "FE_O_I2_C_F03",
+    "FE_O_I2_O_S2",
+    "FE_O_S2_C_F03"
+   ]
+  },
+  {
+   "txn_id": "TX21",
+   "close_date": "2001-09-15",
+   "target_id": "C_F04",
+   "target_name": "FIXTURE Deal Co Delta",
+   "buyer_name": "FIXTURE Sponsor Charlie",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I1"
+   ],
+   "advisor_names": [
+    "FIXTURE Boutique Gap"
+   ],
+   "edge_ids": [
+    "FE_O_I1_C_F04",
+    "FE_O_I1_O_S3",
+    "FE_O_S3_C_F04"
+   ]
+  },
+  {
+   "txn_id": "TX22",
+   "close_date": "2001-10-15",
+   "target_id": "C_F05",
+   "target_name": "FIXTURE Deal Co Echo",
+   "buyer_name": "FIXTURE Sponsor Delta",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I8"
+   ],
+   "advisor_names": [
+    "FIXTURE Advisor Eight"
+   ],
+   "edge_ids": [
+    "FE_O_I8_C_F05",
+    "FE_O_I8_O_S4",
+    "FE_O_S4_C_F05"
+   ]
+  },
+  {
+   "txn_id": "TX23",
+   "close_date": "2001-11-15",
+   "target_id": "C_F06",
+   "target_name": "FIXTURE Deal Co Foxtrot",
+   "buyer_name": "FIXTURE Sponsor Echo",
+   "seller_type": "sponsor",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I3"
+   ],
+   "advisor_names": [
+    "FIXTURE Big Bank"
+   ],
+   "edge_ids": [
+    "FE_O_I3_C_F06",
+    "FE_O_I3_O_S5",
+    "FE_O_S5_C_F06"
+   ]
+  },
+  {
+   "txn_id": "TX24",
+   "close_date": "2001-12-15",
+   "target_id": "C_F07",
+   "target_name": "FIXTURE Deal Co Golf",
+   "buyer_name": "FIXTURE Sponsor Foxtrot",
+   "seller_type": "founder_family",
+   "structure": "control_buyout",
+   "deal_role": "platform",
+   "advisor_ids": [
+    "O_I6"
+   ],
+   "advisor_names": [
+    "FIXTURE Broker Six"
+   ],
+   "edge_ids": [
+    "FE_O_I6_C_F07",
+    "FE_O_I6_O_S6",
+    "FE_O_S6_C_F07"
+   ]
+  }
+ ],
+ "view_graph": {
+  "nodes": [
+   {
+    "id": "C_F01",
+    "label": "FIXTURE Deal Co Alpha",
+    "type": "company",
+    "x": 31.86,
+    "y": 45.31,
+    "tags": []
+   },
+   {
+    "id": "C_F02",
+    "label": "FIXTURE Deal Co Bravo",
+    "type": "company",
+    "x": 62.76,
+    "y": 296.91,
+    "tags": []
+   },
+   {
+    "id": "C_F03",
+    "label": "FIXTURE Deal Co Charlie",
+    "type": "company",
+    "x": -316.3,
+    "y": -47.63,
+    "tags": []
+   },
+   {
+    "id": "C_F04",
+    "label": "FIXTURE Deal Co Delta",
+    "type": "company",
+    "x": -315.55,
+    "y": -258.09,
+    "tags": []
+   },
+   {
+    "id": "C_F05",
+    "label": "FIXTURE Deal Co Echo",
+    "type": "company",
+    "x": 361.61,
+    "y": 287.39,
+    "tags": []
+   },
+   {
+    "id": "C_F06",
+    "label": "FIXTURE Deal Co Foxtrot",
+    "type": "company",
+    "x": 224.0,
+    "y": -283.55,
+    "tags": []
+   },
+   {
+    "id": "C_F07",
+    "label": "FIXTURE Deal Co Golf",
+    "type": "company",
+    "x": 215.36,
+    "y": 97.4,
+    "tags": []
+   },
+   {
+    "id": "C_F08",
+    "label": "FIXTURE Deal Co Hotel",
+    "type": "company",
+    "x": -350.13,
+    "y": 899.66,
+    "tags": []
+   },
+   {
+    "id": "C_F09",
+    "label": "FIXTURE Deal Co India",
+    "type": "company",
+    "x": -220.74,
+    "y": -794.13,
+    "tags": []
+   },
+   {
+    "id": "C_F10",
+    "label": "FIXTURE Deal Co Juliet",
+    "type": "company",
+    "x": -623.76,
+    "y": 465.19,
+    "tags": []
+   },
+   {
+    "id": "C_F11",
+    "label": "FIXTURE Deal Co Kilo",
+    "type": "company",
+    "x": 518.55,
+    "y": -576.51,
+    "tags": []
+   },
+   {
+    "id": "C_F12",
+    "label": "FIXTURE Deal Co Lima",
+    "type": "company",
+    "x": -747.83,
+    "y": 47.26,
+    "tags": []
+   },
+   {
+    "id": "C_F13",
+    "label": "FIXTURE Deal Co Mike",
+    "type": "company",
+    "x": 951.64,
+    "y": 28.39,
+    "tags": []
+   },
+   {
+    "id": "C_F14",
+    "label": "FIXTURE Deal Co November",
+    "type": "company",
+    "x": -110.17,
+    "y": 1000.0,
+    "tags": []
+   },
+   {
+    "id": "C_F15",
+    "label": "FIXTURE Deal Co Oscar",
+    "type": "company",
+    "x": 289.68,
+    "y": -846.69,
+    "tags": []
+   },
+   {
+    "id": "C_F16",
+    "label": "FIXTURE Deal Co Papa",
+    "type": "company",
+    "x": -455.57,
+    "y": -315.02,
+    "tags": []
+   },
+   {
+    "id": "C_T3",
+    "label": "FIXTURE Target Charlie",
+    "type": "company",
+    "x": -17.68,
+    "y": -848.72,
+    "tags": [
+     "path_target"
+    ]
+   },
+   {
+    "id": "O_I1",
+    "label": "FIXTURE Boutique Gap",
+    "type": "intermediary",
+    "x": 23.1,
+    "y": -344.44,
+    "tags": [
+     "coverage_gap"
+    ]
+   },
+   {
+    "id": "O_I2",
+    "label": "FIXTURE Boutique Two",
+    "type": "intermediary",
+    "x": -494.67,
+    "y": 128.53,
+    "tags": []
+   },
+   {
+    "id": "O_I3",
+    "label": "FIXTURE Big Bank",
+    "type": "intermediary",
+    "x": 347.97,
+    "y": -412.54,
+    "tags": []
+   },
+   {
+    "id": "O_I4",
+    "label": "FIXTURE Regional Bank",
+    "type": "intermediary",
+    "x": -288.31,
+    "y": 342.34,
+    "tags": []
+   },
+   {
+    "id": "O_I5",
+    "label": "FIXTURE Broker Five",
+    "type": "intermediary",
+    "x": 731.69,
+    "y": 92.52,
+    "tags": []
+   },
+   {
+    "id": "O_I6",
+    "label": "FIXTURE Broker Six",
+    "type": "intermediary",
+    "x": -93.99,
+    "y": 518.3,
+    "tags": []
+   },
+   {
+    "id": "O_I7",
+    "label": "FIXTURE Advisor Seven",
+    "type": "intermediary",
+    "x": 40.88,
+    "y": -137.28,
+    "tags": []
+   },
+   {
+    "id": "O_I8",
+    "label": "FIXTURE Advisor Eight",
+    "type": "intermediary",
+    "x": 36.55,
+    "y": 652.06,
+    "tags": []
+   },
+   {
+    "id": "O_S1",
+    "label": "FIXTURE Sponsor Alpha",
+    "type": "sponsor",
+    "x": 405.55,
+    "y": -35.25,
+    "tags": []
+   },
+   {
+    "id": "O_S2",
+    "label": "FIXTURE Sponsor Bravo",
+    "type": "sponsor",
+    "x": -267.4,
+    "y": 543.46,
+    "tags": []
+   },
+   {
+    "id": "O_S3",
+    "label": "FIXTURE Sponsor Charlie",
+    "type": "sponsor",
+    "x": -45.85,
+    "y": -533.28,
+    "tags": []
+   },
+   {
+    "id": "O_S4",
+    "label": "FIXTURE Sponsor Delta",
+    "type": "sponsor",
+    "x": -218.35,
+    "y": 156.41,
+    "tags": []
+   },
+   {
+    "id": "O_S5",
+    "label": "FIXTURE Sponsor Echo",
+    "type": "sponsor",
+    "x": 502.94,
+    "y": -211.73,
+    "tags": []
+   },
+   {
+    "id": "O_S6",
+    "label": "FIXTURE Sponsor Foxtrot",
+    "type": "sponsor",
+    "x": -177.85,
+    "y": 43.73,
+    "tags": []
+   }
+  ],
+  "edges": [
+   {
+    "id": "FE_O_I1_C_F01",
+    "source": "O_I1",
+    "target": "C_F01",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_O_S1",
+    "source": "O_I1",
+    "target": "O_S1",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S1_C_F01",
+    "source": "O_S1",
+    "target": "C_F01",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I4_C_F02",
+    "source": "O_I4",
+    "target": "C_F02",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I4_O_S2",
+    "source": "O_I4",
+    "target": "O_S2",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S2_C_F02",
+    "source": "O_S2",
+    "target": "C_F02",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I7_C_F03",
+    "source": "O_I7",
+    "target": "C_F03",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I7_O_S3",
+    "source": "O_I7",
+    "target": "O_S3",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S3_C_F03",
+    "source": "O_S3",
+    "target": "C_F03",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I2_C_F04",
+    "source": "O_I2",
+    "target": "C_F04",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I2_O_S4",
+    "source": "O_I2",
+    "target": "O_S4",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S4_C_F04",
+    "source": "O_S4",
+    "target": "C_F04",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I5_C_F05",
+    "source": "O_I5",
+    "target": "C_F05",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I5_O_S5",
+    "source": "O_I5",
+    "target": "O_S5",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S5_C_F05",
+    "source": "O_S5",
+    "target": "C_F05",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_C_F06",
+    "source": "O_I1",
+    "target": "C_F06",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_O_S6",
+    "source": "O_I1",
+    "target": "O_S6",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S6_C_F06",
+    "source": "O_S6",
+    "target": "C_F06",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I3_C_F07",
+    "source": "O_I3",
+    "target": "C_F07",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I3_O_S1",
+    "source": "O_I3",
+    "target": "O_S1",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S1_C_F07",
+    "source": "O_S1",
+    "target": "C_F07",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I6_C_F08",
+    "source": "O_I6",
+    "target": "C_F08",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I6_O_S2",
+    "source": "O_I6",
+    "target": "O_S2",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S2_C_F08",
+    "source": "O_S2",
+    "target": "C_F08",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_C_F09",
+    "source": "O_I1",
+    "target": "C_F09",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_O_S3",
+    "source": "O_I1",
+    "target": "O_S3",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S3_C_F09",
+    "source": "O_S3",
+    "target": "C_F09",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I4_C_F10",
+    "source": "O_I4",
+    "target": "C_F10",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I4_O_S4",
+    "source": "O_I4",
+    "target": "O_S4",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S4_C_F10",
+    "source": "O_S4",
+    "target": "C_F10",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_C_F11",
+    "source": "O_I1",
+    "target": "C_F11",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_O_S5",
+    "source": "O_I1",
+    "target": "O_S5",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S5_C_F11",
+    "source": "O_S5",
+    "target": "C_F11",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I2_C_F12",
+    "source": "O_I2",
+    "target": "C_F12",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I2_O_S6",
+    "source": "O_I2",
+    "target": "O_S6",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S6_C_F12",
+    "source": "O_S6",
+    "target": "C_F12",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I5_C_F13",
+    "source": "O_I5",
+    "target": "C_F13",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I5_O_S1",
+    "source": "O_I5",
+    "target": "O_S1",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S1_C_F13",
+    "source": "O_S1",
+    "target": "C_F13",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I8_C_F14",
+    "source": "O_I8",
+    "target": "C_F14",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I8_O_S2",
+    "source": "O_I8",
+    "target": "O_S2",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S2_C_F14",
+    "source": "O_S2",
+    "target": "C_F14",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I3_C_F15",
+    "source": "O_I3",
+    "target": "C_F15",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I3_O_S3",
+    "source": "O_I3",
+    "target": "O_S3",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S3_C_F15",
+    "source": "O_S3",
+    "target": "C_F15",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_C_F16",
+    "source": "O_I1",
+    "target": "C_F16",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_O_S4",
+    "source": "O_I1",
+    "target": "O_S4",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S4_C_F16",
+    "source": "O_S4",
+    "target": "C_F16",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_C_T3",
+    "source": "O_I1",
+    "target": "C_T3",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S3_C_T3",
+    "source": "O_S3",
+    "target": "C_T3",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I4_C_F01",
+    "source": "O_I4",
+    "target": "C_F01",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I4_O_S6",
+    "source": "O_I4",
+    "target": "O_S6",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S6_C_F01",
+    "source": "O_S6",
+    "target": "C_F01",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I7_C_F02",
+    "source": "O_I7",
+    "target": "C_F02",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I7_O_S1",
+    "source": "O_I7",
+    "target": "O_S1",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S1_C_F02",
+    "source": "O_S1",
+    "target": "C_F02",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I2_C_F03",
+    "source": "O_I2",
+    "target": "C_F03",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I2_O_S2",
+    "source": "O_I2",
+    "target": "O_S2",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S2_C_F03",
+    "source": "O_S2",
+    "target": "C_F03",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I1_C_F04",
+    "source": "O_I1",
+    "target": "C_F04",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S3_C_F04",
+    "source": "O_S3",
+    "target": "C_F04",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I8_C_F05",
+    "source": "O_I8",
+    "target": "C_F05",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I8_O_S4",
+    "source": "O_I8",
+    "target": "O_S4",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S4_C_F05",
+    "source": "O_S4",
+    "target": "C_F05",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I3_C_F06",
+    "source": "O_I3",
+    "target": "C_F06",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I3_O_S5",
+    "source": "O_I3",
+    "target": "O_S5",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S5_C_F06",
+    "source": "O_S5",
+    "target": "C_F06",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I6_C_F07",
+    "source": "O_I6",
+    "target": "C_F07",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_I6_O_S6",
+    "source": "O_I6",
+    "target": "O_S6",
+    "type": "deal"
+   },
+   {
+    "id": "FE_O_S6_C_F07",
+    "source": "O_S6",
+    "target": "C_F07",
+    "type": "deal"
+   }
+  ]
+ }
+}

@@ -1,0 +1,472 @@
+{
+ "question_id": "Q-ADDON",
+ "business_question": "FIXTURE. Which add-ons best extend our platform beyond the obvious ones?",
+ "similarity_label": "FIXTURE similarity over customers and suppliers",
+ "platform": {
+  "company_id": "C_P1",
+  "name": "FIXTURE Platform Co",
+  "niche": "FIXTURE Platform Niche",
+  "states": [
+   "XA",
+   "XB"
+  ],
+  "neighbor_count": 9
+ },
+ "candidates": [
+  {
+   "company_id": "C_A1",
+   "name": "FIXTURE Addon Alpha",
+   "niche": "FIXTURE Sibling Niche",
+   "rank": 1,
+   "similarity": 0.4545,
+   "shared_count": 5,
+   "union_count": 11,
+   "neighbor_count": 7,
+   "community": 0,
+   "states": [
+    "XA",
+    "XB",
+    "XC",
+    "XD"
+   ],
+   "whitespace_states": [
+    "XC",
+    "XD"
+   ],
+   "shared_neighbors": [
+    {
+     "company_id": "C_K01",
+     "name": "FIXTURE Customer Alpha",
+     "relation": "customer"
+    },
+    {
+     "company_id": "C_K02",
+     "name": "FIXTURE Customer Bravo",
+     "relation": "customer"
+    },
+    {
+     "company_id": "C_K03",
+     "name": "FIXTURE Customer Charlie",
+     "relation": "customer"
+    },
+    {
+     "company_id": "C_K04",
+     "name": "FIXTURE Customer Delta",
+     "relation": "customer"
+    },
+    {
+     "company_id": "C_K05",
+     "name": "FIXTURE Customer Echo",
+     "relation": "customer"
+    }
+   ],
+   "ebitda_musd": 5.5,
+   "evidence": "FIXTURE. Shares 5 customers with the platform."
+  },
+  {
+   "company_id": "C_A2",
+   "name": "FIXTURE Addon Bravo",
+   "niche": "FIXTURE Other Niche",
+   "rank": 2,
+   "similarity": 0.1818,
+   "shared_count": 2,
+   "union_count": 11,
+   "neighbor_count": 4,
+   "community": 1,
+   "states": [
+    "XA",
+    "XE"
+   ],
+   "whitespace_states": [
+    "XE"
+   ],
+   "shared_neighbors": [
+    {
+     "company_id": "C_K06",
+     "name": "FIXTURE Customer Foxtrot",
+     "relation": "customer"
+    },
+    {
+     "company_id": "C_K07",
+     "name": "FIXTURE Customer Golf",
+     "relation": "customer"
+    }
+   ],
+   "ebitda_musd": 11.0,
+   "evidence": "FIXTURE. Shares 2 customers with the platform."
+  },
+  {
+   "company_id": "C_A3",
+   "name": "FIXTURE Addon Charlie",
+   "niche": "FIXTURE Third Niche",
+   "rank": 3,
+   "similarity": 0.0909,
+   "shared_count": 1,
+   "union_count": 11,
+   "neighbor_count": 3,
+   "community": 2,
+   "states": [
+    "XB",
+    "XF"
+   ],
+   "whitespace_states": [
+    "XF"
+   ],
+   "shared_neighbors": [
+    {
+     "company_id": "C_K08",
+     "name": "FIXTURE Customer Hotel",
+     "relation": "customer"
+    }
+   ],
+   "ebitda_musd": 16.5,
+   "evidence": "FIXTURE. Shares 1 customers with the platform."
+  }
+ ],
+ "excluded": [
+  {
+   "company_id": "C_D1",
+   "name": "FIXTURE Same Niche Co",
+   "reason": "FIXTURE. Same niche, no customer overlap, no new states."
+  }
+ ],
+ "communities": [
+  {
+   "id": 0,
+   "label": "FIXTURE Community Zero",
+   "size": 11
+  },
+  {
+   "id": 1,
+   "label": "FIXTURE Community One",
+   "size": 4
+  },
+  {
+   "id": 2,
+   "label": "FIXTURE Community Two",
+   "size": 3
+  },
+  {
+   "id": 3,
+   "label": "FIXTURE Community Three",
+   "size": 6
+  }
+ ],
+ "view_graph": {
+  "nodes": [
+   {
+    "id": "C_A1",
+    "label": "FIXTURE Addon Alpha",
+    "type": "company",
+    "x": 28.07,
+    "y": -74.21,
+    "tags": [],
+    "community": 0
+   },
+   {
+    "id": "C_A2",
+    "label": "FIXTURE Addon Bravo",
+    "type": "company",
+    "x": 233.22,
+    "y": -630.74,
+    "tags": [],
+    "community": 1
+   },
+   {
+    "id": "C_A3",
+    "label": "FIXTURE Addon Charlie",
+    "type": "company",
+    "x": -373.21,
+    "y": 751.93,
+    "tags": [],
+    "community": 2
+   },
+   {
+    "id": "C_K01",
+    "label": "FIXTURE Customer Alpha",
+    "type": "company",
+    "x": 205.45,
+    "y": -36.22,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K02",
+    "label": "FIXTURE Customer Bravo",
+    "type": "company",
+    "x": -149.26,
+    "y": -103.92,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K03",
+    "label": "FIXTURE Customer Charlie",
+    "type": "company",
+    "x": -172.26,
+    "y": 32.59,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K04",
+    "label": "FIXTURE Customer Delta",
+    "type": "company",
+    "x": 179.76,
+    "y": 105.28,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K05",
+    "label": "FIXTURE Customer Echo",
+    "type": "company",
+    "x": -52.0,
+    "y": 148.05,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K06",
+    "label": "FIXTURE Customer Foxtrot",
+    "type": "company",
+    "x": 196.62,
+    "y": -328.66,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K07",
+    "label": "FIXTURE Customer Golf",
+    "type": "company",
+    "x": 89.46,
+    "y": -360.93,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K08",
+    "label": "FIXTURE Customer Hotel",
+    "type": "company",
+    "x": -188.49,
+    "y": 419.06,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_K09",
+    "label": "FIXTURE Customer India",
+    "type": "company",
+    "x": 177.32,
+    "y": 289.11,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_OWN0",
+    "label": "FIXTURE Own Customer 0",
+    "type": "company",
+    "x": -190.87,
+    "y": -280.46,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_OWN1",
+    "label": "FIXTURE Own Customer 1",
+    "type": "company",
+    "x": 336.38,
+    "y": -120.79,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_OWN2",
+    "label": "FIXTURE Own Customer 2",
+    "type": "company",
+    "x": 210.39,
+    "y": -897.75,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_OWN3",
+    "label": "FIXTURE Own Customer 3",
+    "type": "company",
+    "x": 405.0,
+    "y": -835.45,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_OWN4",
+    "label": "FIXTURE Own Customer 4",
+    "type": "company",
+    "x": -391.18,
+    "y": 1000.0,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_OWN5",
+    "label": "FIXTURE Own Customer 5",
+    "type": "company",
+    "x": -573.16,
+    "y": 898.82,
+    "tags": [],
+    "community": 3
+   },
+   {
+    "id": "C_P1",
+    "label": "FIXTURE Platform Co",
+    "type": "company",
+    "x": 28.77,
+    "y": 24.3,
+    "tags": [
+     "platform"
+    ],
+    "community": 0
+   }
+  ],
+  "edges": [
+   {
+    "id": "AE_C_A1_C_K01",
+    "source": "C_A1",
+    "target": "C_K01",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A1_C_K02",
+    "source": "C_A1",
+    "target": "C_K02",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A1_C_K03",
+    "source": "C_A1",
+    "target": "C_K03",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A1_C_K04",
+    "source": "C_A1",
+    "target": "C_K04",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A1_C_K05",
+    "source": "C_A1",
+    "target": "C_K05",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A1_C_OWN0",
+    "source": "C_A1",
+    "target": "C_OWN0",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A1_C_OWN1",
+    "source": "C_A1",
+    "target": "C_OWN1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A2_C_K06",
+    "source": "C_A2",
+    "target": "C_K06",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A2_C_K07",
+    "source": "C_A2",
+    "target": "C_K07",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A2_C_OWN2",
+    "source": "C_A2",
+    "target": "C_OWN2",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A2_C_OWN3",
+    "source": "C_A2",
+    "target": "C_OWN3",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A3_C_K08",
+    "source": "C_A3",
+    "target": "C_K08",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A3_C_OWN4",
+    "source": "C_A3",
+    "target": "C_OWN4",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_A3_C_OWN5",
+    "source": "C_A3",
+    "target": "C_OWN5",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K01_C_P1",
+    "source": "C_K01",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K02_C_P1",
+    "source": "C_K02",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K03_C_P1",
+    "source": "C_K03",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K04_C_P1",
+    "source": "C_K04",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K05_C_P1",
+    "source": "C_K05",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K06_C_P1",
+    "source": "C_K06",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K07_C_P1",
+    "source": "C_K07",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K08_C_P1",
+    "source": "C_K08",
+    "target": "C_P1",
+    "type": "commercial"
+   },
+   {
+    "id": "AE_C_K09_C_P1",
+    "source": "C_K09",
+    "target": "C_P1",
+    "type": "commercial"
+   }
+  ]
+ }
+}

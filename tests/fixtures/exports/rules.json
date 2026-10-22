@@ -1,0 +1,305 @@
+{
+ "rules": [
+  {
+   "id": "SECTOR_CLOSURE",
+   "name": "Sector hierarchy closure",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE",
+    "Q-FLOW"
+   ],
+   "docstring": "FIXTURE. A niche is in the thesis when one of its ancestors is a fund focus area and none is excluded.",
+   "source": "pe_deal_graph/model/rules.py::sector_closure"
+  },
+  {
+   "id": "FIT_THESIS",
+   "name": "Thesis fit",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. Eligible companies earn thesis points.",
+   "source": "pe_deal_graph/model/rules.py::fit_thesis"
+  },
+  {
+   "id": "FIT_EBITDA",
+   "name": "EBITDA band",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. Points when EBITDA sits in the core band.",
+   "source": "pe_deal_graph/model/rules.py::fit_ebitda"
+  },
+  {
+   "id": "FIT_MARGIN",
+   "name": "Margin benchmark",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. Points when margin beats the focus-area benchmark.",
+   "source": "pe_deal_graph/model/rules.py::fit_margin"
+  },
+  {
+   "id": "R_CFO_FROM_PE",
+   "name": "CFO from a PE-backed company",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. Recent CFO hire who came from a sponsor-backed employer.",
+   "source": "pe_deal_graph/model/rules.py::r_cfo_from_pe"
+  },
+  {
+   "id": "R_EXIT_WINDOW",
+   "name": "Sponsor exit window",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. Sponsor has held long enough and the fund is old enough to sell.",
+   "source": "pe_deal_graph/model/rules.py::r_exit_window"
+  },
+  {
+   "id": "R_BANKER",
+   "name": "Banker engaged",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. A banker engagement signal in the recent window.",
+   "source": "pe_deal_graph/model/rules.py::r_banker"
+  },
+  {
+   "id": "R_DEBT",
+   "name": "Debt maturity",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. Debt matures inside the window.",
+   "source": "pe_deal_graph/model/rules.py::r_debt"
+  },
+  {
+   "id": "R_SUCCESSION",
+   "name": "Succession signal",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. Long-tenured founder CEO with no President or COO.",
+   "source": "pe_deal_graph/model/rules.py::r_succession"
+  },
+  {
+   "id": "R_NEW_DIRECTOR",
+   "name": "New independent director",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. A new board seat in the last year.",
+   "source": "pe_deal_graph/model/rules.py::r_new_director"
+  },
+  {
+   "id": "A_CRM",
+   "name": "Recent positive CRM touch",
+   "kind": "rule",
+   "questions": [
+    "Q-SCORE"
+   ],
+   "docstring": "FIXTURE. A positive CRM interaction in the window.",
+   "source": "pe_deal_graph/model/rules.py::a_crm"
+  },
+  {
+   "id": "A_WARM_PATH",
+   "name": "Warm path access",
+   "kind": "rule",
+   "questions": [
+    "FINALE"
+   ],
+   "docstring": "FIXTURE. Targets within two hops earn access points.",
+   "source": "pe_deal_graph/model/rules.py::a_warm_path"
+  },
+  {
+   "id": "CONFLICT",
+   "name": "Cross-fund conflict",
+   "kind": "rule",
+   "questions": [
+    "FINALE",
+    "Q-CONFLICT"
+   ],
+   "docstring": "FIXTURE. A target that trades with a Fund III company is flagged.",
+   "source": "pe_deal_graph/model/rules.py::conflict"
+  },
+  {
+   "id": "K1_TENURE",
+   "name": "Tenure overlap",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "FIXTURE. Two people overlapped at the same organization for a year or more.",
+   "source": "pe_deal_graph/model/rules.py::k1_tenure"
+  },
+  {
+   "id": "K1_BOARD",
+   "name": "Board co-service",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "FIXTURE. Two people served on the same board for a year or more.",
+   "source": "pe_deal_graph/model/rules.py::k1_board"
+  },
+  {
+   "id": "K2_DEAL",
+   "name": "Deal co-participation",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "FIXTURE. Two people worked the same transaction.",
+   "source": "pe_deal_graph/model/rules.py::k2_deal"
+  },
+  {
+   "id": "K3_CRM",
+   "name": "Positive CRM contact",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "FIXTURE. Our person had positive meetings with the other person.",
+   "source": "pe_deal_graph/model/rules.py::k3_crm"
+  },
+  {
+   "id": "SHARED_EMPLOYER_REJECT",
+   "name": "Shared employer is not a tie",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "FIXTURE. Same employer at different times is not a relationship.",
+   "source": "pe_deal_graph/model/rules.py::shared_employer_reject"
+  },
+  {
+   "id": "WARM_PATH",
+   "name": "Warm path search",
+   "kind": "graph",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "FIXTURE. Shortest hop distance from our people over the relationship graph.",
+   "source": "pe_deal_graph/model/rules.py::warm_path"
+  },
+  {
+   "id": "COMMERCIAL",
+   "name": "Commercial link",
+   "kind": "rule",
+   "questions": [
+    "Q-ADDON",
+    "Q-CONFLICT"
+   ],
+   "docstring": "FIXTURE. A supplier and customer relationship.",
+   "source": "pe_deal_graph/model/rules.py::commercial"
+  },
+  {
+   "id": "ADDON_SIMILARITY",
+   "name": "Add-on similarity",
+   "kind": "graph",
+   "questions": [
+    "Q-ADDON"
+   ],
+   "docstring": "FIXTURE. Share of customers and suppliers in common with the platform.",
+   "source": "pe_deal_graph/model/rules.py::addon_similarity"
+  },
+  {
+   "id": "WHITESPACE",
+   "name": "Whitespace states",
+   "kind": "rule",
+   "questions": [
+    "Q-ADDON"
+   ],
+   "docstring": "FIXTURE. States the candidate operates in that the platform does not.",
+   "source": "pe_deal_graph/model/rules.py::whitespace"
+  },
+  {
+   "id": "DEAL_FLOW",
+   "name": "Deal-flow centrality",
+   "kind": "graph",
+   "questions": [
+    "Q-FLOW"
+   ],
+   "docstring": "FIXTURE. How often an intermediary sits on the shortest route between parties.",
+   "source": "pe_deal_graph/model/rules.py::deal_flow"
+  },
+  {
+   "id": "COVERAGE_GAP",
+   "name": "Coverage gap",
+   "kind": "rule",
+   "questions": [
+    "Q-FLOW"
+   ],
+   "docstring": "FIXTURE. A top-decile intermediary we rarely talk to.",
+   "source": "pe_deal_graph/model/rules.py::coverage_gap"
+  },
+  {
+   "id": "OWNERSHIP",
+   "name": "Fund ownership",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT"
+   ],
+   "docstring": "FIXTURE. A fund currently owns the company.",
+   "source": "pe_deal_graph/model/rules.py::ownership"
+  },
+  {
+   "id": "CONCENTRATION",
+   "name": "Sector concentration guideline",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT"
+   ],
+   "docstring": "FIXTURE. Fund exposure to one sector stays under the guideline.",
+   "source": "pe_deal_graph/model/rules.py::concentration"
+  },
+  {
+   "id": "EMPLOYMENT",
+   "name": "Current role",
+   "kind": "rule",
+   "questions": [],
+   "docstring": "FIXTURE. A person holds a role at an organization.",
+   "source": "pe_deal_graph/model/rules.py::employment"
+  },
+  {
+   "id": "CLOSEST_INTERMEDIARY",
+   "name": "Closest intermediary",
+   "kind": "rule",
+   "questions": [
+    "Q-PATH"
+   ],
+   "docstring": "FIXTURE. The intermediary with the most recent tie to a cold target.",
+   "source": "pe_deal_graph/model/rules.py::closest_intermediary"
+  },
+  {
+   "id": "NORTHWIND_HOLDING",
+   "name": "Current holding",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT"
+   ],
+   "docstring": "FIXTURE. A company a fund of ours owns today, not one it used to own.",
+   "source": "pe_deal_graph/model/rules.py::northwind_holding"
+  },
+  {
+   "id": "PORTFOLIO_EXPOSURE",
+   "name": "Portfolio exposure",
+   "kind": "rule",
+   "questions": [
+    "Q-CONFLICT"
+   ],
+   "docstring": "FIXTURE. A current holding within two commercial hops of the target, classified by fund.",
+   "source": "pe_deal_graph/model/rules.py::portfolio_exposure"
+  }
+ ]
+}

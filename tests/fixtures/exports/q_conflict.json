@@ -1,0 +1,267 @@
+{
+ "question_id": "Q-CONFLICT",
+ "business_question": "FIXTURE. Does this target conflict with anything we own, and would it breach the sector guideline?",
+ "subject": {
+  "company_id": "C_T4",
+  "name": "FIXTURE Target Delta",
+  "thesis_area": "FIXTURE Area One"
+ },
+ "max_distance": 2,
+ "rule_ids": [
+  "NORTHWIND_HOLDING",
+  "PORTFOLIO_EXPOSURE",
+  "CONCENTRATION"
+ ],
+ "exposures": [
+  {
+   "company_id": "C_P3",
+   "name": "FIXTURE Portfolio Three",
+   "fund_name": "FIXTURE Fund III",
+   "since": "2000-01-01",
+   "distance": 1,
+   "kind": "conflict",
+   "kind_label": "FIXTURE Conflict - cross-fund review",
+   "evidence": "FIXTURE. Target supplies this portfolio company.",
+   "path_node_ids": [
+    "C_T4",
+    "C_P3"
+   ],
+   "edge_ids": [
+    "CE1"
+   ],
+   "rule_id": "PORTFOLIO_EXPOSURE"
+  },
+  {
+   "company_id": "C_P1",
+   "name": "FIXTURE Platform Co",
+   "fund_name": "Fixture Fund IV",
+   "since": "2000-02-02",
+   "distance": 2,
+   "kind": "informational",
+   "kind_label": "FIXTURE Shared customer",
+   "evidence": "FIXTURE. Target supplies FIXTURE Customer Golf, which buys from the platform.",
+   "path_node_ids": [
+    "C_T4",
+    "C_K07",
+    "C_P1"
+   ],
+   "edge_ids": [
+    "CE2",
+    "CE3"
+   ],
+   "rule_id": "PORTFOLIO_EXPOSURE"
+  }
+ ],
+ "context": [
+  {
+   "company_id": "C_OLD",
+   "name": "FIXTURE Former Holding",
+   "distance": 1,
+   "reason": "FIXTURE. Sold 2000-03-03, so not a current holding.",
+   "edge_ids": [
+    "CE5"
+   ]
+  },
+  {
+   "company_id": "C_RIM",
+   "name": "FIXTURE Rim Holding",
+   "distance": 3,
+   "reason": "FIXTURE. Outside the 2-hop check.",
+   "edge_ids": [
+    "CE6",
+    "CE7"
+   ]
+  }
+ ],
+ "concentration": {
+  "fund_name": "Fixture Fund IV",
+  "fund_size_musd": 1000.0,
+  "guideline_pct": 35.0,
+  "check_musd": 55.5,
+  "subject_area": "FIXTURE Area One",
+  "breach": true,
+  "headroom_musd": 22.2,
+  "over_by_musd": 33.3,
+  "rule_id": "CONCENTRATION",
+  "areas": [
+   {
+    "name": "FIXTURE Area One",
+    "before_musd": 327.8,
+    "before_pct": 32.8,
+    "after_musd": 383.3,
+    "after_pct": 38.3,
+    "is_subject_area": true,
+    "breach": true
+   },
+   {
+    "name": "FIXTURE Area Two",
+    "before_musd": 111.1,
+    "before_pct": 11.1,
+    "after_musd": 111.1,
+    "after_pct": 11.1,
+    "is_subject_area": false,
+    "breach": false
+   },
+   {
+    "name": "FIXTURE Area Three",
+    "before_musd": 0.0,
+    "before_pct": 0.0,
+    "after_musd": 0.0,
+    "after_pct": 0.0,
+    "is_subject_area": false,
+    "breach": false
+   }
+  ],
+  "holdings": [
+   {
+    "company_id": "C_H1",
+    "name": "FIXTURE Holding One",
+    "area": "FIXTURE Area One",
+    "niche": "FIXTURE Niche One",
+    "since": "2000-01-01",
+    "equity_musd": 200.0,
+    "pct": 20.0
+   },
+   {
+    "company_id": "C_H2",
+    "name": "FIXTURE Holding Two",
+    "area": "FIXTURE Area One",
+    "niche": "FIXTURE Niche Two",
+    "since": "2000-01-01",
+    "equity_musd": 127.8,
+    "pct": 12.8
+   },
+   {
+    "company_id": "C_P1",
+    "name": "FIXTURE Platform Co",
+    "area": "FIXTURE Area Two",
+    "niche": "FIXTURE Platform Niche",
+    "since": "2000-02-02",
+    "equity_musd": 111.1,
+    "pct": 11.1
+   }
+  ]
+ },
+ "view_graph": {
+  "nodes": [
+   {
+    "id": "C_K07",
+    "label": "FIXTURE Customer Golf",
+    "type": "company",
+    "x": -528.57,
+    "y": 285.8,
+    "tags": []
+   },
+   {
+    "id": "C_K08",
+    "label": "FIXTURE Customer Hotel",
+    "type": "company",
+    "x": 202.07,
+    "y": -245.11,
+    "tags": []
+   },
+   {
+    "id": "C_K09",
+    "label": "FIXTURE Customer India",
+    "type": "company",
+    "x": 425.63,
+    "y": -660.76,
+    "tags": []
+   },
+   {
+    "id": "C_OLD",
+    "label": "FIXTURE Former Holding",
+    "type": "company",
+    "x": -65.43,
+    "y": 627.9,
+    "tags": [
+     "context"
+    ]
+   },
+   {
+    "id": "C_P1",
+    "label": "FIXTURE Platform Co",
+    "type": "company",
+    "x": -921.07,
+    "y": 352.56,
+    "tags": []
+   },
+   {
+    "id": "C_P3",
+    "label": "FIXTURE Portfolio Three",
+    "type": "company",
+    "x": 313.89,
+    "y": 413.59,
+    "tags": []
+   },
+   {
+    "id": "C_RIM",
+    "label": "FIXTURE Rim Holding",
+    "type": "company",
+    "x": 610.39,
+    "y": -1000.0,
+    "tags": [
+     "context"
+    ]
+   },
+   {
+    "id": "C_T4",
+    "label": "FIXTURE Target Delta",
+    "type": "company",
+    "x": -36.91,
+    "y": 226.02,
+    "tags": [
+     "subject"
+    ]
+   }
+  ],
+  "edges": [
+   {
+    "id": "CE1",
+    "source": "C_T4",
+    "target": "C_P3",
+    "type": "commercial",
+    "label": "FIXTURE supplies"
+   },
+   {
+    "id": "CE2",
+    "source": "C_T4",
+    "target": "C_K07",
+    "type": "commercial",
+    "label": "FIXTURE supplies"
+   },
+   {
+    "id": "CE3",
+    "source": "C_P1",
+    "target": "C_K07",
+    "type": "commercial",
+    "label": "FIXTURE supplies"
+   },
+   {
+    "id": "CE4",
+    "source": "C_T4",
+    "target": "C_K08",
+    "type": "commercial"
+   },
+   {
+    "id": "CE5",
+    "source": "C_T4",
+    "target": "C_OLD",
+    "type": "commercial",
+    "label": "FIXTURE supplies"
+   },
+   {
+    "id": "CE6",
+    "source": "C_K09",
+    "target": "C_K08",
+    "type": "commercial"
+   },
+   {
+    "id": "CE7",
+    "source": "C_K09",
+    "target": "C_RIM",
+    "type": "commercial"
+   }
+  ]
+ }
+}
