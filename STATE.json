@@ -3,15 +3,15 @@
   "started_at": "2026-10-21T22:02:13+02:00",
   "gates": {
     "G0": {
-      "status": "GATEKEEPER_RUNNING",
+      "status": "PASS",
       "attempts": 2,
-      "evidence": "handoffs/03-R01-a2.md",
-      "commit": null
+      "evidence": "gates/G0.md",
+      "commit": "b3e07e3"
     },
     "G1": {
-      "status": "IN_PROGRESS",
-      "attempts": 1,
-      "evidence": "handoffs/05-R04-a1.md (critic FAIL)",
+      "status": "GATEKEEPER_RUNNING",
+      "attempts": 2,
+      "evidence": "handoffs/13-R04-a2.md (critic PASS)",
       "commit": null
     },
     "G2": {
@@ -66,13 +66,12 @@
   "phase_tasks": {
     "P0": {
       "title": "Environment preflight + research + bootstrap approval",
-      "status": "in_progress",
+      "status": "done",
       "gate": "G0",
       "agents": [
-        "R01 a1 PASS (preflight, bootstrap drafted, not run)",
-        "R02 a1 PASS (domain brief, self-reported)",
-        "R01 a2 BLOCKED: PAT session restricted, USE ROLE not allowed (003107); nothing created",
-        "R01 a3 PASS self-reported (engine READY, smoke 3); R18 verifying G0"
+        "R01 a1/a2/a3",
+        "R02 a1",
+        "R18 G0 PASS b3e07e3"
       ]
     },
     "P1": {
@@ -83,9 +82,11 @@
         "R02"
       ],
       "agents": [
-        "R03 a1 done",
-        "R04 a1 FAIL (Q-ADDON reasoning 2; 1 BLOCKER, 6 MAJOR)",
-        "R20 a1 running (QUESTIONS.md v2)"
+        "R03 a1",
+        "R04 a1 FAIL",
+        "R20 a1",
+        "R04 a2 PASS (21/22/24/20, finale 21)",
+        "R18 G1 running"
       ]
     },
     "P2": {
@@ -97,23 +98,30 @@
         "G1"
       ],
       "agents": [
-        "R05 a1 running (schema + signal data + golden)"
+        "R05 a1 resumed (v2 data)",
+        "R07 a1 running (generic loader)"
       ]
     },
     "P3": {
       "title": "Ontology",
-      "status": "pending",
+      "status": "in_progress (early)",
       "gate": "G3",
       "depends_on": [
         "G2"
+      ],
+      "agents": [
+        "R08 a1 running (core.py + ONTOLOGY.md + interface contract)"
       ]
     },
     "P4": {
       "title": "Rules + graph + queries + tests",
-      "status": "pending",
+      "status": "prep",
       "gate": "G4",
       "depends_on": [
         "G3"
+      ],
+      "agents": [
+        "Scout a1 running (PyRel idioms on live engine)"
       ]
     },
     "P5": {
@@ -132,8 +140,9 @@
         "G5"
       ],
       "agents": [
-        "R14 a1 running (workspace + RUNBOOK skeleton)",
-        "R15 a1 running (explorer shell on fixture)"
+        "R14 a1 PASS self-reported (skeleton; prompts.md DRAFT v1, needs v2 resync)",
+        "R15 a1 running (explorer shell on fixture)",
+        "R16 a1 running (script skeleton on fixture)"
       ]
     },
     "P7": {
@@ -165,13 +174,24 @@
   "hero_questions": [
     "Q-SCORE",
     "Q-PATH",
-    "Q-ADDON",
-    "Q-FLOW"
+    "Q-FLOW",
+    "Q-CONFLICT"
   ],
   "bootstrap_approval": "APPROVED 2026-10-22T07:46+02:00; applying via R01 a2",
-  "degradations": [],
+  "degradations": [
+    {
+      "step": 1,
+      "at": "2026-10-22T08:27+02:00",
+      "what": "Q-ADDON -> backup; Q-CONFLICT promoted to hero Act 4",
+      "why": "R04 a1 reasoning necessity 2 for Q-ADDON"
+    }
+  ],
   "open_findings": [
-    "G1: R04 a1 BLOCKER Q-ADDON + 6 MAJOR, fix in progress"
+    "R11: q_path.sql must return the stale-tie and we-know-the-sponsor decoys, or golden relabels them near_miss",
+    "R11: q_flow() returns betweenness top 5 only (PageRank may surface decoy bank)",
+    "R14/R17: watch transcript decoy leakage",
+    "R16: talk track - Cedar Row is sell-side",
+    "R05: data MINORs forwarded (Harbor Lane deal_role, signal pins, Owen Lacey, F2 guard, Ironbridge rename)"
   ],
   "engine_hours_estimate": 0,
   "checkpoints": {
@@ -187,10 +207,26 @@
   "timebox_restart_at": "2026-10-22T07:46:31+02:00",
   "timebox_note": "User set hard stop 14:00 Warsaw; checkpoints scaled by 0.72 from the 07:46 restart; P9 must start by 13:30",
   "concurrency": {
-    "max_agents": 6,
+    "max_agents": 7,
     "max_engine_agents": 2,
     "reason": "user asked to maximize parallelism at 08:05"
   },
-  "critic_loops": 1,
-  "engine_started_at": "2026-10-22T08:20+02:00 (approx, pe_demo_logic READY)"
+  "critic_loops": 2,
+  "engine_started_at": "2026-10-22T08:20+02:00 (approx, pe_demo_logic READY)",
+  "pending_small_fixes": [
+    "gitignore demo_workspace/scratch/ (R01)",
+    "R14 resync prompts.md to QUESTIONS v2",
+    "user: chmod 600 ~/.snowflake/pat_token_pe_demo"
+  ],
+  "user_directive": "2026-10-22 ~08:20: keep going, parallelize as much as possible, do not block on user decisions",
+  "backups": [
+    "Q-ADDON",
+    "Q-COMPETE"
+  ],
+  "interruptions": [
+    {
+      "at": "2026-10-22T08:29+02:00",
+      "what": "API session limit; R05, R15, R16, Scout stopped; resumed after re-login 08:31"
+    }
+  ]
 }
