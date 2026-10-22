@@ -10,8 +10,9 @@ Usage
     .venv/bin/python artifacts/build_explorer.py --validate-only      # check the contract, write nothing
 
 The output is one self-contained HTML file: the vendored Cytoscape.js build, all CSS and JS, and
-the exports JSON are inlined. No network calls, no localStorage. Positions come from the exports;
-the browser never computes a layout. Every number on screen is rendered from the exports through
+the exports JSON are inlined. No network calls, no localStorage. Canvas positions are computed here at
+build time from the exported nodes and edges (seeded, deterministic; see compute_layouts) or taken from
+the exported x, y; the browser never computes a layout. Every number on screen is rendered from the exports through
 one formatter (format_value below mirrors the JS fmt()), and every rendered value carries a
 data-src attribute "<file stem>:<JSON pointer>|<format>" so tests/test_explorer_numbers.py can
 diff the page against exports/.
@@ -712,6 +713,159 @@ def _check_facts(v: _V, facts, where, rule_ref):
 
 
 # ----------------------------------------------------------------------------- HTML assembly
+# ----------------------------------------------------------------------------- build-time layout
+# The exported x, y for the global graph put the three small components hundreds of units away
+# from the 588-node main component, so a fit-to-view showed one unreadable clump (R19 M6). The
+# explorer therefore relayouts the canvases here, at build time, from the exported nodes and edges
+# only: a seeded numpy force step with a gravity term (keeps small components next to the main one)
+# and stronger repulsion, stretched to a laptop canvas aspect. Same exports in, same bytes out. The
+# exported x, y stay untouched in the inlined data; the browser still never computes a layout.
+LAYOUT_SEED = 42
+
+
+HERO_INNER = ("northwind", "our_person")                               # our firm and team: inner ring
+HERO_OUTER = ("tier_a", "platform", "path_target", "coverage_gap")      # targets: outer ring
+
+
+def _fr_steps(pos, src, dst, mass, k, iters, t, gravity, fixed):
+    import numpy as np
+    free = ~fixed
+    for _ in range(iters):
+        delta = pos[:, None, :] - pos[None, :, :]
+        d2 = np.maximum((delta ** 2).sum(-1), 1e-4)
+        rep = (k * k / d2) * np.sqrt(mass[:, None] * mass[None, :])   # hubs push their crowd outward
+        np.fill_diagonal(rep, 0.0)
+        disp = (delta * rep[..., None]).sum(1)
+        if len(src):
+            d = pos[src] - pos[dst]
+            dl = np.maximum(np.sqrt((d ** 2).sum(-1)), 0.01)
+            f = d * (dl / k)[:, None]                                      # attraction d^2 / k
+            np.add.at(disp, src, -f)
+            np.add.at(disp, dst, f)
+        disp -= gravity * pos * mass[:, None]
+        ln = np.maximum(np.sqrt((disp ** 2).sum(-1)), 1e-9)
+        step = disp / ln[:, None] * np.minimum(ln, t)[:, None]
+        pos[free] += step[free]
+        t = max(0.002, t * 0.985)
+    return pos
+
+
+def _force_layout(nodes, edges, *, width, height, rings=False, kmul=1.6, gravity=0.06, seed=LAYOUT_SEED):
+    """Seeded numpy Fruchterman-Reingold. With rings=True the hero entities are then pinned on two
+    ellipses (our firm and team inside, targets outside, each ring ordered by the free layout's
+    angles) and the rest relaxes around them, so the canvas opens up instead of one central blob."""
+    import numpy as np
+    n = len(nodes)
+    if n == 0:
+        return {}
+    ix = {nd["id"]: i for i, nd in enumerate(nodes)}
+    pairs = sorted({(min(ix[e["source"]], ix[e["target"]]), max(ix[e["source"]], ix[e["target"]]))
+                    for e in edges if e["source"] in ix and e["target"] in ix and e["source"] != e["target"]})
+    src = np.array([p[0] for p in pairs], dtype=np.int64)
+    dst = np.array([p[1] for p in pairs], dtype=np.int64)
+    deg = np.bincount(np.concatenate([src, dst]), minlength=n).astype(float) if pairs else np.zeros(n)
+    mass = deg + 1.0
+    rng = np.random.default_rng(seed)
+    pos = rng.uniform(-1.0, 1.0, size=(n, 2))
+    k = kmul / math.sqrt(n)
+    fixed = np.zeros(n, dtype=bool)
+    pos = _fr_steps(pos, src, dst, mass, k, 250, 0.12, gravity, fixed)
+    pos -= pos.mean(0)
+    if rings:
+        r90 = float(np.percentile(np.sqrt((pos ** 2).sum(-1)), 90))    # ring radii follow the free layout's size
+        for ring_tags, radius in ((HERO_INNER, 0.3 * r90), (HERO_OUTER, 1.0 * r90)):
+            ring = [i for i, nd in enumerate(nodes) if set(nd.get("tags") or []) & set(ring_tags) and not fixed[i]]
+            ring.sort(key=lambda i: (math.atan2(pos[i, 1], pos[i, 0]), nodes[i]["id"]))
+            for j, i in enumerate(ring):
+                a = 2 * math.pi * j / max(len(ring), 1) + (math.pi / max(len(ring), 1) if ring_tags is HERO_INNER else 0.0)
+                pos[i] = [radius * math.cos(a), radius * math.sin(a)]
+                fixed[i] = True
+        pos = _fr_steps(pos, src, dst, mass, k * 1.3, 300, 0.08, 0.03, fixed)
+    lo, hi = np.percentile(pos, 1, axis=0), np.percentile(pos, 99, axis=0)
+    pos = np.clip(pos, lo - 0.08 * (hi - lo), hi + 0.08 * (hi - lo))      # long tails do not stretch the frame
+    span = np.maximum(pos.max(0) - pos.min(0), 1e-9)
+    pos = (pos - pos.min(0)) / span
+    pos[:, 0] *= width
+    pos[:, 1] *= height
+    return {nd["id"]: [round(float(pos[i, 0]), 1), round(float(pos[i, 1]), 1)] for i, nd in enumerate(nodes)}
+
+
+def _path_layout(vg, col_w=330.0, row_h=120.0):
+    """Warm path: one row per connected chain, our people on the left, decision makers on the right."""
+    nodes, edges = vg["nodes"], vg["edges"]
+    ids = [nd["id"] for nd in nodes]
+    tags = {nd["id"]: set(nd.get("tags") or []) for nd in nodes}
+    adj = {i: [] for i in ids}
+    for e in edges:
+        if e["source"] in adj and e["target"] in adj:
+            adj[e["source"]].append(e["target"])
+            adj[e["target"]].append(e["source"])
+    seen, comps = set(), []
+    for i in ids:
+        if i in seen:
+            continue
+        comp, stack = [], [i]
+        seen.add(i)
+        while stack:
+            u = stack.pop(0)
+            comp.append(u)
+            for v in adj[u]:
+                if v not in seen:
+                    seen.add(v)
+                    stack.append(v)
+        comps.append(comp)
+
+    def bfs(roots, members):
+        dist = {r: 0 for r in roots}
+        q = list(roots)
+        while q:
+            u = q.pop(0)
+            for v in adj[u]:
+                if v in members and v not in dist:
+                    dist[v] = dist[u] + 1
+                    q.append(v)
+        return dist
+
+    pos, row, singles = {}, 0, []
+    for comp in comps:
+        if len(comp) == 1:
+            singles.append(comp[0])
+            continue
+        members = set(comp)
+        seeds = [u for u in comp if "our_person" in tags[u]]
+        if seeds:
+            col = bfs(seeds, members)
+        else:
+            dms = [u for u in comp if "decision_maker" in tags[u]] or [comp[0]]
+            back = bfs(dms, members)
+            mx = max(back.values())
+            col = {u: mx - d for u, d in back.items()}
+        bycol = {}
+        for u in comp:
+            bycol.setdefault(col.get(u, 0), []).append(u)
+        height = max(len(v) for v in bycol.values())
+        for c, us in sorted(bycol.items()):
+            off = (height - len(us)) / 2.0
+            for j, u in enumerate(us):
+                pos[u] = [round(c * col_w, 1), round((row + off + j) * row_h, 1)]
+        row += height
+    for j, u in enumerate(singles):
+        pos[u] = [round(j * col_w, 1), round(row * row_h, 1)]
+    return pos
+
+
+def compute_layouts(data: dict) -> dict:
+    """Deterministic canvas positions per view, from the exported nodes and edges only."""
+    g = data["graph"]
+    out = {"overview": _force_layout(g["nodes"], g["edges"], width=1500.0, height=820.0, rings=True)}
+    if data.get("q_path"):
+        out["path"] = _path_layout(data["q_path"]["view_graph"])
+    if data.get("q_flow"):
+        vg = data["q_flow"]["view_graph"]
+        out["flow"] = _force_layout(vg["nodes"], vg["edges"], width=2900.0, height=1150.0, kmul=2.6, gravity=0.15)
+    return out
+
+
 def _vendor_js() -> str:
     raw = VENDOR_JS.read_bytes()
     digest = hashlib.sha256(raw).hexdigest()
@@ -734,6 +888,7 @@ def build_html(data: dict) -> str:
         f"<title>{title}</title>\n<style>\n{CSS}\n</style>\n</head>\n<body>\n{BODY}\n"
         f"<script>\n{_vendor_js()}\n</script>\n"
         f"<script type=\"application/json\" id=\"exports-data\">{payload}</script>\n"
+        f"<script type=\"application/json\" id=\"layout-data\">{_safe_json(compute_layouts(data))}</script>\n"
         f"<script>\n{APP_JS}\n</script>\n</body>\n</html>\n"
     )
 
@@ -995,6 +1150,7 @@ APP_JS = r"""
 (function () {
 'use strict';
 var X = JSON.parse(document.getElementById('exports-data').textContent);
+var LAYOUT = JSON.parse(document.getElementById('layout-data').textContent);
 var E = window.__explorer = { registry: [], ready: false, readyMs: null, cys: {}, state: {}, views: [], api: {} };
 
 /* ---------------- formatting: mirrored by build_explorer.format_value ---------------- */
@@ -1129,6 +1285,7 @@ function baseStyle(curve) {
     { selector: '.off', style: { 'display': 'none' } },
     { selector: '.faded', style: { 'opacity': 0.1, 'text-opacity': 0 } },
     { selector: 'edge.hl', style: { 'width': 2.5, 'opacity': 1 } },
+    { selector: 'edge.path-best, edge.path-alt, edge.rejected-on', style: { 'text-wrap': 'wrap', 'text-max-width': 210, 'text-background-color': surf, 'text-background-opacity': 0.9, 'text-background-padding': 2 } },
     { selector: 'edge.path-best', style: { 'width': 5, 'line-color': css('--accent'), 'opacity': 1, 'label': 'data(label)' } },
     { selector: 'edge.path-alt', style: { 'width': 3, 'line-style': 'dashed', 'line-color': css('--ink-3'), 'opacity': 0.9, 'label': 'data(label)' } },
     { selector: 'edge.rejected-on', style: { 'width': 3, 'line-style': 'dashed', 'line-color': css('--crit'), 'opacity': 1, 'label': 'data(label)' } },
@@ -1143,7 +1300,9 @@ function baseStyle(curve) {
 function makeCy(viewId, container, file, vgPtr, nodeExtra, opts) {
   opts = opts || {};
   var vg = get(file, vgPtr), els = [];
-  /* positions come from the exports; only a uniform rescale to the container size happens here */
+  /* positions: the build-time layout for this view (computed by build_explorer.py from the exported
+     nodes and edges) when present, else the exported x, y with a uniform rescale to the container */
+  var L = LAYOUT[viewId] || null;
   var minx = Infinity, miny = Infinity, maxx = -Infinity, maxy = -Infinity;
   vg.nodes.forEach(function (n) { minx = Math.min(minx, n.x); maxx = Math.max(maxx, n.x); miny = Math.min(miny, n.y); maxy = Math.max(maxy, n.y); });
   var cw = container.clientWidth || 900, ch = container.clientHeight || 520;
@@ -1153,7 +1312,8 @@ function makeCy(viewId, container, file, vgPtr, nodeExtra, opts) {
     var d = { id: n.id, type: n.type, idx: i, size: 16, label: lab([[file, vgPtr + '/nodes/' + i + '/label']]) };
     var cls = ['t-' + n.type].concat(n.tags || []);
     if (nodeExtra) nodeExtra(n, i, d, cls);
-    els.push({ group: 'nodes', data: d, position: { x: (n.x - minx) * k, y: (n.y - miny) * k }, classes: cls.join(' ') });
+    var lp = L && L[n.id];
+    els.push({ group: 'nodes', data: d, position: lp ? { x: lp[0], y: lp[1] } : { x: (n.x - minx) * k, y: (n.y - miny) * k }, classes: cls.join(' ') });
   });
   vg.edges.forEach(function (e, i) {
     var d = { id: e.id, source: e.source, target: e.target, type: e.type, idx: i, label: '' };
@@ -1343,11 +1503,17 @@ function initOverview(sec) {
   });
 
   var cy = makeCy('overview', cont, 'graph', '', function (n, i, d, cls) {
-    d.size = n.type === 'person' ? 9 : 13;
+    d.size = n.type === 'person' ? 7 : 10;
     var t = n.tags || [];
-    if (t.indexOf('tier_a') >= 0 || t.indexOf('platform') >= 0 || t.indexOf('coverage_gap') >= 0 || t.indexOf('path_target') >= 0) { d.size = 20; cls.push('lbl'); }
-    if (t.indexOf('northwind') >= 0 || t.indexOf('our_person') >= 0) { d.size = Math.max(d.size, 15); cls.push('lbl'); }
+    if (t.indexOf('tier_a') >= 0 || t.indexOf('platform') >= 0 || t.indexOf('coverage_gap') >= 0 || t.indexOf('path_target') >= 0) { d.size = 22; cls.push('lbl'); }
+    if (t.indexOf('northwind') >= 0 || t.indexOf('our_person') >= 0) { d.size = Math.max(d.size, 16); cls.push('lbl'); }
   });
+  /* overview zoom: small quiet nodes and hairline edges; only hero entities carry labels until selected */
+  cy.style().selector('node.lbl').style({ 'font-size': 13, 'font-weight': 600, 'text-margin-y': 4, 'min-zoomed-font-size': 4, 'z-index': 10 })
+    .selector('edge').style({ 'width': 0.6, 'opacity': 0.35 })
+    .selector('edge.hl').style({ 'width': 2, 'opacity': 1 })
+    .selector('edge:selected').style({ 'width': 3, 'opacity': 1 })
+    .selector('.faded').style({ 'opacity': 0.08, 'text-opacity': 0 }).update();
   /* the global graph has edge facts and evidence; edge labels stay off on the canvas */
   function selectNode(id) {
     var n = cy.getElementById(id); if (n.empty()) return;

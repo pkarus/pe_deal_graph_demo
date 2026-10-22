@@ -336,6 +336,8 @@
     "post-tag fixes committed 7cede41 (Tessmark Finale target, warm count, 4-min cutoff, CLAUDE.md 3-hop wording, TEST_PLAN)",
     "user direction 13:35: Claude Code text queries central, explorer supporting",
     "R16 script restructure PASS self (Claude Code leads, Open floor, Step by step default tab; CHECK OK 719 values) - uncommitted",
-    "R14 query bank PASS self (11 prompts, 6 SHOWCASE; fresh queries 60-90 s expected)"
+    "R14 query bank PASS self (11 prompts, 6 SHOWCASE; fresh queries 60-90 s expected)",
+    "Claude Code-first script + Step by step tab + query bank committed 334f09b",
+    "ACCOUNTADMIN access verified OK (role chain RAI_DEMO_PE->SYSADMIN->ACCOUNTADMIN; direct user grant now present); no grants applied"
   ]
 }
