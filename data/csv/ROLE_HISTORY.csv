@@ -1,0 +1,73 @@
+role_id,person_id,org_id,org_type,role_type,title,start_date,end_date,is_founder
+R11753,P78994,S641,sponsor,Deal Team,Partner,2011-06-06,,FALSE
+R12071,P23882,C5441,company,CEO,Chief Executive Officer,2020-11-02,,FALSE
+R12610,P26261,C2804,company,CEO,Chief Executive Officer,2025-05-12,,FALSE
+R12720,P26070,C7366,company,CFO,Chief Financial Officer,1998-03-01,2000-06-30,FALSE
+R13494,P37955,C6334,company,CEO,Founder and CEO,2008-01-01,,TRUE
+R14121,P25319,S796,sponsor,Deal Team,Partner,2017-02-01,,FALSE
+R15220,P26028,C9784,company,CFO,Chief Financial Officer,2008-01-07,2011-06-30,FALSE
+R15408,P90483,C6895,company,CFO,Chief Financial Officer,2025-05-05,,FALSE
+R16791,P26028,S796,sponsor,Deal Team,Managing Director,2012-09-04,,FALSE
+R17661,P89893,C3225,company,Board,Director,2019-04-15,2021-05-31,FALSE
+R17895,P19465,C6334,company,Board,Director,2023-01-15,,FALSE
+R19674,P78788,I210,intermediary,Banker,Managing Director,2014-05-01,,FALSE
+R22449,P30336,C6895,company,Board,Director,2026-03-16,,FALSE
+R22699,P47126,C8200,company,Board,Independent Director,2026-02-17,,FALSE
+R24438,P33854,C4874,company,CEO,Chief Executive Officer,2011-04-04,,FALSE
+R25597,P81543,C3429,company,Board,Independent Director,2026-01-20,,FALSE
+R27145,P75833,C9760,company,CEO,Founder and CEO,2008-09-01,,TRUE
+R31282,P81174,C5441,company,Board,Director,2020-09-01,,FALSE
+R33833,P12934,C4685,company,CEO,Founder and CEO,2006-03-01,,TRUE
+R34221,P81174,S938,sponsor,Deal Team,Partner,2014-06-02,,FALSE
+R35238,P39051,C3538,company,CFO,Chief Financial Officer,2019-01-07,2025-12-19,FALSE
+R35725,P54313,S976,sponsor,Operating Partner,Operating Partner,2014-03-03,2019-11-29,FALSE
+R38068,P19079,C4874,company,Board,Director,2014-09-15,2019-06-30,FALSE
+R38425,P23882,C9784,company,COO,Chief Operating Officer,2013-03-04,2020-08-31,FALSE
+R39303,P95007,S796,sponsor,Operating Partner,Operating Partner,2020-09-14,,FALSE
+R39431,P38282,C4685,company,Board,Director,2022-04-01,,FALSE
+R39511,P66303,C8200,company,CEO,Founder and CEO,1999-05-01,,TRUE
+R40342,P78994,C4874,company,Board,Director,2020-02-14,,FALSE
+R42827,P26070,S796,sponsor,Deal Team,Managing Partner,2009-01-05,,FALSE
+R45828,P18484,C2679,company,CEO,Founder and CEO,2008-02-01,,TRUE
+R46544,P11184,C3225,company,CFO,Chief Financial Officer,2025-07-01,,FALSE
+R48671,P17246,C1881,company,CEO,Founder and CEO,1997-06-02,,TRUE
+R48838,P89893,S115,sponsor,Deal Team,Partner,2010-03-01,2021-05-31,FALSE
+R49094,P11184,C9074,company,CFO,Chief Financial Officer,2019-03-04,2025-05-30,FALSE
+R49908,P63474,C1888,company,CEO,Founder and CEO,2001-03-05,,TRUE
+R51082,P68671,C7633,company,CEO,Founder and CEO,2001-06-01,,TRUE
+R52798,P90483,C1221,company,CFO,Chief Financial Officer,2018-09-04,2025-04-11,FALSE
+R53415,P72901,C5441,company,CFO,Chief Financial Officer,2025-11-03,,FALSE
+R57901,P25319,I445,intermediary,Banker,Associate,2011-07-01,2016-06-30,FALSE
+R58589,P95007,C6147,company,COO,Chief Operating Officer,2016-02-01,2020-05-31,FALSE
+R58666,P67052,C3225,company,CEO,Founder and CEO,2005-03-01,,TRUE
+R59151,P20915,C1046,company,CFO,Chief Financial Officer,2021-02-01,2025-04-25,FALSE
+R61215,P39051,C1881,company,CFO,Chief Financial Officer,2026-02-02,,FALSE
+R61243,P72919,I210,intermediary,Banker,Director,2017-01-09,,FALSE
+R64781,P75429,C5352,company,CEO,Founder and CEO,2006-07-01,,TRUE
+R65738,P30336,S976,sponsor,Operating Partner,Operating Partner,2012-10-01,,FALSE
+R67009,P25542,C8200,company,CFO,Chief Financial Officer,2016-04-04,,FALSE
+R67811,P75330,C4685,company,Board,Independent Director,2026-03-02,,FALSE
+R69001,P18565,S859,sponsor,Deal Team,Partner,2009-03-02,,FALSE
+R69373,P43338,C2514,company,CEO,Chief Executive Officer,2016-05-02,,FALSE
+R70575,P20915,C4685,company,CFO,Chief Financial Officer,2025-05-12,,FALSE
+R70620,P79001,C3225,company,Board,Director,2021-06-01,,FALSE
+R72885,P19079,S796,sponsor,Operating Partner,Operating Partner,2014-09-02,,FALSE
+R74301,P18565,C3429,company,Board,Director,2020-06-30,,FALSE
+R74730,P88768,C4874,company,CFO,Chief Financial Officer,2015-03-01,2025-04-30,FALSE
+R77259,P98298,C1881,company,Board,Independent Director,2026-02-23,,FALSE
+R77569,P54313,C3225,company,COO,Chief Operating Officer,2020-02-03,,FALSE
+R78564,P16824,S796,sponsor,Deal Team,Partner,2006-01-09,2021-03-31,FALSE
+R78931,P55087,C3429,company,CEO,Chief Executive Officer,2021-01-04,,FALSE
+R79340,P26028,C2514,company,Board,Director,2020-07-01,,FALSE
+R81951,P38282,C6147,company,CEO,Chief Executive Officer,2015-08-03,2021-03-31,FALSE
+R83799,P81429,C6895,company,CEO,Founder and CEO,2009-09-01,,TRUE
+R84560,P19465,C7366,company,COO,Chief Operating Officer,1997-01-06,2001-12-14,FALSE
+R85166,P30070,C1495,company,CEO,Founder and CEO,2004-02-02,,TRUE
+R85492,P88163,C2288,company,CEO,Founder and CEO,2006-06-01,,TRUE
+R86105,P58896,I139,intermediary,Banker,Managing Director,2012-04-02,,FALSE
+R87100,P72901,C9606,company,CFO,Chief Financial Officer,2021-01-11,2025-09-26,FALSE
+R87388,P88768,C6334,company,CFO,Chief Financial Officer,2025-06-01,,FALSE
+R91943,P26070,C7633,company,Board,Director,2024-03-15,,FALSE
+R92832,P79001,S115,sponsor,Deal Team,Partner,2012-01-09,,FALSE
+R98506,P23491,C1074,company,CEO,Chief Executive Officer,2018-02-05,,FALSE
+R99419,P72919,I445,intermediary,Banker,Vice President,2012-06-04,2016-12-16,FALSE

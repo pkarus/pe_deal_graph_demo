@@ -1,0 +1,61 @@
+region_id,name,level,region_type,parent_id
+CA,Canada,1,country,
+CA-CENTRAL,Central Canada,2,census_region,CA
+CA-ON,Ontario,3,province,CA-CENTRAL
+CA-QC,Quebec,3,province,CA-CENTRAL
+US,United States,1,country,
+US-AK,Alaska,3,state,US-WEST
+US-AL,Alabama,3,state,US-SOUTH
+US-AR,Arkansas,3,state,US-SOUTH
+US-AZ,Arizona,3,state,US-WEST
+US-CA,California,3,state,US-WEST
+US-CO,Colorado,3,state,US-WEST
+US-CT,Connecticut,3,state,US-NORTHEAST
+US-DC,District of Columbia,3,state,US-SOUTH
+US-DE,Delaware,3,state,US-SOUTH
+US-FL,Florida,3,state,US-SOUTH
+US-GA,Georgia,3,state,US-SOUTH
+US-HI,Hawaii,3,state,US-WEST
+US-IA,Iowa,3,state,US-MIDWEST
+US-ID,Idaho,3,state,US-WEST
+US-IL,Illinois,3,state,US-MIDWEST
+US-IN,Indiana,3,state,US-MIDWEST
+US-KS,Kansas,3,state,US-MIDWEST
+US-KY,Kentucky,3,state,US-SOUTH
+US-LA,Louisiana,3,state,US-SOUTH
+US-MA,Massachusetts,3,state,US-NORTHEAST
+US-MD,Maryland,3,state,US-SOUTH
+US-ME,Maine,3,state,US-NORTHEAST
+US-MI,Michigan,3,state,US-MIDWEST
+US-MIDWEST,Midwest,2,census_region,US
+US-MN,Minnesota,3,state,US-MIDWEST
+US-MO,Missouri,3,state,US-MIDWEST
+US-MS,Mississippi,3,state,US-SOUTH
+US-MT,Montana,3,state,US-WEST
+US-NC,North Carolina,3,state,US-SOUTH
+US-ND,North Dakota,3,state,US-MIDWEST
+US-NE,Nebraska,3,state,US-MIDWEST
+US-NH,New Hampshire,3,state,US-NORTHEAST
+US-NJ,New Jersey,3,state,US-NORTHEAST
+US-NM,New Mexico,3,state,US-WEST
+US-NORTHEAST,Northeast,2,census_region,US
+US-NV,Nevada,3,state,US-WEST
+US-NY,New York,3,state,US-NORTHEAST
+US-OH,Ohio,3,state,US-MIDWEST
+US-OK,Oklahoma,3,state,US-SOUTH
+US-OR,Oregon,3,state,US-WEST
+US-PA,Pennsylvania,3,state,US-NORTHEAST
+US-RI,Rhode Island,3,state,US-NORTHEAST
+US-SC,South Carolina,3,state,US-SOUTH
+US-SD,South Dakota,3,state,US-MIDWEST
+US-SOUTH,South,2,census_region,US
+US-TN,Tennessee,3,state,US-SOUTH
+US-TX,Texas,3,state,US-SOUTH
+US-UT,Utah,3,state,US-WEST
+US-VA,Virginia,3,state,US-SOUTH
+US-VT,Vermont,3,state,US-NORTHEAST
+US-WA,Washington,3,state,US-WEST
+US-WEST,West,2,census_region,US
+US-WI,Wisconsin,3,state,US-MIDWEST
+US-WV,West Virginia,3,state,US-SOUTH
+US-WY,Wyoming,3,state,US-WEST

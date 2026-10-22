@@ -1,5 +1,5 @@
 {
-  "phase": "P2",
+  "phase": "P4",
   "started_at": "2026-10-21T22:02:13+02:00",
   "gates": {
     "G0": {
@@ -21,10 +21,10 @@
       "commit": null
     },
     "G3": {
-      "status": "GATEKEEPER_RUNNING",
+      "status": "PASS",
       "attempts": 1,
-      "evidence": null,
-      "commit": null
+      "evidence": "gates/G3.md",
+      "commit": "24a56ce"
     },
     "G4": {
       "status": "PENDING",
@@ -107,7 +107,7 @@
     },
     "P3": {
       "title": "Ontology",
-      "status": "in_progress (early)",
+      "status": "done",
       "gate": "G3",
       "depends_on": [
         "G2"

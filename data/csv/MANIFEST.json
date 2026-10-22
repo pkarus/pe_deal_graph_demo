@@ -1,0 +1,92 @@
+{
+  "as_of_date": "2026-10-01",
+  "random_seed": 42,
+  "tables": {
+    "COMMERCIAL_LINK": {
+      "file": "COMMERCIAL_LINK.csv",
+      "rows": 58,
+      "sha256": "993cfecc9216324d75e56875eeffdc5d14489d431245470467044cc8c88a443c"
+    },
+    "COMPANY": {
+      "file": "COMPANY.csv",
+      "rows": 204,
+      "sha256": "732c5e884dfc6416e0a023e45ce99eb122e2dc003120c52846536f8cf19bb3a6"
+    },
+    "COMPANY_SIGNAL": {
+      "file": "COMPANY_SIGNAL.csv",
+      "rows": 29,
+      "sha256": "c70794316d020ddf3b731407bddacf853bfc0f8bdec36276265693f6ff24572e"
+    },
+    "COMPANY_SITE": {
+      "file": "COMPANY_SITE.csv",
+      "rows": 243,
+      "sha256": "383db8d6767846960f8af14fb852441bbcf4ae49df4e1b3f22fc7e872362a5d2"
+    },
+    "CRM_INTERACTION": {
+      "file": "CRM_INTERACTION.csv",
+      "rows": 175,
+      "sha256": "6e4d20428f671ead8c477319cae4db2a0d826be7cb0fc638d311f912c7b499b5"
+    },
+    "FUND": {
+      "file": "FUND.csv",
+      "rows": 31,
+      "sha256": "a5d92780948ff790aad2197a410440e7bdf53de0c279e6b940b0ce940cdf825a"
+    },
+    "FUND_FOCUS": {
+      "file": "FUND_FOCUS.csv",
+      "rows": 7,
+      "sha256": "48af23410e802462f42a904de336678bff7dab305dbd5406fcdb1dbd6581c54a"
+    },
+    "INTERMEDIARY": {
+      "file": "INTERMEDIARY.csv",
+      "rows": 50,
+      "sha256": "50b468db3ab041d215deb5a63327e4c592755acac7d257bf07a6061ed7bf9856"
+    },
+    "OWNERSHIP": {
+      "file": "OWNERSHIP.csv",
+      "rows": 151,
+      "sha256": "39dad9de3c288eef49aca0093c98a129e304cd435628ea4d037a14bbbfdcfdee"
+    },
+    "PERSON": {
+      "file": "PERSON.csv",
+      "rows": 48,
+      "sha256": "e4c07b39cbb6033ca93c10c6ba596ee34db972a87321afeafc836d9735cdade0"
+    },
+    "PIPELINE": {
+      "file": "PIPELINE.csv",
+      "rows": 5,
+      "sha256": "c184dfe130ad5ae93c5b36872624a061501a70e5fc434e939b6c7cace9d321ed"
+    },
+    "REGION": {
+      "file": "REGION.csv",
+      "rows": 60,
+      "sha256": "81293bd6c9b2b83b2f576b6de92dcc7607576ce9d12d0d5ff973f14d7118ca38"
+    },
+    "ROLE_HISTORY": {
+      "file": "ROLE_HISTORY.csv",
+      "rows": 72,
+      "sha256": "6c6b6913e7e8fced26e2b0826fd66945b013c42c826b90fa70c485bda3e63a87"
+    },
+    "SECTOR": {
+      "file": "SECTOR.csv",
+      "rows": 85,
+      "sha256": "ed86ad72c8a4b8aaca8a643b352c7bd18ec95ffc0deface43a686b79dbddabcd"
+    },
+    "SPONSOR": {
+      "file": "SPONSOR.csv",
+      "rows": 26,
+      "sha256": "f322f947c73375099d6cc1d29c75cc29ef415a3808c34556b09eaae897d68b2f"
+    },
+    "TRANSACTION": {
+      "file": "TRANSACTION.csv",
+      "rows": 141,
+      "sha256": "111c3f2c91136a79cdf009c97ef580d430e7129ced92ad88510111fc43f40ddb"
+    },
+    "TRANSACTION_PARTY": {
+      "file": "TRANSACTION_PARTY.csv",
+      "rows": 283,
+      "sha256": "b3fe5c4cad5520e8cf0e38803a4d6b9777ad34159f359083f70211b099f3b913"
+    }
+  },
+  "total_rows": 1668
+}

@@ -1,0 +1,8 @@
+fund_id,sector_id,mode,margin_benchmark_pct
+F517,SC339,exclude,
+F517,SC341,include,14.0
+F517,SC512,include,9.0
+F517,SC835,include,18.0
+F517,SC874,include,17.0
+F564,SC341,include,14.0
+F564,SC512,include,9.0

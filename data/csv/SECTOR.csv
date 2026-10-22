@@ -1,0 +1,86 @@
+sector_id,name,level,parent_id
+SC104,Payroll & HR Outsourcing,3,SC835
+SC115,Non-Destructive Testing,3,SC874
+SC117,Industrial MRO Distribution,3,SC512
+SC123,Engineering & Construction,2,SC380
+SC135,Pest Control Services,3,SC929
+SC158,IT Services,2,SC570
+SC163,Digital Marketing Agencies,3,SC827
+SC189,Aerospace & Defense,2,SC380
+SC200,Behavioral Health Clinics,3,SC364
+SC203,Urgent Care Clinics,3,SC364
+SC223,Food Safety Testing,3,SC874
+SC225,Animal Health Services,2,SC341
+SC229,Home Health Agencies,3,SC746
+SC243,Commercial HVAC Contractors,3,SC123
+SC257,Commercial Janitorial Services,3,SC929
+SC279,Pharmaceutical Manufacturing,2,SC725
+SC304,Healthcare Revenue Cycle Services,3,SC835
+SC305,Electrical Components Distribution,3,SC512
+SC319,Dental Service Organizations,3,SC364
+SC335,Calibration Services,3,SC874
+SC339,Skilled Nursing Facilities,3,SC746
+SC341,Healthcare Services,1,
+SC348,Specialty Foods,3,SC891
+SC364,Outpatient Clinical Services,2,SC341
+SC379,Healthcare Support Services,2,SC341
+SC380,Industrials,1,
+SC386,Veterinary Clinics,3,SC225
+SC391,Medical & Lab Supply Distribution,3,SC512
+SC403,Consumer Services,2,SC552
+SC404,Community Hospitals,3,SC897
+SC427,Home Infusion Services,3,SC746
+SC429,Fitness Clubs,3,SC403
+SC447,Aerospace Components,3,SC189
+SC449,Vertical SaaS,3,SC738
+SC452,Industrial Coatings,3,SC584
+SC488,Physical Therapy Clinics,3,SC364
+SC512,Specialty Distribution,2,SC625
+SC541,Dermatology Practices,3,SC364
+SC546,Promotional Products,3,SC827
+SC552,Consumer,1,
+SC554,Craft Beverages,3,SC891
+SC564,Cybersecurity Software,3,SC738
+SC565,Insurance Claims Processing,3,SC835
+SC570,Technology,1,
+SC575,Environmental Testing,3,SC874
+SC579,Car Wash Chains,3,SC403
+SC584,Industrial Manufacturing,2,SC380
+SC594,Healthcare Linen Services,3,SC379
+SC625,Distribution,1,
+SC644,Records Retrieval & Litigation Support,3,SC835
+SC645,Hospice Providers,3,SC746
+SC657,Business Services,1,
+SC667,Managed IT Services,3,SC158
+SC725,Life Sciences,1,
+SC733,Data Center Services,3,SC158
+SC738,Software,2,SC570
+SC740,Clinical Laboratory Services,3,SC867
+SC746,Post-Acute Care,2,SC341
+SC752,Broadline Distribution,2,SC625
+SC767,Specialty Chemicals Distribution,3,SC512
+SC776,Veterinary Pharmaceuticals,3,SC279
+SC783,Compliance & Training Services,3,SC835
+SC809,Pediatric Therapy Clinics,3,SC364
+SC816,Specialty Food Ingredients Distribution,3,SC512
+SC827,Marketing Services,2,SC657
+SC835,Tech-Enabled Business Services,2,SC657
+SC838,Packaging Manufacturing,3,SC584
+SC842,General Contractors,3,SC123
+SC847,Precision Machining,3,SC584
+SC848,Contract Research Organizations,3,SC867
+SC867,Research & Lab Services,2,SC725
+SC874,"Testing, Inspection & Certification",2,SC380
+SC881,Veterinary Diagnostics Labs,3,SC225
+SC891,Food & Beverage,2,SC552
+SC897,Acute Care,2,SC341
+SC909,Generic Pharmaceuticals,3,SC279
+SC928,Security Guard Services,3,SC929
+SC929,Facilities Services,2,SC657
+SC934,Healthcare Staffing,3,SC379
+SC944,Civil Engineering Services,3,SC123
+SC962,Diagnostic Imaging Centers,3,SC364
+SC973,Medical Courier Services,3,SC379
+SC977,Packaging Supply Distribution,3,SC752
+SC990,Materials Testing,3,SC874
+SC998,Foodservice Distribution,3,SC752

@@ -1,0 +1,51 @@
+intermediary_id,name,intermediary_type,hq_region_id
+I103,Amberhurst Partners,boutique,US-LA
+I117,Fenbrook & Co.,boutique,US-OH
+I139,Harbor Lane Advisors,boutique,US-TN
+I191,Thornport Advisors,boutique,US-GA
+I210,Cedar Row Partners,boutique,US-IL
+I229,Orrby Business Advisors,business_broker,US-AL
+I241,Wexcrest Capital Advisors,boutique,US-AZ
+I252,Glenley & Co.,boutique,US-TX
+I299,Kelcombe Capital Markets,regional_bank,US-OH
+I364,Ravenmont Advisors,boutique,US-WA
+I368,Walbury Advisors,boutique,US-UT
+I373,Ivoford & Co.,boutique,US-WA
+I390,Gantton Capital Advisors,boutique,US-UT
+I400,Wilmere Business Brokers,business_broker,US-LA
+I445,Kellbrook Securities,regional_bank,US-OH
+I489,Junhaven Advisors,boutique,US-NM
+I494,Dunby Bank Capital,regional_bank,US-WA
+I523,Fairmont Advisors,boutique,US-MT
+I532,Pellbury Partners,boutique,US-ME
+I538,Birchwick Advisors,boutique,US-GA
+I551,Dunbury & Co.,boutique,US-NY
+I558,Brackden Partners,boutique,US-WI
+I584,Tullbrook Business Advisors,business_broker,US-TX
+I591,Salmoor Advisors,boutique,US-MN
+I616,Rushcombe & Co.,boutique,US-UT
+I617,Pellgate & Co.,boutique,US-OR
+I648,Loamhurst Bank Capital,regional_bank,US-WA
+I653,Wexhall Bank Capital,regional_bank,US-OR
+I654,Ivomont Capital Markets,regional_bank,US-CT
+I670,Kestcombe Advisors,boutique,US-NV
+I694,Shelmere Advisors,boutique,US-MO
+I736,Brayford Capital Markets,large_bank,US-NY
+I737,Umberby & Co.,boutique,US-NY
+I776,Emberholt Partners,boutique,US-ID
+I777,Emberfield Capital Advisors,boutique,US-ID
+I783,Cindercombe Advisors,boutique,US-ID
+I810,Flintworth Capital Advisors,boutique,US-GA
+I830,Sorrwell & Co.,boutique,US-NM
+I840,Loamford Advisors,boutique,US-CO
+I845,Wilby Securities,regional_bank,US-GA
+I854,Kestcrest Securities,regional_bank,US-ID
+I874,Salthorpe Capital Advisors,boutique,US-FL
+I907,Hobden Partners,boutique,US-UT
+I919,Vellholt Securities,regional_bank,US-OH
+I925,Holstead Partners,boutique,US-WV
+I936,Quillwood Partners,boutique,US-NV
+I971,Coleden Advisors,boutique,US-AZ
+I974,Yarholt Capital Advisors,boutique,US-WA
+I991,Jungate Bank Capital,regional_bank,US-GA
+I993,Pellfield Partners,boutique,US-NV

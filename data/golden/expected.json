@@ -1,0 +1,1844 @@
+{
+  "as_of_date": "2026-10-01",
+  "random_seed": 42,
+  "spec": "QUESTIONS.md v2 (R20 a1)",
+  "note": "Generator intent. Never loaded to Snowflake. Keys are story role keys, ids are CSV ids.",
+  "questions": {
+    "Q-SCORE": {
+      "question": "Which companies fit the Fund IV thesis and look ready to transact in the next 12-18 months, and why each one?",
+      "tier_a_ranked": [
+        {
+          "rank": 1,
+          "key": {
+            "key": "T_BANKER",
+            "id": "C3225",
+            "name": "Larkspur Revenue Partners"
+          },
+          "score": 90,
+          "fit": 30,
+          "readiness": 50,
+          "access": 10,
+          "components": {
+            "FIT_THESIS": 15,
+            "FIT_EBITDA": 10,
+            "FIT_MARGIN": 5,
+            "R_CFO_FROM_PE": 15,
+            "R_EXIT_WINDOW": 15,
+            "R_BANKER": 10,
+            "R_DEBT": 10,
+            "A_CRM": 10
+          }
+        },
+        {
+          "rank": 2,
+          "key": {
+            "key": "T_WARM",
+            "id": "C6334",
+            "name": "Bayside Pediatric Therapy Group"
+          },
+          "score": 85,
+          "fit": 30,
+          "readiness": 45,
+          "access": 10,
+          "components": {
+            "FIT_THESIS": 15,
+            "FIT_EBITDA": 10,
+            "FIT_MARGIN": 5,
+            "R_CFO_FROM_PE": 15,
+            "R_BANKER": 10,
+            "R_DEBT": 10,
+            "R_SUCCESSION": 10,
+            "A_CRM": 10
+          }
+        },
+        {
+          "rank": 3,
+          "key": {
+            "key": "T_COLD",
+            "id": "C5441",
+            "name": "Saltmarsh Home Infusion"
+          },
+          "score": 80,
+          "fit": 30,
+          "readiness": 50,
+          "access": 0,
+          "components": {
+            "FIT_THESIS": 15,
+            "FIT_EBITDA": 10,
+            "FIT_MARGIN": 5,
+            "R_CFO_FROM_PE": 15,
+            "R_EXIT_WINDOW": 15,
+            "R_BANKER": 10,
+            "R_DEBT": 10
+          }
+        },
+        {
+          "rank": 4,
+          "key": {
+            "key": "T_5",
+            "id": "C6895",
+            "name": "Quarry Records Retrieval"
+          },
+          "score": 75,
+          "fit": 25,
+          "readiness": 40,
+          "access": 10,
+          "components": {
+            "FIT_THESIS": 15,
+            "FIT_EBITDA": 5,
+            "FIT_MARGIN": 5,
+            "R_CFO_FROM_PE": 15,
+            "R_DEBT": 10,
+            "R_SUCCESSION": 10,
+            "R_NEW_DIRECTOR": 5,
+            "A_CRM": 10
+          }
+        },
+        {
+          "rank": 5,
+          "key": {
+            "key": "CONF",
+            "id": "C8200",
+            "name": "Tessmark Clinical Supply"
+          },
+          "score": 75,
+          "fit": 30,
+          "readiness": 35,
+          "access": 10,
+          "components": {
+            "FIT_THESIS": 15,
+            "FIT_EBITDA": 10,
+            "FIT_MARGIN": 5,
+            "R_BANKER": 10,
+            "R_DEBT": 10,
+            "R_SUCCESSION": 10,
+            "R_NEW_DIRECTOR": 5,
+            "A_CRM": 10
+          }
+        },
+        {
+          "rank": 6,
+          "key": {
+            "key": "T_6",
+            "id": "C3429",
+            "name": "Fenwick Food Safety Labs"
+          },
+          "score": 70,
+          "fit": 30,
+          "readiness": 40,
+          "access": 0,
+          "components": {
+            "FIT_THESIS": 15,
+            "FIT_EBITDA": 10,
+            "FIT_MARGIN": 5,
+            "R_EXIT_WINDOW": 15,
+            "R_BANKER": 10,
+            "R_DEBT": 10,
+            "R_NEW_DIRECTOR": 5
+          }
+        }
+      ],
+      "not_in_crm": [
+        {
+          "key": "T_COLD",
+          "id": "C5441",
+          "name": "Saltmarsh Home Infusion"
+        },
+        {
+          "key": "T_6",
+          "id": "C3429",
+          "name": "Fenwick Food Safety Labs"
+        }
+      ],
+      "tier_b_reference": [
+        {
+          "key": {
+            "key": "NM_B",
+            "id": "C4685",
+            "name": "Ashby Vale Dental Partners"
+          },
+          "score": 65,
+          "fit": 30,
+          "readiness": 35,
+          "access": 0,
+          "components": {
+            "FIT_THESIS": 15,
+            "FIT_EBITDA": 10,
+            "FIT_MARGIN": 5,
+            "R_BANKER": 10,
+            "R_DEBT": 10,
+            "R_SUCCESSION": 10,
+            "R_NEW_DIRECTOR": 5
+          },
+          "near_misses": [
+            "R_CFO_FROM_PE (prior employer founder-owned)",
+            "A_CRM (last touch 2023-02-10 neutral)"
+          ]
+        }
+      ],
+      "ineligible_reference": [
+        {
+          "key": {
+            "key": "D_BIG",
+            "id": "C1881",
+            "name": "Northgate Behavioral Health"
+          },
+          "reason": "EBITDA 44.0 above the 40.0 band"
+        },
+        {
+          "key": {
+            "key": "BRIGHT",
+            "id": "C4874",
+            "name": "Cobbleton Dental Group"
+          },
+          "reason": "EBITDA 45.0 above the 40.0 band"
+        },
+        {
+          "key": {
+            "key": "D_VET",
+            "id": "C1495",
+            "name": "Pembrook Veterinary Pharmaceuticals"
+          },
+          "reason": "niche Veterinary Pharmaceuticals outside the Fund IV thesis tree"
+        },
+        {
+          "key": {
+            "key": "D_SNF",
+            "id": "C1888",
+            "name": "Linden Hollow Senior Care"
+          },
+          "reason": "niche Skilled Nursing Facilities is excluded from the Fund IV thesis"
+        }
+      ],
+      "d_short_reference": {
+        "key": {
+          "key": "D_SHORT",
+          "id": "C2804",
+          "name": "Cobalt Urgent Care Partners"
+        },
+        "score": 30,
+        "tier": "C",
+        "why_not": "5 signals in the last 12 months, none a scored readiness type (ADDON_ANNOUNCED x3, DEBT_REFINANCED, PRESS_RELEASE); sponsor-owned since 2025-04-01 (1.5 years)"
+      },
+      "naive_screen": {
+        "keywords": [
+          "health",
+          "medical",
+          "clinic",
+          "dental",
+          "veterinar",
+          "care",
+          "testing",
+          "inspection",
+          "distribution"
+        ],
+        "cast_order_top8": [
+          {
+            "key": "D_SHORT",
+            "id": "C2804",
+            "name": "Cobalt Urgent Care Partners"
+          },
+          {
+            "key": "D_VET",
+            "id": "C1495",
+            "name": "Pembrook Veterinary Pharmaceuticals"
+          },
+          {
+            "key": "D_SNF",
+            "id": "C1888",
+            "name": "Linden Hollow Senior Care"
+          },
+          {
+            "key": "NM_B",
+            "id": "C4685",
+            "name": "Ashby Vale Dental Partners"
+          },
+          {
+            "key": "T_WARM",
+            "id": "C6334",
+            "name": "Bayside Pediatric Therapy Group"
+          },
+          {
+            "key": "T_6",
+            "id": "C3429",
+            "name": "Fenwick Food Safety Labs"
+          },
+          {
+            "key": "T_BANKER",
+            "id": "C3225",
+            "name": "Larkspur Revenue Partners"
+          },
+          {
+            "key": "CONF",
+            "id": "C8200",
+            "name": "Tessmark Clinical Supply"
+          }
+        ],
+        "missed_tier_a": [
+          {
+            "key": "T_COLD",
+            "id": "C5441",
+            "name": "Saltmarsh Home Infusion"
+          },
+          {
+            "key": "T_5",
+            "id": "C6895",
+            "name": "Quarry Records Retrieval"
+          }
+        ],
+        "excluded_by_band": [
+          {
+            "key": "D_BIG",
+            "id": "C1881",
+            "name": "Northgate Behavioral Health"
+          },
+          {
+            "key": "BRIGHT",
+            "id": "C4874",
+            "name": "Cobbleton Dental Group"
+          }
+        ],
+        "note": "2-signal ties order by name asc; with the final names CONF (Tessmark) sorts after T_BANKER (Larkspur)",
+        "other_cast_rows": "every other cast company returned by the keyword screen has 0 signal rows in [T-12m, T] (A1, A2, D_SAME, H2 and any other keyword match); OLDHARBOR (EBITDA 95, public) and H1 (EBITDA 52) fall outside the band; Keel (Q-COMPETE) is not planted"
+      },
+      "tie_break": "score desc, readiness desc, fit desc, name asc",
+      "must_not_contain": [
+        {
+          "key": "D_VET",
+          "id": "C1495",
+          "name": "Pembrook Veterinary Pharmaceuticals"
+        },
+        {
+          "key": "D_SNF",
+          "id": "C1888",
+          "name": "Linden Hollow Senior Care"
+        },
+        {
+          "key": "D_BIG",
+          "id": "C1881",
+          "name": "Northgate Behavioral Health"
+        },
+        {
+          "key": "D_SHORT",
+          "id": "C2804",
+          "name": "Cobalt Urgent Care Partners"
+        },
+        {
+          "key": "NM_B",
+          "id": "C4685",
+          "name": "Ashby Vale Dental Partners"
+        },
+        {
+          "key": "D_SAME",
+          "id": "C2679",
+          "name": "Shalecrest Materials Testing"
+        },
+        {
+          "key": "A1",
+          "id": "C9760",
+          "name": "Fernhollow Environmental Labs"
+        },
+        {
+          "key": "BRIGHT",
+          "id": "C4874",
+          "name": "Cobbleton Dental Group"
+        }
+      ],
+      "rehearsal": {
+        "must_appear": [
+          "Larkspur Revenue Partners",
+          "Bayside Pediatric Therapy Group",
+          "Saltmarsh Home Infusion",
+          "Quarry Records Retrieval",
+          "Tessmark Clinical Supply",
+          "Fenwick Food Safety Labs"
+        ],
+        "must_not_appear": [
+          "Pembrook Veterinary Pharmaceuticals",
+          "Cobalt Urgent Care Partners",
+          "Linden Hollow Senior Care"
+        ]
+      }
+    },
+    "Q-PATH": {
+      "question": "For our top three, what is our warmest path to each CEO, and through whom? And if the company is sponsor-owned, do we know the owner's deal partner?",
+      "rows": [
+        {
+          "target": {
+            "key": "T_BANKER",
+            "id": "C3225",
+            "name": "Larkspur Revenue Partners"
+          },
+          "decision_maker": {
+            "key": "CEO_B",
+            "id": "P67052",
+            "name": "Ruth Adeyemi"
+          },
+          "kind": "CEO",
+          "hops": 3,
+          "best_path": [
+            {
+              "key": "VP",
+              "id": "P25319",
+              "name": "Priya Raman"
+            },
+            {
+              "key": "Y_BANK",
+              "id": "P72919",
+              "name": "Sofia Brandt"
+            },
+            {
+              "key": "B_BANK",
+              "id": "P78788",
+              "name": "Nathan Cole"
+            },
+            {
+              "key": "CEO_B",
+              "id": "P67052",
+              "name": "Ruth Adeyemi"
+            }
+          ],
+          "hop_strengths": [
+            1.0,
+            1.0,
+            0.7
+          ],
+          "hop_evidence": [
+            "K1 Kellbrook Securities 2012-06-04 to 2016-06-30 (0.70) and K3 7 positive meetings 2024-11 to 2026-09 (1.00); max 1.00",
+            "K1 Cedar Row Partners 2017-01-09 to present -> 1.00",
+            "K2 lead sell-side banker on the Larkspur majority recap closed 2019-04-15 while she was CEO -> 0.70"
+          ],
+          "path_strength": 0.7,
+          "alternates": []
+        },
+        {
+          "target": {
+            "key": "T_BANKER",
+            "id": "C3225",
+            "name": "Larkspur Revenue Partners"
+          },
+          "decision_maker": {
+            "key": "OWN_B",
+            "id": "P79001",
+            "name": "Owen Lacey"
+          },
+          "kind": "OWNER_DESIGNEE",
+          "hops": null,
+          "cold": true,
+          "min_seed_distance": ">=4"
+        },
+        {
+          "target": {
+            "key": "T_WARM",
+            "id": "C6334",
+            "name": "Bayside Pediatric Therapy Group"
+          },
+          "decision_maker": {
+            "key": "CEO_W",
+            "id": "P37955",
+            "name": "Daniel Reyes"
+          },
+          "kind": "CEO",
+          "hops": 2,
+          "best_path": [
+            {
+              "key": "OP",
+              "id": "P19079",
+              "name": "Marcus Whitfield"
+            },
+            {
+              "key": "CFO_W",
+              "id": "P88768",
+              "name": "Elena Marsh"
+            },
+            {
+              "key": "CEO_W",
+              "id": "P37955",
+              "name": "Daniel Reyes"
+            }
+          ],
+          "hop_strengths": [
+            1.0,
+            0.6
+          ],
+          "hop_evidence": [
+            "K1 tenure overlap Cobbleton Dental Group 2015-03-01 to 2019-06-30 -> 1.00",
+            "K1 tenure overlap Bayside Pediatric Therapy Group 2025-06-01 to present -> 0.60"
+          ],
+          "path_strength": 0.6,
+          "alternates": [
+            {
+              "path": [
+                {
+                  "key": "MP",
+                  "id": "P26070",
+                  "name": "Dana Okafor"
+                },
+                {
+                  "key": "X_STALE",
+                  "id": "P19465",
+                  "name": "Walter Kim"
+                },
+                {
+                  "key": "CEO_W",
+                  "id": "P37955",
+                  "name": "Daniel Reyes"
+                }
+              ],
+              "hop_strengths": [
+                0.3,
+                0.956
+              ],
+              "path_strength": 0.287,
+              "rank": 2
+            }
+          ]
+        },
+        {
+          "target": {
+            "key": "T_COLD",
+            "id": "C5441",
+            "name": "Saltmarsh Home Infusion"
+          },
+          "decision_maker": {
+            "key": "CEO_C",
+            "id": "P23882",
+            "name": "Victor Hale"
+          },
+          "kind": "CEO",
+          "hops": null,
+          "cold": true,
+          "min_seed_distance": ">=4"
+        },
+        {
+          "target": {
+            "key": "T_COLD",
+            "id": "C5441",
+            "name": "Saltmarsh Home Infusion"
+          },
+          "decision_maker": {
+            "key": "OWN_C",
+            "id": "P81174",
+            "name": "Graham Pike"
+          },
+          "kind": "OWNER_DESIGNEE",
+          "hops": null,
+          "cold": true,
+          "min_seed_distance": ">=4"
+        }
+      ],
+      "closest_intermediary": {
+        "target": {
+          "key": "T_COLD",
+          "id": "C5441",
+          "name": "Saltmarsh Home Infusion"
+        },
+        "intermediary": {
+          "key": "HL",
+          "id": "I139",
+          "name": "Harbor Lane Advisors"
+        },
+        "ties": [
+          "BANKER_ENGAGED 2026-07-14",
+          "debt_advisor on dividend recap 2023-05-18"
+        ]
+      },
+      "cedar_touchpoints_24m": {
+        "total": 14,
+        "person_level_vp_y_bank": 10,
+        "positive": 7,
+        "org_level": 4
+      },
+      "must_not_contain": [
+        {
+          "key": "MD_MER",
+          "id": "P26028",
+          "name": "Tom Harlowe"
+        },
+        {
+          "key": "MERIDIAN",
+          "id": "C9784",
+          "name": "Varnell Lab Services"
+        }
+      ],
+      "must_not_contain_note": "no path to CEO_C or OWN_C; no path via Varnell Lab Services; stale path never first; no T_BANKER alternate",
+      "rehearsal": {
+        "must_appear": [
+          "Ruth Adeyemi",
+          "Priya Raman",
+          "Sofia Brandt",
+          "Nathan Cole",
+          "Daniel Reyes",
+          "Marcus Whitfield",
+          "Elena Marsh",
+          "Victor Hale",
+          "Graham Pike",
+          "Owen Lacey"
+        ],
+        "must_not_appear": [
+          "Tom Harlowe",
+          "Varnell Lab Services"
+        ],
+        "row_check": "Walter Kim may appear only in the second-ranked Bayside Pediatric Therapy Group alternate"
+      },
+      "naive_sql": {
+        "q_path.sql": "self-join ROLE_HISTORY on org_id, one side a current Northwind Deal Team/Operating Partner role, the other the current CEO of a top-three target, ignoring dates. Returns exactly one row: Tom Harlowe - Victor Hale via Varnell Lab Services (decoy: 613-day gap).",
+        "near_misses": [
+          {
+            "name": "stale tie",
+            "label": "near_miss (not a SQL decoy)",
+            "detail": "Dana Okafor - Walter Kim at Oldmere Health System 1998-2000 is a real Knows edge; RAI ranks it second (0.287). A count-of-connections ranking treats it as equal to the 0.600 path."
+          },
+          {
+            "name": "we know the sponsor",
+            "label": "near_miss (CRM search)",
+            "detail": "SELECT * FROM CRM_INTERACTION WHERE counterparty_org_id = 'S938' returns one neutral meeting by Dana Okafor on 2025-03-04, so a CRM search says 'we know Coppervale Partners'; the owner designee Graham Pike is more than 3 hops away."
+          }
+        ]
+      }
+    },
+    "Q-ADDON": {
+      "status": "backup (v2)",
+      "question": "Which add-ons best extend our Ironvale Testing Group platform, beyond the obvious same-niche names?",
+      "platform": {
+        "key": "GRANITE",
+        "id": "C7633",
+        "name": "Ironvale Testing Group"
+      },
+      "platform_neighbors": 18,
+      "ranked": [
+        {
+          "rank": 1,
+          "key": {
+            "key": "A1",
+            "id": "C9760",
+            "name": "Fernhollow Environmental Labs"
+          },
+          "shared": 6,
+          "neighbors": 10,
+          "jaccard": 0.2727,
+          "whitespace_states": [
+            "CO",
+            "NM",
+            "UT"
+          ]
+        },
+        {
+          "rank": 2,
+          "key": {
+            "key": "A2",
+            "id": "C5352",
+            "name": "Tollbridge NDT Services"
+          },
+          "shared": 3,
+          "neighbors": 8,
+          "jaccard": 0.1304,
+          "whitespace_states": []
+        },
+        {
+          "rank": 3,
+          "key": {
+            "key": "A3",
+            "id": "C2288",
+            "name": "Merrow Calibration"
+          },
+          "shared": 2,
+          "neighbors": 4,
+          "jaccard": 0.1,
+          "whitespace_states": [
+            "KS"
+          ]
+        }
+      ],
+      "must_not_contain": [
+        {
+          "key": "D_SAME",
+          "id": "C2679",
+          "name": "Shalecrest Materials Testing"
+        }
+      ]
+    },
+    "Q-CONFLICT": {
+      "question": "Before we bid on Tessmark Clinical Supply, does it conflict with anything we own, and would the deal push Fund IV over its sector concentration guideline?",
+      "subject": {
+        "key": "CONF",
+        "id": "C8200",
+        "name": "Tessmark Clinical Supply"
+      },
+      "exposure_rows": [
+        {
+          "row": 1,
+          "key": {
+            "key": "PINE",
+            "id": "C2514",
+            "name": "Pinewick Dental Partners"
+          },
+          "fund": {
+            "key": "NW_F3",
+            "id": "F564",
+            "name": "Northwind Equity Partners Fund III"
+          },
+          "distance": 1,
+          "kind": "CONFLICT - cross-fund review",
+          "evidence": "Tessmark Clinical Supply supplies Pinewick Dental Partners"
+        },
+        {
+          "row": 2,
+          "key": {
+            "key": "GRANITE",
+            "id": "C7633",
+            "name": "Ironvale Testing Group"
+          },
+          "fund": {
+            "key": "NW_F4",
+            "id": "F517",
+            "name": "Northwind Equity Partners Fund IV"
+          },
+          "distance": 2,
+          "kind": "SHARED COUNTERPARTY (informational)",
+          "via": {
+            "key": "C07",
+            "id": "C8773",
+            "name": "Ravenholt Engineering Group"
+          },
+          "evidence": "Tessmark Clinical Supply supplies Ravenholt Engineering Group; Ravenholt buys from Ironvale Testing Group"
+        }
+      ],
+      "fund_iv_holdings": [
+        {
+          "key": {
+            "key": "GRANITE",
+            "id": "C7633",
+            "name": "Ironvale Testing Group"
+          },
+          "area": "Testing, Inspection & Certification",
+          "since": "2024-03-15",
+          "equity_musd": 150.0
+        },
+        {
+          "key": {
+            "key": "MEADOW",
+            "id": "C2262",
+            "name": "Quillmont Physical Therapy"
+          },
+          "area": "Healthcare Services",
+          "since": "2023-09-12",
+          "equity_musd": 110.0
+        },
+        {
+          "key": {
+            "key": "DIST1",
+            "id": "C2059",
+            "name": "Tullmere Chemical Distribution"
+          },
+          "area": "Specialty Distribution",
+          "since": "2023-11-01",
+          "equity_musd": 140.0
+        },
+        {
+          "key": {
+            "key": "DIST2",
+            "id": "C2199",
+            "name": "Flintmoor Industrial Supply"
+          },
+          "area": "Specialty Distribution",
+          "since": "2024-08-20",
+          "equity_musd": 125.0
+        },
+        {
+          "key": {
+            "key": "DIST3",
+            "id": "C2950",
+            "name": "Primdale Ingredients Co"
+          },
+          "area": "Specialty Distribution",
+          "since": "2025-06-02",
+          "equity_musd": 120.0
+        }
+      ],
+      "concentration": {
+        "fund": {
+          "key": "NW_F4",
+          "id": "F517",
+          "name": "Northwind Equity Partners Fund IV"
+        },
+        "fund_size_musd": 1200.0,
+        "guideline_pct": 35.0,
+        "areas": {
+          "Specialty Distribution": {
+            "before_musd": 385.0,
+            "before_pct": 32.08,
+            "after_musd": 440.0,
+            "after_pct": 36.67,
+            "breach": true
+          },
+          "Testing, Inspection & Certification": {
+            "before_pct": 12.5,
+            "after_pct": 12.5
+          },
+          "Healthcare Services": {
+            "before_pct": 9.17,
+            "after_pct": 9.17
+          },
+          "Tech-Enabled Business Services": {
+            "before_pct": 0.0,
+            "after_pct": 0.0
+          }
+        },
+        "check_musd": 55.0,
+        "headroom_musd": 35.0,
+        "over_by_musd": 20.0
+      },
+      "bound_check": {
+        "key": {
+          "key": "REDFERN",
+          "id": "C1074",
+          "name": "Redfern Imaging Centers"
+        },
+        "distance": 3,
+        "path": [
+          {
+            "key": "CONF",
+            "id": "C8200",
+            "name": "Tessmark Clinical Supply"
+          },
+          {
+            "key": "H1",
+            "id": "C5653",
+            "name": "Carrowmere Community Hospital"
+          },
+          {
+            "key": "H2",
+            "id": "C8203",
+            "name": "Wexley Medical Linen"
+          },
+          {
+            "key": "REDFERN",
+            "id": "C1074",
+            "name": "Redfern Imaging Centers"
+          }
+        ]
+      },
+      "former_holding_decoy": {
+        "key": {
+          "key": "BRIGHT",
+          "id": "C4874",
+          "name": "Cobbleton Dental Group"
+        },
+        "distance": 1,
+        "sold": "2020-02-14"
+      },
+      "naive_conflict_result": [
+        {
+          "key": "PINE",
+          "id": "C2514",
+          "name": "Pinewick Dental Partners"
+        },
+        {
+          "key": "BRIGHT",
+          "id": "C4874",
+          "name": "Cobbleton Dental Group"
+        }
+      ],
+      "must_not_contain": [
+        {
+          "key": "REDFERN",
+          "id": "C1074",
+          "name": "Redfern Imaging Centers"
+        },
+        {
+          "key": "BRIGHT",
+          "id": "C4874",
+          "name": "Cobbleton Dental Group"
+        }
+      ],
+      "rehearsal": {
+        "must_appear": [
+          "Tessmark Clinical Supply",
+          "Pinewick Dental Partners",
+          "Ironvale Testing Group",
+          "Specialty Distribution"
+        ],
+        "must_not_appear": [
+          "Cobbleton Dental Group",
+          "Redfern Imaging Centers"
+        ]
+      }
+    },
+    "Q-FLOW": {
+      "question": "Which intermediaries actually bridge deal flow between founders and sponsors in our sectors, and where is our coverage weakest?",
+      "betweenness_rank_intermediaries": [
+        {
+          "rank": 1,
+          "key": {
+            "key": "CEDAR",
+            "id": "I210",
+            "name": "Cedar Row Partners"
+          }
+        },
+        {
+          "rank": 2,
+          "key": {
+            "key": "HL",
+            "id": "I139",
+            "name": "Harbor Lane Advisors"
+          }
+        }
+      ],
+      "bigbank_min_rank": 11,
+      "n_intermediaries_in_graph": "31-40 (top decile = 4)",
+      "touchpoints_24m": {
+        "CEDAR": 14,
+        "HL": 1,
+        "BIGBANK": 9
+      },
+      "hl_deals_in_window": 9,
+      "coverage_gaps": [
+        {
+          "key": "HL",
+          "id": "I139",
+          "name": "Harbor Lane Advisors"
+        }
+      ],
+      "q1_touchpoints": 1,
+      "bigbank_total_deals_5y": 40,
+      "bigbank_thesis_deals_5y": 8,
+      "hl_advised_t_cold_recap": {
+        "date": "2023-05-18",
+        "structure": "dividend_recap",
+        "party_role": "debt_advisor",
+        "lead": {
+          "key": "HL_MD",
+          "id": "P58896",
+          "name": "Celia Navarro"
+        },
+        "owner": {
+          "key": "COPPERLINE",
+          "id": "S938",
+          "name": "Coppervale Partners"
+        }
+      },
+      "must_not_contain": [
+        {
+          "key": "CEDAR",
+          "id": "I210",
+          "name": "Cedar Row Partners"
+        },
+        {
+          "key": "BIGBANK",
+          "id": "I736",
+          "name": "Brayford Capital Markets"
+        }
+      ],
+      "tier1_must_not_appear": [
+        {
+          "key": "BIGBANK",
+          "id": "I736",
+          "name": "Brayford Capital Markets"
+        }
+      ],
+      "rehearsal": {
+        "must_appear": [
+          "Cedar Row Partners",
+          "Harbor Lane Advisors"
+        ],
+        "must_not_appear": [
+          "Brayford Capital Markets"
+        ]
+      },
+      "hl_deal_roles": "8 x deal_role=platform, structure=control_buyout, seller_type=founder_family, buyer = the sponsor fund (party org = sponsor, so HL-sponsor edges exist); 1 x dividend_recap with HL debt_advisor and Coppervale Fund II owner"
+    },
+    "FINALE": {
+      "prompt": "Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company is a conflict, so flag it and take it off the Tier A list.",
+      "tier_a_ranked": [
+        {
+          "rank": 1,
+          "key": {
+            "key": "T_WARM",
+            "id": "C6334",
+            "name": "Bayside Pediatric Therapy Group"
+          },
+          "score": 95
+        },
+        {
+          "rank": 2,
+          "key": {
+            "key": "T_BANKER",
+            "id": "C3225",
+            "name": "Larkspur Revenue Partners"
+          },
+          "score": 90
+        },
+        {
+          "rank": 3,
+          "key": {
+            "key": "T_COLD",
+            "id": "C5441",
+            "name": "Saltmarsh Home Infusion"
+          },
+          "score": 80
+        },
+        {
+          "rank": 4,
+          "key": {
+            "key": "T_5",
+            "id": "C6895",
+            "name": "Quarry Records Retrieval"
+          },
+          "score": 75
+        },
+        {
+          "rank": 5,
+          "key": {
+            "key": "NM_B",
+            "id": "C4685",
+            "name": "Ashby Vale Dental Partners"
+          },
+          "score": 75
+        },
+        {
+          "rank": 6,
+          "key": {
+            "key": "T_6",
+            "id": "C3429",
+            "name": "Fenwick Food Safety Labs"
+          },
+          "score": 70
+        }
+      ],
+      "warm_path_set": [
+        {
+          "key": "T_WARM",
+          "id": "C6334",
+          "name": "Bayside Pediatric Therapy Group"
+        },
+        {
+          "key": "NM_B",
+          "id": "C4685",
+          "name": "Ashby Vale Dental Partners"
+        }
+      ],
+      "conflicts": [
+        {
+          "key": {
+            "key": "CONF",
+            "id": "C8200",
+            "name": "Tessmark Clinical Supply"
+          },
+          "score": 75,
+          "flag": "Conflict - cross-fund review",
+          "with": {
+            "key": "PINE",
+            "id": "C2514",
+            "name": "Pinewick Dental Partners"
+          },
+          "direction": "CONF supplies PINE"
+        }
+      ],
+      "nm_b_path": {
+        "path": [
+          {
+            "key": "OP2",
+            "id": "P95007",
+            "name": "Grace Liu"
+          },
+          {
+            "key": "Z",
+            "id": "P38282",
+            "name": "Lucas Ferreira"
+          },
+          {
+            "key": "CEO_NMB",
+            "id": "P12934",
+            "name": "Lydia Okoro"
+          }
+        ],
+        "hop_strengths": [
+          1.0,
+          1.0
+        ],
+        "path_strength": 1.0
+      },
+      "guards": [
+        "F1: NM_B is the only scored company with an Act-1 score in [60, 69]",
+        "F2: every current role-holder of T_BANKER, T_COLD, T_5, T_6, CONF has seed-distance >= 3",
+        "F2 also holds measured from former Northwind people (EX_NW): seed-distance and former-Northwind distance >= 3",
+        "Conflict rule uses CURRENT Fund III holdings only; former Fund III holdings are excluded by design, and no Tier-A or NM_B company links to one anyway"
+      ],
+      "must_not_contain": [
+        {
+          "key": "CONF",
+          "id": "C8200",
+          "name": "Tessmark Clinical Supply"
+        }
+      ],
+      "decoy_check": "row-based: CONF named as flagged, absent from Tier-A rows",
+      "rehearsal": {
+        "must_appear": [
+          "Bayside Pediatric Therapy Group",
+          "Larkspur Revenue Partners",
+          "Saltmarsh Home Infusion",
+          "Quarry Records Retrieval",
+          "Ashby Vale Dental Partners",
+          "Fenwick Food Safety Labs",
+          "Tessmark Clinical Supply (as flagged)"
+        ],
+        "row_check": "Tessmark Clinical Supply is not among the Tier-A rows"
+      }
+    }
+  },
+  "cast": {
+    "A1": {
+      "id": "C9760",
+      "name": "Fernhollow Environmental Labs"
+    },
+    "A2": {
+      "id": "C5352",
+      "name": "Tollbridge NDT Services"
+    },
+    "A3": {
+      "id": "C2288",
+      "name": "Merrow Calibration"
+    },
+    "ADV1": {
+      "id": "I737",
+      "name": "Umberby & Co."
+    },
+    "ADV2": {
+      "id": "I538",
+      "name": "Birchwick Advisors"
+    },
+    "ADV3": {
+      "id": "I845",
+      "name": "Wilby Securities"
+    },
+    "ADV4": {
+      "id": "I191",
+      "name": "Thornport Advisors"
+    },
+    "ADV5": {
+      "id": "I117",
+      "name": "Fenbrook & Co."
+    },
+    "ADV6": {
+      "id": "I991",
+      "name": "Jungate Bank Capital"
+    },
+    "ADV7": {
+      "id": "I810",
+      "name": "Flintworth Capital Advisors"
+    },
+    "ADV8": {
+      "id": "I551",
+      "name": "Dunbury & Co."
+    },
+    "ADV_OLD": {
+      "id": "I694",
+      "name": "Shelmere Advisors"
+    },
+    "ADV_SHORT": {
+      "id": "I252",
+      "name": "Glenley & Co."
+    },
+    "ASHGROVE": {
+      "id": "S976",
+      "name": "Glenhallow Partners"
+    },
+    "BIGBANK": {
+      "id": "I736",
+      "name": "Brayford Capital Markets"
+    },
+    "BRIGHT": {
+      "id": "C4874",
+      "name": "Cobbleton Dental Group"
+    },
+    "BS1": {
+      "id": "S885",
+      "name": "Winstow Capital"
+    },
+    "BS1_F": {
+      "id": "F805",
+      "name": "Winstow Capital Fund II"
+    },
+    "BS2": {
+      "id": "S613",
+      "name": "Merrholt Capital"
+    },
+    "BS2_F": {
+      "id": "F387",
+      "name": "Merrholt Capital Fund V"
+    },
+    "BS3": {
+      "id": "S916",
+      "name": "Walfield Capital"
+    },
+    "BS3_F": {
+      "id": "F503",
+      "name": "Walfield Capital Fund V"
+    },
+    "BS4": {
+      "id": "S558",
+      "name": "Mosswood Equity"
+    },
+    "BS4_F": {
+      "id": "F840",
+      "name": "Mosswood Equity Fund IV"
+    },
+    "BS5": {
+      "id": "S306",
+      "name": "Briswick Partners"
+    },
+    "BS5_F": {
+      "id": "F329",
+      "name": "Briswick Partners Fund III"
+    },
+    "B_BANK": {
+      "id": "P78788",
+      "name": "Nathan Cole"
+    },
+    "C01": {
+      "id": "C7005",
+      "name": "Bramden Construction"
+    },
+    "C02": {
+      "id": "C9222",
+      "name": "Brackhall Aerostructures"
+    },
+    "C03": {
+      "id": "C4576",
+      "name": "Stanton Machine Works"
+    },
+    "C04": {
+      "id": "C1028",
+      "name": "Brackden Mechanical"
+    },
+    "C05": {
+      "id": "C8878",
+      "name": "Langvale Container Co"
+    },
+    "C06": {
+      "id": "C2264",
+      "name": "Oakcombe Civil Group"
+    },
+    "C07": {
+      "id": "C8773",
+      "name": "Ravenholt Engineering Group"
+    },
+    "C08": {
+      "id": "C9462",
+      "name": "Tammoor Aerostructures"
+    },
+    "C09": {
+      "id": "C1728",
+      "name": "Gantby Precision"
+    },
+    "C10": {
+      "id": "C5559",
+      "name": "Sheldale Climate Systems"
+    },
+    "C11": {
+      "id": "C7053",
+      "name": "Salbrook Container Co"
+    },
+    "C12": {
+      "id": "C2703",
+      "name": "Hartmere Engineering"
+    },
+    "C13": {
+      "id": "C4146",
+      "name": "Heathden Construction"
+    },
+    "C14": {
+      "id": "C7844",
+      "name": "Yarbrook Aerostructures"
+    },
+    "C15": {
+      "id": "C4991",
+      "name": "Wexvale Machine Works"
+    },
+    "CEDAR": {
+      "id": "I210",
+      "name": "Cedar Row Partners"
+    },
+    "CEO_B": {
+      "id": "P67052",
+      "name": "Ruth Adeyemi"
+    },
+    "CEO_BRIGHT": {
+      "id": "P33854",
+      "name": "Aaron Delacroix"
+    },
+    "CEO_C": {
+      "id": "P23882",
+      "name": "Victor Hale"
+    },
+    "CEO_CONF": {
+      "id": "P66303",
+      "name": "Alicia Albrecht"
+    },
+    "CEO_NMB": {
+      "id": "P12934",
+      "name": "Lydia Okoro"
+    },
+    "CEO_T5": {
+      "id": "P81429",
+      "name": "Esme Wakefield"
+    },
+    "CEO_T6": {
+      "id": "P55087",
+      "name": "Teodor Albrecht"
+    },
+    "CEO_W": {
+      "id": "P37955",
+      "name": "Daniel Reyes"
+    },
+    "CFO_B": {
+      "id": "P11184",
+      "name": "Rohan Falkner"
+    },
+    "CFO_C": {
+      "id": "P72901",
+      "name": "Wes Okonkwo"
+    },
+    "CFO_CONF": {
+      "id": "P25542",
+      "name": "Bianca Fenimore"
+    },
+    "CFO_NMB": {
+      "id": "P20915",
+      "name": "Mara Iwata"
+    },
+    "CFO_T5": {
+      "id": "P90483",
+      "name": "Leon Galloway"
+    },
+    "CFO_W": {
+      "id": "P88768",
+      "name": "Elena Marsh"
+    },
+    "CONF": {
+      "id": "C8200",
+      "name": "Tessmark Clinical Supply"
+    },
+    "COO_B": {
+      "id": "P54313",
+      "name": "Bianca Rourke"
+    },
+    "COPPERLINE": {
+      "id": "S938",
+      "name": "Coppervale Partners"
+    },
+    "CTX1": {
+      "id": "I874",
+      "name": "Salthorpe Capital Advisors"
+    },
+    "CTX2": {
+      "id": "I919",
+      "name": "Vellholt Securities"
+    },
+    "CTX3": {
+      "id": "I558",
+      "name": "Brackden Partners"
+    },
+    "CV_F2": {
+      "id": "F697",
+      "name": "Coppervale Partners Fund II"
+    },
+    "CV_F3": {
+      "id": "F927",
+      "name": "Coppervale Partners Fund III"
+    },
+    "DIR_CONF": {
+      "id": "P47126",
+      "name": "Helen Voss"
+    },
+    "DIR_NMB": {
+      "id": "P75330",
+      "name": "Iris Calloway"
+    },
+    "DIST1": {
+      "id": "C2059",
+      "name": "Tullmere Chemical Distribution"
+    },
+    "DIST2": {
+      "id": "C2199",
+      "name": "Flintmoor Industrial Supply"
+    },
+    "DIST3": {
+      "id": "C2950",
+      "name": "Primdale Ingredients Co"
+    },
+    "D_BIG": {
+      "id": "C1881",
+      "name": "Northgate Behavioral Health"
+    },
+    "D_SAME": {
+      "id": "C2679",
+      "name": "Shalecrest Materials Testing"
+    },
+    "D_SHORT": {
+      "id": "C2804",
+      "name": "Cobalt Urgent Care Partners"
+    },
+    "D_SNF": {
+      "id": "C1888",
+      "name": "Linden Hollow Senior Care"
+    },
+    "D_VET": {
+      "id": "C1495",
+      "name": "Pembrook Veterinary Pharmaceuticals"
+    },
+    "EX_NW": {
+      "id": "P16824",
+      "name": "Harold Becker"
+    },
+    "GH_F4": {
+      "id": "F206",
+      "name": "Glenhallow Partners Fund IV"
+    },
+    "GRANITE": {
+      "id": "C7633",
+      "name": "Ironvale Testing Group"
+    },
+    "H1": {
+      "id": "C5653",
+      "name": "Carrowmere Community Hospital"
+    },
+    "H2": {
+      "id": "C8203",
+      "name": "Wexley Medical Linen"
+    },
+    "HL": {
+      "id": "I139",
+      "name": "Harbor Lane Advisors"
+    },
+    "HL_MD": {
+      "id": "P58896",
+      "name": "Celia Navarro"
+    },
+    "HS2": {
+      "id": "S259",
+      "name": "Claywell Capital Partners"
+    },
+    "HS2_F": {
+      "id": "F693",
+      "name": "Claywell Capital Partners Fund IV"
+    },
+    "HS3": {
+      "id": "S743",
+      "name": "Tullbrook Capital"
+    },
+    "HS3_F": {
+      "id": "F666",
+      "name": "Tullbrook Capital Fund V"
+    },
+    "HS4": {
+      "id": "S279",
+      "name": "Ostwood Capital Partners"
+    },
+    "HS4_F": {
+      "id": "F428",
+      "name": "Ostwood Capital Partners Fund V"
+    },
+    "HS5": {
+      "id": "S347",
+      "name": "Brammoor Capital"
+    },
+    "HS5_F": {
+      "id": "F888",
+      "name": "Brammoor Capital Fund III"
+    },
+    "IB_LEAD": {
+      "id": "P89893",
+      "name": "Martin Greer"
+    },
+    "IRONBRIDGE": {
+      "id": "S115",
+      "name": "Kestrelmoor Capital"
+    },
+    "KB_F1": {
+      "id": "F119",
+      "name": "Kestrelmoor Capital Fund I"
+    },
+    "KB_F2": {
+      "id": "F798",
+      "name": "Kestrelmoor Capital Fund II"
+    },
+    "LAKEMONT": {
+      "id": "C6147",
+      "name": "Lakeholm Orthodontics"
+    },
+    "LAKESHORE": {
+      "id": "I445",
+      "name": "Kellbrook Securities"
+    },
+    "MD_MER": {
+      "id": "P26028",
+      "name": "Tom Harlowe"
+    },
+    "MEADOW": {
+      "id": "C2262",
+      "name": "Quillmont Physical Therapy"
+    },
+    "MERIDIAN": {
+      "id": "C9784",
+      "name": "Varnell Lab Services"
+    },
+    "MP": {
+      "id": "P26070",
+      "name": "Dana Okafor"
+    },
+    "MS1": {
+      "id": "S164",
+      "name": "Merrton Equity"
+    },
+    "MS1_F": {
+      "id": "F190",
+      "name": "Merrton Equity Fund V"
+    },
+    "MS2": {
+      "id": "S437",
+      "name": "Nettleridge Partners"
+    },
+    "MS2_F": {
+      "id": "F357",
+      "name": "Nettleridge Partners Fund III"
+    },
+    "MS3": {
+      "id": "S358",
+      "name": "Salstead Partners"
+    },
+    "MS3_F": {
+      "id": "F715",
+      "name": "Salstead Partners Fund V"
+    },
+    "MS4": {
+      "id": "S113",
+      "name": "Kestfield Equity"
+    },
+    "MS4_F": {
+      "id": "F267",
+      "name": "Kestfield Equity Fund V"
+    },
+    "ND_T6": {
+      "id": "P81543",
+      "name": "Elise Marchetti"
+    },
+    "NM_B": {
+      "id": "C4685",
+      "name": "Ashby Vale Dental Partners"
+    },
+    "NW": {
+      "id": "S796",
+      "name": "Northwind Equity Partners"
+    },
+    "NW_F2": {
+      "id": "F420",
+      "name": "Northwind Equity Partners Fund II"
+    },
+    "NW_F3": {
+      "id": "F564",
+      "name": "Northwind Equity Partners Fund III"
+    },
+    "NW_F4": {
+      "id": "F517",
+      "name": "Northwind Equity Partners Fund IV"
+    },
+    "OLDHARBOR": {
+      "id": "C7366",
+      "name": "Oldmere Health System"
+    },
+    "OP": {
+      "id": "P19079",
+      "name": "Marcus Whitfield"
+    },
+    "OP2": {
+      "id": "P95007",
+      "name": "Grace Liu"
+    },
+    "OTH1": {
+      "id": "I840",
+      "name": "Loamford Advisors"
+    },
+    "OTH10": {
+      "id": "I783",
+      "name": "Cindercombe Advisors"
+    },
+    "OTH11": {
+      "id": "I299",
+      "name": "Kelcombe Capital Markets"
+    },
+    "OTH2": {
+      "id": "I654",
+      "name": "Ivomont Capital Markets"
+    },
+    "OTH3": {
+      "id": "I584",
+      "name": "Tullbrook Business Advisors"
+    },
+    "OTH4": {
+      "id": "I103",
+      "name": "Amberhurst Partners"
+    },
+    "OTH5": {
+      "id": "I532",
+      "name": "Pellbury Partners"
+    },
+    "OTH6": {
+      "id": "I400",
+      "name": "Wilmere Business Brokers"
+    },
+    "OTH7": {
+      "id": "I925",
+      "name": "Holstead Partners"
+    },
+    "OTH8": {
+      "id": "I591",
+      "name": "Salmoor Advisors"
+    },
+    "OTH9": {
+      "id": "I229",
+      "name": "Orrby Business Advisors"
+    },
+    "OWN_B": {
+      "id": "P79001",
+      "name": "Owen Lacey"
+    },
+    "OWN_C": {
+      "id": "P81174",
+      "name": "Graham Pike"
+    },
+    "PINE": {
+      "id": "C2514",
+      "name": "Pinewick Dental Partners"
+    },
+    "RADV1": {
+      "id": "I854",
+      "name": "Kestcrest Securities"
+    },
+    "RADV10": {
+      "id": "I907",
+      "name": "Hobden Partners"
+    },
+    "RADV11": {
+      "id": "I390",
+      "name": "Gantton Capital Advisors"
+    },
+    "RADV12": {
+      "id": "I241",
+      "name": "Wexcrest Capital Advisors"
+    },
+    "RADV13": {
+      "id": "I653",
+      "name": "Wexhall Bank Capital"
+    },
+    "RADV14": {
+      "id": "I489",
+      "name": "Junhaven Advisors"
+    },
+    "RADV15": {
+      "id": "I364",
+      "name": "Ravenmont Advisors"
+    },
+    "RADV16": {
+      "id": "I776",
+      "name": "Emberholt Partners"
+    },
+    "RADV17": {
+      "id": "I368",
+      "name": "Walbury Advisors"
+    },
+    "RADV18": {
+      "id": "I777",
+      "name": "Emberfield Capital Advisors"
+    },
+    "RADV19": {
+      "id": "I648",
+      "name": "Loamhurst Bank Capital"
+    },
+    "RADV2": {
+      "id": "I616",
+      "name": "Rushcombe & Co."
+    },
+    "RADV20": {
+      "id": "I617",
+      "name": "Pellgate & Co."
+    },
+    "RADV21": {
+      "id": "I830",
+      "name": "Sorrwell & Co."
+    },
+    "RADV22": {
+      "id": "I523",
+      "name": "Fairmont Advisors"
+    },
+    "RADV3": {
+      "id": "I494",
+      "name": "Dunby Bank Capital"
+    },
+    "RADV4": {
+      "id": "I993",
+      "name": "Pellfield Partners"
+    },
+    "RADV5": {
+      "id": "I936",
+      "name": "Quillwood Partners"
+    },
+    "RADV6": {
+      "id": "I971",
+      "name": "Coleden Advisors"
+    },
+    "RADV7": {
+      "id": "I974",
+      "name": "Yarholt Capital Advisors"
+    },
+    "RADV8": {
+      "id": "I373",
+      "name": "Ivoford & Co."
+    },
+    "RADV9": {
+      "id": "I670",
+      "name": "Kestcombe Advisors"
+    },
+    "RAFAEL": {
+      "id": "P30336",
+      "name": "Rafael Ortiz"
+    },
+    "RB_F3": {
+      "id": "F712",
+      "name": "Ridgeback Partners Fund III"
+    },
+    "RB_LEAD": {
+      "id": "P78994",
+      "name": "Lionel Marchetti"
+    },
+    "REDFERN": {
+      "id": "C1074",
+      "name": "Redfern Imaging Centers"
+    },
+    "RIDGEBACK": {
+      "id": "S641",
+      "name": "Ridgeback Partners"
+    },
+    "RS1": {
+      "id": "S516",
+      "name": "Millstead Equity Partners"
+    },
+    "RS1_F": {
+      "id": "F271",
+      "name": "Millstead Equity Partners Fund V"
+    },
+    "RS2": {
+      "id": "S303",
+      "name": "Nettleford Partners"
+    },
+    "RS2_F": {
+      "id": "F380",
+      "name": "Nettleford Partners Fund IV"
+    },
+    "RS3": {
+      "id": "S465",
+      "name": "Radgate Equity Partners"
+    },
+    "RS3_F": {
+      "id": "F687",
+      "name": "Radgate Equity Partners Fund V"
+    },
+    "RS4": {
+      "id": "S316",
+      "name": "Hartbury Capital Partners"
+    },
+    "RS4_F": {
+      "id": "F972",
+      "name": "Hartbury Capital Partners Fund II"
+    },
+    "RS5": {
+      "id": "S632",
+      "name": "Pellwood Partners"
+    },
+    "RS5_F": {
+      "id": "F522",
+      "name": "Pellwood Partners Fund IV"
+    },
+    "RS6": {
+      "id": "S210",
+      "name": "Yarvale Equity"
+    },
+    "RS6_F": {
+      "id": "F289",
+      "name": "Yarvale Equity Fund V"
+    },
+    "S1": {
+      "id": "C6984",
+      "name": "Rookhurst Industrial Supply"
+    },
+    "S2": {
+      "id": "C6397",
+      "name": "Belley Chemicals"
+    },
+    "S3": {
+      "id": "C7489",
+      "name": "Ashden Coatings"
+    },
+    "SHORT_F": {
+      "id": "F854",
+      "name": "Marmarsh Capital Fund II"
+    },
+    "SHORT_SP": {
+      "id": "S798",
+      "name": "Marmarsh Capital"
+    },
+    "SW_F2": {
+      "id": "F556",
+      "name": "Sablewood Equity Fund II"
+    },
+    "SW_F3": {
+      "id": "F239",
+      "name": "Sablewood Equity Fund III"
+    },
+    "SW_LEAD": {
+      "id": "P18565",
+      "name": "Gemma Dalby"
+    },
+    "TAMARACK": {
+      "id": "S859",
+      "name": "Sablewood Equity"
+    },
+    "T_5": {
+      "id": "C6895",
+      "name": "Quarry Records Retrieval"
+    },
+    "T_6": {
+      "id": "C3429",
+      "name": "Fenwick Food Safety Labs"
+    },
+    "T_BANKER": {
+      "id": "C3225",
+      "name": "Larkspur Revenue Partners"
+    },
+    "T_COLD": {
+      "id": "C5441",
+      "name": "Saltmarsh Home Infusion"
+    },
+    "T_WARM": {
+      "id": "C6334",
+      "name": "Bayside Pediatric Therapy Group"
+    },
+    "VP": {
+      "id": "P25319",
+      "name": "Priya Raman"
+    },
+    "X_STALE": {
+      "id": "P19465",
+      "name": "Walter Kim"
+    },
+    "Y_BANK": {
+      "id": "P72919",
+      "name": "Sofia Brandt"
+    },
+    "Z": {
+      "id": "P38282",
+      "name": "Lucas Ferreira"
+    }
+  }
+}

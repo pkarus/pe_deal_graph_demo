@@ -45,3 +45,8 @@ pat_token
 # Playwright output (R15 click-through tests)
 test-results/
 playwright-report/
+
+# Build scratch
+demo_workspace/scratch/
+data/csv_noise/
+scripts/scout/out/dev*/
