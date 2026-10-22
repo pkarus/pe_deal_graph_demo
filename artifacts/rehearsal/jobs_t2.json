@@ -1,0 +1,58 @@
+[
+ {
+  "id": "T2-FINALE_run1",
+  "prompt": "Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company needs cross-fund clearance, so flag it \"hold until cross-fund clearance\" and keep it off the Tier A call list until it is cleared."
+ },
+ {
+  "id": "T2-FINALE_run2",
+  "prompt": "Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company needs cross-fund clearance, so flag it \"hold until cross-fund clearance\" and keep it off the Tier A call list until it is cleared."
+ },
+ {
+  "id": "T2-SCORE_run1",
+  "prompt": "Only show the founder-owned names.",
+  "resume": "bf9cbaee-68e0-4737-bcf4-e5b4ac596e33",
+  "from": "artifacts/rehearsal/T1-SCORE_run6.jsonl"
+ },
+ {
+  "id": "T2-SCORE_run2",
+  "prompt": "Only show the founder-owned names.",
+  "resume": "a6a319b9-1853-4411-9fbb-74d6bc7e47f3",
+  "from": "artifacts/rehearsal/T1-SCORE_run5.jsonl"
+ },
+ {
+  "id": "T2-PATH_run1",
+  "prompt": "Why isn't Tom Harlowe's Varnell Lab Services connection a path to Victor Hale?",
+  "resume": "1ccacc8c-5e36-4f07-b36e-a38c8b8833f5",
+  "from": "artifacts/rehearsal/T1-PATH_run6.jsonl"
+ },
+ {
+  "id": "T2-PATH_run2",
+  "prompt": "Why isn't Tom Harlowe's Varnell Lab Services connection a path to Victor Hale?",
+  "resume": "cb852566-b304-4c8f-87fa-6db8d6a6deb1",
+  "from": "artifacts/rehearsal/T1-PATH_run5.jsonl"
+ },
+ {
+  "id": "T2-FLOW_run1",
+  "prompt": "Which of Harbor Lane Advisors' deals involve companies on our Tier A list?",
+  "resume": "1ca0c981-3d93-448c-ac1b-666c136b50a3",
+  "from": "artifacts/rehearsal/T1-FLOW_run6.jsonl"
+ },
+ {
+  "id": "T2-FLOW_run2",
+  "prompt": "Which of Harbor Lane Advisors' deals involve companies on our Tier A list?",
+  "resume": "eb4ed07f-14eb-4045-9d22-9d3fe84f1f8a",
+  "from": "artifacts/rehearsal/T1-FLOW_run5.jsonl"
+ },
+ {
+  "id": "T2-CONFLICT_run1",
+  "prompt": "What is the largest check we could write without breaching the guideline?",
+  "resume": "75a2fb03-68e3-4873-aa98-004aadbf4016",
+  "from": "artifacts/rehearsal/T1-CONFLICT_run6.jsonl"
+ },
+ {
+  "id": "T2-CONFLICT_run2",
+  "prompt": "What is the largest check we could write without breaching the guideline?",
+  "resume": "e9e266af-55d3-49ee-a67c-c48b7877d1dd",
+  "from": "artifacts/rehearsal/T1-CONFLICT_run5.jsonl"
+ }
+]

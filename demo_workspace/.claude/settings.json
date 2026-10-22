@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "BASH_MAX_TIMEOUT_MS": "600000"
+  },
+  "extraKnownMarketplaces": {
+    "RelationalAI": {
+      "source": {
+        "source": "github",
+        "repo": "RelationalAI/rai-agent-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "rai@RelationalAI": true
+  },
+  "permissions": {
+    "additionalDirectories": [
+      "../"
+    ],
+    "allow": [
+      "Skill",
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(uv run:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv --version)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(../.venv/bin/python:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir -p scratch)",
+      "Edit(./scratch/**)"
+    ],
+    "deny": [
+      "Bash(uv pip:*)",
+      "Bash(uv add:*)",
+      "Bash(uv remove:*)",
+      "Bash(pip:*)",
+      "Bash(snow:*)",
+      "Bash(rai:*)",
+      "Bash(../.venv/bin/rai:*)",
+      "Bash(git push:*)",
+      "Bash(rm -rf:*)",
+      "Edit(../pe_deal_graph/**)",
+      "Edit(../data/**)",
+      "Read(../raiconfig.yaml)",
+      "Read(~/.snowflake/**)"
+    ]
+  }
+}

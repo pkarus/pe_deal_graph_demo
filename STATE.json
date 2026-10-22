@@ -1,5 +1,5 @@
 {
-  "phase": "P5",
+  "phase": "P6/P7",
   "started_at": "2026-10-21T22:02:13+02:00",
   "gates": {
     "G0": {
@@ -27,16 +27,16 @@
       "commit": "24a56ce"
     },
     "G4": {
-      "status": "GATEKEEPER_RUNNING",
+      "status": "PASS",
       "attempts": 1,
-      "evidence": "handoffs/23-R11-a1.md (41/43, 2 = Pinewick name drift)",
-      "commit": null
+      "evidence": "gates/G4.md",
+      "commit": "5daeb91"
     },
     "G5": {
-      "status": "GATEKEEPER_RUNNING",
+      "status": "PASS",
       "attempts": 1,
-      "evidence": null,
-      "commit": null
+      "evidence": "gates/G5.md",
+      "commit": "ed8ecc6"
     },
     "G6": {
       "status": "PENDING",
@@ -45,8 +45,8 @@
       "commit": null
     },
     "G7": {
-      "status": "PENDING",
-      "attempts": 0,
+      "status": "GATEKEEPER_RUNNING",
+      "attempts": 1,
       "evidence": null,
       "commit": null
     },
@@ -119,7 +119,7 @@
     },
     "P4": {
       "title": "Rules + graph + queries + tests",
-      "status": "in_progress (pre-G3)",
+      "status": "done",
       "gate": "G4",
       "depends_on": [
         "G3"
@@ -134,7 +134,7 @@
     },
     "P5": {
       "title": "Noise + decoys + reload + re-test",
-      "status": "in_progress (noise behind flag, pre-G4)",
+      "status": "done",
       "gate": "G5",
       "depends_on": [
         "G4"
@@ -162,16 +162,21 @@
         "R14 a2 PASS self (prompts FINAL v2, CLAUDE.md answer-from-rows rule)",
         "R13 a2 BLOCKED (Q-PATH DecisionMaker rows missing; engine contention)",
         "R20 export fixer running (40)",
-        "R20 ask.py fallback PASS (retry once, then auto --from-exports)"
+        "R20 ask.py fallback PASS (retry once, then auto --from-exports)",
+        "R20 Tier-2 optional PASS (T2-PATH/CONFLICT/FLOW optional with fallbacks)"
       ]
     },
     "P7": {
       "title": "Cold rehearsal",
-      "status": "pending",
+      "status": "in_progress",
       "gate": "G8",
       "depends_on": [
         "G6",
         "G7"
+      ],
+      "agents": [
+        "R17 a1 PARTIAL (T1 3/3 clean runs 4-6, medians 57/73/58/73 s; paraphrase 3/3; T2 partial)",
+        "R18 G7 running (transcripts only)"
       ]
     },
     "P8": {
@@ -230,7 +235,10 @@
     "MINOR data: acquired add-ons have no OWNERSHIP rows (needs R08/R09 decision); Tier B and near-miss lists shifted, R13/R16 re-derive by id; remaining R19c minors (ownership volume, 2007-09 vintages, m6-m12)",
     "check for a lingering ask.py query-server process before P9; Finale live script vs server lock untested",
     "user: chmod 600 ~/.snowflake/pat_token_pe_demo; PAT network-policy check",
-    "P9 cleanup: delete RAI models pe_deal_graph_perf_a (and any _deploy leftovers) from pe_demo_logic"
+    "P9 cleanup: delete RAI models pe_deal_graph_perf_a (and any _deploy leftovers) from pe_demo_logic",
+    "QUESTIONS.md modified but uncommitted; tests/out not gitignored",
+    "ask.py warm-server fingerprint includes export.py; editing export.py makes the server stale (rehearsal runs 1-3 degraded)",
+    "Tier-2 follow-ups write slow scratch PyRel instead of filtering hero rows; T2-PATH 1/2, T2-CONFLICT not run -> mark optional"
   ],
   "engine_hours_estimate": 0,
   "checkpoints": {
@@ -240,7 +248,8 @@
     "G7": "2026-10-22T12:25+02:00",
     "G8": "2026-10-22T13:08+02:00",
     "soft_finish": "2026-10-22T13:30+02:00",
-    "hard_stop": "2026-10-22T14:00+02:00"
+    "hard_stop": "2026-10-22T14:00+02:00",
+    "user_testing": "2026-10-22T13:35+02:00"
   },
   "run_mode": "daytime rerun approved by user at 07:46; overnight window lost waiting on the Phase 0 question",
   "timebox_restart_at": "2026-10-22T07:46:31+02:00",
@@ -273,9 +282,7 @@
     "R07 reload -> R08 make ontology-check -> R11 pytest twice -> G5 Gatekeeper"
   ],
   "p5_flip": "Makefile data: `$(PY) data/generate.py` -> `$(PY) data/generate.py --noise --out data/csv`; do NOT run plain make data before flip (9 cells differ from committed csv)",
-  "queued": [
-    "R17 rehearsal (Tier-1 priority) after G4/G5 gatekeeper returns"
-  ],
+  "queued": [],
   "plan_G4_G5": "after R19c data fixer (30) + decoy fixer (32): flip agent (Makefile flip, make data, load, oracle, ontology-check, pytest x2, naive-sql, export) -> G4 Gatekeeper and G5 Gatekeeper",
   "engine_policy": "serialize engine-heavy agents; lock errors seen with concurrent writers",
   "perf_track": {
@@ -293,5 +300,6 @@
     "no_snowsight": true,
     "cowork": "optional, out of scope before 14:00 unless time allows",
     "source": "user 11:28"
-  }
+  },
+  "p9_plan": "no engine suspend (user testing); R21 report + final commit/tag + make warm at ~13:28"
 }

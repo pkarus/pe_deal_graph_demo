@@ -1,0 +1,16 @@
+{
+ "T1-SCORE": "Which companies fit the Fund IV thesis and look ready to transact in the next 12 to 18 months? Show the Tier A list with the score components behind each one, and flag any that are not in our CRM.",
+ "PARA-SCORE": "Give me the Tier A targets for Fund IV, the ones that fit the thesis and could trade in the next year or so. Break down each score and tell me which ones we don't have in the CRM.",
+ "T2-SCORE": "Only show the founder-owned names.",
+ "T1-PATH": "For our top three targets, what is our warmest path to each CEO, and through whom? Show every hop with its evidence, check the owner's board designee for sponsor-owned targets, and say plainly if a target is cold.",
+ "PARA-PATH": "Who on our team can get us an intro to the CEOs of the top three names? Walk me through each connection hop by hop, look at the owning sponsor's board designee where there is one, and tell me if any of them is a cold call.",
+ "T2-PATH": "Why isn't Tom Harlowe's Varnell Lab Services connection a path to Victor Hale?",
+ "T1-FLOW": "Which intermediaries actually bridge deal flow in our Fund IV sectors, and where is our coverage weakest? Show the five that bridge the most deal flow, our touchpoints with each over the last 24 months, and any coverage gap.",
+ "PARA-FLOW": "Which bankers and advisors really sit in the middle of deal flow in our Fund IV sectors? Show the top five, how often we have been in touch with each over the last two years, and where we are barely covered.",
+ "T2-FLOW": "Which of Harbor Lane Advisors' deals involve companies on our Tier A list?",
+ "T1-CONFLICT": "Before we bid on Tessmark Clinical Supply, does it conflict with anything we own, and would the deal push Fund IV over its sector concentration guideline?",
+ "PARA-CONFLICT": "We are about to go after Tessmark Clinical Supply. Is there a conflict with our existing portfolio, and would the deal take Fund IV over its sector concentration guideline?",
+ "T2-CONFLICT": "What is the largest check we could write without breaching the guideline?",
+ "T2-FINALE": "Add two rules and re-score. One: a target gets 10 access points if one of our deal team or operating partners can reach its CEO in two hops or fewer. Two: any target that is a customer or supplier of a current Fund III portfolio company needs cross-fund clearance, so flag it \"hold until cross-fund clearance\" and keep it off the Tier A call list until it is cleared.",
+ "PARA-FINALE": "Add a warm-path rule: 10 access points when someone on our team is within two hops of the target's CEO. Add a conflict rule: a customer or supplier of a current Fund III company gets flagged \"hold until cross-fund clearance\" and stays off the Tier A call list until it is cleared. Then re-score."
+}
