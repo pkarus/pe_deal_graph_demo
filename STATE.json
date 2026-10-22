@@ -1,5 +1,5 @@
 {
-  "phase": "P1",
+  "phase": "P2",
   "started_at": "2026-10-21T22:02:13+02:00",
   "gates": {
     "G0": {
@@ -9,20 +9,20 @@
       "commit": "b3e07e3"
     },
     "G1": {
-      "status": "GATEKEEPER_RUNNING",
+      "status": "PASS",
       "attempts": 2,
-      "evidence": "handoffs/13-R04-a2.md (critic PASS)",
-      "commit": null
+      "evidence": "gates/G1.md",
+      "commit": "6330f15"
     },
     "G2": {
-      "status": "PENDING",
-      "attempts": 0,
+      "status": "GATEKEEPER_RUNNING",
+      "attempts": 1,
       "evidence": null,
       "commit": null
     },
     "G3": {
-      "status": "PENDING",
-      "attempts": 0,
+      "status": "GATEKEEPER_RUNNING",
+      "attempts": 1,
       "evidence": null,
       "commit": null
     },
@@ -76,7 +76,7 @@
     },
     "P1": {
       "title": "Hero questions + critic",
-      "status": "in_progress",
+      "status": "done",
       "gate": "G1",
       "depends_on": [
         "R02"
@@ -98,8 +98,11 @@
         "G1"
       ],
       "agents": [
-        "R05 a1 resumed (v2 data)",
-        "R07 a1 running (generic loader)"
+        "R05 a1 PASS self",
+        "R06 a1 PASS self (oracle deterministic)",
+        "R07 a1 PASS self",
+        "R01 a4 gitignore PASS",
+        "R18 G2 running"
       ]
     },
     "P3": {
@@ -110,26 +113,33 @@
         "G2"
       ],
       "agents": [
-        "R08 a1 running (core.py + ONTOLOGY.md + interface contract)"
+        "R08 a1 PASS self (36 concepts, 101 contract names)",
+        "R18 G3 running"
       ]
     },
     "P4": {
       "title": "Rules + graph + queries + tests",
-      "status": "prep",
+      "status": "in_progress (pre-G3)",
       "gate": "G4",
       "depends_on": [
         "G3"
       ],
       "agents": [
-        "Scout a1 running (PyRel idioms on live engine)"
+        "Scout a1 PASS (cheatsheet)",
+        "R09 a1 running (rules.py)",
+        "R10 a1 running (graphs.py)",
+        "R11 a1 running (queries.py, tests, naive_sql)"
       ]
     },
     "P5": {
       "title": "Noise + decoys + reload + re-test",
-      "status": "pending",
+      "status": "in_progress (noise behind flag, pre-G4)",
       "gate": "G5",
       "depends_on": [
         "G4"
+      ],
+      "agents": [
+        "R12 a1 running (noise -> data/csv_noise/)"
       ]
     },
     "P6": {
@@ -141,8 +151,10 @@
       ],
       "agents": [
         "R14 a1 PASS self-reported (skeleton; prompts.md DRAFT v1, needs v2 resync)",
-        "R15 a1 running (explorer shell on fixture)",
-        "R16 a1 running (script skeleton on fixture)"
+        "R16 a1 PASS self (template+builder, fixture OK; real build waits on exports)",
+        "R15 a1 PASS self (explorer builder + tests on fixture)",
+        "R14 a2 PASS self (prompts FINAL v2, CLAUDE.md answer-from-rows rule)",
+        "R13 a1 BLOCKED-expected (export.py written; live path waits on R09/R10/R11; needs fix pass)"
       ]
     },
     "P7": {
@@ -191,7 +203,11 @@
     "R11: q_flow() returns betweenness top 5 only (PageRank may surface decoy bank)",
     "R14/R17: watch transcript decoy leakage",
     "R16: talk track - Cedar Row is sell-side",
-    "R05: data MINORs forwarded (Harbor Lane deal_role, signal pins, Owen Lacey, F2 guard, Ironbridge rename)"
+    "R13: export meta.counts.pipeline_companies, meta.counts.market_companies, meta.source='RAI', meta.act_order (R16 needs)",
+    "R05: 20 names not web-checked (quota) - collision check needed before G6",
+    "cleanup: scripts/scout/out/dev* stale folders; possible lingering data streams for dropped SCOUT_* tables",
+    "R11: q_path must include owner-designee rows (Owen Lacey); q_flow betweenness top 5 only; HERO_QUERIES=(q_score,q_path,q_flow,q_conflict,finale_rescore)",
+    "R17: decoy check must cover Tier-1 and paraphrase transcripts; Tier-2 Q-PATH ad-lib may need live PyRel (2/3 bar)"
   ],
   "engine_hours_estimate": 0,
   "checkpoints": {
@@ -207,7 +223,7 @@
   "timebox_restart_at": "2026-10-22T07:46:31+02:00",
   "timebox_note": "User set hard stop 14:00 Warsaw; checkpoints scaled by 0.72 from the 07:46 restart; P9 must start by 13:30",
   "concurrency": {
-    "max_agents": 7,
+    "max_agents": 8,
     "max_engine_agents": 2,
     "reason": "user asked to maximize parallelism at 08:05"
   },

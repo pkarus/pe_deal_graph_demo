@@ -8,7 +8,7 @@ PY     := .venv/bin/python
 RAI    := .venv/bin/rai
 ENGINE := pe_demo_logic
 
-.PHONY: help venv smoke data load test export artifacts warm rehearse
+.PHONY: help venv smoke data oracle load test export artifacts explorer demo-script warm rehearse
 
 help:
 	@echo "Targets: venv smoke data load test export artifacts warm rehearse"
@@ -25,23 +25,53 @@ smoke:
 
 # R05: deterministic generation into data/csv/ (and data/golden/) with RANDOM_SEED.
 data:
-	@echo "TODO(R05): make data not implemented yet" >&2; exit 1
+	$(PY) data/generate.py
+	$(PY) data/generate.py --check
+
+# R06: independent pandas/networkx oracle for every hero answer -> data/oracle_output.json (reads data/csv/ only, never data/golden/).
+oracle:
+	$(PY) data/oracle.py
 
 # R07: create tables from data/schema.sql in RAI_DEMO_PE_DEALS.DEAL_GRAPH and load data/csv/.
 load:
-	@echo "TODO(R07): make load not implemented yet" >&2; exit 1
+	$(PY) data/load.py
 
 # R11: hero tests (pytest tests/test_hero.py).
 test:
 	@echo "TODO(R11): make test not implemented yet" >&2; exit 1
 
 # R13: live RAI queries -> exports/*.json.
+# Determinism: two runs differ only in meta.generated_at ('make export-compare A=dir B=dir' ignores it).
+# 'make export-check' validates exports/ (or EXPORT_DIR=...) against the R15 contract without the engine.
+EXPORT_DIR ?= exports
 export:
-	@echo "TODO(R13): make export not implemented yet" >&2; exit 1
+	@test -f pe_deal_graph/queries.py || { echo "export: pe_deal_graph/queries.py missing (owner R11)" >&2; exit 2; }
+	$(PY) -m pe_deal_graph.export --out "$(EXPORT_DIR)"
+	$(PY) -m pe_deal_graph.export --check-contract "$(EXPORT_DIR)"
 
-# R15/R16: build artifacts/*.html from exports/.
-artifacts:
-	@echo "TODO(R15/R16): make artifacts not implemented yet" >&2; exit 1
+export-check:
+	$(PY) -m pe_deal_graph.export --check-contract "$(EXPORT_DIR)"
+
+export-compare:
+	$(PY) -m pe_deal_graph.export --compare "$(A)" "$(B)"
+
+# R15/R16: build artifacts/*.html from exports/. "artifacts" runs both steps; each role owns its own step.
+artifacts: explorer demo-script
+
+# R15: Deal Graph Explorer from exports/ (never from the FIXTURE set). Fails clearly if exports/ is missing.
+EXPLORER_EXPORTS ?= exports
+explorer:
+	@test -d "$(EXPLORER_EXPORTS)" || { echo "ERROR: $(EXPLORER_EXPORTS)/ not found. Run 'make export' (R13) first; the explorer is built only from live exports." >&2; exit 1; }
+	$(PY) artifacts/build_explorer.py --exports "$(EXPLORER_EXPORTS)" --out artifacts/deal_graph_explorer.html
+
+# R16: demo script from exports/ and golden/stories.md.
+# Fails loudly on a missing exports key; re-verifies every injected number; refuses FIXTURE exports.
+demo-script:
+	$(PY) artifacts/build_script.py
+
+# R16: FIXTURE build for development only -> tests/fixtures/script/out/demo_script_FIXTURE.html (stamped FIXTURE).
+demo-script-fixture:
+	$(PY) artifacts/build_script.py --fixture
 
 # R14: resume engine $(ENGINE) and run every hero query once.
 # Preconditions are checked before the engine is touched; each failure prints one clear line.
@@ -59,3 +89,9 @@ warm:
 # R17: cold rehearsal per PROMPT.md section 9.3.
 rehearse:
 	@echo "TODO(R17): make rehearse not implemented yet" >&2; exit 1
+
+# R08: G3 ontology check - ONTOLOGY.md names == core.py; entity counts == source rows; every core relationship > 0 facts.
+# ARGS=--offline (names and mapping only, no engine) | ARGS=--derived (after P4: derived names must have facts too).
+.PHONY: ontology-check
+ontology-check:
+	$(PY) scripts/validate_ontology.py $(ARGS)
