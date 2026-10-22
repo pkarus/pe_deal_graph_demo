@@ -72,7 +72,7 @@ QUESTIONS = {
 ORDER_ADDON = ["Q-SCORE", "Q-PATH", "Q-ADDON", "Q-FLOW"]          # QUESTIONS.md v1 (PROMPT.md 7.3)
 ORDER_CONFLICT = ["Q-SCORE", "Q-PATH", "Q-FLOW", "Q-CONFLICT"]    # QUESTIONS.md v2 (default)
 # PROMPT.md 7.5 minutes. Acts are timed by position, so a swap keeps the 15-18 minute arc.
-MINUTES = {"COLD_OPEN": 1, "MODEL": 2, "ACT": [3, 3, 3, 2], "FINALE": 3, "CLOSE": 1}
+MINUTES = {"COLD_OPEN": 1, "MODEL": 1, "ACT": [3, 3, 3, 2], "FINALE": 4, "CLOSE": 1}
 REQUIRED_FILES = ["meta", "q_score", "q_path", "q_flow", "sql_baseline", "graph", "rules"]
 
 
@@ -783,18 +783,29 @@ def t_score_breakdown(c: Ctx, qid: str) -> str:
 
 
 def t_score_ineligible(c: Ctx, qid: str) -> str:
+    # Near misses that matter: the top 3 Tier B rows by score (they miss Tier A), then 3 ineligible examples.
+    sr = resolve("q_score.rows", c.data)
+    top_b = sorted((i for i, r in enumerate(sr) if r.get("tier") == "B"), key=lambda i: -sr[i]["score"])[:3]
+    near = [[c.v(f"q_score.rows[{i}].name"), c.v(f"q_score.rows[{i}].score"), c.v(f"q_score.rows[{i}].tier")]
+            for i in top_b]
     base = "q_score.ineligible"
     rows = [[c.v(f"{base}[{i}].name"), '<span class="small">' + c.v(f"{base}[{i}].reason") + "</span>"]
-            for i in range(len(resolve(base, c.data)))]
-    return table(["Company", "Why the rules reject it"], rows)
+            for i in range(min(3, len(resolve(base, c.data))))]
+    return (table(["Near miss (scores just under Tier A)", "Score", "Tier"], near, "num")
+            + table(["Ineligible example", "Why the rules reject it"], rows))
 
 
 def t_sql(c: Ctx, qid: str) -> str:
     base = f"sql_baseline.questions.{qid}"
     rows = []
+    # Q-PATH: a SQL row naming a target the model finds cold is the false intro, never an agreement.
+    cold = ({t.get("company_id") for t in (c.data.get("q_path") or {}).get("targets", []) if t.get("status") == "cold"}
+            if qid == "Q-PATH" else set())
     for i in range(len(resolve(f"{base}.rows", c.data))):
         r = f"{base}.rows[{i}]"
         verdict = resolve(f"{r}.verdict", c.data)
+        if resolve(f"{r}.entity_id", c.data) in cold:
+            verdict = "decoy"
         chip = {"decoy": '<span class="chip bad">decoy</span>', "agrees": '<span class="chip ok">agrees</span>'}
         metric = resolve(f"{r}.metric", c.data)
         mfmt = "f1" if isinstance(metric, float) and not metric.is_integer() else ""

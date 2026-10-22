@@ -254,6 +254,8 @@ def format_value(v, fmt: str = "raw") -> str:
     """Python mirror of the explorer's JS fmt(). Used by the numbers check."""
     if v is None:
         return "n/a"
+    if fmt == "nwarm" and isinstance(v, list):
+        return str(sum(1 for t in v if isinstance(t, dict) and t.get("status") == "warm"))
     if isinstance(v, bool):
         return "Yes" if v else "No"
     if fmt in ("int", "f1", "f2", "f3", "f4", "musd1", "pct1", "sint") and isinstance(v, (int, float)):
@@ -1004,6 +1006,7 @@ function group(s) {
 function fixed(v, d) { var s = Number(v).toFixed(d); return (d === 0 && (s === '-0')) ? '0' : s; }
 function fmt(v, f) {
   if (v === null || v === undefined) return 'n/a';
+  if (f === 'nwarm' && Array.isArray(v)) return String(v.filter(function (t) { return t && t.status === 'warm'; }).length);
   if (typeof v === 'boolean') return v ? 'Yes' : 'No';
   if (typeof v === 'number') {
     switch (f) {
@@ -1166,7 +1169,8 @@ function makeCy(viewId, container, file, vgPtr, nodeExtra, opts) {
 }
 function fitTo(cy, eles, maxZ) {
   var bb = eles.boundingBox(), w = cy.width(), ht = cy.height(), pad = 60;
-  if (!w || !ht || !isFinite(bb.w)) return;
+  /* hidden tab (zero size): fit once the view is shown and resized, so the default view is never a clump */
+  if (!w || !ht || !isFinite(bb.w)) { cy.one('resize', function () { fitTo(cy, eles, maxZ); }); return; }
   var z = Math.min((w - 2 * pad) / Math.max(bb.w, 1), (ht - 2 * pad) / Math.max(bb.h, 1));
   z = Math.max(cy.minZoom(), Math.min(z, maxZ || 1.6));
   var cx = (bb.x1 + bb.x2) / 2, cyy = (bb.y1 + bb.y2) / 2;
@@ -1245,14 +1249,17 @@ function sqlTable(qid, title, onRow) {
   var base = '/questions/' + qid, q = get('sql_baseline', base);
   if (!q) return h('div', { class: 'empty' }, 'No SQL baseline exported for this question.');
   var tbody = h('tbody');
+  /* Q-PATH: a SQL row naming a target the model finds cold is the false intro, never an agreement */
+  var coldIds = qid === 'Q-PATH' && X.q_path ? (X.q_path.targets || []).filter(function (t) { return t.status === 'cold'; }).map(function (t) { return t.company_id; }) : [];
   q.rows.forEach(function (r, i) {
     var rb = base + '/rows/' + i;
+    var verdict = coldIds.indexOf(r.entity_id) >= 0 ? 'decoy' : r.verdict;
     add(tbody, h('tr', { class: onRow ? 'clickable' : null, onclick: onRow ? function () { onRow(r.entity_id); } : null },
       h('td', { class: 'num' }, V('sql_baseline', rb + '/rank', 'int')),
-      h('td', { class: r.verdict === 'decoy' ? 'struck' : null }, V('sql_baseline', rb + '/name'),
+      h('td', { class: verdict === 'decoy' ? 'struck' : null }, V('sql_baseline', rb + '/name'),
         r.note ? h('div', { class: 'small muted' }, V('sql_baseline', rb + '/note')) : null),
       h('td', { class: 'num' }, V('sql_baseline', rb + '/metric', typeof r.metric === 'number' ? (Number.isInteger(r.metric) ? 'int' : 'f1') : 'raw')),
-      h('td', null, r.verdict === 'decoy' ? h('span', { class: 'chip decoy' }, 'Wrong') : (r.verdict === 'agrees' ? h('span', { class: 'chip good' }, 'Agrees') : null))));
+      h('td', null, verdict === 'decoy' ? h('span', { class: 'chip decoy' }, 'Wrong') : (verdict === 'agrees' ? h('span', { class: 'chip good' }, 'Agrees') : null))));
   });
   var missed = q.missed.length ? h('div', { style: 'margin-top:10px' }, h('div', { class: 'small muted' }, 'Missed by the screen'),
     q.missed.map(function (m, i) { return h('div', { class: 'small' }, V('sql_baseline', base + '/missed/' + i + '/name'), ': ', V('sql_baseline', base + '/missed/' + i + '/note')); })) : null;
@@ -1262,13 +1269,13 @@ function sqlTable(qid, title, onRow) {
     h('table', { class: 't', style: 'margin-top:6px' }, h('thead', null, h('tr', null, h('th', { class: 'num' }, 'Rank'), h('th', null, 'Name'),
       h('th', { class: 'num' }, V('sql_baseline', base + '/metric_label')), h('th', null, ''))), tbody), missed);
 }
-function contrastTiles(qid, file, kgPtr, kgLabelNode, extra) {
+function contrastTiles(qid, file, kgPtr, kgLabelNode, extra, kgFmt) {
   var base = '/questions/' + qid;
   if (!get('sql_baseline', base)) return null;
   return h('div', { class: 'tiles' },
     h('div', { class: 'tile contrast' }, h('div', { class: 'k' }, 'SQL screen'), h('div', { class: 'v' }, V('sql_baseline', base + '/row_count', 'int')),
       h('div', { class: 'd' }, V('sql_baseline', base + '/description'))),
-    h('div', { class: 'tile' }, h('div', { class: 'k' }, 'Knowledge graph'), h('div', { class: 'v' }, V(file, kgPtr, 'int')), h('div', { class: 'd' }, kgLabelNode)),
+    h('div', { class: 'tile' }, h('div', { class: 'k' }, 'Knowledge graph'), h('div', { class: 'v' }, V(file, kgPtr, kgFmt || 'int')), h('div', { class: 'd' }, kgLabelNode)),
     extra || null);
 }
 
@@ -1439,7 +1446,7 @@ function initScore(sec) {
   var wrap = h('div', { class: 'sc-wrap' }, list, naive);
   add(fr.main, h('div', { class: 'scroll' }, wrap));
   add(naive, sqlTable('Q-SCORE', 'What a SQL screen returns'));
-  var P = panelSections(fr.panel, [['sc-rule', 'Rule behind this point'], ['sc-comp', 'Score components'], ['sc-inel', 'Near misses (ineligible)']]);
+  var P = panelSections(fr.panel, [['sc-rule', 'Rule behind this point'], ['sc-comp', 'Score components'], ['sc-inel', 'Near misses']]);
   ruleCard(P['sc-rule'], null);
   add(P['sc-comp'], h('table', { class: 't' }, h('thead', null, h('tr', null, h('th', null, 'Component'), h('th', null, 'Group'), h('th', { class: 'num' }, 'Max'))),
     h('tbody', null, Q.components.map(function (c, k) {
@@ -1449,7 +1456,14 @@ function initScore(sec) {
     }))));
   add(P['sc-comp'], h('div', { class: 'small muted', style: 'margin-top:6px' }, 'Readiness is capped at ', V('q_score', '/readiness_cap', 'int'),
     ' points. Tier A is ', V('q_score', '/tier_thresholds/A', 'int'), ' or more, Tier B is ', V('q_score', '/tier_thresholds/B', 'int'), ' or more.'));
-  if (Q.ineligible.length) add(P['sc-inel'], Q.ineligible.map(function (r, i) {
+  /* near misses that matter: top 3 Tier B rows by score, then 3 ineligible examples */
+  var nearB = Q.rows.map(function (r, i) { return i; }).filter(function (i) { return Q.rows[i].tier === 'B'; })
+    .sort(function (a, b) { return Q.rows[b].score - Q.rows[a].score; }).slice(0, 3);
+  if (nearB.length) add(P['sc-inel'], nearB.map(function (i) {
+    return h('div', { class: 'claim' }, h('div', { style: 'font-weight:600' }, V('q_score', '/rows/' + i + '/name')),
+      h('div', { class: 'small' }, 'Tier ', V('q_score', '/rows/' + i + '/tier'), ' at ', V('q_score', '/rows/' + i + '/score', 'int'), ', just under Tier A'));
+  }));
+  if (Q.ineligible.length) add(P['sc-inel'], h('div', { class: 'small muted', style: 'margin-top:6px' }, 'Ineligible examples'), Q.ineligible.slice(0, 3).map(function (r, i) {
     return h('div', { class: 'claim' }, h('div', { style: 'font-weight:600' }, V('q_score', '/ineligible/' + i + '/name')), h('div', { class: 'small' }, V('q_score', '/ineligible/' + i + '/reason')));
   })); else add(P['sc-inel'], h('div', { class: 'empty' }, 'None exported.'));
 
@@ -1543,7 +1557,7 @@ function initScore(sec) {
 /* ---------------- warm path (Q-PATH) ---------------- */
 function initPath(sec) {
   var Q = X.q_path, fr = viewFrame(sec, 'q_path', true), TI = idx(Q.tie_types, 'id');
-  add(fr.main.firstChild, contrastTiles('Q-PATH', 'sql_baseline', '/questions/Q-PATH/kg_count', V('sql_baseline', '/questions/Q-PATH/kg_label')));
+  add(fr.main.firstChild, contrastTiles('Q-PATH', 'q_path', '/targets', V('sql_baseline', '/questions/Q-PATH/kg_label'), null, 'nwarm'));
   var picker = h('div', { class: 'picker', id: 'path-picker' });
   add(fr.main, h('div', { class: 'toolbar' }, h('span', { class: 'small muted' }, 'Pick a target'), picker,
     h('span', { class: 'legend', style: 'margin-left:auto' },

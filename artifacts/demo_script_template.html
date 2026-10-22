@@ -241,7 +241,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
   [[table:score_tier_a]]
   <p>Talk over the top name, {{ q_score.rows[tier=A][0].name }}, component by component:</p>
   [[table:score_breakdown]]
-  <p>Near misses the rules reject, each with its reason (good for a "what about X?" question):</p>
+  <p>Near misses that score just under Tier A, then examples the rules reject with the reason (good for a "what about X?" question):</p>
   [[table:score_ineligible]]
   <div class="say">"Fit, readiness and access, each a named rule. {{ q_score.summary.tier_a_not_in_crm | int }} of
     your {{ q_score.summary.tier_a | int }} best targets have no pipeline entry and no touch from anyone here, and each
@@ -344,8 +344,8 @@ document.querySelectorAll('.copy').forEach(function (b) {
   </ul>
   <h3>SQL-screen contrast</h3>
   <div class="contrast">
-    <p>A shared-employer join reports <strong>{{ @sql.row_count | int }}</strong> "connections". The model keeps
-      <strong>{{ @sql.kg_count | int }}</strong> ({{ @sql.kg_label }}). Its worst claim: it says
+    <p>A shared-employer join reports <strong>{{ @sql.row_count | int }}</strong> "connections". The model finds
+      <strong>{{ q_path.targets[status=warm] | len }}</strong> warm targets of {{ q_path.targets | len }}. Its worst claim: it says
       {{ q_path.targets[status=cold][0].rejected_claims[0].from_name }} knows
       {{ q_path.targets[status=cold][0].rejected_claims[0].to_name }} through
       {{ q_path.targets[status=cold][0].rejected_claims[0].org_name }}. They were there
@@ -604,22 +604,22 @@ document.querySelectorAll('.copy').forEach(function (b) {
     <li><strong>{{ q_score.finale.rows[rank=1][0].name }}</strong> moves from
       #{{ q_score.finale.rows[rank=1][0].prev_rank | int }} to #{{ q_score.finale.rows[rank=1][0].rank | int }} at
       {{ q_score.finale.rows[rank=1][0].score | int }}.</li>
-    <li><strong>{{ q_score.finale.rows[conflict!=null][0].name }}</strong> keeps its score of
-      {{ q_score.finale.rows[conflict!=null][0].score | int }} but is flagged "hold until cross-fund clearance", so it
+    <li><strong>{{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}</strong> keeps its score of
+      {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].score | int }} but is flagged "hold until cross-fund clearance", so it
       comes off the Tier A call list until it is cleared:
-      {{ q_score.finale.rows[conflict!=null][0].conflict.reason }}</li>
+      {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].conflict.reason }}</li>
   </ul>
   <div class="say">"{{ q_score.finale.rows[prev_tier!=A][tier=A][0].name }} has been on our tracking list for years
     and nobody has called. Now we know who on our team can. That is Monday's call."</div>
-  <div class="say">"{{ q_score.finale.rows[conflict!=null][0].name }}'s score did not change; it is on hold until the
-    conflicts committee clears it. The check we ran by hand for one name now runs on every target, and the others come
-    back clean. A graph result from the warm-path act and a portfolio check from the conflict act now sit inside one
+  <div class="say">"{{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}'s score did not change; it is on hold until the
+    conflicts committee clears it. The check we ran by hand for one name now runs on every target: the other Tier A names come
+    back clean, and {{ q_score.finale.rows[conflict!=null][prev_tier!=A] | len }} smaller names outside Tier A are flagged too. A graph result from the warm-path act and a portfolio check from the conflict act now sit inside one
     explainable score."</div>
   [[story_why]]
   <h3>Click in the explorer</h3>
   <ul>
     <li>Scorecard view, Finale toggle: before and after columns with movement arrows.</li>
-    <li>Click {{ q_score.finale.rows[conflict!=null][0].name }}: it jumps to the conflict evidence.</li>
+    <li>Click {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}: it jumps to the conflict evidence.</li>
   </ul>
   <h3>SQL-screen contrast</h3>
   <div class="contrast"><p>No CRM view or thesis screen joins a target to the other fund's supply chain, or turns a
@@ -628,9 +628,10 @@ document.querySelectorAll('.copy').forEach(function (b) {
   <p class="why">Reasoners compose: a graph distance computed for access and a time-bounded ownership rule defined for
     conflicts feed the same governed score, and every point still carries its reason.</p>
   <h3>If live fails</h3>
-  <p>Realistic timing is about three minutes (rehearsal runs took over three minutes, one via the prebuilt fallback). This is the riskiest act, so it has one cutoff: one live attempt, at most three minutes. Fall back at the first
-    failure (an error, an empty or partial table, a ranking that looks wrong) or at three minutes on the clock,
-    whichever comes first. At three minutes, press Esc and type <code class="cmd">use the prebuilt version</code>.
+  <p>Realistic timing is just over three minutes (the rehearsal median was a little over three minutes). This is the riskiest act, so it has one cutoff: one live attempt, at most four minutes. Fall back after the first
+    failure (an error, an empty or partial table, a ranking that looks wrong) or at four minutes on the clock,
+    whichever comes first. While it runs, say "while it writes the rules, here is what they will do" and walk the
+    explorer Scorecard Finale toggle. At four minutes, press Esc and type <code class="cmd">use the prebuilt version</code>.
     Claude then runs the prebuilt function; say "here is the same rule, prebuilt". The prebuilt answer is identical by
     construction.</p>
   [[fallback_steps]]
@@ -659,8 +660,8 @@ document.querySelectorAll('.copy').forEach(function (b) {
   </ul>
   <p class="small">Leave them with: {{ q_score.summary.tier_a | int }} Tier A targets,
     {{ q_score.summary.tier_a_not_in_crm | int }} with no coverage; one coverage gap at
-    {{ q_flow.intermediaries[is_gap=true][0].name }}; and every target checked for cross-fund conflicts, with only
-    {{ q_score.finale.rows[conflict!=null][0].name }} on hold.</p>
+    {{ q_flow.intermediaries[is_gap=true][0].name }}; and every target checked for cross-fund conflicts, with
+    {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}, the conflict-act target, the one Tier A name on hold until cleared.</p>
 </section>
 <!-- /BLOCK CLOSE -->
 
@@ -673,8 +674,8 @@ document.querySelectorAll('.copy').forEach(function (b) {
     of them with no coverage. It found a warm route in for {{ q_path.targets[status=warm] | len }} of the top
     {{ q_path.targets | len }} and said honestly that one is cold. It showed that
     {{ q_flow.intermediaries[is_gap=true][0].name }} bridges flow in your sectors and you barely cover it. And when we
-    added two rules in a sentence, it checked every target for cross-fund conflicts, with only
-    {{ q_score.finale.rows[conflict!=null][0].name }} on hold. Every point traces to a rule you can read."</div>
+    added two rules in a sentence, it checked every target for cross-fund conflicts, with
+    {{ q_score.finale.rows[conflict!=null][prev_tier=A][0].name }}, the conflict-act target, the one Tier A name on hold until cleared. Every point traces to a rule you can read."</div>
 </section>
 <!-- /BLOCK ELEVATOR -->
 

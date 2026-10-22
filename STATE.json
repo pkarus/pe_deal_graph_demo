@@ -201,7 +201,7 @@
     },
     "P9": {
       "title": "Morning report, final commit + tag demo-v1 (engine left warm for user testing)",
-      "status": "done",
+      "status": "done (93f45ec, tag demo-v1)",
       "gate": null,
       "depends_on": [
         "G9 or hard stop"
@@ -311,17 +311,21 @@
     "source": "user 11:28"
   },
   "p9_plan": "no engine suspend (user testing); R21 report + final commit/tag + make warm at ~13:28",
-  "engine_state": {
-    "engine": "pe_demo_logic",
-    "state": "READY, warm, NOT suspended (user testing from 13:35); auto-suspend 30 idle min",
-    "query_server": "running (make warm 13:14, 127.0.0.1)",
-    "suspend_cmd": ".venv/bin/python demo_workspace/ask.py --serve-stop && .venv/bin/rai reasoners suspend --type Logic --name pe_demo_logic",
-    "as_of": "2026-10-22T13:20+02:00"
-  },
+  "engine_state": "pe_demo_logic READY, not suspended; warm query server running (pid 61587); auto-suspend 30 min idle",
   "live_check_p9": {
     "at": "2026-10-22T13:18+02:00",
     "finale_rescore": "Tier A = golden FINALE, Tessmark flagged off Tier A, 13.6 s",
     "q_score": "6 golden Tier A, 10.2 s"
   },
-  "finished_at": "2026-10-22T13:22+02:00"
+  "finished_at": "2026-10-22T13:22+02:00",
+  "final": {
+    "verdict": "READY WITH CAVEATS",
+    "commit": "93f45ec",
+    "tag": "demo-v1"
+  },
+  "post_p9": [
+    "TEST_PLAN.md written (46)",
+    "final review 47: 1 BLOCKER, 6 MAJOR, 9 MINOR",
+    "R20 final-review fixer running (48)"
+  ]
 }
