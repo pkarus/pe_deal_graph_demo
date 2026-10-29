@@ -1,0 +1,490 @@
+{
+ "finale_rescore": {
+  "columns": [
+   "rank",
+   "name",
+   "score",
+   "change",
+   "act1_score",
+   "act1_rank",
+   "act1_tier",
+   "flag",
+   "on_tier_a",
+   "why",
+   "company_id"
+  ],
+  "rows": [
+   [
+    1,
+    "Bayside Pediatric Therapy Group",
+    95,
+    10,
+    85,
+    2,
+    "A",
+    "",
+    true,
+    "Thesis fit +15 (niche Pediatric Therapy Clinics under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $22.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Elena Marsh hired 2025-06-01 from a former Northwind portfolio company, owned by Northwind Equity Partners Fund II while the CFO worked there (2015-03-01 to 2025-04-30)); Banker engaged +10 (banker engaged 2026-05-15 (Salthorpe Capital Advisors)); Debt maturing +10 (debt matures 2027-06-30 (flagged 2026-01-20)); Founder succession +10 (founder CEO Daniel Reyes since 2008-01-01 (18.75 years), no President or COO); Positive CRM touch +10 (positive meeting with the company 2026-03-12 by a Northwind deal-team member); Warm path to the CEO +10 (CEO at 2 hops from our nearest seed)",
+    "C6334"
+   ],
+   [
+    2,
+    "Larkspur Revenue Partners",
+    90,
+    0,
+    90,
+    1,
+    "A",
+    "",
+    true,
+    "Thesis fit +15 (niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services); EBITDA size +10 (EBITDA $26.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 20.0% vs 18.0% benchmark for Tech-Enabled Business Services); CFO from a PE-backed company +15 (CFO Rohan Falkner hired 2025-07-01 from Flintstead Payroll Services, owned by Kestrelmoor Capital Fund II while the CFO worked there (2019-03-04 to 2025-05-30)); Sponsor exit window +15 (Kestrelmoor Capital Fund I, vintage 2016, held since 2019-04-15 = 7.5 years); Banker engaged +10 (banker engaged 2026-08-10 (Cedar Row Partners)); Debt maturing +10 (debt matures 2027-09-30 (flagged 2026-02-15)); Positive CRM touch +10 (positive meeting with the company 2026-05-20 by a Northwind deal-team member)",
+    "C3225"
+   ],
+   [
+    3,
+    "Saltmarsh Home Infusion",
+    80,
+    0,
+    80,
+    3,
+    "A",
+    "",
+    true,
+    "Thesis fit +15 (niche Home Infusion Services under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $18.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Wes Okonkwo hired 2025-11-03 from Sorrhall Hospice, owned by Ridgeback Partners Fund III while the CFO worked there (2021-01-11 to 2025-09-26)); Sponsor exit window +15 (Coppervale Partners Fund II, vintage 2017, held since 2020-09-01 = 6.1 years); Banker engaged +10 (banker engaged 2026-07-14 (Harbor Lane Advisors)); Debt maturing +10 (debt matures 2027-12-31 (flagged 2026-03-10))",
+    "C5441"
+   ],
+   [
+    4,
+    "Quarry Records Retrieval",
+    75,
+    0,
+    75,
+    4,
+    "A",
+    "",
+    true,
+    "Thesis fit +15 (niche Records Retrieval & Litigation Support under Fund IV focus Tech-Enabled Business Services); EBITDA size +5 (EBITDA $8.5M at the edge of the $5-40M band); Margin vs benchmark +5 (margin 20.2% vs 18.0% benchmark for Tech-Enabled Business Services); CFO from a PE-backed company +15 (CFO Leon Galloway hired 2025-05-05 from Kestwood Claims Services, owned by Glenhallow Partners Fund IV while the CFO worked there (2018-09-04 to 2025-04-11)); Debt maturing +10 (debt matures 2027-03-31 (flagged 2026-04-22)); Founder succession +10 (founder CEO Esme Wakefield since 2009-09-01 (17.08 years), no President or COO); New independent director +5 (new board member Rafael Ortiz since 2026-03-16); Positive CRM touch +10 (positive call with the company 2025-12-04 by a Northwind deal-team member)",
+    "C6895"
+   ],
+   [
+    5,
+    "Ashby Vale Dental Partners",
+    75,
+    10,
+    65,
+    7,
+    "B",
+    "",
+    true,
+    "Thesis fit +15 (niche Dental Service Organizations under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $16.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 16.0% vs 14.0% benchmark for Healthcare Services); Banker engaged +10 (banker engaged 2026-07-29 (Vellholt Securities)); Debt maturing +10 (debt matures 2027-11-30 (flagged 2026-05-06)); Founder succession +10 (founder CEO Lydia Okoro since 2006-03-01 (20.59 years), no President or COO); New independent director +5 (new board member Iris Calloway since 2026-03-02); Warm path to the CEO +10 (CEO at 2 hops from our nearest seed)",
+    "C4685"
+   ],
+   [
+    6,
+    "Fenwick Food Safety Labs",
+    70,
+    0,
+    70,
+    6,
+    "A",
+    "",
+    true,
+    "Thesis fit +15 (niche Food Safety Testing under Fund IV focus Testing, Inspection & Certification); EBITDA size +10 (EBITDA $12.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 18.2% vs 17.0% benchmark for Testing, Inspection & Certification); Sponsor exit window +15 (Sablewood Equity Fund II, vintage 2015, held since 2020-06-30 = 6.3 years); Banker engaged +10 (banker engaged 2026-09-08 (Brackden Partners)); Debt maturing +10 (debt matures 2027-08-15 (flagged 2026-02-02)); New independent director +5 (new board member Elise Marchetti since 2026-01-20)",
+    "C3429"
+   ],
+   [
+    null,
+    "Tessmark Clinical Supply",
+    75,
+    0,
+    75,
+    5,
+    "A",
+    "Conflict - cross-fund review",
+    false,
+    "Thesis fit +15 (niche Medical & Lab Supply Distribution under Fund IV focus Specialty Distribution); EBITDA size +10 (EBITDA $14.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 10.0% vs 9.0% benchmark for Specialty Distribution); Banker engaged +10 (banker engaged 2026-06-02 (Cedar Row Partners)); Debt maturing +10 (debt matures 2028-02-28 (flagged 2025-11-05)); Founder succession +10 (founder CEO Alicia Albrecht since 1999-05-01 (27.42 years), no President or COO); New independent director +5 (new board member Helen Voss since 2026-02-17); Positive CRM touch +10 (positive meeting with the company 2026-06-10 by a Northwind deal-team member); Conflict - cross-fund review: supplies Pinewick Dermatology Partners (Northwind Equity Partners Fund III since 2020-07-01)",
+    "C8200"
+   ]
+  ]
+ },
+ "q_conflict": {
+  "concentration": {
+   "columns": [
+    "target",
+    "area",
+    "current_musd",
+    "current_pct",
+    "pro_forma_musd",
+    "pro_forma_pct",
+    "guideline_pct",
+    "headroom_musd",
+    "over_by_musd",
+    "breach",
+    "why",
+    "area_id"
+   ],
+   "rows": [
+    [
+     "Tessmark Clinical Supply",
+     "Specialty Distribution",
+     385.0,
+     32.08,
+     440.0,
+     36.67,
+     35.0,
+     35.0,
+     20.0,
+     true,
+     "Fund IV holds Tullmere Chemical Distribution ($140M), Flintmoor Industrial Supply ($125M), Primdale Ingredients Co ($120M): $385M = 32.1% of the fund; with the $55M Tessmark Clinical Supply check: $440M = 36.7%; over the 35% guideline by $20M (headroom $35M)",
+     "SC512"
+    ],
+    [
+     "Tessmark Clinical Supply",
+     "Testing, Inspection & Certification",
+     150.0,
+     12.5,
+     150.0,
+     12.5,
+     35.0,
+     270.0,
+     0.0,
+     false,
+     "Fund IV holds Ironvale Testing Group ($150M): $150M = 12.5% of the fund; within the 35% guideline",
+     "SC874"
+    ],
+    [
+     "Tessmark Clinical Supply",
+     "Healthcare Services",
+     110.0,
+     9.17,
+     110.0,
+     9.17,
+     35.0,
+     310.0,
+     0.0,
+     false,
+     "Fund IV holds Quillmont Physical Therapy ($110M): $110M = 9.2% of the fund; within the 35% guideline",
+     "SC341"
+    ],
+    [
+     "Tessmark Clinical Supply",
+     "Tech-Enabled Business Services",
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     35.0,
+     420.0,
+     0.0,
+     false,
+     "Fund IV has no current holding in this area: $0M = 0.0% of the fund; within the 35% guideline",
+     "SC835"
+    ]
+   ]
+  },
+  "exposures": {
+   "columns": [
+    "target",
+    "name",
+    "fund",
+    "since",
+    "distance",
+    "verdict",
+    "why",
+    "subject_id",
+    "company_id"
+   ],
+   "rows": [
+    [
+     "Tessmark Clinical Supply",
+     "Pinewick Dermatology Partners",
+     "Northwind Equity Partners Fund III",
+     "2020-07-01",
+     1,
+     "CONFLICT - cross-fund review",
+     "Tessmark Clinical Supply supplies Pinewick Dermatology Partners; Pinewick Dermatology Partners is held by Northwind Equity Partners Fund III since 2020-07-01; 1 commercial link away",
+     "C8200",
+     "C2514"
+    ],
+    [
+     "Tessmark Clinical Supply",
+     "Ironvale Testing Group",
+     "Northwind Equity Partners Fund IV",
+     "2024-03-15",
+     2,
+     "SHARED COUNTERPARTY (informational)",
+     "Tessmark Clinical Supply supplies Ravenholt Engineering Group; Ravenholt Engineering Group buys from Ironvale Testing Group; Ironvale Testing Group is held by Northwind Equity Partners Fund IV since 2024-03-15; 2 commercial links away",
+     "C8200",
+     "C7633"
+    ]
+   ]
+  }
+ },
+ "q_flow": {
+  "columns": [
+   "rank",
+   "name",
+   "betweenness",
+   "thesis_deals",
+   "our_touchpoints",
+   "coverage_gap",
+   "pagerank",
+   "why",
+   "intermediary_id"
+  ],
+  "rows": [
+   [
+    1,
+    "Cedar Row Partners",
+    7507.4364,
+    14,
+    14,
+    false,
+    0.021025,
+    "bridge rank 1 of 34 intermediaries; betweenness 7,507.4 (summed over firm pairs, the share of shortest deal-flow connections that pass through it); advised 14 thesis-sector deals in 5 years; 14 CRM touchpoints with us in 24 months",
+    "I210"
+   ],
+   [
+    2,
+    "Harbor Lane Advisors",
+    1667.3913,
+    9,
+    1,
+    true,
+    0.012589,
+    "bridge rank 2 of 34 intermediaries; betweenness 1,667.4 (summed over firm pairs, the share of shortest deal-flow connections that pass through it); advised 9 thesis-sector deals in 5 years; 1 CRM touchpoint with us in 24 months; COVERAGE GAP: top-decile bridge (rank <= 4) with touchpoints at or below the bottom quartile (1)",
+    "I139"
+   ],
+   [
+    3,
+    "Wilby Securities",
+    1113.1172,
+    4,
+    5,
+    false,
+    0.00605,
+    "bridge rank 3 of 34 intermediaries; betweenness 1,113.1 (summed over firm pairs, the share of shortest deal-flow connections that pass through it); advised 4 thesis-sector deals in 5 years; 5 CRM touchpoints with us in 24 months",
+    "I845"
+   ],
+   [
+    4,
+    "Umberby & Co.",
+    1061.2054,
+    4,
+    7,
+    false,
+    0.006046,
+    "bridge rank 4 of 34 intermediaries; betweenness 1,061.2 (summed over firm pairs, the share of shortest deal-flow connections that pass through it); advised 4 thesis-sector deals in 5 years; 7 CRM touchpoints with us in 24 months",
+    "I737"
+   ],
+   [
+    5,
+    "Wexhall Bank Capital",
+    777.3148,
+    3,
+    4,
+    false,
+    0.005978,
+    "bridge rank 5 of 34 intermediaries; betweenness 777.3 (summed over firm pairs, the share of shortest deal-flow connections that pass through it); advised 3 thesis-sector deals in 5 years; 4 CRM touchpoints with us in 24 months",
+    "I653"
+   ]
+  ]
+ },
+ "q_path": {
+  "columns": [
+   "target_rank",
+   "target",
+   "decision_maker",
+   "role",
+   "status",
+   "path_rank",
+   "hops",
+   "strength",
+   "path",
+   "why",
+   "company_id",
+   "person_id"
+  ],
+  "rows": [
+   [
+    1,
+    "Larkspur Revenue Partners",
+    "Ruth Adeyemi",
+    "CEO",
+    "warm",
+    1,
+    3,
+    0.7,
+    "Priya Raman > Sofia Brandt > Nathan Cole > Ruth Adeyemi",
+    "best path, 3 hops, strength 0.700 (product of hop ties): Priya Raman - Sofia Brandt: 7 positive interactions 2024-11-14 to 2026-09-02 (tie 1.00); Sofia Brandt - Nathan Cole: tenure overlap at Cedar Row Partners, 2017-01-09 to present, 9.72 years (tie 1.00); Nathan Cole - Ruth Adeyemi: lead sell-side advisor on the Larkspur Revenue Partners majority recap closed 2019-04-15 while Ruth Adeyemi was CEO (tie 0.70)",
+    "C3225",
+    "P67052"
+   ],
+   [
+    1,
+    "Larkspur Revenue Partners",
+    "Owen Lacey",
+    "OWNER_DESIGNEE",
+    "cold",
+    null,
+    4,
+    null,
+    "",
+    "Cold: no path within 3 hops from any Northwind deal-team member or operating partner to Kestrelmoor Capital's board designee Owen Lacey (nearest is 4 hops away)",
+    "C3225",
+    "P79001"
+   ],
+   [
+    2,
+    "Bayside Pediatric Therapy Group",
+    "Daniel Reyes",
+    "CEO",
+    "warm",
+    1,
+    2,
+    0.6,
+    "Marcus Whitfield > Elena Marsh > Daniel Reyes",
+    "best path, 2 hops, strength 0.600 (product of hop ties): Marcus Whitfield - Elena Marsh: tenure overlap at a former Northwind portfolio company, 2015-03-01 to 2019-06-30, 4.33 years (tie 1.00); Elena Marsh - Daniel Reyes: tenure overlap at Bayside Pediatric Therapy Group, 2025-06-01 to present, 1.33 years (tie 0.60)",
+    "C6334",
+    "P37955"
+   ],
+   [
+    2,
+    "Bayside Pediatric Therapy Group",
+    "Daniel Reyes",
+    "CEO",
+    "warm",
+    2,
+    2,
+    0.287,
+    "Dana Okafor > Walter Kim > Daniel Reyes",
+    "alternate 2, 2 hops, strength 0.287 (product of hop ties): Dana Okafor - Walter Kim: tenure overlap at Oldmere Health System, 1998-03-01 to 2000-06-30, 2.33 years (tie 0.30); Walter Kim - Daniel Reyes: tenure overlap at Bayside Pediatric Therapy Group, 2023-01-15 to present, 3.71 years (tie 0.96)",
+    "C6334",
+    "P37955"
+   ],
+   [
+    3,
+    "Saltmarsh Home Infusion",
+    "Victor Hale",
+    "CEO",
+    "cold",
+    null,
+    null,
+    null,
+    "",
+    "Cold: no path within 3 hops from any Northwind deal-team member or operating partner to CEO Victor Hale. Closest intermediary: Harbor Lane Advisors (engaged 2026-07-14; debt advisor on the 2023-05-18 dividend recap)",
+    "C5441",
+    "P23882"
+   ],
+   [
+    3,
+    "Saltmarsh Home Infusion",
+    "Graham Pike",
+    "OWNER_DESIGNEE",
+    "cold",
+    null,
+    null,
+    null,
+    "",
+    "Cold: no path within 3 hops from any Northwind deal-team member or operating partner to Coppervale Partners' board designee Graham Pike. Closest intermediary: Harbor Lane Advisors (engaged 2026-07-14; debt advisor on the 2023-05-18 dividend recap)",
+    "C5441",
+    "P81174"
+   ]
+  ]
+ },
+ "q_score": {
+  "columns": [
+   "rank",
+   "name",
+   "score",
+   "fit",
+   "readiness",
+   "access",
+   "tier",
+   "in_crm",
+   "components",
+   "why",
+   "company_id"
+  ],
+  "rows": [
+   [
+    1,
+    "Larkspur Revenue Partners",
+    90,
+    30,
+    50,
+    10,
+    "A",
+    true,
+    "FIT_THESIS 15; FIT_EBITDA 10; FIT_MARGIN 5; R_CFO_FROM_PE 15; R_EXIT_WINDOW 15; R_BANKER 10; R_DEBT 10; A_CRM 10",
+    "Fit 30 + Readiness 50 + Access 10 = 90: Thesis fit +15 (niche Healthcare Revenue Cycle Services under Fund IV focus Tech-Enabled Business Services); EBITDA size +10 (EBITDA $26.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 20.0% vs 18.0% benchmark for Tech-Enabled Business Services); CFO from a PE-backed company +15 (CFO Rohan Falkner hired 2025-07-01 from Flintstead Payroll Services, owned by Kestrelmoor Capital Fund II while the CFO worked there (2019-03-04 to 2025-05-30)); Sponsor exit window +15 (Kestrelmoor Capital Fund I, vintage 2016, held since 2019-04-15 = 7.5 years); Banker engaged +10 (banker engaged 2026-08-10 (Cedar Row Partners)); Debt maturing +10 (debt matures 2027-09-30 (flagged 2026-02-15)); Positive CRM touch +10 (positive meeting with the company 2026-05-20 by a Northwind deal-team member)",
+    "C3225"
+   ],
+   [
+    2,
+    "Bayside Pediatric Therapy Group",
+    85,
+    30,
+    45,
+    10,
+    "A",
+    true,
+    "FIT_THESIS 15; FIT_EBITDA 10; FIT_MARGIN 5; R_CFO_FROM_PE 15; R_BANKER 10; R_DEBT 10; R_SUCCESSION 10; A_CRM 10",
+    "Fit 30 + Readiness 45 + Access 10 = 85: Thesis fit +15 (niche Pediatric Therapy Clinics under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $22.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Elena Marsh hired 2025-06-01 from a former Northwind portfolio company, owned by Northwind Equity Partners Fund II while the CFO worked there (2015-03-01 to 2025-04-30)); Banker engaged +10 (banker engaged 2026-05-15 (Salthorpe Capital Advisors)); Debt maturing +10 (debt matures 2027-06-30 (flagged 2026-01-20)); Founder succession +10 (founder CEO Daniel Reyes since 2008-01-01 (18.75 years), no President or COO); Positive CRM touch +10 (positive meeting with the company 2026-03-12 by a Northwind deal-team member)",
+    "C6334"
+   ],
+   [
+    3,
+    "Saltmarsh Home Infusion",
+    80,
+    30,
+    50,
+    0,
+    "A",
+    false,
+    "FIT_THESIS 15; FIT_EBITDA 10; FIT_MARGIN 5; R_CFO_FROM_PE 15; R_EXIT_WINDOW 15; R_BANKER 10; R_DEBT 10",
+    "Fit 30 + Readiness 50 + Access 0 = 80: Thesis fit +15 (niche Home Infusion Services under Fund IV focus Healthcare Services); EBITDA size +10 (EBITDA $18.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 15.7% vs 14.0% benchmark for Healthcare Services); CFO from a PE-backed company +15 (CFO Wes Okonkwo hired 2025-11-03 from Sorrhall Hospice, owned by Ridgeback Partners Fund III while the CFO worked there (2021-01-11 to 2025-09-26)); Sponsor exit window +15 (Coppervale Partners Fund II, vintage 2017, held since 2020-09-01 = 6.1 years); Banker engaged +10 (banker engaged 2026-07-14 (Harbor Lane Advisors)); Debt maturing +10 (debt matures 2027-12-31 (flagged 2026-03-10)); no coverage: no pipeline row and no CRM touch on the company or its people",
+    "C5441"
+   ],
+   [
+    4,
+    "Quarry Records Retrieval",
+    75,
+    25,
+    40,
+    10,
+    "A",
+    true,
+    "FIT_THESIS 15; FIT_EBITDA 5; FIT_MARGIN 5; R_CFO_FROM_PE 15; R_DEBT 10; R_SUCCESSION 10; R_NEW_DIRECTOR 5; A_CRM 10",
+    "Fit 25 + Readiness 40 + Access 10 = 75: Thesis fit +15 (niche Records Retrieval & Litigation Support under Fund IV focus Tech-Enabled Business Services); EBITDA size +5 (EBITDA $8.5M at the edge of the $5-40M band); Margin vs benchmark +5 (margin 20.2% vs 18.0% benchmark for Tech-Enabled Business Services); CFO from a PE-backed company +15 (CFO Leon Galloway hired 2025-05-05 from Kestwood Claims Services, owned by Glenhallow Partners Fund IV while the CFO worked there (2018-09-04 to 2025-04-11)); Debt maturing +10 (debt matures 2027-03-31 (flagged 2026-04-22)); Founder succession +10 (founder CEO Esme Wakefield since 2009-09-01 (17.08 years), no President or COO); New independent director +5 (new board member Rafael Ortiz since 2026-03-16); Positive CRM touch +10 (positive call with the company 2025-12-04 by a Northwind deal-team member)",
+    "C6895"
+   ],
+   [
+    5,
+    "Tessmark Clinical Supply",
+    75,
+    30,
+    35,
+    10,
+    "A",
+    true,
+    "FIT_THESIS 15; FIT_EBITDA 10; FIT_MARGIN 5; R_BANKER 10; R_DEBT 10; R_SUCCESSION 10; R_NEW_DIRECTOR 5; A_CRM 10",
+    "Fit 30 + Readiness 35 + Access 10 = 75: Thesis fit +15 (niche Medical & Lab Supply Distribution under Fund IV focus Specialty Distribution); EBITDA size +10 (EBITDA $14.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 10.0% vs 9.0% benchmark for Specialty Distribution); Banker engaged +10 (banker engaged 2026-06-02 (Cedar Row Partners)); Debt maturing +10 (debt matures 2028-02-28 (flagged 2025-11-05)); Founder succession +10 (founder CEO Alicia Albrecht since 1999-05-01 (27.42 years), no President or COO); New independent director +5 (new board member Helen Voss since 2026-02-17); Positive CRM touch +10 (positive meeting with the company 2026-06-10 by a Northwind deal-team member)",
+    "C8200"
+   ],
+   [
+    6,
+    "Fenwick Food Safety Labs",
+    70,
+    30,
+    40,
+    0,
+    "A",
+    false,
+    "FIT_THESIS 15; FIT_EBITDA 10; FIT_MARGIN 5; R_EXIT_WINDOW 15; R_BANKER 10; R_DEBT 10; R_NEW_DIRECTOR 5",
+    "Fit 30 + Readiness 40 + Access 0 = 70: Thesis fit +15 (niche Food Safety Testing under Fund IV focus Testing, Inspection & Certification); EBITDA size +10 (EBITDA $12.0M in the $10-30M sweet spot); Margin vs benchmark +5 (margin 18.2% vs 17.0% benchmark for Testing, Inspection & Certification); Sponsor exit window +15 (Sablewood Equity Fund II, vintage 2015, held since 2020-06-30 = 6.3 years); Banker engaged +10 (banker engaged 2026-09-08 (Brackden Partners)); Debt maturing +10 (debt matures 2027-08-15 (flagged 2026-02-02)); New independent director +5 (new board member Elise Marchetti since 2026-01-20); no coverage: no pipeline row and no CRM touch on the company or its people",
+    "C3429"
+   ]
+  ]
+ }
+}

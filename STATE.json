@@ -339,6 +339,7 @@
     "R14 query bank PASS self (11 prompts, 6 SHOWCASE; fresh queries 60-90 s expected)",
     "Claude Code-first script + Step by step tab + query bank committed 334f09b",
     "ACCOUNTADMIN access verified OK (role chain RAI_DEMO_PE->SYSADMIN->ACCOUNTADMIN; direct user grant now present); no grants applied",
-    "explorer dispersed layout + ACCOUNTADMIN evidence committed b5172a2"
+    "explorer dispersed layout + ACCOUNTADMIN evidence committed b5172a2",
+    "Explorer views section committed 96f56ff"
   ]
 }
