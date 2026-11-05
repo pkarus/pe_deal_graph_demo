@@ -1,0 +1,10 @@
+# Optional local overrides for pe_deal_graph/settings.py. Copy to pe_settings.yaml (gitignored).
+# Anything left out comes from raiconfig.yaml (database, schema, role, warehouse, logic engine).
+#
+# database: MY_DATABASE
+# base_schema: DEAL_GRAPH          # source tables; experiments use <base_schema>_<SUFFIX> schemas
+# engine: my_logic_engine
+# warehouse: MY_WH
+# admin_role: MY_ADMIN_ROLE        # creates experiment schemas and grants
+# deploy_role: MY_DEPLOY_ROLE      # owns deployments and runs refresh tasks (defaults to admin_role)
+# agent_community_evidence: artifacts/my_community_run.json  # validated community run the agent serves

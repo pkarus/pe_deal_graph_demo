@@ -30,7 +30,7 @@ from relationalai.semantics.std import aggregates as aggs
 from relationalai.semantics.std.aggregates import asc, rank
 
 from .core import (
-    AS_OF, AS_OF_ISO, OUR_SEED_ROLE_TYPES, OUR_SPONSOR_NAME, model,
+    AS_OF, AS_OF_ISO, OUR_SEED_ROLE_TYPES, OUR_SPONSOR_NAME, BUILD_PROFILE, model,
     AreaExposure, BuyingFund, Company, ConflictSubject, CoverageGap, DealFlowTransaction, DecisionMaker,
     EligibleTarget, Fund, FundFocus, Interaction, Intermediary, Knows, KnowsEvidence, NorthwindHolding,
     Organization, OurFund, OurSeed, OurSponsor, Ownership, Person, PipelineEntry, PortfolioExposure,
@@ -920,10 +920,19 @@ def enable_finale() -> bool:
 # ============================================================================================
 # Build the Act 1-4 rules at import
 # ============================================================================================
-for _fn in (sector_closure, who_we_are, evidence_names, thesis_fit, known_to_crm, fit_components, readiness_components,
+_default_builders = (sector_closure, who_we_are, evidence_names, thesis_fit, known_to_crm, fit_components, readiness_components,
             access_components, composite_score, why_not_templates, knows_tenure_overlap, knows_deal_coparticipation,
             knows_positive_crm, knows_relationship, decision_makers, closest_intermediary, deal_flow_scope,
-            coverage_gap, northwind_holding_and_subject, portfolio_exposure, concentration):
+            coverage_gap, northwind_holding_and_subject, portfolio_exposure, concentration)
+_probe_builders = (who_we_are, evidence_names, knows_tenure_overlap,
+                   knows_deal_coparticipation, knows_positive_crm, knows_relationship)
+# Materialize the existing Act-1 target rules independently of graph deployments.
+_target_builders = (sector_closure, who_we_are, evidence_names, thesis_fit, known_to_crm,
+                    fit_components, readiness_components, access_components, composite_score,
+                    decision_makers)
+_builders = {"copied-distance-probe": _probe_builders, "copied-community-probe": _probe_builders,
+             "copied-target-rules": _target_builders}.get(BUILD_PROFILE, _default_builders)
+for _fn in _builders:
     _fn()
 
 if os.environ.get("PE_DEAL_GRAPH_FINALE", "").strip().lower() in ("1", "true", "yes", "on"):

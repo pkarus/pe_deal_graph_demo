@@ -28,21 +28,45 @@ Conventions
 - No rule calls today(): use AS_OF.
 """
 
+import os
+
 from relationalai.semantics import Date, Float, Integer, Model, String
 from relationalai.semantics.std import datetime as dt
+
+from pe_deal_graph import settings as _cfg  # database/schema/role/engine names
 
 # --------------------------------------------------------------------------------------------
 # Constants shared by every layer
 # --------------------------------------------------------------------------------------------
-SOURCE_SCHEMA = "RAI_DEMO_PE_DEALS.DEAL_GRAPH"
-AS_OF = dt.date(2026, 10, 1)  # CONFIG AS_OF_DATE as a PyRel date (a python datetime.date literal does not compile)
+SOURCE_SCHEMA = _cfg.SOURCE_SCHEMA
+BUILD_PROFILE = os.environ.get("PE_DEAL_GRAPH_BUILD_PROFILE", "default")
+if BUILD_PROFILE not in {"default", "copied-distance-probe", "copied-community-probe", "copied-target-rules"}:
+    raise ValueError("Unknown PE_DEAL_GRAPH_BUILD_PROFILE")
+if BUILD_PROFILE in {"copied-distance-probe", "copied-community-probe", "copied-target-rules"}:
+    fixture = os.environ.get("PE_DEAL_GRAPH_PROBE_FIXTURE", "baseline")
+    if BUILD_PROFILE == "copied-target-rules" and fixture != "baseline":
+        raise ValueError("Target deployments are limited to the baseline fixture")
+    if BUILD_PROFILE == "copied-community-probe" and fixture not in {"baseline", "connected", "connected100k", "connected1m"}:
+        raise ValueError("Community fixtures are baseline or connected 10K, 100K, 1M")
+    source_schemas = {"baseline": f"{_cfg.BASE_SCHEMA}_DEPLOY_SRC",
+                      "sparse": f"{_cfg.BASE_SCHEMA}_SPARSE_10K_SRC",
+                      "connected": f"{_cfg.BASE_SCHEMA}_CONNECTED_10K_SRC",
+                      "connected100k": f"{_cfg.BASE_SCHEMA}_CONNECTED_100K_SRC",
+                      "connected1m": f"{_cfg.BASE_SCHEMA}_CONNECTED_1M_SRC"}
+    if fixture not in source_schemas: raise ValueError("Unknown probe fixture")
+    SOURCE_SCHEMA = f"{_cfg.DATABASE}." + source_schemas[fixture]
+    if os.environ.get("PE_DEAL_GRAPH_FINALE", "").strip().lower() in {"1", "true", "yes", "on"}:
+        raise ValueError("Finale is not part of the copied distance probe")
+AS_OF = dt.date(2026, 10, 1)
 AS_OF_ISO = "2026-10-01"
 OUR_SPONSOR_NAME = "Northwind Equity Partners"  # "us"; Fund IV = our fund with the latest vintage
 OUR_SEED_ROLE_TYPES = ("Deal Team", "Operating Partner")  # current roles at our sponsor that make a seed
 MAX_PATH_HOPS = 3  # warm paths longer than this are reported as "no path within 3 hops"
-BETWEENNESS_PIVOTS = 16000  # >= any possible |V| (row cap), so betweenness is exact Brandes
+BETWEENNESS_PIVOTS = ({"connected100k": 100000, "connected1m": 1000000}.get(fixture, 16000)
+                      if BUILD_PROFILE == "copied-community-probe" else 16000)  # All people are pivots in supported community fixtures.
 
-model = Model("pe_deal_graph")
+model = Model({"copied-community-probe": "pe_deal_graph_community",
+               "copied-target-rules": "pe_deal_graph_targets"}.get(BUILD_PROFILE, "pe_deal_graph"))
 
 
 def get_model() -> Model:
@@ -51,7 +75,15 @@ def get_model() -> Model:
 
 
 def _table(name: str):
-    return model.Table(f"{SOURCE_SCHEMA}.{name}")
+    schema = SOURCE_SCHEMA.removesuffix("_SRC") if BUILD_PROFILE in {"copied-distance-probe", "copied-community-probe", "copied-target-rules"} and name in {"ROLE_HISTORY_NORMALIZED", "OWNERSHIP_NORMALIZED"} else SOURCE_SCHEMA
+    table = model.Table(f"{schema}.{name}")
+    if BUILD_PROFILE in {"copied-distance-probe", "copied-community-probe", "copied-target-rules"}:
+        expected = f"{schema}.{name}"
+        if not isinstance(table._name, str) or table._name != expected:
+            raise ValueError("Probe table name escaped the copied-source scope")
+        if table.info.fqn is not None and table.info.fqn != expected:
+            raise ValueError("Probe physical table override escaped the copied-source scope")
+    return table
 
 
 # ============================================================================================
@@ -196,7 +228,8 @@ SOURCE_TABLES = {}  # table name -> model.Table, used by scripts/validate_ontolo
 
 
 def _bind(name: str):
-    t = _table(name)
+    physical_name = name + "_NORMALIZED" if BUILD_PROFILE in {"copied-distance-probe", "copied-community-probe", "copied-target-rules"} and name in {"ROLE_HISTORY", "OWNERSHIP"} else name
+    t = _table(physical_name)
     SOURCE_TABLES[name] = t
     return t
 
@@ -335,15 +368,27 @@ model.define(Signal.filter_by(id=_src.SIGNAL_ID).intermediary(Intermediary.filte
 model.define(Signal.filter_by(id=_src.SIGNAL_ID).magnitude_musd(_src.MAGNITUDE_MUSD))
 del _src, _a, _b
 
+def define_source_dates(concept, table, id_column):
+    """Use source views so SQL NULL defaults are resolved before recursion."""
+    entity = concept.filter_by(id=getattr(table, id_column))
+    model.define(entity.effective_end_date(table.EFFECTIVE_END_DATE))
+    model.where(table.IS_CURRENT == True).define(entity.is_current())  # noqa: E712
+
+
 # Source normalization: a NULL end date means "still current" and is evaluated as AS_OF.
-model.define(Role.effective_end_date(Role.end_date))
-model.where(model.not_(Role.end_date)).define(Role.effective_end_date(AS_OF))
-model.where(Role.start_date <= AS_OF, model.not_(Role.end_date)).define(Role.is_current())
-model.where(Role.start_date <= AS_OF, Role.end_date > AS_OF).define(Role.is_current())
-model.define(Ownership.effective_end_date(Ownership.end_date))
-model.where(model.not_(Ownership.end_date)).define(Ownership.effective_end_date(AS_OF))
-model.where(Ownership.start_date <= AS_OF, model.not_(Ownership.end_date)).define(Ownership.is_current())
-model.where(Ownership.start_date <= AS_OF, Ownership.end_date > AS_OF).define(Ownership.is_current())
+if BUILD_PROFILE in {"copied-distance-probe", "copied-community-probe", "copied-target-rules"}:
+    define_source_dates(Role, SOURCE_TABLES["ROLE_HISTORY"], "ROLE_ID")
+    define_source_dates(Ownership, SOURCE_TABLES["OWNERSHIP"], "OWNERSHIP_ID")
+else:
+    model.define(Role.effective_end_date(Role.end_date))
+    model.where(model.not_(Role.end_date)).define(Role.effective_end_date(AS_OF))
+    model.where(Role.start_date <= AS_OF, model.not_(Role.end_date)).define(Role.is_current())
+    model.where(Role.start_date <= AS_OF, Role.end_date > AS_OF).define(Role.is_current())
+    model.define(Ownership.effective_end_date(Ownership.end_date))
+    model.where(model.not_(Ownership.end_date)).define(Ownership.effective_end_date(AS_OF))
+    model.where(Ownership.start_date <= AS_OF, model.not_(Ownership.end_date)).define(Ownership.is_current())
+    model.where(Ownership.start_date <= AS_OF, Ownership.end_date > AS_OF).define(Ownership.is_current())
+
 
 # Concept name -> (source table, concept) for entity-count checks (count(concept) == table rows).
 CONCEPT_SOURCES = {

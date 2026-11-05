@@ -618,14 +618,17 @@ def our_seeds(data: Data) -> list[str]:
     return sorted({x["person_id"] for x in data.current_roles_at(data.nw_id, {"Deal Team", "Operating Partner"})})
 
 
-def build_knows(data: Data, seeds: set[str]) -> dict:
+def build_knows(data: Data, seeds: set[str], *, include_evidence=True) -> dict:
     ev = defaultdict(list)  # (a, b) with a < b -> evidence list
 
     def add(a, b, item):
         if a == b:
             return
         key = (a, b) if a < b else (b, a)
-        ev[key].append(item)
+        if include_evidence:
+            ev[key].append(item)
+        else:
+            ev[key] = max(ev.get(key, 0.0), item["strength"])
 
     # K1 tenure overlap (same org, >= 365 days, open end = T)
     for org_id in sorted(data.roles_by_org):
@@ -641,6 +644,9 @@ def build_knows(data: Data, seeds: set[str]) -> dict:
                 if days < 365:
                     continue
                 strength = recency(e) * min(1.0, 0.4 + 0.15 * days / 365.25)
+                if not include_evidence:
+                    add(a["person_id"], b["person_id"], {"strength": strength})
+                    continue
                 both_board = a["role_type"] == "Board" and b["role_type"] == "Board"
                 open_end = a["end_date"] is None and b["end_date"] is None
                 label = "board co-service" if both_board else "tenure overlap"
@@ -694,6 +700,8 @@ def build_knows(data: Data, seeds: set[str]) -> dict:
                    "first": min(ds).isoformat(), "last": max(ds).isoformat(),
                    "text": f"K3: {n} positive meetings {min(ds)} to {max(ds)} -> {strength:.2f}"})
 
+    if not include_evidence:
+        return {key: {"strength": value} for key, value in ev.items()}
     knows = {}
     for key in sorted(ev):
         items = sorted(ev[key], key=lambda i: (-i["strength"], i["type"], i["text"]))

@@ -139,3 +139,120 @@ Rules for every function:
 Check the contract without the engine: `.venv/bin/python demo_workspace/ask.py --check`.
 
 Automatic fallback: if a live hero query hits a missing graph output, an empty frame, an engine lock or a 503, `ask.py` retries once after 20 s, then prints "Live query unavailable, showing precomputed result from exports" and shows the `--from-exports` rows for the same function (or a clear message if `exports/` is missing).
+
+## Local-only synthetic scale fixtures
+
+`data/generate.py --scale` is separate from the signal/noise demo modes. It writes
+all 17 existing CSV schemas and a deterministic `MANIFEST.json` into a **new**
+directory. It refuses existing directories, paths inside `data/csv` or
+`data/golden`, mixed demo/scale flags, and scale-only options without opt-in.
+It never loads Snowflake or imports/runs the RAI model. Existing finite demo ID
+pools, row caps, source configuration, and golden stories are unchanged.
+
+```bash
+# Generate into a NEW directory (data/scale_10k already contains the validated fixture).
+env -u DEBUG .venv/bin/python data/generate.py --scale --people 10000 --workplace-size 8 --seed 42 --out data/scale_10k_new
+# Read-only local validation of the prepared fixture:
+env -u DEBUG .venv/bin/python data/generate.py --scale-check --out data/scale_10k
+# Offline regression tests:
+env -u DEBUG .venv/bin/python -m pytest tests/test_scale_generator.py -q
+```
+
+The generated names use a local seeded RNG; topology is a fixed deterministic
+construction independent of the seed. All scale IDs have their own prefix and
+nine-digit numeric suffix, avoiding the demo's finite shuffled ID pools.
+The fixture uses K1 workplace overlap (Board roles starting 2020-01-01, open
+through fixed AS_OF 2026-10-01); K2 deal and K3 CRM inputs are empty. Reference
+sponsor/fund rows support the existing oracle, but there are no OurSeed members.
+This is a sparse relationship/path fixture, not a replacement for the demo's
+business-question stories or a realistic connected-network benchmark.
+
+People `SCALE_P000000000` through `SCALE_P000000005` form an isolated six-person
+chain. Each adjacent pair shares its own two-person workplace, so no workplace
+can shortcut the chain. From `SCALE_P000000000`, targets ending `001` through
+`005` have exact shortest distances 1–5; the route is the ascending prefix of
+that chain. Person `SCALE_P000000006` has its own workplace and is unreachable.
+All remaining people belong to one bounded workplace each. The default size is
+8; `--workplace-size` accepts 2–32. Companies have distinct IDs and are never
+collapsed under one common employer. No deal or CRM links join the components.
+
+For N people and workplace cap k, let q,r = divmod(N-7,k). There are N+4 roles,
+6+ceil((N-7)/k) companies, and exactly `5 + q*k*(k-1)/2 + r*(r-1)/2`
+unordered Knows connections. At k=8:
+
+| People | Roles | Expected connections |
+| ---: | ---: | ---: |
+| 10,000 | 10,004 | 34,977 |
+| 100,000 | 100,004 | 349,977 |
+| 1,000,000 | 1,000,004 | 3,499,977 |
+
+These are O(N*k) connections, not O(N²): at fixed k, degree and component size
+stay bounded. A chain member has at most two roles; every bulk person has one.
+Adding future roles, bridges, deal participants, or CRM edges requires renewed
+oracle checks because those can change density and shortest paths.
+
+Generation streams rows and file hashes; it does not allocate all people,
+roles, or edges in memory. The same generator accepts 100K and 1M with the
+`--people` option and a new output directory. CSV storage is approximately
+linear (about 19 MB / 193 MB projected from the 10K run, not measured).
+The existing independent oracle materializes pandas data, edge evidence and a
+NetworkX graph; validation therefore has substantial O(N+E) memory overhead.
+Only 10K has been validated here. Before 1M oracle validation, budget memory or
+prepare a separately reviewed streaming/component-wise validator. Do not run
+all-pairs distances: planted checks need only one source BFS.
+
+Validated local 10K output in `data/scale_10k`: 1,929,728 CSV bytes;
+1,934,372 total bytes including manifest (18 files). The existing oracle confirms
+34,977 connections, maximum degree 7, largest component 8, exact distances 1–5,
+unreachable handling, and every example route edge at threshold 0.0.
+Two generations were byte-identical. SHA-256 checks confirmed demo CSV and
+golden files were unchanged. No Snowflake loads or RAI runs were performed.
+
+
+## Experiment deployment
+
+The custom deployment receipts, SQL scanner, provenance checks, and continuation
+flags have been removed. Historical investigation commands are superseded here.
+The runner uses the existing `_DEPLOY_SRC` copies, `_DEPLOY` outputs, and
+`_DEPLOY_META` metadata under `ALAA_RELAPP_PERSISTENCE`, as `RAI_USER` on `RAI_XS`.
+It does not provision schemas, copy source tables, or grant permissions.
+The SDK handles its normal deployment metadata and object lifecycle directly.
+This remains the fixed-source distance probe, not the full demo deployment.
+
+Print targets without connecting:
+```bash
+env -u DEBUG .venv/bin/python scripts/check_graphs.py --prepare-copied-distance-probe
+```
+
+Deploy and run one manual refresh, then compare all expected distances:
+```bash
+env -u DEBUG .venv/bin/python scripts/check_graphs.py --run-copied-distance-probe --execute --refresh
+```
+Omit `--refresh` to install only. There is no recurring refresh schedule.
+Do not run concurrently with an older deployment runner.
+
+
+### Distance recursion compatibility fix (SDK 1.27.1)
+
+The copied distance probe runner applies a temporary, process-local SQL-lowering
+workaround in `deploy_distance_probe`. Only the probe distance relation is affected:
+`MIN(D) GROUP BY NODE_U, NODE_V` is applied across accumulated state and new
+candidates before computing the next delta. The installed SDK is unchanged.
+The unmodified compiler retained longer cyclic walks and did not converge in the
+observed run. This workaround is not an upstream SDK fix and should be removed
+once that compiler behavior is fixed. Use the runner command above to preserve it
+on redeployment; directly deploying the model without the runner bypasses it.
+
+Offline SQL execution verifies cyclic/disconnected examples and all 1,720 baseline
+distances against independent breadth-first search. A regression also checks that
+unrelated relations are unchanged and the compiler method is restored on failure.
+
+The copied probe also creates `ROLE_HISTORY_NORMALIZED` and
+`OWNERSHIP_NORMALIZED` views in the existing `_DEPLOY` output schema. These
+read the two corresponding `_DEPLOY_SRC` tables and compute effective end dates
+with SQL COALESCE and current status from the raw source dates. This prevents
+a missing-property fallback from being retained during recursive entity
+materialization. The original source tables and default interactive model are
+unchanged. The views are recreated by the existing deployment runner.
+
+Live validation of both fixes passed: 1,720 distance rows and all 2,525 unordered connection pairs match the independent oracle exactly. The distance block took about 54 seconds; the full refresh includes input/rule materialization and takes longer. This validates only the copied fixed-source probe. See the existing investigation report for the task query ID and timings.

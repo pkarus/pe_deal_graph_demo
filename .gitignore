@@ -19,7 +19,6 @@ rai_code/manual/build/
 # Secrets / local env
 .env
 .env.*.local
-
 # Jupyter
 .ipynb_checkpoints/
 *.executed.ipynb
@@ -36,6 +35,7 @@ query_results/
 # NOTE for R14/G8: raiconfig.yaml is untracked, so a fresh `git worktree` has no config.
 # The cold-run steps in RUNBOOK.md must copy it in: cp ../pe_deal_graph_demo/raiconfig.yaml .
 raiconfig.yaml
+raiconfig.example.yaml
 raiconfig.yml
 raiconfig.toml
 *.p8
@@ -50,3 +50,23 @@ playwright-report/
 demo_workspace/scratch/
 data/csv_noise/
 scripts/scout/out/dev*/
+
+# Local settings (copy pe_settings.example.yaml)
+pe_settings.yaml
+
+# Per-setup run records written by the deploy/scale runners (summarized in docs/EXPERIMENTS.md).
+# Each account produces its own; committing someone else's would block fresh deployments.
+# artifacts/people_communities.json stays: it is a test fixture.
+artifacts/people_communities_*.json
+artifacts/target_rules_deployment.json
+artifacts/pe_cortex_agent.json
+artifacts/scale_1m.json
+artifacts/rai_initialization_readonly_evidence.json
+artifacts/knows_oracle_difference.json
+artifacts/*.debug.zip
+# Regenerable scale fixtures (data/generate.py --scale-connected ...); small 10K fixtures stay
+data/scale_connected_100k/
+data/scale_connected_1m/
+# Safety backups made during cleanup
+_backup_before_cleanup_*/
+artifacts/rai_initialization_investigation.md
