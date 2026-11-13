@@ -65,7 +65,7 @@ V5 completion evidence: `artifacts/corporate_affinity_v5_acceptance.json`. Nativ
 
 ## Amendment — explicit corporate business ontology (2026-11-13)
 
-Status: implementing; authorized by the user, including deployment and synchronization to `PE-Usecase`.
+Status: complete; native validation, live agent deployment, explorer checks and synchronization to `PE-Usecase` are complete.
 
 WHEN modeling corporate introductions, THE SYSTEM SHALL expose Person, Company, Employment, OurTeamMember, Connection and IntroductionRoute as the six business concepts. OurTeamMember SHALL extend Person and retain the same person identity, with membership grounded in the separate TEAM_MEMBER table. Employment SHALL explicitly link one Person and one Company; dates, job title and workplace attributes SHALL describe the employment. The PE firm SHALL be an employer Company. Existing source tables SHALL remain unchanged. Connection SHALL expose the existing scored person pair and its evidence. IntroductionRoute SHALL expose each existing candidate path with typed source/target, optional intermediary, ordered IDs, hops, raw/normalized strength and reason. These two computed concepts SHALL introduce no new scoring factors or routes.
 
@@ -74,3 +74,5 @@ WHEN selecting default introduction sources, THE SYSTEM SHALL use OurTeamMember.
 WHEN scoring and traversing, THE SYSTEM SHALL retain every v5 eligibility rule, arithmetic component, decay band, normalization, tie break, two-hop scope and cohort threshold. SharedEmployment, SharedSegment and DecaySlice SHALL remain internal scoring/evidence concepts. Calculation edges SHALL continue to connect only people. Job links SHALL NOT create graph edges by themselves.
 
 Acceptance: native schema inspection, exact SQL comparison of 100 member identities and 450 typed employment links, preserved controlled scoring and strongest/shortest routes, all 7,188 saved neighborhood edges, all 951 cohort edges and 2,100 structural metric rows, a live deployed agent response with independent path/component validation, explorer smoke checks, and a normal update to PE-Usecase with matching source and casual README documentation.
+
+Completion: the six business concepts retain the same 100 team members and 450 employment links. Native checks preserve all 7,188 reference neighborhood connections, 951 cohort edges and 2,100 structural metric rows. The final route view passed the controlled strongest/shortest-route checks and the full-team SQL comparison. A fresh Cortex response passed independent path/component validation with the same recommendations and scores; the explorer passed a fresh neighborhood and edge-breakdown check. All 24 local checks passed. Generated baselines and account-specific execution evidence remain local.
