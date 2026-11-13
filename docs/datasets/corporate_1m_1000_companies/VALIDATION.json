@@ -1,0 +1,78 @@
+{
+  "as_of_date": "2026-10-01",
+  "career_span_years": {
+    "max_rounded": 42,
+    "median_rounded": 13
+  },
+  "companies": 1000,
+  "company_employment": {
+    "all_companies_have_current_people": true,
+    "all_time_roles_max": 16411,
+    "all_time_roles_min": 592,
+    "tracked_current_max": 5015,
+    "tracked_current_mean": 1000.0,
+    "tracked_current_min": 170
+  },
+  "company_site_rows": 6965,
+  "completed_roles": 2371598,
+  "csv_bytes": 423113825,
+  "current_ceos": 1000,
+  "current_cfos": 1000,
+  "current_roles": 1000000,
+  "employers_per_person": {
+    "distribution": {
+      "1": 119722,
+      "2": 179738,
+      "3": 239999,
+      "4": 220265,
+      "5": 150313,
+      "6": 89963
+    },
+    "max": 6,
+    "mean": 3.371598,
+    "min": 1
+  },
+  "graph_calculations_run": false,
+  "hq_states": 51,
+  "industry_groups": 11,
+  "mean_gap_days_between_jobs": 41.175,
+  "people": 1000000,
+  "public_companies": 795,
+  "rai_workload": {
+    "assessment": "REVIEW_BEFORE_RAI_LOAD: large employers imply dense co-employment ties; consider team/site evidence before treating overlapping employment as acquaintance.",
+    "meaning": "Sum of n*(n-1)/2 per company, before the existing RAI K1 date-overlap filter. Not a count of unique person edges.",
+    "same_employer_candidate_role_pairs": 10431461163
+  },
+  "roles": 3371598,
+  "snowflake_modified": false,
+  "status": "PASS",
+  "tables": {
+    "COMMERCIAL_LINK": 0,
+    "COMPANY": 1000,
+    "COMPANY_SIGNAL": 0,
+    "COMPANY_SITE": 6965,
+    "CRM_INTERACTION": 0,
+    "FUND": 0,
+    "FUND_FOCUS": 0,
+    "INTERMEDIARY": 0,
+    "OWNERSHIP": 0,
+    "PERSON": 1000000,
+    "PIPELINE": 0,
+    "REGION": 56,
+    "ROLE_HISTORY": 3371598,
+    "SECTOR": 33,
+    "SPONSOR": 0,
+    "TRANSACTION": 0,
+    "TRANSACTION_PARTY": 0
+  },
+  "tenure_years": {
+    "acceptance_tolerance": 0.1,
+    "mean_completed": 4.030381,
+    "mean_current_elapsed": 4.037418,
+    "mean_observed": 4.032468,
+    "median": 3.521,
+    "p10": 1.073,
+    "p90": 8.008
+  },
+  "validation_scope": "All 17 CSVs: hashes, headers, counts, identifiers, references, career dates and population constraints."
+}

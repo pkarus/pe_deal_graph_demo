@@ -1,0 +1,200 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-11-13T05:18:52.506719+00:00",
+  "scoring_version": "corporate-affinity-v5",
+  "correction": "Fixed fourth-root normalization calculated in RAI. All v4 raw scoring rules, components, routes, rankings and raw-weight analytics preserved; both raw and normalized values retained.",
+  "runtime_sha256": "259ea8ed550d37bb6689e87d1ff03932aaec76a12a4325269bde14813feb2d8b",
+  "agent": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT.CORPORATE_INTRODUCTIONS",
+  "local_explorer": "http://127.0.0.1:3000",
+  "native_scoring_fixture_cases": 11,
+  "normalization_comparison": {
+    "status": "PASS",
+    "neighborhoods": [
+      {
+        "person_id": "CORP_P000002008",
+        "edges": 4859,
+        "raw_components_unchanged": true,
+        "ranking_preserved": true,
+        "normalized_median": 0.308778749009267,
+        "normalized_max": 0.800215780514959
+      },
+      {
+        "person_id": "PE_P0001",
+        "edges": 2329,
+        "raw_components_unchanged": true,
+        "ranking_preserved": true,
+        "normalized_median": 0.273679295747345,
+        "normalized_max": 0.528767349552659
+      }
+    ],
+    "raw_fixture_components_unchanged": 10,
+    "strongest_and_shortest_raw_routes_preserved": true,
+    "cohort_raw_edges_preserved": 951,
+    "cohort_degree_and_betweenness_preserved": 2100,
+    "normalization": "Fixed fourth root; no question-specific maximum, percentile, or probability claim."
+  },
+  "all_neighborhood_edges_verified": 7188,
+  "live_agent_questions": [
+    {
+      "case": "ceo",
+      "request_id": "f20e9801-c08b-4661-89c9-468c7fef5a79",
+      "sources_connected": 99,
+      "seconds": 217.06455854199885,
+      "returned_paths_verified": 10,
+      "parent_call_query_id": "01c86074-040d-2d7a-0005-5ee3147a0886",
+      "native_transaction_ids": [
+        "01c86074-040d-2d7a-0005-5ee3147a0b16",
+        "01c86076-040d-2d7a-0005-5ee3147a2602",
+        "01c86077-040d-2d7a-0005-5ee3147a2652"
+      ],
+      "role": "RAI_USER"
+    },
+    {
+      "case": "pair",
+      "request_id": "ed2764ef-b1c8-4daa-b781-0cad9da70754",
+      "sources_connected": 1,
+      "seconds": 192.39199320798798,
+      "returned_paths_verified": 1,
+      "parent_call_query_id": "01c86077-040d-3184-0005-5ee3147a4686",
+      "native_transaction_ids": [
+        "01c86078-040d-3184-0005-5ee3147a48da",
+        "01c8607a-040d-3184-0005-5ee3147a60fa",
+        "01c8607a-040d-3184-0005-5ee3147a6142"
+      ],
+      "role": "RAI_USER"
+    },
+    {
+      "case": "head",
+      "request_id": "2f73fa1b-e33d-4c0f-b0a8-8941a236ed59",
+      "sources_connected": 97,
+      "seconds": 140.60828229199979,
+      "returned_paths_verified": 5,
+      "parent_call_query_id": "01c8607b-040d-3184-0005-5ee3147a642a",
+      "native_transaction_ids": [
+        "01c8607b-040d-3184-0005-5ee3147a6962",
+        "01c8607c-040d-3184-0005-5ee3147a818e",
+        "01c8607c-040d-3184-0005-5ee3147a81c6"
+      ],
+      "role": "RAI_USER"
+    }
+  ],
+  "example_route": {
+    "connection": "Anika B. Bergstrom",
+    "connection_id": "PE_P0001",
+    "edge_ids": [
+      "CORP_P000395632|PE_P0001",
+      "CORP_P000000373|CORP_P000395632"
+    ],
+    "hops": 2,
+    "minimum_hops": 2,
+    "path": "PE_P0001|CORP_P000395632|CORP_P000000373",
+    "raw_strength": 0.000389969711576,
+    "reason": "Anika B. Bergstrom \u2192 Yara E. Sandoval: Representative employment: Everfield Retail Group (Synthetic): 2014-09-15 to 2017-04-14 (942 days; Same office); total shared years=2.5790554414784395; effective shared years=0.7782340862422998; Deferred; not used in scoring; employment contribution=0.02714788507971147, friendship contribution=0.0, raw strength=0.02714788507971147; normalized strength=0.4059139720588575; Yara E. Sandoval \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2025-03-26 (739 days; Different, remote or unknown locations; company-only evidence); total shared years=2.023271731690623; effective shared years=0.4287474332648871; Deferred; not used in scoring; employment contribution=0.014364644259789743, friendship contribution=0.0, raw strength=0.014364644259789743; normalized strength=0.34619733372761047",
+    "strength": 0.14052633484956,
+    "target": "Soren T. Bellamy",
+    "target_id": "CORP_P000000373"
+  },
+  "missing_company_control": "PASS: no invented target, no graph invocation",
+  "analytics": {
+    "run_id": "c49cca81-9892-4c6a-ad70-e56df52f34e4",
+    "scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+    "as_of": "2026-10-01",
+    "node_count": 2100,
+    "edge_count": 951,
+    "min_strength": 0.4041031009353247,
+    "min_raw_strength": 0.02666666666666667,
+    "weight_scale": "Native analytics use unchanged raw weights; displayed edge strengths use fourth-root normalization",
+    "nontrivial_community_count": 449,
+    "isolated_people": 761,
+    "community_method": "Native RAI weighted Louvain, seed 42, max_levels 5",
+    "betweenness_method": "Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology",
+    "independent_validation": {
+      "status": "PASS",
+      "all_node_betweenness_verified": 2100,
+      "native_raw_pair_count_factor": 1.0,
+      "weighted_modularity": 0.9941383137888926,
+      "betweenness_absolute_tolerance": 0.0005,
+      "max_betweenness_absolute_error": 0.0,
+      "degree_and_weighted_degree_verified": true,
+      "note": "Louvain partitions can vary; verify coverage and weighted modularity, not identical labels"
+    },
+    "transactions": [
+      {
+        "ID": "01c86072-040d-2d7a-0005-5ee31479eea2",
+        "STATE": "COMPLETED",
+        "ENGINE_NAME": "alaa_pe_deal_graph_experiment"
+      },
+      {
+        "ID": "01c86072-040d-3184-0005-5ee31479f92a",
+        "STATE": "COMPLETED",
+        "ENGINE_NAME": "alaa_pe_deal_graph_experiment"
+      }
+    ]
+  },
+  "local_checks": {
+    "unit_tests": "19 passed",
+    "typescript": "PASS",
+    "production_build": "PASS",
+    "viewer_api": {
+      "status": "PASS",
+      "health": {
+        "status": "ok",
+        "source": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT",
+        "default_person": "CORP_P000002008",
+        "as_of": "2026-10-01",
+        "scoring_version": "corporate-affinity-v5"
+      },
+      "cohort_run_id": "c49cca81-9892-4c6a-ad70-e56df52f34e4",
+      "cohort_nodes": 2100,
+      "cohort_edges": 951,
+      "person_profile_and_career": true,
+      "edge_decomposition_version": "corporate-affinity-v5",
+      "edge_strength": 0.523117963076106,
+      "edge_raw_strength": 0.074885637827977,
+      "normalized_threshold_verified": 0.5,
+      "typescript": "PASS",
+      "production_build": "PASS",
+      "browser_render": "Observed the local v5 normalization labels and Cortex Preview table with normalized strengths (including 0.2270); local graph data/decomposition and filtering verified through its running API. Full local edge rendering was not rechecked because the user was actively switching to Agent Studio."
+    },
+    "historical_scoring": "PASS at 2020-10-01; original factors, no future periods"
+  },
+  "preservation": {
+    "status": "PASS",
+    "original_career_rows": 3371598,
+    "preserved_tables": {
+      "TEAM_MEMBER": 100,
+      "TEAM_ROLE_HISTORY": 450,
+      "WORKPLACE_V2": 3372048,
+      "OFFICE_V2": 20898,
+      "FRIENDSHIP_V2": 1910282,
+      "LEADERSHIP_COHORT_V2": 2100
+    },
+    "older_agent": "PE_INTRO_1M_TEST",
+    "older_agent_created_on": "2026-11-10 12:03:33.146000-08:00",
+    "retained_analytics_versions": {
+      "corporate-affinity-v2": 1,
+      "corporate-affinity-v3": 1,
+      "corporate-affinity-v4": 1,
+      "corporate-affinity-v5": 1
+    },
+    "active_version": "corporate-affinity-v5"
+  },
+  "limits": [
+    "Synthetic employment evidence, not probabilities or confirmed acquaintances",
+    "Exact introduction search limited to two hops",
+    "Centrality/communities restricted to the defined 2100-person cohort; unweighted betweenness, weighted Louvain"
+  ],
+  "evidence_files": [
+    "artifacts/affinity_v5_native_fixture.json",
+    "artifacts/affinity_v5_route_fixture.json",
+    "artifacts/affinity_v5_normalization_comparison.json",
+    "artifacts/affinity_v5_normalization_fixture.json",
+    "artifacts/corporate_explorer_v5_edge_validation.json",
+    "artifacts/corporate_explorer_v5_neighborhood_validation.json",
+    "artifacts/corporate_affinity_v5_preservation.json",
+    "artifacts/corporate_viewer_v5_validation.json",
+    "artifacts/corporate_affinity_v5_analytics.json",
+    "artifacts/corporate_agent_acceptance_v5.json"
+  ],
+  "audit_sql": "sql/corporate_agent_audit.sql"
+}

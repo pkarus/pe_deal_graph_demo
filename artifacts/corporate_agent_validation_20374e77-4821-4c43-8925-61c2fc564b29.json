@@ -1,0 +1,1800 @@
+{
+  "request_id": "20374e77-4821-4c43-8925-61c2fc564b29",
+  "status": "PASS",
+  "returned_paths_verified": 10,
+  "total_connections": 99,
+  "unfiltered_oracle_connections": 99,
+  "oracle_query_id": "01c8604e-040d-3184-0005-5ee31478d6d2",
+  "transactions": [
+    {
+      "id": "01c8604a-040d-3184-0005-5ee31478b2ae",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 1164,
+      "created_on": "2026-11-12 20:26:31.142000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c8604a-040d-3184-0005-5ee31478b25a",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 393,
+      "created_on": "2026-11-12 20:26:26.662000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c86049-040d-3184-0005-5ee314789fda",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 24583,
+      "created_on": "2026-11-12 20:25:58.499000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "aae4278bdd302eccd7b1bf680fcf0193d45ad7b78f1e86a72916ed8cad850c2f",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "all_routes_enumerated": false,
+    "as_of": "2026-10-01",
+    "direct_connections": 1,
+    "direct_connections_definition": "Starting people in this result with a direct modeled edge, even if a stronger two-hop witness was selected",
+    "displayed": 10,
+    "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+    "friendship_policy": "Deferred; preserved facts do not affect scores or create edges",
+    "network_context": {
+      "available": false,
+      "reason": "No validated native RAI cohort snapshot for this date/version"
+    },
+    "pyrel_sha256": "aae4278bdd302eccd7b1bf680fcf0193d45ad7b78f1e86a72916ed8cad850c2f",
+    "ranking": "Strongest bounded score across paths up to two hops, then fewest hops; one deterministic witness per source",
+    "request_id": "20374e77-4821-4c43-8925-61c2fc564b29",
+    "route_formula": "One hop = edge strength; two hops = 0.85 \u00d7 minimum leg strength",
+    "rows": [
+      {
+        "connection": "Ezra Q. Corwin",
+        "connection_id": "PE_P0042",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.010395021282451,
+            "career_fraction": 0.265931529683293,
+            "career_mean_years": 21.352498288843258,
+            "context_multiplier": 0.803954724989468,
+            "duration_component": 0.781781783817115,
+            "duration_contribution": 0.429979981099414,
+            "evidence": "Representative employment: Birchpoint Materials (Synthetic): 2013-06-11 to 2019-02-14 (2074 days; Different, remote or unknown locations; company-only evidence); total shared years=5.678302532511978; duration=0.7817817838171154; recency=0.662632594021215; location=0.5; career fraction=0.26593152968329276; total=0.628517159010465",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 25.686516084873375,
+            "left_id": "CORP_P000196964",
+            "left_name": "Orla N. Yadav",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 1208,
+                "decay_factor": 0.6,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 724.8,
+                "spatial_days": 604,
+                "spatial_factor": 0.5,
+                "start_date": "2013-06-11T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000615_CITY_4",
+                    "city_b": "CORP_C000615_CITY_7",
+                    "company": "Birchpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000615_O14",
+                    "office_b": "CORP_C000615_O21",
+                    "role_a": "CORP_R0000668007",
+                    "role_b": "PE_R0042_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 2,
+                "days": 866,
+                "decay_factor": 0.75,
+                "end_date": "2019-02-14T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 649.5,
+                "spatial_days": 433,
+                "spatial_factor": 0.5,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000615_CITY_4",
+                    "city_b": "CORP_C000615_CITY_7",
+                    "company": "Birchpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000615_O14",
+                    "office_b": "CORP_C000615_O21",
+                    "role_a": "CORP_R0000668007",
+                    "role_b": "PE_R0042_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.678302532511978,
+            "recency_contribution": 0.129508522842317,
+            "recency_factor": 0.662632594021215,
+            "right_career_years": 17.018480492813143,
+            "right_id": "PE_P0042",
+            "right_name": "Ezra Q. Corwin",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.058633633786284,
+            "spatial_factor": 0.5,
+            "strength": 0.628517159010465,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.008760547897102,
+            "career_fraction": 0.230478440637921,
+            "career_mean_years": 23.175906913073238,
+            "context_multiplier": 0.840989580668493,
+            "duration_component": 0.760205412085826,
+            "duration_contribution": 0.418112976647204,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Different, remote or unknown locations; company-only evidence); total shared years=5.341546885694729; duration=0.7602054120858255; recency=0.8178626345463864; location=0.5; career fraction=0.23047844063792083; total=0.6393248307319771",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 239,
+                "decay_factor": 0.45,
+                "end_date": "2011-10-01T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 107.55,
+                "spatial_days": 119.5,
+                "spatial_factor": 0.5,
+                "start_date": "2011-02-04T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000615_CITY_6",
+                    "city_b": "CORP_C000615_CITY_4",
+                    "company": "Birchpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000615_O18",
+                    "office_b": "CORP_C000615_O14",
+                    "role_a": "CORP_R0000001640",
+                    "role_b": "CORP_R0000668007",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 3,
+                "days": 419,
+                "decay_factor": 0.6,
+                "end_date": "2012-11-23T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 251.39999999999998,
+                "spatial_days": 209.5,
+                "spatial_factor": 0.5,
+                "start_date": "2011-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000615_CITY_6",
+                    "city_b": "CORP_C000615_CITY_4",
+                    "company": "Birchpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000615_O18",
+                    "office_b": "CORP_C000615_O14",
+                    "role_a": "CORP_R0000001640",
+                    "role_b": "CORP_R0000668007",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 563,
+                "decay_factor": 0.9,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 506.7,
+                "spatial_days": 281.5,
+                "spatial_factor": 0.5,
+                "start_date": "2023-03-18T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_0",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O0",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0000668009",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "recency_days": 730,
+                "spatial_days": 365,
+                "spatial_factor": 0.5,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_0",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O0",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0000668009",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.341546885694729,
+            "recency_contribution": 0.155435900281234,
+            "recency_factor": 0.817862634546386,
+            "right_career_years": 25.686516084873375,
+            "right_id": "CORP_P000196964",
+            "right_name": "Orla N. Yadav",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.057015405906437,
+            "spatial_factor": 0.5,
+            "strength": 0.639324830731977,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0042|CORP_P000196964|CORP_P000000373",
+        "reason": "Ezra Q. Corwin \u2192 Orla N. Yadav: Representative employment: Birchpoint Materials (Synthetic): 2013-06-11 to 2019-02-14 (2074 days; Different, remote or unknown locations; company-only evidence); total shared years=5.678302532511978; duration=0.7817817838171154; recency=0.662632594021215; location=0.5; career fraction=0.26593152968329276; total=0.628517159010465; Orla N. Yadav \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Different, remote or unknown locations; company-only evidence); total shared years=5.341546885694729; duration=0.7602054120858255; recency=0.8178626345463864; location=0.5; career fraction=0.23047844063792083; total=0.6393248307319771",
+        "strength": 0.534239585158895,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Rohan V. Vance",
+        "connection_id": "PE_P0073",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.013196738675339,
+            "career_fraction": 0.328584149599288,
+            "career_mean_years": 18.4476386036961,
+            "context_multiplier": 0.825775413442024,
+            "duration_component": 0.80324864674285,
+            "duration_contribution": 0.441786755708568,
+            "evidence": "Representative employment: Pinegrove Energy (Synthetic): 2010-01-10 to 2016-02-02 (2214 days; Same synthetic city; no matching office evidence); total shared years=6.061601642710472; duration=0.80324864674285; recency=0.5573848238482385; location=0.8; career fraction=0.3285841495992876; total=0.6633029833608233",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.621492128678987,
+            "left_id": "CORP_P000271815",
+            "left_name": "Jonah R. Kowalczyk",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 629,
+                "decay_factor": 0.45,
+                "end_date": "2011-10-01T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 283.05,
+                "spatial_days": 503.20000000000005,
+                "spatial_factor": 0.8,
+                "start_date": "2010-01-10T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000722_CITY_3",
+                    "city_b": "CORP_C000722_CITY_3",
+                    "company": "Pinegrove Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.8,
+                    "office_a": "CORP_C000722_O11",
+                    "office_b": "CORP_C000722_O9",
+                    "role_a": "CORP_R0000919740",
+                    "role_b": "PE_R0073_1",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 3,
+                "days": 1585,
+                "decay_factor": 0.6,
+                "end_date": "2016-02-02T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 951,
+                "spatial_days": 1268,
+                "spatial_factor": 0.8,
+                "start_date": "2011-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000722_CITY_3",
+                    "city_b": "CORP_C000722_CITY_3",
+                    "company": "Pinegrove Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.8,
+                    "office_a": "CORP_C000722_O11",
+                    "office_b": "CORP_C000722_O9",
+                    "role_a": "CORP_R0000919740",
+                    "role_b": "PE_R0073_1",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 6.061601642710472,
+            "recency_contribution": 0.111929651367775,
+            "recency_factor": 0.557384823848238,
+            "right_career_years": 16.27378507871321,
+            "right_id": "PE_P0073",
+            "right_name": "Rohan V. Vance",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.096389837609142,
+            "spatial_factor": 0.8,
+            "strength": 0.663302983360823,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.00902963524941,
+            "career_fraction": 0.244429708222812,
+            "career_mean_years": 20.643394934976044,
+            "context_multiplier": 0.835566574939084,
+            "duration_component": 0.738832878790596,
+            "duration_contribution": 0.406358083334828,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2023-03-18 (1843 days; Different, remote or unknown locations; company-only evidence); total shared years=5.045859000684462; duration=0.7388328787905957; recency=0.7933803581117743; location=0.5; career fraction=0.24442970822281165; total=0.6173440579834416",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1310,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 982.5,
+                "spatial_days": 655,
+                "spatial_factor": 0.5,
+                "start_date": "2018-03-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_6",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O18",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000919741",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 533,
+                "decay_factor": 0.9,
+                "end_date": "2023-03-18T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 479.7,
+                "spatial_days": 266.5,
+                "spatial_factor": 0.5,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_6",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O18",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000919741",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.045859000684462,
+            "recency_contribution": 0.146543873489909,
+            "recency_factor": 0.793380358111774,
+            "right_career_years": 20.621492128678987,
+            "right_id": "CORP_P000271815",
+            "right_name": "Jonah R. Kowalczyk",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.055412465909295,
+            "spatial_factor": 0.5,
+            "strength": 0.617344057983442,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0073|CORP_P000271815|CORP_P000000373",
+        "reason": "Rohan V. Vance \u2192 Jonah R. Kowalczyk: Representative employment: Pinegrove Energy (Synthetic): 2010-01-10 to 2016-02-02 (2214 days; Same synthetic city; no matching office evidence); total shared years=6.061601642710472; duration=0.80324864674285; recency=0.5573848238482385; location=0.8; career fraction=0.3285841495992876; total=0.6633029833608233; Jonah R. Kowalczyk \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2023-03-18 (1843 days; Different, remote or unknown locations; company-only evidence); total shared years=5.045859000684462; duration=0.7388328787905957; recency=0.7933803581117743; location=0.5; career fraction=0.24442970822281165; total=0.6173440579834416",
+        "strength": 0.524742449285925,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Amara Z. Marchetti",
+        "connection_id": "PE_P0051",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.0059743185369,
+            "career_fraction": 0.161449465182275,
+            "career_mean_years": 31.355236139630392,
+            "context_multiplier": 0.781693349408384,
+            "duration_component": 0.740085268186597,
+            "duration_contribution": 0.407046897502628,
+            "evidence": "Representative employment: Oakbridge Energy (Synthetic): 2011-07-25 to 2016-08-16 (1849 days; Different, remote or unknown locations; company-only evidence); total shared years=5.062286105407256; duration=0.740085268186597; recency=0.5944835045970794; location=0.5; career fraction=0.16144946518227463; total=0.5785197321365829",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 36.720054757015745,
+            "left_id": "CORP_P000003849",
+            "left_name": "Kamal T. Ambrose",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 68,
+                "decay_factor": 0.45,
+                "end_date": "2011-10-01T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 30.6,
+                "spatial_days": 34,
+                "spatial_factor": 0.5,
+                "start_date": "2011-07-25T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000392_CITY_2",
+                    "city_b": "CORP_C000392_CITY_1",
+                    "company": "Oakbridge Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000392_O8",
+                    "office_b": "CORP_C000392_O3",
+                    "role_a": "CORP_R0000015215",
+                    "role_b": "PE_R0051_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 3,
+                "days": 1781,
+                "decay_factor": 0.6,
+                "end_date": "2016-08-16T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 1068.6,
+                "spatial_days": 890.5,
+                "spatial_factor": 0.5,
+                "start_date": "2011-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000392_CITY_2",
+                    "city_b": "CORP_C000392_CITY_1",
+                    "company": "Oakbridge Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000392_O8",
+                    "office_b": "CORP_C000392_O3",
+                    "role_a": "CORP_R0000015215",
+                    "role_b": "PE_R0051_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.062286105407256,
+            "recency_contribution": 0.109992120983059,
+            "recency_factor": 0.594483504597079,
+            "right_career_years": 25.99041752224504,
+            "right_id": "PE_P0051",
+            "right_name": "Amara Z. Marchetti",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.055506395113995,
+            "spatial_factor": 0.5,
+            "strength": 0.578519732136583,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.005494934177806,
+            "career_fraction": 0.158015267175572,
+            "career_mean_years": 28.692676249144423,
+            "context_multiplier": 0.83247050973559,
+            "duration_component": 0.695494084340675,
+            "duration_contribution": 0.382521746387371,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-09-04 to 2023-03-18 (1656 days; Different, remote or unknown locations; company-only evidence); total shared years=4.5338809034907595; duration=0.6954940843406752; recency=0.7982789855072464; location=0.5; career fraction=0.1580152671755725; total=0.5789783149091694",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1123,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 842.25,
+                "spatial_days": 561.5,
+                "spatial_factor": 0.5,
+                "start_date": "2018-09-04T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "Unknown/remote",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "Unknown/remote",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000015216",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 533,
+                "decay_factor": 0.9,
+                "end_date": "2023-03-18T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 479.7,
+                "spatial_days": 266.5,
+                "spatial_factor": 0.5,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "Unknown/remote",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "Unknown/remote",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000015216",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 4.533880903490759,
+            "recency_contribution": 0.138799578018441,
+            "recency_factor": 0.798278985507246,
+            "right_career_years": 36.720054757015745,
+            "right_id": "CORP_P000003849",
+            "right_name": "Kamal T. Ambrose",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.052162056325551,
+            "spatial_factor": 0.5,
+            "strength": 0.578978314909169,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0051|CORP_P000003849|CORP_P000000373",
+        "reason": "Amara Z. Marchetti \u2192 Kamal T. Ambrose: Representative employment: Oakbridge Energy (Synthetic): 2011-07-25 to 2016-08-16 (1849 days; Different, remote or unknown locations; company-only evidence); total shared years=5.062286105407256; duration=0.740085268186597; recency=0.5944835045970794; location=0.5; career fraction=0.16144946518227463; total=0.5785197321365829; Kamal T. Ambrose \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-09-04 to 2023-03-18 (1656 days; Different, remote or unknown locations; company-only evidence); total shared years=4.5338809034907595; duration=0.6954940843406752; recency=0.7982789855072464; location=0.5; career fraction=0.1580152671755725; total=0.5789783149091694",
+        "strength": 0.491741772316095,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Emeka E. Mbeki-Shaw",
+        "connection_id": "PE_P0004",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.011348872348718,
+            "career_fraction": 0.297128212858973,
+            "career_mean_years": 18.161533196440793,
+            "context_multiplier": 0.803726273656647,
+            "duration_component": 0.763904056065184,
+            "duration_contribution": 0.420147230835851,
+            "evidence": "Representative employment: Foxbrook Materials (Synthetic): 2013-05-08 to 2018-09-30 (1971 days; Different, remote or unknown locations; company-only evidence); total shared years=5.3963039014373715; duration=0.7639040560651837; recency=0.6554794520547944; location=0.5; career fraction=0.2971282128589734; total=0.6139697604124688",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 21.16084873374401,
+            "left_id": "CORP_P000749962",
+            "left_name": "Hana F. Wakefield-Sandoval",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 1242,
+                "decay_factor": 0.6,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 745.1999999999999,
+                "spatial_days": 621,
+                "spatial_factor": 0.5,
+                "start_date": "2013-05-08T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000967_CITY_1",
+                    "city_b": "CORP_C000967_CITY_0",
+                    "company": "Foxbrook Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000967_O4",
+                    "office_b": "CORP_C000967_O0",
+                    "role_a": "CORP_R0002530265",
+                    "role_b": "PE_R0004_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 2,
+                "days": 729,
+                "decay_factor": 0.75,
+                "end_date": "2018-09-30T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 546.75,
+                "spatial_days": 364.5,
+                "spatial_factor": 0.5,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000967_CITY_1",
+                    "city_b": "CORP_C000967_CITY_0",
+                    "company": "Foxbrook Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000967_O4",
+                    "office_b": "CORP_C000967_O0",
+                    "role_a": "CORP_R0002530265",
+                    "role_b": "PE_R0004_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.396303901437372,
+            "recency_contribution": 0.12518085302301,
+            "recency_factor": 0.655479452054794,
+            "right_career_years": 15.162217659137577,
+            "right_id": "PE_P0004",
+            "right_name": "Emeka E. Mbeki-Shaw",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.057292804204889,
+            "spatial_factor": 0.5,
+            "strength": 0.613969760412469,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.007348710471379,
+            "career_fraction": 0.213392681809256,
+            "career_mean_years": 20.913073237508556,
+            "context_multiplier": 0.835431904029113,
+            "duration_component": 0.688749999210156,
+            "duration_contribution": 0.378812499565586,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-09-30 to 2023-03-18 (1630 days; Different, remote or unknown locations; company-only evidence); total shared years=4.462696783025325; duration=0.6887499992101564; recency=0.7990490797546013; location=0.5; career fraction=0.21339268180925572; total=0.5754037232401911",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1097,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 822.75,
+                "spatial_days": 548.5,
+                "spatial_factor": 0.5,
+                "start_date": "2018-09-30T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_4",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O12",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0002530266",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 533,
+                "decay_factor": 0.9,
+                "end_date": "2023-03-18T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 479.7,
+                "spatial_days": 266.5,
+                "spatial_factor": 0.5,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_4",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O12",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0002530266",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 4.462696783025325,
+            "recency_contribution": 0.137586263262464,
+            "recency_factor": 0.799049079754601,
+            "right_career_years": 21.16084873374401,
+            "right_id": "CORP_P000749962",
+            "right_name": "Hana F. Wakefield-Sandoval",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.051656249940762,
+            "spatial_factor": 0.5,
+            "strength": 0.575403723240191,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0004|CORP_P000749962|CORP_P000000373",
+        "reason": "Emeka E. Mbeki-Shaw \u2192 Hana F. Wakefield-Sandoval: Representative employment: Foxbrook Materials (Synthetic): 2013-05-08 to 2018-09-30 (1971 days; Different, remote or unknown locations; company-only evidence); total shared years=5.3963039014373715; duration=0.7639040560651837; recency=0.6554794520547944; location=0.5; career fraction=0.2971282128589734; total=0.6139697604124688; Hana F. Wakefield-Sandoval \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-09-30 to 2023-03-18 (1630 days; Different, remote or unknown locations; company-only evidence); total shared years=4.462696783025325; duration=0.6887499992101564; recency=0.7990490797546013; location=0.5; career fraction=0.21339268180925572; total=0.5754037232401911",
+        "strength": 0.489093164754162,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Miles G. Jarrell",
+        "connection_id": "PE_P0084",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.014195571417555,
+            "career_fraction": 0.359972793742561,
+            "career_mean_years": 16.101300479123886,
+            "context_multiplier": 0.785505725185475,
+            "duration_component": 0.788702461092483,
+            "duration_contribution": 0.433786353600866,
+            "evidence": "Representative employment: Goldgrove Consumer Brands (Synthetic): 2010-08-04 to 2016-05-21 (2117 days; Different, remote or unknown locations; company-only evidence); total shared years=5.796030116358659; duration=0.7887024610924827; recency=0.5700283419933869; location=0.5; career fraction=0.35997279374256086; total=0.6195302986560193",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 16.076659822039698,
+            "left_id": "CORP_P000872422",
+            "left_name": "Jasper I. Ardent",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 423,
+                "decay_factor": 0.45,
+                "end_date": "2011-10-01T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 190.35,
+                "spatial_days": 211.5,
+                "spatial_factor": 0.5,
+                "start_date": "2010-08-04T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000687_CITY_2",
+                    "city_b": "CORP_C000687_CITY_3",
+                    "company": "Goldgrove Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000687_O7",
+                    "office_b": "CORP_C000687_O9",
+                    "role_a": "CORP_R0002942704",
+                    "role_b": "PE_R0084_1",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 3,
+                "days": 1694,
+                "decay_factor": 0.6,
+                "end_date": "2016-05-21T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 1016.4,
+                "spatial_days": 847,
+                "spatial_factor": 0.5,
+                "start_date": "2011-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000687_CITY_2",
+                    "city_b": "CORP_C000687_CITY_3",
+                    "company": "Goldgrove Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000687_O7",
+                    "office_b": "CORP_C000687_O9",
+                    "role_a": "CORP_R0002942704",
+                    "role_b": "PE_R0084_1",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.796030116358659,
+            "recency_contribution": 0.112395689055663,
+            "recency_factor": 0.570028341993387,
+            "right_career_years": 16.125941136208077,
+            "right_id": "PE_P0084",
+            "right_name": "Miles G. Jarrell",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.059152684581936,
+            "spatial_factor": 0.5,
+            "strength": 0.619530298656019,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.008315638524299,
+            "career_fraction": 0.242026825633383,
+            "career_mean_years": 18.370978781656397,
+            "context_multiplier": 0.831851957045216,
+            "duration_component": 0.687166681010453,
+            "duration_contribution": 0.377941674555749,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2022-08-11 (1624 days; Different, remote or unknown locations; company-only evidence); total shared years=4.446269678302532; duration=0.6871666810104529; recency=0.7790024630541872; location=0.5; career fraction=0.24202682563338304; total=0.5716209484148108",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1310,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 982.5,
+                "spatial_days": 655,
+                "spatial_factor": 0.5,
+                "start_date": "2018-03-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "Unknown/remote",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "Unknown/remote",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0002942705",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 314,
+                "decay_factor": 0.9,
+                "end_date": "2022-08-11T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 282.6,
+                "spatial_days": 157,
+                "spatial_factor": 0.5,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "Unknown/remote",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "Unknown/remote",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0002942705",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 4.446269678302532,
+            "recency_contribution": 0.133826134258978,
+            "recency_factor": 0.779002463054187,
+            "right_career_years": 16.076659822039698,
+            "right_id": "CORP_P000872422",
+            "right_name": "Jasper I. Ardent",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.051537501075784,
+            "spatial_factor": 0.5,
+            "strength": 0.571620948414811,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0084|CORP_P000872422|CORP_P000000373",
+        "reason": "Miles G. Jarrell \u2192 Jasper I. Ardent: Representative employment: Goldgrove Consumer Brands (Synthetic): 2010-08-04 to 2016-05-21 (2117 days; Different, remote or unknown locations; company-only evidence); total shared years=5.796030116358659; duration=0.7887024610924827; recency=0.5700283419933869; location=0.5; career fraction=0.35997279374256086; total=0.6195302986560193; Jasper I. Ardent \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2022-08-11 (1624 days; Different, remote or unknown locations; company-only evidence); total shared years=4.446269678302532; duration=0.6871666810104529; recency=0.7790024630541872; location=0.5; career fraction=0.24202682563338304; total=0.5716209484148108",
+        "strength": 0.485877806152589,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Rosa W. Bellamy",
+        "connection_id": "PE_P0048",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.010950285122965,
+            "career_fraction": 0.295505259802359,
+            "career_mean_years": 17.177275838466805,
+            "context_multiplier": 0.777679793734454,
+            "duration_component": 0.741122857189637,
+            "duration_contribution": 0.4076175714543,
+            "evidence": "Representative employment: Aspenhill Consumer Brands (Synthetic): 2010-02-10 to 2015-03-10 (1854 days; Different, remote or unknown locations; company-only evidence); total shared years=5.075975359342916; duration=0.741122857189637; recency=0.5516181229773462; location=0.5; career fraction=0.2955052598023589; total=0.5763562707111265",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 18.154688569472963,
+            "left_id": "CORP_P000283932",
+            "left_name": "Miles P. Draycott-Ardent",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 598,
+                "decay_factor": 0.45,
+                "end_date": "2011-10-01T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 269.1,
+                "spatial_days": 299,
+                "spatial_factor": 0.5,
+                "start_date": "2010-02-10T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000478_CITY_1",
+                    "city_b": "CORP_C000478_CITY_2",
+                    "company": "Aspenhill Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000478_O4",
+                    "office_b": "CORP_C000478_O6",
+                    "role_a": "CORP_R0000960530",
+                    "role_b": "PE_R0048_1",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 3,
+                "days": 1256,
+                "decay_factor": 0.6,
+                "end_date": "2015-03-10T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 753.6,
+                "spatial_days": 628,
+                "spatial_factor": 0.5,
+                "start_date": "2011-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000478_CITY_1",
+                    "city_b": "CORP_C000478_CITY_2",
+                    "company": "Aspenhill Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000478_O4",
+                    "office_b": "CORP_C000478_O6",
+                    "role_a": "CORP_R0000960530",
+                    "role_b": "PE_R0048_1",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.075975359342916,
+            "recency_contribution": 0.102204199844639,
+            "recency_factor": 0.551618122977346,
+            "right_career_years": 16.199863107460644,
+            "right_id": "PE_P0048",
+            "right_name": "Rosa W. Bellamy",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.055584214289223,
+            "spatial_factor": 0.5,
+            "strength": 0.576356270711126,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.006695549251017,
+            "career_fraction": 0.207913110938712,
+            "career_mean_years": 19.40999315537303,
+            "context_multiplier": 0.88074334889836,
+            "duration_component": 0.644071864519452,
+            "duration_contribution": 0.354239525485699,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2019-02-05 to 2023-02-18 (1474 days; Same synthetic city; no matching office evidence); total shared years=4.035592060232717; duration=0.6440718645194525; recency=0.8013907734056988; location=0.8; career fraction=0.20791311093871218; total=0.5672620108880737",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 969,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 726.75,
+                "spatial_days": 775.2,
+                "spatial_factor": 0.8,
+                "start_date": "2019-02-05T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_7",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.8,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O23",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000960532",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 505,
+                "decay_factor": 0.9,
+                "end_date": "2023-02-18T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 454.5,
+                "spatial_days": 404,
+                "spatial_factor": 0.8,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_7",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.8,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O23",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000960532",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 4.035592060232717,
+            "recency_contribution": 0.129038312409024,
+            "recency_factor": 0.801390773405699,
+            "right_career_years": 18.154688569472963,
+            "right_id": "CORP_P000283932",
+            "right_name": "Miles P. Draycott-Ardent",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.077288623742334,
+            "spatial_factor": 0.8,
+            "strength": 0.567262010888074,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0048|CORP_P000283932|CORP_P000000373",
+        "reason": "Rosa W. Bellamy \u2192 Miles P. Draycott-Ardent: Representative employment: Aspenhill Consumer Brands (Synthetic): 2010-02-10 to 2015-03-10 (1854 days; Different, remote or unknown locations; company-only evidence); total shared years=5.075975359342916; duration=0.741122857189637; recency=0.5516181229773462; location=0.5; career fraction=0.2955052598023589; total=0.5763562707111265; Miles P. Draycott-Ardent \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2019-02-05 to 2023-02-18 (1474 days; Same synthetic city; no matching office evidence); total shared years=4.035592060232717; duration=0.6440718645194525; recency=0.8013907734056988; location=0.8; career fraction=0.20791311093871218; total=0.5672620108880737",
+        "strength": 0.482172709254863,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Chiara P. Chen-Morrow",
+        "connection_id": "PE_P0015",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.007839728150475,
+            "career_fraction": 0.217089501812151,
+            "career_mean_years": 22.28473648186174,
+            "context_multiplier": 0.776007276448842,
+            "duration_component": 0.722257694179908,
+            "duration_contribution": 0.39724173179895,
+            "evidence": "Representative employment: Willowstone Materials (Synthetic): 2010-06-24 to 2015-04-26 (1767 days; Different, remote or unknown locations; company-only evidence); total shared years=4.837782340862423; duration=0.7222576941799084; recency=0.5606112054329371; location=0.5; career fraction=0.21708950181215064; total=0.5604772261547711",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 24.744695414099933,
+            "left_id": "CORP_P000414617",
+            "left_name": "Vera E. Albrecht",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 464,
+                "decay_factor": 0.45,
+                "end_date": "2011-10-01T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 208.8,
+                "spatial_days": 232,
+                "spatial_factor": 0.5,
+                "start_date": "2010-06-24T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000384_CITY_3",
+                    "city_b": "CORP_C000384_CITY_1",
+                    "company": "Willowstone Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000384_O9",
+                    "office_b": "CORP_C000384_O3",
+                    "role_a": "CORP_R0001400664",
+                    "role_b": "PE_R0015_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 3,
+                "days": 1303,
+                "decay_factor": 0.6,
+                "end_date": "2015-04-26T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 781.8,
+                "spatial_days": 651.5,
+                "spatial_factor": 0.5,
+                "start_date": "2011-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000384_CITY_3",
+                    "city_b": "CORP_C000384_CITY_1",
+                    "company": "Willowstone Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000384_O9",
+                    "office_b": "CORP_C000384_O3",
+                    "role_a": "CORP_R0001400664",
+                    "role_b": "PE_R0015_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 4.837782340862423,
+            "recency_contribution": 0.101226439141853,
+            "recency_factor": 0.560611205432937,
+            "right_career_years": 19.824777549623544,
+            "right_id": "PE_P0015",
+            "right_name": "Chiara P. Chen-Morrow",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.054169327063493,
+            "spatial_factor": 0.5,
+            "strength": 0.560477226154771,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.009477784539652,
+            "career_fraction": 0.244784758229832,
+            "career_mean_years": 22.704996577686515,
+            "context_multiplier": 0.809659188650408,
+            "duration_component": 0.774377016623942,
+            "duration_contribution": 0.425907359143168,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2024-03-26 to 2026-10-01 (919 days; Different, remote or unknown locations; company-only evidence); total shared years=5.557837097878165; duration=0.7743770166239418; recency=0.689679802955665; location=0.5; career fraction=0.2447847582298324; total=0.6269814669892642",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 1111,
+                "decay_factor": 0.45,
+                "end_date": "2008-11-17T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 499.95,
+                "spatial_days": 555.5,
+                "spatial_factor": 0.5,
+                "start_date": "2005-11-02T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000065_CITY_7",
+                    "city_b": "CORP_C000065_CITY_4",
+                    "company": "Riverwater Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000065_O21",
+                    "office_b": "CORP_C000065_O12",
+                    "role_a": "CORP_R0000001639",
+                    "role_b": "CORP_R0001400663",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 189,
+                "decay_factor": 0.9,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 170.1,
+                "spatial_days": 94.5,
+                "spatial_factor": 0.5,
+                "start_date": "2024-03-26T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_4",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O13",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0001400667",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "recency_days": 730,
+                "spatial_days": 365,
+                "spatial_factor": 0.5,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_4",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O13",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0001400667",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.557837097878165,
+            "recency_contribution": 0.133518047059649,
+            "recency_factor": 0.689679802955665,
+            "right_career_years": 24.744695414099933,
+            "right_id": "CORP_P000414617",
+            "right_name": "Vera E. Albrecht",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.058078276246796,
+            "spatial_factor": 0.5,
+            "strength": 0.626981466989264,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0015|CORP_P000414617|CORP_P000000373",
+        "reason": "Chiara P. Chen-Morrow \u2192 Vera E. Albrecht: Representative employment: Willowstone Materials (Synthetic): 2010-06-24 to 2015-04-26 (1767 days; Different, remote or unknown locations; company-only evidence); total shared years=4.837782340862423; duration=0.7222576941799084; recency=0.5606112054329371; location=0.5; career fraction=0.21708950181215064; total=0.5604772261547711; Vera E. Albrecht \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2024-03-26 to 2026-10-01 (919 days; Different, remote or unknown locations; company-only evidence); total shared years=5.557837097878165; duration=0.7743770166239418; recency=0.689679802955665; location=0.5; career fraction=0.2447847582298324; total=0.6269814669892642",
+        "strength": 0.476405642231555,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Dalia B. Whitcombe",
+        "connection_id": "PE_P0053",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.014670021952373,
+            "career_fraction": 0.365332232769294,
+            "career_mean_years": 16.584531143052704,
+            "context_multiplier": 0.80443357955532,
+            "duration_component": 0.80310581090372,
+            "duration_contribution": 0.441708195997046,
+            "evidence": "Representative employment: Glenwell Energy (Synthetic): 2012-06-30 to 2018-07-22 (2213 days; Different, remote or unknown locations; company-only evidence); total shared years=6.05886379192334; duration=0.8031058109037198; recency=0.6446678716674198; location=0.5; career fraction=0.3653322327692942; total=0.646045282226957",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 15.123887748117728,
+            "left_id": "CORP_P000981445",
+            "left_name": "Amara Z. Farrow",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 1554,
+                "decay_factor": 0.6,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 932.4,
+                "spatial_days": 777,
+                "spatial_factor": 0.5,
+                "start_date": "2012-06-30T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000425_CITY_3",
+                    "city_b": "CORP_C000425_CITY_2",
+                    "company": "Glenwell Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000425_O9",
+                    "office_b": "CORP_C000425_O7",
+                    "role_a": "CORP_R0003309400",
+                    "role_b": "PE_R0053_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 2,
+                "days": 659,
+                "decay_factor": 0.75,
+                "end_date": "2018-07-22T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 494.25,
+                "spatial_days": 329.5,
+                "spatial_factor": 0.5,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000425_CITY_3",
+                    "city_b": "CORP_C000425_CITY_2",
+                    "company": "Glenwell Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000425_O9",
+                    "office_b": "CORP_C000425_O7",
+                    "role_a": "CORP_R0003309400",
+                    "role_b": "PE_R0053_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 6.05886379192334,
+            "recency_contribution": 0.12943412845976,
+            "recency_factor": 0.64466787166742,
+            "right_career_years": 18.04517453798768,
+            "right_id": "PE_P0053",
+            "right_name": "Dalia B. Whitcombe",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.060232935817779,
+            "spatial_factor": 0.5,
+            "strength": 0.646045282226957,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.005756929597358,
+            "career_fraction": 0.197827417380661,
+            "career_mean_years": 17.894592744695416,
+            "context_multiplier": 0.949005833359366,
+            "duration_component": 0.582015341814876,
+            "duration_contribution": 0.320108437998182,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Same office); total shared years=3.540041067761807; duration=0.5820153418148757; recency=0.9564578499613303; location=1.0; career fraction=0.19782741738066092; total=0.5523359544869622",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 563,
+                "decay_factor": 0.9,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 506.7,
+                "spatial_days": 563,
+                "spatial_factor": 1,
+                "start_date": "2023-03-18T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0003309401",
+                    "spatial_basis": "Same office"
+                  }
+                ]
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "recency_days": 730,
+                "spatial_days": 730,
+                "spatial_factor": 1,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0003309401",
+                    "spatial_basis": "Same office"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 3.540041067761807,
+            "recency_contribution": 0.139168285619191,
+            "recency_factor": 0.95645784996133,
+            "right_career_years": 15.123887748117728,
+            "right_id": "CORP_P000981445",
+            "right_name": "Amara Z. Farrow",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.087302301272231,
+            "spatial_factor": 1,
+            "strength": 0.552335954486962,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0053|CORP_P000981445|CORP_P000000373",
+        "reason": "Dalia B. Whitcombe \u2192 Amara Z. Farrow: Representative employment: Glenwell Energy (Synthetic): 2012-06-30 to 2018-07-22 (2213 days; Different, remote or unknown locations; company-only evidence); total shared years=6.05886379192334; duration=0.8031058109037198; recency=0.6446678716674198; location=0.5; career fraction=0.3653322327692942; total=0.646045282226957; Amara Z. Farrow \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Same office); total shared years=3.540041067761807; duration=0.5820153418148757; recency=0.9564578499613303; location=1.0; career fraction=0.19782741738066092; total=0.5523359544869622",
+        "strength": 0.469485561313918,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Anika L. Chen-Morrow",
+        "connection_id": "PE_P0089",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.006894424524863,
+            "career_fraction": 0.213166594796608,
+            "career_mean_years": 19.04722792607803,
+            "context_multiplier": 0.836610790967072,
+            "duration_component": 0.646857874841177,
+            "duration_contribution": 0.355771831162647,
+            "evidence": "Representative employment: Northmark Energy (Synthetic): 2019-02-23 to 2023-03-17 (1483 days; Different, remote or unknown locations; company-only evidence); total shared years=4.060232717316906; duration=0.6468578748411767; recency=0.8038098449089682; location=0.5; career fraction=0.21316659479660774; total=0.5411682783141565",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 17.232032854209447,
+            "left_id": "CORP_P000687595",
+            "left_name": "Malik B. Beaumont",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 951,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 713.25,
+                "spatial_days": 475.5,
+                "spatial_factor": 0.5,
+                "start_date": "2019-02-23T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000590_CITY_0",
+                    "city_b": "CORP_C000590_CITY_2",
+                    "company": "Northmark Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000590_O0",
+                    "office_b": "CORP_C000590_O8",
+                    "role_a": "CORP_R0002320002",
+                    "role_b": "PE_R0089_4",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 532,
+                "decay_factor": 0.9,
+                "end_date": "2023-03-17T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 478.8,
+                "spatial_days": 266,
+                "spatial_factor": 0.5,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000590_CITY_0",
+                    "city_b": "CORP_C000590_CITY_2",
+                    "company": "Northmark Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000590_O0",
+                    "office_b": "CORP_C000590_O8",
+                    "role_a": "CORP_R0002320002",
+                    "role_b": "PE_R0089_4",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 4.060232717316906,
+            "recency_contribution": 0.129987682013558,
+            "recency_factor": 0.803809844908968,
+            "right_career_years": 20.862422997946613,
+            "right_id": "PE_P0089",
+            "right_name": "Anika L. Chen-Morrow",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.048514340613088,
+            "spatial_factor": 0.5,
+            "strength": 0.541168278314156,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.009764099420454,
+            "career_fraction": 0.264990608293599,
+            "career_mean_years": 18.94866529774127,
+            "context_multiplier": 0.798800239247832,
+            "duration_component": 0.73693928123188,
+            "duration_contribution": 0.405316604677534,
+            "evidence": "Representative employment: Copperrock Materials (Synthetic): 2013-02-21 to 2018-03-01 (1834 days; Different, remote or unknown locations; company-only evidence); total shared years=5.021218343600274; duration=0.7369392812318797; recency=0.6422028353326062; location=0.5; career fraction=0.2649906082935992; total=0.5886672741591505",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 1318,
+                "decay_factor": 0.6,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 790.8,
+                "spatial_days": 659,
+                "spatial_factor": 0.5,
+                "start_date": "2013-02-21T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000824_CITY_1",
+                    "city_b": "CORP_C000824_CITY_2",
+                    "company": "Copperrock Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000824_O4",
+                    "office_b": "CORP_C000824_O7",
+                    "role_a": "CORP_R0000001641",
+                    "role_b": "CORP_R0002320001",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 2,
+                "days": 516,
+                "decay_factor": 0.75,
+                "end_date": "2018-03-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 387,
+                "spatial_days": 258,
+                "spatial_factor": 0.5,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000824_CITY_1",
+                    "city_b": "CORP_C000824_CITY_2",
+                    "company": "Copperrock Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000824_O4",
+                    "office_b": "CORP_C000824_O7",
+                    "role_a": "CORP_R0000001641",
+                    "role_b": "CORP_R0002320001",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.021218343600274,
+            "recency_contribution": 0.118316123968772,
+            "recency_factor": 0.642202835332606,
+            "right_career_years": 17.232032854209447,
+            "right_id": "CORP_P000687595",
+            "right_name": "Malik B. Beaumont",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.055270446092391,
+            "spatial_factor": 0.5,
+            "strength": 0.58866727415915,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0089|CORP_P000687595|CORP_P000000373",
+        "reason": "Anika L. Chen-Morrow \u2192 Malik B. Beaumont: Representative employment: Northmark Energy (Synthetic): 2019-02-23 to 2023-03-17 (1483 days; Different, remote or unknown locations; company-only evidence); total shared years=4.060232717316906; duration=0.6468578748411767; recency=0.8038098449089682; location=0.5; career fraction=0.21316659479660774; total=0.5411682783141565; Malik B. Beaumont \u2192 Soren T. Bellamy: Representative employment: Copperrock Materials (Synthetic): 2013-02-21 to 2018-03-01 (1834 days; Different, remote or unknown locations; company-only evidence); total shared years=5.021218343600274; duration=0.7369392812318797; recency=0.6422028353326062; location=0.5; career fraction=0.2649906082935992; total=0.5886672741591505",
+        "strength": 0.459993036567033,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Darius D. Holbrook",
+        "connection_id": "PE_P0003",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.012225170476913,
+            "career_fraction": 0.305768962145551,
+            "career_mean_years": 19.600273785078713,
+            "context_multiplier": 0.79289237684186,
+            "duration_component": 0.79963449469366,
+            "duration_contribution": 0.439798972081513,
+            "evidence": "Representative employment: Elmpoint Materials (Synthetic): 2011-06-18 to 2017-06-15 (2189 days; Different, remote or unknown locations; company-only evidence); total shared years=5.993155373032169; duration=0.7996344946936595; recency=0.610415714938328; location=0.5; career fraction=0.30576896214555105; total=0.6340240951023951",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 18.091718001368925,
+            "left_id": "CORP_P000771172",
+            "left_name": "Lena B. Lindqvist",
+            "periods": [
+              {
+                "bucket": 4,
+                "days": 105,
+                "decay_factor": 0.45,
+                "end_date": "2011-10-01T00:00:00.000",
+                "recency_band": "15+ years",
+                "recency_days": 47.25,
+                "spatial_days": 52.5,
+                "spatial_factor": 0.5,
+                "start_date": "2011-06-18T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000483_CITY_8",
+                    "city_b": "CORP_C000483_CITY_9",
+                    "company": "Elmpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000483_O25",
+                    "office_b": "CORP_C000483_O29",
+                    "role_a": "CORP_R0002601577",
+                    "role_b": "PE_R0003_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 3,
+                "days": 1827,
+                "decay_factor": 0.6,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 1096.2,
+                "spatial_days": 913.5,
+                "spatial_factor": 0.5,
+                "start_date": "2011-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000483_CITY_8",
+                    "city_b": "CORP_C000483_CITY_9",
+                    "company": "Elmpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000483_O25",
+                    "office_b": "CORP_C000483_O29",
+                    "role_a": "CORP_R0002601577",
+                    "role_b": "PE_R0003_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 2,
+                "days": 257,
+                "decay_factor": 0.75,
+                "end_date": "2017-06-15T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 192.75,
+                "spatial_days": 128.5,
+                "spatial_factor": 0.5,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000483_CITY_8",
+                    "city_b": "CORP_C000483_CITY_9",
+                    "company": "Elmpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000483_O25",
+                    "office_b": "CORP_C000483_O29",
+                    "role_a": "CORP_R0002601577",
+                    "role_b": "PE_R0003_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.993155373032169,
+            "recency_contribution": 0.122027365441945,
+            "recency_factor": 0.610415714938328,
+            "right_career_years": 21.1088295687885,
+            "right_id": "PE_P0003",
+            "right_name": "Darius D. Holbrook",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.059972587102024,
+            "spatial_factor": 0.5,
+            "strength": 0.634024095102395,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.006737589791534,
+            "career_fraction": 0.208816049731563,
+            "career_mean_years": 19.378507871321013,
+            "context_multiplier": 0.832176255801869,
+            "duration_component": 0.645313403849491,
+            "duration_contribution": 0.35492237211722,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-09-13 to 2022-09-30 (1478 days; Different, remote or unknown locations; company-only evidence); total shared years=4.046543463381246; duration=0.6453134038494911; recency=0.7869418132611636; location=0.5; career fraction=0.20881604973156262; total=0.5370144922342289",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1114,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 835.5,
+                "spatial_days": 557,
+                "spatial_factor": 0.5,
+                "start_date": "2018-09-13T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_4",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O14",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0002601578",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 364,
+                "decay_factor": 0.9,
+                "end_date": "2022-09-30T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 327.6,
+                "spatial_days": 182,
+                "spatial_factor": 0.5,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_4",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O14",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0002601578",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 4.046543463381246,
+            "recency_contribution": 0.126956025036763,
+            "recency_factor": 0.786941813261164,
+            "right_career_years": 18.091718001368925,
+            "right_id": "CORP_P000771172",
+            "right_name": "Lena B. Lindqvist",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.048398505288712,
+            "spatial_factor": 0.5,
+            "strength": 0.537014492234229,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0003|CORP_P000771172|CORP_P000000373",
+        "reason": "Darius D. Holbrook \u2192 Lena B. Lindqvist: Representative employment: Elmpoint Materials (Synthetic): 2011-06-18 to 2017-06-15 (2189 days; Different, remote or unknown locations; company-only evidence); total shared years=5.993155373032169; duration=0.7996344946936595; recency=0.610415714938328; location=0.5; career fraction=0.30576896214555105; total=0.6340240951023951; Lena B. Lindqvist \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-09-13 to 2022-09-30 (1478 days; Different, remote or unknown locations; company-only evidence); total shared years=4.046543463381246; duration=0.6453134038494911; recency=0.7869418132611636; location=0.5; career fraction=0.20881604973156262; total=0.5370144922342289",
+        "strength": 0.456462318399095,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "scoring_version": "corporate-affinity-v3",
+    "search_limit_hops": 2,
+    "seconds": 61.7,
+    "sources_searched": 100,
+    "status": "OK",
+    "strength_is_probability": false,
+    "synthetic_data": true,
+    "total_connections": 99,
+    "total_connections_definition": "Number of starting people with a qualifying selected witness; NOT a count of all routes",
+    "transaction_ids": [
+      "01c86049-040d-3184-0005-5ee314789fda",
+      "01c8604a-040d-3184-0005-5ee31478b25a",
+      "01c8604a-040d-3184-0005-5ee31478b2ae"
+    ]
+  }
+}

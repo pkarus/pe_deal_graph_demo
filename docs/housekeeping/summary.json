@@ -1,0 +1,21 @@
+{
+  "before": {
+    "files": 105721,
+    "bytes": 15738028263
+  },
+  "after": {
+    "files": 71236,
+    "bytes": 3195461168
+  },
+  "project_excluding_installed_environments_and_repositories": {
+    "files": 486,
+    "bytes": 303010883
+  },
+  "snowflake_removed_schemas": 15,
+  "snowflake_removed_tables_views": 498,
+  "snowflake_removed_active_bytes": 3096407919,
+  "snowflake_remaining_tables_views": 383,
+  "local_tests": "33 passed; 1 fixture-dependent test initially failed, small sparse/base 10K fixtures regenerated, failed test rerun passed",
+  "demo_maker": "CLI help verified",
+  "unique_backup_versions_preserved": 16
+}

@@ -1,0 +1,1020 @@
+{
+  "request_id": "4d7a00c0-5027-4e1c-8d17-2d3321cfd79f",
+  "status": "PASS",
+  "returned_paths_verified": 5,
+  "total_connections": 97,
+  "unfiltered_oracle_connections": 97,
+  "oracle_query_id": "01c861cc-040d-3905-0005-5ee314883f8a",
+  "transactions": [
+    {
+      "id": "01c861c8-040d-3905-0005-5ee314880f0a",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 1203,
+      "created_on": "2026-11-13 02:48:20.001000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c861c8-040d-3905-0005-5ee314880ece",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 400,
+      "created_on": "2026-11-13 02:48:15.900000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c861c7-040d-3905-0005-5ee314880a0e",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 48398,
+      "created_on": "2026-11-13 02:47:18.219000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\nraw_strength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, raw_strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), raw_strength.alias(\"raw_strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "8eb97d143fdb3b046650a5a190c0c72d89dc31ddeac3999a37c8094f89571e8a",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "all_routes_enumerated": false,
+    "as_of": "2026-10-01",
+    "direct_connections": 0,
+    "direct_connections_definition": "Starting people in this result with a direct modeled edge, even if a stronger two-hop witness was selected",
+    "displayed": 5,
+    "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+    "friendship_policy": "Deferred; preserved facts do not affect scores or create edges",
+    "network_context": {
+      "affects_strength": false,
+      "available": true,
+      "metadata": {
+        "as_of": "2026-10-01",
+        "betweenness_is_global": false,
+        "betweenness_method": "Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology",
+        "betweenness_pivots": 2100,
+        "community_count": 1210,
+        "community_method": "Native RAI weighted Louvain, seed 42, max_levels 5",
+        "computed_at": "2026-11-13T05:06:28.684458+00:00",
+        "edge_count": 951,
+        "independent_validation": {
+          "all_node_betweenness_verified": 2100,
+          "betweenness_absolute_tolerance": 0.0005,
+          "degree_and_weighted_degree_verified": true,
+          "max_betweenness_absolute_error": 0,
+          "native_raw_pair_count_factor": 1,
+          "note": "Louvain partitions can vary; verify coverage and weighted modularity, not identical labels",
+          "status": "PASS",
+          "weighted_modularity": 0.9941383137888926
+        },
+        "isolated_people": 761,
+        "min_raw_strength": 0.02666666666666667,
+        "min_strength": 0.4041031009353247,
+        "node_count": 2100,
+        "nontrivial_community_count": 449,
+        "run_id": "c49cca81-9892-4c6a-ad70-e56df52f34e4",
+        "scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+        "seconds": 40.77,
+        "transactions": [
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c86072-040d-2d7a-0005-5ee31479eea2",
+            "STATE": "COMPLETED"
+          },
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c86072-040d-3184-0005-5ee31479f92a",
+            "STATE": "COMPLETED"
+          }
+        ],
+        "version": "corporate-affinity-v5",
+        "weight_scale": "Native analytics use unchanged raw weights; displayed edge strengths use fourth-root normalization"
+      },
+      "missing_people_mean": "Outside the defined cohort, not zero centrality",
+      "people": [
+        {
+          "betweenness": 0,
+          "community_id": "577",
+          "degree": 0,
+          "person_id": "CORP_P000633338",
+          "weighted_degree": 0
+        },
+        {
+          "betweenness": 0,
+          "community_id": "967",
+          "degree": 0,
+          "person_id": "PE_P0016",
+          "weighted_degree": 0
+        },
+        {
+          "betweenness": 0,
+          "community_id": "260",
+          "degree": 1,
+          "person_id": "PE_P0062",
+          "weighted_degree": 0.027341783015475
+        },
+        {
+          "betweenness": 24,
+          "community_id": "6",
+          "degree": 2,
+          "person_id": "PE_P0078",
+          "weighted_degree": 0.060815951317147
+        },
+        {
+          "betweenness": 0,
+          "community_id": "1199",
+          "degree": 0,
+          "person_id": "PE_P0079",
+          "weighted_degree": 0
+        },
+        {
+          "betweenness": 0,
+          "community_id": "656",
+          "degree": 0,
+          "person_id": "PE_P0099",
+          "weighted_degree": 0
+        }
+      ]
+    },
+    "normalization": "fourth-root-v1",
+    "pyrel_sha256": "8eb97d143fdb3b046650a5a190c0c72d89dc31ddeac3999a37c8094f89571e8a",
+    "ranking": "Strongest product across paths up to two hops, then fewest hops; one deterministic witness per source",
+    "raw_scoring_version": "corporate-affinity-v4",
+    "request_id": "4d7a00c0-5027-4e1c-8d17-2d3321cfd79f",
+    "route_formula": "One hop = normalized edge strength; two hops = product of normalized leg strengths = fourth root of raw route product",
+    "rows": [
+      {
+        "connection": "Eamon Q. Galloway",
+        "connection_id": "PE_P0016",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.019004753939607,
+            "career_mean_years": 15.54962354551677,
+            "duration_component": 0.000873301609588,
+            "effective_years": 0.295516769336071,
+            "employment_contribution": 0.009939027774598,
+            "evidence": "Representative employment: Willowmont Retail Group (Synthetic): 2013-09-12 to 2017-08-03 (1421 days; Different, remote or unknown locations; company-only evidence); total shared years=3.890485968514716; effective shared years=0.2955167693360712; Deferred; not used in scoring; employment contribution=0.009939027774597823, friendship contribution=0.0, raw strength=0.009939027774597823; normalized strength=0.3157446321781878",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 13.051334702258726,
+            "left_id": "CORP_P000902382",
+            "left_name": "Fiona A. Vance",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 1115,
+                "decay_factor": 0.25,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 0.25,
+                "start_date": "2013-09-12T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000303_CITY_0",
+                    "city_b": "CORP_C000303_CITY_1",
+                    "company": "Willowmont Retail Group (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000303_O2",
+                    "office_b": "CORP_C000303_O5",
+                    "role_a": "CORP_R0003043820",
+                    "role_b": "PE_R0016_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 69.6875
+              },
+              {
+                "bucket": 2,
+                "days": 306,
+                "decay_factor": 0.5,
+                "end_date": "2017-08-03T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000303_CITY_0",
+                    "city_b": "CORP_C000303_CITY_1",
+                    "company": "Willowmont Retail Group (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000303_O2",
+                    "office_b": "CORP_C000303_O5",
+                    "role_a": "CORP_R0003043820",
+                    "role_b": "PE_R0016_2",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 38.25
+              }
+            ],
+            "raw_strength": 0.009939027774598,
+            "raw_years": 3.890485968514716,
+            "right_career_years": 18.04791238877481,
+            "right_id": "PE_P0016",
+            "right_name": "Eamon Q. Galloway",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.315744632178188,
+            "synthetic": true,
+            "time_score": 0.009939027774598
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.241897184822521,
+            "career_mean_years": 22.368240930869266,
+            "duration_component": 0.292769136682188,
+            "effective_years": 5.410814510609172,
+            "employment_contribution": 0.267333160752355,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2019-09-23 to 2026-10-01 (2565 days; Same office); total shared years=7.02258726899384; effective shared years=5.410814510609172; Deferred; not used in scoring; employment contribution=0.2673331607523546, friendship contribution=0.0, raw strength=0.2673331607523546; normalized strength=0.7190568175701257",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 31.685147159479808,
+            "left_id": "CORP_P000633338",
+            "left_name": "Malik G. Varga",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 739,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 1,
+                "start_date": "2019-09-23T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0002137397",
+                    "role_b": "CORP_R0003043821",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 369.5
+              },
+              {
+                "bucket": 1,
+                "days": 1096,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 1,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0002137397",
+                    "role_b": "CORP_R0003043821",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 876.8000000000001
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 1,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0002137397",
+                    "role_b": "CORP_R0003043821",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 730
+              }
+            ],
+            "raw_strength": 0.267333160752355,
+            "raw_years": 7.02258726899384,
+            "right_career_years": 13.051334702258726,
+            "right_id": "CORP_P000902382",
+            "right_name": "Fiona A. Vance",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.719056817570126,
+            "synthetic": true,
+            "time_score": 0.267333160752355
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0016|CORP_P000902382|CORP_P000633338",
+        "raw_strength": 0.002657031709789,
+        "reason": "Eamon Q. Galloway \u2192 Fiona A. Vance: Representative employment: Willowmont Retail Group (Synthetic): 2013-09-12 to 2017-08-03 (1421 days; Different, remote or unknown locations; company-only evidence); total shared years=3.890485968514716; effective shared years=0.2955167693360712; Deferred; not used in scoring; employment contribution=0.009939027774597823, friendship contribution=0.0, raw strength=0.009939027774597823; normalized strength=0.3157446321781878; Fiona A. Vance \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2019-09-23 to 2026-10-01 (2565 days; Same office); total shared years=7.02258726899384; effective shared years=5.410814510609172; Deferred; not used in scoring; employment contribution=0.2673331607523546, friendship contribution=0.0, raw strength=0.2673331607523546; normalized strength=0.7190568175701257",
+        "strength": 0.227038330378898,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Teodor V. Rasmussen",
+        "connection_id": "PE_P0099",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.063530187435245,
+            "career_mean_years": 14.533880903490761,
+            "duration_component": 0.008525570842358,
+            "effective_years": 0.923340177960301,
+            "employment_contribution": 0.036027879138801,
+            "evidence": "Representative employment: Copperdale Materials (Synthetic): 2016-05-31 to 2018-06-06 (736 days; Same office); total shared years=2.0150581793292264; effective shared years=0.9233401779603012; Deferred; not used in scoring; employment contribution=0.03602787913880148, friendship contribution=0.0, raw strength=0.03602787913880148; normalized strength=0.43567202500659075",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 10.146475017111568,
+            "left_id": "CORP_P000091690",
+            "left_name": "Damon J. Carrow",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 123,
+                "decay_factor": 0.25,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 1,
+                "start_date": "2016-05-31T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000428_CITY_6",
+                    "city_b": "CORP_C000428_CITY_6",
+                    "company": "Copperdale Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000428_O18",
+                    "office_b": "CORP_C000428_O18",
+                    "role_a": "CORP_R0000311989",
+                    "role_b": "PE_R0099_3",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 30.75
+              },
+              {
+                "bucket": 2,
+                "days": 613,
+                "decay_factor": 0.5,
+                "end_date": "2018-06-06T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 1,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000428_CITY_6",
+                    "city_b": "CORP_C000428_CITY_6",
+                    "company": "Copperdale Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000428_O18",
+                    "office_b": "CORP_C000428_O18",
+                    "role_a": "CORP_R0000311989",
+                    "role_b": "PE_R0099_3",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 306.5
+              }
+            ],
+            "raw_strength": 0.036027879138801,
+            "raw_years": 2.015058179329226,
+            "right_career_years": 18.921286789869953,
+            "right_id": "PE_P0099",
+            "right_name": "Teodor V. Rasmussen",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.435672025006591,
+            "synthetic": true,
+            "time_score": 0.036027879138801
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.070793245631259,
+            "career_mean_years": 20.915811088295687,
+            "duration_component": 0.021924670171903,
+            "effective_years": 1.480698151950719,
+            "employment_contribution": 0.046358957901581,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2018-09-14 to 2026-10-01 (2939 days; Different, remote or unknown locations; company-only evidence); total shared years=8.046543463381246; effective shared years=1.4806981519507187; Deferred; not used in scoring; employment contribution=0.046358957901580664, friendship contribution=0.0, raw strength=0.046358957901580664; normalized strength=0.46401649176537985",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 10.146475017111568,
+            "left_id": "CORP_P000091690",
+            "left_name": "Damon J. Carrow",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1113,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2018-09-14T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0000311990",
+                    "role_b": "CORP_R0002137397",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 139.125
+              },
+              {
+                "bucket": 1,
+                "days": 1096,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.25,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0000311990",
+                    "role_b": "CORP_R0002137397",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 219.20000000000002
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 0.25,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0000311990",
+                    "role_b": "CORP_R0002137397",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 182.5
+              }
+            ],
+            "raw_strength": 0.046358957901581,
+            "raw_years": 8.046543463381246,
+            "right_career_years": 31.685147159479808,
+            "right_id": "CORP_P000633338",
+            "right_name": "Malik G. Varga",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.46401649176538,
+            "synthetic": true,
+            "time_score": 0.046358957901581
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0099|CORP_P000091690|CORP_P000633338",
+        "raw_strength": 0.001670214932279,
+        "reason": "Teodor V. Rasmussen \u2192 Damon J. Carrow: Representative employment: Copperdale Materials (Synthetic): 2016-05-31 to 2018-06-06 (736 days; Same office); total shared years=2.0150581793292264; effective shared years=0.9233401779603012; Deferred; not used in scoring; employment contribution=0.03602787913880148, friendship contribution=0.0, raw strength=0.03602787913880148; normalized strength=0.43567202500659075; Damon J. Carrow \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2018-09-14 to 2026-10-01 (2939 days; Different, remote or unknown locations; company-only evidence); total shared years=8.046543463381246; effective shared years=1.4806981519507187; Deferred; not used in scoring; employment contribution=0.046358957901580664, friendship contribution=0.0, raw strength=0.046358957901580664; normalized strength=0.46401649176537985",
+        "strength": 0.202159004603877,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Edith B. Sandoval",
+        "connection_id": "PE_P0079",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.0361799150171,
+            "career_mean_years": 13.208761122518823,
+            "duration_component": 0.002283806249739,
+            "effective_years": 0.477891854893908,
+            "employment_contribution": 0.01923186063342,
+            "evidence": "Representative employment: Everwind Health Group (Synthetic): 2018-09-25 to 2022-04-03 (1286 days; Different, remote or unknown locations; company-only evidence); total shared years=3.5208761122518824; effective shared years=0.4778918548939083; Deferred; not used in scoring; employment contribution=0.01923186063341981, friendship contribution=0.0, raw strength=0.01923186063341981; normalized strength=0.3723962729522081",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 7.567419575633128,
+            "left_id": "CORP_P000634368",
+            "left_name": "Thea Y. Northcott",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1102,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2018-09-25T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000355_CITY_4",
+                    "city_b": "CORP_C000355_CITY_3",
+                    "company": "Everwind Health Group (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000355_O12",
+                    "office_b": "CORP_C000355_O10",
+                    "role_a": "CORP_R0002140853",
+                    "role_b": "PE_R0079_4",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 137.75
+              },
+              {
+                "bucket": 1,
+                "days": 184,
+                "decay_factor": 0.8,
+                "end_date": "2022-04-03T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.25,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000355_CITY_4",
+                    "city_b": "CORP_C000355_CITY_3",
+                    "company": "Everwind Health Group (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000355_O12",
+                    "office_b": "CORP_C000355_O10",
+                    "role_a": "CORP_R0002140853",
+                    "role_b": "PE_R0079_4",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 36.800000000000004
+              }
+            ],
+            "raw_strength": 0.01923186063342,
+            "raw_years": 3.520876112251882,
+            "right_career_years": 18.850102669404517,
+            "right_id": "PE_P0079",
+            "right_name": "Edith B. Sandoval",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.372396272952208,
+            "synthetic": true,
+            "time_score": 0.01923186063342
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.110115086838251,
+            "career_mean_years": 19.626283367556468,
+            "duration_component": 0.04670568878732,
+            "effective_years": 2.161149897330596,
+            "employment_contribution": 0.078410387812786,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2022-09-30 to 2026-10-01 (1462 days; Same synthetic city; no matching office evidence); total shared years=4.002737850787132; effective shared years=2.1611498973305956; Deferred; not used in scoring; employment contribution=0.07841038781278556, friendship contribution=0.0, raw strength=0.07841038781278556; normalized strength=0.5291677891286304",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 31.685147159479808,
+            "left_id": "CORP_P000633338",
+            "left_name": "Malik G. Varga",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 732,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.6,
+                "start_date": "2022-09-30T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O19",
+                    "role_a": "CORP_R0002137397",
+                    "role_b": "CORP_R0002140854",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ],
+                "weighted_days": 351.36
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 0.6,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O19",
+                    "role_a": "CORP_R0002137397",
+                    "role_b": "CORP_R0002140854",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ],
+                "weighted_days": 438
+              }
+            ],
+            "raw_strength": 0.078410387812786,
+            "raw_years": 4.002737850787132,
+            "right_career_years": 7.567419575633128,
+            "right_id": "CORP_P000634368",
+            "right_name": "Thea Y. Northcott",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.52916778912863,
+            "synthetic": true,
+            "time_score": 0.078410387812786
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0079|CORP_P000634368|CORP_P000633338",
+        "raw_strength": 0.001507977650628,
+        "reason": "Edith B. Sandoval \u2192 Thea Y. Northcott: Representative employment: Everwind Health Group (Synthetic): 2018-09-25 to 2022-04-03 (1286 days; Different, remote or unknown locations; company-only evidence); total shared years=3.5208761122518824; effective shared years=0.4778918548939083; Deferred; not used in scoring; employment contribution=0.01923186063341981, friendship contribution=0.0, raw strength=0.01923186063341981; normalized strength=0.3723962729522081; Thea Y. Northcott \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2022-09-30 to 2026-10-01 (1462 days; Same synthetic city; no matching office evidence); total shared years=4.002737850787132; effective shared years=2.1611498973305956; Deferred; not used in scoring; employment contribution=0.07841038781278556, friendship contribution=0.0, raw strength=0.07841038781278556; normalized strength=0.5291677891286304",
+        "strength": 0.197060112437862,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Colin A. Mbeki-Shaw",
+        "connection_id": "PE_P0078",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.148059084194978,
+            "career_mean_years": 9.267624914442163,
+            "duration_component": 0.018828122461199,
+            "effective_years": 1.372156057494867,
+            "employment_contribution": 0.083443603328088,
+            "evidence": "Representative employment: Summitdale Consumer Brands (Synthetic): 2021-03-02 to 2024-03-30 (1124 days; Same synthetic city; no matching office evidence); total shared years=3.077344284736482; effective shared years=1.3721560574948666; Deferred; not used in scoring; employment contribution=0.0834436033280882, friendship contribution=0.0, raw strength=0.0834436033280882; normalized strength=0.5374626170140379",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 5.582477754962355,
+            "left_id": "CORP_P000731341",
+            "left_name": "Rohan Y. Ambrose",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 213,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.6,
+                "start_date": "2021-03-02T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000907_CITY_4",
+                    "city_b": "CORP_C000907_CITY_4",
+                    "company": "Summitdale Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000907_O14",
+                    "office_b": "CORP_C000907_O13",
+                    "role_a": "CORP_R0002467031",
+                    "role_b": "PE_R0078_3",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ],
+                "weighted_days": 63.9
+              },
+              {
+                "bucket": 1,
+                "days": 911,
+                "decay_factor": 0.8,
+                "end_date": "2024-03-30T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.6,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000907_CITY_4",
+                    "city_b": "CORP_C000907_CITY_4",
+                    "company": "Summitdale Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000907_O14",
+                    "office_b": "CORP_C000907_O13",
+                    "role_a": "CORP_R0002467031",
+                    "role_b": "PE_R0078_3",
+                    "spatial_basis": "Same synthetic city; no matching office evidence"
+                  }
+                ],
+                "weighted_days": 437.28000000000003
+              }
+            ],
+            "raw_strength": 0.083443603328088,
+            "raw_years": 3.077344284736482,
+            "right_career_years": 12.952772073921972,
+            "right_id": "PE_P0078",
+            "right_name": "Colin A. Mbeki-Shaw",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.537462617014038,
+            "synthetic": true,
+            "time_score": 0.083443603328088
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.032250955039671,
+            "career_mean_years": 18.633812457221083,
+            "duration_component": 0.003611508155694,
+            "effective_years": 0.600958247775496,
+            "employment_contribution": 0.017931231597682,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2024-03-30 to 2026-10-01 (915 days; Different, remote or unknown locations; company-only evidence); total shared years=2.5051334702258727; effective shared years=0.6009582477754962; Deferred; not used in scoring; employment contribution=0.017931231597682413, friendship contribution=0.0, raw strength=0.017931231597682413; normalized strength=0.3659338037072647",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 31.685147159479808,
+            "left_id": "CORP_P000633338",
+            "left_name": "Malik G. Varga",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 185,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.25,
+                "start_date": "2024-03-30T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_3",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O11",
+                    "role_a": "CORP_R0002137397",
+                    "role_b": "CORP_R0002467032",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 37
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 0.25,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_3",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O11",
+                    "role_a": "CORP_R0002137397",
+                    "role_b": "CORP_R0002467032",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 182.5
+              }
+            ],
+            "raw_strength": 0.017931231597682,
+            "raw_years": 2.505133470225873,
+            "right_career_years": 5.582477754962355,
+            "right_id": "CORP_P000731341",
+            "right_name": "Rohan Y. Ambrose",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.365933803707265,
+            "synthetic": true,
+            "time_score": 0.017931231597682
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0078|CORP_P000731341|CORP_P000633338",
+        "raw_strength": 0.001496246576621,
+        "reason": "Colin A. Mbeki-Shaw \u2192 Rohan Y. Ambrose: Representative employment: Summitdale Consumer Brands (Synthetic): 2021-03-02 to 2024-03-30 (1124 days; Same synthetic city; no matching office evidence); total shared years=3.077344284736482; effective shared years=1.3721560574948666; Deferred; not used in scoring; employment contribution=0.0834436033280882, friendship contribution=0.0, raw strength=0.0834436033280882; normalized strength=0.5374626170140379; Rohan Y. Ambrose \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2024-03-30 to 2026-10-01 (915 days; Different, remote or unknown locations; company-only evidence); total shared years=2.5051334702258727; effective shared years=0.6009582477754962; Deferred; not used in scoring; employment contribution=0.017931231597682413, friendship contribution=0.0, raw strength=0.017931231597682413; normalized strength=0.3659338037072647",
+        "strength": 0.196675739794408,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Vikram K. Castellan",
+        "connection_id": "PE_P0062",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.009890317700454,
+            "career_mean_years": 18.09719370294319,
+            "duration_component": 0.000320363444539,
+            "effective_years": 0.178986995208761,
+            "employment_contribution": 0.005105340572496,
+            "evidence": "Representative employment: Crestpoint Industries (Synthetic): 2013-07-22 to 2016-06-02 (1046 days; Different, remote or unknown locations; company-only evidence); total shared years=2.863791923340178; effective shared years=0.17898699520876113; Deferred; not used in scoring; employment contribution=0.005105340572496234, friendship contribution=0.0, raw strength=0.005105340572496234; normalized strength=0.2673044443855144",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 23.279945242984258,
+            "left_id": "CORP_P000301417",
+            "left_name": "Carmen U. Galloway",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 1046,
+                "decay_factor": 0.25,
+                "end_date": "2016-06-02T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 0.25,
+                "start_date": "2013-07-22T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000686_CITY_1",
+                    "city_b": "CORP_C000686_CITY_0",
+                    "company": "Crestpoint Industries (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000686_O5",
+                    "office_b": "CORP_C000686_O0",
+                    "role_a": "CORP_R0001019352",
+                    "role_b": "PE_R0062_1",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 65.375
+              }
+            ],
+            "raw_strength": 0.005105340572496,
+            "raw_years": 2.863791923340178,
+            "right_career_years": 12.914442162902121,
+            "right_id": "PE_P0062",
+            "right_name": "Vikram K. Castellan",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.267304444385514,
+            "synthetic": true,
+            "time_score": 0.005105340572496
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.215511057979677,
+            "career_mean_years": 27.482546201232033,
+            "duration_component": 0.350794722750444,
+            "effective_years": 5.922792607802875,
+            "employment_contribution": 0.28315289036506,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2018-09-14 to 2026-10-01 (2939 days; Same office); total shared years=8.046543463381246; effective shared years=5.922792607802875; Deferred; not used in scoring; employment contribution=0.28315289036506053, friendship contribution=0.0, raw strength=0.28315289036506053; normalized strength=0.7294663280595226",
+            "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "Not used",
+            "friendship_status": "Deferred; not used in scoring",
+            "left_career_years": 23.279945242984258,
+            "left_id": "CORP_P000301417",
+            "left_name": "Carmen U. Galloway",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1113,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 1,
+                "start_date": "2018-09-14T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0001019353",
+                    "role_b": "CORP_R0002137397",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 556.5
+              },
+              {
+                "bucket": 1,
+                "days": 1096,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 1,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0001019353",
+                    "role_b": "CORP_R0002137397",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 876.8000000000001
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 1,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_6",
+                    "city_b": "CORP_C000373_CITY_6",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O18",
+                    "office_b": "CORP_C000373_O18",
+                    "role_a": "CORP_R0001019353",
+                    "role_b": "CORP_R0002137397",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 730
+              }
+            ],
+            "raw_strength": 0.28315289036506,
+            "raw_years": 8.046543463381246,
+            "right_career_years": 31.685147159479808,
+            "right_id": "CORP_P000633338",
+            "right_name": "Malik G. Varga",
+            "scoring_version": "corporate-affinity-v5",
+            "strength": 0.729466328059523,
+            "synthetic": true,
+            "time_score": 0.28315289036506
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0062|CORP_P000301417|CORP_P000633338",
+        "raw_strength": 0.0014455919394,
+        "reason": "Vikram K. Castellan \u2192 Carmen U. Galloway: Representative employment: Crestpoint Industries (Synthetic): 2013-07-22 to 2016-06-02 (1046 days; Different, remote or unknown locations; company-only evidence); total shared years=2.863791923340178; effective shared years=0.17898699520876113; Deferred; not used in scoring; employment contribution=0.005105340572496234, friendship contribution=0.0, raw strength=0.005105340572496234; normalized strength=0.2673044443855144; Carmen U. Galloway \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2018-09-14 to 2026-10-01 (2939 days; Same office); total shared years=8.046543463381246; effective shared years=5.922792607802875; Deferred; not used in scoring; employment contribution=0.28315289036506053, friendship contribution=0.0, raw strength=0.28315289036506053; normalized strength=0.7294663280595226",
+        "strength": 0.194989591519892,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "scoring_version": "corporate-affinity-v5",
+    "search_limit_hops": 2,
+    "seconds": 90.03,
+    "sources_searched": 100,
+    "status": "OK",
+    "strength_is_probability": false,
+    "strength_scale": "Normalized 0\u20131: fourth root of unchanged raw score. Fixed scale, not a probability or percentile.",
+    "synthetic_data": true,
+    "total_connections": 97,
+    "total_connections_definition": "Number of starting people with a qualifying selected witness; NOT a count of all routes",
+    "transaction_ids": [
+      "01c861c7-040d-3905-0005-5ee314880a0e",
+      "01c861c8-040d-3905-0005-5ee314880ece",
+      "01c861c8-040d-3905-0005-5ee314880f0a"
+    ]
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "request_id": "d8f45e3f-16a6-40db-aae7-4f6aa1a7df54",
+  "status": "PASS",
+  "returned_paths_verified": 1,
+  "total_connections": 1,
+  "unfiltered_oracle_connections": 1,
+  "oracle_query_id": "01c86023-040d-3184-0005-5ee314774b66",
+  "transactions": [
+    {
+      "id": "01c8601c-040d-3184-0005-5ee3147703f6",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 2423,
+      "created_on": "2026-11-12 19:40:48.298000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c8601c-040d-3184-0005-5ee3147703d2",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 522,
+      "created_on": "2026-11-12 19:40:44.987000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c8601a-040d-3184-0005-5ee31476cd42",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 102140,
+      "created_on": "2026-11-12 19:38:55.415000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2,\n    strength >= 0.0001\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "abfe24efc50583e61a349140fe4a2b60957e04d48263cb0b303f85ab774af862",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "all_routes_enumerated": false,
+    "as_of": "2026-10-01",
+    "direct_connections": 0,
+    "direct_connections_definition": "Starting people in this result with a direct modeled edge, even if a stronger two-hop witness was selected",
+    "displayed": 1,
+    "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+    "network_context": {
+      "affects_strength": false,
+      "available": true,
+      "metadata": {
+        "as_of": "2026-10-01",
+        "betweenness_is_global": false,
+        "betweenness_method": "Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology",
+        "betweenness_pivots": 2100,
+        "community_count": 1125,
+        "community_method": "Native RAI weighted Louvain, seed 42, max_levels 5",
+        "computed_at": "2026-11-13T03:10:24.898060+00:00",
+        "edge_count": 1042,
+        "independent_validation": {
+          "all_node_betweenness_verified": 2100,
+          "degree_and_weighted_degree_verified": true,
+          "native_raw_pair_count_factor": 1,
+          "note": "Louvain partitions can vary; verify coverage and weighted modularity, not identical labels",
+          "status": "PASS",
+          "weighted_modularity": 0.9580211171566976
+        },
+        "isolated_people": 695,
+        "min_strength": 0.02,
+        "node_count": 2100,
+        "nontrivial_community_count": 430,
+        "run_id": "8800c7bb-45cc-498e-9a68-b5768cf64800",
+        "scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+        "seconds": 41.98,
+        "transactions": [
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c85ffe-040d-3184-0005-5ee31475f272",
+            "STATE": "COMPLETED"
+          },
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c85ffd-040d-2d7a-0005-5ee31475e24e",
+            "STATE": "COMPLETED"
+          }
+        ],
+        "version": "corporate-affinity-v2"
+      },
+      "missing_people_mean": "Outside the defined cohort, not zero centrality",
+      "people": [
+        {
+          "betweenness": 0,
+          "community_id": "1121",
+          "degree": 0,
+          "person_id": "CORP_P000000373",
+          "weighted_degree": 0
+        },
+        {
+          "betweenness": 1414,
+          "community_id": "2",
+          "degree": 2,
+          "person_id": "PE_P0001",
+          "weighted_degree": 0.5
+        }
+      ]
+    },
+    "pyrel_sha256": "abfe24efc50583e61a349140fe4a2b60957e04d48263cb0b303f85ab774af862",
+    "ranking": "Strongest product across paths up to two hops, then fewest hops; one deterministic witness per source",
+    "request_id": "d8f45e3f-16a6-40db-aae7-4f6aa1a7df54",
+    "rows": [
+      {
+        "connection": "Anika B. Bergstrom",
+        "connection_id": "PE_P0001",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.048239287229529,
+            "career_mean_years": 16.132785763175907,
+            "duration_component": 0.006056482929894,
+            "effective_years": 0.7782340862423,
+            "employment_contribution": 0.020360913809784,
+            "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2014-09-15 to 2017-04-14 (942 days; Same office); total shared years=2.5790554414784395; effective shared years=0.7782340862422998; Unknown / no confirmed friendship record; employment contribution=0.020360913809783603, friendship contribution=0.0, total=0.020360913809783603",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 11.222450376454484,
+            "left_id": "CORP_P000395632",
+            "left_name": "Yara E. Sandoval",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 747,
+                "decay_factor": 0.25,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 1,
+                "start_date": "2014-09-15T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000776_CITY_0",
+                    "city_b": "CORP_C000776_CITY_0",
+                    "company": "Everfield Retail Group (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000776_O1",
+                    "office_b": "CORP_C000776_O1",
+                    "role_a": "CORP_R0001336679",
+                    "role_b": "PE_R0001_3",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 186.75
+              },
+              {
+                "bucket": 2,
+                "days": 195,
+                "decay_factor": 0.5,
+                "end_date": "2017-04-14T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 1,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000776_CITY_0",
+                    "city_b": "CORP_C000776_CITY_0",
+                    "company": "Everfield Retail Group (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000776_O1",
+                    "office_b": "CORP_C000776_O1",
+                    "role_a": "CORP_R0001336679",
+                    "role_b": "PE_R0001_3",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 97.5
+              }
+            ],
+            "raw_years": 2.57905544147844,
+            "right_career_years": 21.04312114989733,
+            "right_id": "PE_P0001",
+            "right_name": "Anika B. Bergstrom",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.020360913809784,
+            "synthetic": true,
+            "time_score": 0.027147885079711
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.026891044904267,
+            "career_mean_years": 15.943874058863791,
+            "duration_component": 0.001838243615312,
+            "effective_years": 0.428747433264887,
+            "employment_contribution": 0.010773483194842,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2025-03-26 (739 days; Different locations; company-only evidence); total shared years=2.023271731690623; effective shared years=0.4287474332648871; Unknown / no confirmed friendship record; employment contribution=0.010773483194842308, friendship contribution=0.0, total=0.010773483194842308",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 563,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.25,
+                "start_date": "2023-03-18T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_0",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O1",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0001336682",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 112.60000000000001
+              },
+              {
+                "bucket": 0,
+                "days": 176,
+                "decay_factor": 1,
+                "end_date": "2025-03-26T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 0.25,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_0",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O1",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0001336682",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 44
+              }
+            ],
+            "raw_years": 2.023271731690623,
+            "right_career_years": 11.222450376454484,
+            "right_id": "CORP_P000395632",
+            "right_name": "Yara E. Sandoval",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.010773483194842,
+            "synthetic": true,
+            "time_score": 0.01436464425979
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0001|CORP_P000395632|CORP_P000000373",
+        "reason": "Anika B. Bergstrom \u2192 Yara E. Sandoval: Representative employment: Everfield Retail Group (Synthetic): 2014-09-15 to 2017-04-14 (942 days; Same office); total shared years=2.5790554414784395; effective shared years=0.7782340862422998; Unknown / no confirmed friendship record; employment contribution=0.020360913809783603, friendship contribution=0.0, total=0.020360913809783603; Yara E. Sandoval \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2025-03-26 (739 days; Different locations; company-only evidence); total shared years=2.023271731690623; effective shared years=0.4287474332648871; Unknown / no confirmed friendship record; employment contribution=0.010773483194842308, friendship contribution=0.0, total=0.010773483194842308",
+        "strength": 0.000219357962761,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "scoring_version": "corporate-affinity-v2",
+    "search_limit_hops": 2,
+    "seconds": 139.45,
+    "sources_searched": 1,
+    "status": "OK",
+    "strength_is_probability": false,
+    "synthetic_data": true,
+    "total_connections": 1,
+    "total_connections_definition": "Number of starting people with a qualifying selected witness; NOT a count of all routes",
+    "transaction_ids": [
+      "01c8601a-040d-3184-0005-5ee31476cd42",
+      "01c8601c-040d-3184-0005-5ee3147703d2",
+      "01c8601c-040d-3184-0005-5ee3147703f6"
+    ]
+  }
+}

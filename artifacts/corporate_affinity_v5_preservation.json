@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "original_career_rows": 3371598,
+  "preserved_tables": {
+    "TEAM_MEMBER": 100,
+    "TEAM_ROLE_HISTORY": 450,
+    "WORKPLACE_V2": 3372048,
+    "OFFICE_V2": 20898,
+    "FRIENDSHIP_V2": 1910282,
+    "LEADERSHIP_COHORT_V2": 2100
+  },
+  "older_agent": "PE_INTRO_1M_TEST",
+  "older_agent_created_on": "2026-11-10 12:03:33.146000-08:00",
+  "retained_analytics_versions": {
+    "corporate-affinity-v2": 1,
+    "corporate-affinity-v3": 1,
+    "corporate-affinity-v4": 1,
+    "corporate-affinity-v5": 1
+  },
+  "active_version": "corporate-affinity-v5"
+}

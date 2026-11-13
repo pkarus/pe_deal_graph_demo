@@ -1,0 +1,518 @@
+{
+  "at": "2026-11-12 17:32:53.060956",
+  "root": "/Users/alaaaboelkhair/Downloads/pe_deal_graph_demo-main-2",
+  "before": {
+    "files": 105721,
+    "bytes": 15738028263
+  },
+  "deleted": [
+    {
+      "path": "repositories/.uv-cache",
+      "files": 18953,
+      "bytes": 547546617
+    },
+    {
+      "path": "output/rai-onboarding/.browsers",
+      "files": 23,
+      "bytes": 216099365
+    },
+    {
+      "path": "output/rai-onboarding/.tools",
+      "files": 7611,
+      "bytes": 446098208
+    },
+    {
+      "path": "output/rai-onboarding/.cache",
+      "files": 7464,
+      "bytes": 442968799
+    },
+    {
+      "path": "build/spans.jsonl",
+      "files": 1,
+      "bytes": 1158783292
+    },
+    {
+      "path": "build/cache",
+      "files": 2,
+      "bytes": 37520
+    },
+    {
+      "path": ".pytest_cache",
+      "files": 5,
+      "bytes": 29842
+    },
+    {
+      "path": "build/runs/20261105T200251Z_legacy_232b",
+      "files": 1,
+      "bytes": 59377161
+    },
+    {
+      "path": "build/runs/20261104T152826Z_deploy_d67e",
+      "files": 3,
+      "bytes": 9628369
+    },
+    {
+      "path": "build/runs/20261104T203630Z_deploy_273c",
+      "files": 3,
+      "bytes": 19947204
+    },
+    {
+      "path": "build/runs/20261109T165702Z_deploy_5588",
+      "files": 3,
+      "bytes": 37725599
+    },
+    {
+      "path": "build/runs/20261104T030736Z_deploy_4f02",
+      "files": 2,
+      "bytes": 8752310
+    },
+    {
+      "path": "build/runs/20261105T200800Z_legacy_c337",
+      "files": 1,
+      "bytes": 59378204
+    },
+    {
+      "path": "build/runs/20261104T234140Z_deploy_4b48",
+      "files": 3,
+      "bytes": 9858739
+    },
+    {
+      "path": "build/runs/20261105T202929Z_legacy_7dd2",
+      "files": 1,
+      "bytes": 59379052
+    },
+    {
+      "path": "build/runs/20261103T232224Z_legacy_d562",
+      "files": 1,
+      "bytes": 29802965
+    },
+    {
+      "path": "build/runs/20261105T203750Z_legacy_6a9a",
+      "files": 1,
+      "bytes": 59378243
+    },
+    {
+      "path": "build/runs/20261103T191601Z_legacy_aa27",
+      "files": 1,
+      "bytes": 2580052
+    },
+    {
+      "path": "build/runs/20261109T155502Z_deploy_4698",
+      "files": 3,
+      "bytes": 9841777
+    },
+    {
+      "path": "build/runs/20261104T203259Z_deploy_39df",
+      "files": 3,
+      "bytes": 19762881
+    },
+    {
+      "path": "build/runs/20261105T201022Z_legacy_ee98",
+      "files": 1,
+      "bytes": 59378426
+    },
+    {
+      "path": "build/runs/20261104T031428Z_deploy_639b",
+      "files": 2,
+      "bytes": 9582717
+    },
+    {
+      "path": "build/runs/20261105T194653Z_legacy_f363",
+      "files": 1,
+      "bytes": 59370168
+    },
+    {
+      "path": "build/runs/20261104T161556Z_legacy_f52f",
+      "files": 1,
+      "bytes": 60911831
+    },
+    {
+      "path": "build/runs/20261104T175732Z_deploy_108d",
+      "files": 3,
+      "bytes": 37169005
+    },
+    {
+      "path": "build/runs/20261105T202525Z_legacy_a355",
+      "files": 1,
+      "bytes": 59379055
+    },
+    {
+      "path": "build/runs/20261105T201907Z_legacy_6237",
+      "files": 1,
+      "bytes": 59378466
+    },
+    {
+      "path": "build/runs/20261104T035148Z_deploy_8320",
+      "files": 3,
+      "bytes": 9634204
+    },
+    {
+      "path": "build/runs/20261104T162704Z_deploy_8e24",
+      "files": 3,
+      "bytes": 9839739
+    },
+    {
+      "path": "build/runs/20261110T042221Z_legacy_d094",
+      "files": 1,
+      "bytes": 9322368
+    },
+    {
+      "path": "build/runs/20261110T051606Z_legacy_0856",
+      "files": 1,
+      "bytes": 9226462
+    },
+    {
+      "path": "build/runs/20261105T203951Z_legacy_6b36",
+      "files": 1,
+      "bytes": 59272487
+    },
+    {
+      "path": "build/runs/20261103T225708Z_legacy_5994",
+      "files": 1,
+      "bytes": 4812892
+    },
+    {
+      "path": "build/runs/20261110T043626Z_legacy_63f2",
+      "files": 1,
+      "bytes": 4626285
+    },
+    {
+      "path": "build/runs/20261103T230729Z_legacy_054f",
+      "files": 1,
+      "bytes": 20989063
+    },
+    {
+      "path": "build/runs/20261105T201230Z_legacy_7dca",
+      "files": 1,
+      "bytes": 59379002
+    },
+    {
+      "path": "build/runs/20261105T144719Z_deploy_69ca",
+      "files": 3,
+      "bytes": 37083274
+    },
+    {
+      "path": "build/runs/20261105T200012Z_legacy_ea5d",
+      "files": 1,
+      "bytes": 59375037
+    },
+    {
+      "path": "build/runs/20261110T043805Z_legacy_dffe",
+      "files": 1,
+      "bytes": 9264388
+    },
+    {
+      "path": "build/runs/20261112T193217Z_legacy_e719",
+      "files": 1,
+      "bytes": 1668535
+    },
+    {
+      "path": "build/runs/20261104T031019Z_deploy_c83f",
+      "files": 2,
+      "bytes": 9566937
+    },
+    {
+      "path": "build/runs/20261104T002939Z_legacy_8476",
+      "files": 1,
+      "bytes": 59622734
+    },
+    {
+      "path": "build/runs/20261104T023815Z_deploy_af63",
+      "files": 2,
+      "bytes": 8599692
+    },
+    {
+      "path": "build/runs/20261105T194924Z_legacy_caf9",
+      "files": 1,
+      "bytes": 59373756
+    },
+    {
+      "path": "build/runs/20261104T025203Z_deploy_8c8b",
+      "files": 2,
+      "bytes": 9233650
+    },
+    {
+      "path": "build/runs/20261105T005248Z_deploy_3372",
+      "files": 3,
+      "bytes": 9820739
+    },
+    {
+      "path": "build/runs/20261105T165551Z_deploy_eca1",
+      "files": 3,
+      "bytes": 37896055
+    },
+    {
+      "path": "build/runs/20261103T233222Z_legacy_d45d",
+      "files": 1,
+      "bytes": 59832184
+    },
+    {
+      "path": "build/runs/20261105T202114Z_legacy_a249",
+      "files": 1,
+      "bytes": 59379653
+    },
+    {
+      "path": "build/runs/20261106T200157Z_deploy_944a",
+      "files": 3,
+      "bytes": 32010625
+    },
+    {
+      "path": "build/runs/20261105T195521Z_legacy_a6d2",
+      "files": 1,
+      "bytes": 59375424
+    },
+    {
+      "path": "build/runs/20261104T171752Z_legacy_a6f7",
+      "files": 1,
+      "bytes": 201725091
+    },
+    {
+      "path": "build/runs/20261105T203336Z_legacy_954a",
+      "files": 1,
+      "bytes": 59379653
+    },
+    {
+      "path": "build/runs/20261105T210503Z_legacy_bb0b",
+      "files": 1,
+      "bytes": 15098406
+    },
+    {
+      "path": "build/runs/20261105T202321Z_legacy_d3b0",
+      "files": 1,
+      "bytes": 59379055
+    },
+    {
+      "path": "build/runs/20261105T212518Z_legacy_4229",
+      "files": 1,
+      "bytes": 59370484
+    },
+    {
+      "path": "build/runs/20261110T051718Z_legacy_337f",
+      "files": 1,
+      "bytes": 4632762
+    },
+    {
+      "path": "build/runs/20261104T041010Z_deploy_c9eb",
+      "files": 3,
+      "bytes": 9631828
+    },
+    {
+      "path": "build/runs/20261105T201653Z_legacy_35f3",
+      "files": 1,
+      "bytes": 59379015
+    },
+    {
+      "path": "build/runs/20261105T141758Z_deploy_b43f",
+      "files": 3,
+      "bytes": 37786414
+    },
+    {
+      "path": "build/runs/20261104T160354Z_deploy_7b9c",
+      "files": 3,
+      "bytes": 9782739
+    },
+    {
+      "path": "build/runs/20261109T180613Z_deploy_dd84",
+      "files": 3,
+      "bytes": 5634831
+    },
+    {
+      "path": "build/runs/20261104T031209Z_deploy_f049",
+      "files": 2,
+      "bytes": 8748589
+    },
+    {
+      "path": "build/runs/20261104T235409Z_deploy_4f31",
+      "files": 3,
+      "bytes": 37725087
+    },
+    {
+      "path": "build/runs/20261112T193413Z_legacy_2a44",
+      "files": 1,
+      "bytes": 1668644
+    },
+    {
+      "path": "build/runs/20261106T211214Z_deploy_6956",
+      "files": 3,
+      "bytes": 31896133
+    },
+    {
+      "path": "build/runs/20261110T043003Z_legacy_b28e",
+      "files": 1,
+      "bytes": 9249839
+    },
+    {
+      "path": "build/runs/20261104T152743Z_deploy_29c6",
+      "files": 2,
+      "bytes": 8751584
+    },
+    {
+      "path": "build/runs/20261105T204156Z_legacy_53ab",
+      "files": 1,
+      "bytes": 59272435
+    },
+    {
+      "path": "build/runs/20261103T232824Z_legacy_e8c1",
+      "files": 1,
+      "bytes": 59371930
+    },
+    {
+      "path": "build/runs/20261105T163320Z_deploy_f89f",
+      "files": 3,
+      "bytes": 37877887
+    },
+    {
+      "path": "build/runs/20261105T204402Z_legacy_9779",
+      "files": 1,
+      "bytes": 29594332
+    },
+    {
+      "path": "build/runs/20261105T145842Z_deploy_aea0",
+      "files": 3,
+      "bytes": 37664264
+    },
+    {
+      "path": "build/runs/20261110T050004Z_legacy_63a4",
+      "files": 1,
+      "bytes": 9368392
+    },
+    {
+      "path": "build/runs/20261105T203545Z_legacy_3c01",
+      "files": 1,
+      "bytes": 59379616
+    },
+    {
+      "path": "build/runs/20261112T193654Z_legacy_8e4c",
+      "files": 1,
+      "bytes": 4094771
+    },
+    {
+      "path": "build/runs/20261105T203131Z_legacy_be16",
+      "files": 1,
+      "bytes": 59378460
+    },
+    {
+      "path": "build/runs/20261105T201437Z_legacy_3f1a",
+      "files": 1,
+      "bytes": 59379021
+    },
+    {
+      "path": "build/runs/20261105T200527Z_legacy_a0ec",
+      "files": 1,
+      "bytes": 59377230
+    },
+    {
+      "path": "build/runs/20261105T202726Z_legacy_2cd3",
+      "files": 1,
+      "bytes": 59379656
+    },
+    {
+      "path": "build/runs/20261106T193143Z_deploy_5994",
+      "files": 3,
+      "bytes": 31935612
+    },
+    {
+      "path": "data/scale_connected_100k",
+      "files": 18,
+      "bytes": 47203989
+    },
+    {
+      "path": "data/scale_connected_1m",
+      "files": 18,
+      "bytes": 471801200
+    },
+    {
+      "path": "data/scale_connected_10m",
+      "files": 25,
+      "bytes": 4917112492
+    },
+    {
+      "path": "data/scale_10k",
+      "files": 18,
+      "bytes": 1934372
+    },
+    {
+      "path": "data/scale_sparse_seed_10k",
+      "files": 18,
+      "bytes": 1934740
+    },
+    {
+      "path": "artifacts/people_communities_connected_100k_reduced_exports.json",
+      "files": 1,
+      "bytes": 127561888
+    },
+    {
+      "path": "artifacts/people_communities_connected_100k.json",
+      "files": 1,
+      "bytes": 127585280
+    },
+    {
+      "path": "artifacts/people_communities_connected_100k_5_7_timeout40.json",
+      "files": 1,
+      "bytes": 118752697
+    },
+    {
+      "path": "artifacts/people_communities_live.json",
+      "files": 1,
+      "bytes": 10345797
+    },
+    {
+      "path": "artifacts/people_communities_connected_10k.json",
+      "files": 1,
+      "bytes": 12891295
+    },
+    {
+      "path": "artifacts/people_communities_connected_1m.json",
+      "files": 1,
+      "bytes": 1277934164
+    },
+    {
+      "path": "tests/__pycache__",
+      "files": 19,
+      "bytes": 752550
+    },
+    {
+      "path": "output/rai-onboarding/__pycache__",
+      "files": 1,
+      "bytes": 53325
+    },
+    {
+      "path": "scripts/__pycache__",
+      "files": 16,
+      "bytes": 765999
+    },
+    {
+      "path": "pe_deal_graph/__pycache__",
+      "files": 9,
+      "bytes": 165311
+    },
+    {
+      "path": "pe_deal_graph/model/__pycache__",
+      "files": 8,
+      "bytes": 298708
+    },
+    {
+      "path": "data/__pycache__",
+      "files": 4,
+      "bytes": 222407
+    },
+    {
+      "path": "data/naive_sql/__pycache__",
+      "files": 1,
+      "bytes": 3656
+    }
+  ],
+  "after": {
+    "files": 71382,
+    "bytes": 3193474085
+  },
+  "preserved": [
+    "all source repositories and installed environments",
+    "demo-maker",
+    "latest debugger trace",
+    "small 10K test fixture",
+    "generation code and compact scale manifests",
+    "configuration",
+    "all files in pe_deal_graph_demo-main untouched"
+  ]
+}

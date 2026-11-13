@@ -1,0 +1,274 @@
+{
+  "actions": [
+    {
+      "streams": [
+        "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_PATHS.GRAPH_PAIRS",
+        "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_PATHS.GRAPH_PEOPLE"
+      ],
+      "query_id": "01c85eee-040d-3184-0005-5ee3146acc76",
+      "result": [
+        [
+          "{\n  \"deleted\": 2,\n  \"errors\": []\n}"
+        ]
+      ]
+    },
+    {
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_PATHS",
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb0e",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_PATHS successfully dropped."
+        }
+      ]
+    },
+    {
+      "procedure": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.PE_NATIVE_RAI_EXPLAIN_CONCEPT(NUMBER,VARCHAR)",
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb12",
+      "rows": [
+        {
+          "status": "PE_NATIVE_RAI_EXPLAIN_CONCEPT successfully dropped."
+        }
+      ]
+    },
+    {
+      "procedure": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.FIND_PEOPLE(VARCHAR,VARCHAR,BOOLEAN)",
+      "query_id": "01c85eee-040d-3184-0005-5ee3146acebe",
+      "rows": [
+        {
+          "status": "FIND_PEOPLE successfully dropped."
+        }
+      ]
+    },
+    {
+      "procedure": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.PERSON_PATH(VARCHAR,VARCHAR,FLOAT,FLOAT)",
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb16",
+      "rows": [
+        {
+          "status": "PERSON_PATH successfully dropped."
+        }
+      ]
+    },
+    {
+      "procedure": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.PE_NATIVE_RAI_DISCOVER_MODELS()",
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb1a",
+      "rows": [
+        {
+          "status": "PE_NATIVE_RAI_DISCOVER_MODELS successfully dropped."
+        }
+      ]
+    },
+    {
+      "procedure": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.PE_NATIVE_RAI_QUERY_MODEL(NUMBER,VARCHAR)",
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb1e",
+      "rows": [
+        {
+          "status": "PE_NATIVE_RAI_QUERY_MODEL successfully dropped."
+        }
+      ]
+    },
+    {
+      "procedure": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.PE_NATIVE_RAI_VERBALIZE_MODEL(NUMBER)",
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb26",
+      "rows": [
+        {
+          "status": "PE_NATIVE_RAI_VERBALIZE_MODEL successfully dropped."
+        }
+      ]
+    },
+    {
+      "procedure": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.INTRO_LOOKUP(VARCHAR,VARCHAR,FLOAT)",
+      "query_id": "01c85eee-040d-3184-0005-5ee3146acece",
+      "rows": [
+        {
+          "status": "INTRO_LOOKUP successfully dropped."
+        }
+      ]
+    }
+  ],
+  "retired_table_view_count": 4,
+  "retired_active_bytes": 2875066880,
+  "verification": {
+    "person_view": {
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb2e",
+      "rows": [
+        {
+          "ID": "SCALE_P000752403",
+          "NAME": "Person000752403 Synthetic213335452"
+        }
+      ]
+    },
+    "attributes_view": {
+      "query_id": "01c85eee-040d-3184-0005-5ee3146acee2",
+      "rows": [
+        {
+          "PERSON_ID": "SCALE_P000108207"
+        }
+      ]
+    },
+    "edge_view": {
+      "query_id": "01c85eee-040d-3184-0005-5ee3146acf16",
+      "rows": [
+        {
+          "SRC": "SCALE_P000078351"
+        }
+      ]
+    },
+    "community_output": {
+      "query_id": "01c85eee-040d-3184-0005-5ee3146acf86",
+      "rows": [
+        {
+          "N": 1000000
+        }
+      ]
+    },
+    "tasks": {
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb7e",
+      "rows": [
+        {
+          "created_on": "2026-10-29 10:51:35.046000-07:00",
+          "name": "REFRESH_ONCE",
+          "id": "01c80f0f-226f-71a8-0000-00000000b092",
+          "database_name": "ALAA_RELAPP_PERSISTENCE",
+          "schema_name": "LAB_COLLECTION_MODEL_META",
+          "owner": "RAI_DEFAULT_ROLE",
+          "comment": "",
+          "warehouse": "RAI_XS",
+          "schedule": null,
+          "predecessors": "[]",
+          "state": "suspended",
+          "definition": "CALL ALAA_RELAPP_PERSISTENCE.LAB_COLLECTION_MODEL_META._INTERNAL_REFRESH_MODEL('once', NULL)",
+          "condition": null,
+          "allow_overlapping_execution": "false",
+          "error_integration": "null",
+          "last_committed_on": null,
+          "last_suspended_on": null,
+          "owner_role_type": "ROLE",
+          "config": null,
+          "task_relations": "{\"Predecessors\":[]}",
+          "last_suspended_reason": null,
+          "success_integration": "null",
+          "scheduling_mode": null,
+          "target_completion_interval": null,
+          "execute_as_user": null,
+          "overlap_policy": "NO_OVERLAP",
+          "created_by_user": "alaa.aboelkhair@relational.ai"
+        },
+        {
+          "created_on": "2026-11-12 09:07:27.139000-08:00",
+          "name": "REFRESH_MAIN",
+          "id": "01c85da3-85f4-21dd-0000-00000000c573",
+          "database_name": "ALAA_RELAPP_PERSISTENCE",
+          "schema_name": "M_81A687B5861546799E316EE35288B7C9_META",
+          "owner": "RAI_DEFAULT_ROLE",
+          "comment": "",
+          "warehouse": "RAI_XS",
+          "schedule": null,
+          "predecessors": "[]",
+          "state": "suspended",
+          "definition": "CALL \"ALAA_RELAPP_PERSISTENCE\".\"M_81A687B5861546799E316EE35288B7C9_META\"._INTERNAL_REFRESH_MODEL('main', NULL)",
+          "condition": null,
+          "allow_overlapping_execution": "false",
+          "error_integration": "null",
+          "last_committed_on": null,
+          "last_suspended_on": null,
+          "owner_role_type": "ROLE",
+          "config": null,
+          "task_relations": "{\"Predecessors\":[]}",
+          "last_suspended_reason": null,
+          "success_integration": "null",
+          "scheduling_mode": null,
+          "target_completion_interval": null,
+          "execute_as_user": null,
+          "overlap_policy": "NO_OVERLAP",
+          "created_by_user": "alaa.aboelkhair@relational.ai"
+        },
+        {
+          "created_on": "2026-11-09 07:57:13.061000-08:00",
+          "name": "REFRESH_PATH_PROBE",
+          "id": "01c84c7d-5c04-1b05-0000-00000000be2d",
+          "database_name": "ALAA_RELAPP_PERSISTENCE",
+          "schema_name": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_META",
+          "owner": "RAI_USER",
+          "comment": "",
+          "warehouse": "RAI_XS",
+          "schedule": null,
+          "predecessors": "[]",
+          "state": "suspended",
+          "definition": "CALL ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_META._INTERNAL_REFRESH_MODEL('path_probe', NULL)",
+          "condition": null,
+          "allow_overlapping_execution": "false",
+          "error_integration": "null",
+          "last_committed_on": "2026-11-09 07:57:15.290000-08:00",
+          "last_suspended_on": null,
+          "owner_role_type": "ROLE",
+          "config": null,
+          "task_relations": "{\"Predecessors\":[]}",
+          "last_suspended_reason": null,
+          "success_integration": "null",
+          "scheduling_mode": null,
+          "target_completion_interval": null,
+          "execute_as_user": null,
+          "overlap_policy": "NO_OVERLAP",
+          "created_by_user": "alaa.aboelkhair@relational.ai"
+        },
+        {
+          "created_on": "2026-11-04 16:54:13.610000-08:00",
+          "name": "REFRESH_PATH_PROBE",
+          "id": "01c83276-63e7-579f-0000-00000000b930",
+          "database_name": "ALAA_RELAPP_PERSISTENCE",
+          "schema_name": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_META",
+          "owner": "RAI_USER",
+          "comment": "",
+          "warehouse": "RAI_XS",
+          "schedule": null,
+          "predecessors": "[]",
+          "state": "suspended",
+          "definition": "CALL ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_META._INTERNAL_REFRESH_MODEL('path_probe', NULL)",
+          "condition": null,
+          "allow_overlapping_execution": "false",
+          "error_integration": "null",
+          "last_committed_on": "2026-11-04 16:54:15.377000-08:00",
+          "last_suspended_on": null,
+          "owner_role_type": "ROLE",
+          "config": null,
+          "task_relations": "{\"Predecessors\":[]}",
+          "last_suspended_reason": null,
+          "success_integration": "null",
+          "scheduling_mode": null,
+          "target_completion_interval": null,
+          "execute_as_user": null,
+          "overlap_policy": "NO_OVERLAP",
+          "created_by_user": "alaa.aboelkhair@relational.ai"
+        }
+      ]
+    },
+    "tables": {
+      "query_id": "01c85eee-040d-3184-0005-5ee3146acfa2",
+      "rows": [
+        {
+          "N": 383
+        }
+      ]
+    },
+    "procedures": {
+      "query_id": "01c85eee-040d-2d7a-0005-5ee3146abb9e",
+      "rows": [
+        {
+          "PROCEDURE_NAME": "FIND_CONNECTION"
+        },
+        {
+          "PROCEDURE_NAME": "PERSON_CONTACTS"
+        },
+        {
+          "PROCEDURE_NAME": "FIND_CONNECTION_AT_SCALE"
+        },
+        {
+          "PROCEDURE_NAME": "PERSON_COMMUNITY"
+        },
+        {
+          "PROCEDURE_NAME": "SEARCH_PEOPLE"
+        }
+      ]
+    }
+  }
+}

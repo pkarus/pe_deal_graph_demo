@@ -1,0 +1,14 @@
+{
+  "TEAM_MEMBER": {
+    "rows": 100,
+    "all_columns_equal_to_local_csv": true
+  },
+  "TEAM_ROLE_HISTORY": {
+    "rows": 450,
+    "all_columns_equal_to_local_csv": true
+  },
+  "previous_employers_min_max": [
+    3,
+    4
+  ]
+}

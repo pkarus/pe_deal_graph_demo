@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "strongest": [
+    {
+      "connection_id": "CORP_P000900001",
+      "connection": "Source",
+      "target_id": "CORP_P000900004",
+      "target": "Target",
+      "strength": 0.627236070003536,
+      "raw_strength": 0.15478329948499,
+      "reason": "Source \u2192 Target: Representative employment: AT: 2022-10-01 to 2026-10-01 (1461 days; Same office); total shared years=4.0; effective shared years=3.5997262149212874; Deferred; not used in scoring; employment contribution=0.15478329948498987, friendship contribution=0.0, raw strength=0.15478329948498987; normalized strength=0.6272360700035359",
+      "hops": 1,
+      "minimum_hops": 1,
+      "path": "CORP_P000900001|CORP_P000900004"
+    }
+  ],
+  "shortest": [
+    {
+      "connection_id": "CORP_P000900001",
+      "connection": "Source",
+      "target_id": "CORP_P000900004",
+      "target": "Target",
+      "strength": 0.627236070003536,
+      "raw_strength": 0.15478329948499,
+      "reason": "Source \u2192 Target: Representative employment: AT: 2022-10-01 to 2026-10-01 (1461 days; Same office); total shared years=4.0; effective shared years=3.5997262149212874; Deferred; not used in scoring; employment contribution=0.15478329948498987, friendship contribution=0.0, raw strength=0.15478329948498987; normalized strength=0.6272360700035359",
+      "hops": 1,
+      "minimum_hops": 1,
+      "path": "CORP_P000900001|CORP_P000900004"
+    }
+  ],
+  "transactions": [
+    {
+      "ID": "01c860b6-040d-2d7a-0005-5ee3147c0236",
+      "STATE": "COMPLETED"
+    },
+    {
+      "ID": "01c860b5-040d-2d7a-0005-5ee3147c0142",
+      "STATE": "COMPLETED"
+    }
+  ]
+}

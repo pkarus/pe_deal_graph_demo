@@ -1,0 +1,95 @@
+{
+  "request_id": "bcda470e-8997-4084-90e4-6cddc4158ed6",
+  "status": "PASS",
+  "returned_paths_verified": 5,
+  "total_connections": 99,
+  "unfiltered_oracle_connections": 99,
+  "oracle_query_id": "01c85f5c-040d-3184-0005-5ee31470b26e",
+  "transactions": [
+    {
+      "id": "01c85f59-040d-33b7-0005-5ee314705b1e",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 94070,
+      "created_on": "2026-11-12 16:25:34.907000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "85b6ec87b0c2c3ed889e54187f7a8568118c5fd65a55244fb83d0266a572e849",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "all_routes_enumerated": false,
+    "as_of": "2026-10-01",
+    "direct_connections": 1,
+    "displayed": 5,
+    "pyrel_sha256": "85b6ec87b0c2c3ed889e54187f7a8568118c5fd65a55244fb83d0266a572e849",
+    "ranking": "Shortest path first, strongest product within that hop count; one deterministic witness per source",
+    "request_id": "bcda470e-8997-4084-90e4-6cddc4158ed6",
+    "rows": [
+      {
+        "connection": "Nadia H. Selwyn",
+        "connection_id": "PE_P0059",
+        "hops": 1,
+        "path": "PE_P0059|CORP_P000000373",
+        "reason": "Nadia H. Selwyn \u2192 Soren T. Bellamy: K1 employment overlap at Riverwell Materials (Synthetic): 2018-07-28 to 2020-07-05 (708 days)",
+        "strength": 0.6907597536,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Darius D. Holbrook",
+        "connection_id": "PE_P0003",
+        "hops": 2,
+        "path": "PE_P0003|CORP_P000771172|CORP_P000000373",
+        "reason": "Darius D. Holbrook \u2192 Lena B. Lindqvist: K1 employment overlap at Elmpoint Materials (Synthetic): 2011-06-18 to 2017-06-15 (2189 days); Lena B. Lindqvist \u2192 Soren T. Bellamy: K1 employment overlap at Riverwell Materials (Synthetic): 2018-09-13 to 2022-09-30 (1478 days)",
+        "strength": 1,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Emeka E. Mbeki-Shaw",
+        "connection_id": "PE_P0004",
+        "hops": 2,
+        "path": "PE_P0004|CORP_P000749962|CORP_P000000373",
+        "reason": "Emeka E. Mbeki-Shaw \u2192 Hana F. Wakefield-Sandoval: K1 employment overlap at Foxbrook Materials (Synthetic): 2013-05-08 to 2018-09-30 (1971 days); Hana F. Wakefield-Sandoval \u2192 Soren T. Bellamy: K1 employment overlap at Riverwell Materials (Synthetic): 2018-09-30 to 2023-03-18 (1630 days)",
+        "strength": 1,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Desmond P. Balogun",
+        "connection_id": "PE_P0041",
+        "hops": 2,
+        "path": "PE_P0041|CORP_P000548411|CORP_P000000373",
+        "reason": "Desmond P. Balogun \u2192 Benedict E. Selwyn: K1 employment overlap at Ashridge Utilities (Synthetic): 2012-08-25 to 2017-07-17 (1787 days); Benedict E. Selwyn \u2192 Soren T. Bellamy: K1 employment overlap at Riverwell Materials (Synthetic): 2018-08-30 to 2022-09-04 (1466 days)",
+        "strength": 1,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Ezra Q. Corwin",
+        "connection_id": "PE_P0042",
+        "hops": 2,
+        "path": "PE_P0042|CORP_P000060420|CORP_P000000373",
+        "reason": "Ezra Q. Corwin \u2192 Edith M. Mbeki-Shaw: K1 employment overlap at Birchpoint Materials (Synthetic): 2014-08-19 to 2018-08-31 (1473 days); Edith M. Mbeki-Shaw \u2192 Soren T. Bellamy: K1 employment overlap at Riverwell Materials (Synthetic): 2018-09-30 to 2023-03-18 (1630 days)",
+        "strength": 1,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "search_limit_hops": 2,
+    "seconds": 128.46,
+    "sources_searched": 100,
+    "status": "OK",
+    "strength_is_probability": false,
+    "synthetic_data": true,
+    "total_connections": 99,
+    "total_connections_definition": "Number of starting people with a qualifying selected witness; NOT a count of all routes",
+    "transaction_ids": [
+      "01c85f59-040d-33b7-0005-5ee314705b1e"
+    ]
+  }
+}

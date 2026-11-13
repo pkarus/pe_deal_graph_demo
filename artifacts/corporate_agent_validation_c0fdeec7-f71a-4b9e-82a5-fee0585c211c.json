@@ -1,0 +1,95 @@
+{
+  "request_id": "c0fdeec7-f71a-4b9e-82a5-fee0585c211c",
+  "status": "PASS",
+  "returned_paths_verified": 5,
+  "total_connections": 97,
+  "unfiltered_oracle_connections": 97,
+  "oracle_query_id": "01c85f5c-040d-33b7-0005-5ee3147095fa",
+  "transactions": [
+    {
+      "id": "01c85f56-040d-3184-0005-5ee314704912",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 93788,
+      "created_on": "2026-11-12 16:22:51.347000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "85b6ec87b0c2c3ed889e54187f7a8568118c5fd65a55244fb83d0266a572e849",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "all_routes_enumerated": false,
+    "as_of": "2026-10-01",
+    "direct_connections": 0,
+    "displayed": 5,
+    "pyrel_sha256": "85b6ec87b0c2c3ed889e54187f7a8568118c5fd65a55244fb83d0266a572e849",
+    "ranking": "Shortest path first, strongest product within that hop count; one deterministic witness per source",
+    "request_id": "c0fdeec7-f71a-4b9e-82a5-fee0585c211c",
+    "rows": [
+      {
+        "connection": "Darius D. Holbrook",
+        "connection_id": "PE_P0003",
+        "hops": 2,
+        "path": "PE_P0003|CORP_P000498593|CORP_P000633338",
+        "reason": "Darius D. Holbrook \u2192 Rosa T. Okonkwo: K1 employment overlap at Elmpoint Materials (Synthetic): 2011-06-18 to 2017-06-15 (2189 days); Rosa T. Okonkwo \u2192 Malik G. Varga: K1 employment overlap at Aspenview Materials (Synthetic): 2022-09-15 to 2026-10-01 (1477 days)",
+        "strength": 1,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Wes L. Kavanagh",
+        "connection_id": "PE_P0037",
+        "hops": 2,
+        "path": "PE_P0037|CORP_P000724288|CORP_P000633338",
+        "reason": "Wes L. Kavanagh \u2192 Simone F. Halloran: K1 employment overlap at Windvale Financial Group (Synthetic): 2013-05-06 to 2018-09-11 (1954 days); Simone F. Halloran \u2192 Malik G. Varga: K1 employment overlap at Aspenview Materials (Synthetic): 2018-11-10 to 2022-11-29 (1480 days)",
+        "strength": 1,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Ezra Q. Corwin",
+        "connection_id": "PE_P0042",
+        "hops": 2,
+        "path": "PE_P0042|CORP_P000196964|CORP_P000633338",
+        "reason": "Ezra Q. Corwin \u2192 Orla N. Yadav: K1 employment overlap at Birchpoint Materials (Synthetic): 2013-06-11 to 2019-02-14 (2074 days); Orla N. Yadav \u2192 Malik G. Varga: K1 employment overlap at Aspenview Materials (Synthetic): 2020-09-05 to 2026-10-01 (2217 days)",
+        "strength": 1,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Tobias X. Draycott",
+        "connection_id": "PE_P0049",
+        "hops": 2,
+        "path": "PE_P0049|CORP_P000804277|CORP_P000633338",
+        "reason": "Tobias X. Draycott \u2192 Desmond S. Ardent-Holbrook: K1 employment overlap at Silverbank Consumer Brands (Synthetic): 2012-06-20 to 2018-05-16 (2156 days); Desmond S. Ardent-Holbrook \u2192 Malik G. Varga: K1 employment overlap at Aspenview Materials (Synthetic): 2021-03-18 to 2025-03-19 (1462 days)",
+        "strength": 1,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      },
+      {
+        "connection": "Dalia B. Whitcombe",
+        "connection_id": "PE_P0053",
+        "hops": 2,
+        "path": "PE_P0053|CORP_P000981445|CORP_P000633338",
+        "reason": "Dalia B. Whitcombe \u2192 Amara Z. Farrow: K1 employment overlap at Glenwell Energy (Synthetic): 2012-06-30 to 2018-07-22 (2213 days); Amara Z. Farrow \u2192 Malik G. Varga: K1 employment overlap at Aspenview Materials (Synthetic): 2018-09-14 to 2026-10-01 (2939 days)",
+        "strength": 1,
+        "target": "Malik G. Varga",
+        "target_id": "CORP_P000633338"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "search_limit_hops": 2,
+    "seconds": 121.64,
+    "sources_searched": 100,
+    "status": "OK",
+    "strength_is_probability": false,
+    "synthetic_data": true,
+    "total_connections": 97,
+    "total_connections_definition": "Number of starting people with a qualifying selected witness; NOT a count of all routes",
+    "transaction_ids": [
+      "01c85f56-040d-3184-0005-5ee314704912"
+    ]
+  }
+}

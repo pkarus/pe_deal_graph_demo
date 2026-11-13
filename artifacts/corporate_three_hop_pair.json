@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "actual": [
+    {
+      "connection_id": "PE_P0001",
+      "connection": "Anika B. Bergstrom",
+      "target_id": "CORP_P000000373",
+      "target": "Soren T. Bellamy",
+      "strength": 0.14052633484956,
+      "raw_strength": 0.000389969711576,
+      "reason": "Anika B. Bergstrom \u2192 Yara E. Sandoval: Representative employment: Everfield Retail Group (Synthetic): 2014-09-15 to 2017-04-14 (942 days; Same office); total shared years=2.5790554414784395; effective shared years=0.7782340862422998; Deferred; not used in scoring; employment contribution=0.02714788507971147, friendship contribution=0.0, raw strength=0.02714788507971147; normalized strength=0.4059139720588575; Yara E. Sandoval \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2025-03-26 (739 days; Different, remote or unknown locations; company-only evidence); total shared years=2.023271731690623; effective shared years=0.4287474332648871; Deferred; not used in scoring; employment contribution=0.014364644259789743, friendship contribution=0.0, raw strength=0.014364644259789743; normalized strength=0.34619733372761047",
+      "hops": 2,
+      "minimum_hops": 2,
+      "path": "PE_P0001|CORP_P000395632|CORP_P000000373"
+    }
+  ],
+  "expected": [
+    {
+      "connection_id": "PE_P0001",
+      "hops": 2,
+      "strength": 0.14052633484956023,
+      "raw_strength": 0.00038996971157570894,
+      "path": "PE_P0001|CORP_P000395632|CORP_P000000373",
+      "minimum_hops": 2
+    }
+  ],
+  "transactions": [
+    {
+      "ID": "01c8608e-040d-3184-0005-5ee3147b312a",
+      "STATE": "COMPLETED"
+    }
+  ],
+  "oracle_query_id": "01c8608f-040d-3184-0005-5ee3147b386a",
+  "seconds": 90.12608420800825
+}

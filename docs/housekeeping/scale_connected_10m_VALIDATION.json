@@ -1,0 +1,15 @@
+{
+  "people": 10000000,
+  "roles": 29997801,
+  "tables": 17,
+  "seed_count": 5,
+  "planted_cases_verified": 14,
+  "csv_bytes": 4717104170,
+  "validation": "streamed hashes/counts/IDs/references and protected paths",
+  "full_distance_oracle_run": false,
+  "full_component_check": false,
+  "connections_from_generator": 129700057,
+  "generation_seconds": 211.76224925002316,
+  "validation_seconds": 226.05096399999456,
+  "peak_rss_bytes": 1051131904
+}

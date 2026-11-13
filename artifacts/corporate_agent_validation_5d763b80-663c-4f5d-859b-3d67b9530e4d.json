@@ -1,0 +1,52 @@
+{
+  "request_id": "5d763b80-663c-4f5d-859b-3d67b9530e4d",
+  "status": "PASS",
+  "returned_paths_verified": 1,
+  "total_connections": 1,
+  "unfiltered_oracle_connections": 1,
+  "oracle_query_id": "01c85f46-040d-33b7-0005-5ee3146f7c12",
+  "transactions": [
+    {
+      "id": "01c85f45-040d-33b7-0005-5ee3146f7506",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 16107,
+      "created_on": "2026-11-12 16:05:35.902000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "85b6ec87b0c2c3ed889e54187f7a8568118c5fd65a55244fb83d0266a572e849",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "as_of": "2026-10-01",
+    "displayed": 1,
+    "pyrel_sha256": "85b6ec87b0c2c3ed889e54187f7a8568118c5fd65a55244fb83d0266a572e849",
+    "ranking": "Shortest path first, strongest product within that hop count; one deterministic witness per source",
+    "request_id": "5d763b80-663c-4f5d-859b-3d67b9530e4d",
+    "rows": [
+      {
+        "connection": "Anika B. Bergstrom",
+        "connection_id": "PE_P0001",
+        "hops": 2,
+        "path": "PE_P0001|CORP_P000193779|CORP_P000000373",
+        "reason": "Anika B. Bergstrom \u2192 Lionel J. Marchetti: K1 employment overlap at Everfield Retail Group (Synthetic): 2014-03-11 to 2017-03-16 (1101 days); Lionel J. Marchetti \u2192 Soren T. Bellamy: K1 employment overlap at Riverwell Materials (Synthetic): 2018-03-01 to 2023-03-18 (1843 days)",
+        "strength": 0.8521560575,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "search_limit_hops": 2,
+    "seconds": 47.57,
+    "sources_searched": 1,
+    "status": "OK",
+    "strength_is_probability": false,
+    "synthetic_data": true,
+    "total_connections": 1,
+    "transaction_ids": [
+      "01c85f45-040d-33b7-0005-5ee3146f7506"
+    ]
+  }
+}

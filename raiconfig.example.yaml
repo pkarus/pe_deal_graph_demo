@@ -1,0 +1,20 @@
+# Copy to raiconfig.yaml (ignored by Git) and enter your own connection values.
+# Store the PAT outside this repository. No credential values belong in this file.
+# Account-specific model constants must also be reviewed for another deployment;
+# see docs/GITHUB_HANDOFF.md.
+default_connection: sf
+connections:
+  sf:
+    type: snowflake
+    authenticator: programmatic_access_token
+    token_file_path: ~/.snowflake/pat_token_pe_demo
+    account: YOUR_SNOWFLAKE_ACCOUNT
+    warehouse: YOUR_WAREHOUSE
+    user: YOUR_SNOWFLAKE_USER
+    role: YOUR_SNOWFLAKE_ROLE
+    database: YOUR_DATABASE
+    schema: YOUR_BASE_SCHEMA
+reasoners:
+  logic:
+    name: YOUR_EXISTING_RAI_ENGINE
+    size: HIGHMEM_X64_S

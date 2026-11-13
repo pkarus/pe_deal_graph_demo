@@ -1,0 +1,117 @@
+{
+  "as_of_date": "2026-10-01",
+  "assumptions": [
+    "Fictional large US corporations; not actual Fortune companies or an empirically fitted Fortune dataset.",
+    "One current employer and 1\u20136 distinct company employers per person; career length at most 42 years.",
+    "Mean tenure is observed employment duration; current jobs are measured through the as-of date, not their eventual end.",
+    "Industry-biased career moves, uneven employer sizes, non-overlapping jobs and optional gaps.",
+    "Company employee counts are simulated full enterprise headcounts; tracked people are a sample.",
+    "Each company has one designated current CEO and CFO, each with at least 15 years of career history.",
+    "PE sponsors, funds, deals, CRM, pipeline and commercial-link tables are intentionally empty.",
+    "No graph edges are generated. RAI remains responsible for graph calculation."
+  ],
+  "companies": 1000,
+  "csv_bytes": 423113825,
+  "employer_count_weights": {
+    "1": 12,
+    "2": 18,
+    "3": 24,
+    "4": 22,
+    "5": 15,
+    "6": 9
+  },
+  "format_version": 1,
+  "mode": "corporate-careers",
+  "people": 1000000,
+  "random_seed": 42,
+  "roles": 3371598,
+  "tables": {
+    "COMMERCIAL_LINK": {
+      "bytes": 54,
+      "rows": 0,
+      "sha256": "3e928d7957c1dc21fbb7aa24a81a545e3428f6dc586b2323d038957d9ef2587b"
+    },
+    "COMPANY": {
+      "bytes": 97565,
+      "rows": 1000,
+      "sha256": "7c995f76db1d4107a15b10b6165374c2ea898a2da1a1235da1ffa2f7729165d8"
+    },
+    "COMPANY_SIGNAL": {
+      "bytes": 87,
+      "rows": 0,
+      "sha256": "9b0eb240bd62315434ba8fac7f6e83b556687a516f3872a26d494cc83eef4951"
+    },
+    "COMPANY_SITE": {
+      "bytes": 132356,
+      "rows": 6965,
+      "sha256": "a0d2a7b5ea3c706e9e041740ea1fcf32620a79674b7180f0643e617300c5ce53"
+    },
+    "CRM_INTERACTION": {
+      "bytes": 129,
+      "rows": 0,
+      "sha256": "68bd4bc204277dbf74c915a83a42dabbd3daad34a5170afb59a55466d2c9a0d5"
+    },
+    "FUND": {
+      "bytes": 108,
+      "rows": 0,
+      "sha256": "117ff37dc227bd6e7660f266135d7ca755c23f4947d0349870dbdfb8f732c9d5"
+    },
+    "FUND_FOCUS": {
+      "bytes": 44,
+      "rows": 0,
+      "sha256": "c0c144c3555986180ec7af29972f75c62ec1b54c7e464f798d0a6610ff2e48ee"
+    },
+    "INTERMEDIARY": {
+      "bytes": 52,
+      "rows": 0,
+      "sha256": "9c904d7f370657dd10ffd16d7eea82a835f0031e35617accb001b399a67beb79"
+    },
+    "OWNERSHIP": {
+      "bytes": 84,
+      "rows": 0,
+      "sha256": "364f7a1e1203c956b85531cd4c75fe440e58d21d8684cf9cf94cd02225d1ac3c"
+    },
+    "PERSON": {
+      "bytes": 50091423,
+      "rows": 1000000,
+      "sha256": "5ed1ea1a54eecdc754fbc9df8e48fa4a7a2bb201d181bce13fbeea2b281d95a6"
+    },
+    "PIPELINE": {
+      "bytes": 66,
+      "rows": 0,
+      "sha256": "2bd68fc68aab99c895513866de207c95f0d83550014e1a330a510a32b780266a"
+    },
+    "REGION": {
+      "bytes": 1930,
+      "rows": 56,
+      "sha256": "d60f81f860e34388d18d792451e5258265ed09ae2a787cf977d14d8ea019ba0c"
+    },
+    "ROLE_HISTORY": {
+      "bytes": 372788332,
+      "rows": 3371598,
+      "sha256": "211360bd37308b3aacbf393d1a1607f03ae1a261c23d666da360679ef8ca362e"
+    },
+    "SECTOR": {
+      "bytes": 1404,
+      "rows": 33,
+      "sha256": "91cac8019498f5c89bfc2a67b6c5bf068b2148b812aabc20f9194e42aa42f33a"
+    },
+    "SPONSOR": {
+      "bytes": 47,
+      "rows": 0,
+      "sha256": "9df3b35e8f2caeae47ad5ac07fbff080987c4ffaff82d0d77987c5e0c25ddca8"
+    },
+    "TRANSACTION": {
+      "bytes": 78,
+      "rows": 0,
+      "sha256": "70652f0cea10e3f818537ea07e2a510e6bd7a627bfe97cafcb9c27627686e521"
+    },
+    "TRANSACTION_PARTY": {
+      "bytes": 66,
+      "rows": 0,
+      "sha256": "291a850993aa9e1462756a9ed124b0d2c838d0765f3cdfb01e2bd3032f47c253"
+    }
+  },
+  "target_mean_tenure_years": 4.0,
+  "total_rows": 4379652
+}

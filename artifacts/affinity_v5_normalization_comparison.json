@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "neighborhoods": [
+    {
+      "person_id": "CORP_P000002008",
+      "edges": 4859,
+      "raw_components_unchanged": true,
+      "ranking_preserved": true,
+      "normalized_median": 0.308778749009267,
+      "normalized_max": 0.800215780514959
+    },
+    {
+      "person_id": "PE_P0001",
+      "edges": 2329,
+      "raw_components_unchanged": true,
+      "ranking_preserved": true,
+      "normalized_median": 0.273679295747345,
+      "normalized_max": 0.528767349552659
+    }
+  ],
+  "raw_fixture_components_unchanged": 10,
+  "strongest_and_shortest_raw_routes_preserved": true,
+  "cohort_raw_edges_preserved": 951,
+  "cohort_degree_and_betweenness_preserved": 2100,
+  "normalization": "Fixed fourth root; no question-specific maximum, percentile, or probability claim."
+}

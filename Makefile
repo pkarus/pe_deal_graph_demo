@@ -81,20 +81,21 @@ demo-script-fixture:
 # R14: check Snowflake auth, resume engine $(ENGINE), start the warm query server, run every hero query.
 # Preconditions are checked before the engine is touched; each failure prints one clear line.
 # Run at T-30 (surfaces problems) and again at T-10 (the engine auto-suspends after 30 idle minutes).
-# Auth errors from `rai connect` are printed verbatim (the PAT expires $(PAT_EXPIRES)).
+# Auth errors from `rai connect` are printed verbatim.
 # The query server keeps the model compiled in one process so live acts skip the 45-75 s first-query cost;
 # if it cannot start, warm still warms the engine in-process and says so. Stop it: $(PY) demo_workspace/ask.py --serve-stop
-PAT_EXPIRES := 2026-10-29
+# Set PAT_EXPIRES=YYYY-MM-DD (the expiry of your current token) to get an early warning; empty = no check.
+PAT_EXPIRES ?=
 warm:
 	@test -x $(PY) || { echo "make warm: FAIL - venv missing. Run: uv sync  (RUNBOOK.md step 2)" >&2; exit 1; }
 	@test -f raiconfig.yaml || { echo "make warm: FAIL - raiconfig.yaml missing in $$PWD (gitignored). Copy it from the main checkout (RUNBOOK.md step 1)." >&2; exit 1; }
 	@$(PY) demo_workspace/ask.py --check || { echo "make warm: FAIL - hero queries not ready (pe_deal_graph/queries.py, owner R11); engine not touched." >&2; exit 1; }
-	@if [ ! "$$(date +%F)" \< "$(PAT_EXPIRES)" ]; then echo "make warm: WARNING - today is on or after $(PAT_EXPIRES), the PAT expiry date in RUNBOOK.md. Expect an auth failure below." >&2; fi
+	@if [ -n "$(PAT_EXPIRES)" ] && [ ! "$$(date +%F)" \< "$(PAT_EXPIRES)" ]; then echo "make warm: WARNING - today is on or after $(PAT_EXPIRES), the PAT expiry date in RUNBOOK.md. Expect an auth failure below." >&2; fi
 	@echo "make warm: checking Snowflake auth (rai connect) ..."
 	@out=$$($(RAI) connect 2>&1); rc=$$?; if [ $$rc -ne 0 ]; then \
 	  echo "$$out" | grep -v -E "^\s*$$" >&2; \
 	  echo "make warm: FAIL - Snowflake auth/connection failed (rai connect output above, verbatim; ignore its generic 'could not reach' hint and read the Error line)." >&2; \
-	  echo "  'Programmatic access token is invalid' or 'expired': the PAT (created 2026-10-22, expires $(PAT_EXPIRES)) must be regenerated in Snowsight for the raiconfig user and written to the token_file_path in raiconfig.yaml." >&2; \
+	  echo "  'Programmatic access token is invalid' or 'expired': the PAT must be regenerated in Snowsight for the raiconfig user and written to the token_file_path in raiconfig.yaml." >&2; \
 	  echo "  'network policy' or 'IP ... not allowed', or a timeout: this network is not allowed for the PAT user. Switch to the hotspot or VPN (RUNBOOK.md, 'Venue network')." >&2; \
 	  exit 1; fi; echo "make warm: auth OK"
 	@echo "make warm: resuming engine $(ENGINE) and waiting for READY ..."

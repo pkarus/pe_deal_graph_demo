@@ -1,0 +1,166 @@
+{
+  "question": "How are Anika B. Bergstrom (PE_P0001) and Soren T. Bellamy (CORP_P000000373) related, and can Anika introduce us to Soren? Only show routes with normalized strength at least 0.1.",
+  "role": "RAI_USER",
+  "seconds": 192.39199320798798,
+  "response": {
+    "content": [
+      {
+        "tool_use": {
+          "client_side_execute": false,
+          "input": {
+            "company": "",
+            "person": "CORP_P000000373",
+            "team_only": false,
+            "title": ""
+          },
+          "name": "find_people",
+          "tool_use_id": "toolu_bdrk_013YPWApZ29kfBhkEwfRhtmJ",
+          "type": "generic"
+        },
+        "type": "tool_use"
+      },
+      {
+        "tool_use": {
+          "client_side_execute": false,
+          "input": {
+            "company": "",
+            "person": "PE_P0001",
+            "team_only": false,
+            "title": ""
+          },
+          "name": "find_people",
+          "tool_use_id": "toolu_bdrk_01GCiZPZS5sj2AbCU8H7xqX6",
+          "type": "generic"
+        },
+        "type": "tool_use"
+      },
+      {
+        "tool_result": {
+          "content": [
+            {
+              "json": {
+                "execution_type": "procedure",
+                "query_id": "01c86077-040d-2d7a-0005-5ee3147a29a6",
+                "result": "{\n  \"query_context\": \"Person, model, graph, center, Sources, best_route, shortest_route, Integer, Float, String. Create query only; the tool executes it.\",\n  \"query_reference\": \"connection, target = Person.ref(), Person.ref()\\nhops = Integer.ref()\\nminimum_hops = Integer.ref()\\nstrength = Float.ref()\\nraw_strength = Float.ref()\\npath = String.ref()\\nreason = String.ref()\\ndistance = graph.distance(from_=center)\\nquery = model.where(\\n    distance(target, connection, minimum_hops),\\n    Sources(connection),\\n    best_route(connection, hops, strength, raw_strength, path, reason),\\n    minimum_hops <= 2,\\n    hops <= 2\\n).select(\\n    connection.id.alias(\\\"connection_id\\\"), connection.name.alias(\\\"connection\\\"),\\n    target.id.alias(\\\"target_id\\\"), target.name.alias(\\\"target\\\"),\\n    strength.alias(\\\"strength\\\"), raw_strength.alias(\\\"raw_strength\\\"), reason.alias(\\\"reason\\\"),\\n    hops.alias(\\\"hops\\\"), minimum_hops.alias(\\\"minimum_hops\\\"), path.alias(\\\"path\\\")\\n)\",\n  \"rows\": [\n    {\n      \"company\": \"Aspenview Materials (Synthetic)\",\n      \"company_id\": \"CORP_C000373\",\n      \"designation\": null,\n      \"designation_basis\": null,\n      \"name\": \"Soren T. Bellamy\",\n      \"on_team\": false,\n      \"person_id\": \"CORP_P000000373\",\n      \"title\": \"Chief Executive Officer\",\n      \"total_matches\": 1\n    }\n  ],\n  \"status\": \"MATCHES\",\n  \"synthetic_data\": true,\n  \"team_firm\": \"Northwind Equity Partners (Synthetic)\",\n  \"total_matches\": 1\n}",
+                "truncated": false
+              },
+              "type": "json"
+            }
+          ],
+          "name": "find_people",
+          "status": "success",
+          "tool_use_id": "toolu_bdrk_013YPWApZ29kfBhkEwfRhtmJ",
+          "type": "generic"
+        },
+        "type": "tool_result"
+      },
+      {
+        "tool_result": {
+          "content": [
+            {
+              "json": {
+                "execution_type": "procedure",
+                "query_id": "01c86077-040d-3184-0005-5ee3147a45f2",
+                "result": "{\n  \"query_context\": \"Person, model, graph, center, Sources, best_route, shortest_route, Integer, Float, String. Create query only; the tool executes it.\",\n  \"query_reference\": \"connection, target = Person.ref(), Person.ref()\\nhops = Integer.ref()\\nminimum_hops = Integer.ref()\\nstrength = Float.ref()\\nraw_strength = Float.ref()\\npath = String.ref()\\nreason = String.ref()\\ndistance = graph.distance(from_=center)\\nquery = model.where(\\n    distance(target, connection, minimum_hops),\\n    Sources(connection),\\n    best_route(connection, hops, strength, raw_strength, path, reason),\\n    minimum_hops <= 2,\\n    hops <= 2\\n).select(\\n    connection.id.alias(\\\"connection_id\\\"), connection.name.alias(\\\"connection\\\"),\\n    target.id.alias(\\\"target_id\\\"), target.name.alias(\\\"target\\\"),\\n    strength.alias(\\\"strength\\\"), raw_strength.alias(\\\"raw_strength\\\"), reason.alias(\\\"reason\\\"),\\n    hops.alias(\\\"hops\\\"), minimum_hops.alias(\\\"minimum_hops\\\"), path.alias(\\\"path\\\")\\n)\",\n  \"rows\": [\n    {\n      \"company\": \"Northwind Equity Partners (Synthetic)\",\n      \"company_id\": \"PE_FIRM_NORTHWIND\",\n      \"designation\": null,\n      \"designation_basis\": null,\n      \"name\": \"Anika B. Bergstrom\",\n      \"on_team\": true,\n      \"person_id\": \"PE_P0001\",\n      \"title\": \"Investment Associate\",\n      \"total_matches\": 1\n    }\n  ],\n  \"status\": \"MATCHES\",\n  \"synthetic_data\": true,\n  \"team_firm\": \"Northwind Equity Partners (Synthetic)\",\n  \"total_matches\": 1\n}",
+                "truncated": false
+              },
+              "type": "json"
+            }
+          ],
+          "name": "find_people",
+          "status": "success",
+          "tool_use_id": "toolu_bdrk_01GCiZPZS5sj2AbCU8H7xqX6",
+          "type": "generic"
+        },
+        "type": "tool_result"
+      },
+      {
+        "tool_use": {
+          "client_side_execute": false,
+          "input": {
+            "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\nraw_strength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, raw_strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2,\n    strength >= 0.1\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), raw_strength.alias(\"raw_strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+            "source_id": "PE_P0001",
+            "target_id": "CORP_P000000373",
+            "top_n": 5
+          },
+          "name": "execute_pyrel",
+          "tool_use_id": "toolu_bdrk_01MQrKgHFikKBYQJYZgGaseZ",
+          "type": "generic"
+        },
+        "type": "tool_use"
+      },
+      {
+        "tool_result": {
+          "content": [
+            {
+              "json": {
+                "execution_type": "procedure",
+                "query_id": "01c86077-040d-3184-0005-5ee3147a4686",
+                "result": "{\n  \"algorithm\": \"native RAI Graph.distance + PyRel employment and strongest-route rules\",\n  \"all_routes_enumerated\": false,\n  \"as_of\": \"2026-10-01\",\n  \"direct_connections\": 0,\n  \"direct_connections_definition\": \"Starting people in this result with a direct modeled edge, even if a stronger two-hop witness was selected\",\n  \"displayed\": 1,\n  \"edge_details\": {\n    \"CORP_P000000373|CORP_P000395632\": {\n      \"career_fraction\": 2.689104490426700e-02,\n      \"career_mean_years\": 1.594387405886379e+01,\n      \"duration_component\": 1.838243615312000e-03,\n      \"effective_years\": 4.287474332648870e-01,\n      \"employment_contribution\": 1.436464425979000e-02,\n      \"friendship_contribution\": 0.000000000000000e+00,\n      \"friendship_score\": 0.000000000000000e+00,\n      \"friendship_source\": \"Not used\",\n      \"friendship_status\": \"Deferred; not used in scoring\",\n      \"left_career_years\": 2.066529774127310e+01,\n      \"left_id\": \"CORP_P000000373\",\n      \"left_name\": \"Soren T. Bellamy\",\n      \"periods\": [\n        \"2023-03-18 to 2024-10-01: 563 days \u00d7 0.25 location \u00d7 0.8 decay = 112.60000000000001 effective days; Aspenview Materials (Synthetic) \u2014 Different, remote or unknown locations; company-only evidence\",\n        \"2024-10-01 to 2025-03-26: 176 days \u00d7 0.25 location \u00d7 1.0 decay = 44.0 effective days; Aspenview Materials (Synthetic) \u2014 Different, remote or unknown locations; company-only evidence\"\n      ],\n      \"raw_strength\": 1.436464425979000e-02,\n      \"raw_years\": 2.023271731690623e+00,\n      \"right_career_years\": 1.122245037645448e+01,\n      \"right_id\": \"CORP_P000395632\",\n      \"right_name\": \"Yara E. Sandoval\",\n      \"strength\": 3.461973337276100e-01,\n      \"time_score\": 1.436464425979000e-02\n    },\n    \"CORP_P000395632|PE_P0001\": {\n      \"career_fraction\": 4.823928722952900e-02,\n      \"career_mean_years\": 1.613278576317591e+01,\n      \"duration_component\": 6.056482929894000e-03,\n      \"effective_years\": 7.782340862422999e-01,\n      \"employment_contribution\": 2.714788507971100e-02,\n      \"friendship_contribution\": 0.000000000000000e+00,\n      \"friendship_score\": 0.000000000000000e+00,\n      \"friendship_source\": \"Not used\",\n      \"friendship_status\": \"Deferred; not used in scoring\",\n      \"left_career_years\": 1.122245037645448e+01,\n      \"left_id\": \"CORP_P000395632\",\n      \"left_name\": \"Yara E. Sandoval\",\n      \"periods\": [\n        \"2014-09-15 to 2016-10-01: 747 days \u00d7 1.0 location \u00d7 0.25 decay = 186.75 effective days; Everfield Retail Group (Synthetic) \u2014 Same office\",\n        \"2016-10-01 to 2017-04-14: 195 days \u00d7 1.0 location \u00d7 0.5 decay = 97.5 effective days; Everfield Retail Group (Synthetic) \u2014 Same office\"\n      ],\n      \"raw_strength\": 2.714788507971100e-02,\n      \"raw_years\": 2.579055441478440e+00,\n      \"right_career_years\": 2.104312114989733e+01,\n      \"right_id\": \"PE_P0001\",\n      \"right_name\": \"Anika B. Bergstrom\",\n      \"strength\": 4.059139720588580e-01,\n      \"time_score\": 2.714788507971100e-02\n    }\n  },\n  \"formula\": \"Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred\",\n  \"friendship_policy\": \"Deferred; preserved facts do not affect scores or create edges\",\n  \"full_decomposition\": \"Every native period and workplace witness is retained in QUERY_AUDIT.RESULT for this request_id and is available in the local edge inspector.\",\n  \"network_context\": {\n    \"affects_strength\": false,\n    \"available\": true,\n    \"metadata\": {\n      \"as_of\": \"2026-10-01\",\n      \"betweenness_is_global\": false,\n      \"betweenness_method\": \"Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology\",\n      \"betweenness_pivots\": 2100,\n      \"community_count\": 1210,\n      \"community_method\": \"Native RAI weighted Louvain, seed 42, max_levels 5\",\n      \"computed_at\": \"2026-11-13T05:06:28.684458+00:00\",\n      \"edge_count\": 951,\n      \"independent_validation\": {\n        \"all_node_betweenness_verified\": 2100,\n        \"betweenness_absolute_tolerance\": 5.000000000000000e-04,\n        \"degree_and_weighted_degree_verified\": true,\n        \"max_betweenness_absolute_error\": 0.000000000000000e+00,\n        \"native_raw_pair_count_factor\": 1.000000000000000e+00,\n        \"note\": \"Louvain partitions can vary; verify coverage and weighted modularity, not identical labels\",\n        \"status\": \"PASS\",\n        \"weighted_modularity\": 9.941383137888926e-01\n      },\n      \"isolated_people\": 761,\n      \"min_raw_strength\": 2.666666666666667e-02,\n      \"min_strength\": 4.041031009353247e-01,\n      \"node_count\": 2100,\n      \"nontrivial_community_count\": 449,\n      \"run_id\": \"c49cca81-9892-4c6a-ad70-e56df52f34e4\",\n      \"scope\": \"Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data\",\n      \"seconds\": 4.077000000000000e+01,\n      \"transactions\": [\n        {\n          \"ENGINE_NAME\": \"alaa_pe_deal_graph_experiment\",\n          \"ID\": \"01c86072-040d-2d7a-0005-5ee31479eea2\",\n          \"STATE\": \"COMPLETED\"\n        },\n        {\n          \"ENGINE_NAME\": \"alaa_pe_deal_graph_experiment\",\n          \"ID\": \"01c86072-040d-3184-0005-5ee31479f92a\",\n          \"STATE\": \"COMPLETED\"\n        }\n      ],\n      \"version\": \"corporate-affinity-v5\",\n      \"weight_scale\": \"Native analytics use unchanged raw weights; displayed edge strengths use fourth-root normalization\"\n    },\n    \"missing_people_mean\": \"Outside the defined cohort, not zero centrality\",\n    \"people\": [\n      {\n        \"betweenness\": 0.000000000000000e+00,\n        \"community_id\": \"1205\",\n        \"degree\": 0,\n        \"person_id\": \"CORP_P000000373\",\n        \"weighted_degree\": 0.000000000000000e+00\n      },\n      {\n        \"betweenness\": 0.000000000000000e+00,\n        \"community_id\": \"663\",\n        \"degree\": 0,\n        \"person_id\": \"PE_P0001\",\n        \"weighted_degree\": 0.000000000000000e+00\n      }\n    ]\n  },\n  \"normalization\": \"fourth-root-v1\",\n  \"pyrel_sha256\": \"c63d09651e1b575083a0cd8c8d82fef1892a4cb0a16a0f2761599f8d73b25584\",\n  \"ranking\": \"Strongest product across paths up to two hops, then fewest hops; one deterministic witness per source\",\n  \"raw_scoring_version\": \"corporate-affinity-v4\",\n  \"request_id\": \"ed2764ef-b1c8-4daa-b781-0cad9da70754\",\n  \"route_formula\": \"One hop = normalized edge strength; two hops = product of normalized leg strengths = fourth root of raw route product\",\n  \"rows\": [\n    {\n      \"connection\": \"Anika B. Bergstrom\",\n      \"connection_id\": \"PE_P0001\",\n      \"edge_ids\": [\n        \"CORP_P000395632|PE_P0001\",\n        \"CORP_P000000373|CORP_P000395632\"\n      ],\n      \"hops\": 2,\n      \"minimum_hops\": 2,\n      \"path\": \"PE_P0001|CORP_P000395632|CORP_P000000373\",\n      \"raw_strength\": 3.899697115760000e-04,\n      \"reason\": \"Anika B. Bergstrom \u2192 Yara E. Sandoval: Representative employment: Everfield Retail Group (Synthetic): 2014-09-15 to 2017-04-14 (942 days; Same office); total shared years=2.5790554414784395; effective shared years=0.7782340862422998; Deferred; not used in scoring; employment contribution=0.02714788507971147, friendship contribution=0.0, raw strength=0.02714788507971147; normalized strength=0.4059139720588575; Yara E. Sandoval \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2025-03-26 (739 days; Different, remote or unknown locations; company-only evidence); total shared years=2.023271731690623; effective shared years=0.4287474332648871; Deferred; not used in scoring; employment contribution=0.014364644259789743, friendship contribution=0.0, raw strength=0.014364644259789743; normalized strength=0.34619733372761047\",\n      \"strength\": 1.405263348495600e-01,\n      \"target\": \"Soren T. Bellamy\",\n      \"target_id\": \"CORP_P000000373\"\n    }\n  ],\n  \"scope\": \"Exact paths up to two hops; no claim about longer paths or global disconnection\",\n  \"scoring_version\": \"corporate-affinity-v5\",\n  \"search_limit_hops\": 2,\n  \"seconds\": 1.492100000000000e+02,\n  \"sources_searched\": 1,\n  \"status\": \"OK\",\n  \"strength_is_probability\": false,\n  \"strength_scale\": \"Normalized 0\u20131: fourth root of unchanged raw score. Fixed scale, not a probability or percentile.\",\n  \"synthetic_data\": true,\n  \"total_connections\": 1,\n  \"total_connections_definition\": \"Number of starting people with a qualifying selected witness; NOT a count of all routes\",\n  \"transaction_ids\": [\n    \"01c86078-040d-3184-0005-5ee3147a48da\",\n    \"01c8607a-040d-3184-0005-5ee3147a60fa\",\n    \"01c8607a-040d-3184-0005-5ee3147a6142\"\n  ]\n}",
+                "truncated": false
+              },
+              "type": "json"
+            }
+          ],
+          "name": "execute_pyrel",
+          "status": "success",
+          "tool_use_id": "toolu_bdrk_01MQrKgHFikKBYQJYZgGaseZ",
+          "type": "generic"
+        },
+        "type": "tool_result"
+      },
+      {
+        "thinking": {
+          "signature": "CAQSowUKEggTEAEYAjgBQgh0aGlua2luZxIMaQYFWoA+OXrk0b6xGgyePlqH6IVt6/89DnUiMA91cF2U/rjzzuYQSzlnPT+jEtDgHmEgxi3n/Qzt/pAR0o3FmzLZsF5vnOKwH0Ie/yq+BL0lvwkaj37Z9OL4+k5BnXUvzDXDoDNRkbQFJTwZpr6/YEkMYr0GHhUvTU9ZA4RogNByMdlp+7e0qBQHbwZdtjHujT2MWbcH/uzvCgbbdwmSj1pYzuR+2IzrRyzAHxeJ+DfPJJt63lzh5pXGD9PLOSPdkGJX4spBr0Ur4kYMOYtKcb4mX0b+AoJxH9w8TqWZHtbvq8JdtM4GJm3+T71ZEbF3cBBXil7ggUbB6nlb4GnAFidCK2uGrDlBtTWjOrO67NBFFrNZcf0GmmTfQva7J+DPTYm5OGK2QEf52BAtIwOHzRHEsiiZD88OiQXFuzvBYWW3dvfT9zUozHluT0pNkHC3ZNw/BBCUXvB1pVKb8DilnSa41LzH7YwnEpQuYU3wIq4yj2HJkI0sNezX7HJ0eC0ZELEBPMY6BVT63dsxiAkqAf/jf5YzPumcXspSXV2v/9vk8zsGJCqWtQB5lHVsEMxfjZ3YtLdpUIqpP+7RLrb2QjjMwAkm3uJM8O78F2YGzHj9fhIM0qGJvFi4PIoE72GcMmPhjz+yX+1vUDmu29/OUyf/9FTNK3FvddlNrN7PaiOH+Lj48jCs3sxmEzHcz2f+KeGG5IJqQnQSyPPR04RWHhPVWhMIKoxTUuUP/5+gncH6k6A5/1ALM+fVMik5pJcOu2GhGAUClu6QZjSfXafK2SyicrADJlBBvXv058NA12wK8L+HYhOXGlIadyd1u4gpavvpD3ECD694kulTYvfwn18nRpzvYJggsfI5kUYYAQ==",
+          "text": "Since minimum_hops is set to 2, I can state that the model found no qualifying direct link, and I'll present that as the final answer.\n\n"
+        },
+        "type": "thinking"
+      },
+      {
+        "text": "Anika is two steps away from Soren, through Yara E. Sandoval. Both links come from records of the three working at the same companies. The route's normalized strength is 0.1405, which clears your 0.1 cutoff. One selected strongest route is shown below. Other qualifying routes may exist.\n\n| Connection | Target | Hops | Strength (normalized) | Reason |\n|---|---|---|---|---|\n| Anika B. Bergstrom (PE_P0001) | Soren T. Bellamy (CORP_P000000373), CEO of Aspenview Materials (Synthetic) | 2 | 0.1405 | Through **Yara E. Sandoval (CORP_P000395632)**. **Link 1, Anika \u2192 Yara (strength 0.4059):** both worked at Everfield Retail Group (Synthetic) from 2014-09-15 to 2017-04-14, in the same office (942 days). **Link 2, Yara \u2192 Soren (strength 0.3462):** both worked at Aspenview Materials (Synthetic) from 2023-03-18 to 2025-03-26 (739 days). This is company-level evidence only; their locations were different, remote or unknown. |\n\n- **How the route score works:** the two link scores multiply to the route score: 0.4059 \u00d7 0.3462 \u2248 0.1405. The unnormalized (raw) route score is 0.000389970.\n- **Why the score is modest:** the Everfield overlap was in the same office, but it is old, so it counts for less. The Aspenview overlap is recent, but the records only place them at the same company, not the same location.\n- **Direct link:** the model found no qualifying direct link between Anika and Soren. The shortest route it found is two steps.\n\n**Can Anika introduce us?** The records support a possible route through Yara E. Sandoval; they do not establish whether Anika B. Bergstrom can make a direct introduction. Working at the same company makes a referral through Yara plausible. It doesn't show that any of them know each other or would be willing to help.\n\n**Limits:**\n- All data is synthetic, as of 2026-10-01.\n- The strength score is a rough estimate, not a probability or percentile.\n- The search only covers routes of up to two steps. Overlaps at our own firm today don't count, and an overlap must last at least a year to count.\n- The search found one starting person (Anika) with a route that meets the cutoff.\n\n**Execution reference:** request_id `ed2764ef-b1c8-4daa-b781-0cad9da70754`; RAI transaction IDs `01c86078-040d-3184-0005-5ee3147a48da`, `01c8607a-040d-3184-0005-5ee3147a60fa`, `01c8607a-040d-3184-0005-5ee3147a6142`.",
+        "type": "text"
+      },
+      {
+        "suggested_queries": [
+          {
+            "query": "Who on our team has the strongest connection to Soren T. Bellamy?"
+          },
+          {
+            "query": "What is the fewest-hops route from Anika B. Bergstrom to Soren T. Bellamy, regardless of strength?"
+          },
+          {
+            "query": "Who is the Head of Data at Aspenview Materials, and how is our team connected to them?"
+          }
+        ],
+        "type": "suggested_queries"
+      }
+    ],
+    "metadata": {
+      "created_on": 1794546888867,
+      "orchestration_model": "claude-opus-5-5",
+      "thinking_effort": "low",
+      "usage": {
+        "tokens_consumed": [
+          {
+            "context_window": 1000000,
+            "input_tokens": {
+              "cache_read": 58112,
+              "cache_write": 26357,
+              "total": 84481,
+              "uncached": 12
+            },
+            "model_name": "claude-opus-5-5",
+            "model_role": "orchestration",
+            "output_tokens": {
+              "total": 1801
+            }
+          }
+        ]
+      }
+    },
+    "role": "assistant",
+    "schema_version": "v2",
+    "sequence_number": 200,
+    "status": "completed"
+  }
+}

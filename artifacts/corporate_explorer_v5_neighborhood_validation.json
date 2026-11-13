@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "person_id": "CORP_P000002008",
+      "all_neighbors_verified": 4859,
+      "max_absolute_error": 1.7763568394002505e-15,
+      "sql_oracle_query_id": "01c86074-040d-3184-0005-5ee3147a17ca",
+      "native_transaction_ids": [
+        "01c86074-040d-3184-0005-5ee3147a15ca"
+      ]
+    },
+    {
+      "person_id": "PE_P0001",
+      "all_neighbors_verified": 2329,
+      "max_absolute_error": 6.661338147750939e-16,
+      "sql_oracle_query_id": "01c86076-040d-2d7a-0005-5ee3147a22a6",
+      "native_transaction_ids": [
+        "01c86075-040d-2d7a-0005-5ee3147a2102"
+      ]
+    }
+  ]
+}

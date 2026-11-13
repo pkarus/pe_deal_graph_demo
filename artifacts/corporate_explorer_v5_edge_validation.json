@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "as_of": "2026-10-01",
+      "strength": 0.523117963076106,
+      "raw_years": 3.98631074606434,
+      "transaction_ids": [
+        "01c86075-040d-2d7a-0005-5ee3147a0e5a",
+        "01c86074-040d-2d7a-0005-5ee3147a0c72"
+      ],
+      "all_components_verified": true
+    },
+    {
+      "as_of": "2020-10-01",
+      "strength": 0.636037676819955,
+      "raw_years": 3.260780287474333,
+      "transaction_ids": [
+        "01c86077-040d-2d7a-0005-5ee3147a2646",
+        "01c86076-040d-2d7a-0005-5ee3147a2452"
+      ],
+      "all_components_verified": true
+    }
+  ]
+}

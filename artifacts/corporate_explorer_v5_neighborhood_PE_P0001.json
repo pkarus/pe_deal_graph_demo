@@ -1,0 +1,1439 @@
+{
+  "transaction_ids": [
+    "01c86075-040d-2d7a-0005-5ee3147a2102"
+  ],
+  "computed_at": "2026-11-13T05:10:08.896475+00:00",
+  "computation_seconds": 39.47,
+  "scoring_version": "corporate-affinity-v5",
+  "center": {
+    "id": "PE_P0001",
+    "name": "Anika B. Bergstrom",
+    "history": [
+      {
+        "role_id": "PE_R0001_1",
+        "company_id": "CORP_C000697",
+        "company": "Everlake Industries (Synthetic)",
+        "role_type": "Employee",
+        "title": "Analyst, Finance",
+        "start_date": "2005-02-17",
+        "end_date": "2009-02-14",
+        "office_id": "CORP_C000697_O3",
+        "city_id": "CORP_C000697_CITY_1",
+        "work_mode": "ONSITE",
+        "tenure_years": 3.991786
+      },
+      {
+        "role_id": "PE_R0001_2",
+        "company_id": "CORP_C000951",
+        "company": "Bluestead Consumer Brands (Synthetic)",
+        "role_type": "Employee",
+        "title": "Senior Finance",
+        "start_date": "2009-02-28",
+        "end_date": "2013-02-27",
+        "office_id": "CORP_C000951_O9",
+        "city_id": "CORP_C000951_CITY_3",
+        "work_mode": "ONSITE",
+        "tenure_years": 3.997262
+      },
+      {
+        "role_id": "PE_R0001_3",
+        "company_id": "CORP_C000776",
+        "company": "Everfield Retail Group (Synthetic)",
+        "role_type": "Employee",
+        "title": "Manager, Strategy",
+        "start_date": "2013-04-20",
+        "end_date": "2017-04-14",
+        "office_id": "CORP_C000776_O1",
+        "city_id": "CORP_C000776_CITY_0",
+        "work_mode": "ONSITE",
+        "tenure_years": 3.983573
+      },
+      {
+        "role_id": "PE_R0001_4",
+        "company_id": "CORP_C000855",
+        "company": "Redgate Communications (Synthetic)",
+        "role_type": "Employee",
+        "title": "Director, Strategy",
+        "start_date": "2017-06-28",
+        "end_date": "2021-06-23",
+        "office_id": "CORP_C000855_O7",
+        "city_id": "CORP_C000855_CITY_2",
+        "work_mode": "ONSITE",
+        "tenure_years": 3.986311
+      },
+      {
+        "role_id": "PE_R0001_5",
+        "company_id": "PE_FIRM_NORTHWIND",
+        "company": "Northwind Equity Partners (Synthetic)",
+        "role_type": "Deal Team",
+        "title": "Investment Associate",
+        "start_date": "2021-08-31",
+        "end_date": null,
+        "office_id": "PE_FIRM_NORTHWIND_O0",
+        "city_id": "PE_FIRM_NORTHWIND_CITY_0",
+        "work_mode": "ONSITE",
+        "tenure_years": 5.084189
+      }
+    ],
+    "network": {
+      "person_id": "PE_P0001",
+      "community_id": "663",
+      "betweenness": 0.0,
+      "degree": 0,
+      "weighted_degree": 0.0
+    },
+    "network_scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+    "as_of": "2026-10-01"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "PE_P0001",
+        "concept": "Center",
+        "label": "Anika B. Bergstrom",
+        "attributes": {
+          "person_id": "PE_P0001",
+          "community_id": "663",
+          "betweenness": 0.0,
+          "degree": 0,
+          "weighted_degree": 0.0
+        }
+      },
+      {
+        "id": "CORP_P000529870",
+        "concept": "Person",
+        "label": "Alana O. Wakefield",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000264831",
+        "concept": "Person",
+        "label": "Nikhil X. Ilves",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000094627",
+        "concept": "Person",
+        "label": "Ezra O. Farrow",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000274509",
+        "concept": "Person",
+        "label": "Miles D. Adair",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000602392",
+        "concept": "Person",
+        "label": "Desmond V. Escobar",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000749416",
+        "concept": "Person",
+        "label": "Oscar X. Selwyn",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000679700",
+        "concept": "Person",
+        "label": "Zeke T. Tanaka",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000255400",
+        "concept": "Person",
+        "label": "Caleb B. Yadav-Oduya",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000322559",
+        "concept": "Person",
+        "label": "Esme J. Ellery",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000051075",
+        "concept": "Person",
+        "label": "Bianca E. Ambrose",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000032642",
+        "concept": "Person",
+        "label": "Miles A. Underhill",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000669847",
+        "concept": "Person",
+        "label": "Maya Y. Balogun",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000588035",
+        "concept": "Person",
+        "label": "Arjun T. Castellan",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000603166",
+        "concept": "Person",
+        "label": "Lucia A. Blackwood",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000156794",
+        "concept": "Person",
+        "label": "Elias S. Merriman",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000216042",
+        "concept": "Person",
+        "label": "Leon A. Tanaka",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000627310",
+        "concept": "Person",
+        "label": "Gareth A. Eastlake-Lindgren",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000679147",
+        "concept": "Person",
+        "label": "Colin E. Wakefield",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000395661",
+        "concept": "Person",
+        "label": "Miles O. Castellan",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000980587",
+        "concept": "Person",
+        "label": "Elise I. Thackeray",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000288768",
+        "concept": "Person",
+        "label": "Zeke N. Calloway",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000092223",
+        "concept": "Person",
+        "label": "Orla Z. Abbott",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000309336",
+        "concept": "Person",
+        "label": "Paloma Z. Mbeki-Shaw",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000739588",
+        "concept": "Person",
+        "label": "Yusuf V. Bellamy",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000937113",
+        "concept": "Person",
+        "label": "Arjun N. Northcott",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000293038",
+        "concept": "Person",
+        "label": "Elise E. Galloway",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000743979",
+        "concept": "Person",
+        "label": "Orla O. Mbeki-Shaw-Quillon",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000424625",
+        "concept": "Person",
+        "label": "Omar C. Halloran",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000375047",
+        "concept": "Person",
+        "label": "Rohan F. Delacroix-Nakashima",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000600808",
+        "concept": "Person",
+        "label": "Yara D. Marchetti",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000079096",
+        "concept": "Person",
+        "label": "Mateo L. Tanaka",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000101740",
+        "concept": "Person",
+        "label": "Camila A. Iwata",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000582397",
+        "concept": "Person",
+        "label": "Teodor Z. Radcliffe",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000830948",
+        "concept": "Person",
+        "label": "Eamon Q. Ambrose",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000640384",
+        "concept": "Person",
+        "label": "Dalia K. Vance",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000157004",
+        "concept": "Person",
+        "label": "Beatrice W. Garrick",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000009831",
+        "concept": "Person",
+        "label": "Kenji R. Rourke",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000465892",
+        "concept": "Person",
+        "label": "Lena C. Draycott",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000285310",
+        "concept": "Person",
+        "label": "Uma Y. Szabo",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000369278",
+        "concept": "Person",
+        "label": "Hana U. Trevino",
+        "attributes": {}
+      }
+    ],
+    "edges": [
+      {
+        "id": "CORP_P000529870--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000529870",
+        "relationship": "0.5288",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same office); total shared years=3.9863107460643397; effective shared years=1.9931553730321698; Deferred; not used in scoring; employment contribution=0.07817331367159468, friendship contribution=0.0, raw strength=0.07817331367159468; normalized strength=0.5287673495526588",
+        "strength": 0.528767349552659,
+        "raw_strength": 0.078173313671595,
+        "attributes": {
+          "strength": 0.528767349552659
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000529870",
+          "name": "Alana O. Wakefield",
+          "distance": 1,
+          "strength": 0.528767349552659,
+          "raw_strength": 0.078173313671595,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same office); total shared years=3.9863107460643397; effective shared years=1.9931553730321698; Deferred; not used in scoring; employment contribution=0.07817331367159468, friendship contribution=0.0, raw strength=0.07817331367159468; normalized strength=0.5287673495526588",
+          "employment_contribution": 0.078173313671595,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.99315537303217,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000264831--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000264831",
+        "relationship": "0.5231",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same office); total shared years=3.9863107460643397; effective shared years=1.9931553730321698; Deferred; not used in scoring; employment contribution=0.07488563782797708, friendship contribution=0.0, raw strength=0.07488563782797708; normalized strength=0.5231179630761065",
+        "strength": 0.523117963076106,
+        "raw_strength": 0.074885637827977,
+        "attributes": {
+          "strength": 0.523117963076106
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000264831",
+          "name": "Nikhil X. Ilves",
+          "distance": 1,
+          "strength": 0.523117963076106,
+          "raw_strength": 0.074885637827977,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same office); total shared years=3.9863107460643397; effective shared years=1.9931553730321698; Deferred; not used in scoring; employment contribution=0.07488563782797708, friendship contribution=0.0, raw strength=0.07488563782797708; normalized strength=0.5231179630761065",
+          "employment_contribution": 0.074885637827977,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.99315537303217,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000094627--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000094627",
+        "relationship": "0.5206",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same office); total shared years=3.9863107460643397; effective shared years=1.9931553730321698; Deferred; not used in scoring; employment contribution=0.07343214229390319, friendship contribution=0.0, raw strength=0.07343214229390319; normalized strength=0.520560906019675",
+        "strength": 0.520560906019675,
+        "raw_strength": 0.073432142293903,
+        "attributes": {
+          "strength": 0.520560906019675
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000094627",
+          "name": "Ezra O. Farrow",
+          "distance": 1,
+          "strength": 0.520560906019675,
+          "raw_strength": 0.073432142293903,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same office); total shared years=3.9863107460643397; effective shared years=1.9931553730321698; Deferred; not used in scoring; employment contribution=0.07343214229390319, friendship contribution=0.0, raw strength=0.07343214229390319; normalized strength=0.520560906019675",
+          "employment_contribution": 0.073432142293903,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.99315537303217,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000274509--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000274509",
+        "relationship": "0.5126",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2018-03-10 to 2021-06-23 (1201 days; Same office); total shared years=3.2881587953456535; effective shared years=1.6440793976728267; Deferred; not used in scoring; employment contribution=0.06904998949091849, friendship contribution=0.0, raw strength=0.06904998949091849; normalized strength=0.5126145207394798",
+        "strength": 0.51261452073948,
+        "raw_strength": 0.069049989490918,
+        "attributes": {
+          "strength": 0.51261452073948
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000274509",
+          "name": "Miles D. Adair",
+          "distance": 1,
+          "strength": 0.51261452073948,
+          "raw_strength": 0.069049989490918,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2018-03-10 to 2021-06-23 (1201 days; Same office); total shared years=3.2881587953456535; effective shared years=1.6440793976728267; Deferred; not used in scoring; employment contribution=0.06904998949091849, friendship contribution=0.0, raw strength=0.06904998949091849; normalized strength=0.5126145207394798",
+          "employment_contribution": 0.069049989490918,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.288158795345654,
+          "effective_years": 1.644079397672827,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000602392--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000602392",
+        "relationship": "0.5124",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-09-08 to 2021-06-23 (1384 days; Same office); total shared years=3.789185489390828; effective shared years=1.894592744695414; Deferred; not used in scoring; employment contribution=0.06890845112791838, friendship contribution=0.0, raw strength=0.06890845112791838; normalized strength=0.5123516298316273",
+        "strength": 0.512351629831627,
+        "raw_strength": 0.068908451127918,
+        "attributes": {
+          "strength": 0.512351629831627
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000602392",
+          "name": "Desmond V. Escobar",
+          "distance": 1,
+          "strength": 0.512351629831627,
+          "raw_strength": 0.068908451127918,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-09-08 to 2021-06-23 (1384 days; Same office); total shared years=3.789185489390828; effective shared years=1.894592744695414; Deferred; not used in scoring; employment contribution=0.06890845112791838, friendship contribution=0.0, raw strength=0.06890845112791838; normalized strength=0.5123516298316273",
+          "employment_contribution": 0.068908451127918,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.789185489390828,
+          "effective_years": 1.894592744695414,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000749416--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000749416",
+        "relationship": "0.4951",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2018-02-08 to 2021-06-23 (1231 days; Same office); total shared years=3.370294318959617; effective shared years=1.6851471594798084; Deferred; not used in scoring; employment contribution=0.06009376543450099, friendship contribution=0.0, raw strength=0.06009376543450099; normalized strength=0.4951164483748019",
+        "strength": 0.495116448374802,
+        "raw_strength": 0.060093765434501,
+        "attributes": {
+          "strength": 0.495116448374802
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000749416",
+          "name": "Oscar X. Selwyn",
+          "distance": 1,
+          "strength": 0.495116448374802,
+          "raw_strength": 0.060093765434501,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2018-02-08 to 2021-06-23 (1231 days; Same office); total shared years=3.370294318959617; effective shared years=1.6851471594798084; Deferred; not used in scoring; employment contribution=0.06009376543450099, friendship contribution=0.0, raw strength=0.06009376543450099; normalized strength=0.4951164483748019",
+          "employment_contribution": 0.060093765434501,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.370294318959617,
+          "effective_years": 1.685147159479808,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000679700--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000679700",
+        "relationship": "0.4920",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2018-02-22 to 2021-06-23 (1217 days; Same office); total shared years=3.3319644079397674; effective shared years=1.6659822039698837; Deferred; not used in scoring; employment contribution=0.05860039988015098, friendship contribution=0.0, raw strength=0.05860039988015098; normalized strength=0.4920113765774466",
+        "strength": 0.492011376577447,
+        "raw_strength": 0.058600399880151,
+        "attributes": {
+          "strength": 0.492011376577447
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000679700",
+          "name": "Zeke T. Tanaka",
+          "distance": 1,
+          "strength": 0.492011376577447,
+          "raw_strength": 0.058600399880151,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2018-02-22 to 2021-06-23 (1217 days; Same office); total shared years=3.3319644079397674; effective shared years=1.6659822039698837; Deferred; not used in scoring; employment contribution=0.05860039988015098, friendship contribution=0.0, raw strength=0.05860039988015098; normalized strength=0.4920113765774466",
+          "employment_contribution": 0.058600399880151,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.331964407939767,
+          "effective_years": 1.665982203969884,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000255400--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000255400",
+        "relationship": "0.4704",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-12-22 (907 days; Same office); total shared years=2.4832306639288158; effective shared years=1.2416153319644079; Deferred; not used in scoring; employment contribution=0.048946562759098956, friendship contribution=0.0, raw strength=0.048946562759098956; normalized strength=0.4703601820541203",
+        "strength": 0.47036018205412,
+        "raw_strength": 0.048946562759099,
+        "attributes": {
+          "strength": 0.47036018205412
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000255400",
+          "name": "Caleb B. Yadav-Oduya",
+          "distance": 1,
+          "strength": 0.47036018205412,
+          "raw_strength": 0.048946562759099,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-12-22 (907 days; Same office); total shared years=2.4832306639288158; effective shared years=1.2416153319644079; Deferred; not used in scoring; employment contribution=0.048946562759098956, friendship contribution=0.0, raw strength=0.048946562759098956; normalized strength=0.4703601820541203",
+          "employment_contribution": 0.048946562759099,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.483230663928816,
+          "effective_years": 1.241615331964408,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000322559--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000322559",
+        "relationship": "0.4639",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2018-09-25 to 2021-06-23 (1002 days; Same office); total shared years=2.7433264887063653; effective shared years=1.3716632443531827; Deferred; not used in scoring; employment contribution=0.04632969691894612, friendship contribution=0.0, raw strength=0.04632969691894612; normalized strength=0.4639432546067373",
+        "strength": 0.463943254606737,
+        "raw_strength": 0.046329696918946,
+        "attributes": {
+          "strength": 0.463943254606737
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000322559",
+          "name": "Esme J. Ellery",
+          "distance": 1,
+          "strength": 0.463943254606737,
+          "raw_strength": 0.046329696918946,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2018-09-25 to 2021-06-23 (1002 days; Same office); total shared years=2.7433264887063653; effective shared years=1.3716632443531827; Deferred; not used in scoring; employment contribution=0.04632969691894612, friendship contribution=0.0, raw strength=0.04632969691894612; normalized strength=0.4639432546067373",
+          "employment_contribution": 0.046329696918946,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.743326488706365,
+          "effective_years": 1.371663244353183,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000051075--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000051075",
+        "relationship": "0.4622",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-13 (1446 days; Same synthetic city; no matching office evidence); total shared years=3.9589322381930185; effective shared years=1.1876796714579057; Deferred; not used in scoring; employment contribution=0.045633491317335725, friendship contribution=0.0, raw strength=0.045633491317335725; normalized strength=0.4621904038149763",
+        "strength": 0.462190403814976,
+        "raw_strength": 0.045633491317336,
+        "attributes": {
+          "strength": 0.462190403814976
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000051075",
+          "name": "Bianca E. Ambrose",
+          "distance": 1,
+          "strength": 0.462190403814976,
+          "raw_strength": 0.045633491317336,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-13 (1446 days; Same synthetic city; no matching office evidence); total shared years=3.9589322381930185; effective shared years=1.1876796714579057; Deferred; not used in scoring; employment contribution=0.045633491317335725, friendship contribution=0.0, raw strength=0.045633491317335725; normalized strength=0.4621904038149763",
+          "employment_contribution": 0.045633491317336,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.958932238193018,
+          "effective_years": 1.187679671457906,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000032642--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000032642",
+        "relationship": "0.4622",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-12-10 (895 days; Same office); total shared years=2.4503764544832305; effective shared years=1.2251882272416152; Deferred; not used in scoring; employment contribution=0.045619731275992254, friendship contribution=0.0, raw strength=0.045619731275992254; normalized strength=0.46215555836408656",
+        "strength": 0.462155558364087,
+        "raw_strength": 0.045619731275992,
+        "attributes": {
+          "strength": 0.462155558364087
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000032642",
+          "name": "Miles A. Underhill",
+          "distance": 1,
+          "strength": 0.462155558364087,
+          "raw_strength": 0.045619731275992,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-12-10 (895 days; Same office); total shared years=2.4503764544832305; effective shared years=1.2251882272416152; Deferred; not used in scoring; employment contribution=0.045619731275992254, friendship contribution=0.0, raw strength=0.045619731275992254; normalized strength=0.46215555836408656",
+          "employment_contribution": 0.045619731275992,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.45037645448323,
+          "effective_years": 1.225188227241615,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000669847--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000669847",
+        "relationship": "0.4604",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04493953906371591, friendship contribution=0.0, raw strength=0.04493953906371591; normalized strength=0.4604231517449756",
+        "strength": 0.460423151744976,
+        "raw_strength": 0.044939539063716,
+        "attributes": {
+          "strength": 0.460423151744976
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000669847",
+          "name": "Maya Y. Balogun",
+          "distance": 1,
+          "strength": 0.460423151744976,
+          "raw_strength": 0.044939539063716,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04493953906371591, friendship contribution=0.0, raw strength=0.04493953906371591; normalized strength=0.4604231517449756",
+          "employment_contribution": 0.044939539063716,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000588035--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000588035",
+        "relationship": "0.4587",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04428418735461402, friendship contribution=0.0, raw strength=0.04428418735461402; normalized strength=0.4587353097082084",
+        "strength": 0.458735309708208,
+        "raw_strength": 0.044284187354614,
+        "attributes": {
+          "strength": 0.458735309708208
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000588035",
+          "name": "Arjun T. Castellan",
+          "distance": 1,
+          "strength": 0.458735309708208,
+          "raw_strength": 0.044284187354614,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04428418735461402, friendship contribution=0.0, raw strength=0.04428418735461402; normalized strength=0.4587353097082084",
+          "employment_contribution": 0.044284187354614,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000603166--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000603166",
+        "relationship": "0.4575",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04381663026142931, friendship contribution=0.0, raw strength=0.04381663026142931; normalized strength=0.4575196420104083",
+        "strength": 0.457519642010408,
+        "raw_strength": 0.043816630261429,
+        "attributes": {
+          "strength": 0.457519642010408
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000603166",
+          "name": "Lucia A. Blackwood",
+          "distance": 1,
+          "strength": 0.457519642010408,
+          "raw_strength": 0.043816630261429,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04381663026142931, friendship contribution=0.0, raw strength=0.04381663026142931; normalized strength=0.4575196420104083",
+          "employment_contribution": 0.043816630261429,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000156794--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000156794",
+        "relationship": "0.4562",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04332172053624301, friendship contribution=0.0, raw strength=0.04332172053624301; normalized strength=0.4562222101577661",
+        "strength": 0.456222210157766,
+        "raw_strength": 0.043321720536243,
+        "attributes": {
+          "strength": 0.456222210157766
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000156794",
+          "name": "Elias S. Merriman",
+          "distance": 1,
+          "strength": 0.456222210157766,
+          "raw_strength": 0.043321720536243,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04332172053624301, friendship contribution=0.0, raw strength=0.04332172053624301; normalized strength=0.4562222101577661",
+          "employment_contribution": 0.043321720536243,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000216042--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000216042",
+        "relationship": "0.4562",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2018-08-30 to 2021-03-08 (921 days; Same office); total shared years=2.521560574948665; effective shared years=1.2607802874743326; Deferred; not used in scoring; employment contribution=0.043294779707868485, friendship contribution=0.0, raw strength=0.043294779707868485; normalized strength=0.45615126496291136",
+        "strength": 0.456151264962911,
+        "raw_strength": 0.043294779707868,
+        "attributes": {
+          "strength": 0.456151264962911
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000216042",
+          "name": "Leon A. Tanaka",
+          "distance": 1,
+          "strength": 0.456151264962911,
+          "raw_strength": 0.043294779707868,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2018-08-30 to 2021-03-08 (921 days; Same office); total shared years=2.521560574948665; effective shared years=1.2607802874743326; Deferred; not used in scoring; employment contribution=0.043294779707868485, friendship contribution=0.0, raw strength=0.043294779707868485; normalized strength=0.45615126496291136",
+          "employment_contribution": 0.043294779707868,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.521560574948665,
+          "effective_years": 1.260780287474333,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000627310--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000627310",
+        "relationship": "0.4559",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04319338078432772, friendship contribution=0.0, raw strength=0.04319338078432772; normalized strength=0.4558839467892438",
+        "strength": 0.455883946789244,
+        "raw_strength": 0.043193380784328,
+        "attributes": {
+          "strength": 0.455883946789244
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000627310",
+          "name": "Gareth A. Eastlake-Lindgren",
+          "distance": 1,
+          "strength": 0.455883946789244,
+          "raw_strength": 0.043193380784328,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.04319338078432772, friendship contribution=0.0, raw strength=0.04319338078432772; normalized strength=0.4558839467892438",
+          "employment_contribution": 0.043193380784328,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000679147--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000679147",
+        "relationship": "0.4532",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.042198544328174915, friendship contribution=0.0, raw strength=0.042198544328174915; normalized strength=0.4532359680799838",
+        "strength": 0.453235968079984,
+        "raw_strength": 0.042198544328175,
+        "attributes": {
+          "strength": 0.453235968079984
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000679147",
+          "name": "Colin E. Wakefield",
+          "distance": 1,
+          "strength": 0.453235968079984,
+          "raw_strength": 0.042198544328175,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.042198544328174915, friendship contribution=0.0, raw strength=0.042198544328174915; normalized strength=0.4532359680799838",
+          "employment_contribution": 0.042198544328175,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000395661--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000395661",
+        "relationship": "0.4453",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.039311015059238764, friendship contribution=0.0, raw strength=0.039311015059238764; normalized strength=0.44527525855527134",
+        "strength": 0.445275258555271,
+        "raw_strength": 0.039311015059239,
+        "attributes": {
+          "strength": 0.445275258555271
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000395661",
+          "name": "Miles O. Castellan",
+          "distance": 1,
+          "strength": 0.445275258555271,
+          "raw_strength": 0.039311015059239,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.039311015059238764, friendship contribution=0.0, raw strength=0.039311015059238764; normalized strength=0.44527525855527134",
+          "employment_contribution": 0.039311015059239,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000980587--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000980587",
+        "relationship": "0.4452",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03928262587691242, friendship contribution=0.0, raw strength=0.03928262587691242; normalized strength=0.4451948458180612",
+        "strength": 0.445194845818061,
+        "raw_strength": 0.039282625876912,
+        "attributes": {
+          "strength": 0.445194845818061
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000980587",
+          "name": "Elise I. Thackeray",
+          "distance": 1,
+          "strength": 0.445194845818061,
+          "raw_strength": 0.039282625876912,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03928262587691242, friendship contribution=0.0, raw strength=0.03928262587691242; normalized strength=0.4451948458180612",
+          "employment_contribution": 0.039282625876912,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000288768--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000288768",
+        "relationship": "0.4438",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03880527072893642, friendship contribution=0.0, raw strength=0.03880527072893642; normalized strength=0.4438361574022803",
+        "strength": 0.44383615740228,
+        "raw_strength": 0.038805270728936,
+        "attributes": {
+          "strength": 0.44383615740228
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000288768",
+          "name": "Zeke N. Calloway",
+          "distance": 1,
+          "strength": 0.44383615740228,
+          "raw_strength": 0.038805270728936,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03880527072893642, friendship contribution=0.0, raw strength=0.03880527072893642; normalized strength=0.4438361574022803",
+          "employment_contribution": 0.038805270728936,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000092223--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000092223",
+        "relationship": "0.4415",
+        "label": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.037991349473472776, friendship contribution=0.0, raw strength=0.037991349473472776; normalized strength=0.44149031416430995",
+        "strength": 0.44149031416431,
+        "raw_strength": 0.037991349473473,
+        "attributes": {
+          "strength": 0.44149031416431
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000092223",
+          "name": "Orla Z. Abbott",
+          "distance": 1,
+          "strength": 0.44149031416431,
+          "raw_strength": 0.037991349473473,
+          "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.037991349473472776, friendship contribution=0.0, raw strength=0.037991349473472776; normalized strength=0.44149031416430995",
+          "employment_contribution": 0.037991349473473,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.983572895277208,
+          "effective_years": 1.129363449691992,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000309336--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000309336",
+        "relationship": "0.4410",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-07-18 to 2021-06-23 (1436 days; Same synthetic city; no matching office evidence); total shared years=3.9315537303216974; effective shared years=1.1794661190965092; Deferred; not used in scoring; employment contribution=0.03783078225830488, friendship contribution=0.0, raw strength=0.03783078225830488; normalized strength=0.441023092670287",
+        "strength": 0.441023092670287,
+        "raw_strength": 0.037830782258305,
+        "attributes": {
+          "strength": 0.441023092670287
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000309336",
+          "name": "Paloma Z. Mbeki-Shaw",
+          "distance": 1,
+          "strength": 0.441023092670287,
+          "raw_strength": 0.037830782258305,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-07-18 to 2021-06-23 (1436 days; Same synthetic city; no matching office evidence); total shared years=3.9315537303216974; effective shared years=1.1794661190965092; Deferred; not used in scoring; employment contribution=0.03783078225830488, friendship contribution=0.0, raw strength=0.03783078225830488; normalized strength=0.441023092670287",
+          "employment_contribution": 0.037830782258305,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.931553730321697,
+          "effective_years": 1.179466119096509,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000739588--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000739588",
+        "relationship": "0.4398",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2018-04-14 to 2021-06-23 (1166 days; Same synthetic city; no matching office evidence); total shared years=3.19233401779603; effective shared years=0.9577002053388091; Deferred; not used in scoring; employment contribution=0.03740636500500812, friendship contribution=0.0, raw strength=0.03740636500500812; normalized strength=0.43978091328150487",
+        "strength": 0.439780913281505,
+        "raw_strength": 0.037406365005008,
+        "attributes": {
+          "strength": 0.439780913281505
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000739588",
+          "name": "Yusuf V. Bellamy",
+          "distance": 1,
+          "strength": 0.439780913281505,
+          "raw_strength": 0.037406365005008,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2018-04-14 to 2021-06-23 (1166 days; Same synthetic city; no matching office evidence); total shared years=3.19233401779603; effective shared years=0.9577002053388091; Deferred; not used in scoring; employment contribution=0.03740636500500812, friendship contribution=0.0, raw strength=0.03740636500500812; normalized strength=0.43978091328150487",
+          "employment_contribution": 0.037406365005008,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.19233401779603,
+          "effective_years": 0.957700205338809,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000937113--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000937113",
+        "relationship": "0.4367",
+        "label": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.036372946005755774, friendship contribution=0.0, raw strength=0.036372946005755774; normalized strength=0.43671149100355794",
+        "strength": 0.436711491003558,
+        "raw_strength": 0.036372946005756,
+        "attributes": {
+          "strength": 0.436711491003558
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000937113",
+          "name": "Arjun N. Northcott",
+          "distance": 1,
+          "strength": 0.436711491003558,
+          "raw_strength": 0.036372946005756,
+          "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.036372946005755774, friendship contribution=0.0, raw strength=0.036372946005755774; normalized strength=0.43671149100355794",
+          "employment_contribution": 0.036372946005756,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.983572895277208,
+          "effective_years": 1.129363449691992,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000293038--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000293038",
+        "relationship": "0.4366",
+        "label": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.03635115001898187, friendship contribution=0.0, raw strength=0.03635115001898187; normalized strength=0.43664605296083203",
+        "strength": 0.436646052960832,
+        "raw_strength": 0.036351150018982,
+        "attributes": {
+          "strength": 0.436646052960832
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000293038",
+          "name": "Elise E. Galloway",
+          "distance": 1,
+          "strength": 0.436646052960832,
+          "raw_strength": 0.036351150018982,
+          "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.03635115001898187, friendship contribution=0.0, raw strength=0.03635115001898187; normalized strength=0.43664605296083203",
+          "employment_contribution": 0.036351150018982,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.983572895277208,
+          "effective_years": 1.129363449691992,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000743979--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000743979",
+        "relationship": "0.4361",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.0361702024292447, friendship contribution=0.0, raw strength=0.0361702024292447; normalized strength=0.4361016550142004",
+        "strength": 0.4361016550142,
+        "raw_strength": 0.036170202429245,
+        "attributes": {
+          "strength": 0.4361016550142
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000743979",
+          "name": "Orla O. Mbeki-Shaw-Quillon",
+          "distance": 1,
+          "strength": 0.4361016550142,
+          "raw_strength": 0.036170202429245,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.0361702024292447, friendship contribution=0.0, raw strength=0.0361702024292447; normalized strength=0.4361016550142004",
+          "employment_contribution": 0.036170202429245,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000424625--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000424625",
+        "relationship": "0.4356",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-07-24 to 2019-07-31 (737 days; Same office); total shared years=2.0177960301163584; effective shared years=1.0088980150581792; Deferred; not used in scoring; employment contribution=0.035990843529182755, friendship contribution=0.0, raw strength=0.035990843529182755; normalized strength=0.43556001728388744",
+        "strength": 0.435560017283887,
+        "raw_strength": 0.035990843529183,
+        "attributes": {
+          "strength": 0.435560017283887
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000424625",
+          "name": "Omar C. Halloran",
+          "distance": 1,
+          "strength": 0.435560017283887,
+          "raw_strength": 0.035990843529183,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-07-24 to 2019-07-31 (737 days; Same office); total shared years=2.0177960301163584; effective shared years=1.0088980150581792; Deferred; not used in scoring; employment contribution=0.035990843529182755, friendship contribution=0.0, raw strength=0.035990843529182755; normalized strength=0.43556001728388744",
+          "employment_contribution": 0.035990843529183,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.017796030116358,
+          "effective_years": 1.008898015058179,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000375047--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000375047",
+        "relationship": "0.4348",
+        "label": "Representative employment: Everfield Retail Group (Synthetic): 2013-09-03 to 2017-04-14 (1319 days; Same office); total shared years=3.6112251882272415; effective shared years=1.0362765229295003; Deferred; not used in scoring; employment contribution=0.03574167704881666, friendship contribution=0.0, raw strength=0.03574167704881666; normalized strength=0.4348042010764273",
+        "strength": 0.434804201076427,
+        "raw_strength": 0.035741677048817,
+        "attributes": {
+          "strength": 0.434804201076427
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000375047",
+          "name": "Rohan F. Delacroix-Nakashima",
+          "distance": 1,
+          "strength": 0.434804201076427,
+          "raw_strength": 0.035741677048817,
+          "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2013-09-03 to 2017-04-14 (1319 days; Same office); total shared years=3.6112251882272415; effective shared years=1.0362765229295003; Deferred; not used in scoring; employment contribution=0.03574167704881666, friendship contribution=0.0, raw strength=0.03574167704881666; normalized strength=0.4348042010764273",
+          "employment_contribution": 0.035741677048817,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.611225188227242,
+          "effective_years": 1.0362765229295,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000600808--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000600808",
+        "relationship": "0.4326",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-07-13 (745 days; Same office); total shared years=2.0396988364134154; effective shared years=1.0198494182067077; Deferred; not used in scoring; employment contribution=0.035012388948990766, friendship contribution=0.0, raw strength=0.035012388948990766; normalized strength=0.43256904335387397",
+        "strength": 0.432569043353874,
+        "raw_strength": 0.035012388948991,
+        "attributes": {
+          "strength": 0.432569043353874
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000600808",
+          "name": "Yara D. Marchetti",
+          "distance": 1,
+          "strength": 0.432569043353874,
+          "raw_strength": 0.035012388948991,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-07-13 (745 days; Same office); total shared years=2.0396988364134154; effective shared years=1.0198494182067077; Deferred; not used in scoring; employment contribution=0.035012388948990766, friendship contribution=0.0, raw strength=0.035012388948990766; normalized strength=0.43256904335387397",
+          "employment_contribution": 0.035012388948991,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.039698836413415,
+          "effective_years": 1.019849418206708,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000079096--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000079096",
+        "relationship": "0.4318",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-09-07 (801 days; Same office); total shared years=2.193018480492813; effective shared years=1.0965092402464065; Deferred; not used in scoring; employment contribution=0.03475224383991175, friendship contribution=0.0, raw strength=0.03475224383991175; normalized strength=0.43176328835753475",
+        "strength": 0.431763288357535,
+        "raw_strength": 0.034752243839912,
+        "attributes": {
+          "strength": 0.431763288357535
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000079096",
+          "name": "Mateo L. Tanaka",
+          "distance": 1,
+          "strength": 0.431763288357535,
+          "raw_strength": 0.034752243839912,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2019-09-07 (801 days; Same office); total shared years=2.193018480492813; effective shared years=1.0965092402464065; Deferred; not used in scoring; employment contribution=0.03475224383991175, friendship contribution=0.0, raw strength=0.03475224383991175; normalized strength=0.43176328835753475",
+          "employment_contribution": 0.034752243839912,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.193018480492813,
+          "effective_years": 1.096509240246406,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000101740--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000101740",
+        "relationship": "0.4310",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-07-05 to 2020-07-21 (1112 days; Same synthetic city; no matching office evidence); total shared years=3.0444900752908968; effective shared years=0.9133470225872689; Deferred; not used in scoring; employment contribution=0.03449552987144031, friendship contribution=0.0, raw strength=0.03449552987144031; normalized strength=0.43096371383061727",
+        "strength": 0.430963713830617,
+        "raw_strength": 0.03449552987144,
+        "attributes": {
+          "strength": 0.430963713830617
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000101740",
+          "name": "Camila A. Iwata",
+          "distance": 1,
+          "strength": 0.430963713830617,
+          "raw_strength": 0.03449552987144,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-07-05 to 2020-07-21 (1112 days; Same synthetic city; no matching office evidence); total shared years=3.0444900752908968; effective shared years=0.9133470225872689; Deferred; not used in scoring; employment contribution=0.03449552987144031, friendship contribution=0.0, raw strength=0.03449552987144031; normalized strength=0.43096371383061727",
+          "employment_contribution": 0.03449552987144,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.044490075290897,
+          "effective_years": 0.913347022587269,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000582397--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000582397",
+        "relationship": "0.4299",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03416880264275825, friendship contribution=0.0, raw strength=0.03416880264275825; normalized strength=0.42993959209506466",
+        "strength": 0.429939592095065,
+        "raw_strength": 0.034168802642758,
+        "attributes": {
+          "strength": 0.429939592095065
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000582397",
+          "name": "Teodor Z. Radcliffe",
+          "distance": 1,
+          "strength": 0.429939592095065,
+          "raw_strength": 0.034168802642758,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03416880264275825, friendship contribution=0.0, raw strength=0.03416880264275825; normalized strength=0.42993959209506466",
+          "employment_contribution": 0.034168802642758,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000830948--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000830948",
+        "relationship": "0.4293",
+        "label": "Representative employment: Everfield Retail Group (Synthetic): 2013-11-23 to 2017-04-14 (1238 days; Same office); total shared years=3.3894592744695413; effective shared years=0.9808350444900753; Deferred; not used in scoring; employment contribution=0.03395753050723604, friendship contribution=0.0, raw strength=0.03395753050723604; normalized strength=0.4292734461620716",
+        "strength": 0.429273446162072,
+        "raw_strength": 0.033957530507236,
+        "attributes": {
+          "strength": 0.429273446162072
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000830948",
+          "name": "Eamon Q. Ambrose",
+          "distance": 1,
+          "strength": 0.429273446162072,
+          "raw_strength": 0.033957530507236,
+          "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2013-11-23 to 2017-04-14 (1238 days; Same office); total shared years=3.3894592744695413; effective shared years=0.9808350444900753; Deferred; not used in scoring; employment contribution=0.03395753050723604, friendship contribution=0.0, raw strength=0.03395753050723604; normalized strength=0.4292734461620716",
+          "employment_contribution": 0.033957530507236,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.389459274469541,
+          "effective_years": 0.980835044490075,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000640384--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000640384",
+        "relationship": "0.4290",
+        "label": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-03-19 (1429 days; Same office); total shared years=3.912388774811773; effective shared years=1.0937713894592744; Deferred; not used in scoring; employment contribution=0.03386220128028296, friendship contribution=0.0, raw strength=0.03386220128028296; normalized strength=0.4289718528453112",
+        "strength": 0.428971852845311,
+        "raw_strength": 0.033862201280283,
+        "attributes": {
+          "strength": 0.428971852845311
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000640384",
+          "name": "Dalia K. Vance",
+          "distance": 1,
+          "strength": 0.428971852845311,
+          "raw_strength": 0.033862201280283,
+          "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-03-19 (1429 days; Same office); total shared years=3.912388774811773; effective shared years=1.0937713894592744; Deferred; not used in scoring; employment contribution=0.03386220128028296, friendship contribution=0.0, raw strength=0.03386220128028296; normalized strength=0.4289718528453112",
+          "employment_contribution": 0.033862201280283,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.912388774811773,
+          "effective_years": 1.093771389459274,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000157004--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000157004",
+        "relationship": "0.4285",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2020-08-30 (1159 days; Same synthetic city; no matching office evidence); total shared years=3.1731690622861053; effective shared years=0.9519507186858316; Deferred; not used in scoring; employment contribution=0.03372745693346808, friendship contribution=0.0, raw strength=0.03372745693346808; normalized strength=0.42854447377626603",
+        "strength": 0.428544473776266,
+        "raw_strength": 0.033727456933468,
+        "attributes": {
+          "strength": 0.428544473776266
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000157004",
+          "name": "Beatrice W. Garrick",
+          "distance": 1,
+          "strength": 0.428544473776266,
+          "raw_strength": 0.033727456933468,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2020-08-30 (1159 days; Same synthetic city; no matching office evidence); total shared years=3.1731690622861053; effective shared years=0.9519507186858316; Deferred; not used in scoring; employment contribution=0.03372745693346808, friendship contribution=0.0, raw strength=0.03372745693346808; normalized strength=0.42854447377626603",
+          "employment_contribution": 0.033727456933468,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.173169062286105,
+          "effective_years": 0.951950718685832,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000009831--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000009831",
+        "relationship": "0.4276",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2020-09-05 (1165 days; Same synthetic city; no matching office evidence); total shared years=3.189596167008898; effective shared years=0.9568788501026694; Deferred; not used in scoring; employment contribution=0.03343376598590998, friendship contribution=0.0, raw strength=0.03343376598590998; normalized strength=0.427608495140245",
+        "strength": 0.427608495140245,
+        "raw_strength": 0.03343376598591,
+        "attributes": {
+          "strength": 0.427608495140245
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000009831",
+          "name": "Kenji R. Rourke",
+          "distance": 1,
+          "strength": 0.427608495140245,
+          "raw_strength": 0.03343376598591,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2020-09-05 (1165 days; Same synthetic city; no matching office evidence); total shared years=3.189596167008898; effective shared years=0.9568788501026694; Deferred; not used in scoring; employment contribution=0.03343376598590998, friendship contribution=0.0, raw strength=0.03343376598590998; normalized strength=0.427608495140245",
+          "employment_contribution": 0.03343376598591,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.189596167008898,
+          "effective_years": 0.956878850102669,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000465892--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000465892",
+        "relationship": "0.4265",
+        "label": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.03308844026438112, friendship contribution=0.0, raw strength=0.03308844026438112; normalized strength=0.42650003773240336",
+        "strength": 0.426500037732403,
+        "raw_strength": 0.033088440264381,
+        "attributes": {
+          "strength": 0.426500037732403
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000465892",
+          "name": "Lena C. Draycott",
+          "distance": 1,
+          "strength": 0.426500037732403,
+          "raw_strength": 0.033088440264381,
+          "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2013-04-20 to 2017-04-14 (1455 days; Same office); total shared years=3.9835728952772076; effective shared years=1.1293634496919918; Deferred; not used in scoring; employment contribution=0.03308844026438112, friendship contribution=0.0, raw strength=0.03308844026438112; normalized strength=0.42650003773240336",
+          "employment_contribution": 0.033088440264381,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.983572895277208,
+          "effective_years": 1.129363449691992,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000285310--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000285310",
+        "relationship": "0.4264",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2018-08-17 to 2021-06-23 (1041 days; Same synthetic city; no matching office evidence); total shared years=2.8501026694045173; effective shared years=0.8550308008213553; Deferred; not used in scoring; employment contribution=0.033053863358826194, friendship contribution=0.0, raw strength=0.033053863358826194; normalized strength=0.4263885725662758",
+        "strength": 0.426388572566276,
+        "raw_strength": 0.033053863358826,
+        "attributes": {
+          "strength": 0.426388572566276
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000285310",
+          "name": "Uma Y. Szabo",
+          "distance": 1,
+          "strength": 0.426388572566276,
+          "raw_strength": 0.033053863358826,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2018-08-17 to 2021-06-23 (1041 days; Same synthetic city; no matching office evidence); total shared years=2.8501026694045173; effective shared years=0.8550308008213553; Deferred; not used in scoring; employment contribution=0.033053863358826194, friendship contribution=0.0, raw strength=0.033053863358826194; normalized strength=0.4263885725662758",
+          "employment_contribution": 0.033053863358826,
+          "friendship_contribution": 0.0,
+          "raw_years": 2.850102669404517,
+          "effective_years": 0.855030800821355,
+          "total_neighbors": 2329
+        }
+      },
+      {
+        "id": "CORP_P000369278--PE_P0001",
+        "source": "PE_P0001",
+        "target": "CORP_P000369278",
+        "relationship": "0.4255",
+        "label": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03276957134233036, friendship contribution=0.0, raw strength=0.03276957134233036; normalized strength=0.4254687722885547",
+        "strength": 0.425468772288555,
+        "raw_strength": 0.03276957134233,
+        "attributes": {
+          "strength": 0.425468772288555
+        },
+        "summary": {
+          "source_id": "PE_P0001",
+          "person_id": "CORP_P000369278",
+          "name": "Hana U. Trevino",
+          "distance": 1,
+          "strength": 0.425468772288555,
+          "raw_strength": 0.03276957134233,
+          "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same synthetic city; no matching office evidence); total shared years=3.9863107460643397; effective shared years=1.1958932238193019; Deferred; not used in scoring; employment contribution=0.03276957134233036, friendship contribution=0.0, raw strength=0.03276957134233036; normalized strength=0.4254687722885547",
+          "employment_contribution": 0.03276957134233,
+          "friendship_contribution": 0.0,
+          "raw_years": 3.98631074606434,
+          "effective_years": 1.195893223819302,
+          "total_neighbors": 2329
+        }
+      }
+    ]
+  },
+  "total_neighbors": 2329,
+  "shown_neighbors": 40,
+  "has_more": true,
+  "cached": false,
+  "source": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT",
+  "engine": "alaa_pe_deal_graph_experiment",
+  "algorithm": "Native RAI Graph.distance + shared PyRel affinity rules",
+  "scope": "Exact one-hop incident graph; links between neighbors are outside this view",
+  "network_metadata": {
+    "run_id": "c49cca81-9892-4c6a-ad70-e56df52f34e4",
+    "as_of": "2026-10-01",
+    "version": "corporate-affinity-v5",
+    "min_strength": 0.4041031009353247,
+    "min_raw_strength": 0.02666666666666667,
+    "weight_scale": "Native analytics use unchanged raw weights; displayed edge strengths use fourth-root normalization",
+    "scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+    "node_count": 2100,
+    "edge_count": 951,
+    "community_count": 1210,
+    "isolated_people": 761,
+    "nontrivial_community_count": 449,
+    "community_method": "Native RAI weighted Louvain, seed 42, max_levels 5",
+    "betweenness_method": "Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology",
+    "betweenness_pivots": 2100,
+    "betweenness_is_global": false,
+    "transactions": [
+      {
+        "ID": "01c86072-040d-2d7a-0005-5ee31479eea2",
+        "STATE": "COMPLETED",
+        "ENGINE_NAME": "alaa_pe_deal_graph_experiment"
+      },
+      {
+        "ID": "01c86072-040d-3184-0005-5ee31479f92a",
+        "STATE": "COMPLETED",
+        "ENGINE_NAME": "alaa_pe_deal_graph_experiment"
+      }
+    ],
+    "computed_at": "2026-11-13T05:06:28.684458+00:00",
+    "seconds": 40.77,
+    "independent_validation": {
+      "status": "PASS",
+      "all_node_betweenness_verified": 2100,
+      "native_raw_pair_count_factor": 1.0,
+      "weighted_modularity": 0.9941383137888926,
+      "betweenness_absolute_tolerance": 0.0005,
+      "max_betweenness_absolute_error": 0.0,
+      "degree_and_weighted_degree_verified": true,
+      "note": "Louvain partitions can vary; verify coverage and weighted modularity, not identical labels"
+    }
+  },
+  "as_of": "2026-10-01",
+  "min_strength": 0.0,
+  "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred"
+}

@@ -1,0 +1,271 @@
+{
+  "database": "ALAA_RELAPP_PERSISTENCE",
+  "schemas": [
+    "PE_DEAL_GRAPH_EXPERIMENT_COMMUNITY",
+    "PE_DEAL_GRAPH_EXPERIMENT_COMMUNITY_META",
+    "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K",
+    "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_META",
+    "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_PATHS",
+    "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_SRC",
+    "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY",
+    "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_META",
+    "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_PATHS",
+    "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_SRC",
+    "PE_DEAL_GRAPH_EXPERIMENT_INTRO_APP",
+    "PE_DEAL_GRAPH_EXPERIMENT_INTRO_APP_META",
+    "PE_DEAL_GRAPH_EXPERIMENT_TARGETS",
+    "PE_DEAL_GRAPH_EXPERIMENT_TARGETS_META"
+  ],
+  "actions": [
+    {
+      "action": "delete_workspace_streams",
+      "sources": [
+        "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_PATHS.GRAPH_PAIRS",
+        "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_PATHS.GRAPH_PEOPLE"
+      ],
+      "query_id": "01c85eeb-040d-3184-0005-5ee3146a98e6",
+      "result": [
+        [
+          "{\n  \"deleted\": 2,\n  \"errors\": []\n}"
+        ]
+      ]
+    },
+    {
+      "action": "delete_workspace_streams",
+      "sources": [
+        "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_PATHS.GRAPH_PAIRS",
+        "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_PATHS.GRAPH_PEOPLE"
+      ],
+      "query_id": "01c85eeb-040d-3184-0005-5ee3146a9a6a",
+      "result": [
+        [
+          "{\n  \"deleted\": 2,\n  \"errors\": []\n}"
+        ]
+      ]
+    },
+    {
+      "action": "drop_old_agent",
+      "query_id": "01c85eeb-040d-3184-0005-5ee3146a9cb6",
+      "rows": [
+        {
+          "status": "PE_GRAPH_ASSISTANT successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_COMMUNITY",
+      "query_id": "01c85eeb-040d-2d7a-0005-5ee3146aad56",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_COMMUNITY successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_COMMUNITY_META",
+      "query_id": "01c85eeb-040d-3184-0005-5ee3146a9cba",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_COMMUNITY_META successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K",
+      "query_id": "01c85eeb-040d-2d7a-0005-5ee3146aad5a",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_META",
+      "query_id": "01c85eeb-040d-3184-0005-5ee3146a9cbe",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_META successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_PATHS",
+      "query_id": "01c85eeb-040d-3184-0005-5ee3146a9cc2",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_PATHS successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_SRC",
+      "query_id": "01c85eeb-040d-2d7a-0005-5ee3146aad5e",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_100K_SRC successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY",
+      "query_id": "01c85eeb-040d-3184-0005-5ee3146a9cce",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_META",
+      "query_id": "01c85eeb-040d-2d7a-0005-5ee3146aad66",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_META successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_PATHS",
+      "query_id": "01c85eeb-040d-2d7a-0005-5ee3146aad6e",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_PATHS successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_SRC",
+      "query_id": "01c85eec-040d-3184-0005-5ee3146a9cd6",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_DEPLOY_SRC successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_INTRO_APP",
+      "query_id": "01c85eec-040d-3184-0005-5ee3146a9cda",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_INTRO_APP successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_INTRO_APP_META",
+      "query_id": "01c85eec-040d-3184-0005-5ee3146a9cde",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_INTRO_APP_META successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_TARGETS",
+      "query_id": "01c85eec-040d-3184-0005-5ee3146a9ce2",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_TARGETS successfully dropped."
+        }
+      ]
+    },
+    {
+      "action": "drop_schema",
+      "schema": "PE_DEAL_GRAPH_EXPERIMENT_TARGETS_META",
+      "query_id": "01c85eec-040d-3184-0005-5ee3146a9ce6",
+      "rows": [
+        {
+          "status": "PE_DEAL_GRAPH_EXPERIMENT_TARGETS_META successfully dropped."
+        }
+      ]
+    }
+  ],
+  "remaining_schemas": [
+    {
+      "SCHEMA_NAME": "BACKORDER_AGENT"
+    },
+    {
+      "SCHEMA_NAME": "BACKORDER_MODEL"
+    },
+    {
+      "SCHEMA_NAME": "BACKORDER_MODEL_META"
+    },
+    {
+      "SCHEMA_NAME": "LAB_COLLECTION_AGENT"
+    },
+    {
+      "SCHEMA_NAME": "LAB_COLLECTION_MODEL"
+    },
+    {
+      "SCHEMA_NAME": "LAB_COLLECTION_MODEL_META"
+    },
+    {
+      "SCHEMA_NAME": "M_81A687B5861546799E316EE35288B7C9"
+    },
+    {
+      "SCHEMA_NAME": "M_81A687B5861546799E316EE35288B7C9_META"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_META"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_PATHS"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_10M_SRC"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_META"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_PATHS"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_SRC"
+    },
+    {
+      "SCHEMA_NAME": "PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_2M"
+    },
+    {
+      "SCHEMA_NAME": "PUBLIC"
+    },
+    {
+      "SCHEMA_NAME": "_RELATIONALAI_MODEL_MGMT"
+    },
+    {
+      "SCHEMA_NAME": "INFORMATION_SCHEMA"
+    }
+  ],
+  "remaining_tables": [
+    {
+      "N": 387
+    }
+  ],
+  "retired_table_view_count": 494,
+  "retired_active_bytes": 221341039
+}

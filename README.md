@@ -1,56 +1,65 @@
-# Northwind deal-graph demo
+# Corporate introductions with RelationalAI
 
-A live demo of a private equity deal-graph built on RelationalAI (PyRel 1.27.1) running inside Snowflake. Northwind Equity Partners is a fictional US lower-mid-market buyout firm (Fund III, 2019, harvesting; Fund IV, 2023, $1.2B, investing). All companies, people, sponsors and banks are synthetic. Every date rule is relative to `AS_OF = 2026-10-01`, never today.
+A Snowflake Cortex agent and local people-graph explorer for a synthetic corporate network. The agent resolves people and companies, authors a restricted read-only PyRel query, and executes relationship rules and native graph reasoning in RelationalAI. It returns introduction routes, normalized strengths, employment evidence and execution references.
 
-## If you are an agent scanning this repo
+## Current status — November 13, 2026
 
-Read this section first. Do not explore the repo.
+- Active scoring: **corporate-affinity-v5**. Employment overlap, workplace proximity, temporal decay, complete-career normalization and squared duration are calculated in RAI. Friendship is deferred. A fixed fourth-root transformation provides the displayed strength; raw scores remain available.
+- Active agent: strongest eligible **one- or two-hop** routes, with natural-language reasons, bold recommended people and request/native transaction references.
+- Local explorer: on-demand one-hop neighborhoods, edge decomposition, and native RAI community/betweenness snapshots for the declared leadership cohort. The display selects the strongest N connections; it does not show a representative sample of the entire neighborhood.
+- **Three-hop work is experimental and not deployed.** Controlled fixtures passed, but full-team queries timed out on the existing engine. The code is preserved under `experiments/three_hop_agent/`.
+- This prepared copy contains no local credentials or installed dependencies. Account-specific resource identifiers remain in source and historical validation records; this is not a portable, one-command deployment to a new account.
 
-1. **Answering deal-team questions:** work from `demo_workspace/` and follow `demo_workspace/CLAUDE.md`. It is the source of truth for the presenter session: which prebuilt function answers which question, the answer format, and the rules for ad-hoc questions and the Finale.
-2. **Hero questions** are answered by running a prebuilt function, once, in the foreground, from `demo_workspace/`:
+## Project layout
 
-   | Question is about | Run |
-   |---|---|
-   | Thesis fit, readiness, Tier A, score components, not in CRM | `uv run python ask.py q_score` |
-   | Warm path, introductions, who knows the CEO (and the owner's board designee) | `uv run python ask.py q_path` |
-   | Intermediaries, bankers, deal flow, bridges, coverage gaps | `uv run python ask.py q_flow` |
-   | Conflicts with what we own, concentration guideline, a bid on Tessmark Clinical Supply | `uv run python ask.py q_conflict` |
-   | Backup: add-ons for Ironvale Testing Group | `uv run python ask.py q_addon` |
-   | Finale fallback: warm-path points plus conflict flag, re-score | `uv run python ask.py finale_rescore` |
-
-   `uv run python ask.py --list` shows what exists. Answer only from the rows returned.
-3. **Engine unreachable** (`ask.py` exits 3): run `uv run python ask.py --from-exports <function>` and say the live engine is not reachable and this is the precomputed governed export. Do not retry live.
-4. **New questions or rules:** load the RAI skill first (`rai-querying`, `rai-rules-authoring`, `rai-graph-analysis`), then write PyRel against the existing model in `demo_workspace/scratch/<name>.py`. Never write SQL. `ONTOLOGY.md` lists the usable names; `demo_workspace/query_bank.md` has the query patterns.
-5. **Python:** always `uv run python ...`. The venv is `.venv` (Python 3.13, relationalai 1.27.1). Do not install packages, do not use `pip`, do not touch the engine or Snowflake directly.
-6. **Wording that matters:** a conflict flag ("Conflict - cross-fund review") means "on hold until cross-fund clearance", not removed or disqualified. Tier A names with no pipeline entry and no CRM touch have "no coverage". In `q_path`, any returned path up to 3 hops is a warm path; the 2-hop limit applies only to the Finale access-points rule.
-7. **Never commit** `raiconfig.yaml` or any token file. They are gitignored and hold the Snowflake connection and programmatic access token.
-
-## Layout
-
-| Path | What it is |
+| Path | Purpose |
 |---|---|
-| `demo_workspace/` | Presenter session: `CLAUDE.md`, `ask.py`, `prompts.md`, `query_bank.md`, `scratch/` |
-| `pe_deal_graph/model/` | The model: `core.py` concepts, `rules.py` derived rules (docstrings are the business definitions), `graphs.py` graphs |
-| `pe_deal_graph/queries.py` | The hero queries |
-| `exports/` | Precomputed governed exports used by `--from-exports` and the offline explorer |
-| `artifacts/` | Offline Deal Graph Explorer and run-of-show HTML (rebuilt by `make artifacts`) |
-| `data/` | Synthetic source data and golden expected answers |
-| `ONTOLOGY.md`, `QUESTIONS.md` | Ontology reference and the demo questions |
-| `RUNBOOK.md`, `TEST_PLAN.md` | Operating the demo; fresh checkout to live in five commands |
-| `Makefile`, `scripts/`, `tests/` | Setup, warm-up, checks and rehearsal |
+| `corporate_agent/` | Shared PyRel scoring, route rules, Cortex tools, deployment and validation |
+| `pyrel_semantic_graph_explorer/` | FastAPI service and Next.js/Cytoscape visualization |
+| `pe_deal_graph/corporate_graph.py` | Native RAI neighborhood and pair queries |
+| `data/` | Synthetic generators, small regression fixtures and the separate 100-person PE team |
+| `sql/corporate_agent_audit.sql` | Application and native execution audit queries |
+| `artifacts/` | Selected existing validation evidence and legacy offline fixtures |
+| `tests/`, `specs/` | Tests and requirements, including the incomplete three-hop amendment |
+| `experiments/three_hop_agent/` | Undeployed three-hop implementation and bounded benchmark |
 
-## Running it yourself
+The original PE deal-graph demo, exports and small fixtures remain for regression coverage. See [the legacy README](LEGACY_README.md) and [historical cleanup notes](docs/housekeeping/README.md). Historical deployment commands are not instructions to recreate retired schemas.
 
-You need a Snowflake account with the RelationalAI native app, the `pe_demo_logic` engine, and your own `raiconfig.yaml` (not in the repo). See `RUNBOOK.md` for the full sequence; in short:
+## Local setup
+
+Use Python 3.13, uv and Node.js 20.9 or newer. Create your own `raiconfig.yaml` from `raiconfig.example.yaml` and supply your own Snowflake PAT file outside the repository.
 
 ```bash
 uv sync --python 3.13
-make warm
-cd demo_workspace && claude
+uv pip install --python .venv/bin/python -r pyrel_semantic_graph_explorer/service/requirements-corporate.txt
+cd pyrel_semantic_graph_explorer/ui-next
+npm ci
+cd ../..
+bash pyrel_semantic_graph_explorer/start.sh
 ```
 
-Without a live engine, `uv run python ask.py --from-exports q_score` (and the other functions) still works from `exports/`.
+The UI runs at http://127.0.0.1:3000 and the API at http://127.0.0.1:8000. These steps expect the source tables and RAI engine for the configured account to exist. See [the handoff notes](docs/GITHUB_HANDOFF.md) before deploying to another account. Node/npm serve the visualization; RAI calculates relationships and neighborhoods.
 
-## Data and privacy
+## Data included and omitted
 
-Everything here is synthetic. In a real deployment the data, the model and the reasoning run inside the customer's Snowflake account; the agent sees only the result rows of the queries it runs.
+The corporate generator produces 1,000,000 fictional people across 1,000 companies, with 1–6 distinct employers per career and mean observed tenure near four years. The separate PE team has 100 employees and 450 employment records. Large corporate and enrichment CSVs are omitted from this copy; generators and compact validation manifests are included. Small baseline/10K fixtures and offline exports remain for local tests.
+
+To regenerate the original corporate dataset locally:
+
+```bash
+.venv/bin/python data/generate.py --corporate --people 1000000 --companies 1000 --seed 42 --out data/corporate_1m_1000_companies
+.venv/bin/python data/generate.py --corporate-check --out data/corporate_1m_1000_companies
+```
+
+The generators refuse existing destinations. `data/corporate_enrichment_v2/` intentionally contains only the manifest used by the explorer fingerprint. Read [the regeneration notes](docs/GITHUB_HANDOFF.md#data-regeneration) before generating enrichment.
+
+## Validation and evidence
+
+Existing live evidence is preserved with its original IDs and timestamps; packaging does not imply a new live run:
+
+- [V5 score and route acceptance](artifacts/corporate_affinity_v5_acceptance.json)
+- [Natural response presentation acceptance](artifacts/corporate_presentation_acceptance.json)
+- [Investigation of clustered displayed strengths](artifacts/normalized_score_cluster_investigation.json)
+- [Original corporate dataset validation](docs/datasets/corporate_1m_1000_companies/VALIDATION.json)
+
+For the active formulas, source tables, scope and audit behavior, see [corporate agent documentation](corporate_agent/README.md). Independent SQL/Python oracles are validation tools; they do not supply production graph answers.

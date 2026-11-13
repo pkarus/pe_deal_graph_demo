@@ -1,0 +1,13 @@
+{
+  "schema": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT",
+  "corporate_source": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_1M_SRC",
+  "checks": {
+    "team_count": 100.0,
+    "team_roles": 450.0,
+    "head_designations": 1000.0,
+    "orphan_employers": 0.0,
+    "mean_tenure_years": 3.979971099247,
+    "team_with_external_overlap": 100.0,
+    "career_overlaps": 0.0
+  }
+}

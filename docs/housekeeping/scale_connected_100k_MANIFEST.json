@@ -1,0 +1,295 @@
+{
+  "as_of_date": "2026-10-01",
+  "bulk_attachment": "SCALE_P000000000",
+  "csv_bytes": 47197120,
+  "examples": [
+    {
+      "hops": 1,
+      "route": [
+        "SCALE_P000000000",
+        "SCALE_P000000001"
+      ],
+      "source": "SCALE_P000000000",
+      "target": "SCALE_P000000001"
+    },
+    {
+      "hops": 2,
+      "route": [
+        "SCALE_P000000000",
+        "SCALE_P000000001",
+        "SCALE_P000000002"
+      ],
+      "source": "SCALE_P000000000",
+      "target": "SCALE_P000000002"
+    },
+    {
+      "hops": 3,
+      "route": [
+        "SCALE_P000000000",
+        "SCALE_P000000001",
+        "SCALE_P000000002",
+        "SCALE_P000000003"
+      ],
+      "source": "SCALE_P000000000",
+      "target": "SCALE_P000000003"
+    },
+    {
+      "hops": 4,
+      "route": [
+        "SCALE_P000000000",
+        "SCALE_P000000001",
+        "SCALE_P000000002",
+        "SCALE_P000000003",
+        "SCALE_P000000004"
+      ],
+      "source": "SCALE_P000000000",
+      "target": "SCALE_P000000004"
+    },
+    {
+      "hops": 5,
+      "route": [
+        "SCALE_P000000000",
+        "SCALE_P000000001",
+        "SCALE_P000000002",
+        "SCALE_P000000003",
+        "SCALE_P000000004",
+        "SCALE_P000000005"
+      ],
+      "source": "SCALE_P000000000",
+      "target": "SCALE_P000000005"
+    },
+    {
+      "hops": 0,
+      "route": [
+        "SCALE_P000000000"
+      ],
+      "source": "SCALE_P000000000",
+      "target": "SCALE_P000000000"
+    },
+    {
+      "hops": null,
+      "route": [],
+      "source": "SCALE_P000000000",
+      "target": "SCALE_P000000006"
+    }
+  ],
+  "expected_connections": 1297797,
+  "expected_largest_component": 99999,
+  "isolated_person": "SCALE_P000000006",
+  "min_tie_strength": 0.0,
+  "mode": "scale-connected",
+  "path_protection": "Only node 0 attaches to bulk; nodes 1\u20135 have no outside neighbors.",
+  "people": 100000,
+  "protected_path": [
+    "SCALE_P000000000",
+    "SCALE_P000000001",
+    "SCALE_P000000002",
+    "SCALE_P000000003",
+    "SCALE_P000000004",
+    "SCALE_P000000005"
+  ],
+  "random_seed": 42,
+  "role_date_windows": [
+    [
+      "2014-01-01",
+      "2021-01-01"
+    ],
+    [
+      "2019-01-01",
+      "2025-01-01"
+    ],
+    [
+      "2023-01-01",
+      ""
+    ],
+    [
+      "2024-01-01",
+      ""
+    ]
+  ],
+  "roles": 300109,
+  "seed_ids": [
+    "P19079",
+    "P25319",
+    "P26028",
+    "P26070",
+    "P95007"
+  ],
+  "tables": {
+    "COMMERCIAL_LINK": {
+      "bytes": 54,
+      "file": "COMMERCIAL_LINK.csv",
+      "rows": 0,
+      "sha256": "3e928d7957c1dc21fbb7aa24a81a545e3428f6dc586b2323d038957d9ef2587b"
+    },
+    "COMPANY": {
+      "bytes": 3484363,
+      "file": "COMPANY.csv",
+      "rows": 42369,
+      "sha256": "105f2d31dda34c07cf1895c3b3294e258b7877d74a8460c4d7224583075d2c2a"
+    },
+    "COMPANY_SIGNAL": {
+      "bytes": 87,
+      "file": "COMPANY_SIGNAL.csv",
+      "rows": 0,
+      "sha256": "9b0eb240bd62315434ba8fac7f6e83b556687a516f3872a26d494cc83eef4951"
+    },
+    "COMPANY_SITE": {
+      "bytes": 21,
+      "file": "COMPANY_SITE.csv",
+      "rows": 0,
+      "sha256": "5c99def7bc215f337b410765888cbff698e086d9c6620fb2df73380849bd3178"
+    },
+    "CRM_INTERACTION": {
+      "bytes": 129,
+      "file": "CRM_INTERACTION.csv",
+      "rows": 0,
+      "sha256": "68bd4bc204277dbf74c915a83a42dabbd3daad34a5170afb59a55466d2c9a0d5"
+    },
+    "FUND": {
+      "bytes": 244,
+      "file": "FUND.csv",
+      "rows": 2,
+      "sha256": "bc8f7c0c700f11c363dd49b106cbe738820473ed5f60ceafb1a68d17b95e6d65"
+    },
+    "FUND_FOCUS": {
+      "bytes": 44,
+      "file": "FUND_FOCUS.csv",
+      "rows": 0,
+      "sha256": "c0c144c3555986180ec7af29972f75c62ec1b54c7e464f798d0a6610ff2e48ee"
+    },
+    "INTERMEDIARY": {
+      "bytes": 52,
+      "file": "INTERMEDIARY.csv",
+      "rows": 0,
+      "sha256": "9c904d7f370657dd10ffd16d7eea82a835f0031e35617accb001b399a67beb79"
+    },
+    "OWNERSHIP": {
+      "bytes": 84,
+      "file": "OWNERSHIP.csv",
+      "rows": 0,
+      "sha256": "364f7a1e1203c956b85531cd4c75fe440e58d21d8684cf9cf94cd02225d1ac3c"
+    },
+    "PERSON": {
+      "bytes": 8699767,
+      "file": "PERSON.csv",
+      "rows": 100000,
+      "sha256": "b21e5b23c943cbc291a74734a189f29c75056730530c0aa14f714e304efe8083"
+    },
+    "PIPELINE": {
+      "bytes": 66,
+      "file": "PIPELINE.csv",
+      "rows": 0,
+      "sha256": "2bd68fc68aab99c895513866de207c95f0d83550014e1a330a510a32b780266a"
+    },
+    "REGION": {
+      "bytes": 75,
+      "file": "REGION.csv",
+      "rows": 1,
+      "sha256": "2c8bd910fa4a1a1015345d4fabe849d83bf0f707cf6be9d161e5de2efb390a91"
+    },
+    "ROLE_HISTORY": {
+      "bytes": 35011833,
+      "file": "ROLE_HISTORY.csv",
+      "rows": 300109,
+      "sha256": "cfa12b2b69b3d2e5a2c0b46d3b213655f399be5996a266c0b81efed9c2a2ceb9"
+    },
+    "SECTOR": {
+      "bytes": 56,
+      "file": "SECTOR.csv",
+      "rows": 1,
+      "sha256": "213278309da6631f824d49d33ff2c88fd2a6f59f54ab129d763118d00c434f70"
+    },
+    "SPONSOR": {
+      "bytes": 101,
+      "file": "SPONSOR.csv",
+      "rows": 1,
+      "sha256": "edb1d35c8f53a5488c755997dc30804c857eca01c062372b5d83097093e7a6a4"
+    },
+    "TRANSACTION": {
+      "bytes": 78,
+      "file": "TRANSACTION.csv",
+      "rows": 0,
+      "sha256": "70652f0cea10e3f818537ea07e2a510e6bd7a627bfe97cafcb9c27627686e521"
+    },
+    "TRANSACTION_PARTY": {
+      "bytes": 66,
+      "file": "TRANSACTION_PARTY.csv",
+      "rows": 0,
+      "sha256": "291a850993aa9e1462756a9ed124b0d2c838d0765f3cdfb01e2bd3032f47c253"
+    }
+  },
+  "team_examples": [
+    {
+      "hops": 1,
+      "route": [
+        "P19079",
+        "SCALE_P000000000"
+      ],
+      "source": "P19079",
+      "target": "SCALE_P000000000"
+    },
+    {
+      "hops": 2,
+      "route": [
+        "P19079",
+        "SCALE_P000000000",
+        "SCALE_P000000001"
+      ],
+      "source": "P19079",
+      "target": "SCALE_P000000001"
+    },
+    {
+      "hops": 3,
+      "route": [
+        "P19079",
+        "SCALE_P000000000",
+        "SCALE_P000000001",
+        "SCALE_P000000002"
+      ],
+      "source": "P19079",
+      "target": "SCALE_P000000002"
+    },
+    {
+      "hops": 4,
+      "route": [
+        "P19079",
+        "SCALE_P000000000",
+        "SCALE_P000000001",
+        "SCALE_P000000002",
+        "SCALE_P000000003"
+      ],
+      "source": "P19079",
+      "target": "SCALE_P000000003"
+    },
+    {
+      "hops": 5,
+      "route": [
+        "P19079",
+        "SCALE_P000000000",
+        "SCALE_P000000001",
+        "SCALE_P000000002",
+        "SCALE_P000000003",
+        "SCALE_P000000004"
+      ],
+      "source": "P19079",
+      "target": "SCALE_P000000004"
+    },
+    {
+      "hops": 0,
+      "route": [
+        "P19079"
+      ],
+      "source": "P19079",
+      "target": "P19079"
+    },
+    {
+      "hops": null,
+      "route": [],
+      "source": "P19079",
+      "target": "SCALE_P000000006"
+    }
+  ],
+  "total_rows": 442483,
+  "workplace_size": 16
+}

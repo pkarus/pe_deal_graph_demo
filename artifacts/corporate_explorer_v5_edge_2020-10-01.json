@@ -1,0 +1,81 @@
+{
+  "left_id": "CORP_P000264831",
+  "right_id": "PE_P0001",
+  "left_name": "Nikhil X. Ilves",
+  "right_name": "Anika B. Bergstrom",
+  "left_career_years": 10.182067077344286,
+  "right_career_years": 15.233401779603012,
+  "raw_years": 3.260780287474333,
+  "effective_years": 3.008898015058179,
+  "career_mean_years": 12.70773442847365,
+  "career_fraction": 0.236776904018098,
+  "duration_component": 0.090534672650211,
+  "time_score": 0.163655788334154,
+  "friendship_score": 0.0,
+  "employment_contribution": 0.163655788334154,
+  "friendship_contribution": 0.0,
+  "strength": 0.636037676819955,
+  "raw_strength": 0.163655788334154,
+  "friendship_status": "Deferred; not used in scoring",
+  "friendship_source": "Not used",
+  "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2020-10-01 (1191 days; Same office); total shared years=3.260780287474333; effective shared years=3.0088980150581794; Deferred; not used in scoring; employment contribution=0.16365578833415406, friendship contribution=0.0, raw strength=0.16365578833415406; normalized strength=0.636037676819955",
+  "scoring_version": "corporate-affinity-v5",
+  "as_of": "2020-10-01",
+  "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+  "periods": [
+    {
+      "start_date": "2017-06-28T00:00:00.000",
+      "end_date": "2018-10-01T00:00:00.000",
+      "days": 460,
+      "bucket": 1,
+      "recency_band": "2\u20135 years",
+      "decay_factor": 0.8,
+      "spatial_factor": 1.0,
+      "weighted_days": 368.0,
+      "supporting_employment": [
+        {
+          "role_a": "CORP_R0000896385",
+          "role_b": "PE_R0001_4",
+          "company": "Redgate Communications (Synthetic)",
+          "office_a": "CORP_C000855_O7",
+          "office_b": "CORP_C000855_O7",
+          "city_a": "CORP_C000855_CITY_2",
+          "city_b": "CORP_C000855_CITY_2",
+          "spatial_basis": "Same office",
+          "evidence_spatial_factor": 1.0
+        }
+      ]
+    },
+    {
+      "start_date": "2018-10-01T00:00:00.000",
+      "end_date": "2020-10-01T00:00:00.000",
+      "days": 731,
+      "bucket": 0,
+      "recency_band": "0\u20132 years",
+      "decay_factor": 1.0,
+      "spatial_factor": 1.0,
+      "weighted_days": 731.0,
+      "supporting_employment": [
+        {
+          "role_a": "CORP_R0000896385",
+          "role_b": "PE_R0001_4",
+          "company": "Redgate Communications (Synthetic)",
+          "office_a": "CORP_C000855_O7",
+          "office_b": "CORP_C000855_O7",
+          "city_a": "CORP_C000855_CITY_2",
+          "city_b": "CORP_C000855_CITY_2",
+          "spatial_basis": "Same office",
+          "evidence_spatial_factor": 1.0
+        }
+      ]
+    }
+  ],
+  "synthetic": true,
+  "transaction_ids": [
+    "01c86077-040d-2d7a-0005-5ee3147a2646",
+    "01c86076-040d-2d7a-0005-5ee3147a2452"
+  ],
+  "computed_at": "2026-11-13T05:11:04.754762+00:00",
+  "computation_seconds": 55.48,
+  "cached": false
+}

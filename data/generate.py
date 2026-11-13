@@ -4,6 +4,11 @@
 Usage
     python data/generate.py            # writes data/csv/*.csv, data/csv/MANIFEST.json,
                                        # data/golden/expected.json, data/golden/stories.md
+    python data/generate.py --scale --out data/scale_10k  # separate 10K fixture
+    python data/generate.py --scale-check --out data/scale_10k  # local oracle only
+    python data/generate.py --scale-connected --people 10000 --workplace-size 16 --out data/scale_connected_10k
+    python data/generate.py --corporate --people 1000000 --companies 1000 --out data/corporate_1m_1000_companies
+    python data/generate.py --corporate-check --out data/corporate_1m_1000_companies
     python data/generate.py --check    # R05 self-check of the written CSVs against golden intent
     python data/generate.py --noise --out data/csv_noise   # R12: signal + noise into DIR (golden unchanged)
     python data/generate.py --check --out data/csv_noise   # R05 self-check on DIR
@@ -3422,7 +3427,493 @@ def build(noise: bool = False) -> World:
     return w
 
 
+def connected_scale_layout(people, workplace_size, seed):
+    """Same seeded topology, compact integer memberships and streamed CSV rows.
+
+    Memory grows with people and roles, never with the number of person pairs.
+    Only one person's bounded neighborhood is materialized when counting edges.
+    """
+    import runpy
+    from array import array
+    import numpy as np
+    if people < 20 or not 6 <= workplace_size <= 32:
+        raise ValueError('Connected scale requires >=20 people and workplace size 6–32')
+    oracle = runpy.run_path(str(ROOT / 'oracle.py'))
+    demo = oracle['Data']()
+    team = oracle['our_seeds'](demo)
+    if len(team) != 5:
+        raise ValueError('Expected the five existing demo team seeds')
+    rng = random.Random(seed)
+    pid = lambda i: team[i-7] if 7 <= i < 12 else f'SCALE_P{i:09d}'
+    counts = bytearray(people)
+    desired = bytearray(2 if i < 7 else rng.randint(3,4) if i < 12 else rng.randint(2,4)
+                        for i in range(people))
+    # Company IDs start at 1 here; zero represents the team sponsor.
+    by_person = np.zeros((people, 4), dtype=np.uint32)
+    role_people, role_orgs, sizes = array('I'), array('I'), array('B')
+    def role(person, company=0):
+        slot = counts[person]
+        if slot >= 4 or company in by_person[person, :slot]:
+            raise ValueError('Invalid or duplicate workplace membership')
+        by_person[person, slot] = company
+        counts[person] += 1
+        role_people.append(person)
+        role_orgs.append(company)
+        if company:
+            sizes[company-1] += 1
+    def workplace(members):
+        sizes.append(0)
+        company = len(sizes)
+        for person in members:
+            role(person, company)
+        return company
+    for i in range(7, 12): role(i)
+    for i in range(5): workplace([i,i+1])
+    workplace([5]); workplace([6]); workplace([6])
+    bulk = range(7, people)
+    limit = min(workplace_size-2, len(bulk)//2)
+    choices = [n for n in (2,3,4,6,8,12,16,24,30) if n <= limit]
+    homes = array('I')
+    offset = 0
+    while offset < len(bulk):
+        members = bulk[offset:offset+rng.choice(choices)]
+        homes.append(members[0])
+        workplace(members)
+        offset += len(members)
+    for i, person in enumerate(homes): role(person, 9 + (i+1) % len(homes))
+    role(0, 9)
+    del homes
+    choices = [n for n in (2,3,4,6,8,12,16,24,32) if n <= workplace_size]
+    while True:
+        pending = array('I', (i for i in bulk if counts[i] < desired[i]))
+        if not pending: break
+        rng.shuffle(pending)
+        offset = 0
+        while offset < len(pending):
+            members = pending[offset:offset+rng.choice(choices)]
+            workplace(members)
+            offset += len(members)
+    if counts != desired or max(sizes) > workplace_size:
+        raise ValueError('Connected role/workplace bounds failed')
+    del desired, pending
+    # Stable organization grouping retains only integer role indices, not edges.
+    orgs = np.frombuffer(role_orgs, dtype=np.uint32)
+    persons = np.frombuffer(role_people, dtype=np.uint32)
+    order = np.argsort(orgs, kind='stable')
+    members = persons[order]
+    del order
+    offsets = np.empty(len(sizes)+2, dtype=np.int64)
+    offsets[0] = 0
+    offsets[1] = 5
+    np.cumsum(np.frombuffer(sizes, dtype=np.uint8), out=offsets[2:])
+    offsets[2:] += 5
+    connections = 0
+    for person in range(people):
+        neighbors = set()
+        for company in by_person[person, :counts[person]]:
+            neighbors.update(members[offsets[company]:offsets[company+1]].tolist())
+        connections += sum(other > person for other in neighbors)
+    del members, offsets, by_person, orgs, persons
+    windows = [('2014-01-01','2021-01-01'), ('2019-01-01','2025-01-01'),
+               ('2023-01-01',''), ('2024-01-01','')]
+    def roles():
+        company_counts = bytearray(people)
+        for index, (person, company) in enumerate(zip(role_people, role_orgs)):
+            team_type = None
+            if company:
+                start, end = windows[company_counts[person]]
+                company_counts[person] += 1
+            else:
+                start, end = '2024-01-01', ''
+                team_type = next(r['role_type'] for r in demo.current_roles_at(demo.nw_id, {'Deal Team','Operating Partner'})
+                                 if r['person_id'] == pid(person))
+            yield dict(role_id=f'SCALE_R{index:09d}', person_id=pid(person),
+                       org_id=f'SCALE_C{company-1:09d}' if company else 'SCALE_S',
+                       org_type='company' if company else 'sponsor',
+                       role_type=team_type or 'Employee', title=team_type or 'Operations professional',
+                       start_date=start, end_date=end, is_founder='FALSE')
+    def person_rows():
+        names_rng = random.Random(seed)
+        for i in range(people):
+            if 7 <= i < 12:
+                yield dict(demo.person[pid(i)])
+            else:
+                last = f'Synthetic{names_rng.randrange(1_000_000_000):09d}'
+                yield dict(person_id=pid(i), first_name=f'Person{i:09d}', last_name=last,
+                           full_name=f'Person{i:09d} {last}')
+    def companies():
+        for i, size in enumerate(sizes):
+            yield dict(company_id=f'SCALE_C{i:09d}', name=f'Connected workplace {i:09d}',
+                       sector_id='SCALE_SC', hq_region_id='SCALE_G', revenue_musd=10, ebitda_musd=2,
+                       employees=size, founded_year=2010, is_public='FALSE')
+    examples = [dict(source=pid(0), target=pid(h), hops=h, route=[pid(i) for i in range(h+1)]) for h in range(1,6)]
+    examples += [dict(source=pid(0),target=pid(0),hops=0,route=[pid(0)]),
+                 dict(source=pid(0),target=pid(6),hops=None,route=[])]
+    return {'PERSON': person_rows(), 'COMPANY': companies(), 'ROLE_HISTORY': roles()}, {
+        'mode':'scale-connected', 'roles':len(role_people), 'expected_connections':connections,
+        'seed_ids':team, 'examples':examples,
+        'team_examples':[dict(source=team[0],target=pid(h-1),hops=h,
+                              route=[team[0]]+[pid(i) for i in range(h)]) for h in range(1,6)]
+                        + [dict(source=team[0],target=team[0],hops=0,route=[team[0]]),
+                           dict(source=team[0],target=pid(6),hops=None,route=[])],
+        'expected_largest_component':people-1,
+        'protected_path':[pid(i) for i in range(6)], 'bulk_attachment':pid(0),
+        'isolated_person':pid(6),
+        'path_protection':'Only node 0 attaches to bulk; nodes 1–5 have no outside neighbors.',
+        'role_date_windows':[list(w) for w in windows]}
+
+
+# Scale fixtures are deliberately independent of the demo's finite shuffled ID pools.
+def write_scale(out: Path, people: int = 10_000, workplace_size: int = 8, seed: int = 42, *, connected=False):
+    """Stream a bounded-workplace K1 fixture; never overwrite an existing directory."""
+    if people < 7 or people > (10_000_000 if connected else 1_000_000):
+        raise ValueError("Scale people must be between 7 and the mode limit (connected: 10M; sparse: 1M)")
+    if not 2 <= workplace_size <= 32:
+        raise ValueError("Workplace size must be between 2 and 32")
+    out = Path(out).resolve()
+    protected = (ROOT / "csv", ROOT / "golden")
+    if any(out == p.resolve() or p.resolve() in out.parents for p in protected):
+        raise ValueError("Scale output cannot be inside demo CSV or golden directories")
+    if out.exists(): raise FileExistsError(out)
+    layout, connected_manifest = connected_scale_layout(people, workplace_size, seed) if connected else ({}, {})
+    # Fail before any writes, including for empty existing destinations.
+    out.mkdir(parents=True, exist_ok=False)
+    pid = lambda i: f"SCALE_P{i:09d}"
+    cid = lambda i: f"SCALE_C{i:09d}"
+    bulk = people - 7
+    full, remainder = divmod(bulk, workplace_size)
+    groups = full + bool(remainder)
+    expected = 5 + full * workplace_size * (workplace_size - 1) // 2 + remainder * (remainder - 1) // 2
+
+    def rows(table):
+        if table in layout:
+            yield from layout[table]
+        elif table == "SECTOR":
+            yield dict(sector_id="SCALE_SC", name="Scale sector", level=1, parent_id="")
+        elif table == "REGION":
+            yield dict(region_id="SCALE_G", name="Scale region", level=1, region_type="country", parent_id="")
+        elif table == "SPONSOR":
+            yield dict(sponsor_id="SCALE_S", name="Northwind Equity Partners", hq_region_id="SCALE_G",
+                       aum_musd=1000, strategy="buyout")
+        elif table == "FUND":
+            for roman in ("III", "IV"):
+                yield dict(fund_id=f"SCALE_F_{roman}", sponsor_id="SCALE_S", name=f"Northwind Fund {roman}",
+                           vintage_year=2024, size_musd=500, ebitda_min_musd=5, ebitda_max_musd=40,
+                           geography="Scale region", area_guideline_pct=20)
+        elif table == "PERSON":
+            rng = random.Random(seed)
+            for i in range(people):
+                last = f"Synthetic{rng.randrange(1_000_000_000):09d}"
+                yield dict(person_id=pid(i), first_name=f"Person{i:09d}", last_name=last,
+                           full_name=f"Person{i:09d} {last}")
+        elif table == "COMPANY":
+            # Five two-person chain workplaces, one isolated workplace, then bulk groups.
+            for i in range(6 + groups):
+                yield dict(company_id=cid(i), name=f"Scale workplace {i:09d}", sector_id="SCALE_SC",
+                           hq_region_id="SCALE_G", revenue_musd=10, ebitda_musd=2,
+                           employees=min(workplace_size, bulk - (i - 6) * workplace_size) if i >= 6 else (1 if i == 5 else 2),
+                           founded_year=2020, is_public="FALSE")
+        elif table == "ROLE_HISTORY":
+            def memberships():
+                for edge in range(5):
+                    yield edge, edge
+                    yield edge + 1, edge
+                yield 6, 5
+                for i in range(7, people):
+                    yield i, 6 + (i - 7) // workplace_size
+            for index, (person, org) in enumerate(memberships()):
+                yield dict(role_id=f"SCALE_R{index:09d}", person_id=pid(person), org_id=cid(org),
+                           org_type="company", role_type="Board", title="Board member",
+                           start_date="2020-01-01", end_date="", is_founder="FALSE")
+
+    manifest = {"mode": "scale", "random_seed": seed, "as_of_date": AS_OF.isoformat(),
+                "people": people, "roles": people + 4, "workplace_size": workplace_size,
+                "expected_connections": expected, "min_tie_strength": 0.0,
+                "examples": [{"source": pid(0), "target": pid(h), "hops": h,
+                              "route": [pid(i) for i in range(h + 1)]} for h in range(1, 6)]
+                            + [{"source": pid(0), "target": pid(6), "hops": None, "route": []}],
+                "tables": {}}
+    manifest.update(connected_manifest)
+    for table, (_, columns) in TABLES.items():
+        path = out / f"{table}.csv"
+        count = 0
+        with path.open("w", newline="", encoding="utf-8") as fh:
+            writer = csv.DictWriter(fh, fieldnames=columns, lineterminator="\n")
+            writer.writeheader()
+            for row in rows(table):
+                writer.writerow(row)
+                count += 1
+        digest = hashlib.sha256()
+        with path.open("rb") as fh:
+            for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+                digest.update(chunk)
+        manifest["tables"][table] = {"file": path.name, "rows": count,
+                                     "bytes": path.stat().st_size, "sha256": digest.hexdigest()}
+    manifest["total_rows"] = sum(t["rows"] for t in manifest["tables"].values())
+    manifest["csv_bytes"] = sum(t["bytes"] for t in manifest["tables"].values())
+    (out / "MANIFEST.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+    return manifest
+
+
+def write_sparse_seed_variant(out: Path, source: Path = ROOT / "scale_10k"):
+    """Copy sparse fixture; put the five demo seeds in five separate bulk workplaces."""
+    import shutil, runpy
+    check_scale(source)
+    out = Path(out).resolve()
+    if out.exists(): raise FileExistsError(out)
+    oracle = runpy.run_path(str(ROOT / 'oracle.py'))
+    demo = oracle['Data']()
+    seeds = sorted(oracle['our_seeds'](demo))
+    if len(seeds) != 5: raise ValueError('Expected the verified five demo seeds')
+    mapping = {f'SCALE_P{i:09d}': seed for i, seed in zip((7,15,23,31,39), seeds)}
+    shutil.copytree(source, out)
+    for table in ('PERSON', 'ROLE_HISTORY'):
+        path = out / f'{table}.csv'
+        with path.open() as fh:
+            reader = csv.DictReader(fh); columns = reader.fieldnames; rows = list(reader)
+        for row in rows:
+            row['person_id'] = mapping.get(row['person_id'], row['person_id'])
+        if table == 'ROLE_HISTORY':
+            for i, seed in enumerate(seeds):
+                rows.append(dict(role_id=f'SEED_R{i}', person_id=seed, org_id='SCALE_S',
+                                 org_type='sponsor', role_type='Deal Team', title='Deal team',
+                                 start_date='2024-01-01', end_date='', is_founder='FALSE'))
+        with path.open('w', newline='') as fh:
+            writer = csv.DictWriter(fh, fieldnames=columns, lineterminator='\n')
+            writer.writeheader(); writer.writerows(rows)
+    manifest = json.loads((out / 'MANIFEST.json').read_text())
+    manifest.update(seed_ids=seeds, variant='five-seed sparse', roles=manifest['roles']+5)
+    for table, entry in manifest['tables'].items():
+        path = out / entry['file']
+        with path.open() as fh: count = sum(1 for _ in csv.reader(fh))-1
+        entry.update(rows=count, bytes=path.stat().st_size, sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+    oracle['load_csv'].__globals__['CSV_DIR'] = out
+    data = oracle['Data']()
+    manifest['expected_connections'] = len(oracle['build_knows'](data, set(seeds)))
+    manifest['total_rows'] = sum(e['rows'] for e in manifest['tables'].values())
+    manifest['csv_bytes'] = sum(e['bytes'] for e in manifest['tables'].values())
+    (out / 'MANIFEST.json').write_text(json.dumps(manifest, indent=2, sort_keys=True)+'\n')
+    return check_scale(out)
+
+
+def check_scale(out: Path):
+    """Independent existing oracle, bounded single-source BFS; no RAI imports."""
+    import runpy
+    import networkx as nx
+    out = Path(out).resolve()
+    manifest = json.loads((out / "MANIFEST.json").read_text())
+    connected = manifest.get("mode") == "scale-connected"
+    if manifest.get("mode") not in ("scale", "scale-connected"):
+        raise ValueError("Not a scale fixture")
+    oracle = runpy.run_path(str(ROOT / "oracle.py"))
+    # Redirect this isolated oracle instance only; leave the demo's defaults untouched.
+    oracle["load_csv"].__globals__["CSV_DIR"] = out
+    data = oracle["Data"]()
+    if data.manifest_mismatches:
+        raise ValueError(str(data.manifest_mismatches))
+    if len(data.person) != manifest["people"] or len(data.roles) != manifest["roles"]:
+        raise ValueError("Person/role counts differ")
+    known_orgs = data.company.keys() | data.sponsor.keys()
+    for role in data.roles:
+        if role["person_id"] not in data.person or role["org_id"] not in known_orgs:
+            raise ValueError("Role references missing person/company")
+    if max(map(len, data.roles_by_org.values()), default=0) > manifest["workplace_size"]:
+        raise ValueError("Workplace cap exceeded")
+    seeds = set(oracle["our_seeds"](data))
+    if connected:
+        if seeds != set(manifest['seed_ids']) or len(seeds) != 5: raise ValueError('Team seed membership changed')
+        if any(not 2 <= len(data.roles_by_person[p]) <= 4 for p in data.person): raise ValueError('Roles per person outside 2–4')
+    pairs = oracle["build_knows"](data, seeds, include_evidence=manifest["people"] < 1_000_000)
+    if len(pairs) != manifest["expected_connections"]:
+        raise ValueError("Oracle connection count differs")
+    graph = oracle["knows_graph"](data, pairs)
+    paths = nx.single_source_shortest_path(graph, manifest["examples"][0]["source"])
+    for example in manifest["examples"]:
+        if example["source"] in seeds or example["target"] in seeds:
+            raise ValueError("Scale path endpoints must be non-seeds")
+        route = paths.get(example["target"], [])
+        if (len(route) - 1 if route else None) != example["hops"]:
+            raise ValueError("Oracle shortest distance differs")
+        if route != example["route"] or any(not graph.has_edge(a, b) for a, b in zip(route, route[1:])):
+            raise ValueError("Oracle route edges differ")
+    if connected:
+        team_paths = nx.single_source_shortest_path(graph, manifest['team_examples'][0]['source'])
+        for example in manifest['team_examples']:
+            route = team_paths.get(example['target'], [])
+            if (example['source'] not in seeds or (len(route)-1 if route else None) != example['hops'] or
+                    route != example['route'] or any(not graph.has_edge(a,b) for a,b in zip(route,route[1:]))):
+                raise ValueError('Team oracle shortest distance or route differs')
+        protected = manifest['protected_path']
+        for person in protected[1:]:
+            if set(graph.neighbors(person)) - set(protected): raise ValueError('Protected path acquired an outside link')
+        components = sorted((len(c) for c in nx.connected_components(graph)), reverse=True)
+        if components != [len(data.person)-1, 1] or graph.degree(manifest['isolated_person']) != 0:
+            raise ValueError('Expected one connected backbone and one isolated person')
+    result = {"people": len(data.person), "roles": len(data.roles), "connections": len(pairs),
+            "max_degree": max(dict(graph.degree()).values()),
+            "largest_component": max(map(len, nx.connected_components(graph))),
+            "examples_verified": len(manifest["examples"]), "csv_bytes": manifest["csv_bytes"],
+            "output_bytes": sum(p.stat().st_size for p in out.iterdir() if p.is_file())}
+    if connected:
+        from collections import Counter
+        from statistics import median
+        degrees = sorted(d for _,d in graph.degree())
+        result.update(seed_count=len(seeds), seed_ids=sorted(seeds), component_count=nx.number_connected_components(graph),
+                      isolated_people=nx.number_of_isolates(graph),
+                      largest_component_fraction=result['largest_component']/len(data.person),
+                      degree_distribution={'min':degrees[0], 'mean':sum(degrees)/len(degrees),
+                          'median':median(degrees), 'p90':degrees[math.ceil(.90*len(degrees))-1],
+                          'p95':degrees[math.ceil(.95*len(degrees))-1], 'p99':degrees[math.ceil(.99*len(degrees))-1],
+                          'max':degrees[-1], 'histogram':dict(sorted(Counter(degrees).items()))},
+                      roles_per_person=dict(sorted(Counter(len(data.roles_by_person[p]) for p in data.person).items())),
+                      workplace_sizes=dict(sorted(Counter(len(data.roles_by_org[c]) for c in data.company).items())),
+                      overlapping_movers=sum(any(a['org_id'] != b['org_id'] and
+                          (min(oracle['eff_end'](a['end_date']),oracle['eff_end'](b['end_date']))-
+                           max(a['start_date'],b['start_date'])).days >= 365
+                          for i,a in enumerate(data.roles_by_person[p]) for b in data.roles_by_person[p][i+1:]) for p in data.person),
+                      examples=manifest['examples'], team_examples=manifest['team_examples'],
+                      team_examples_verified=len(manifest['team_examples']))
+    return result
+
+
+def check_connected_streaming(out: Path):
+    """Validate CSV integrity, IDs, references and protected paths without a full graph.
+
+    Does not claim full distance-oracle or full connected-component validation.
+    """
+    import numpy as np
+    out = Path(out)
+    manifest = json.loads((out / 'MANIFEST.json').read_text())
+    if manifest['mode'] != 'scale-connected':
+        raise ValueError('Streaming check requires a connected fixture')
+    n = manifest['people']
+    team = manifest['seed_ids']
+    if len(team) != 5 or len(set(team)) != 5:
+        raise ValueError('Expected five distinct seeds')
+    def require(ok, message):
+        if not ok: raise ValueError(message)
+    def pid(i): return team[i-7] if 7 <= i < 12 else f'SCALE_P{i:09d}'
+    team_index = {p:i+7 for i,p in enumerate(team)}
+    def person_index(value):
+        if value in team_index: return team_index[value]
+        require(value.startswith('SCALE_P'), 'Unknown person ID')
+        i = int(value[7:])
+        require(0 <= i < n and value == pid(i), 'Invalid person reference')
+        return i
+    for table, entry in manifest['tables'].items():
+        path = out / entry['file']
+        require(path.parent.resolve() == out.resolve(), 'Invalid manifest path')
+        digest = hashlib.sha256()
+        with path.open('rb') as fh:
+            for chunk in iter(lambda: fh.read(1024*1024), b''): digest.update(chunk)
+        require(path.stat().st_size == entry['bytes'] and digest.hexdigest() == entry['sha256'],
+                f'{table} bytes/sha256 mismatch')
+        count = 0
+        with path.open(newline='') as fh:
+            reader = csv.DictReader(fh)
+            require(reader.fieldnames == list(TABLES[table][1]), f'{table} columns differ')
+            for count, row in enumerate(reader,1):
+                if table == 'PERSON': require(row['person_id'] == pid(count-1), 'Person ID/order mismatch')
+                if table == 'COMPANY': require(row['company_id'] == f'SCALE_C{count-1:09d}', 'Company ID/order mismatch')
+        require(count == entry['rows'], f'{table} row count mismatch')
+    require(manifest['tables']['PERSON']['rows'] == n, 'People count mismatch')
+    companies = manifest['tables']['COMPANY']['rows']
+    counts = bytearray(n)
+    memberships = np.zeros((n,4), dtype=np.uint32)
+    sizes = np.zeros(companies+1, dtype=np.uint8)
+    protected_orgs = set()
+    role_count = 0
+    with (out/'ROLE_HISTORY.csv').open(newline='') as fh:
+        for row in csv.DictReader(fh):
+            require(row['role_id'] == f'SCALE_R{role_count:09d}', 'Role ID/order mismatch')
+            role_count += 1
+            p = person_index(row['person_id'])
+            org = row['org_id']
+            c = 0 if org == 'SCALE_S' else int(org.removeprefix('SCALE_C'))+1
+            require(0 <= c <= companies and (org == 'SCALE_S' if c == 0 else org == f'SCALE_C{c-1:09d}'),
+                    'Invalid organization reference')
+            require(counts[p] < 4 and c not in memberships[p,:counts[p]], 'Duplicate/excess role')
+            memberships[p,counts[p]] = c
+            counts[p] += 1
+            require(int(sizes[c]) < manifest['workplace_size'], 'Workplace exceeds size cap')
+            sizes[c] += 1
+            if p <= 7: protected_orgs.add(c)
+            if c == 0:
+                require(p in range(7,12) and row['role_type'] in ('Deal Team','Operating Partner'), 'Invalid seed role')
+            else:
+                require(row['role_type'] == 'Employee', 'Unexpected connection rule input')
+    require(role_count == manifest['roles'], 'Role count mismatch')
+    require(min(counts) >= 2 and max(counts) <= 4 and sizes[0] == 5, 'Role/seed bounds differ')
+    with (out/'COMPANY.csv').open(newline='') as fh:
+        for c,row in enumerate(csv.DictReader(fh),1):
+            require(int(row['employees']) == sizes[c], 'Company size differs from memberships')
+    del memberships, counts, sizes
+    # Rescan only to collect bounded workplaces touching the planted nodes.
+    groups = {c:[] for c in protected_orgs}
+    from datetime import date
+    with (out/'ROLE_HISTORY.csv').open(newline='') as fh:
+        for row in csv.DictReader(fh):
+            org = row['org_id']; c = 0 if org == 'SCALE_S' else int(org[7:])+1
+            if c in groups:
+                groups[c].append((person_index(row['person_id']), date.fromisoformat(row['start_date']),
+                                  date.fromisoformat(row['end_date'] or manifest['as_of_date'])))
+    neighbors = {p:set() for p in range(8)}
+    for members in groups.values():
+        for a,sa,ea in members:
+            for b,sb,eb in members:
+                if a in neighbors and a != b and (min(ea,eb)-max(sa,sb)).days >= 365:
+                    neighbors[a].add(b)
+    require(neighbors[6] == set(), 'Isolated control has a connection')
+    for p in range(1,6):
+        require(neighbors[p] == ({p-1,p+1} if p < 5 else {4}), 'Protected chain has a shortcut/missing edge')
+    require(1 in neighbors[0] and 0 in neighbors[7], 'Missing attachment edge')
+    for case in manifest['examples'] + manifest['team_examples']:
+        source,target = person_index(case['source']),person_index(case['target'])
+        expected = None if target == 6 else 0 if source == target else target if source == 0 else target+1
+        require(case['hops'] == expected, 'Planted distance differs')
+        route = [person_index(p) for p in case['route']]
+        require((not route and expected is None) or (route[0] == source and route[-1] == target and len(route)-1 == expected), 'Invalid route endpoints/length')
+        require(all(b in neighbors[a] for a,b in zip(route,route[1:])), 'Planted route edge absent')
+    result = dict(people=n, roles=role_count, tables=len(manifest['tables']), seed_count=5,
+                  planted_cases_verified=len(manifest['examples'])+len(manifest['team_examples']),
+                  csv_bytes=manifest['csv_bytes'], validation='streamed hashes/counts/IDs/references and protected paths',
+                  full_distance_oracle_run=False, full_component_check=False,
+                  connections_from_generator=manifest['expected_connections'])
+    return result
+
+
+def scale_main(argv):
+    import argparse
+    parser = argparse.ArgumentParser(description="Separate local scale fixture; never loads Snowflake/RAI")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--scale", action="store_true")
+    mode.add_argument("--scale-connected", action="store_true")
+    mode.add_argument("--scale-check", action="store_true")
+    mode.add_argument("--scale-check-streaming", action="store_true")
+    parser.add_argument("--out", required=True, type=Path)
+    parser.add_argument("--people", type=int, default=10_000)
+    parser.add_argument("--workplace-size", type=int, default=8)
+    parser.add_argument("--seed", type=int, default=42)
+    args = parser.parse_args(argv)
+    if args.scale or args.scale_connected:
+        m = write_scale(args.out, args.people, args.workplace_size, args.seed, connected=args.scale_connected)
+        print(json.dumps({k: m[k] for k in ("people", "roles", "expected_connections", "csv_bytes")}, sort_keys=True))
+    else:
+        print(json.dumps(check_connected_streaming(args.out) if args.scale_check_streaming else check_scale(args.out), sort_keys=True))
+
+
 def main(argv):
+    if any(flag in argv for flag in ("--corporate", "--corporate-check")):
+        sys.path.insert(0, str(ROOT.parent))
+        from data.corporate import corporate_main
+        return corporate_main(argv)
+    if any(arg.split("=", 1)[0] == "--companies" for arg in argv):
+        raise ValueError("Company-count options require --corporate")
+    if any(flag in argv for flag in ("--scale", "--scale-check", "--scale-connected", "--scale-check-streaming")):
+        return scale_main(argv)
+
+    if any(arg.split("=", 1)[0] in {"--people", "--workplace-size", "--seed"} for arg in argv):
+        raise ValueError("Scale options require --scale or --scale-check")
     # CLI plumbing (R12): --out DIR redirects CSVs (and --check / --noise-check) to DIR;
     # --noise adds the P5 noise layer and requires --out (data/csv/ stays signal-only until P5).
     global CSV_DIR, GOLDEN_DIR

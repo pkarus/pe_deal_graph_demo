@@ -1,0 +1,157 @@
+{
+  "question": "Who can introduce us to Soren T. Bellamy, the CEO of Aspenview Materials? Show the top 10 connections.",
+  "role": "RAI_USER",
+  "seconds": 769.3476977499959,
+  "response": {
+    "content": [
+      {
+        "tool_use": {
+          "client_side_execute": false,
+          "input": {
+            "company": "Aspenview Materials",
+            "person": "Soren T. Bellamy",
+            "team_only": false,
+            "title": "CEO"
+          },
+          "name": "find_people",
+          "tool_use_id": "toolu_bdrk_013FnSxWnaAPDNfA6zmso4i2",
+          "type": "generic"
+        },
+        "type": "tool_use"
+      },
+      {
+        "tool_result": {
+          "content": [
+            {
+              "json": {
+                "execution_type": "procedure",
+                "query_id": "01c86090-040d-3184-0005-5ee3147b398e",
+                "result": "{\n  \"query_context\": \"Person, model, graph, center, Sources, best_route, shortest_route, Integer, Float, String. Create query only; the tool executes it.\",\n  \"query_reference\": \"connection, target = Person.ref(), Person.ref()\\nhops = Integer.ref()\\nminimum_hops = Integer.ref()\\nstrength = Float.ref()\\nraw_strength = Float.ref()\\npath = String.ref()\\nreason = String.ref()\\ndistance = graph.distance(from_=center)\\nquery = model.where(\\n    distance(target, connection, minimum_hops),\\n    Sources(connection),\\n    best_route(connection, hops, strength, raw_strength, path, reason),\\n    minimum_hops <= 3,\\n    hops <= 3\\n).select(\\n    connection.id.alias(\\\"connection_id\\\"), connection.name.alias(\\\"connection\\\"),\\n    target.id.alias(\\\"target_id\\\"), target.name.alias(\\\"target\\\"),\\n    strength.alias(\\\"strength\\\"), raw_strength.alias(\\\"raw_strength\\\"), reason.alias(\\\"reason\\\"),\\n    hops.alias(\\\"hops\\\"), minimum_hops.alias(\\\"minimum_hops\\\"), path.alias(\\\"path\\\")\\n)\",\n  \"rows\": [\n    {\n      \"company\": \"Aspenview Materials (Synthetic)\",\n      \"company_id\": \"CORP_C000373\",\n      \"designation\": null,\n      \"designation_basis\": null,\n      \"name\": \"Soren T. Bellamy\",\n      \"on_team\": false,\n      \"person_id\": \"CORP_P000000373\",\n      \"title\": \"Chief Executive Officer\",\n      \"total_matches\": 1\n    }\n  ],\n  \"status\": \"MATCHES\",\n  \"synthetic_data\": true,\n  \"team_firm\": \"Northwind Equity Partners (Synthetic)\",\n  \"total_matches\": 1\n}",
+                "truncated": false
+              },
+              "type": "json"
+            }
+          ],
+          "name": "find_people",
+          "status": "success",
+          "tool_use_id": "toolu_bdrk_013FnSxWnaAPDNfA6zmso4i2",
+          "type": "generic"
+        },
+        "type": "tool_result"
+      },
+      {
+        "tool_use": {
+          "client_side_execute": false,
+          "input": {
+            "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\nraw_strength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, raw_strength, path, reason),\n    minimum_hops <= 3,\n    hops <= 3\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), raw_strength.alias(\"raw_strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+            "source_id": "",
+            "target_id": "CORP_P000000373",
+            "top_n": 10
+          },
+          "name": "execute_pyrel",
+          "tool_use_id": "toolu_bdrk_015uFqCeZrKRCFkCUpNukfqe",
+          "type": "generic"
+        },
+        "type": "tool_use"
+      },
+      {
+        "tool_result": {
+          "content": [
+            {
+              "json": {
+                "execution_type": "procedure",
+                "query_id": "01c86090-040d-3184-0005-5ee3147b39e2",
+                "result": "{\n  \"error\": \"QueryTimeoutExceededException: Query execution time exceeded the specified timeout of 8 minutes.\",\n  \"no_fallback_used\": true,\n  \"request_id\": \"23c44230-acca-44ac-a95a-8cdbede408d3\",\n  \"status\": \"ERROR\"\n}",
+                "truncated": false
+              },
+              "type": "json"
+            }
+          ],
+          "name": "execute_pyrel",
+          "status": "success",
+          "tool_use_id": "toolu_bdrk_015uFqCeZrKRCFkCUpNukfqe",
+          "type": "generic"
+        },
+        "type": "tool_result"
+      },
+      {
+        "thinking": {
+          "signature": "CAQSgQUKEggTEAEYAjgBQgh0aGlua2luZxIMN5w1KEk8aoslgZNvGgzu9Y7wb3ir6FHhJtQiMGWFdOwVqpOw972iaxj2tTrdSFFPDrk/rMY1wZU+YQUrsdjruZpESuAweQtEhgUGpCqcBCaTzvQEzmA1PjM39uuw4Jd0iP5Mthqb4RTrYE77OLA73lt/gdIBWT6VEhlUM/Y/a9R9zLsXeVnhSPaoPUOBc/sIwC+AqwRcDPpk3cmnQe+uKhQ/OnpsiKIk4yfhffINmoMh75x/91yVVXU0XsdU7WW3CV1jC5PGj2Vplqq5s9D9eGAiyzNgjrMkuTovoNb2U5E8auX78/8mcXC1bPCbp1ftzW2R6donkXk2kLQ0FRircro04w4yQBQUYPHRrbYIlMs91TXHFu2D/92fPPmUs8wUsUbQOuqpn99U5QBPv133kGfzBCCgyo3PAtZ6bxo6IPPU3QIB/9D91AdCLYLCvdqTyZDxQawxo00JCXjT/UpafpSdpSgb12Nmw1oIOo0ISBX/P3SsdCytw/BpN7d08IbJXAlanJx291+Zf7lRUhaFgoml9/zArc03QYPvN9gTfOeVZ7muKREqzdNfVVohPRtTkUyOnvpupVSZmKsTlhGkyx2SIcrP5yAUSvEf/uJRDVVV30NLNJe8r0mCxCfnOlmxgSzUjtlyNjxsenQ3yy7HsW3EF2s53MQmt9m12Jg9GVEANHM/NchGPiOYCxVaAJUL1h8/KVfqKIxA/SZh25+K14bd5aUHC5tf95T02lPnHyzezehzAw8u3q7ysbd8drJ6dC0A5uzWXCTIcb3289/SknpFZ2jBcf106Ice9mgTQnpBVLLHXYJ9E7G5QhgB",
+          "text": "That timed out, likely just a transient issue \u2014 let me retry the same query once more.\n\n"
+        },
+        "type": "thinking"
+      },
+      {
+        "tool_use": {
+          "client_side_execute": false,
+          "input": {
+            "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\nraw_strength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, raw_strength, path, reason),\n    minimum_hops <= 3,\n    hops <= 3\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), raw_strength.alias(\"raw_strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+            "source_id": "",
+            "target_id": "CORP_P000000373",
+            "top_n": 10
+          },
+          "name": "execute_pyrel",
+          "tool_use_id": "toolu_bdrk_01W6Whkfsr2DdMDfY2mzdWvf",
+          "type": "generic"
+        },
+        "type": "tool_use"
+      },
+      {
+        "tool_result": {
+          "content": [
+            {
+              "json": {
+                "execution_type": "procedure",
+                "query_id": "01c86099-040d-3184-0005-5ee3147b5866",
+                "result": "{\n  \"error\": \"TransactionAbortedException: Transaction was aborted by the engine: user cancellation.\",\n  \"no_fallback_used\": true,\n  \"request_id\": \"f4efcf8b-2bc6-4f79-88d6-91207a11926e\",\n  \"status\": \"ERROR\"\n}",
+                "truncated": false
+              },
+              "type": "json"
+            }
+          ],
+          "name": "execute_pyrel",
+          "status": "success",
+          "tool_use_id": "toolu_bdrk_01W6Whkfsr2DdMDfY2mzdWvf",
+          "type": "generic"
+        },
+        "type": "tool_result"
+      },
+      {
+        "text": "I've reached the time limit for this request. The analysis may be incomplete.\n\nWould you like me to continue working on this?",
+        "type": "text"
+      }
+    ],
+    "metadata": {
+      "created_on": 1794548739661,
+      "orchestration_model": "claude-opus-5-5",
+      "thinking_effort": "low",
+      "usage": {
+        "tokens_consumed": [
+          {
+            "context_window": 1000000,
+            "input_tokens": {
+              "cache_read": 32661,
+              "cache_write": 36523,
+              "total": 69196,
+              "uncached": 12
+            },
+            "model_name": "claude-opus-5-5",
+            "model_role": "orchestration",
+            "output_tokens": {
+              "total": 1059
+            }
+          }
+        ]
+      }
+    },
+    "role": "assistant",
+    "schema_version": "v2",
+    "sequence_number": 57,
+    "status": "completed",
+    "warnings": [
+      {
+        "message": "Execution stopped: request exceeded the allowed time budget (10m0s)."
+      }
+    ]
+  }
+}

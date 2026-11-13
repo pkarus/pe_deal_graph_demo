@@ -1,52 +1,146 @@
-# Python
+# Python and local tooling
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.venv/
+*.py[cod]
 *.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.rai/
+.tools/
+.claude/
+.codex/
+.agents/
+.aws/
+.snowflake/
 
-# PyRel runtime caches (regenerated on demand)
+# UI dependencies and build output
+node_modules/
+.next/
+*.tsbuildinfo
 build/
-rai_code/manual/build/
+dist/
+pyrel_semantic_graph_explorer/.runtime/
+
+# Connection files and credentials
+.env
+.env.*
+*.env
+!.env.example
+!.env.sample
+raiconfig.yaml
+raiconfig.yml
+raiconfig.toml
+!raiconfig.example.yaml
+pe_settings.yaml
+!pe_settings.example.yaml
+*.p8
+*.pem
+*.key
+pat_token*
+credentials.json
+
+# Generated runs, caches and local-only copies
+*.log
+*.debug.zip
+*.executed.ipynb
+.ipynb_checkpoints/
+query_results/
+tests/out/
+test-results/
+playwright-report/
+demo_workspace/scratch/
+scripts/scout/out/
+repositories/
+output/
+_backup_before_cleanup_*/
+github-ready/
+
+# Large reproducible datasets; retain small regression fixtures
+data/csv_noise/
+data/scale_connected_100k/
+data/scale_connected_1m/
+data/scale_connected_10m/
+data/corporate_1m_1000_companies/
+data/corporate_enrichment_v2/*
+!data/corporate_enrichment_v2/MANIFEST.json
+!data/corporate_enrichment_v2/README.md
+
+# Generated artifacts: explicit allowlist of source/static fixtures and reviewed evidence
+/artifacts/*
+!/artifacts/vendor/
+!/artifacts/affinity_v5_fixture_actual.json
+!/artifacts/affinity_v5_native_fixture.json
+!/artifacts/affinity_v5_normalization_comparison.json
+!/artifacts/affinity_v5_normalization_fixture.json
+!/artifacts/affinity_v5_route_fixture.json
+!/artifacts/affinity_v6_route_fixture.json
+!/artifacts/affinity_v6_route_fixture_strong.json
+!/artifacts/affinity_v6_route_fixture_weak.json
+!/artifacts/build_explorer.py
+!/artifacts/build_script.py
+!/artifacts/corporate_affinity_v5_acceptance.json
+!/artifacts/corporate_affinity_v5_analytics.json
+!/artifacts/corporate_affinity_v5_analytics_raw.json
+!/artifacts/corporate_affinity_v5_preservation.json
+!/artifacts/corporate_agent_acceptance_v4.json
+!/artifacts/corporate_agent_acceptance_v5.json
+!/artifacts/corporate_agent_acceptance_v5_before_presentation.json
+!/artifacts/corporate_agent_chat_ceo_three_hop_timeout.json
+!/artifacts/corporate_agent_chat_ceo_v5.json
+!/artifacts/corporate_agent_chat_head_v5.json
+!/artifacts/corporate_agent_chat_missing_v5.json
+!/artifacts/corporate_agent_chat_pair_v5.json
+!/artifacts/corporate_agent_preservation_check.json
+!/artifacts/corporate_agent_validation_20374e77-4821-4c43-8925-61c2fc564b29.json
+!/artifacts/corporate_agent_validation_2f73fa1b-e33d-4c0f-b0a8-8941a236ed59.json
+!/artifacts/corporate_agent_validation_3d211678-7239-44ac-9e3e-d4809bb89852.json
+!/artifacts/corporate_agent_validation_48e297e7-49c6-4432-89bf-87c2668bef9f.json
+!/artifacts/corporate_agent_validation_4d7a00c0-5027-4e1c-8d17-2d3321cfd79f.json
+!/artifacts/corporate_agent_validation_5d763b80-663c-4f5d-859b-3d67b9530e4d.json
+!/artifacts/corporate_agent_validation_6c84fb51-469e-4252-b65a-6c5ee9ceeded.json
+!/artifacts/corporate_agent_validation_8173f344-0c75-4a39-a781-c4cb2b2aa46d.json
+!/artifacts/corporate_agent_validation_8a10b046-4815-4525-b2c6-bd111373af79.json
+!/artifacts/corporate_agent_validation_a2ab5bc2-3c4d-4d90-9beb-d96fbb8f67c5.json
+!/artifacts/corporate_agent_validation_b61f6099-ea32-40a6-9583-d2a35ce4c909.json
+!/artifacts/corporate_agent_validation_bcda470e-8997-4084-90e4-6cddc4158ed6.json
+!/artifacts/corporate_agent_validation_c0fdeec7-f71a-4b9e-82a5-fee0585c211c.json
+!/artifacts/corporate_agent_validation_c2e65400-14d6-4848-9180-bf6259d1fd97.json
+!/artifacts/corporate_agent_validation_d5f2bf8c-0344-4bc4-bb99-9b6caac131c0.json
+!/artifacts/corporate_agent_validation_d6b75667-41df-4183-bcb9-ab3ad0191413.json
+!/artifacts/corporate_agent_validation_d8733b35-516d-4837-a89d-d5679ce55bbc.json
+!/artifacts/corporate_agent_validation_d8f45e3f-16a6-40db-aae7-4f6aa1a7df54.json
+!/artifacts/corporate_agent_validation_dd314d8f-3a12-4f2b-b3f4-f2a7bfce0750.json
+!/artifacts/corporate_agent_validation_e406da94-2826-49d0-8c22-4a49b386d810.json
+!/artifacts/corporate_agent_validation_ed2764ef-b1c8-4daa-b781-0cad9da70754.json
+!/artifacts/corporate_agent_validation_f20e9801-c08b-4661-89c9-468c7fef5a79.json
+!/artifacts/corporate_agent_validation_fc04eaed-b110-4b04-a9bc-5979d9666ed5.json
+!/artifacts/corporate_enrichment_v2_load.json
+!/artifacts/corporate_explorer_v5_edge_2020-10-01.json
+!/artifacts/corporate_explorer_v5_edge_2026-10-01.json
+!/artifacts/corporate_explorer_v5_edge_validation.json
+!/artifacts/corporate_explorer_v5_neighborhood_CORP_P000002008.json
+!/artifacts/corporate_explorer_v5_neighborhood_PE_P0001.json
+!/artifacts/corporate_explorer_v5_neighborhood_validation.json
+!/artifacts/corporate_pe_team_local_snowflake_match.json
+!/artifacts/corporate_pe_team_validation.json
+!/artifacts/corporate_presentation_acceptance.json
+!/artifacts/corporate_presentation_chat_head.json
+!/artifacts/corporate_three_hop_pair.json
+!/artifacts/corporate_viewer_v5_validation.json
+!/artifacts/deal_graph_explorer.html
+!/artifacts/demo_script.html
+!/artifacts/demo_script_template.html
+!/artifacts/normalized_score_cluster_investigation.json
+!/artifacts/people_communities.json
+!/artifacts/three_hop_required_sources.json
+!/artifacts/three_hop_scoped_oracle_pair.json
 
 # Editor / OS
 .DS_Store
 .idea/
 .vscode/
 *.swp
-
-# Secrets / local env
-.env
-.env.*.local
-
-# Jupyter
-.ipynb_checkpoints/
-*.executed.ipynb
-
-# Claude Code local overrides
-.claude/settings.local.json
-.claude/scheduled_tasks.lock
-
-# Demo-day artifacts that should be regenerated, not committed
-query_results/
-*.log
-
-# RAI / Snowflake credentials and config
-# NOTE for R14/G8: raiconfig.yaml is untracked, so a fresh `git worktree` has no config.
-# The cold-run steps in RUNBOOK.md must copy it in: cp ../pe_deal_graph_demo/raiconfig.yaml .
-raiconfig.yaml
-raiconfig.yml
-raiconfig.toml
-*.p8
-*.pem
-pat_token
-
-# Playwright output (R15 click-through tests)
-test-results/
-playwright-report/
-
-# Build scratch
-demo_workspace/scratch/
-data/csv_noise/
-scripts/scout/out/dev*/

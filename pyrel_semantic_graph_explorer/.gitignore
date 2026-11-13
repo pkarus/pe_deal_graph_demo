@@ -1,0 +1,13 @@
+# Python
+service/.venv/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+
+# Node
+ui/node_modules/
+ui/.next/
+
+# Env / credentials
+*.env
+raiconfig.toml

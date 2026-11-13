@@ -1,0 +1,52 @@
+{
+  "stage": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST.PE_NATIVE_SPROCS",
+  "checked_objects": [
+    "ALAA_RELAPP_PERSISTENCE.\"BACKORDER_AGENT\".\"RAI_DISCOVER_MODELS\"()",
+    "ALAA_RELAPP_PERSISTENCE.\"BACKORDER_AGENT\".\"RAI_EXPLAIN_CONCEPT\"(NUMBER,VARCHAR)",
+    "ALAA_RELAPP_PERSISTENCE.\"BACKORDER_AGENT\".\"RAI_QUERY_MODEL\"(NUMBER,VARCHAR)",
+    "ALAA_RELAPP_PERSISTENCE.\"BACKORDER_AGENT\".\"RAI_VERBALIZE_MODEL\"(NUMBER)",
+    "ALAA_RELAPP_PERSISTENCE.\"LAB_COLLECTION_AGENT\".\"RAI_DISCOVER_MODEL\"()",
+    "ALAA_RELAPP_PERSISTENCE.\"LAB_COLLECTION_AGENT\".\"RAI_EXPLAIN_CONCEPT\"(VARCHAR)",
+    "ALAA_RELAPP_PERSISTENCE.\"LAB_COLLECTION_AGENT\".\"RAI_QUERY_MODEL\"(VARCHAR)",
+    "ALAA_RELAPP_PERSISTENCE.\"LAB_COLLECTION_AGENT\".\"RAI_VERBALIZE_MODEL\"()",
+    "ALAA_RELAPP_PERSISTENCE.\"PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST\".\"FIND_CONNECTION\"(VARCHAR,VARCHAR,FLOAT,NUMBER,NUMBER,NUMBER,BOOLEAN)",
+    "ALAA_RELAPP_PERSISTENCE.\"PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST\".\"PERSON_COMMUNITY\"(VARCHAR)",
+    "ALAA_RELAPP_PERSISTENCE.\"PE_DEAL_GRAPH_EXPERIMENT_CONNECTED_1M_INTRO_TEST\".\"FIND_CONNECTION_AT_SCALE\"(VARCHAR,VARCHAR,VARCHAR,FLOAT,NUMBER)"
+  ],
+  "removed": [
+    {
+      "name": "pe_native_sprocs/80ce16d150d3d52f66518e3f3da94bbe72689b69b70640aecf6629fc6757742d/handshake_runtime_a64a4517ac46b673.zip",
+      "bytes": 16816,
+      "result": {
+        "query_id": "01c85eef-040d-2d7a-0005-5ee3146abe2e",
+        "rows": [
+          {
+            "name": "pe_native_sprocs/80ce16d150d3d52f66518e3f3da94bbe72689b69b70640aecf6629fc6757742d/handshake_runtime_a64a4517ac46b673.zip",
+            "result": "removed"
+          }
+        ]
+      }
+    }
+  ],
+  "inventory": {
+    "query_id": "01c85eef-040d-3184-0005-5ee3146ad326",
+    "rows": [
+      {
+        "name": "pe_native_sprocs/80ce16d150d3d52f66518e3f3da94bbe72689b69b70640aecf6629fc6757742d/handshake_runtime_56d4081643eaeb9a.zip",
+        "size": 16656,
+        "md5": "4821c1d3deedb8e1da88e633d38a419c",
+        "last_modified": "Thu, 12 Nov 2026 22:19:49 GMT"
+      },
+      {
+        "name": "pe_native_sprocs/80ce16d150d3d52f66518e3f3da94bbe72689b69b70640aecf6629fc6757742d/handshake_runtime_a64a4517ac46b673.zip",
+        "size": 16816,
+        "md5": "36af823e1bbce49423bf9d4f9abee61c",
+        "last_modified": "Thu, 12 Nov 2026 22:00:46 GMT"
+      }
+    ]
+  },
+  "retained_referenced_archives": [
+    "handshake_runtime_56d4081643eaeb9a.zip"
+  ],
+  "status": "completed"
+}

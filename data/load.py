@@ -12,9 +12,11 @@ import snowflake.connector
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from pe_deal_graph import settings as _cfg  # noqa: E402  (database/schema/role/engine names)
 DATA = ROOT / "data"
 CSV_DIR = DATA / "csv"
-DB, SCHEMA = "RAI_DEMO_PE_DEALS", "DEAL_GRAPH"
+DB, SCHEMA = _cfg.DATABASE, _cfg.BASE_SCHEMA  # from raiconfig.yaml / pe_settings.yaml (default RAI_DEMO_PE_DEALS.DEAL_GRAPH)
 PROTECTED = {"SMOKE_TEST"}
 
 
@@ -135,5 +137,210 @@ def main():
         con.close()
 
 
+
+FIXTURES = {'baseline': ('DEPLOY', 'csv'),  # demo CSVs -> <schema>_DEPLOY_SRC, used by the deployments
+            'sparse': ('SPARSE_10K', 'scale_sparse_seed_10k'),
+            'connected': ('CONNECTED_10K', 'scale_connected_10k'),
+            'connected100k': ('CONNECTED_100K', 'scale_connected_100k'),
+            'connected1m': ('CONNECTED_1M', 'scale_connected_1m'),
+            'connected10m': ('CONNECTED_10M', 'scale_connected_10m')}
+
+
+def fixture_spec(fixture):
+    suffix, directory = FIXTURES[fixture]
+    output = f'{_cfg.DATABASE}.{_cfg.BASE_SCHEMA}_' + suffix
+    return DATA / directory, output + '_SRC', output, output + '_META'
+
+
+def canonical_rows(rows, ddl):
+    from decimal import Decimal
+    columns = schema_cols(ddl)
+    types = [re.search(r'\b'+c+r'\s+(VARCHAR|NUMBER|DATE|BOOLEAN)', ddl, re.I).group(1).upper() for c in columns]
+    def value(v, kind):
+        if v is None or v == '': return None
+        if kind == 'NUMBER': return Decimal(str(v))
+        if kind == 'BOOLEAN': return str(v).lower() == 'true'
+        return str(v)
+    return sorted([tuple(value(v,k) for v,k in zip(row,types)) for row in rows], key=repr)
+
+
+def fixture_data(fixture):
+    import hashlib
+    directory, *_ = fixture_spec(fixture)
+    manifest = json.loads((directory/'MANIFEST.json').read_text())
+    result = []
+    for name, ddl in parse_schema(DATA/'schema.sql'):
+        path = directory/f'{name}.csv'
+        if hashlib.sha256(path.read_bytes()).hexdigest() != manifest['tables'][name]['sha256']:
+            raise RuntimeError('Fixture hash mismatch: '+name)
+        with path.open() as fh:
+            reader = csv.reader(fh); header = next(reader); rows = list(reader)
+        if header != schema_cols(ddl) or len(rows) != manifest['tables'][name]['rows']:
+            raise RuntimeError('Fixture layout/count mismatch: '+name)
+        result.append((name,ddl,rows))
+    return result
+
+
+def verify_fixture_session(session, fixture):
+    _, source, _, _ = fixture_spec(fixture)
+    if fixture == 'connected10m':
+        receipt = json.loads((ROOT/'artifacts/scale_connected_10m_load.json').read_text())
+        if receipt['status'] != 'LOAD PASS' or receipt['schemas'][0] != source:
+            raise RuntimeError('10M load is not verified')
+        for entry in receipt['tables']:
+            if session.sql(f"SELECT COUNT(*) FROM {source}.{entry['name']}").collect()[0][0] != entry['rows']:
+                raise RuntimeError('10M source count changed: '+entry['name'])
+        return
+    for name,ddl,expected in fixture_data(fixture):
+        actual = session.sql(f"SELECT {','.join(schema_cols(ddl))} FROM {source}.{name}").collect()
+        if canonical_rows(actual,ddl) != canonical_rows(expected,ddl):
+            raise RuntimeError('Source contents differ: '+name)
+
+
+def load_large_fixture(*, execute=False):
+    """Load the 10M fixture via staged CSVs, never materializing rows in Python."""
+    import hashlib
+    directory, source, output, meta = fixture_spec('connected10m')
+    manifest = json.loads((directory/'MANIFEST.json').read_text())
+    validation = json.loads((directory/'VALIDATION.json').read_text())
+    if manifest['people'] != 10_000_000 or validation['people'] != manifest['people'] or validation['planted_cases_verified'] != 14:
+        raise RuntimeError('Missing 10M streamed validation')
+    tables = parse_schema(DATA/'schema.sql')
+    for name,ddl in tables:
+        path = directory/f'{name}.csv'
+        digest = hashlib.sha256()
+        with path.open('rb') as fh:
+            for chunk in iter(lambda: fh.read(1024*1024), b''): digest.update(chunk)
+        if digest.hexdigest() != manifest['tables'][name]['sha256'] or csv_header(path) != schema_cols(ddl):
+            raise RuntimeError('Fixture hash/header differs: '+name)
+    report = dict(fixture='connected10m',schemas=[source,output,meta],tables=[],status='prepared')
+    if not execute:
+        print(json.dumps(report)); return
+    evidence = ROOT/'artifacts/scale_connected_10m_load.json'
+    if evidence.exists(): raise RuntimeError('Preserve prior load evidence; no automatic retry')
+    def save(): evidence.write_text(json.dumps(report,indent=2,default=str)+'\n')
+    cfg=yaml.safe_load((ROOT/'raiconfig.yaml').read_text());c=cfg['connections'][cfg['default_connection']]
+    auth={k:v for k,v in c.items() if k not in ('type','role','warehouse','database','schema')}
+    con=snowflake.connector.connect(**auth,role=_cfg.ADMIN_ROLE,warehouse=_cfg.WAREHOUSE,database=_cfg.DATABASE)
+    try:
+        cur=con.cursor()
+        cur.execute(f'SHOW SCHEMAS IN DATABASE {_cfg.DATABASE}')
+        cols=[d[0] for d in cur.description]; existing={dict(zip(cols,r))['name'] for r in cur.fetchall()}
+        if any(s.split('.')[1] in existing for s in (source,output,meta)):
+            raise RuntimeError('10M target already exists; refusing overwrite')
+        report['created_schemas']=[];save()
+        for schema in (source,output,meta):
+            cur.execute(f'CREATE SCHEMA {schema}')
+            report['created_schemas'].append(schema);save()
+            cur.execute(f'GRANT USAGE ON SCHEMA {schema} TO ROLE {_cfg.DEPLOY_ROLE}')
+        for schema in (output,meta):
+            cur.execute(f'GRANT CREATE TABLE, CREATE VIEW, CREATE PROCEDURE, CREATE TASK, CREATE TAG ON SCHEMA {schema} TO ROLE {_cfg.DEPLOY_ROLE}')
+        cur.execute(f'USE SCHEMA {source}')
+        cur.execute('CREATE TEMPORARY STAGE LOAD_10M_STAGE')
+        cur.execute("CREATE TEMPORARY FILE FORMAT LOAD_10M_FORMAT TYPE=CSV PARSE_HEADER=TRUE FIELD_OPTIONALLY_ENCLOSED_BY='\"' NULL_IF=('') EMPTY_FIELD_AS_NULL=TRUE ERROR_ON_COLUMN_COUNT_MISMATCH=TRUE")
+        for name,ddl in tables:
+            cur.execute(re.sub(r'^CREATE OR REPLACE TABLE '+name,'CREATE TABLE '+source+'.'+name,ddl))
+            entry=manifest['tables'][name]
+            if entry['rows']:
+                path=directory/f'{name}.csv'
+                cur.execute(f"PUT 'file://{path}' @LOAD_10M_STAGE/{name}/ AUTO_COMPRESS=TRUE OVERWRITE=FALSE PARALLEL=4")
+                uploaded=cur.fetchall(); report['last_upload_table']=name;save()
+                cur.execute(f'COPY INTO {source}.{name} FROM @LOAD_10M_STAGE/{name}/ FILE_FORMAT=(FORMAT_NAME=LOAD_10M_FORMAT) MATCH_BY_COLUMN_NAME=CASE_INSENSITIVE ON_ERROR=ABORT_STATEMENT')
+                keys=[d[0].lower() for d in cur.description]; copies=[dict(zip(keys,r)) for r in cur.fetchall()]
+                if sum(int(r['rows_loaded']) for r in copies)!=entry['rows'] or any(r['status']!='LOADED' or int(r['errors_seen']) for r in copies):
+                    raise RuntimeError('COPY did not load every row: '+name)
+            count=cur.execute(f'SELECT COUNT(*) FROM {source}.{name}').fetchone()[0]
+            if count!=entry['rows']:raise RuntimeError('Loaded row count differs: '+name)
+            cur.execute(f'GRANT SELECT ON TABLE {source}.{name} TO ROLE {_cfg.DEPLOY_ROLE}')
+            report['tables'].append(dict(name=name,rows=count,sha256=entry['sha256']))
+            report['status']='loading';save();print(json.dumps(report['tables'][-1]),flush=True)
+        for name,key in [('PERSON','PERSON_ID'),('COMPANY','COMPANY_ID'),('ROLE_HISTORY','ROLE_ID')]:
+            n,unique=cur.execute(f'SELECT COUNT(*),COUNT(DISTINCT {key}) FROM {source}.{name}').fetchone()
+            if n!=unique:raise RuntimeError('Duplicate/null primary ID: '+name)
+        missing=cur.execute(f'SELECT COUNT(*) FROM {source}.ROLE_HISTORY R LEFT JOIN {source}.PERSON P ON P.PERSON_ID=R.PERSON_ID WHERE P.PERSON_ID IS NULL').fetchone()[0]
+        if missing:raise RuntimeError('Missing person references')
+        missing=cur.execute(f"SELECT COUNT(*) FROM {source}.ROLE_HISTORY R LEFT JOIN {source}.COMPANY C ON C.COMPANY_ID=R.ORG_ID WHERE R.ORG_TYPE='company' AND C.COMPANY_ID IS NULL").fetchone()[0]
+        if missing:raise RuntimeError('Missing company references')
+        seeds=[r[0] for r in cur.execute(f"SELECT PERSON_ID FROM {source}.ROLE_HISTORY WHERE ORG_ID='SCALE_S' AND ROLE_TYPE IN ('Deal Team','Operating Partner') ORDER BY PERSON_ID").fetchall()]
+        if seeds!=sorted(manifest['seed_ids']):raise RuntimeError('Seed membership differs')
+        report.update(status='LOAD PASS',seed_ids=seeds,total_rows=sum(r['rows'] for r in report['tables']),
+                      validation='Local CSV hashes; COPY parsed/loaded counts; table counts; core unique IDs and role references',engine_changes=False)
+        save();print(json.dumps(report),flush=True)
+    except BaseException as e:
+        report.update(status='STOPPED',error=str(e));save();raise
+    finally:con.close()
+
+
+def load_fixture(fixture, *, execute=False):
+    """Fresh isolated targets only; never resume, replace, or repair on failure."""
+    if fixture == 'connected10m':
+        return load_large_fixture(execute=execute)
+    directory, source, output, meta = fixture_spec(fixture)
+    data = fixture_data(fixture)
+    if not execute:
+        print(json.dumps(dict(fixture=fixture, directory=str(directory), schemas=[source,output,meta], tables=len(data))))
+        return
+    cfg = yaml.safe_load((ROOT/'raiconfig.yaml').read_text()); c = cfg['connections'][cfg['default_connection']]
+    auth = {k: v for k, v in c.items() if k not in ('type', 'role', 'warehouse', 'database', 'schema')}  # any login method
+    con = snowflake.connector.connect(**auth,
+        role=f'{_cfg.ADMIN_ROLE}', warehouse=f'{_cfg.WAREHOUSE}', database=f'{_cfg.DATABASE}', schema=f'{_cfg.BASE_SCHEMA}')
+    completed = []
+    try:
+        cur = con.cursor()
+        if cur.execute('SELECT CURRENT_ROLE(),CURRENT_WAREHOUSE()').fetchone() != (f'{_cfg.ADMIN_ROLE}',f'{_cfg.WAREHOUSE}'):
+            raise RuntimeError('Wrong provisioning context')
+        cur.execute(f'SHOW SCHEMAS IN DATABASE {_cfg.DATABASE}')
+        names = [d[0] for d in cur.description]
+        existing = {dict(zip(names,r))['name'] for r in cur.fetchall()}
+        if existing & {s.split('.')[1] for s in (source,output,meta)}:
+            raise RuntimeError('Unexpected existing fixture target; stop')
+        for schema in (source,output,meta):
+            cur.execute(f'CREATE SCHEMA {schema}')
+            completed.append(dict(action='create_schema',schema=schema,query_id=cur.sfqid))
+            cur.execute(f'GRANT USAGE ON SCHEMA {schema} TO ROLE {_cfg.DEPLOY_ROLE}')
+        for schema in (output,meta):
+            for privilege in (('CREATE TABLE','CREATE VIEW') if schema == output else
+                              ('CREATE TABLE','CREATE VIEW','CREATE PROCEDURE','CREATE TASK','CREATE TAG')):
+                cur.execute(f'GRANT {privilege} ON SCHEMA {schema} TO ROLE {_cfg.DEPLOY_ROLE}')
+        cur.execute(f'USE SCHEMA {source}')
+        for name,ddl,rows in data:
+            cur.execute(re.sub(r'^CREATE OR REPLACE TABLE '+name, 'CREATE TABLE '+source+'.'+name, ddl))
+            columns = schema_cols(ddl)
+            if fixture=='connected1m' and rows:
+                import pandas as pd
+                from snowflake.connector.pandas_tools import write_pandas
+                frame=pd.DataFrame(rows,columns=[c.upper() for c in columns]).replace({'':None})
+                success, _, loaded, _ = write_pandas(con,frame,name,database=source.split('.')[0],
+                    schema=source.split('.')[1],chunk_size=100000,auto_create_table=False,
+                    overwrite=False,on_error='abort_statement',use_logical_type=True)
+                if not success or loaded!=len(rows):raise RuntimeError('Bulk load incomplete: '+name)
+                del frame
+            else:
+                for offset in range(0,len(rows),5000 if fixture=='connected100k' else 250):
+                    batch = rows[offset:offset+(5000 if fixture=='connected100k' else 250)]
+                    placeholders = '('+','.join(['%s']*len(columns))+')'
+                    cur.execute(f"INSERT INTO {source}.{name} ({','.join(columns)}) VALUES "+','.join([placeholders]*len(batch)),
+                                tuple(v if v != '' else None for row in batch for v in row))
+            actual = cur.execute(f"SELECT {','.join(columns)} FROM {source}.{name}").fetchall()
+            if canonical_rows(actual,ddl) != canonical_rows(rows,ddl): raise RuntimeError('Loaded values differ: '+name)
+            cur.execute(f'GRANT SELECT ON TABLE {source}.{name} TO ROLE {_cfg.DEPLOY_ROLE}')
+            completed.append(dict(action='verified_table',table=name,rows=len(rows)))
+            print(json.dumps(completed[-1]),flush=True)
+        print(json.dumps(dict(result='LOAD PASS',fixture=fixture,completed=completed)),flush=True)
+    except BaseException:
+        print(json.dumps(dict(result='STOPPED',fixture=fixture,completed=completed)),flush=True)
+        raise
+    finally:
+        con.close()
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    if '--fixture' in sys.argv:
+        import argparse
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--fixture', choices=tuple(FIXTURES), required=True)
+        parser.add_argument('--execute', action='store_true')
+        args = parser.parse_args()
+        load_fixture(args.fixture, execute=args.execute)
+    else:
+        sys.exit(main())

@@ -640,5 +640,121 @@ def q_addon() -> pd.DataFrame:
     return df[["rank", "name", "similarity", "platform", "why", "company_id"]]
 
 
-__all__ = ["HERO_QUERIES", "q_score", "q_path", "q_flow", "q_conflict", "finale_rescore", "q_addon",
+def _assemble_person_path(source_id, target_id, names, distances, edges):
+    """Reconstruct the strongest shortest route from RAI distance-layer edges."""
+    missing = sorted({source_id, target_id} - set(names))
+    if missing:
+        raise ValueError(f"Unknown person IDs: {missing}")
+    result = {"source_id": source_id, "target_id": target_id,
+              "distance": None, "route": [], "route_names": []}
+    if source_id == target_id:
+        return dict(result, status="self", distance=0,
+                    route=[source_id], route_names=[names[source_id]])
+    if distances.get(source_id) != 0:
+        raise GraphOutputMissing("Missing source self-distance; cannot infer unreachable")
+    if target_id not in distances:
+        return dict(result, status="unreachable")
+    # Shortest-path edges between consecutive distance layers, with tie strength
+    # (edges without a strength column count as 1.0, as in the offline tests).
+    predecessors = {}
+    for edge in edges:
+        a, b = edge[0], edge[1]
+        strength = float(edge[2]) if len(edge) > 2 and edge[2] == edge[2] else 1.0  # NaN -> 1.0
+        if a in distances and b in distances and distances[b] == distances[a] + 1:
+            previous = predecessors.setdefault(b, {}).get(a)
+            predecessors[b][a] = strength if previous is None else max(previous, strength)
+    # Among all shortest routes, keep the strongest one: highest product of tie
+    # strengths, the same rule the warm-path ranking uses. Exact ties -> lowest route IDs.
+    best = {source_id: (1.0, (source_id,))}
+
+    def strongest(node, depth=0):
+        if node in best:
+            return best[node]
+        if depth > len(distances):
+            raise GraphOutputMissing("Invalid distance-layer route")
+        options = []
+        for prev, strength in predecessors.get(node, {}).items():
+            got = strongest(prev, depth + 1)
+            if got is not None:
+                options.append((got[0] * strength, got[1] + (node,)))
+        if not options:
+            best[node] = None
+            return None
+        top = max(score for score, _ in options)
+        best[node] = min((o for o in options if top - o[0] <= 1e-12), key=lambda o: o[1])
+        return best[node]
+
+    found = strongest(target_id)
+    if found is None:
+        raise GraphOutputMissing("Shortest distance has no complete route witness")
+    route_strength, route = found[0], list(found[1])
+    if len(route) - 1 != distances[target_id] or any(p not in names for p in route):
+        raise GraphOutputMissing("Route does not match the reported shortest distance")
+    return dict(result, status="reachable", distance=distances[target_id],
+                route=route, route_names=[names[p] for p in route],
+                route_strength=round(route_strength, 6))
+
+
+
+def fixed_distance_probe_query():
+    """Build (do not execute) the opt-in fixed-source probe result query."""
+    if _graphs.BUILD_PROFILE != "copied-distance-probe":
+        raise ValueError("Fixed distance query requires the copied-distance-probe profile")
+    probe = _graphs.PersonDistanceProbe
+    return model.select(probe.source_id.alias("source"), probe.target_id.alias("target"),
+                        probe.hops.alias("hops"))
+
+
+def q_person_path(source_id: str, target_id: str) -> dict:
+    """Shortest unweighted route between any two people, including non-seeds.
+
+    Unknown IDs raise ValueError. Self returns distance 0 and a one-person route.
+    Disconnected people return status='unreachable', distance=None, route=[].
+    Uses the existing Knows graph at threshold 0.0, without the demo's 3-hop cap.
+    There are no retries, graph resets, or rule/threshold changes.
+
+    This is the live-engine form: it adds one rule per new source and reads a whole single-source
+    distance table, so it takes tens of seconds and cannot be deployed. For interactive use, call
+    the PERSON_PATH stored procedure instead (scripts/person_path_proc.py): same answer, ranked the
+    same way, in about 1-4 seconds from 2.5K to 10M people, with max_hops and min_strength arguments.
+    """
+    for value in (source_id, target_id):
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError("Person IDs must be nonempty strings")
+    if _graphs.MIN_TIE_STRENGTH != 0.0:
+        raise ValueError("This path query requires MIN_TIE_STRENGTH = 0.0")
+    endpoints = _run(model.where(Person.id.in_([source_id, target_id])).select(
+        Person.id.alias("id"), Person.name.alias("name")))
+    names = dict(zip(endpoints["id"], endpoints["name"]))
+    if source_id == target_id or {source_id, target_id} - set(names):
+        return _assemble_person_path(source_id, target_id, names, {}, [])
+
+    distance = _graphs.person_distances(source_id)
+    src, dst, h = Person.ref(), Person.ref(), Integer.ref()
+    frame = _run(model.where(distance(src, dst, h), src.id == source_id).select(
+        dst.id.alias("id"), dst.name.alias("name"), h.alias("hops")))
+    distances = {}
+    for row in frame.to_dict(orient="records"):
+        value = row["hops"]
+        if row["id"] in distances or pd.isna(value) or int(value) != value or value < 0:
+            raise GraphOutputMissing("Invalid or duplicate shortest-distance row")
+        distances[row["id"]] = int(value)
+        names[row["id"]] = row["name"]
+    if target_id not in distances or distances.get(source_id) != 0:
+        return _assemble_person_path(source_id, target_id, names, distances, [])
+
+    # Read only forward edges between consecutive source-distance layers.
+    a, b, root = Person.ref(), Person.ref(), Person.ref()
+    ha, hb = Integer.ref(), Integer.ref()
+    strength = Float.ref()
+    edge_rows = _run(model.where(
+        distance(root, a, ha), distance(root, b, hb), root.id == source_id,
+        a.knows(b), a.tie_strength(b, strength), strength >= 0.0, hb == ha + 1,
+        hb <= distances[target_id],
+    ).select(a.id.alias("a"), b.id.alias("b"), strength.alias("strength")))
+    return _assemble_person_path(source_id, target_id, names, distances,
+                                 list(edge_rows.itertuples(index=False, name=None)))
+
+
+__all__ = ["HERO_QUERIES", "q_score", "q_path", "q_person_path", "fixed_distance_probe_query", "q_flow", "q_conflict", "finale_rescore", "q_addon",
            "GraphOutputMissing"]

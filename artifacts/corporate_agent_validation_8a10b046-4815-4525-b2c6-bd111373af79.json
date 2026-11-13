@@ -1,0 +1,1451 @@
+{
+  "request_id": "8a10b046-4815-4525-b2c6-bd111373af79",
+  "status": "PASS",
+  "returned_paths_verified": 10,
+  "total_connections": 100,
+  "unfiltered_oracle_connections": 100,
+  "oracle_query_id": "01c86031-040d-3184-0005-5ee31477beba",
+  "transactions": [
+    {
+      "id": "01c86025-040d-3184-0005-5ee31477754e",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 2089,
+      "created_on": "2026-11-12 19:49:12.985000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c86025-040d-3184-0005-5ee31477750a",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 1135,
+      "created_on": "2026-11-12 19:49:07.851000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c86023-040d-3184-0005-5ee314774b9e",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 109273,
+      "created_on": "2026-11-12 19:47:08.088000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "aae4278bdd302eccd7b1bf680fcf0193d45ad7b78f1e86a72916ed8cad850c2f",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "all_routes_enumerated": false,
+    "as_of": "2026-10-01",
+    "direct_connections": 1,
+    "direct_connections_definition": "Starting people in this result with a direct modeled edge, even if a stronger two-hop witness was selected",
+    "displayed": 10,
+    "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+    "network_context": {
+      "affects_strength": false,
+      "available": true,
+      "metadata": {
+        "as_of": "2026-10-01",
+        "betweenness_is_global": false,
+        "betweenness_method": "Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology",
+        "betweenness_pivots": 2100,
+        "community_count": 1125,
+        "community_method": "Native RAI weighted Louvain, seed 42, max_levels 5",
+        "computed_at": "2026-11-13T03:10:24.898060+00:00",
+        "edge_count": 1042,
+        "independent_validation": {
+          "all_node_betweenness_verified": 2100,
+          "degree_and_weighted_degree_verified": true,
+          "native_raw_pair_count_factor": 1,
+          "note": "Louvain partitions can vary; verify coverage and weighted modularity, not identical labels",
+          "status": "PASS",
+          "weighted_modularity": 0.9580211171566976
+        },
+        "isolated_people": 695,
+        "min_strength": 0.02,
+        "node_count": 2100,
+        "nontrivial_community_count": 430,
+        "run_id": "8800c7bb-45cc-498e-9a68-b5768cf64800",
+        "scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+        "seconds": 41.98,
+        "transactions": [
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c85ffe-040d-3184-0005-5ee31475f272",
+            "STATE": "COMPLETED"
+          },
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c85ffd-040d-2d7a-0005-5ee31475e24e",
+            "STATE": "COMPLETED"
+          }
+        ],
+        "version": "corporate-affinity-v2"
+      },
+      "missing_people_mean": "Outside the defined cohort, not zero centrality",
+      "people": [
+        {
+          "betweenness": 0,
+          "community_id": "1121",
+          "degree": 0,
+          "person_id": "CORP_P000000373",
+          "weighted_degree": 0
+        },
+        {
+          "betweenness": 243,
+          "community_id": "38",
+          "degree": 2,
+          "person_id": "PE_P0013",
+          "weighted_degree": 0.5
+        },
+        {
+          "betweenness": 209,
+          "community_id": "38",
+          "degree": 3,
+          "person_id": "PE_P0019",
+          "weighted_degree": 0.527072662739628
+        },
+        {
+          "betweenness": 114,
+          "community_id": "20",
+          "degree": 2,
+          "person_id": "PE_P0021",
+          "weighted_degree": 0.271473626389193
+        },
+        {
+          "betweenness": 3264,
+          "community_id": "20",
+          "degree": 2,
+          "person_id": "PE_P0024",
+          "weighted_degree": 0.5
+        },
+        {
+          "betweenness": 99,
+          "community_id": "38",
+          "degree": 2,
+          "person_id": "PE_P0052",
+          "weighted_degree": 0.5
+        },
+        {
+          "betweenness": 155,
+          "community_id": "38",
+          "degree": 2,
+          "person_id": "PE_P0053",
+          "weighted_degree": 0.5
+        },
+        {
+          "betweenness": 224,
+          "community_id": "38",
+          "degree": 2,
+          "person_id": "PE_P0059",
+          "weighted_degree": 0.5
+        },
+        {
+          "betweenness": 3196,
+          "community_id": "19",
+          "degree": 4,
+          "person_id": "PE_P0078",
+          "weighted_degree": 0.54561196348786
+        },
+        {
+          "betweenness": 863,
+          "community_id": "2",
+          "degree": 3,
+          "person_id": "PE_P0091",
+          "weighted_degree": 0.551767606002599
+        },
+        {
+          "betweenness": 3286,
+          "community_id": "20",
+          "degree": 2,
+          "person_id": "PE_P0099",
+          "weighted_degree": 0.5
+        }
+      ]
+    },
+    "pyrel_sha256": "aae4278bdd302eccd7b1bf680fcf0193d45ad7b78f1e86a72916ed8cad850c2f",
+    "ranking": "Strongest product across paths up to two hops, then fewest hops; one deterministic witness per source",
+    "request_id": "8a10b046-4815-4525-b2c6-bd111373af79",
+    "rows": [
+      {
+        "connection": "Nadia H. Selwyn",
+        "connection_id": "PE_P0059",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.012828875842574,
+            "career_mean_years": 18.8870636550308,
+            "duration_component": 0.000587091904929,
+            "effective_years": 0.242299794661191,
+            "employment_contribution": 0.005030987905314,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-07-28 to 2020-07-05 (708 days; Different locations; company-only evidence); total shared years=1.9383983572895278; effective shared years=0.24229979466119098; Unknown / no confirmed friendship record; employment contribution=0.0050309879053136355, friendship contribution=0.0, total=0.0050309879053136355",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 708,
+                "decay_factor": 0.5,
+                "end_date": "2020-07-05T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2018-07-28T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_8",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O25",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "PE_R0059_4",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 88.5
+              }
+            ],
+            "raw_years": 1.938398357289528,
+            "right_career_years": 17.1088295687885,
+            "right_id": "PE_P0059",
+            "right_name": "Nadia H. Selwyn",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.005030987905314,
+            "synthetic": true,
+            "time_score": 0.006707983873752
+          }
+        ],
+        "hops": 1,
+        "minimum_hops": 1,
+        "path": "PE_P0059|CORP_P000000373",
+        "reason": "Nadia H. Selwyn \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-07-28 to 2020-07-05 (708 days; Different locations; company-only evidence); total shared years=1.9383983572895278; effective shared years=0.24229979466119098; Unknown / no confirmed friendship record; employment contribution=0.0050309879053136355, friendship contribution=0.0, total=0.0050309879053136355",
+        "strength": 0.005030987905314,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Teodor V. Rasmussen",
+        "connection_id": "PE_P0099",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.063530187435245,
+            "career_mean_years": 14.533880903490761,
+            "duration_component": 0.008525570842358,
+            "effective_years": 0.923340177960301,
+            "employment_contribution": 0.027020909354101,
+            "evidence": "Representative employment: Copperdale Materials (Synthetic): 2016-05-31 to 2018-06-06 (736 days; Same office); total shared years=2.0150581793292264; effective shared years=0.9233401779603012; Unknown / no confirmed friendship record; employment contribution=0.027020909354101112, friendship contribution=0.0, total=0.027020909354101112",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 10.146475017111568,
+            "left_id": "CORP_P000091690",
+            "left_name": "Damon J. Carrow",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 123,
+                "decay_factor": 0.25,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 1,
+                "start_date": "2016-05-31T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000428_CITY_6",
+                    "city_b": "CORP_C000428_CITY_6",
+                    "company": "Copperdale Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000428_O18",
+                    "office_b": "CORP_C000428_O18",
+                    "role_a": "CORP_R0000311989",
+                    "role_b": "PE_R0099_3",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 30.75
+              },
+              {
+                "bucket": 2,
+                "days": 613,
+                "decay_factor": 0.5,
+                "end_date": "2018-06-06T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 1,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000428_CITY_6",
+                    "city_b": "CORP_C000428_CITY_6",
+                    "company": "Copperdale Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000428_O18",
+                    "office_b": "CORP_C000428_O18",
+                    "role_a": "CORP_R0000311989",
+                    "role_b": "PE_R0099_3",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 306.5
+              }
+            ],
+            "raw_years": 2.015058179329226,
+            "right_career_years": 18.921286789869953,
+            "right_id": "PE_P0099",
+            "right_name": "Teodor V. Rasmussen",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.027020909354101,
+            "synthetic": true,
+            "time_score": 0.036027879138801
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.209774302470233,
+            "career_mean_years": 15.405886379192335,
+            "duration_component": 0.104442666809087,
+            "effective_years": 3.231759069130733,
+            "employment_contribution": 0.117831363479745,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Same office); total shared years=3.540041067761807; effective shared years=3.2317590691307325; Unknown / no confirmed friendship record; employment contribution=0.11783136347974507, friendship contribution=0.0, total=0.11783136347974507",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 563,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 1,
+                "start_date": "2023-03-18T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0000311990",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 450.40000000000003
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 1,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0000311990",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 730
+              }
+            ],
+            "raw_years": 3.540041067761807,
+            "right_career_years": 10.146475017111568,
+            "right_id": "CORP_P000091690",
+            "right_name": "Damon J. Carrow",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.117831363479745,
+            "synthetic": true,
+            "time_score": 0.15710848463966
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0099|CORP_P000091690|CORP_P000000373",
+        "reason": "Teodor V. Rasmussen \u2192 Damon J. Carrow: Representative employment: Copperdale Materials (Synthetic): 2016-05-31 to 2018-06-06 (736 days; Same office); total shared years=2.0150581793292264; effective shared years=0.9233401779603012; Unknown / no confirmed friendship record; employment contribution=0.027020909354101112, friendship contribution=0.0, total=0.027020909354101112; Damon J. Carrow \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Same office); total shared years=3.540041067761807; effective shared years=3.2317590691307325; Unknown / no confirmed friendship record; employment contribution=0.11783136347974507, friendship contribution=0.0, total=0.11783136347974507",
+        "strength": 0.003183910591656,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Dalia B. Whitcombe",
+        "connection_id": "PE_P0053",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.02963268675196,
+            "career_mean_years": 16.584531143052704,
+            "duration_component": 0.002415174177251,
+            "effective_years": 0.491444216290212,
+            "employment_contribution": 0.012017947848454,
+            "evidence": "Representative employment: Glenwell Energy (Synthetic): 2012-06-30 to 2018-07-22 (2213 days; Different locations; company-only evidence); total shared years=6.05886379192334; effective shared years=0.4914442162902122; Unknown / no confirmed friendship record; employment contribution=0.01201794784845427, friendship contribution=0.0, total=0.01201794784845427",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 15.123887748117728,
+            "left_id": "CORP_P000981445",
+            "left_name": "Amara Z. Farrow",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 1554,
+                "decay_factor": 0.25,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 0.25,
+                "start_date": "2012-06-30T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000425_CITY_3",
+                    "city_b": "CORP_C000425_CITY_2",
+                    "company": "Glenwell Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000425_O9",
+                    "office_b": "CORP_C000425_O7",
+                    "role_a": "CORP_R0003309400",
+                    "role_b": "PE_R0053_3",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 97.125
+              },
+              {
+                "bucket": 2,
+                "days": 659,
+                "decay_factor": 0.5,
+                "end_date": "2018-07-22T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000425_CITY_3",
+                    "city_b": "CORP_C000425_CITY_2",
+                    "company": "Glenwell Energy (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000425_O9",
+                    "office_b": "CORP_C000425_O7",
+                    "role_a": "CORP_R0003309400",
+                    "role_b": "PE_R0053_3",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 82.375
+              }
+            ],
+            "raw_years": 6.05886379192334,
+            "right_career_years": 18.04517453798768,
+            "right_id": "PE_P0053",
+            "right_name": "Dalia B. Whitcombe",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.012017947848454,
+            "synthetic": true,
+            "time_score": 0.016023930464606
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.180599755201958,
+            "career_mean_years": 17.894592744695416,
+            "duration_component": 0.104442666809087,
+            "effective_years": 3.231759069130733,
+            "employment_contribution": 0.106890908254142,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Same office); total shared years=3.540041067761807; effective shared years=3.2317590691307325; Unknown / no confirmed friendship record; employment contribution=0.10689090825414216, friendship contribution=0.0, total=0.10689090825414216",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 563,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 1,
+                "start_date": "2023-03-18T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0003309401",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 450.40000000000003
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 1,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0003309401",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 730
+              }
+            ],
+            "raw_years": 3.540041067761807,
+            "right_career_years": 15.123887748117728,
+            "right_id": "CORP_P000981445",
+            "right_name": "Amara Z. Farrow",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.106890908254142,
+            "synthetic": true,
+            "time_score": 0.142521211005523
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0053|CORP_P000981445|CORP_P000000373",
+        "reason": "Dalia B. Whitcombe \u2192 Amara Z. Farrow: Representative employment: Glenwell Energy (Synthetic): 2012-06-30 to 2018-07-22 (2213 days; Different locations; company-only evidence); total shared years=6.05886379192334; effective shared years=0.4914442162902122; Unknown / no confirmed friendship record; employment contribution=0.01201794784845427, friendship contribution=0.0, total=0.01201794784845427; Amara Z. Farrow \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2026-10-01 (1293 days; Same office); total shared years=3.540041067761807; effective shared years=3.2317590691307325; Unknown / no confirmed friendship record; employment contribution=0.10689090825414216, friendship contribution=0.0, total=0.10689090825414216",
+        "strength": 0.001284609360872,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Alana N. Okonkwo",
+        "connection_id": "PE_P0013",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0,
+            "career_mean_years": 15.06365503080082,
+            "duration_component": 0,
+            "effective_years": 0,
+            "employment_contribution": 0,
+            "evidence": "Representative employment: No qualifying employment overlap; total shared years=0.0; effective shared years=0.0; Confirmed synthetic friendship; employment contribution=0.0, friendship contribution=0.25, total=0.25",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0.25,
+            "friendship_score": 1,
+            "friendship_source": "synthetic current-office friendship",
+            "friendship_status": "Confirmed synthetic friendship",
+            "left_career_years": 13.018480492813142,
+            "left_id": "PE_P0013",
+            "left_name": "Alana N. Okonkwo",
+            "periods": [],
+            "raw_years": 0,
+            "right_career_years": 17.1088295687885,
+            "right_id": "PE_P0059",
+            "right_name": "Nadia H. Selwyn",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.25,
+            "synthetic": true,
+            "time_score": 0
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.012828875842574,
+            "career_mean_years": 18.8870636550308,
+            "duration_component": 0.000587091904929,
+            "effective_years": 0.242299794661191,
+            "employment_contribution": 0.005030987905314,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-07-28 to 2020-07-05 (708 days; Different locations; company-only evidence); total shared years=1.9383983572895278; effective shared years=0.24229979466119098; Unknown / no confirmed friendship record; employment contribution=0.0050309879053136355, friendship contribution=0.0, total=0.0050309879053136355",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 708,
+                "decay_factor": 0.5,
+                "end_date": "2020-07-05T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2018-07-28T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_8",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O25",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "PE_R0059_4",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 88.5
+              }
+            ],
+            "raw_years": 1.938398357289528,
+            "right_career_years": 17.1088295687885,
+            "right_id": "PE_P0059",
+            "right_name": "Nadia H. Selwyn",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.005030987905314,
+            "synthetic": true,
+            "time_score": 0.006707983873752
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0013|PE_P0059|CORP_P000000373",
+        "reason": "Alana N. Okonkwo \u2192 Nadia H. Selwyn: Representative employment: No qualifying employment overlap; total shared years=0.0; effective shared years=0.0; Confirmed synthetic friendship; employment contribution=0.0, friendship contribution=0.25, total=0.25; Nadia H. Selwyn \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-07-28 to 2020-07-05 (708 days; Different locations; company-only evidence); total shared years=1.9383983572895278; effective shared years=0.24229979466119098; Unknown / no confirmed friendship record; employment contribution=0.0050309879053136355, friendship contribution=0.0, total=0.0050309879053136355",
+        "strength": 0.001257746976328,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Jada T. Underhill",
+        "connection_id": "PE_P0019",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0,
+            "career_mean_years": 20.13141683778234,
+            "duration_component": 0,
+            "effective_years": 0,
+            "employment_contribution": 0,
+            "evidence": "Representative employment: No qualifying employment overlap; total shared years=0.0; effective shared years=0.0; Confirmed synthetic friendship; employment contribution=0.0, friendship contribution=0.25, total=0.25",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0.25,
+            "friendship_score": 1,
+            "friendship_source": "synthetic current-office friendship",
+            "friendship_status": "Confirmed synthetic friendship",
+            "left_career_years": 23.15400410677618,
+            "left_id": "PE_P0019",
+            "left_name": "Jada T. Underhill",
+            "periods": [],
+            "raw_years": 0,
+            "right_career_years": 17.1088295687885,
+            "right_id": "PE_P0059",
+            "right_name": "Nadia H. Selwyn",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.25,
+            "synthetic": true,
+            "time_score": 0
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.012828875842574,
+            "career_mean_years": 18.8870636550308,
+            "duration_component": 0.000587091904929,
+            "effective_years": 0.242299794661191,
+            "employment_contribution": 0.005030987905314,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-07-28 to 2020-07-05 (708 days; Different locations; company-only evidence); total shared years=1.9383983572895278; effective shared years=0.24229979466119098; Unknown / no confirmed friendship record; employment contribution=0.0050309879053136355, friendship contribution=0.0, total=0.0050309879053136355",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 708,
+                "decay_factor": 0.5,
+                "end_date": "2020-07-05T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2018-07-28T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_8",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O25",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "PE_R0059_4",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 88.5
+              }
+            ],
+            "raw_years": 1.938398357289528,
+            "right_career_years": 17.1088295687885,
+            "right_id": "PE_P0059",
+            "right_name": "Nadia H. Selwyn",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.005030987905314,
+            "synthetic": true,
+            "time_score": 0.006707983873752
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0019|PE_P0059|CORP_P000000373",
+        "reason": "Jada T. Underhill \u2192 Nadia H. Selwyn: Representative employment: No qualifying employment overlap; total shared years=0.0; effective shared years=0.0; Confirmed synthetic friendship; employment contribution=0.0, friendship contribution=0.25, total=0.25; Nadia H. Selwyn \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-07-28 to 2020-07-05 (708 days; Different locations; company-only evidence); total shared years=1.9383983572895278; effective shared years=0.24229979466119098; Unknown / no confirmed friendship record; employment contribution=0.0050309879053136355, friendship contribution=0.0, total=0.0050309879053136355",
+        "strength": 0.001257746976328,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Colin A. Mbeki-Shaw",
+        "connection_id": "PE_P0078",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.148059084194978,
+            "career_mean_years": 9.267624914442163,
+            "duration_component": 0.018828122461199,
+            "effective_years": 1.372156057494867,
+            "employment_contribution": 0.062582702496066,
+            "evidence": "Representative employment: Summitdale Consumer Brands (Synthetic): 2021-03-02 to 2024-03-30 (1124 days; Same synthetic city, different offices); total shared years=3.077344284736482; effective shared years=1.3721560574948666; Unknown / no confirmed friendship record; employment contribution=0.06258270249606615, friendship contribution=0.0, total=0.06258270249606615",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 5.582477754962355,
+            "left_id": "CORP_P000731341",
+            "left_name": "Rohan Y. Ambrose",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 213,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.6,
+                "start_date": "2021-03-02T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000907_CITY_4",
+                    "city_b": "CORP_C000907_CITY_4",
+                    "company": "Summitdale Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000907_O14",
+                    "office_b": "CORP_C000907_O13",
+                    "role_a": "CORP_R0002467031",
+                    "role_b": "PE_R0078_3",
+                    "spatial_basis": "Same synthetic city, different offices"
+                  }
+                ],
+                "weighted_days": 63.9
+              },
+              {
+                "bucket": 1,
+                "days": 911,
+                "decay_factor": 0.8,
+                "end_date": "2024-03-30T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.6,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000907_CITY_4",
+                    "city_b": "CORP_C000907_CITY_4",
+                    "company": "Summitdale Consumer Brands (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000907_O14",
+                    "office_b": "CORP_C000907_O13",
+                    "role_a": "CORP_R0002467031",
+                    "role_b": "PE_R0078_3",
+                    "spatial_basis": "Same synthetic city, different offices"
+                  }
+                ],
+                "weighted_days": 437.28000000000003
+              }
+            ],
+            "raw_years": 3.077344284736482,
+            "right_career_years": 12.952772073921972,
+            "right_id": "PE_P0078",
+            "right_name": "Colin A. Mbeki-Shaw",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.062582702496066,
+            "synthetic": true,
+            "time_score": 0.083443603328088
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.045791175550224,
+            "career_mean_years": 13.123887748117728,
+            "duration_component": 0.003611508155694,
+            "effective_years": 0.600958247775496,
+            "employment_contribution": 0.018526006389719,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2024-03-30 to 2026-10-01 (915 days; Different locations; company-only evidence); total shared years=2.5051334702258727; effective shared years=0.6009582477754962; Unknown / no confirmed friendship record; employment contribution=0.018526006389719327, friendship contribution=0.0, total=0.018526006389719327",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 185,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.25,
+                "start_date": "2024-03-30T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_3",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O11",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0002467032",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 37
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 0.25,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_3",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O11",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0002467032",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 182.5
+              }
+            ],
+            "raw_years": 2.505133470225873,
+            "right_career_years": 5.582477754962355,
+            "right_id": "CORP_P000731341",
+            "right_name": "Rohan Y. Ambrose",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.018526006389719,
+            "synthetic": true,
+            "time_score": 0.024701341852959
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0078|CORP_P000731341|CORP_P000000373",
+        "reason": "Colin A. Mbeki-Shaw \u2192 Rohan Y. Ambrose: Representative employment: Summitdale Consumer Brands (Synthetic): 2021-03-02 to 2024-03-30 (1124 days; Same synthetic city, different offices); total shared years=3.077344284736482; effective shared years=1.3721560574948666; Unknown / no confirmed friendship record; employment contribution=0.06258270249606615, friendship contribution=0.0, total=0.06258270249606615; Rohan Y. Ambrose \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2024-03-30 to 2026-10-01 (915 days; Different locations; company-only evidence); total shared years=2.5051334702258727; effective shared years=0.6009582477754962; Unknown / no confirmed friendship record; employment contribution=0.018526006389719327, friendship contribution=0.0, total=0.018526006389719327",
+        "strength": 0.001159407546328,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Uma Y. Maddox",
+        "connection_id": "PE_P0024",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.031696398058916,
+            "career_mean_years": 20.028747433264886,
+            "duration_component": 0.004030207479805,
+            "effective_years": 0.634839151266256,
+            "employment_contribution": 0.01339747707702,
+            "evidence": "Representative employment: Amberbank Materials (Synthetic): 2019-08-10 to 2023-08-02 (1453 days; Different locations; company-only evidence); total shared years=3.978097193702943; effective shared years=0.634839151266256; Unknown / no confirmed friendship record; employment contribution=0.013397477077020227, friendship contribution=0.0, total=0.013397477077020227",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 23.11841204654346,
+            "left_id": "CORP_P000893836",
+            "left_name": "Desmond F. Chen-Morrow",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 783,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2019-08-10T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000285_CITY_5",
+                    "city_b": "CORP_C000285_CITY_1",
+                    "company": "Amberbank Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000285_O17",
+                    "office_b": "CORP_C000285_O3",
+                    "role_a": "CORP_R0003014937",
+                    "role_b": "PE_R0024_3",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 97.875
+              },
+              {
+                "bucket": 1,
+                "days": 670,
+                "decay_factor": 0.8,
+                "end_date": "2023-08-02T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.25,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000285_CITY_5",
+                    "city_b": "CORP_C000285_CITY_1",
+                    "company": "Amberbank Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000285_O17",
+                    "office_b": "CORP_C000285_O3",
+                    "role_a": "CORP_R0003014937",
+                    "role_b": "PE_R0024_3",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 134
+              }
+            ],
+            "raw_years": 3.978097193702943,
+            "right_career_years": 16.93908281998631,
+            "right_id": "PE_P0024",
+            "right_name": "Uma Y. Maddox",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.01339747707702,
+            "synthetic": true,
+            "time_score": 0.01786330276936
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.128514257128564,
+            "career_mean_years": 21.89185489390828,
+            "duration_component": 0.079153066004036,
+            "effective_years": 2.813415468856947,
+            "employment_contribution": 0.077875246174725,
+            "evidence": "Representative employment: Aspenview Materials (Synthetic): 2023-09-25 to 2026-10-01 (1102 days; Same office); total shared years=3.0171115674195756; effective shared years=2.813415468856947; Unknown / no confirmed friendship record; employment contribution=0.07787524617472492, friendship contribution=0.0, total=0.07787524617472492",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 1,
+                "days": 372,
+                "decay_factor": 0.8,
+                "end_date": "2024-10-01T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 1,
+                "start_date": "2023-09-25T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0003014938",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 297.6
+              },
+              {
+                "bucket": 0,
+                "days": 730,
+                "decay_factor": 1,
+                "end_date": "2026-10-01T00:00:00.000",
+                "recency_band": "0\u20132 years",
+                "spatial_factor": 1,
+                "start_date": "2024-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000373_CITY_1",
+                    "city_b": "CORP_C000373_CITY_1",
+                    "company": "Aspenview Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000373_O4",
+                    "office_b": "CORP_C000373_O4",
+                    "role_a": "CORP_R0000001643",
+                    "role_b": "CORP_R0003014938",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 730
+              }
+            ],
+            "raw_years": 3.017111567419576,
+            "right_career_years": 23.11841204654346,
+            "right_id": "CORP_P000893836",
+            "right_name": "Desmond F. Chen-Morrow",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.077875246174725,
+            "synthetic": true,
+            "time_score": 0.1038336615663
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0024|CORP_P000893836|CORP_P000000373",
+        "reason": "Uma Y. Maddox \u2192 Desmond F. Chen-Morrow: Representative employment: Amberbank Materials (Synthetic): 2019-08-10 to 2023-08-02 (1453 days; Different locations; company-only evidence); total shared years=3.978097193702943; effective shared years=0.634839151266256; Unknown / no confirmed friendship record; employment contribution=0.013397477077020227, friendship contribution=0.0, total=0.013397477077020227; Desmond F. Chen-Morrow \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-09-25 to 2026-10-01 (1102 days; Same office); total shared years=3.0171115674195756; effective shared years=2.813415468856947; Unknown / no confirmed friendship record; employment contribution=0.07787524617472492, friendship contribution=0.0, total=0.07787524617472492",
+        "strength": 0.001043331825493,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Maya V. Beaumont",
+        "connection_id": "PE_P0021",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.045339652448657,
+            "career_mean_years": 15.597535934291582,
+            "duration_component": 0.005001132525752,
+            "effective_years": 0.707186858316222,
+            "employment_contribution": 0.018877794365403,
+            "evidence": "Representative employment: Riverlake Communications (Synthetic): 2014-06-26 to 2017-12-22 (1275 days; Same synthetic city, different offices); total shared years=3.490759753593429; effective shared years=0.7071868583162216; Unknown / no confirmed friendship record; employment contribution=0.01887779436540332, friendship contribution=0.0, total=0.01887779436540332",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 12.071184120465434,
+            "left_id": "CORP_P000248318",
+            "left_name": "Darius M. Quillon",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 828,
+                "decay_factor": 0.25,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 0.6,
+                "start_date": "2014-06-26T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000734_CITY_5",
+                    "city_b": "CORP_C000734_CITY_5",
+                    "company": "Riverlake Communications (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000734_O15",
+                    "office_b": "CORP_C000734_O17",
+                    "role_a": "CORP_R0000840589",
+                    "role_b": "PE_R0021_3",
+                    "spatial_basis": "Same synthetic city, different offices"
+                  }
+                ],
+                "weighted_days": 124.19999999999999
+              },
+              {
+                "bucket": 2,
+                "days": 447,
+                "decay_factor": 0.5,
+                "end_date": "2017-12-22T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.6,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000734_CITY_5",
+                    "city_b": "CORP_C000734_CITY_5",
+                    "company": "Riverlake Communications (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000734_O15",
+                    "office_b": "CORP_C000734_O17",
+                    "role_a": "CORP_R0000840589",
+                    "role_b": "PE_R0021_3",
+                    "spatial_basis": "Same synthetic city, different offices"
+                  }
+                ],
+                "weighted_days": 134.1
+              }
+            ],
+            "raw_years": 3.490759753593429,
+            "right_career_years": 19.123887748117728,
+            "right_id": "PE_P0021",
+            "right_name": "Maya V. Beaumont",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.018877794365403,
+            "synthetic": true,
+            "time_score": 0.025170392487204
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.108528895207828,
+            "career_mean_years": 16.368240930869266,
+            "duration_component": 0.031556932583938,
+            "effective_years": 1.776427104722793,
+            "employment_contribution": 0.052532185421912,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2023-03-18 (1843 days; Same synthetic city, different offices); total shared years=5.045859000684462; effective shared years=1.7764271047227926; Unknown / no confirmed friendship record; employment contribution=0.052532185421912285, friendship contribution=0.0, total=0.052532185421912285",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1310,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.6,
+                "start_date": "2018-03-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_7",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O22",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000840590",
+                    "spatial_basis": "Same synthetic city, different offices"
+                  }
+                ],
+                "weighted_days": 393
+              },
+              {
+                "bucket": 1,
+                "days": 533,
+                "decay_factor": 0.8,
+                "end_date": "2023-03-18T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 0.6,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_7",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.6,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O22",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000840590",
+                    "spatial_basis": "Same synthetic city, different offices"
+                  }
+                ],
+                "weighted_days": 255.84
+              }
+            ],
+            "raw_years": 5.045859000684462,
+            "right_career_years": 12.071184120465434,
+            "right_id": "CORP_P000248318",
+            "right_name": "Darius M. Quillon",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.052532185421912,
+            "synthetic": true,
+            "time_score": 0.070042913895883
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0021|CORP_P000248318|CORP_P000000373",
+        "reason": "Maya V. Beaumont \u2192 Darius M. Quillon: Representative employment: Riverlake Communications (Synthetic): 2014-06-26 to 2017-12-22 (1275 days; Same synthetic city, different offices); total shared years=3.490759753593429; effective shared years=0.7071868583162216; Unknown / no confirmed friendship record; employment contribution=0.01887779436540332, friendship contribution=0.0, total=0.01887779436540332; Darius M. Quillon \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2023-03-18 (1843 days; Same synthetic city, different offices); total shared years=5.045859000684462; effective shared years=1.7764271047227926; Unknown / no confirmed friendship record; employment contribution=0.052532185421912285, friendship contribution=0.0, total=0.052532185421912285",
+        "strength": 0.00099169179396,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Bram A. Rourke",
+        "connection_id": "PE_P0052",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.007718621173581,
+            "career_mean_years": 15.607118412046542,
+            "duration_component": 0.000145119209415,
+            "effective_years": 0.120465434633812,
+            "employment_contribution": 0.002948902643624,
+            "evidence": "Representative employment: Aspendale Materials (Synthetic): 2013-03-26 to 2015-02-28 (704 days; Remote or unknown location; company-only evidence); total shared years=1.9274469541409993; effective shared years=0.12046543463381246; Unknown / no confirmed friendship record; employment contribution=0.002948902643623649, friendship contribution=0.0, total=0.002948902643623649",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 18.22861054072553,
+            "left_id": "CORP_P000935808",
+            "left_name": "Anika Y. Farrow",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 704,
+                "decay_factor": 0.25,
+                "end_date": "2015-02-28T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "spatial_factor": 0.25,
+                "start_date": "2013-03-26T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000956_CITY_2",
+                    "city_b": "Unknown/remote",
+                    "company": "Aspendale Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000956_O7",
+                    "office_b": "Unknown/remote",
+                    "role_a": "CORP_R0003156278",
+                    "role_b": "PE_R0052_1",
+                    "spatial_basis": "Remote or unknown location; company-only evidence"
+                  }
+                ],
+                "weighted_days": 44
+              }
+            ],
+            "raw_years": 1.927446954140999,
+            "right_career_years": 12.985626283367557,
+            "right_id": "PE_P0052",
+            "right_name": "Bram A. Rourke",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.002948902643624,
+            "synthetic": true,
+            "time_score": 0.003931870191498
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.116978741376883,
+            "career_mean_years": 19.446954140999317,
+            "duration_component": 0.051750800109252,
+            "effective_years": 2.274880219028063,
+            "employment_contribution": 0.0632735780573,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-06-26 to 2022-07-21 (1486 days; Same office); total shared years=4.068446269678303; effective shared years=2.274880219028063; Confirmed synthetic friendship; employment contribution=0.0632735780573005, friendship contribution=0.25, total=0.3132735780573005",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0.25,
+            "friendship_score": 1,
+            "friendship_source": "synthetic alumni friendship",
+            "friendship_status": "Confirmed synthetic friendship",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1193,
+                "decay_factor": 0.5,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 1,
+                "start_date": "2018-06-26T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_7",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O21",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0003156279",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 596.5
+              },
+              {
+                "bucket": 1,
+                "days": 293,
+                "decay_factor": 0.8,
+                "end_date": "2022-07-21T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "spatial_factor": 1,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_7",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 1,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O21",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0003156279",
+                    "spatial_basis": "Same office"
+                  }
+                ],
+                "weighted_days": 234.4
+              }
+            ],
+            "raw_years": 4.068446269678303,
+            "right_career_years": 18.22861054072553,
+            "right_id": "CORP_P000935808",
+            "right_name": "Anika Y. Farrow",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.3132735780573,
+            "synthetic": true,
+            "time_score": 0.084364770743067
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0052|CORP_P000935808|CORP_P000000373",
+        "reason": "Bram A. Rourke \u2192 Anika Y. Farrow: Representative employment: Aspendale Materials (Synthetic): 2013-03-26 to 2015-02-28 (704 days; Remote or unknown location; company-only evidence); total shared years=1.9274469541409993; effective shared years=0.12046543463381246; Unknown / no confirmed friendship record; employment contribution=0.002948902643623649, friendship contribution=0.0, total=0.002948902643623649; Anika Y. Farrow \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-06-26 to 2022-07-21 (1486 days; Same office); total shared years=4.068446269678303; effective shared years=2.274880219028063; Confirmed synthetic friendship; employment contribution=0.0632735780573005, friendship contribution=0.25, total=0.3132735780573005",
+        "strength": 0.000923813282511,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      },
+      {
+        "connection": "Darius N. Kowalczyk",
+        "connection_id": "PE_P0091",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0.009496987162693,
+            "career_mean_years": 15.675564681724847,
+            "duration_component": 0.000221624664269,
+            "effective_years": 0.148870636550308,
+            "employment_contribution": 0.003644479435111,
+            "evidence": "Representative employment: Elmpoint Materials (Synthetic): 2018-02-28 to 2019-05-09 (435 days; Different locations; company-only evidence); total shared years=1.1909650924024642; effective shared years=0.14887063655030802; Unknown / no confirmed friendship record; employment contribution=0.0036444794351108076, friendship contribution=0.0, total=0.0036444794351108076",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0,
+            "friendship_score": 0,
+            "friendship_source": "None",
+            "friendship_status": "Unknown / no confirmed friendship record",
+            "left_career_years": 10.149212867898699,
+            "left_id": "CORP_P000120227",
+            "left_name": "Nora S. Tanaka",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 435,
+                "decay_factor": 0.5,
+                "end_date": "2019-05-09T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "spatial_factor": 0.25,
+                "start_date": "2018-02-28T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000483_CITY_0",
+                    "city_b": "CORP_C000483_CITY_7",
+                    "company": "Elmpoint Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.25,
+                    "office_a": "CORP_C000483_O1",
+                    "office_b": "CORP_C000483_O21",
+                    "role_a": "CORP_R0000409005",
+                    "role_b": "PE_R0091_3",
+                    "spatial_basis": "Different locations; company-only evidence"
+                  }
+                ],
+                "weighted_days": 54.375
+              }
+            ],
+            "raw_years": 1.190965092402464,
+            "right_career_years": 21.201916495550993,
+            "right_id": "PE_P0091",
+            "right_name": "Darius N. Kowalczyk",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.003644479435111,
+            "synthetic": true,
+            "time_score": 0.004859305913481
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_fraction": 0,
+            "career_mean_years": 15.407255304585899,
+            "duration_component": 0,
+            "effective_years": 0,
+            "employment_contribution": 0,
+            "evidence": "Representative employment: No qualifying employment overlap; total shared years=0.0; effective shared years=0.0; Confirmed synthetic friendship; employment contribution=0.0, friendship contribution=0.25, total=0.25",
+            "formula": "0.75 \u00d7 (0.50 \u00d7 effective_years / mean_career_years + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2) + 0.25 \u00d7 confirmed_friendship",
+            "friendship_contribution": 0.25,
+            "friendship_score": 1,
+            "friendship_source": "synthetic personal friendship",
+            "friendship_status": "Confirmed synthetic friendship",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [],
+            "raw_years": 0,
+            "right_career_years": 10.149212867898699,
+            "right_id": "CORP_P000120227",
+            "right_name": "Nora S. Tanaka",
+            "scoring_version": "corporate-affinity-v2",
+            "strength": 0.25,
+            "synthetic": true,
+            "time_score": 0
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0091|CORP_P000120227|CORP_P000000373",
+        "reason": "Darius N. Kowalczyk \u2192 Nora S. Tanaka: Representative employment: Elmpoint Materials (Synthetic): 2018-02-28 to 2019-05-09 (435 days; Different locations; company-only evidence); total shared years=1.1909650924024642; effective shared years=0.14887063655030802; Unknown / no confirmed friendship record; employment contribution=0.0036444794351108076, friendship contribution=0.0, total=0.0036444794351108076; Nora S. Tanaka \u2192 Soren T. Bellamy: Representative employment: No qualifying employment overlap; total shared years=0.0; effective shared years=0.0; Confirmed synthetic friendship; employment contribution=0.0, friendship contribution=0.25, total=0.25",
+        "strength": 0.000911119858778,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "scoring_version": "corporate-affinity-v2",
+    "search_limit_hops": 2,
+    "seconds": 151.71,
+    "sources_searched": 100,
+    "status": "OK",
+    "strength_is_probability": false,
+    "synthetic_data": true,
+    "total_connections": 100,
+    "total_connections_definition": "Number of starting people with a qualifying selected witness; NOT a count of all routes",
+    "transaction_ids": [
+      "01c86023-040d-3184-0005-5ee314774b9e",
+      "01c86025-040d-3184-0005-5ee31477750a",
+      "01c86025-040d-3184-0005-5ee31477754e"
+    ]
+  }
+}

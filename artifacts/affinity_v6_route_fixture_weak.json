@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "strongest": [
+    {
+      "connection_id": "CORP_P000900001",
+      "connection": "Source",
+      "target_id": "CORP_P000900004",
+      "target": "Target",
+      "strength": 0.246770405732753,
+      "raw_strength": 0.003708278136192,
+      "reason": "Source \u2192 First intermediary \u2192 Second intermediary \u2192 Target; qualifying shared-employment evidence and calculations are supplied for each selected connection.",
+      "hops": 3,
+      "minimum_hops": 1,
+      "path": "CORP_P000900001|CORP_P000900002|CORP_P000900003|CORP_P000900004"
+    }
+  ],
+  "shortest": [
+    {
+      "connection_id": "CORP_P000900001",
+      "connection": "Source",
+      "target_id": "CORP_P000900004",
+      "target": "Target",
+      "strength": 0.158283924632977,
+      "raw_strength": 0.000627692934387,
+      "reason": "Source \u2192 Target; qualifying shared-employment evidence and calculations are supplied for each selected connection.",
+      "hops": 1,
+      "minimum_hops": 1,
+      "path": "CORP_P000900001|CORP_P000900004"
+    }
+  ],
+  "transactions": [
+    {
+      "ID": "01c861af-040d-3905-0005-5ee314872832",
+      "STATE": "COMPLETED"
+    },
+    {
+      "ID": "01c861ae-040d-3905-0005-5ee314872626",
+      "STATE": "COMPLETED"
+    }
+  ]
+}

@@ -1,0 +1,1414 @@
+{
+  "transaction_ids": [
+    "01c86074-040d-3184-0005-5ee3147a15ca"
+  ],
+  "computed_at": "2026-11-13T05:08:40.123288+00:00",
+  "computation_seconds": 34.59,
+  "scoring_version": "corporate-affinity-v5",
+  "center": {
+    "id": "CORP_P000002008",
+    "name": "Vikram Z. Kessler",
+    "history": [
+      {
+        "role_id": "CORP_R0000008985",
+        "company_id": "CORP_C000042",
+        "company": "Havenbridge Logistics (Synthetic)",
+        "role_type": "Employee",
+        "title": "Associate Data Analytics",
+        "start_date": "2009-08-27",
+        "end_date": "2011-08-30",
+        "office_id": "CORP_C000042_O4",
+        "city_id": "CORP_C000042_CITY_1",
+        "work_mode": "ONSITE",
+        "tenure_years": 2.006845
+      },
+      {
+        "role_id": "CORP_R0000008986",
+        "company_id": "CORP_C000020",
+        "company": "Blueford Logistics (Synthetic)",
+        "role_type": "Employee",
+        "title": "Associate Data Analytics",
+        "start_date": "2011-08-30",
+        "end_date": "2013-09-05",
+        "office_id": "CORP_C000020_O16",
+        "city_id": "CORP_C000020_CITY_5",
+        "work_mode": "ONSITE",
+        "tenure_years": 2.017796
+      },
+      {
+        "role_id": "CORP_R0000008987",
+        "company_id": "CORP_C000824",
+        "company": "Copperrock Materials (Synthetic)",
+        "role_type": "Employee",
+        "title": "Senior Data Analytics",
+        "start_date": "2013-09-05",
+        "end_date": "2025-09-14",
+        "office_id": "CORP_C000824_O8",
+        "city_id": "CORP_C000824_CITY_2",
+        "work_mode": "ONSITE",
+        "tenure_years": 12.024641
+      },
+      {
+        "role_id": "CORP_R0000008988",
+        "company_id": "CORP_C000526",
+        "company": "Pinepoint Logistics (Synthetic)",
+        "role_type": "Employee",
+        "title": "Director, Data Analytics",
+        "start_date": "2025-09-14",
+        "end_date": null,
+        "office_id": "CORP_C000526_O4",
+        "city_id": "CORP_C000526_CITY_1",
+        "work_mode": "ONSITE",
+        "tenure_years": 1.045859
+      }
+    ],
+    "network": null,
+    "network_scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+    "as_of": "2026-10-01"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "CORP_P000002008",
+        "concept": "Center",
+        "label": "Vikram Z. Kessler",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000956462",
+        "concept": "Person",
+        "label": "Mara R. Bellamy",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000353008",
+        "concept": "Person",
+        "label": "Anika S. Bellamy",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000543697",
+        "concept": "Person",
+        "label": "Greta Y. Farrow",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000679413",
+        "concept": "Person",
+        "label": "Eamon C. Okonkwo",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000641505",
+        "concept": "Person",
+        "label": "Cecil V. Jarrell",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000435919",
+        "concept": "Person",
+        "label": "Miles Z. Radcliffe",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000993859",
+        "concept": "Person",
+        "label": "Soren J. Zielinski",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000487803",
+        "concept": "Person",
+        "label": "Jonah R. Quillon",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000936763",
+        "concept": "Person",
+        "label": "Jada V. Chen-Morrow",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000467196",
+        "concept": "Person",
+        "label": "Lucia U. Kessler",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000978374",
+        "concept": "Person",
+        "label": "Orla J. Barrow",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000653151",
+        "concept": "Person",
+        "label": "Jonah G. Varga",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000497294",
+        "concept": "Person",
+        "label": "Andre H. Rasmussen",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000118917",
+        "concept": "Person",
+        "label": "Kenji F. Northcott",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000410968",
+        "concept": "Person",
+        "label": "Gideon C. Iwata",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000929924",
+        "concept": "Person",
+        "label": "Ines O. Tanaka",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000436157",
+        "concept": "Person",
+        "label": "Emeka B. Adair",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000761404",
+        "concept": "Person",
+        "label": "Rosa F. Kowalczyk",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000207716",
+        "concept": "Person",
+        "label": "Elise Y. Blackwood",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000410673",
+        "concept": "Person",
+        "label": "Gideon S. Blackwood",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000225433",
+        "concept": "Person",
+        "label": "Helena J. Oduya",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000013016",
+        "concept": "Person",
+        "label": "Carmen X. Draycott",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000483585",
+        "concept": "Person",
+        "label": "Simone X. Zielinski",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000239345",
+        "concept": "Person",
+        "label": "Emeka V. Hargreave",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000089670",
+        "concept": "Person",
+        "label": "Andre B. Oduya",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000243123",
+        "concept": "Person",
+        "label": "Dalia T. Halloran",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000232201",
+        "concept": "Person",
+        "label": "Beatrice Z. Mbeki-Shaw",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000447168",
+        "concept": "Person",
+        "label": "Jonah E. Hargreave",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000675714",
+        "concept": "Person",
+        "label": "Mateo Z. Vasquez-Lowe",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000205461",
+        "concept": "Person",
+        "label": "Orla T. Vance",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000557621",
+        "concept": "Person",
+        "label": "Darius T. Thackeray",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000398970",
+        "concept": "Person",
+        "label": "Esme P. Pemberton",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000679068",
+        "concept": "Person",
+        "label": "Camila W. Carrow",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000614518",
+        "concept": "Person",
+        "label": "Camila Q. Halloran",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000533860",
+        "concept": "Person",
+        "label": "Vera R. Marchetti",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000400379",
+        "concept": "Person",
+        "label": "Arjun W. Chen-Morrow",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000040209",
+        "concept": "Person",
+        "label": "Cecil T. Albrecht",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000451242",
+        "concept": "Person",
+        "label": "Andre Z. Ellery-Ostrowski",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000884151",
+        "concept": "Person",
+        "label": "Adrian L. Ashdown",
+        "attributes": {}
+      },
+      {
+        "id": "CORP_P000391397",
+        "concept": "Person",
+        "label": "Silas H. Moravec",
+        "attributes": {}
+      }
+    ],
+    "edges": [
+      {
+        "id": "CORP_P000002008--CORP_P000956462",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000956462",
+        "relationship": "0.8002",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2014-09-14 to 2025-09-14 (4018 days; Same office); total shared years=11.000684462696784; effective shared years=6.36495550992471; Deferred; not used in scoring; employment contribution=0.41004209732191477, friendship contribution=0.0, raw strength=0.41004209732191477; normalized strength=0.8002157805149592",
+        "strength": 0.800215780514959,
+        "raw_strength": 0.410042097321915,
+        "attributes": {
+          "strength": 0.800215780514959
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000956462",
+          "name": "Mara R. Bellamy",
+          "distance": 1,
+          "strength": 0.800215780514959,
+          "raw_strength": 0.410042097321915,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2014-09-14 to 2025-09-14 (4018 days; Same office); total shared years=11.000684462696784; effective shared years=6.36495550992471; Deferred; not used in scoring; employment contribution=0.41004209732191477, friendship contribution=0.0, raw strength=0.41004209732191477; normalized strength=0.8002157805149592",
+          "employment_contribution": 0.410042097321915,
+          "friendship_contribution": 0.0,
+          "raw_years": 11.000684462696784,
+          "effective_years": 6.36495550992471,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000353008",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000353008",
+        "relationship": "0.7881",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2013-09-05 to 2025-03-12 (4206 days; Same office); total shared years=11.515400410677618; effective shared years=6.11170431211499; Deferred; not used in scoring; employment contribution=0.38581056863562224, friendship contribution=0.0, raw strength=0.38581056863562224; normalized strength=0.7881221438884375",
+        "strength": 0.788122143888438,
+        "raw_strength": 0.385810568635622,
+        "attributes": {
+          "strength": 0.788122143888438
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000353008",
+          "name": "Anika S. Bellamy",
+          "distance": 1,
+          "strength": 0.788122143888438,
+          "raw_strength": 0.385810568635622,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2013-09-05 to 2025-03-12 (4206 days; Same office); total shared years=11.515400410677618; effective shared years=6.11170431211499; Deferred; not used in scoring; employment contribution=0.38581056863562224, friendship contribution=0.0, raw strength=0.38581056863562224; normalized strength=0.7881221438884375",
+          "employment_contribution": 0.385810568635622,
+          "friendship_contribution": 0.0,
+          "raw_years": 11.515400410677618,
+          "effective_years": 6.11170431211499,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000543697",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000543697",
+        "relationship": "0.7831",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-20 to 2025-09-14 (3281 days; Same office); total shared years=8.982888432580424; effective shared years=5.86050650239562; Deferred; not used in scoring; employment contribution=0.3761541936400774, friendship contribution=0.0, raw strength=0.3761541936400774; normalized strength=0.7831437331887227",
+        "strength": 0.783143733188723,
+        "raw_strength": 0.376154193640077,
+        "attributes": {
+          "strength": 0.783143733188723
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000543697",
+          "name": "Greta Y. Farrow",
+          "distance": 1,
+          "strength": 0.783143733188723,
+          "raw_strength": 0.376154193640077,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-20 to 2025-09-14 (3281 days; Same office); total shared years=8.982888432580424; effective shared years=5.86050650239562; Deferred; not used in scoring; employment contribution=0.3761541936400774, friendship contribution=0.0, raw strength=0.3761541936400774; normalized strength=0.7831437331887227",
+          "employment_contribution": 0.376154193640077,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.982888432580424,
+          "effective_years": 5.86050650239562,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000679413",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000679413",
+        "relationship": "0.7768",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2014-09-30 to 2025-09-14 (4002 days; Same office); total shared years=10.956878850102669; effective shared years=6.354004106776181; Deferred; not used in scoring; employment contribution=0.3641265067490196, friendship contribution=0.0, raw strength=0.3641265067490196; normalized strength=0.7768068984629137",
+        "strength": 0.776806898462914,
+        "raw_strength": 0.36412650674902,
+        "attributes": {
+          "strength": 0.776806898462914
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000679413",
+          "name": "Eamon C. Okonkwo",
+          "distance": 1,
+          "strength": 0.776806898462914,
+          "raw_strength": 0.36412650674902,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2014-09-30 to 2025-09-14 (4002 days; Same office); total shared years=10.956878850102669; effective shared years=6.354004106776181; Deferred; not used in scoring; employment contribution=0.3641265067490196, friendship contribution=0.0, raw strength=0.3641265067490196; normalized strength=0.7768068984629137",
+          "employment_contribution": 0.36412650674902,
+          "friendship_contribution": 0.0,
+          "raw_years": 10.956878850102669,
+          "effective_years": 6.354004106776181,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000641505",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000641505",
+        "relationship": "0.7731",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2014-09-10 to 2025-09-14 (4022 days; Same office); total shared years=11.011635865845312; effective shared years=6.367693360711842; Deferred; not used in scoring; employment contribution=0.35723473729658295, friendship contribution=0.0, raw strength=0.35723473729658295; normalized strength=0.7731048907978464",
+        "strength": 0.773104890797846,
+        "raw_strength": 0.357234737296583,
+        "attributes": {
+          "strength": 0.773104890797846
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000641505",
+          "name": "Cecil V. Jarrell",
+          "distance": 1,
+          "strength": 0.773104890797846,
+          "raw_strength": 0.357234737296583,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2014-09-10 to 2025-09-14 (4022 days; Same office); total shared years=11.011635865845312; effective shared years=6.367693360711842; Deferred; not used in scoring; employment contribution=0.35723473729658295, friendship contribution=0.0, raw strength=0.35723473729658295; normalized strength=0.7731048907978464",
+          "employment_contribution": 0.357234737296583,
+          "friendship_contribution": 0.0,
+          "raw_years": 11.011635865845312,
+          "effective_years": 6.367693360711842,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000435919",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000435919",
+        "relationship": "0.7681",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-22 to 2025-09-14 (3279 days; Same office); total shared years=8.97741273100616; effective shared years=5.859137577002054; Deferred; not used in scoring; employment contribution=0.3480300586595647, friendship contribution=0.0, raw strength=0.3480300586595647; normalized strength=0.7680759888839144",
+        "strength": 0.768075988883914,
+        "raw_strength": 0.348030058659565,
+        "attributes": {
+          "strength": 0.768075988883914
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000435919",
+          "name": "Miles Z. Radcliffe",
+          "distance": 1,
+          "strength": 0.768075988883914,
+          "raw_strength": 0.348030058659565,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-22 to 2025-09-14 (3279 days; Same office); total shared years=8.97741273100616; effective shared years=5.859137577002054; Deferred; not used in scoring; employment contribution=0.3480300586595647, friendship contribution=0.0, raw strength=0.3480300586595647; normalized strength=0.7680759888839144",
+          "employment_contribution": 0.348030058659565,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.97741273100616,
+          "effective_years": 5.859137577002054,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000993859",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000993859",
+        "relationship": "0.7655",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-16 to 2025-09-14 (3285 days; Same office); total shared years=8.993839835728952; effective shared years=5.863244353182752; Deferred; not used in scoring; employment contribution=0.34332188930489793, friendship contribution=0.0, raw strength=0.34332188930489793; normalized strength=0.7654650626948181",
+        "strength": 0.765465062694818,
+        "raw_strength": 0.343321889304898,
+        "attributes": {
+          "strength": 0.765465062694818
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000993859",
+          "name": "Soren J. Zielinski",
+          "distance": 1,
+          "strength": 0.765465062694818,
+          "raw_strength": 0.343321889304898,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-16 to 2025-09-14 (3285 days; Same office); total shared years=8.993839835728952; effective shared years=5.863244353182752; Deferred; not used in scoring; employment contribution=0.34332188930489793, friendship contribution=0.0, raw strength=0.34332188930489793; normalized strength=0.7654650626948181",
+          "employment_contribution": 0.343321889304898,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.993839835728952,
+          "effective_years": 5.863244353182752,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000487803",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000487803",
+        "relationship": "0.7613",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-14 to 2025-09-14 (3287 days; Same office); total shared years=8.999315537303216; effective shared years=5.864613278576318; Deferred; not used in scoring; employment contribution=0.3359845241687339, friendship contribution=0.0, raw strength=0.3359845241687339; normalized strength=0.761342052247978",
+        "strength": 0.761342052247978,
+        "raw_strength": 0.335984524168734,
+        "attributes": {
+          "strength": 0.761342052247978
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000487803",
+          "name": "Jonah R. Quillon",
+          "distance": 1,
+          "strength": 0.761342052247978,
+          "raw_strength": 0.335984524168734,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-14 to 2025-09-14 (3287 days; Same office); total shared years=8.999315537303216; effective shared years=5.864613278576318; Deferred; not used in scoring; employment contribution=0.3359845241687339, friendship contribution=0.0, raw strength=0.3359845241687339; normalized strength=0.761342052247978",
+          "employment_contribution": 0.335984524168734,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.999315537303216,
+          "effective_years": 5.864613278576318,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000936763",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000936763",
+        "relationship": "0.7565",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-06 to 2025-09-14 (3295 days; Same office); total shared years=9.021218343600275; effective shared years=5.870088980150582; Deferred; not used in scoring; employment contribution=0.3274982073209445, friendship contribution=0.0, raw strength=0.3274982073209445; normalized strength=0.7564883282905781",
+        "strength": 0.756488328290578,
+        "raw_strength": 0.327498207320944,
+        "attributes": {
+          "strength": 0.756488328290578
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000936763",
+          "name": "Jada V. Chen-Morrow",
+          "distance": 1,
+          "strength": 0.756488328290578,
+          "raw_strength": 0.327498207320944,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-06 to 2025-09-14 (3295 days; Same office); total shared years=9.021218343600275; effective shared years=5.870088980150582; Deferred; not used in scoring; employment contribution=0.3274982073209445, friendship contribution=0.0, raw strength=0.3274982073209445; normalized strength=0.7564883282905781",
+          "employment_contribution": 0.327498207320944,
+          "friendship_contribution": 0.0,
+          "raw_years": 9.021218343600275,
+          "effective_years": 5.870088980150582,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000467196",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000467196",
+        "relationship": "0.7526",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-26 to 2025-09-14 (3275 days; Same office); total shared years=8.966461327857632; effective shared years=5.856399726214922; Deferred; not used in scoring; employment contribution=0.3208725207096225, friendship contribution=0.0, raw strength=0.3208725207096225; normalized strength=0.7526327833708699",
+        "strength": 0.75263278337087,
+        "raw_strength": 0.320872520709622,
+        "attributes": {
+          "strength": 0.75263278337087
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000467196",
+          "name": "Lucia U. Kessler",
+          "distance": 1,
+          "strength": 0.75263278337087,
+          "raw_strength": 0.320872520709622,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-26 to 2025-09-14 (3275 days; Same office); total shared years=8.966461327857632; effective shared years=5.856399726214922; Deferred; not used in scoring; employment contribution=0.3208725207096225, friendship contribution=0.0, raw strength=0.3208725207096225; normalized strength=0.7526327833708699",
+          "employment_contribution": 0.320872520709622,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.966461327857632,
+          "effective_years": 5.856399726214922,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000978374",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000978374",
+        "relationship": "0.7472",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-26 to 2025-09-14 (2545 days; Same office); total shared years=6.967830253251198; effective shared years=4.86050650239562; Deferred; not used in scoring; employment contribution=0.3117001988060746, friendship contribution=0.0, raw strength=0.3117001988060746; normalized strength=0.7471955380848371",
+        "strength": 0.747195538084837,
+        "raw_strength": 0.311700198806075,
+        "attributes": {
+          "strength": 0.747195538084837
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000978374",
+          "name": "Orla J. Barrow",
+          "distance": 1,
+          "strength": 0.747195538084837,
+          "raw_strength": 0.311700198806075,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-26 to 2025-09-14 (2545 days; Same office); total shared years=6.967830253251198; effective shared years=4.86050650239562; Deferred; not used in scoring; employment contribution=0.3117001988060746, friendship contribution=0.0, raw strength=0.3117001988060746; normalized strength=0.7471955380848371",
+          "employment_contribution": 0.311700198806075,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.967830253251198,
+          "effective_years": 4.86050650239562,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000653151",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000653151",
+        "relationship": "0.7450",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2014-08-27 to 2024-09-05 (3662 days; Same office); total shared years=10.026009582477755; effective shared years=5.367556468172484; Deferred; not used in scoring; employment contribution=0.30801584460289594, friendship contribution=0.0, raw strength=0.30801584460289594; normalized strength=0.7449776854599139",
+        "strength": 0.744977685459914,
+        "raw_strength": 0.308015844602896,
+        "attributes": {
+          "strength": 0.744977685459914
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000653151",
+          "name": "Jonah G. Varga",
+          "distance": 1,
+          "strength": 0.744977685459914,
+          "raw_strength": 0.308015844602896,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2014-08-27 to 2024-09-05 (3662 days; Same office); total shared years=10.026009582477755; effective shared years=5.367556468172484; Deferred; not used in scoring; employment contribution=0.30801584460289594, friendship contribution=0.0, raw strength=0.30801584460289594; normalized strength=0.7449776854599139",
+          "employment_contribution": 0.308015844602896,
+          "friendship_contribution": 0.0,
+          "raw_years": 10.026009582477755,
+          "effective_years": 5.367556468172484,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000497294",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000497294",
+        "relationship": "0.7430",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-12 to 2025-09-14 (3289 days; Same office); total shared years=9.00479123887748; effective shared years=5.865982203969884; Deferred; not used in scoring; employment contribution=0.3047801200537472, friendship contribution=0.0, raw strength=0.3047801200537472; normalized strength=0.7430134218292536",
+        "strength": 0.743013421829254,
+        "raw_strength": 0.304780120053747,
+        "attributes": {
+          "strength": 0.743013421829254
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000497294",
+          "name": "Andre H. Rasmussen",
+          "distance": 1,
+          "strength": 0.743013421829254,
+          "raw_strength": 0.304780120053747,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-12 to 2025-09-14 (3289 days; Same office); total shared years=9.00479123887748; effective shared years=5.865982203969884; Deferred; not used in scoring; employment contribution=0.3047801200537472, friendship contribution=0.0, raw strength=0.3047801200537472; normalized strength=0.7430134218292536",
+          "employment_contribution": 0.304780120053747,
+          "friendship_contribution": 0.0,
+          "raw_years": 9.00479123887748,
+          "effective_years": 5.865982203969884,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000118917",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000118917",
+        "relationship": "0.7357",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-09-27 to 2025-09-14 (3274 days; Same office); total shared years=8.9637234770705; effective shared years=5.855715263518139; Deferred; not used in scoring; employment contribution=0.2928938292453436, friendship contribution=0.0, raw strength=0.2928938292453436; normalized strength=0.7356606990396003",
+        "strength": 0.7356606990396,
+        "raw_strength": 0.292893829245344,
+        "attributes": {
+          "strength": 0.7356606990396
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000118917",
+          "name": "Kenji F. Northcott",
+          "distance": 1,
+          "strength": 0.7356606990396,
+          "raw_strength": 0.292893829245344,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-09-27 to 2025-09-14 (3274 days; Same office); total shared years=8.9637234770705; effective shared years=5.855715263518139; Deferred; not used in scoring; employment contribution=0.2928938292453436, friendship contribution=0.0, raw strength=0.2928938292453436; normalized strength=0.7356606990396003",
+          "employment_contribution": 0.292893829245344,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.9637234770705,
+          "effective_years": 5.855715263518139,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000410968",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000410968",
+        "relationship": "0.7307",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-23 to 2025-09-14 (2548 days; Same office); total shared years=6.976043805612594; effective shared years=4.864613278576318; Deferred; not used in scoring; employment contribution=0.28501712364655546, friendship contribution=0.0, raw strength=0.28501712364655546; normalized strength=0.7306640473740856",
+        "strength": 0.730664047374086,
+        "raw_strength": 0.285017123646555,
+        "attributes": {
+          "strength": 0.730664047374086
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000410968",
+          "name": "Gideon C. Iwata",
+          "distance": 1,
+          "strength": 0.730664047374086,
+          "raw_strength": 0.285017123646555,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-23 to 2025-09-14 (2548 days; Same office); total shared years=6.976043805612594; effective shared years=4.864613278576318; Deferred; not used in scoring; employment contribution=0.28501712364655546, friendship contribution=0.0, raw strength=0.28501712364655546; normalized strength=0.7306640473740856",
+          "employment_contribution": 0.285017123646555,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.976043805612594,
+          "effective_years": 4.864613278576318,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000929924",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000929924",
+        "relationship": "0.7283",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-28 to 2025-09-14 (2543 days; Same office); total shared years=6.962354551676934; effective shared years=4.857768651608488; Deferred; not used in scoring; employment contribution=0.28133887246936096, friendship contribution=0.0, raw strength=0.28133887246936096; normalized strength=0.728295179882041",
+        "strength": 0.728295179882041,
+        "raw_strength": 0.281338872469361,
+        "attributes": {
+          "strength": 0.728295179882041
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000929924",
+          "name": "Ines O. Tanaka",
+          "distance": 1,
+          "strength": 0.728295179882041,
+          "raw_strength": 0.281338872469361,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-28 to 2025-09-14 (2543 days; Same office); total shared years=6.962354551676934; effective shared years=4.857768651608488; Deferred; not used in scoring; employment contribution=0.28133887246936096, friendship contribution=0.0, raw strength=0.28133887246936096; normalized strength=0.728295179882041",
+          "employment_contribution": 0.281338872469361,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.962354551676934,
+          "effective_years": 4.857768651608488,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000436157",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000436157",
+        "relationship": "0.7263",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-10 to 2025-09-14 (2561 days; Same office); total shared years=7.011635865845311; effective shared years=4.882409308692677; Deferred; not used in scoring; employment contribution=0.2783417675004497, friendship contribution=0.0, raw strength=0.2783417675004497; normalized strength=0.7263477493701151",
+        "strength": 0.726347749370115,
+        "raw_strength": 0.27834176750045,
+        "attributes": {
+          "strength": 0.726347749370115
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000436157",
+          "name": "Emeka B. Adair",
+          "distance": 1,
+          "strength": 0.726347749370115,
+          "raw_strength": 0.27834176750045,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-10 to 2025-09-14 (2561 days; Same office); total shared years=7.011635865845311; effective shared years=4.882409308692677; Deferred; not used in scoring; employment contribution=0.2783417675004497, friendship contribution=0.0, raw strength=0.2783417675004497; normalized strength=0.7263477493701151",
+          "employment_contribution": 0.27834176750045,
+          "friendship_contribution": 0.0,
+          "raw_years": 7.011635865845311,
+          "effective_years": 4.882409308692677,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000761404",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000761404",
+        "relationship": "0.7263",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2013-09-13 to 2023-09-25 (3664 days; Same office); total shared years=10.03148528405202; effective shared years=4.8479123887748115; Deferred; not used in scoring; employment contribution=0.27833779399041403, friendship contribution=0.0, raw strength=0.27833779399041403; normalized strength=0.7263451570844262",
+        "strength": 0.726345157084426,
+        "raw_strength": 0.278337793990414,
+        "attributes": {
+          "strength": 0.726345157084426
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000761404",
+          "name": "Rosa F. Kowalczyk",
+          "distance": 1,
+          "strength": 0.726345157084426,
+          "raw_strength": 0.278337793990414,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2013-09-13 to 2023-09-25 (3664 days; Same office); total shared years=10.03148528405202; effective shared years=4.8479123887748115; Deferred; not used in scoring; employment contribution=0.27833779399041403, friendship contribution=0.0, raw strength=0.27833779399041403; normalized strength=0.7263451570844262",
+          "employment_contribution": 0.278337793990414,
+          "friendship_contribution": 0.0,
+          "raw_years": 10.03148528405202,
+          "effective_years": 4.847912388774812,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000207716",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000207716",
+        "relationship": "0.7255",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2019-09-15 to 2025-09-14 (2191 days; Same office); total shared years=5.9986310746064335; effective shared years=4.375906913073238; Deferred; not used in scoring; employment contribution=0.2770176165854968, friendship contribution=0.0, raw strength=0.2770176165854968; normalized strength=0.7254823432853551",
+        "strength": 0.725482343285355,
+        "raw_strength": 0.277017616585497,
+        "attributes": {
+          "strength": 0.725482343285355
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000207716",
+          "name": "Elise Y. Blackwood",
+          "distance": 1,
+          "strength": 0.725482343285355,
+          "raw_strength": 0.277017616585497,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2019-09-15 to 2025-09-14 (2191 days; Same office); total shared years=5.9986310746064335; effective shared years=4.375906913073238; Deferred; not used in scoring; employment contribution=0.2770176165854968, friendship contribution=0.0, raw strength=0.2770176165854968; normalized strength=0.7254823432853551",
+          "employment_contribution": 0.277017616585497,
+          "friendship_contribution": 0.0,
+          "raw_years": 5.998631074606434,
+          "effective_years": 4.375906913073238,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000410673",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000410673",
+        "relationship": "0.7225",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2016-08-31 to 2024-09-26 (2948 days; Same office); total shared years=8.071184120465434; effective shared years=4.910472279260781; Deferred; not used in scoring; employment contribution=0.2725465728334847, friendship contribution=0.0, raw strength=0.2725465728334847; normalized strength=0.7225371493727969",
+        "strength": 0.722537149372797,
+        "raw_strength": 0.272546572833485,
+        "attributes": {
+          "strength": 0.722537149372797
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000410673",
+          "name": "Gideon S. Blackwood",
+          "distance": 1,
+          "strength": 0.722537149372797,
+          "raw_strength": 0.272546572833485,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2016-08-31 to 2024-09-26 (2948 days; Same office); total shared years=8.071184120465434; effective shared years=4.910472279260781; Deferred; not used in scoring; employment contribution=0.2725465728334847, friendship contribution=0.0, raw strength=0.2725465728334847; normalized strength=0.7225371493727969",
+          "employment_contribution": 0.272546572833485,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.071184120465434,
+          "effective_years": 4.910472279260781,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000225433",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000225433",
+        "relationship": "0.7174",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2013-09-05 to 2023-09-17 (3664 days; Same office); total shared years=10.03148528405202; effective shared years=4.835865845311431; Deferred; not used in scoring; employment contribution=0.2648221563146555, friendship contribution=0.0, raw strength=0.2648221563146555; normalized strength=0.7173623498630386",
+        "strength": 0.717362349863039,
+        "raw_strength": 0.264822156314656,
+        "attributes": {
+          "strength": 0.717362349863039
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000225433",
+          "name": "Helena J. Oduya",
+          "distance": 1,
+          "strength": 0.717362349863039,
+          "raw_strength": 0.264822156314656,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2013-09-05 to 2023-09-17 (3664 days; Same office); total shared years=10.03148528405202; effective shared years=4.835865845311431; Deferred; not used in scoring; employment contribution=0.2648221563146555, friendship contribution=0.0, raw strength=0.2648221563146555; normalized strength=0.7173623498630386",
+          "employment_contribution": 0.264822156314656,
+          "friendship_contribution": 0.0,
+          "raw_years": 10.03148528405202,
+          "effective_years": 4.835865845311431,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000013016",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000013016",
+        "relationship": "0.7129",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2019-09-29 to 2025-09-14 (2177 days; Same office); total shared years=5.960301163586585; effective shared years=4.3567419575633135; Deferred; not used in scoring; employment contribution=0.25831738053035047, friendship contribution=0.0, raw strength=0.25831738053035047; normalized strength=0.7129160743732423",
+        "strength": 0.712916074373242,
+        "raw_strength": 0.25831738053035,
+        "attributes": {
+          "strength": 0.712916074373242
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000013016",
+          "name": "Carmen X. Draycott",
+          "distance": 1,
+          "strength": 0.712916074373242,
+          "raw_strength": 0.25831738053035,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2019-09-29 to 2025-09-14 (2177 days; Same office); total shared years=5.960301163586585; effective shared years=4.3567419575633135; Deferred; not used in scoring; employment contribution=0.25831738053035047, friendship contribution=0.0, raw strength=0.25831738053035047; normalized strength=0.7129160743732423",
+          "employment_contribution": 0.25831738053035,
+          "friendship_contribution": 0.0,
+          "raw_years": 5.960301163586585,
+          "effective_years": 4.356741957563314,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000483585",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000483585",
+        "relationship": "0.7092",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-21 to 2025-09-14 (2550 days; Same office); total shared years=6.981519507186858; effective shared years=4.86735112936345; Deferred; not used in scoring; employment contribution=0.252933598622669, friendship contribution=0.0, raw strength=0.252933598622669; normalized strength=0.709172082605903",
+        "strength": 0.709172082605903,
+        "raw_strength": 0.252933598622669,
+        "attributes": {
+          "strength": 0.709172082605903
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000483585",
+          "name": "Simone X. Zielinski",
+          "distance": 1,
+          "strength": 0.709172082605903,
+          "raw_strength": 0.252933598622669,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-21 to 2025-09-14 (2550 days; Same office); total shared years=6.981519507186858; effective shared years=4.86735112936345; Deferred; not used in scoring; employment contribution=0.252933598622669, friendship contribution=0.0, raw strength=0.252933598622669; normalized strength=0.709172082605903",
+          "employment_contribution": 0.252933598622669,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.981519507186858,
+          "effective_years": 4.86735112936345,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000239345",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000239345",
+        "relationship": "0.7077",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2019-09-16 to 2025-09-14 (2190 days; Same office); total shared years=5.9958932238193015; effective shared years=4.374537987679672; Deferred; not used in scoring; employment contribution=0.2508241888802871, friendship contribution=0.0, raw strength=0.2508241888802871; normalized strength=0.7076888516222345",
+        "strength": 0.707688851622234,
+        "raw_strength": 0.250824188880287,
+        "attributes": {
+          "strength": 0.707688851622234
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000239345",
+          "name": "Emeka V. Hargreave",
+          "distance": 1,
+          "strength": 0.707688851622234,
+          "raw_strength": 0.250824188880287,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2019-09-16 to 2025-09-14 (2190 days; Same office); total shared years=5.9958932238193015; effective shared years=4.374537987679672; Deferred; not used in scoring; employment contribution=0.2508241888802871, friendship contribution=0.0, raw strength=0.2508241888802871; normalized strength=0.7076888516222345",
+          "employment_contribution": 0.250824188880287,
+          "friendship_contribution": 0.0,
+          "raw_years": 5.995893223819302,
+          "effective_years": 4.374537987679672,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000089670",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000089670",
+        "relationship": "0.7062",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2019-09-12 to 2025-09-14 (2194 days; Same office); total shared years=6.006844626967831; effective shared years=4.3800136892539365; Deferred; not used in scoring; employment contribution=0.24876486576012663, friendship contribution=0.0, raw strength=0.24876486576012663; normalized strength=0.7062317866135203",
+        "strength": 0.70623178661352,
+        "raw_strength": 0.248764865760127,
+        "attributes": {
+          "strength": 0.70623178661352
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000089670",
+          "name": "Andre B. Oduya",
+          "distance": 1,
+          "strength": 0.70623178661352,
+          "raw_strength": 0.248764865760127,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2019-09-12 to 2025-09-14 (2194 days; Same office); total shared years=6.006844626967831; effective shared years=4.3800136892539365; Deferred; not used in scoring; employment contribution=0.24876486576012663, friendship contribution=0.0, raw strength=0.24876486576012663; normalized strength=0.7062317866135203",
+          "employment_contribution": 0.248764865760127,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.006844626967831,
+          "effective_years": 4.380013689253936,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000243123",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000243123",
+        "relationship": "0.7014",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2020-09-21 to 2025-09-14 (1819 days; Same office); total shared years=4.980150581793292; effective shared years=3.866666666666667; Deferred; not used in scoring; employment contribution=0.24199060588119206, friendship contribution=0.0, raw strength=0.24199060588119206; normalized strength=0.7013739422207463",
+        "strength": 0.701373942220746,
+        "raw_strength": 0.241990605881192,
+        "attributes": {
+          "strength": 0.701373942220746
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000243123",
+          "name": "Dalia T. Halloran",
+          "distance": 1,
+          "strength": 0.701373942220746,
+          "raw_strength": 0.241990605881192,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2020-09-21 to 2025-09-14 (1819 days; Same office); total shared years=4.980150581793292; effective shared years=3.866666666666667; Deferred; not used in scoring; employment contribution=0.24199060588119206, friendship contribution=0.0, raw strength=0.24199060588119206; normalized strength=0.7013739422207463",
+          "employment_contribution": 0.241990605881192,
+          "friendship_contribution": 0.0,
+          "raw_years": 4.980150581793292,
+          "effective_years": 3.866666666666667,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000232201",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000232201",
+        "relationship": "0.7012",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2020-09-23 to 2025-09-14 (1817 days; Same office); total shared years=4.974674880219028; effective shared years=3.863928815879535; Deferred; not used in scoring; employment contribution=0.24180595356188406, friendship contribution=0.0, raw strength=0.24180595356188406; normalized strength=0.7012401070662636",
+        "strength": 0.701240107066264,
+        "raw_strength": 0.241805953561884,
+        "attributes": {
+          "strength": 0.701240107066264
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000232201",
+          "name": "Beatrice Z. Mbeki-Shaw",
+          "distance": 1,
+          "strength": 0.701240107066264,
+          "raw_strength": 0.241805953561884,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2020-09-23 to 2025-09-14 (1817 days; Same office); total shared years=4.974674880219028; effective shared years=3.863928815879535; Deferred; not used in scoring; employment contribution=0.24180595356188406, friendship contribution=0.0, raw strength=0.24180595356188406; normalized strength=0.7012401070662636",
+          "employment_contribution": 0.241805953561884,
+          "friendship_contribution": 0.0,
+          "raw_years": 4.974674880219028,
+          "effective_years": 3.863928815879535,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000447168",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000447168",
+        "relationship": "0.7007",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2019-09-11 to 2025-09-14 (2195 days; Same office); total shared years=6.009582477754963; effective shared years=4.381382614647502; Deferred; not used in scoring; employment contribution=0.24110816887771808, friendship contribution=0.0, raw strength=0.24110816887771808; normalized strength=0.7007336627436586",
+        "strength": 0.700733662743658,
+        "raw_strength": 0.241108168877718,
+        "attributes": {
+          "strength": 0.700733662743658
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000447168",
+          "name": "Jonah E. Hargreave",
+          "distance": 1,
+          "strength": 0.700733662743658,
+          "raw_strength": 0.241108168877718,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2019-09-11 to 2025-09-14 (2195 days; Same office); total shared years=6.009582477754963; effective shared years=4.381382614647502; Deferred; not used in scoring; employment contribution=0.24110816887771808, friendship contribution=0.0, raw strength=0.24110816887771808; normalized strength=0.7007336627436586",
+          "employment_contribution": 0.241108168877718,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.009582477754963,
+          "effective_years": 4.381382614647502,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000675714",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000675714",
+        "relationship": "0.6984",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-04 to 2025-09-14 (2567 days; Same office); total shared years=7.028062970568104; effective shared years=4.890622861054073; Deferred; not used in scoring; employment contribution=0.23795952389011854, friendship contribution=0.0, raw strength=0.23795952389011854; normalized strength=0.6984346433088492",
+        "strength": 0.698434643308849,
+        "raw_strength": 0.237959523890119,
+        "attributes": {
+          "strength": 0.698434643308849
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000675714",
+          "name": "Mateo Z. Vasquez-Lowe",
+          "distance": 1,
+          "strength": 0.698434643308849,
+          "raw_strength": 0.237959523890119,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-04 to 2025-09-14 (2567 days; Same office); total shared years=7.028062970568104; effective shared years=4.890622861054073; Deferred; not used in scoring; employment contribution=0.23795952389011854, friendship contribution=0.0, raw strength=0.23795952389011854; normalized strength=0.6984346433088492",
+          "employment_contribution": 0.237959523890119,
+          "friendship_contribution": 0.0,
+          "raw_years": 7.028062970568104,
+          "effective_years": 4.890622861054073,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000205461",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000205461",
+        "relationship": "0.6984",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-06 to 2025-09-14 (2565 days; Same office); total shared years=7.02258726899384; effective shared years=4.887885010266941; Deferred; not used in scoring; employment contribution=0.23793211429927721, friendship contribution=0.0, raw strength=0.23793211429927721; normalized strength=0.6984145299777491",
+        "strength": 0.698414529977749,
+        "raw_strength": 0.237932114299277,
+        "attributes": {
+          "strength": 0.698414529977749
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000205461",
+          "name": "Orla T. Vance",
+          "distance": 1,
+          "strength": 0.698414529977749,
+          "raw_strength": 0.237932114299277,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-06 to 2025-09-14 (2565 days; Same office); total shared years=7.02258726899384; effective shared years=4.887885010266941; Deferred; not used in scoring; employment contribution=0.23793211429927721, friendship contribution=0.0, raw strength=0.23793211429927721; normalized strength=0.6984145299777491",
+          "employment_contribution": 0.237932114299277,
+          "friendship_contribution": 0.0,
+          "raw_years": 7.02258726899384,
+          "effective_years": 4.887885010266941,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000557621",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000557621",
+        "relationship": "0.6956",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-29 to 2025-09-14 (2542 days; Same office); total shared years=6.959616700889802; effective shared years=4.856399726214922; Deferred; not used in scoring; employment contribution=0.23410832763411732, friendship contribution=0.0, raw strength=0.23410832763411732; normalized strength=0.6955914187605632",
+        "strength": 0.695591418760563,
+        "raw_strength": 0.234108327634117,
+        "attributes": {
+          "strength": 0.695591418760563
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000557621",
+          "name": "Darius T. Thackeray",
+          "distance": 1,
+          "strength": 0.695591418760563,
+          "raw_strength": 0.234108327634117,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-29 to 2025-09-14 (2542 days; Same office); total shared years=6.959616700889802; effective shared years=4.856399726214922; Deferred; not used in scoring; employment contribution=0.23410832763411732, friendship contribution=0.0, raw strength=0.23410832763411732; normalized strength=0.6955914187605632",
+          "employment_contribution": 0.234108327634117,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.959616700889802,
+          "effective_years": 4.856399726214922,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000398970",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000398970",
+        "relationship": "0.6945",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2015-09-09 to 2023-09-29 (2942 days; Same office); total shared years=8.054757015742641; effective shared years=4.359753593429159; Deferred; not used in scoring; employment contribution=0.23259772691489466, friendship contribution=0.0, raw strength=0.23259772691489466; normalized strength=0.6944666050236148",
+        "strength": 0.694466605023615,
+        "raw_strength": 0.232597726914895,
+        "attributes": {
+          "strength": 0.694466605023615
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000398970",
+          "name": "Esme P. Pemberton",
+          "distance": 1,
+          "strength": 0.694466605023615,
+          "raw_strength": 0.232597726914895,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2015-09-09 to 2023-09-29 (2942 days; Same office); total shared years=8.054757015742641; effective shared years=4.359753593429159; Deferred; not used in scoring; employment contribution=0.23259772691489466, friendship contribution=0.0, raw strength=0.23259772691489466; normalized strength=0.6944666050236148",
+          "employment_contribution": 0.232597726914895,
+          "friendship_contribution": 0.0,
+          "raw_years": 8.054757015742641,
+          "effective_years": 4.359753593429159,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000679068",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000679068",
+        "relationship": "0.6934",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2020-02-24 to 2025-09-14 (2029 days; Same office); total shared years=5.555099247091033; effective shared years=4.154140999315538; Deferred; not used in scoring; employment contribution=0.23113407921574475, friendship contribution=0.0, raw strength=0.23113407921574475; normalized strength=0.6933715149479096",
+        "strength": 0.69337151494791,
+        "raw_strength": 0.231134079215745,
+        "attributes": {
+          "strength": 0.69337151494791
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000679068",
+          "name": "Camila W. Carrow",
+          "distance": 1,
+          "strength": 0.69337151494791,
+          "raw_strength": 0.231134079215745,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2020-02-24 to 2025-09-14 (2029 days; Same office); total shared years=5.555099247091033; effective shared years=4.154140999315538; Deferred; not used in scoring; employment contribution=0.23113407921574475, friendship contribution=0.0, raw strength=0.23113407921574475; normalized strength=0.6933715149479096",
+          "employment_contribution": 0.231134079215745,
+          "friendship_contribution": 0.0,
+          "raw_years": 5.555099247091033,
+          "effective_years": 4.154140999315538,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000614518",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000614518",
+        "relationship": "0.6908",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-27 to 2025-09-14 (2544 days; Same office); total shared years=6.965092402464066; effective shared years=4.859137577002054; Deferred; not used in scoring; employment contribution=0.2277131798592207, friendship contribution=0.0, raw strength=0.2277131798592207; normalized strength=0.6907915905649595",
+        "strength": 0.69079159056496,
+        "raw_strength": 0.227713179859221,
+        "attributes": {
+          "strength": 0.69079159056496
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000614518",
+          "name": "Camila Q. Halloran",
+          "distance": 1,
+          "strength": 0.69079159056496,
+          "raw_strength": 0.227713179859221,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-27 to 2025-09-14 (2544 days; Same office); total shared years=6.965092402464066; effective shared years=4.859137577002054; Deferred; not used in scoring; employment contribution=0.2277131798592207, friendship contribution=0.0, raw strength=0.2277131798592207; normalized strength=0.6907915905649595",
+          "employment_contribution": 0.227713179859221,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.965092402464066,
+          "effective_years": 4.859137577002054,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000533860",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000533860",
+        "relationship": "0.6898",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2019-09-05 to 2025-09-14 (2201 days; Same office); total shared years=6.026009582477755; effective shared years=4.389596167008898; Deferred; not used in scoring; employment contribution=0.22641741152162148, friendship contribution=0.0, raw strength=0.22641741152162148; normalized strength=0.6898067746145252",
+        "strength": 0.689806774614525,
+        "raw_strength": 0.226417411521621,
+        "attributes": {
+          "strength": 0.689806774614525
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000533860",
+          "name": "Vera R. Marchetti",
+          "distance": 1,
+          "strength": 0.689806774614525,
+          "raw_strength": 0.226417411521621,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2019-09-05 to 2025-09-14 (2201 days; Same office); total shared years=6.026009582477755; effective shared years=4.389596167008898; Deferred; not used in scoring; employment contribution=0.22641741152162148, friendship contribution=0.0, raw strength=0.22641741152162148; normalized strength=0.6898067746145252",
+          "employment_contribution": 0.226417411521621,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.026009582477755,
+          "effective_years": 4.389596167008898,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000400379",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000400379",
+        "relationship": "0.6892",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2020-09-18 to 2025-09-14 (1822 days; Same office); total shared years=4.988364134154689; effective shared years=3.8707734428473652; Deferred; not used in scoring; employment contribution=0.22557513429149584, friendship contribution=0.0, raw strength=0.22557513429149584; normalized strength=0.6891643540404324",
+        "strength": 0.689164354040432,
+        "raw_strength": 0.225575134291496,
+        "attributes": {
+          "strength": 0.689164354040432
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000400379",
+          "name": "Arjun W. Chen-Morrow",
+          "distance": 1,
+          "strength": 0.689164354040432,
+          "raw_strength": 0.225575134291496,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2020-09-18 to 2025-09-14 (1822 days; Same office); total shared years=4.988364134154689; effective shared years=3.8707734428473652; Deferred; not used in scoring; employment contribution=0.22557513429149584, friendship contribution=0.0, raw strength=0.22557513429149584; normalized strength=0.6891643540404324",
+          "employment_contribution": 0.225575134291496,
+          "friendship_contribution": 0.0,
+          "raw_years": 4.988364134154689,
+          "effective_years": 3.870773442847365,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000040209",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000040209",
+        "relationship": "0.6874",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2020-09-07 to 2025-09-14 (1833 days; Same office); total shared years=5.018480492813142; effective shared years=3.885831622176592; Deferred; not used in scoring; employment contribution=0.22321908643832222, friendship contribution=0.0, raw strength=0.22321908643832222; normalized strength=0.687357746623243",
+        "strength": 0.687357746623243,
+        "raw_strength": 0.223219086438322,
+        "attributes": {
+          "strength": 0.687357746623243
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000040209",
+          "name": "Cecil T. Albrecht",
+          "distance": 1,
+          "strength": 0.687357746623243,
+          "raw_strength": 0.223219086438322,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2020-09-07 to 2025-09-14 (1833 days; Same office); total shared years=5.018480492813142; effective shared years=3.885831622176592; Deferred; not used in scoring; employment contribution=0.22321908643832222, friendship contribution=0.0, raw strength=0.22321908643832222; normalized strength=0.687357746623243",
+          "employment_contribution": 0.223219086438322,
+          "friendship_contribution": 0.0,
+          "raw_years": 5.018480492813142,
+          "effective_years": 3.885831622176592,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000451242",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000451242",
+        "relationship": "0.6865",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2020-09-28 to 2025-09-14 (1812 days; Same office); total shared years=4.960985626283367; effective shared years=3.857084188911705; Deferred; not used in scoring; employment contribution=0.2221203915306224, friendship contribution=0.0, raw strength=0.2221203915306224; normalized strength=0.6865103791320516",
+        "strength": 0.686510379132052,
+        "raw_strength": 0.222120391530622,
+        "attributes": {
+          "strength": 0.686510379132052
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000451242",
+          "name": "Andre Z. Ellery-Ostrowski",
+          "distance": 1,
+          "strength": 0.686510379132052,
+          "raw_strength": 0.222120391530622,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2020-09-28 to 2025-09-14 (1812 days; Same office); total shared years=4.960985626283367; effective shared years=3.857084188911705; Deferred; not used in scoring; employment contribution=0.2221203915306224, friendship contribution=0.0, raw strength=0.2221203915306224; normalized strength=0.6865103791320516",
+          "employment_contribution": 0.222120391530622,
+          "friendship_contribution": 0.0,
+          "raw_years": 4.960985626283367,
+          "effective_years": 3.857084188911705,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000884151",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000884151",
+        "relationship": "0.6855",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2018-09-04 to 2025-09-14 (2567 days; Same office); total shared years=7.028062970568104; effective shared years=4.890622861054073; Deferred; not used in scoring; employment contribution=0.22077482752403668, friendship contribution=0.0, raw strength=0.22077482752403668; normalized strength=0.6854683208742525",
+        "strength": 0.685468320874252,
+        "raw_strength": 0.220774827524037,
+        "attributes": {
+          "strength": 0.685468320874252
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000884151",
+          "name": "Adrian L. Ashdown",
+          "distance": 1,
+          "strength": 0.685468320874252,
+          "raw_strength": 0.220774827524037,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2018-09-04 to 2025-09-14 (2567 days; Same office); total shared years=7.028062970568104; effective shared years=4.890622861054073; Deferred; not used in scoring; employment contribution=0.22077482752403668, friendship contribution=0.0, raw strength=0.22077482752403668; normalized strength=0.6854683208742525",
+          "employment_contribution": 0.220774827524037,
+          "friendship_contribution": 0.0,
+          "raw_years": 7.028062970568104,
+          "effective_years": 4.890622861054073,
+          "total_neighbors": 4859
+        }
+      },
+      {
+        "id": "CORP_P000002008--CORP_P000391397",
+        "source": "CORP_P000002008",
+        "target": "CORP_P000391397",
+        "relationship": "0.6824",
+        "label": "Representative employment: Copperrock Materials (Synthetic): 2019-09-09 to 2025-09-14 (2197 days; Same office); total shared years=6.015058179329227; effective shared years=4.384120465434634; Deferred; not used in scoring; employment contribution=0.21690069042627855, friendship contribution=0.0, raw strength=0.21690069042627855; normalized strength=0.6824411931624449",
+        "strength": 0.682441193162445,
+        "raw_strength": 0.216900690426279,
+        "attributes": {
+          "strength": 0.682441193162445
+        },
+        "summary": {
+          "source_id": "CORP_P000002008",
+          "person_id": "CORP_P000391397",
+          "name": "Silas H. Moravec",
+          "distance": 1,
+          "strength": 0.682441193162445,
+          "raw_strength": 0.216900690426279,
+          "evidence": "Representative employment: Copperrock Materials (Synthetic): 2019-09-09 to 2025-09-14 (2197 days; Same office); total shared years=6.015058179329227; effective shared years=4.384120465434634; Deferred; not used in scoring; employment contribution=0.21690069042627855, friendship contribution=0.0, raw strength=0.21690069042627855; normalized strength=0.6824411931624449",
+          "employment_contribution": 0.216900690426279,
+          "friendship_contribution": 0.0,
+          "raw_years": 6.015058179329227,
+          "effective_years": 4.384120465434634,
+          "total_neighbors": 4859
+        }
+      }
+    ]
+  },
+  "total_neighbors": 4859,
+  "shown_neighbors": 40,
+  "has_more": true,
+  "cached": false,
+  "source": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT",
+  "engine": "alaa_pe_deal_graph_experiment",
+  "algorithm": "Native RAI Graph.distance + shared PyRel affinity rules",
+  "scope": "Exact one-hop incident graph; links between neighbors are outside this view",
+  "network_metadata": {
+    "run_id": "c49cca81-9892-4c6a-ad70-e56df52f34e4",
+    "as_of": "2026-10-01",
+    "version": "corporate-affinity-v5",
+    "min_strength": 0.4041031009353247,
+    "min_raw_strength": 0.02666666666666667,
+    "weight_scale": "Native analytics use unchanged raw weights; displayed edge strengths use fourth-root normalization",
+    "scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+    "node_count": 2100,
+    "edge_count": 951,
+    "community_count": 1210,
+    "isolated_people": 761,
+    "nontrivial_community_count": 449,
+    "community_method": "Native RAI weighted Louvain, seed 42, max_levels 5",
+    "betweenness_method": "Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology",
+    "betweenness_pivots": 2100,
+    "betweenness_is_global": false,
+    "transactions": [
+      {
+        "ID": "01c86072-040d-2d7a-0005-5ee31479eea2",
+        "STATE": "COMPLETED",
+        "ENGINE_NAME": "alaa_pe_deal_graph_experiment"
+      },
+      {
+        "ID": "01c86072-040d-3184-0005-5ee31479f92a",
+        "STATE": "COMPLETED",
+        "ENGINE_NAME": "alaa_pe_deal_graph_experiment"
+      }
+    ],
+    "computed_at": "2026-11-13T05:06:28.684458+00:00",
+    "seconds": 40.77,
+    "independent_validation": {
+      "status": "PASS",
+      "all_node_betweenness_verified": 2100,
+      "native_raw_pair_count_factor": 1.0,
+      "weighted_modularity": 0.9941383137888926,
+      "betweenness_absolute_tolerance": 0.0005,
+      "max_betweenness_absolute_error": 0.0,
+      "degree_and_weighted_degree_verified": true,
+      "note": "Louvain partitions can vary; verify coverage and weighted modularity, not identical labels"
+    }
+  },
+  "as_of": "2026-10-01",
+  "min_strength": 0.0,
+  "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred"
+}

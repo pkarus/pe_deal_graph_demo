@@ -1,0 +1,101 @@
+PERSON_ID,FULL_NAME,FIRM_ID,TITLE,JOIN_DATE,IS_SYNTHETIC
+PE_P0001,Anika B. Bergstrom,PE_FIRM_NORTHWIND,Investment Associate,2021-08-31,True
+PE_P0002,Camila C. Eastlake,PE_FIRM_NORTHWIND,Vice President,2021-09-18,True
+PE_P0003,Darius D. Holbrook,PE_FIRM_NORTHWIND,Principal,2022-09-09,True
+PE_P0004,Emeka E. Mbeki-Shaw,PE_FIRM_NORTHWIND,Operating Partner,2023-11-03,True
+PE_P0005,Gemma F. Sandoval,PE_FIRM_NORTHWIND,Partner,2022-10-16,True
+PE_P0006,Idris G. Yadav,PE_FIRM_NORTHWIND,Investment Associate,2024-10-07,True
+PE_P0007,Kamal H. Albrecht,PE_FIRM_NORTHWIND,Vice President,2022-10-28,True
+PE_P0008,Malik I. Calloway,PE_FIRM_NORTHWIND,Principal,2020-10-31,True
+PE_P0009,Nikhil J. Falkner,PE_FIRM_NORTHWIND,Operating Partner,2022-10-07,True
+PE_P0010,Rhea K. Jarrell,PE_FIRM_NORTHWIND,Partner,2021-09-02,True
+PE_P0011,Teodor L. Northcott,PE_FIRM_NORTHWIND,Investment Associate,2021-09-23,True
+PE_P0012,Yara M. Szabo,PE_FIRM_NORTHWIND,Vice President,2023-11-03,True
+PE_P0013,Alana N. Okonkwo,PE_FIRM_NORTHWIND,Principal,2022-10-04,True
+PE_P0014,Benedict O. Ashdown,PE_FIRM_NORTHWIND,Operating Partner,2023-10-04,True
+PE_P0015,Chiara P. Chen-Morrow,PE_FIRM_NORTHWIND,Partner,2023-10-30,True
+PE_P0016,Eamon Q. Galloway,PE_FIRM_NORTHWIND,Investment Associate,2021-10-19,True
+PE_P0017,Farah R. Kowalczyk,PE_FIRM_NORTHWIND,Vice President,2023-11-01,True
+PE_P0018,Hamid S. Pemberton,PE_FIRM_NORTHWIND,Principal,2021-11-02,True
+PE_P0019,Jada T. Underhill,PE_FIRM_NORTHWIND,Operating Partner,2020-08-28,True
+PE_P0020,Lena U. Moravec,PE_FIRM_NORTHWIND,Partner,2022-09-29,True
+PE_P0021,Maya V. Beaumont,PE_FIRM_NORTHWIND,Investment Associate,2021-09-20,True
+PE_P0022,Orla W. Delacroix,PE_FIRM_NORTHWIND,Vice President,2023-10-28,True
+PE_P0023,Silas X. Halloran,PE_FIRM_NORTHWIND,Principal,2024-10-10,True
+PE_P0024,Uma Y. Maddox,PE_FIRM_NORTHWIND,Operating Partner,2023-08-31,True
+PE_P0025,Zeke Z. Rasmussen,PE_FIRM_NORTHWIND,Partner,2021-08-28,True
+PE_P0026,Andre A. Wakefield,PE_FIRM_NORTHWIND,Investment Associate,2023-09-14,True
+PE_P0027,Caleb B. Achterberg,PE_FIRM_NORTHWIND,Vice President,2021-08-31,True
+PE_P0028,Damon C. Blackwood,PE_FIRM_NORTHWIND,Principal,2022-09-28,True
+PE_P0029,Elise D. Ellery,PE_FIRM_NORTHWIND,Operating Partner,2022-10-09,True
+PE_P0030,Gareth E. Ilves,PE_FIRM_NORTHWIND,Partner,2022-09-15,True
+PE_P0031,Helena F. Merriman,PE_FIRM_NORTHWIND,Investment Associate,2024-10-11,True
+PE_P0032,Jonah G. Sato,PE_FIRM_NORTHWIND,Vice President,2022-09-20,True
+PE_P0033,Lucia H. Yilmaz,PE_FIRM_NORTHWIND,Principal,2024-11-04,True
+PE_P0034,Naomi I. Ambrose,PE_FIRM_NORTHWIND,Operating Partner,2023-11-05,True
+PE_P0035,Quentin J. Carrow,PE_FIRM_NORTHWIND,Partner,2022-10-10,True
+PE_P0036,Tamsin K. Farrow,PE_FIRM_NORTHWIND,Investment Associate,2020-09-22,True
+PE_P0037,Wes L. Kavanagh,PE_FIRM_NORTHWIND,Vice President,2023-08-28,True
+PE_P0038,Adrian M. Oduya,PE_FIRM_NORTHWIND,Principal,2021-10-18,True
+PE_P0039,Beatrice N. Thackeray,PE_FIRM_NORTHWIND,Operating Partner,2022-09-17,True
+PE_P0040,Cecil O. Varga,PE_FIRM_NORTHWIND,Partner,2022-10-31,True
+PE_P0041,Desmond P. Balogun,PE_FIRM_NORTHWIND,Investment Associate,2021-09-13,True
+PE_P0042,Ezra Q. Corwin,PE_FIRM_NORTHWIND,Vice President,2023-11-05,True
+PE_P0043,Greta R. Garrick,PE_FIRM_NORTHWIND,Principal,2022-10-18,True
+PE_P0044,Ivan S. Lindqvist,PE_FIRM_NORTHWIND,Operating Partner,2020-09-23,True
+PE_P0045,Kenji T. Quillon,PE_FIRM_NORTHWIND,Partner,2023-10-19,True
+PE_P0046,Mateo U. Vasquez-Lowe,PE_FIRM_NORTHWIND,Investment Associate,2021-11-03,True
+PE_P0047,Omar V. Tanaka,PE_FIRM_NORTHWIND,Vice President,2021-09-29,True
+PE_P0048,Rosa W. Bellamy,PE_FIRM_NORTHWIND,Principal,2023-10-08,True
+PE_P0049,Tobias X. Draycott,PE_FIRM_NORTHWIND,Operating Partner,2022-09-19,True
+PE_P0050,Zara Y. Hargreave,PE_FIRM_NORTHWIND,Partner,2022-10-24,True
+PE_P0051,Amara Z. Marchetti,PE_FIRM_NORTHWIND,Investment Associate,2021-10-08,True
+PE_P0052,Bram A. Rourke,PE_FIRM_NORTHWIND,Vice President,2022-10-27,True
+PE_P0053,Dalia B. Whitcombe,PE_FIRM_NORTHWIND,Principal,2022-10-12,True
+PE_P0054,Elias C. Adair,PE_FIRM_NORTHWIND,Operating Partner,2022-09-08,True
+PE_P0055,Fiona D. Bracken,PE_FIRM_NORTHWIND,Partner,2023-09-07,True
+PE_P0056,Hector E. Escobar,PE_FIRM_NORTHWIND,Investment Associate,2022-09-20,True
+PE_P0057,Joelle F. Iwata,PE_FIRM_NORTHWIND,Vice President,2020-09-21,True
+PE_P0058,Lionel G. Nakashima,PE_FIRM_NORTHWIND,Principal,2021-10-27,True
+PE_P0059,Nadia H. Selwyn,PE_FIRM_NORTHWIND,Operating Partner,2020-09-06,True
+PE_P0060,Paloma I. Zielinski,PE_FIRM_NORTHWIND,Partner,2023-10-14,True
+PE_P0061,Soren J. Ardent,PE_FIRM_NORTHWIND,Investment Associate,2022-11-05,True
+PE_P0062,Vikram K. Castellan,PE_FIRM_NORTHWIND,Vice President,2024-10-02,True
+PE_P0063,Abigail L. Fenimore,PE_FIRM_NORTHWIND,Principal,2022-09-06,True
+PE_P0064,Arjun M. Kessler,PE_FIRM_NORTHWIND,Operating Partner,2024-10-28,True
+PE_P0065,Carmen N. Ostrowski,PE_FIRM_NORTHWIND,Partner,2023-10-05,True
+PE_P0066,Delia O. Trevino,PE_FIRM_NORTHWIND,Investment Associate,2021-10-30,True
+PE_P0067,Esme P. Lindgren,PE_FIRM_NORTHWIND,Vice President,2020-10-13,True
+PE_P0068,Gideon Q. Barrow,PE_FIRM_NORTHWIND,Principal,2022-09-01,True
+PE_P0069,Ines R. Dalby,PE_FIRM_NORTHWIND,Operating Partner,2024-10-21,True
+PE_P0070,Keira S. Haddad,PE_FIRM_NORTHWIND,Partner,2023-08-29,True
+PE_P0071,Mara T. Lockhart,PE_FIRM_NORTHWIND,Investment Associate,2022-10-16,True
+PE_P0072,Nora U. Radcliffe,PE_FIRM_NORTHWIND,Vice President,2020-09-02,True
+PE_P0073,Rohan V. Vance,PE_FIRM_NORTHWIND,Principal,2024-09-21,True
+PE_P0074,Thea W. Abbott,PE_FIRM_NORTHWIND,Operating Partner,2021-10-15,True
+PE_P0075,Yusuf X. Bergstrom,PE_FIRM_NORTHWIND,Partner,2022-11-01,True
+PE_P0076,Alicia Y. Eastlake,PE_FIRM_NORTHWIND,Investment Associate,2024-09-25,True
+PE_P0077,Bianca Z. Holbrook,PE_FIRM_NORTHWIND,Vice President,2022-09-29,True
+PE_P0078,Colin A. Mbeki-Shaw,PE_FIRM_NORTHWIND,Principal,2024-11-02,True
+PE_P0079,Edith B. Sandoval,PE_FIRM_NORTHWIND,Operating Partner,2022-10-17,True
+PE_P0080,Felix C. Yadav,PE_FIRM_NORTHWIND,Partner,2021-09-06,True
+PE_P0081,Hana D. Albrecht,PE_FIRM_NORTHWIND,Investment Associate,2023-11-05,True
+PE_P0082,Jasper E. Calloway,PE_FIRM_NORTHWIND,Vice President,2022-09-02,True
+PE_P0083,Leon F. Falkner,PE_FIRM_NORTHWIND,Principal,2023-10-28,True
+PE_P0084,Miles G. Jarrell,PE_FIRM_NORTHWIND,Operating Partner,2022-10-27,True
+PE_P0085,Oscar H. Northcott,PE_FIRM_NORTHWIND,Partner,2023-11-04,True
+PE_P0086,Simone I. Szabo,PE_FIRM_NORTHWIND,Investment Associate,2021-09-25,True
+PE_P0087,Vera J. Okonkwo,PE_FIRM_NORTHWIND,Vice President,2021-09-20,True
+PE_P0088,Aaron K. Ashdown,PE_FIRM_NORTHWIND,Principal,2021-09-15,True
+PE_P0089,Anika L. Chen-Morrow,PE_FIRM_NORTHWIND,Operating Partner,2023-08-30,True
+PE_P0090,Camila M. Galloway,PE_FIRM_NORTHWIND,Partner,2022-09-13,True
+PE_P0091,Darius N. Kowalczyk,PE_FIRM_NORTHWIND,Investment Associate,2022-08-27,True
+PE_P0092,Emeka O. Pemberton,PE_FIRM_NORTHWIND,Vice President,2021-11-05,True
+PE_P0093,Gemma P. Underhill,PE_FIRM_NORTHWIND,Principal,2021-09-16,True
+PE_P0094,Idris Q. Moravec,PE_FIRM_NORTHWIND,Operating Partner,2021-09-27,True
+PE_P0095,Kamal R. Beaumont,PE_FIRM_NORTHWIND,Partner,2020-09-30,True
+PE_P0096,Malik S. Delacroix,PE_FIRM_NORTHWIND,Investment Associate,2022-11-05,True
+PE_P0097,Nikhil T. Halloran,PE_FIRM_NORTHWIND,Vice President,2021-10-02,True
+PE_P0098,Rhea U. Maddox,PE_FIRM_NORTHWIND,Principal,2021-11-03,True
+PE_P0099,Teodor V. Rasmussen,PE_FIRM_NORTHWIND,Operating Partner,2023-10-17,True
+PE_P0100,Yara W. Wakefield,PE_FIRM_NORTHWIND,Partner,2022-09-28,True

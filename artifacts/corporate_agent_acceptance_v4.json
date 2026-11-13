@@ -1,0 +1,370 @@
+{
+  "status": "PASS",
+  "agent": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT.CORPORATE_INTRODUCTIONS",
+  "cases": [
+    {
+      "case": "ceo",
+      "question": "Who can introduce us to Soren T. Bellamy, the CEO of Aspenview Materials? Show the top 10 connections.",
+      "role": "RAI_USER",
+      "seconds": 207.162085457996,
+      "request_id": "b61f6099-ea32-40a6-9583-d2a35ce4c909",
+      "call_query_id": "01c86051-040d-3184-0005-5ee31478f48a",
+      "native_transaction_ids": [
+        "01c86051-040d-3184-0005-5ee31478f84a",
+        "01c86053-040d-3184-0005-5ee314791652",
+        "01c86053-040d-3184-0005-5ee314791692"
+      ],
+      "total_connections": 99,
+      "returned_paths_verified": 10,
+      "response_language_verified": true,
+      "agent_authored_pyrel": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+      "response": "I found 99 people on our team with a modeled route to **Soren T. Bellamy** (CEO, Aspenview Materials (Synthetic), `CORP_P000000373`) within two hops. Below are the 10 strongest, not the full list. Only Nadia H. Selwyn has a direct modeled link to Soren. For the other nine, the records show no qualifying direct link, so their routes go through one intermediary.\n\n| # | Connection | Target | Hops | Strength | Reason |\n|---|---|---|---|---|---|\n| 1 | Nadia H. Selwyn (PE_P0059) | Soren T. Bellamy | 1 | 0.00670798 | Riverwell Materials: 2018-07-28 to 2020-07-05 (different, remote or unknown locations) |\n| 2 | Teodor V. Rasmussen (PE_P0099) | Soren T. Bellamy | 2 | 0.00566029 | Through **Damon J. Carrow**: Teodor and Damon at Copperdale Materials, 2016-05-31 to 2018-06-06, same office (0.0360279) \u2192 Damon and Soren at Aspenview Materials, 2023-03-18 to 2026-10-01, same office (0.157108) |\n| 3 | Dalia B. Whitcombe (PE_P0053) | Soren T. Bellamy | 2 | 0.00228375 | Through **Amara Z. Farrow**: Glenwell Energy, 2012-06-30 to 2018-07-22, different or unknown locations (0.0160239) \u2192 Aspenview, 2023-03-18 to 2026-10-01, same office (0.142521) |\n| 4 | Colin A. Mbeki-Shaw (PE_P0078) | Soren T. Bellamy | 2 | 0.00206117 | Through **Rohan Y. Ambrose**: Summitdale Consumer Brands, 2021-03-02 to 2024-03-30, same city (0.0834436) \u2192 Aspenview, 2024-03-30 to 2026-10-01, different, remote or unknown locations (0.0247013) |\n| 5 | Uma Y. Maddox (PE_P0024) | Soren T. Bellamy | 2 | 0.00185481 | Through **Desmond F. Chen-Morrow**: Amberbank Materials, 2019-08-10 to 2023-08-02, different or unknown locations (0.0178633) \u2192 Aspenview, 2023-09-25 to 2026-10-01, same office (0.103834) |\n| 6 | Maya V. Beaumont (PE_P0021) | Soren T. Bellamy | 2 | 0.00176301 | Through **Darius M. Quillon**: Riverlake Communications, 2014-06-26 to 2017-12-22, same city (0.0251704) \u2192 Riverwell Materials, 2018-03-01 to 2023-03-18, same city (0.0700429) |\n| 7 | Nikhil T. Halloran (PE_P0097) | Soren T. Bellamy | 2 | 0.00149547 | Through **Yusuf M. Ilves**: Amberlake Materials, 2017-09-02 to 2021-08-17, different or unknown locations (0.0182597) \u2192 Aspenview, 2023-03-18 to 2026-10-01, same city (0.0819002) |\n| 8 | Thea W. Abbott (PE_P0074) | Soren T. Bellamy | 2 | 0.00140183 | Through **Damon C. Oduya**: Elmwell Communications, 2019-02-10 to 2020-09-05, same city (0.0187781) \u2192 Riverwell Materials, 2020-09-05 to 2023-03-18, same office (0.0746521) |\n| 9 | Hamid S. Pemberton (PE_P0018) | Soren T. Bellamy | 2 | 0.00124334 | Through **Helena U. Maddox-Kowalczyk**: Windwood Materials, 2017-08-14 to 2021-08-27, different or unknown locations (0.0191938) \u2192 Aspenview, 2025-03-08 to 2026-10-01, same office (0.0647782) |\n| 10 | Emeka E. Mbeki-Shaw (PE_P0004) | Soren T. Bellamy | 2 | 0.00118660 | Through **Soren Y. Albrecht**: Foxbrook Materials, 2015-12-07 to 2018-01-02, same city (0.0205735) \u2192 Aspenview, 2024-03-10 to 2026-10-01, same city (0.0576759) |\n\n**How to read this:**\n- **Possible introducers, not confirmed relationships.** Each person is a candidate based on overlapping past jobs. The table doesn't show whether they know each other or would be willing to help.\n- **One route per person.** I show each person's strongest route, but they may have others. Two-hop strength is the two link scores multiplied together.\n- **Dates are examples.** The scores may also count other periods when the two people worked at the same company. Working together at our firm now isn't counted.\n- **Strength is a rough ranking score, not a probability.** All scores here are small; that's normal for this model.\n- **Limits:** the search only goes up to two hops, and all data is synthetic, as of 2026-10-01.\n\nExecution reference: request ID `b61f6099-ea32-40a6-9583-d2a35ce4c909`; native RAI transaction IDs `01c86051-040d-3184-0005-5ee31478f84a`, `01c86053-040d-3184-0005-5ee314791652`, `01c86053-040d-3184-0005-5ee314791692`.",
+      "rows": [
+        {
+          "connection": "Nadia H. Selwyn",
+          "connection_id": "PE_P0059",
+          "edge_ids": [
+            "CORP_P000000373|PE_P0059"
+          ],
+          "hops": 1,
+          "minimum_hops": 1,
+          "path": "PE_P0059|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.006707983873752,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Teodor V. Rasmussen",
+          "connection_id": "PE_P0099",
+          "edge_ids": [
+            "CORP_P000091690|PE_P0099",
+            "CORP_P000000373|CORP_P000091690"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0099|CORP_P000091690|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.005660285496278,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Dalia B. Whitcombe",
+          "connection_id": "PE_P0053",
+          "edge_ids": [
+            "CORP_P000981445|PE_P0053",
+            "CORP_P000000373|CORP_P000981445"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0053|CORP_P000981445|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.002283749974884,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Colin A. Mbeki-Shaw",
+          "connection_id": "PE_P0078",
+          "edge_ids": [
+            "CORP_P000731341|PE_P0078",
+            "CORP_P000000373|CORP_P000731341"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0078|CORP_P000731341|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.00206116897125,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Uma Y. Maddox",
+          "connection_id": "PE_P0024",
+          "edge_ids": [
+            "CORP_P000893836|PE_P0024",
+            "CORP_P000000373|CORP_P000893836"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0024|CORP_P000893836|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.00185481213421,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Maya V. Beaumont",
+          "connection_id": "PE_P0021",
+          "edge_ids": [
+            "CORP_P000248318|PE_P0021",
+            "CORP_P000000373|CORP_P000248318"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0021|CORP_P000248318|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.001763007633707,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Nikhil T. Halloran",
+          "connection_id": "PE_P0097",
+          "edge_ids": [
+            "CORP_P000263204|PE_P0097",
+            "CORP_P000000373|CORP_P000263204"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0097|CORP_P000263204|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.001495468704457,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Thea W. Abbott",
+          "connection_id": "PE_P0074",
+          "edge_ids": [
+            "CORP_P000433345|PE_P0074",
+            "CORP_P000000373|CORP_P000433345"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0074|CORP_P000433345|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.001401827586692,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Hamid S. Pemberton",
+          "connection_id": "PE_P0018",
+          "edge_ids": [
+            "CORP_P000330017|PE_P0018",
+            "CORP_P000000373|CORP_P000330017"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0018|CORP_P000330017|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.001243336368571,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        },
+        {
+          "connection": "Emeka E. Mbeki-Shaw",
+          "connection_id": "PE_P0004",
+          "edge_ids": [
+            "CORP_P000055993|PE_P0004",
+            "CORP_P000000373|CORP_P000055993"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0004|CORP_P000055993|CORP_P000000373",
+          "reason": "Native evidence for each leg is in edge_details, referenced by edge_ids; the full composite reason is retained in QUERY_AUDIT.RESULT.",
+          "strength": 0.001186597223289,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        }
+      ],
+      "runtime_sha256": "e7d29308878c123261dc95964f6bf55c61af885a01daf1c88d1493d85c241ae0",
+      "parent_call_verified": true,
+      "session_correlation_verified": true
+    },
+    {
+      "case": "pair",
+      "question": "How are Anika B. Bergstrom (PE_P0001) and Soren T. Bellamy (CORP_P000000373) related, and can Anika introduce us to Soren? Only show routes with strength at least 0.0001.",
+      "role": "RAI_USER",
+      "seconds": 179.2823503749969,
+      "request_id": "a2ab5bc2-3c4d-4d90-9beb-d96fbb8f67c5",
+      "call_query_id": "01c86054-040d-3184-0005-5ee3147919e6",
+      "native_transaction_ids": [
+        "01c86054-040d-3184-0005-5ee314791c2a",
+        "01c86056-040d-3184-0005-5ee31479449a",
+        "01c86056-040d-3184-0005-5ee3147944c6"
+      ],
+      "total_connections": 1,
+      "returned_paths_verified": 1,
+      "response_language_verified": true,
+      "agent_authored_pyrel": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2,\n    strength >= 0.0001\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+      "response": "Anika B. Bergstrom (PE_P0001, Investment Associate at Northwind) and Soren T. Bellamy (CORP_P000000373, CEO of Aspenview Materials) are linked in two hops through **Yara E. Sandoval** (CORP_P000395632). The route's strength is **0.000389970**, which is above your 0.0001 cutoff. The model found no qualifying direct link between Anika and Soren (minimum hops = 2).\n\n| Connection | Target | Hops | Strength | Reason |\n|---|---|---|---|---|\n| Anika B. Bergstrom (PE_P0001) | Soren T. Bellamy (CORP_P000000373) | 2 | 0.000389970 | **Via Yara E. Sandoval (CORP_P000395632).** **Link 1, Anika \u2192 Yara (strength 0.0271479):** both worked at Everfield Retail Group (Synthetic), same office, 2014-09-15 to 2017-04-14 (942 days); this counts as 0.778234 effective shared years. **Link 2, Yara \u2192 Soren (strength 0.0143646):** both worked at Aspenview Materials (Synthetic), 2023-03-18 to 2025-03-26 (739 days). They were in different, remote or unknown locations, so the evidence is company-level only; this counts as 0.428747 effective shared years. |\n\n- **Can Anika introduce you?** The records support a possible route through Yara E. Sandoval; they do not establish whether Anika B. Bergstrom can make a direct introduction.\n- **Why the score is low:** Anika and Yara's overlap ended about ten years ago, so it is weighted down for age. Yara and Soren's overlap is recent, but it only shows they worked at the same company, not the same office.\n- **How the route score works:** it is the two link scores multiplied together. One strongest route is shown for the 1 starting person (Anika); other qualifying routes may exist.\n- **What the dates are:** they are examples of the shared employment. Full scores may include other shared periods.\n\n**Caveats:**\n- All data is synthetic, as of 2026-10-01.\n- Strength is a rough score, not a probability.\n- Working at the same company suggests a possible introduction. It doesn't guarantee the people know each other or would be willing to help.\n- The search only looks up to two hops.\n\n**Execution reference:** request ID `a2ab5bc2-3c4d-4d90-9beb-d96fbb8f67c5`; RAI transaction IDs `01c86054-040d-3184-0005-5ee314791c2a`, `01c86056-040d-3184-0005-5ee31479449a`, `01c86056-040d-3184-0005-5ee3147944c6`.",
+      "rows": [
+        {
+          "connection": "Anika B. Bergstrom",
+          "connection_id": "PE_P0001",
+          "edge_ids": [
+            "CORP_P000395632|PE_P0001",
+            "CORP_P000000373|CORP_P000395632"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0001|CORP_P000395632|CORP_P000000373",
+          "reason": "Anika B. Bergstrom \u2192 Yara E. Sandoval: Representative employment: Everfield Retail Group (Synthetic): 2014-09-15 to 2017-04-14 (942 days; Same office); total shared years=2.5790554414784395; effective shared years=0.7782340862422998; Deferred; not used in scoring; employment contribution=0.02714788507971147, friendship contribution=0.0, total=0.02714788507971147; Yara E. Sandoval \u2192 Soren T. Bellamy: Representative employment: Aspenview Materials (Synthetic): 2023-03-18 to 2025-03-26 (739 days; Different, remote or unknown locations; company-only evidence); total shared years=2.023271731690623; effective shared years=0.4287474332648871; Deferred; not used in scoring; employment contribution=0.014364644259789743, friendship contribution=0.0, total=0.014364644259789743",
+          "strength": 0.000389969711576,
+          "target": "Soren T. Bellamy",
+          "target_id": "CORP_P000000373"
+        }
+      ],
+      "runtime_sha256": "e7d29308878c123261dc95964f6bf55c61af885a01daf1c88d1493d85c241ae0",
+      "parent_call_verified": true,
+      "session_correlation_verified": true
+    },
+    {
+      "case": "head",
+      "question": "Who on our team is connected to the head of data of Aspenview Materials? Show the top five connections with their evidence.",
+      "role": "RAI_USER",
+      "seconds": 170.83853637501306,
+      "request_id": "6c84fb51-469e-4252-b65a-6c5ee9ceeded",
+      "call_query_id": "01c86057-040d-2d7a-0005-5ee314793902",
+      "native_transaction_ids": [
+        "01c86058-040d-2d7a-0005-5ee314793c26",
+        "01c86059-040d-2d7a-0005-5ee3147963aa",
+        "01c86059-040d-2d7a-0005-5ee3147963fe"
+      ],
+      "total_connections": 97,
+      "returned_paths_verified": 5,
+      "response_language_verified": true,
+      "agent_authored_pyrel": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+      "response": "Aspenview Materials' Head of Data is **Malik G. Varga** (CORP_P000633338), Vice President, Data Analytics. \"Head of Data\" is a synthetic label in this data: it goes to the person with the highest current Data Analytics title, with ties broken by longest tenure.\n\n**97 people on our team** have a route to Malik within two hops. These are the top five. Every one goes through an intermediary, and for all five the model found no qualifying direct co-employment link (minimum_hops = 2). One strongest route is shown for each person, but other qualifying routes may exist.\n\n| Connection | Target | Hops | Strength | Reason |\n|---|---|---|---|---|\n| Eamon Q. Galloway (PE_P0016) | Malik G. Varga | 2 | 0.00265703 | Via **Fiona A. Vance** (CORP_P000902382). Leg 1: Eamon and Fiona both worked at Willowmont Retail Group, 2013-09-12 to 2017-08-03, in different, remote or unknown locations (score 0.00993903). Leg 2: Fiona and Malik worked in the same Aspenview Materials office, 2019-09-23 to 2026-10-01 (score 0.267333). |\n| Teodor V. Rasmussen (PE_P0099) | Malik G. Varga | 2 | 0.00167021 | Via **Damon J. Carrow** (CORP_P000091690). Leg 1: Teodor and Damon worked in the same Copperdale Materials office, 2016-05-31 to 2018-06-06 (score 0.0360279). Leg 2: Damon and Malik both worked at Aspenview Materials, 2018-09-14 to 2026-10-01, in different, remote or unknown locations (score 0.0463590). |\n| Edith B. Sandoval (PE_P0079) | Malik G. Varga | 2 | 0.00150798 | Via **Thea Y. Northcott** (CORP_P000634368). Leg 1: Edith and Thea both worked at Everwind Health Group, 2018-09-25 to 2022-04-03, in different, remote or unknown locations (score 0.0192319). Leg 2: Thea and Malik both worked at Aspenview Materials in the same synthetic city, 2022-09-30 to 2026-10-01 (score 0.0784104). |\n| Colin A. Mbeki-Shaw (PE_P0078) | Malik G. Varga | 2 | 0.00149625 | Via **Rohan Y. Ambrose** (CORP_P000731341). Leg 1: Colin and Rohan both worked at Summitdale Consumer Brands in the same synthetic city, 2021-03-02 to 2024-03-30 (score 0.0834436). Leg 2: Rohan and Malik both worked at Aspenview Materials, 2024-03-30 to 2026-10-01, in different, remote or unknown locations (score 0.0179312). |\n| Vikram K. Castellan (PE_P0062) | Malik G. Varga | 2 | 0.00144559 | Via **Carmen U. Galloway** (CORP_P000301417). Leg 1: Vikram and Carmen both worked at Crestpoint Industries, 2013-07-22 to 2016-06-02, in different, remote or unknown locations (score 0.00510534). Leg 2: Carmen and Malik worked in the same Aspenview Materials office, 2018-09-14 to 2026-10-01 (score 0.283153). |\n\nThe dates shown are example periods. Each link's full score may also include other shared periods.\n\n**How to read this**\n- A route's strength is the two link scores multiplied together, so two-hop scores are small. All five routes score similarly; the highest is Eamon's, at about 0.0027. Strength is a ranking score, not a probability.\n- Each person listed is a possible introduction route based on shared employment records. The records don't show that anyone knows Malik or would be willing to make an introduction.\n- The search only looks two hops out. Current co-workers at our firm aren't counted, and friendship data isn't used in the scores. All data is synthetic, as of 2026-10-01.\n\n**Reference:** request_id `6c84fb51-469e-4252-b65a-6c5ee9ceeded`; RAI transaction IDs `01c86058-040d-2d7a-0005-5ee314793c26`, `01c86059-040d-2d7a-0005-5ee3147963aa`, `01c86059-040d-2d7a-0005-5ee3147963fe`",
+      "rows": [
+        {
+          "connection": "Eamon Q. Galloway",
+          "connection_id": "PE_P0016",
+          "edge_ids": [
+            "CORP_P000902382|PE_P0016",
+            "CORP_P000633338|CORP_P000902382"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0016|CORP_P000902382|CORP_P000633338",
+          "reason": "Eamon Q. Galloway \u2192 Fiona A. Vance: Representative employment: Willowmont Retail Group (Synthetic): 2013-09-12 to 2017-08-03 (1421 days; Different, remote or unknown locations; company-only evidence); total shared years=3.890485968514716; effective shared years=0.2955167693360712; Deferred; not used in scoring; employment contribution=0.009939027774597823, friendship contribution=0.0, total=0.009939027774597823; Fiona A. Vance \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2019-09-23 to 2026-10-01 (2565 days; Same office); total shared years=7.02258726899384; effective shared years=5.410814510609172; Deferred; not used in scoring; employment contribution=0.2673331607523546, friendship contribution=0.0, total=0.2673331607523546",
+          "strength": 0.002657031709789,
+          "target": "Malik G. Varga",
+          "target_id": "CORP_P000633338"
+        },
+        {
+          "connection": "Teodor V. Rasmussen",
+          "connection_id": "PE_P0099",
+          "edge_ids": [
+            "CORP_P000091690|PE_P0099",
+            "CORP_P000091690|CORP_P000633338"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0099|CORP_P000091690|CORP_P000633338",
+          "reason": "Teodor V. Rasmussen \u2192 Damon J. Carrow: Representative employment: Copperdale Materials (Synthetic): 2016-05-31 to 2018-06-06 (736 days; Same office); total shared years=2.0150581793292264; effective shared years=0.9233401779603012; Deferred; not used in scoring; employment contribution=0.03602787913880148, friendship contribution=0.0, total=0.03602787913880148; Damon J. Carrow \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2018-09-14 to 2026-10-01 (2939 days; Different, remote or unknown locations; company-only evidence); total shared years=8.046543463381246; effective shared years=1.4806981519507187; Deferred; not used in scoring; employment contribution=0.046358957901580664, friendship contribution=0.0, total=0.046358957901580664",
+          "strength": 0.001670214932279,
+          "target": "Malik G. Varga",
+          "target_id": "CORP_P000633338"
+        },
+        {
+          "connection": "Edith B. Sandoval",
+          "connection_id": "PE_P0079",
+          "edge_ids": [
+            "CORP_P000634368|PE_P0079",
+            "CORP_P000633338|CORP_P000634368"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0079|CORP_P000634368|CORP_P000633338",
+          "reason": "Edith B. Sandoval \u2192 Thea Y. Northcott: Representative employment: Everwind Health Group (Synthetic): 2018-09-25 to 2022-04-03 (1286 days; Different, remote or unknown locations; company-only evidence); total shared years=3.5208761122518824; effective shared years=0.4778918548939083; Deferred; not used in scoring; employment contribution=0.01923186063341981, friendship contribution=0.0, total=0.01923186063341981; Thea Y. Northcott \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2022-09-30 to 2026-10-01 (1462 days; Same synthetic city; no matching office evidence); total shared years=4.002737850787132; effective shared years=2.1611498973305956; Deferred; not used in scoring; employment contribution=0.07841038781278556, friendship contribution=0.0, total=0.07841038781278556",
+          "strength": 0.001507977650628,
+          "target": "Malik G. Varga",
+          "target_id": "CORP_P000633338"
+        },
+        {
+          "connection": "Colin A. Mbeki-Shaw",
+          "connection_id": "PE_P0078",
+          "edge_ids": [
+            "CORP_P000731341|PE_P0078",
+            "CORP_P000633338|CORP_P000731341"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0078|CORP_P000731341|CORP_P000633338",
+          "reason": "Colin A. Mbeki-Shaw \u2192 Rohan Y. Ambrose: Representative employment: Summitdale Consumer Brands (Synthetic): 2021-03-02 to 2024-03-30 (1124 days; Same synthetic city; no matching office evidence); total shared years=3.077344284736482; effective shared years=1.3721560574948666; Deferred; not used in scoring; employment contribution=0.0834436033280882, friendship contribution=0.0, total=0.0834436033280882; Rohan Y. Ambrose \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2024-03-30 to 2026-10-01 (915 days; Different, remote or unknown locations; company-only evidence); total shared years=2.5051334702258727; effective shared years=0.6009582477754962; Deferred; not used in scoring; employment contribution=0.017931231597682413, friendship contribution=0.0, total=0.017931231597682413",
+          "strength": 0.001496246576621,
+          "target": "Malik G. Varga",
+          "target_id": "CORP_P000633338"
+        },
+        {
+          "connection": "Vikram K. Castellan",
+          "connection_id": "PE_P0062",
+          "edge_ids": [
+            "CORP_P000301417|PE_P0062",
+            "CORP_P000301417|CORP_P000633338"
+          ],
+          "hops": 2,
+          "minimum_hops": 2,
+          "path": "PE_P0062|CORP_P000301417|CORP_P000633338",
+          "reason": "Vikram K. Castellan \u2192 Carmen U. Galloway: Representative employment: Crestpoint Industries (Synthetic): 2013-07-22 to 2016-06-02 (1046 days; Different, remote or unknown locations; company-only evidence); total shared years=2.863791923340178; effective shared years=0.17898699520876113; Deferred; not used in scoring; employment contribution=0.005105340572496234, friendship contribution=0.0, total=0.005105340572496234; Carmen U. Galloway \u2192 Malik G. Varga: Representative employment: Aspenview Materials (Synthetic): 2018-09-14 to 2026-10-01 (2939 days; Same office); total shared years=8.046543463381246; effective shared years=5.922792607802875; Deferred; not used in scoring; employment contribution=0.28315289036506053, friendship contribution=0.0, total=0.28315289036506053",
+          "strength": 0.0014455919394,
+          "target": "Malik G. Varga",
+          "target_id": "CORP_P000633338"
+        }
+      ],
+      "runtime_sha256": "e7d29308878c123261dc95964f6bf55c61af885a01daf1c88d1493d85c241ae0",
+      "parent_call_verified": true,
+      "session_correlation_verified": true
+    }
+  ],
+  "snowflake_parent_query_history": [
+    {
+      "query_id": "01c86057-040d-2d7a-0005-5ee314793902",
+      "session_id": 1511703991067506,
+      "query_type": "CALL",
+      "execution_status": "SUCCESS",
+      "role_name": "RAI_USER",
+      "start_time": "2026-11-12 20:39:31.532000-08:00",
+      "end_time": "2026-11-12 20:41:44.955000-08:00",
+      "total_elapsed_time": 133423,
+      "query_text": "CALL ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT.EXECUTE_PYREL(target_id => ?, source_id => ?, pyrel_code => ?, top_n => ?)"
+    },
+    {
+      "query_id": "01c86054-040d-3184-0005-5ee3147919e6",
+      "session_id": 1511703991067422,
+      "query_type": "CALL",
+      "execution_status": "SUCCESS",
+      "role_name": "RAI_USER",
+      "start_time": "2026-11-12 20:36:32.670000-08:00",
+      "end_time": "2026-11-12 20:38:55.811000-08:00",
+      "total_elapsed_time": 143141,
+      "query_text": "CALL ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT.EXECUTE_PYREL(source_id => ?, pyrel_code => ?, top_n => ?, target_id => ?)"
+    },
+    {
+      "query_id": "01c86051-040d-3184-0005-5ee31478f48a",
+      "session_id": 1511703991067102,
+      "query_type": "CALL",
+      "execution_status": "SUCCESS",
+      "role_name": "RAI_USER",
+      "start_time": "2026-11-12 20:33:04.025000-08:00",
+      "end_time": "2026-11-12 20:35:51.992000-08:00",
+      "total_elapsed_time": 167967,
+      "query_text": "CALL ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT.EXECUTE_PYREL(source_id => ?, pyrel_code => ?, top_n => ?, target_id => ?)"
+    }
+  ],
+  "missing_company_control": "PASS: no invented target, no graph invocation",
+  "team": {
+    "employees": 100,
+    "previous_employers_min": 3,
+    "previous_employers_max": 4,
+    "roles_including_current_pe": 450,
+    "mean_tenure_years": 3.9799711004639136,
+    "prior_corporate_employers": 298,
+    "as_of": "2026-10-01",
+    "seed": 74129,
+    "current_firm": "Northwind Equity Partners (Synthetic)",
+    "interpretation": "3\u20134 prior corporate employers plus current PE employment; separate from original corporate records"
+  },
+  "search_limit_hops": 2,
+  "native_engine": "alaa_pe_deal_graph_experiment",
+  "native_log_views": [
+    "RELATIONALAI.API.TRANSACTIONS",
+    "RELATIONALAI.API.ENGINES"
+  ],
+  "native_child_visibility": "Native child transactions verified in RAI API; public information-schema history exposes parent CALLs",
+  "data_is_synthetic": true
+}

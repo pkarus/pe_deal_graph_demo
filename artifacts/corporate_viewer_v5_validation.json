@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "health": {
+    "status": "ok",
+    "source": "ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT",
+    "default_person": "CORP_P000002008",
+    "as_of": "2026-10-01",
+    "scoring_version": "corporate-affinity-v5"
+  },
+  "cohort_run_id": "c49cca81-9892-4c6a-ad70-e56df52f34e4",
+  "cohort_nodes": 2100,
+  "cohort_edges": 951,
+  "person_profile_and_career": true,
+  "edge_decomposition_version": "corporate-affinity-v5",
+  "edge_strength": 0.523117963076106,
+  "edge_raw_strength": 0.074885637827977,
+  "normalized_threshold_verified": 0.5,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "browser_render": "Observed the local v5 normalization labels and Cortex Preview table with normalized strengths (including 0.2270); local graph data/decomposition and filtering verified through its running API. Full local edge rendering was not rechecked because the user was actively switching to Agent Studio."
+}

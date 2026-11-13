@@ -1,0 +1,12 @@
+{
+  "employees": 100,
+  "previous_employers_min": 3,
+  "previous_employers_max": 4,
+  "roles_including_current_pe": 450,
+  "mean_tenure_years": 3.9799711004639136,
+  "prior_corporate_employers": 298,
+  "as_of": "2026-10-01",
+  "seed": 74129,
+  "current_firm": "Northwind Equity Partners (Synthetic)",
+  "interpretation": "3\u20134 prior corporate employers plus current PE employment; separate from original corporate records"
+}

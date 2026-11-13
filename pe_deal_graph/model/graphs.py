@@ -33,6 +33,7 @@ Verified constraints (relationalai 1.27.1, research/pyrel_cheatsheet.md):
 from __future__ import annotations
 
 import logging
+import os
 
 from relationalai.semantics import Float, Integer, String
 from relationalai.semantics.reasoners.graph import Graph
@@ -41,6 +42,7 @@ from relationalai.semantics.std import math, strings
 from relationalai.semantics.std.aggregates import asc, rank
 
 from .core import (
+    BUILD_PROFILE,
     BETWEENNESS_PIVOTS,
     MAX_PATH_HOPS,
     BuyingFund,
@@ -71,6 +73,14 @@ MAX_RANKED_PATHS = 3  # best route plus up to 2 alternates per (target, decision
 # Decision-maker distances are computed for targets that are Tier A today (score >= 70) or could
 # reach Tier A with the finale's 10 warm-path points (score >= 60). This keeps the second distance
 # call small while covering every target the demo can show a path for, before or after the finale.
+# Ties weaker than this are left out of the warm-path graph. 0.0 keeps every tie (the demo baseline).
+# Set PE_MIN_TIE_STRENGTH (0-1) for filtration experiments; the any-to-any procedure takes the same
+# threshold as a call argument (scripts/person_path_proc.py), with no redeploy.
+MIN_TIE_STRENGTH = 0.0  # keep this a literal: scripts/check_graphs.py reads the default from the source
+if os.environ.get("PE_MIN_TIE_STRENGTH"):
+    MIN_TIE_STRENGTH = float(os.environ["PE_MIN_TIE_STRENGTH"])
+    if not 0.0 <= MIN_TIE_STRENGTH <= 1.0:
+        raise ValueError("PE_MIN_TIE_STRENGTH must be between 0 and 1")
 TIER_A_MIN_SCORE = 70
 WARM_PATH_POINTS = 10
 PATH_SCOPE_MIN_SCORE = TIER_A_MIN_SCORE - WARM_PATH_POINTS
@@ -116,8 +126,29 @@ def build_warm_path_graph() -> Graph:
     and tie strength is applied afterwards when routes of the same length are compared.
     """
     g = Graph(model, directed=False, weighted=False, node_concept=Person)
-    model.define(g.Edge.new(src=Knows.p1, dst=Knows.p2))
+    model.where(Knows.strength >= MIN_TIE_STRENGTH).define(g.Edge.new(src=Knows.p1, dst=Knows.p2))
     return g
+
+
+def people_community_relations(g=None, *, max_levels=1, randomization_seed=LOUVAIN_SEED):
+    """Opt-in Louvain and exact internal betweenness on the supplied people graph.
+
+    Removing cross-community edges makes the second graph a disjoint union of
+    community-induced subgraphs. Brandes on that union scores only paths within
+    each community, while keeping isolated people with a zero score.
+    """
+    if type(max_levels) is not int or max_levels < 1:
+        raise ValueError('max_levels must be a positive integer')
+    if type(randomization_seed) is not int or randomization_seed < 0:
+        raise ValueError('randomization_seed must be a non-negative integer')
+    g = knows_graph if g is None else g
+    labels = g.louvain(max_levels=max_levels, randomization_seed=randomization_seed)
+    inside = Graph(model, directed=False, weighted=False, node_concept=Person)
+    a, b, label = Person.ref(), Person.ref(), Integer.ref()
+    model.where(g.Edge.src(a), g.Edge.dst(b), labels(a,label), labels(b,label)).define(
+        inside.Edge.new(src=a, dst=b))
+    centrality = inside.betweenness_centrality(num_pivots=BETWEENNESS_PIVOTS)
+    return labels, centrality
 
 
 def define_seed_distances(g: Graph) -> None:
@@ -190,7 +221,11 @@ def define_warm_paths(max_hops: int = MAX_PATH_HOPS) -> None:
             conds += [Person.seed_hops(n[0], n[i], ds), Person.dm_hops(n[length], n[i], dd),
                       ds == i, ds + dd == length]
         for i in range(length):  # consecutive people know each other
-            conds += [Person.tie_strength(n[i], n[i + 1], w[i]), _tie_evidence(n[i], n[i + 1], ev[i])]
+            conds += [
+                Person.tie_strength(n[i], n[i + 1], w[i]),
+                w[i] >= MIN_TIE_STRENGTH,
+                _tie_evidence(n[i], n[i + 1], ev[i]),
+            ]
         strength = w[0]
         for x in w[1:]:
             strength = strength * x
@@ -367,19 +402,66 @@ def define_addon_similarity(g: Graph, with_communities: bool = True) -> None:
 # ============================================================================================
 # Build everything at import (definitions only; no query runs here)
 # ============================================================================================
+if BUILD_PROFILE in {"copied-distance-probe", "copied-community-probe"}:
+    # Definitions only; source membership comes from the existing OurSeed rules.
+    from . import rules as _probe_rules  # load unchanged Knows rules before the probe
+
 knows_graph = build_warm_path_graph()
-define_seed_distances(knows_graph)
-define_decision_maker_distances(knows_graph)
-define_warm_paths()
+if BUILD_PROFILE == "copied-distance-probe":
+    probe_sources = model.Relationship(f"{Person:node} is a fixed distance probe source")
+    # Keep the existing physical relation name; bind it to team membership.
+    model.where(OurSeed(Person)).define(probe_sources(Person))
+    probe_distance = knows_graph.distance(from_=probe_sources)
+    PersonDistanceProbe = model.Concept(
+        "PersonDistanceProbe", identify_by={"source_id": String, "target_id": String})
+    PersonDistanceProbe.hops = model.Property(f"{PersonDistanceProbe} has {Integer:hops} hops")
+    _ps, _pt, _ph = Person.ref(), Person.ref(), Integer.ref()
+    model.where(probe_distance(_ps, _pt, _ph)).define(
+        _probe := PersonDistanceProbe.new(source_id=_ps.id, target_id=_pt.id), _probe.hops(_ph))
+    GRAPHS = {"warm_path": knows_graph}
+elif BUILD_PROFILE == "copied-community-probe":
+    # Same baseline algorithms as the independently validated interactive run.
+    community_labels, internal_scores = people_community_relations(
+        max_levels=int(os.environ.get("PE_COMMUNITY_MAX_LEVELS", "1")),
+        randomization_seed=int(os.environ.get("PE_COMMUNITY_SEED", "42")))
+    PersonCommunityProbe = model.Concept("PersonCommunityProbe", identify_by={"id": String})
+    PersonCommunityProbe.community = model.Property(f"{PersonCommunityProbe} has {Integer:community}")
+    PersonCommunityProbe.internal_betweenness = model.Property(
+        f"{PersonCommunityProbe} has {Float:internal_betweenness}")
+    _person, _label, _score = Person.ref(), Integer.ref(), Float.ref()
+    model.where(community_labels(_person, _label), internal_scores(_person, _score)).define(
+        _row := PersonCommunityProbe.new(id=_person.id),
+        _row.community(_label), _row.internal_betweenness(_score))
+    GRAPHS = {"warm_path": knows_graph}
+else:
+    define_seed_distances(knows_graph)
+    define_decision_maker_distances(knows_graph)
+    define_warm_paths()
+    deal_flow_graph = build_deal_flow_graph()
+    define_deal_flow_centrality(deal_flow_graph)
+    commercial_graph = build_commercial_graph()
+    define_conflict_reach(commercial_graph)
+    define_addon_similarity(commercial_graph)
+    GRAPHS = {"warm_path": knows_graph, "deal_flow": deal_flow_graph, "commercial": commercial_graph}
 
-deal_flow_graph = build_deal_flow_graph()
-define_deal_flow_centrality(deal_flow_graph)
+_person_distance_queries = {}
 
-commercial_graph = build_commercial_graph()
-define_conflict_reach(commercial_graph)
-define_addon_similarity(commercial_graph)
 
-GRAPHS = {"warm_path": knows_graph, "deal_flow": deal_flow_graph, "commercial": commercial_graph}
+def person_distances(source_id: str):
+    """Single-source shortest distances on the existing graph, without seed restrictions.
+
+    Definitions are cached per source in this process. No query executes here.
+    """
+    if BUILD_PROFILE != "default":
+        raise ValueError("Dynamic distance definitions are disabled in the fixed-source probe")
+    if not isinstance(source_id, str) or not source_id.strip():
+        raise ValueError("source_id must be a nonempty person ID string")
+    if source_id not in _person_distance_queries:
+        selected = model.Relationship(
+            f"{Person:node} is person-path source {len(_person_distance_queries)}")
+        model.where(Person.id == source_id).define(selected(Person))
+        _person_distance_queries[source_id] = knows_graph.distance(from_=selected)
+    return _person_distance_queries[source_id]
 
 
 # ============================================================================================
@@ -458,4 +540,5 @@ RULES = {
 __all__ = [
     "knows_graph", "deal_flow_graph", "commercial_graph", "GRAPHS", "RULES", "graph_sizes", "validate_graphs",
     "WarmPathCandidate", "DealFlowNode", "MAX_RANKED_PATHS", "PATH_SCOPE_MIN_SCORE",
+    "person_distances",
 ]

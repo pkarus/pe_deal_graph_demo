@@ -139,3 +139,273 @@ Rules for every function:
 Check the contract without the engine: `.venv/bin/python demo_workspace/ask.py --check`.
 
 Automatic fallback: if a live hero query hits a missing graph output, an empty frame, an engine lock or a 503, `ask.py` retries once after 20 s, then prints "Live query unavailable, showing precomputed result from exports" and shows the `--from-exports` rows for the same function (or a clear message if `exports/` is missing).
+
+## Local-only synthetic scale fixtures
+
+`data/generate.py --scale` is separate from the signal/noise demo modes. It writes
+all 17 existing CSV schemas and a deterministic `MANIFEST.json` into a **new**
+directory. It refuses existing directories, paths inside `data/csv` or
+`data/golden`, mixed demo/scale flags, and scale-only options without opt-in.
+It never loads Snowflake or imports/runs the RAI model. Existing finite demo ID
+pools, row caps, source configuration, and golden stories are unchanged.
+
+```bash
+# Generate into a NEW directory (data/scale_10k already contains the validated fixture).
+env -u DEBUG .venv/bin/python data/generate.py --scale --people 10000 --workplace-size 8 --seed 42 --out data/scale_10k_new
+# Read-only local validation of the prepared fixture:
+env -u DEBUG .venv/bin/python data/generate.py --scale-check --out data/scale_10k
+# Offline regression tests:
+env -u DEBUG .venv/bin/python -m pytest tests/test_scale_generator.py -q
+```
+
+The generated names use a local seeded RNG; topology is a fixed deterministic
+construction independent of the seed. All scale IDs have their own prefix and
+nine-digit numeric suffix, avoiding the demo's finite shuffled ID pools.
+The fixture uses K1 workplace overlap (Board roles starting 2020-01-01, open
+through fixed AS_OF 2026-10-01); K2 deal and K3 CRM inputs are empty. Reference
+sponsor/fund rows support the existing oracle, but there are no OurSeed members.
+This is a sparse relationship/path fixture, not a replacement for the demo's
+business-question stories or a realistic connected-network benchmark.
+
+People `SCALE_P000000000` through `SCALE_P000000005` form an isolated six-person
+chain. Each adjacent pair shares its own two-person workplace, so no workplace
+can shortcut the chain. From `SCALE_P000000000`, targets ending `001` through
+`005` have exact shortest distances 1–5; the route is the ascending prefix of
+that chain. Person `SCALE_P000000006` has its own workplace and is unreachable.
+All remaining people belong to one bounded workplace each. The default size is
+8; `--workplace-size` accepts 2–32. Companies have distinct IDs and are never
+collapsed under one common employer. No deal or CRM links join the components.
+
+For N people and workplace cap k, let q,r = divmod(N-7,k). There are N+4 roles,
+6+ceil((N-7)/k) companies, and exactly `5 + q*k*(k-1)/2 + r*(r-1)/2`
+unordered Knows connections. At k=8:
+
+| People | Roles | Expected connections |
+| ---: | ---: | ---: |
+| 10,000 | 10,004 | 34,977 |
+| 100,000 | 100,004 | 349,977 |
+| 1,000,000 | 1,000,004 | 3,499,977 |
+
+These are O(N*k) connections, not O(N²): at fixed k, degree and component size
+stay bounded. A chain member has at most two roles; every bulk person has one.
+Adding future roles, bridges, deal participants, or CRM edges requires renewed
+oracle checks because those can change density and shortest paths.
+
+Generation streams rows and file hashes; it does not allocate all people,
+roles, or edges in memory. The same generator accepts 100K and 1M with the
+`--people` option and a new output directory. CSV storage is approximately
+linear (about 19 MB / 193 MB projected from the 10K run, not measured).
+The existing independent oracle materializes pandas data, edge evidence and a
+NetworkX graph; validation therefore has substantial O(N+E) memory overhead.
+Only 10K has been validated here. Before 1M oracle validation, budget memory or
+prepare a separately reviewed streaming/component-wise validator. Do not run
+all-pairs distances: planted checks need only one source BFS.
+
+Validated local 10K output in `data/scale_10k`: 1,929,728 CSV bytes;
+1,934,372 total bytes including manifest (18 files). The existing oracle confirms
+34,977 connections, maximum degree 7, largest component 8, exact distances 1–5,
+unreachable handling, and every example route edge at threshold 0.0.
+Two generations were byte-identical. SHA-256 checks confirmed demo CSV and
+golden files were unchanged. No Snowflake loads or RAI runs were performed.
+
+
+## Experiment deployment
+
+The custom deployment receipts, SQL scanner, provenance checks, and continuation
+flags have been removed. Historical investigation commands are superseded here.
+The runner uses the existing `_DEPLOY_SRC` copies, `_DEPLOY` outputs, and
+`_DEPLOY_META` metadata under `ALAA_RELAPP_PERSISTENCE`, as `RAI_USER` on `RAI_XS`.
+It does not provision schemas, copy source tables, or grant permissions.
+The SDK handles its normal deployment metadata and object lifecycle directly.
+This remains the fixed-source distance probe, not the full demo deployment.
+
+Print targets without connecting:
+```bash
+env -u DEBUG .venv/bin/python scripts/check_graphs.py --prepare-copied-distance-probe
+```
+
+Deploy and run one manual refresh, then compare all expected distances:
+```bash
+env -u DEBUG .venv/bin/python scripts/check_graphs.py --run-copied-distance-probe --execute --refresh
+```
+Omit `--refresh` to install only. There is no recurring refresh schedule.
+Do not run concurrently with an older deployment runner.
+
+
+### Distance recursion compatibility fix (SDK 1.27.1)
+
+The copied distance probe runner applies a temporary, process-local SQL-lowering
+workaround in `deploy_distance_probe`. Only the probe distance relation is affected:
+`MIN(D) GROUP BY NODE_U, NODE_V` is applied across accumulated state and new
+candidates before computing the next delta. The installed SDK is unchanged.
+The unmodified compiler retained longer cyclic walks and did not converge in the
+observed run. This workaround is not an upstream SDK fix and should be removed
+once that compiler behavior is fixed. Use the runner command above to preserve it
+on redeployment; directly deploying the model without the runner bypasses it.
+
+Offline SQL execution verifies cyclic/disconnected examples and all 1,720 baseline
+distances against independent breadth-first search. A regression also checks that
+unrelated relations are unchanged and the compiler method is restored on failure.
+
+The copied probe also creates `ROLE_HISTORY_NORMALIZED` and
+`OWNERSHIP_NORMALIZED` views in the existing `_DEPLOY` output schema. These
+read the two corresponding `_DEPLOY_SRC` tables and compute effective end dates
+with SQL COALESCE and current status from the raw source dates. This prevents
+a missing-property fallback from being retained during recursive entity
+materialization. The original source tables and default interactive model are
+unchanged. The views are recreated by the existing deployment runner.
+
+Live validation of both fixes passed: 1,720 distance rows and all 2,525 unordered connection pairs match the independent oracle exactly. The distance block took about 54 seconds; the full refresh includes input/rule materialization and takes longer. This validates only the copied fixed-source probe. See the existing investigation report for the task query ID and timings.
+
+
+## Local connected fixtures up to 10M people
+
+The connected generator uses compact integer role memberships and streams CSV
+rows. It counts unique connections one bounded person neighborhood at a time;
+it never retains the complete edge set. Memory is O(people + roles), not constant.
+Topology, random seed ordering, IDs and dates match the earlier generator.
+The sparse generator retains its existing 1M limit.
+
+```bash
+.venv/bin/python data/generate.py --scale-connected --people 10000000 --workplace-size 16 --seed 42 --out data/scale_connected_10m
+.venv/bin/python data/generate.py --scale-check-streaming --out data/scale_connected_10m
+```
+
+Generation refuses an existing output directory. The streamed check verifies
+file hashes, table counts, sequential primary IDs, role references, duplicate
+memberships, role/workplace bounds, five team seeds, and all 14 protected route
+cases including self and unreachable. It does not compute the full distance
+oracle or independently verify the largest component or total edge count.
+The manifest edge count is calculated by the generator. Keep the full
+`--scale-check` oracle for small fixtures; do not run it on 10M.
+
+Generated 10M files are ignored by Git. These commands are local only and do not
+connect to Snowflake, load tables, deploy models, or change reasoners.
+
+Local 10M run (2026-11-09): 10,000,000 people, 29,997,801 roles,
+129,700,057 generator-counted connections and 4,717,104,170 CSV bytes.
+Generation took 211.762 s; streamed validation took 226.051 s. Peak process
+RSS was 1,051,131,904 bytes. All 14 planted cases passed. Results are in
+`data/scale_connected_10m/VALIDATION.json` and table hashes in `MANIFEST.json`.
+Seventeen generator tests passed. Outputs matched the previous generator
+byte-for-byte at 20, 300 and 10K, and the preserved 100K manifest and every
+CSV hash matched. No live RAI execution or full 10M distance validation occurred.
+
+### 10M deployment tests
+
+`data/load.py --fixture connected10m --execute` creates only fresh 10M
+source/output/metadata schemas and stages CSVs without loading all rows into
+Python. Its receipt records COPY counts, table counts, primary-ID uniqueness
+and role reference checks. It refuses existing targets rather than replacing
+them. The existing engine and pools are never managed by the loader.
+
+The distance runner accepts `--fixture connected10m --distance-reasoner sql`
+with the existing deploy/refresh flags. Full result comparison uses the compact
+oracle in `data/oracle.py`: a sparse person-workplace incidence graph, after
+checking every workplace's role windows overlap by at least 365 days and that
+there are no CRM or transaction inputs. Person-to-person incidence distance
+divided by two is then the exact Knows distance. All five seed vectors are
+cached under the ignored fixture directory, and results are compared in batches.
+
+The community runner accepts `--fixture connected10m` with existing flags.
+Default scale settings remain one Louvain level, seed 42, and all 10M people
+as pivots (exact within-community betweenness). Coverage is checked for every
+output ID; independent exact betweenness checks cover up to five largest
+communities, each bounded to 1,000 people. This is sampled validation, not an
+independent check of all 10M scores. Existing native query/task timeouts remain
+in effect. No automatic refresh schedules or engine resizing are introduced.
+
+10M SQL distance run (2026-11-09): one manual refresh succeeded on RAI_XS
+in 3,037.164 seconds (50m 37.164s), excluding deployment and client validation.
+All 49,999,995 rows from five seeds matched the independent compact oracle.
+Selected block durations: input/model materialization 712.748s; tenure-overlap
+524.337s; Knows evidence 244.204s; Knows consolidation 389.900s; distance
+recursion 1,099.242s; final distance output 15.106s. These are selected block
+durations, not an additive breakdown of every statement.
+
+The first local monitor stopped at 30 minutes; the existing Snowflake task
+continued and was monitored to completion without resubmission. The SDK task
+had USER_TASK_TIMEOUT_MS=0; it was not changed during this run. A 90-minute
+manual cap was stated but not reached. Evidence:
+`artifacts/seed_distances_connected_10m_sql.json`; query
+`01c84c7d-020d-10ee-0005-5ee313e416e6`.
+
+The local independent oracle took 89.945s and 3,378,921,472 peak RSS bytes.
+It is a fixture-specific validation implementation, not a replacement for the
+RAI model or an equivalent end-to-end performance comparison.
+
+10M Logic community run (2026-11-09): deployment installed, but the single
+manual refresh FAILED after 1,731.959 seconds (28m 51.959s). Its Logic
+transaction ran for 1,501.684 seconds and aborted with `transaction timeout`
+at the configured 25-minute limit. Settings were one Louvain level, seed 42,
+and 10M pivots for exact within-community betweenness, using the unchanged
+HIGHMEM_X64_S reasoner. PERSONCOMMUNITYPROBE has zero rows; no community
+correctness or timing claim is supported by this failed refresh.
+
+Progress snapshots showed substantial time in role/person, role/date,
+role/organization and intermediate relations, and later tenure-overlap work.
+These snapshots do not establish Louvain or betweenness as the bottleneck.
+The final transaction progress and timings are saved in
+`artifacts/people_communities_connected_10m.json`; a debugger-readable bundle
+is `artifacts/people_communities_connected_10m.debug.zip`.
+
+Original/copy input fingerprints and the existing baseline distance deployment
+matched before/after. The new refresh task remains suspended with no schedule.
+No retry, engine resize or pool-setting change was performed. The reasoner
+was resumed at the user's explicit authorization and retains 30-minute auto
+suspend. The successful 10M SQL distance result is unaffected.
+
+10M graph-only Logic experiment (2026-11-09): reused the existing
+CONNECTED_10M.PERSON and KNOWS outputs in a fresh
+CONNECTED_10M_COMMUNITY_GRAPH_ONLY / _META deployment. Input checks verified
+10M unique people, 129,700,057 unique canonical pairs, nonnegative strengths,
+and all edge endpoints. Before/after graph fingerprints matched.
+
+The model uses native RAI Louvain (one level, seed 42) and exact unweighted
+within-community betweenness (10M pivots), threshold 0.0. It omits employment
+and tenure-overlap rules. The single refresh FAILED after 1,630.735s; the Logic
+transaction aborted after 1,504.680s at its configured 25-minute limit.
+Louvain's community-label relation completed, but the within-community
+shortest-distance recursion was still active at timeout. Final
+PERSONCOMMUNITYPROBE row count is zero; no community correctness claim is made.
+RAI reported HIGH_COST_X_JOIN in the pivot-selection relation; this is a
+warning to investigate, not evidence by itself of an incorrect model.
+
+This is a graph-only experiment, excluding the prior SQL graph construction
+cost, not an end-to-end speedup measurement. No retry or resize occurred;
+HIGHMEM_X64_S and its 30-minute auto-suspend remain unchanged. The task is
+suspended with no schedule. Original/baseline preservation checks passed.
+Evidence: artifacts/people_communities_connected_10m_graph_only.json and its
+.debug.zip. Relevant offline compiler/scope/guard regressions: 95 passed.
+
+Command used (do not repeat against these existing schemas):
+  env -u DEBUG .venv/bin/python scripts/check_graphs.py --run-community-probe \
+    --fixture connected10m --materialized-community-graph --execute --refresh \
+    --json artifacts/people_communities_connected_10m_graph_only.json
+
+40-minute graph-only rerun (2026-11-09): reused the existing deployment and
+Person/Knows inputs; no redeploy, CSV load or new schemas. Verified the stored
+plan against the prior SHA-256, then changed only its Logic timeout argument
+from 25 to 40 minutes. Changed only the existing experiment task timeout from
+30 to 50 minutes to allow startup/export overhead. The computation payload,
+algorithms and size-S reasoner were unchanged. 35 offline tests passed.
+
+The explicitly requested single rerun FAILED with transaction timeout:
+2,524.842 seconds total refresh; 2,404.932 seconds in Logic. Final score output
+has zero rows, so no 10M community/betweenness correctness claim is made.
+Community-label work completed; within-community distance recursion and
+export preparation remained active before abort. The extra 15 minutes did
+not establish a successful pipeline. Original/baseline and materialized graph
+fingerprints passed preservation checks. No further retry or resize occurred.
+
+Evidence: artifacts/people_communities_connected_10m_graph_only_40m.json and
+its .debug.zip. The old 25-minute evidence remains intact. The experiment
+retains the 40-minute Logic/50-minute task limits. The task remains suspended
+without a schedule, and engine auto-suspend remains 30 minutes.
+
+Command used:
+  env -u DEBUG .venv/bin/python scripts/check_graphs.py \
+    --refresh-materialized-community-40m --execute \
+    --json artifacts/people_communities_connected_10m_graph_only_40m.json
+This guarded timeout transition expects the prior 25-minute plan; it is not
+an automatic retry command against the now-modified plan.

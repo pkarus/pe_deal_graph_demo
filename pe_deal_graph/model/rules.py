@@ -30,7 +30,7 @@ from relationalai.semantics.std import aggregates as aggs
 from relationalai.semantics.std.aggregates import asc, rank
 
 from .core import (
-    AS_OF, AS_OF_ISO, OUR_SEED_ROLE_TYPES, OUR_SPONSOR_NAME, model,
+    AS_OF, AS_OF_ISO, OUR_SEED_ROLE_TYPES, OUR_SPONSOR_NAME, BUILD_PROFILE, model,
     AreaExposure, BuyingFund, Company, ConflictSubject, CoverageGap, DealFlowTransaction, DecisionMaker,
     EligibleTarget, Fund, FundFocus, Interaction, Intermediary, Knows, KnowsEvidence, NorthwindHolding,
     Organization, OurFund, OurSeed, OurSponsor, Ownership, Person, PipelineEntry, PortfolioExposure,
@@ -55,6 +55,14 @@ EXIT_HOLD_YEARS = 5
 ADVISOR_ROLES = ("sell_side_advisor", "buy_side_advisor", "debt_advisor")   # lenders are not advisors
 CONFLICT_SUBJECT_STAGES = ("IOI prep",)
 TENURE_OVERLAP_MIN_DAYS = 365          # "12 months or more" of shared tenure
+# Optional guard for real employment data. The tenure rule compares every pair of roles at the same
+# organization, so one employer with 10,000 roles alone produces ~50 million candidate pairs. Set
+# PE_K1_MAX_ORG_ROLES to skip tenure ties at organizations with more roles than that (sharing a
+# 10,000-person employer is weak evidence of knowing someone anyway). 0 = no cap, the demo behaviour;
+# the independent oracle assumes no cap. Run scripts/knows_preflight.py first to see what a cap drops.
+K1_MAX_ORG_ROLES = int(os.environ.get("PE_K1_MAX_ORG_ROLES", "0") or 0)
+if K1_MAX_ORG_ROLES < 0:
+    raise ValueError("PE_K1_MAX_ORG_ROLES must be 0 (no cap) or a positive integer")
 EXPOSURE_MAX_HOPS = 2
 WARM_PATH_MAX_HOPS = 2
 WARM_PATH_POINTS = 10
@@ -580,7 +588,13 @@ def knows_tenure_overlap():
     false lead a shared-employer join reports."""
     ra, rb, pa, pb, org = Role.ref(), Role.ref(), Person.ref(), Person.ref(), Organization.ref()
     ov = _overlap_days(ra.start_date, ra.effective_end_date, rb.start_date, rb.effective_end_date)
-    model.where(ra.organization(org), rb.organization(org), ra.person(pa), rb.person(pb), pa.id < pb.id,
+    size_guard = ()
+    if K1_MAX_ORG_ROLES:  # skip giant employers (see K1_MAX_ORG_ROLES)
+        Organization.role_count = model.Property(f"{Organization} has {Integer:role_count} roles in total")
+        r0 = Role.ref()
+        model.define(Organization.role_count(aggs.count(r0).per(Organization).where(r0.organization(Organization))))
+        size_guard = (org.role_count <= K1_MAX_ORG_ROLES,)
+    model.where(ra.organization(org), rb.organization(org), *size_guard, ra.person(pa), rb.person(pb), pa.id < pb.id,
                 d := ov, d >= TENURE_OVERLAP_MIN_DAYS).define(
         o := TenureOverlap.new(role_a=ra, role_b=rb), o.days(d))
     o = TenureOverlap.ref()
@@ -920,10 +934,19 @@ def enable_finale() -> bool:
 # ============================================================================================
 # Build the Act 1-4 rules at import
 # ============================================================================================
-for _fn in (sector_closure, who_we_are, evidence_names, thesis_fit, known_to_crm, fit_components, readiness_components,
+_default_builders = (sector_closure, who_we_are, evidence_names, thesis_fit, known_to_crm, fit_components, readiness_components,
             access_components, composite_score, why_not_templates, knows_tenure_overlap, knows_deal_coparticipation,
             knows_positive_crm, knows_relationship, decision_makers, closest_intermediary, deal_flow_scope,
-            coverage_gap, northwind_holding_and_subject, portfolio_exposure, concentration):
+            coverage_gap, northwind_holding_and_subject, portfolio_exposure, concentration)
+_probe_builders = (who_we_are, evidence_names, knows_tenure_overlap,
+                   knows_deal_coparticipation, knows_positive_crm, knows_relationship)
+# Materialize the existing Act-1 target rules independently of graph deployments.
+_target_builders = (sector_closure, who_we_are, evidence_names, thesis_fit, known_to_crm,
+                    fit_components, readiness_components, access_components, composite_score,
+                    decision_makers)
+_builders = {"copied-distance-probe": _probe_builders, "copied-community-probe": _probe_builders,
+             "copied-target-rules": _target_builders}.get(BUILD_PROFILE, _default_builders)
+for _fn in _builders:
     _fn()
 
 if os.environ.get("PE_DEAL_GRAPH_FINALE", "").strip().lower() in ("1", "true", "yes", "on"):

@@ -618,14 +618,17 @@ def our_seeds(data: Data) -> list[str]:
     return sorted({x["person_id"] for x in data.current_roles_at(data.nw_id, {"Deal Team", "Operating Partner"})})
 
 
-def build_knows(data: Data, seeds: set[str]) -> dict:
+def build_knows(data: Data, seeds: set[str], *, include_evidence=True) -> dict:
     ev = defaultdict(list)  # (a, b) with a < b -> evidence list
 
     def add(a, b, item):
         if a == b:
             return
         key = (a, b) if a < b else (b, a)
-        ev[key].append(item)
+        if include_evidence:
+            ev[key].append(item)
+        else:
+            ev[key] = max(ev.get(key, 0.0), item["strength"])
 
     # K1 tenure overlap (same org, >= 365 days, open end = T)
     for org_id in sorted(data.roles_by_org):
@@ -641,6 +644,9 @@ def build_knows(data: Data, seeds: set[str]) -> dict:
                 if days < 365:
                     continue
                 strength = recency(e) * min(1.0, 0.4 + 0.15 * days / 365.25)
+                if not include_evidence:
+                    add(a["person_id"], b["person_id"], {"strength": strength})
+                    continue
                 both_board = a["role_type"] == "Board" and b["role_type"] == "Board"
                 open_end = a["end_date"] is None and b["end_date"] is None
                 label = "board co-service" if both_board else "tenure overlap"
@@ -694,6 +700,8 @@ def build_knows(data: Data, seeds: set[str]) -> dict:
                    "first": min(ds).isoformat(), "last": max(ds).isoformat(),
                    "text": f"K3: {n} positive meetings {min(ds)} to {max(ds)} -> {strength:.2f}"})
 
+    if not include_evidence:
+        return {key: {"strength": value} for key, value in ev.items()}
     knows = {}
     for key in sorted(ev):
         items = sorted(ev[key], key=lambda i: (-i["strength"], i["type"], i["text"]))
@@ -1350,6 +1358,69 @@ def main(argv=None) -> int:
     print("Guards: F1", fn["guards"]["guard_F1"]["holds"], "F2", fn["guards"]["guard_F2"]["holds"])
     print(f"wrote {a.out}")
     return 0
+
+
+def compact_connected_seed_distances(directory, cache):
+    """Exact distances for the tenure-only scale fixture, without clique expansion.
+
+    A person-company incidence graph is equivalent only when every role at a
+    workplace overlaps every other by >=365 days. Check this precondition and
+    reject CRM/deal evidence, rather than silently applying this shortcut to a
+    general dataset. Each friendship hop is two incidence-graph hops.
+    """
+    import csv
+    import numpy as np
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import shortest_path
+    directory, cache = Path(directory), Path(cache)
+    manifest = json.loads((directory/'MANIFEST.json').read_text())
+    if manifest['mode'] != 'scale-connected' or manifest['min_tie_strength'] != 0:
+        raise ValueError('Compact oracle supports connected tenure-only fixtures at threshold zero')
+    for table in ('CRM_INTERACTION','TRANSACTION','TRANSACTION_PARTY'):
+        if manifest['tables'][table]['rows']: raise ValueError('Non-tenure evidence requires the general oracle')
+    signature = hashlib.sha256((directory/'MANIFEST.json').read_bytes()).hexdigest()
+    if (cache/'COMPLETE.json').exists():
+        saved=json.loads((cache/'COMPLETE.json').read_text())
+        if saved['manifest_sha256'] != signature: raise ValueError('Oracle cache fixture mismatch')
+        return saved
+    cache.mkdir(parents=True,exist_ok=True)
+    n=manifest['people']; companies=manifest['tables']['COMPANY']['rows']
+    team=manifest['seed_ids']; seed_index={p:i+7 for i,p in enumerate(team)}
+    count=manifest['roles']
+    persons=np.empty(count,dtype=np.int32); orgs=np.empty(count,dtype=np.int32)
+    starts=np.full(companies+1,-1,dtype=np.int32); ends=np.full(companies+1,10**9,dtype=np.int32)
+    dates={};role_seeds=[]
+    def day(value):
+        if value not in dates: dates[value]=date.fromisoformat(value).toordinal()
+        return dates[value]
+    actual=0
+    with (directory/'ROLE_HISTORY.csv').open(newline='') as fh:
+        for actual,row in enumerate(csv.DictReader(fh),1):
+            p=row['person_id'];i=seed_index[p] if p in seed_index else int(p[7:])
+            c=0 if row['org_id']=='SCALE_S' else int(row['org_id'][7:])+1
+            if not (0 <= i < n and 0 <= c <= companies): raise ValueError('Role reference outside fixture')
+            if row['role_type'] not in ('Employee','Deal Team','Operating Partner'): raise ValueError('Unexpected role type')
+            if c==0:role_seeds.append(p)
+            persons[actual-1]=i;orgs[actual-1]=n+c
+            start=day(row['start_date']);end=day(row['end_date'] or manifest['as_of_date'])
+            starts[c]=max(int(starts[c]),start);ends[c]=min(int(ends[c]),end)
+    if actual!=count or sorted(role_seeds)!=sorted(team):raise ValueError('Role count or seeds differ')
+    if np.any(ends-starts < 365):raise ValueError('Workplace roles do not all overlap; incidence shortcut invalid')
+    graph=coo_matrix((np.ones(count,dtype=np.uint8),(persons,orgs)),shape=(n+companies+1,n+companies+1)).tocsr()
+    graph=graph+graph.T
+    del persons,orgs,starts,ends
+    result=dict(manifest_sha256=signature,seed_ids=team,people=n,reachable_rows=0,
+                method='Independent unweighted incidence distances, after verifying all workplace tenure overlaps')
+    for source,index in seed_index.items():
+        distances=shortest_path(graph,directed=False,unweighted=True,indices=index)[:n]
+        finite=np.isfinite(distances)
+        if np.any(distances[finite]%2):raise ValueError('Odd person-to-person incidence distance')
+        values=np.full(n,-1,dtype=np.int32);values[finite]=(distances[finite]/2).astype(np.int32)
+        np.save(cache/f'{source}.npy',values)
+        result['reachable_rows']+=int(finite.sum())
+        print(f'Compact oracle completed seed {source}: {int(finite.sum())} reachable',flush=True)
+    (cache/'COMPLETE.json').write_text(json.dumps(result,indent=2)+'\n')
+    return result
 
 
 if __name__ == "__main__":

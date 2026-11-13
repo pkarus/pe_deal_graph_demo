@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "values": [
+    {
+      "raw": 0.0,
+      "normalized": 0.0
+    },
+    {
+      "raw": 1e-08,
+      "normalized": 0.01
+    },
+    {
+      "raw": 0.0001,
+      "normalized": 0.1
+    },
+    {
+      "raw": 0.000389969711576,
+      "normalized": 0.140526334849046
+    },
+    {
+      "raw": 0.01,
+      "normalized": 0.316227766016838
+    },
+    {
+      "raw": 0.25,
+      "normalized": 0.707106781186548
+    },
+    {
+      "raw": 1.0,
+      "normalized": 1.0
+    }
+  ]
+}

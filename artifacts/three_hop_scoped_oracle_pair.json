@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "connection_id": "PE_P0001",
+      "hops": 2,
+      "strength": 0.14052633484956023,
+      "raw_strength": 0.00038996971157570894,
+      "path": "PE_P0001|CORP_P000395632|CORP_P000000373",
+      "minimum_hops": 2
+    }
+  ],
+  "query_id": "01c861b0-040d-2d7a-0005-5ee31487362a",
+  "seconds": 10.033019624999724
+}

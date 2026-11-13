@@ -1,0 +1,82 @@
+{
+  "question": "Who can introduce us to the CEO of Nonexistent Polar Widget Company 999999?",
+  "role": "RAI_USER",
+  "seconds": 15.931404957998893,
+  "response": {
+    "content": [
+      {
+        "tool_use": {
+          "client_side_execute": false,
+          "input": {
+            "company": "Nonexistent Polar Widget Company 999999",
+            "person": "",
+            "team_only": false,
+            "title": "CEO"
+          },
+          "name": "find_people",
+          "tool_use_id": "toolu_bdrk_012WitDuMX4Ahg7SeZ7NWNMQ",
+          "type": "generic"
+        },
+        "type": "tool_use"
+      },
+      {
+        "tool_result": {
+          "content": [
+            {
+              "json": {
+                "execution_type": "procedure",
+                "query_id": "01c8607d-040d-3184-0005-5ee3147a83ca",
+                "result": "{\n  \"query_context\": \"Person, model, graph, center, Sources, best_route, shortest_route, Integer, Float, String. Create query only; the tool executes it.\",\n  \"query_reference\": \"connection, target = Person.ref(), Person.ref()\\nhops = Integer.ref()\\nminimum_hops = Integer.ref()\\nstrength = Float.ref()\\nraw_strength = Float.ref()\\npath = String.ref()\\nreason = String.ref()\\ndistance = graph.distance(from_=center)\\nquery = model.where(\\n    distance(target, connection, minimum_hops),\\n    Sources(connection),\\n    best_route(connection, hops, strength, raw_strength, path, reason),\\n    minimum_hops <= 2,\\n    hops <= 2\\n).select(\\n    connection.id.alias(\\\"connection_id\\\"), connection.name.alias(\\\"connection\\\"),\\n    target.id.alias(\\\"target_id\\\"), target.name.alias(\\\"target\\\"),\\n    strength.alias(\\\"strength\\\"), raw_strength.alias(\\\"raw_strength\\\"), reason.alias(\\\"reason\\\"),\\n    hops.alias(\\\"hops\\\"), minimum_hops.alias(\\\"minimum_hops\\\"), path.alias(\\\"path\\\")\\n)\",\n  \"rows\": [],\n  \"status\": \"NO_MATCH\",\n  \"synthetic_data\": true,\n  \"team_firm\": \"Northwind Equity Partners (Synthetic)\",\n  \"total_matches\": 0\n}",
+                "truncated": false
+              },
+              "type": "json"
+            }
+          ],
+          "name": "find_people",
+          "status": "success",
+          "tool_use_id": "toolu_bdrk_012WitDuMX4Ahg7SeZ7NWNMQ",
+          "type": "generic"
+        },
+        "type": "tool_result"
+      },
+      {
+        "thinking": {
+          "signature": "CAQSygQKEggTEAEYAjgBQgh0aGlua2luZxIMuU3uc7L/wBYR9zsWGgxR3zQ1eIZYZMmSfzsiMOefhfunZJLY/4CRY+mMGxaCcGcsWq/5phjJ6tcbys/b0ifofs4+rQMp8iiK+Cx3AyrlA/tgWKXi6KqiJBgGWm/MRVJrrHoOwCF5+ASkLAbjFibl5wdqYvqRBs4rv8lOWZeQ9yGjqkuBY6ZsqjZDVTJ/VuUIVwUzSxQlGmOvqxVHwjI7TalOoR2wsGb3vQUiN0E3dKVtN07DIWXmn6zMJlaf14q2JRX2uqewhyh88myadXyFHfzwcgI+e6QwaD71exsJU6kuMaL6EuY2jlpszzleC69gLilJytyXWTunbT3zcDYoRHaUp+SEa8kaTvfwSwJWuszImEazv7RFVqnCP7KU+ze0XpzlLHZqncz+BjB2vUEG/96xE/oPzX3LizNb13HutdshlZpjBfEsTTpE33637EOFdXf5y2dGwGqdEgnAy9dQjSfR9qRG12W6NkFHZn31v9ITwKJVVaLOf7ZJGv4tF4ugNIIoJvp86bo1Iw8WbWR4wlqKXuu45IYCd/L1Eb0WjCk8cfEU+OqCSilLr7yQ38VqZzsmtNQfR/0ClqNNpOYZ2vDt5/aNRCHBKyv/lky4HJlTgAsvmyuE9lT4xPWlQ1wYofIKxTHpf4itONws30wCRLmF8OzsO2eWC9cIIStFWnr/iLMq4XAbPyggPUKbdIuAkUuviJ0jGb7uM7cRKD154C35WjcO0UanZSVTfKegymuipQ0xGAE=",
+          "text": "I don't see a clear match here, so I shouldn't guess \u2014 better to ask the user for clarification instead of inventing an answer.\n\n"
+        },
+        "type": "thinking"
+      },
+      {
+        "text": "I couldn't find a company called \"Nonexistent Polar Widget Company 999999\" in the records, and no CEO is listed for it, so I can't name anyone who could introduce you. I didn't run an introduction search, because there's no target person to search toward. I also won't guess at a company or CEO that isn't in the records.\n\nAll people and companies in this dataset are fictional (Northwind Equity Partners, synthetic, as of 2026-10-01).\n\nTo go further, I'd need one of these:\n- **The correct company name**, or part of it, or its company ID, if this name was a placeholder or a typo.\n- **The CEO's name or person ID**, if you know it.\n- **A different role at the company**, such as CFO or the synthetic \"Head of Data\" designation.\n\nOnce I can match an actual person, I'll look for the strongest possible introduction routes from your 100-person team, up to two hops. Each route will come with its normalized strength score and the dated employment overlaps behind it.",
+        "type": "text"
+      }
+    ],
+    "metadata": {
+      "created_on": 1794547054278,
+      "orchestration_model": "claude-opus-5-5",
+      "thinking_effort": "low",
+      "usage": {
+        "tokens_consumed": [
+          {
+            "context_window": 1000000,
+            "input_tokens": {
+              "cache_read": 33617,
+              "cache_write": 19731,
+              "total": 53358,
+              "uncached": 10
+            },
+            "model_name": "claude-opus-5-5",
+            "model_role": "orchestration",
+            "output_tokens": {
+              "total": 470
+            }
+          }
+        ]
+      }
+    },
+    "role": "assistant",
+    "schema_version": "v2",
+    "sequence_number": 92,
+    "status": "completed"
+  }
+}

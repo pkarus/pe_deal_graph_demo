@@ -1,0 +1,451 @@
+ROLE_ID,PERSON_ID,ORG_ID,ORG_TYPE,ROLE_TYPE,TITLE,START_DATE,END_DATE,IS_FOUNDER
+PE_R0001_1,PE_P0001,CORP_C000697,company,Employee,"Analyst, Finance",2005-02-17,2009-02-14,False
+PE_R0001_2,PE_P0001,CORP_C000951,company,Employee,Senior Finance,2009-02-28,2013-02-27,False
+PE_R0001_3,PE_P0001,CORP_C000776,company,Employee,"Manager, Strategy",2013-04-20,2017-04-14,False
+PE_R0001_4,PE_P0001,CORP_C000855,company,Employee,"Director, Strategy",2017-06-28,2021-06-23,False
+PE_R0001_5,PE_P0001,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-08-31,,False
+PE_R0002_1,PE_P0002,CORP_C000638,company,Employee,"Analyst, Finance",2009-05-22,2013-05-07,False
+PE_R0002_2,PE_P0002,CORP_C000563,company,Employee,Senior Finance,2013-07-04,2017-06-10,False
+PE_R0002_3,PE_P0002,CORP_C000074,company,Employee,"Manager, Strategy",2017-07-09,2021-07-21,False
+PE_R0002_4,PE_P0002,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2021-09-18,,False
+PE_R0003_1,PE_P0003,CORP_C000417,company,Employee,"Analyst, Finance",2005-03-12,2009-04-06,False
+PE_R0003_2,PE_P0003,CORP_C000349,company,Employee,Senior Finance,2009-05-13,2011-04-26,False
+PE_R0003_3,PE_P0003,CORP_C000483,company,Employee,"Manager, Strategy",2011-06-18,2017-06-15,False
+PE_R0003_4,PE_P0003,CORP_C000078,company,Employee,"Director, Strategy",2017-08-01,2022-08-14,False
+PE_R0003_5,PE_P0003,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2022-09-09,,False
+PE_R0004_1,PE_P0004,CORP_C000997,company,Employee,"Analyst, Finance",2011-01-30,2013-03-01,False
+PE_R0004_2,PE_P0004,CORP_C000967,company,Employee,Senior Finance,2013-05-08,2019-06-12,False
+PE_R0004_3,PE_P0004,CORP_C000646,company,Employee,"Manager, Strategy",2019-08-26,2023-09-22,False
+PE_R0004_4,PE_P0004,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2023-11-03,,False
+PE_R0005_1,PE_P0005,CORP_C000325,company,Employee,"Analyst, Finance",2002-05-23,2007-04-27,False
+PE_R0005_2,PE_P0005,CORP_C000129,company,Employee,Senior Finance,2007-06-22,2011-07-15,False
+PE_R0005_3,PE_P0005,CORP_C000063,company,Employee,"Manager, Strategy",2011-09-21,2016-08-28,False
+PE_R0005_4,PE_P0005,CORP_C000463,company,Employee,"Director, Strategy",2016-10-05,2022-09-23,False
+PE_R0005_5,PE_P0005,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-10-16,,False
+PE_R0006_1,PE_P0006,CORP_C000965,company,Employee,"Analyst, Finance",2012-06-27,2017-06-29,False
+PE_R0006_2,PE_P0006,CORP_C000495,company,Employee,Senior Finance,2017-08-16,2020-08-01,False
+PE_R0006_3,PE_P0006,CORP_C000730,company,Employee,"Manager, Strategy",2020-08-16,2024-08-18,False
+PE_R0006_4,PE_P0006,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2024-10-07,,False
+PE_R0007_1,PE_P0007,CORP_C000589,company,Employee,"Analyst, Finance",2007-02-20,2009-02-10,False
+PE_R0007_2,PE_P0007,CORP_C000541,company,Employee,Senior Finance,2009-04-03,2013-04-26,False
+PE_R0007_3,PE_P0007,CORP_C000294,company,Employee,"Manager, Strategy",2013-05-26,2017-06-06,False
+PE_R0007_4,PE_P0007,CORP_C000090,company,Employee,"Director, Strategy",2017-07-16,2022-08-19,False
+PE_R0007_5,PE_P0007,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2022-10-28,,False
+PE_R0008_1,PE_P0008,CORP_C000459,company,Employee,"Analyst, Finance",2008-08-08,2014-07-18,False
+PE_R0008_2,PE_P0008,CORP_C000430,company,Employee,Senior Finance,2014-08-10,2016-08-03,False
+PE_R0008_3,PE_P0008,CORP_C000479,company,Employee,"Manager, Strategy",2016-09-12,2020-10-17,False
+PE_R0008_4,PE_P0008,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2020-10-31,,False
+PE_R0009_1,PE_P0009,CORP_C000540,company,Employee,"Analyst, Finance",2004-02-18,2009-03-10,False
+PE_R0009_2,PE_P0009,CORP_C000001,company,Employee,Senior Finance,2009-05-07,2013-05-20,False
+PE_R0009_3,PE_P0009,CORP_C000610,company,Employee,"Manager, Strategy",2013-06-03,2018-07-01,False
+PE_R0009_4,PE_P0009,CORP_C000653,company,Employee,"Director, Strategy",2018-08-01,2022-08-21,False
+PE_R0009_5,PE_P0009,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2022-10-07,,False
+PE_R0010_1,PE_P0010,CORP_C000653,company,Employee,"Analyst, Finance",2009-04-28,2012-04-23,False
+PE_R0010_2,PE_P0010,CORP_C000018,company,Employee,Senior Finance,2012-05-14,2017-06-14,False
+PE_R0010_3,PE_P0010,CORP_C000682,company,Employee,"Manager, Strategy",2017-07-14,2021-07-08,False
+PE_R0010_4,PE_P0010,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2021-09-02,,False
+PE_R0011_1,PE_P0011,CORP_C000565,company,Employee,"Analyst, Finance",2006-04-01,2010-03-14,False
+PE_R0011_2,PE_P0011,CORP_C000888,company,Employee,Senior Finance,2010-05-26,2014-06-26,False
+PE_R0011_3,PE_P0011,CORP_C000498,company,Employee,"Manager, Strategy",2014-07-24,2019-07-23,False
+PE_R0011_4,PE_P0011,CORP_C000186,company,Employee,"Director, Strategy",2019-09-05,2021-08-16,False
+PE_R0011_5,PE_P0011,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-09-23,,False
+PE_R0012_1,PE_P0012,CORP_C000237,company,Employee,"Analyst, Finance",2014-05-26,2018-05-21,False
+PE_R0012_2,PE_P0012,CORP_C000014,company,Employee,Senior Finance,2018-07-09,2020-07-02,False
+PE_R0012_3,PE_P0012,CORP_C000972,company,Employee,"Manager, Strategy",2020-08-20,2023-08-20,False
+PE_R0012_4,PE_P0012,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2023-11-03,,False
+PE_R0013_1,PE_P0013,CORP_C000721,company,Employee,"Analyst, Finance",2013-03-04,2015-03-20,False
+PE_R0013_2,PE_P0013,CORP_C000720,company,Employee,Senior Finance,2015-04-20,2017-04-10,False
+PE_R0013_3,PE_P0013,CORP_C000650,company,Employee,"Manager, Strategy",2017-05-27,2019-05-28,False
+PE_R0013_4,PE_P0013,CORP_C000513,company,Employee,"Director, Strategy",2019-07-26,2022-07-29,False
+PE_R0013_5,PE_P0013,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2022-10-04,,False
+PE_R0014_1,PE_P0014,CORP_C000601,company,Employee,"Analyst, Finance",2013-05-20,2016-06-05,False
+PE_R0014_2,PE_P0014,CORP_C000669,company,Employee,Senior Finance,2016-07-21,2019-08-06,False
+PE_R0014_3,PE_P0014,CORP_C000612,company,Employee,"Manager, Strategy",2019-08-21,2023-07-26,False
+PE_R0014_4,PE_P0014,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2023-10-04,,False
+PE_R0015_1,PE_P0015,CORP_C000473,company,Employee,"Analyst, Finance",2006-05-09,2010-04-21,False
+PE_R0015_2,PE_P0015,CORP_C000384,company,Employee,Senior Finance,2010-05-25,2015-04-26,False
+PE_R0015_3,PE_P0015,CORP_C000774,company,Employee,"Manager, Strategy",2015-06-10,2020-07-12,False
+PE_R0015_4,PE_P0015,CORP_C000793,company,Employee,"Director, Strategy",2020-09-09,2023-08-20,False
+PE_R0015_5,PE_P0015,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2023-10-30,,False
+PE_R0016_1,PE_P0016,CORP_C000105,company,Employee,"Analyst, Finance",2008-05-05,2012-05-14,False
+PE_R0016_2,PE_P0016,CORP_C000303,company,Employee,Senior Finance,2012-07-15,2017-08-03,False
+PE_R0016_3,PE_P0016,CORP_C000411,company,Employee,"Manager, Strategy",2017-08-21,2021-08-29,False
+PE_R0016_4,PE_P0016,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-10-19,,False
+PE_R0017_1,PE_P0017,CORP_C000843,company,Employee,"Analyst, Finance",2006-06-22,2011-06-02,False
+PE_R0017_2,PE_P0017,CORP_C000748,company,Employee,Senior Finance,2011-07-06,2016-05-31,False
+PE_R0017_3,PE_P0017,CORP_C000826,company,Employee,"Manager, Strategy",2016-07-02,2018-06-18,False
+PE_R0017_4,PE_P0017,CORP_C000207,company,Employee,"Director, Strategy",2018-08-20,2023-09-04,False
+PE_R0017_5,PE_P0017,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2023-11-01,,False
+PE_R0018_1,PE_P0018,CORP_C000904,company,Employee,"Analyst, Finance",2007-05-25,2011-05-28,False
+PE_R0018_2,PE_P0018,CORP_C000370,company,Employee,Senior Finance,2011-06-25,2017-07-08,False
+PE_R0018_3,PE_P0018,CORP_C000879,company,Employee,"Manager, Strategy",2017-08-14,2021-08-27,False
+PE_R0018_4,PE_P0018,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2021-11-02,,False
+PE_R0019_1,PE_P0019,CORP_C000930,company,Employee,"Analyst, Finance",2003-03-01,2008-03-13,False
+PE_R0019_2,PE_P0019,CORP_C000938,company,Employee,Senior Finance,2008-05-08,2011-04-26,False
+PE_R0019_3,PE_P0019,CORP_C000856,company,Employee,"Manager, Strategy",2011-07-03,2016-07-10,False
+PE_R0019_4,PE_P0019,CORP_C000972,company,Employee,"Director, Strategy",2016-07-27,2020-08-11,False
+PE_R0019_5,PE_P0019,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2020-08-28,,False
+PE_R0020_1,PE_P0020,CORP_C000438,company,Employee,"Analyst, Finance",2007-06-10,2013-05-20,False
+PE_R0020_2,PE_P0020,CORP_C000922,company,Employee,Senior Finance,2013-07-25,2018-08-26,False
+PE_R0020_3,PE_P0020,CORP_C000289,company,Employee,"Manager, Strategy",2018-10-02,2022-09-04,False
+PE_R0020_4,PE_P0020,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-09-29,,False
+PE_R0021_1,PE_P0021,CORP_C000325,company,Employee,"Analyst, Finance",2007-03-20,2012-02-24,False
+PE_R0021_2,PE_P0021,CORP_C000388,company,Employee,Senior Finance,2012-04-17,2014-05-19,False
+PE_R0021_3,PE_P0021,CORP_C000734,company,Employee,"Manager, Strategy",2014-06-26,2018-07-13,False
+PE_R0021_4,PE_P0021,CORP_C000496,company,Employee,"Director, Strategy",2018-08-10,2021-08-20,False
+PE_R0021_5,PE_P0021,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-09-20,,False
+PE_R0022_1,PE_P0022,CORP_C000909,company,Employee,"Analyst, Finance",2010-06-10,2014-05-21,False
+PE_R0022_2,PE_P0022,CORP_C000552,company,Employee,Senior Finance,2014-06-23,2019-06-21,False
+PE_R0022_3,PE_P0022,CORP_C000642,company,Employee,"Manager, Strategy",2019-08-29,2023-09-16,False
+PE_R0022_4,PE_P0022,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2023-10-28,,False
+PE_R0023_1,PE_P0023,CORP_C000383,company,Employee,"Analyst, Finance",2011-03-19,2013-04-22,False
+PE_R0023_2,PE_P0023,CORP_C000160,company,Employee,Senior Finance,2013-06-21,2017-05-23,False
+PE_R0023_3,PE_P0023,CORP_C000662,company,Employee,"Manager, Strategy",2017-08-02,2020-08-24,False
+PE_R0023_4,PE_P0023,CORP_C000800,company,Employee,"Director, Strategy",2020-09-13,2024-09-10,False
+PE_R0023_5,PE_P0023,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2024-10-10,,False
+PE_R0024_1,PE_P0024,CORP_C000929,company,Employee,"Analyst, Finance",2009-06-13,2014-05-12,False
+PE_R0024_2,PE_P0024,CORP_C000876,company,Employee,Senior Finance,2014-06-17,2019-06-04,False
+PE_R0024_3,PE_P0024,CORP_C000285,company,Employee,"Manager, Strategy",2019-08-10,2023-08-02,False
+PE_R0024_4,PE_P0024,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2023-08-31,,False
+PE_R0025_1,PE_P0025,CORP_C000561,company,Employee,"Analyst, Finance",2008-12-22,2012-01-22,False
+PE_R0025_2,PE_P0025,CORP_C000510,company,Employee,Senior Finance,2012-03-24,2015-04-24,False
+PE_R0025_3,PE_P0025,CORP_C000872,company,Employee,"Manager, Strategy",2015-06-16,2019-07-12,False
+PE_R0025_4,PE_P0025,CORP_C000311,company,Employee,"Director, Strategy",2019-08-01,2021-07-07,False
+PE_R0025_5,PE_P0025,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2021-08-28,,False
+PE_R0026_1,PE_P0026,CORP_C000940,company,Employee,"Analyst, Finance",2011-05-30,2015-06-30,False
+PE_R0026_2,PE_P0026,CORP_C000764,company,Employee,Senior Finance,2015-07-30,2019-07-15,False
+PE_R0026_3,PE_P0026,CORP_C000491,company,Employee,"Manager, Strategy",2019-09-19,2023-08-15,False
+PE_R0026_4,PE_P0026,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2023-09-14,,False
+PE_R0027_1,PE_P0027,CORP_C000471,company,Employee,"Analyst, Finance",2009-01-22,2012-12-29,False
+PE_R0027_2,PE_P0027,CORP_C000274,company,Employee,Senior Finance,2013-02-27,2016-03-27,False
+PE_R0027_3,PE_P0027,CORP_C000207,company,Employee,"Manager, Strategy",2016-05-20,2018-04-27,False
+PE_R0027_4,PE_P0027,CORP_C000789,company,Employee,"Director, Strategy",2018-06-12,2021-06-30,False
+PE_R0027_5,PE_P0027,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2021-08-31,,False
+PE_R0028_1,PE_P0028,CORP_C000781,company,Employee,"Analyst, Finance",2009-03-31,2014-04-19,False
+PE_R0028_2,PE_P0028,CORP_C000808,company,Employee,Senior Finance,2014-06-28,2019-06-27,False
+PE_R0028_3,PE_P0028,CORP_C000096,company,Employee,"Manager, Strategy",2019-08-06,2022-08-29,False
+PE_R0028_4,PE_P0028,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2022-09-28,,False
+PE_R0029_1,PE_P0029,CORP_C000595,company,Employee,"Analyst, Finance",2011-02-28,2014-03-27,False
+PE_R0029_2,PE_P0029,CORP_C000451,company,Employee,Senior Finance,2014-05-08,2016-04-15,False
+PE_R0029_3,PE_P0029,CORP_C000793,company,Employee,"Manager, Strategy",2016-06-17,2020-07-19,False
+PE_R0029_4,PE_P0029,CORP_C000402,company,Employee,"Director, Strategy",2020-09-03,2022-08-06,False
+PE_R0029_5,PE_P0029,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2022-10-09,,False
+PE_R0030_1,PE_P0030,CORP_C000720,company,Employee,"Analyst, Finance",2009-05-18,2013-05-24,False
+PE_R0030_2,PE_P0030,CORP_C000004,company,Employee,Senior Finance,2013-06-23,2017-07-25,False
+PE_R0030_3,PE_P0030,CORP_C000413,company,Employee,"Manager, Strategy",2017-08-14,2022-07-13,False
+PE_R0030_4,PE_P0030,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-09-15,,False
+PE_R0031_1,PE_P0031,CORP_C000626,company,Employee,"Analyst, Finance",2012-06-28,2016-06-16,False
+PE_R0031_2,PE_P0031,CORP_C000174,company,Employee,Senior Finance,2016-08-12,2019-09-03,False
+PE_R0031_3,PE_P0031,CORP_C000663,company,Employee,"Manager, Strategy",2019-09-17,2021-10-04,False
+PE_R0031_4,PE_P0031,CORP_C000514,company,Employee,"Director, Strategy",2021-10-20,2024-09-21,False
+PE_R0031_5,PE_P0031,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2024-10-11,,False
+PE_R0032_1,PE_P0032,CORP_C000091,company,Employee,"Analyst, Finance",2013-06-28,2016-06-01,False
+PE_R0032_2,PE_P0032,CORP_C000980,company,Employee,Senior Finance,2016-07-23,2018-08-27,False
+PE_R0032_3,PE_P0032,CORP_C000861,company,Employee,"Manager, Strategy",2018-09-17,2022-08-15,False
+PE_R0032_4,PE_P0032,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2022-09-20,,False
+PE_R0033_1,PE_P0033,CORP_C000631,company,Employee,"Analyst, Finance",2010-08-22,2013-08-02,False
+PE_R0033_2,PE_P0033,CORP_C000910,company,Employee,Senior Finance,2013-08-28,2016-08-04,False
+PE_R0033_3,PE_P0033,CORP_C000574,company,Employee,"Manager, Strategy",2016-08-30,2020-09-19,False
+PE_R0033_4,PE_P0033,CORP_C000571,company,Employee,"Director, Strategy",2020-10-03,2024-09-20,False
+PE_R0033_5,PE_P0033,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2024-11-04,,False
+PE_R0034_1,PE_P0034,CORP_C000215,company,Employee,"Analyst, Finance",2011-07-21,2017-08-12,False
+PE_R0034_2,PE_P0034,CORP_C000598,company,Employee,Senior Finance,2017-10-19,2020-10-26,False
+PE_R0034_3,PE_P0034,CORP_C000040,company,Employee,"Manager, Strategy",2020-11-09,2023-10-13,False
+PE_R0034_4,PE_P0034,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2023-11-05,,False
+PE_R0035_1,PE_P0035,CORP_C000576,company,Employee,"Analyst, Finance",2006-02-25,2010-03-14,False
+PE_R0035_2,PE_P0035,CORP_C000827,company,Employee,Senior Finance,2010-04-10,2013-04-10,False
+PE_R0035_3,PE_P0035,CORP_C000727,company,Employee,"Manager, Strategy",2013-06-05,2017-06-13,False
+PE_R0035_4,PE_P0035,CORP_C000099,company,Employee,"Director, Strategy",2017-08-21,2022-08-31,False
+PE_R0035_5,PE_P0035,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-10-10,,False
+PE_R0036_1,PE_P0036,CORP_C000455,company,Employee,"Analyst, Finance",2006-05-17,2011-04-15,False
+PE_R0036_2,PE_P0036,CORP_C000992,company,Employee,Senior Finance,2011-05-16,2015-06-05,False
+PE_R0036_3,PE_P0036,CORP_C000646,company,Employee,"Manager, Strategy",2015-07-14,2020-07-13,False
+PE_R0036_4,PE_P0036,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2020-09-22,,False
+PE_R0037_1,PE_P0037,CORP_C000781,company,Employee,"Analyst, Finance",2007-03-16,2011-02-22,False
+PE_R0037_2,PE_P0037,CORP_C000062,company,Employee,Senior Finance,2011-03-10,2013-03-27,False
+PE_R0037_3,PE_P0037,CORP_C000112,company,Employee,"Manager, Strategy",2013-05-06,2019-05-11,False
+PE_R0037_4,PE_P0037,CORP_C000275,company,Employee,"Director, Strategy",2019-07-19,2023-06-26,False
+PE_R0037_5,PE_P0037,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2023-08-28,,False
+PE_R0038_1,PE_P0038,CORP_C000069,company,Employee,"Analyst, Finance",2009-04-17,2013-04-29,False
+PE_R0038_2,PE_P0038,CORP_C000051,company,Employee,Senior Finance,2013-07-08,2015-08-08,False
+PE_R0038_3,PE_P0038,CORP_C000139,company,Employee,"Manager, Strategy",2015-09-02,2021-08-09,False
+PE_R0038_4,PE_P0038,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2021-10-18,,False
+PE_R0039_1,PE_P0039,CORP_C000988,company,Employee,"Analyst, Finance",2003-11-04,2007-11-20,False
+PE_R0039_2,PE_P0039,CORP_C000686,company,Employee,Senior Finance,2008-01-16,2014-02-17,False
+PE_R0039_3,PE_P0039,CORP_C000314,company,Employee,"Manager, Strategy",2014-04-10,2018-05-11,False
+PE_R0039_4,PE_P0039,CORP_C000971,company,Employee,"Director, Strategy",2018-06-18,2022-07-12,False
+PE_R0039_5,PE_P0039,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2022-09-17,,False
+PE_R0040_1,PE_P0040,CORP_C000564,company,Employee,"Analyst, Finance",2008-06-27,2012-06-19,False
+PE_R0040_2,PE_P0040,CORP_C000232,company,Employee,Senior Finance,2012-08-24,2018-08-02,False
+PE_R0040_3,PE_P0040,CORP_C000298,company,Employee,"Manager, Strategy",2018-08-31,2022-08-24,False
+PE_R0040_4,PE_P0040,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-10-31,,False
+PE_R0041_1,PE_P0041,CORP_C000630,company,Employee,"Analyst, Finance",2005-03-06,2008-02-17,False
+PE_R0041_2,PE_P0041,CORP_C000095,company,Employee,Senior Finance,2008-04-25,2012-05-14,False
+PE_R0041_3,PE_P0041,CORP_C000968,company,Employee,"Manager, Strategy",2012-07-12,2017-07-17,False
+PE_R0041_4,PE_P0041,CORP_C000995,company,Employee,"Director, Strategy",2017-08-13,2021-07-10,False
+PE_R0041_5,PE_P0041,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-09-13,,False
+PE_R0042_1,PE_P0042,CORP_C000541,company,Employee,"Analyst, Finance",2009-05-31,2013-05-15,False
+PE_R0042_2,PE_P0042,CORP_C000615,company,Employee,Senior Finance,2013-06-11,2019-07-16,False
+PE_R0042_3,PE_P0042,CORP_C000684,company,Employee,"Manager, Strategy",2019-09-02,2023-09-25,False
+PE_R0042_4,PE_P0042,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2023-11-05,,False
+PE_R0043_1,PE_P0043,CORP_C000116,company,Employee,"Analyst, Finance",2010-03-27,2012-03-11,False
+PE_R0043_2,PE_P0043,CORP_C000330,company,Employee,Senior Finance,2012-05-04,2015-05-17,False
+PE_R0043_3,PE_P0043,CORP_C000161,company,Employee,"Manager, Strategy",2015-07-06,2020-06-28,False
+PE_R0043_4,PE_P0043,CORP_C000804,company,Employee,"Director, Strategy",2020-08-18,2022-09-21,False
+PE_R0043_5,PE_P0043,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2022-10-18,,False
+PE_R0044_1,PE_P0044,CORP_C000557,company,Employee,"Analyst, Finance",2008-06-26,2012-06-24,False
+PE_R0044_2,PE_P0044,CORP_C000031,company,Employee,Senior Finance,2012-07-31,2015-06-29,False
+PE_R0044_3,PE_P0044,CORP_C000876,company,Employee,"Manager, Strategy",2015-07-20,2020-07-18,False
+PE_R0044_4,PE_P0044,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2020-09-23,,False
+PE_R0045_1,PE_P0045,CORP_C000007,company,Employee,"Analyst, Finance",2004-06-23,2009-05-30,False
+PE_R0045_2,PE_P0045,CORP_C000690,company,Employee,Senior Finance,2009-07-26,2015-08-01,False
+PE_R0045_3,PE_P0045,CORP_C000681,company,Employee,"Manager, Strategy",2015-09-25,2018-08-30,False
+PE_R0045_4,PE_P0045,CORP_C000608,company,Employee,"Director, Strategy",2018-09-24,2023-09-21,False
+PE_R0045_5,PE_P0045,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2023-10-19,,False
+PE_R0046_1,PE_P0046,CORP_C000320,company,Employee,"Analyst, Finance",2009-07-02,2012-07-30,False
+PE_R0046_2,PE_P0046,CORP_C000843,company,Employee,Senior Finance,2012-08-23,2016-07-28,False
+PE_R0046_3,PE_P0046,CORP_C000948,company,Employee,"Manager, Strategy",2016-09-28,2021-10-18,False
+PE_R0046_4,PE_P0046,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-11-03,,False
+PE_R0047_1,PE_P0047,CORP_C000300,company,Employee,"Analyst, Finance",2002-04-27,2006-06-01,False
+PE_R0047_2,PE_P0047,CORP_C000451,company,Employee,Senior Finance,2006-07-15,2012-06-17,False
+PE_R0047_3,PE_P0047,CORP_C000038,company,Employee,"Manager, Strategy",2012-07-31,2016-09-03,False
+PE_R0047_4,PE_P0047,CORP_C000415,company,Employee,"Director, Strategy",2016-09-22,2021-08-28,False
+PE_R0047_5,PE_P0047,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2021-09-29,,False
+PE_R0048_1,PE_P0048,CORP_C000478,company,Employee,"Analyst, Finance",2010-02-10,2015-03-10,False
+PE_R0048_2,PE_P0048,CORP_C000927,company,Employee,Senior Finance,2015-05-20,2019-06-21,False
+PE_R0048_3,PE_P0048,CORP_C000761,company,Employee,"Manager, Strategy",2019-08-15,2023-09-04,False
+PE_R0048_4,PE_P0048,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2023-10-08,,False
+PE_R0049_1,PE_P0049,CORP_C000941,company,Employee,"Analyst, Finance",2004-04-13,2009-03-25,False
+PE_R0049_2,PE_P0049,CORP_C000999,company,Employee,Senior Finance,2009-05-03,2012-05-29,False
+PE_R0049_3,PE_P0049,CORP_C000841,company,Employee,"Manager, Strategy",2012-06-20,2018-05-16,False
+PE_R0049_4,PE_P0049,CORP_C000379,company,Employee,"Director, Strategy",2018-06-14,2022-07-16,False
+PE_R0049_5,PE_P0049,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2022-09-19,,False
+PE_R0050_1,PE_P0050,CORP_C000592,company,Employee,"Analyst, Finance",2010-05-16,2014-05-28,False
+PE_R0050_2,PE_P0050,CORP_C000630,company,Employee,Senior Finance,2014-07-23,2018-08-17,False
+PE_R0050_3,PE_P0050,CORP_C000982,company,Employee,"Manager, Strategy",2018-10-04,2022-09-18,False
+PE_R0050_4,PE_P0050,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-10-24,,False
+PE_R0051_1,PE_P0051,CORP_C000178,company,Employee,"Analyst, Finance",2000-04-06,2005-04-23,False
+PE_R0051_2,PE_P0051,CORP_C000554,company,Employee,Senior Finance,2005-05-25,2011-05-15,False
+PE_R0051_3,PE_P0051,CORP_C000392,company,Employee,"Manager, Strategy",2011-07-25,2016-08-16,False
+PE_R0051_4,PE_P0051,CORP_C000844,company,Employee,"Director, Strategy",2016-10-07,2021-09-12,False
+PE_R0051_5,PE_P0051,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-10-08,,False
+PE_R0052_1,PE_P0052,CORP_C000956,company,Employee,"Analyst, Finance",2013-03-26,2015-02-28,False
+PE_R0052_2,PE_P0052,CORP_C000076,company,Employee,Senior Finance,2015-05-11,2017-06-04,False
+PE_R0052_3,PE_P0052,CORP_C000405,company,Employee,"Manager, Strategy",2017-07-28,2022-08-20,False
+PE_R0052_4,PE_P0052,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2022-10-27,,False
+PE_R0053_1,PE_P0053,CORP_C000303,company,Employee,"Analyst, Finance",2008-03-04,2010-03-20,False
+PE_R0053_2,PE_P0053,CORP_C000768,company,Employee,Senior Finance,2010-04-05,2012-04-29,False
+PE_R0053_3,PE_P0053,CORP_C000425,company,Employee,"Manager, Strategy",2012-06-30,2018-07-22,False
+PE_R0053_4,PE_P0053,CORP_C000081,company,Employee,"Director, Strategy",2018-09-27,2022-08-24,False
+PE_R0053_5,PE_P0053,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2022-10-12,,False
+PE_R0054_1,PE_P0054,CORP_C000459,company,Employee,"Analyst, Finance",2007-04-18,2011-04-27,False
+PE_R0054_2,PE_P0054,CORP_C000773,company,Employee,Senior Finance,2011-06-11,2016-06-30,False
+PE_R0054_3,PE_P0054,CORP_C000176,company,Employee,"Manager, Strategy",2016-09-01,2022-07-30,False
+PE_R0054_4,PE_P0054,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2022-09-08,,False
+PE_R0055_1,PE_P0055,CORP_C000955,company,Employee,"Analyst, Finance",2006-01-12,2011-01-09,False
+PE_R0055_2,PE_P0055,CORP_C000649,company,Employee,Senior Finance,2011-02-15,2015-03-09,False
+PE_R0055_3,PE_P0055,CORP_C000525,company,Employee,"Manager, Strategy",2015-05-23,2019-04-20,False
+PE_R0055_4,PE_P0055,CORP_C000993,company,Employee,"Director, Strategy",2019-06-16,2023-07-17,False
+PE_R0055_5,PE_P0055,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2023-09-07,,False
+PE_R0056_1,PE_P0056,CORP_C000784,company,Employee,"Analyst, Finance",2011-05-20,2015-05-15,False
+PE_R0056_2,PE_P0056,CORP_C000578,company,Employee,Senior Finance,2015-07-07,2019-06-15,False
+PE_R0056_3,PE_P0056,CORP_C000788,company,Employee,"Manager, Strategy",2019-07-28,2022-08-14,False
+PE_R0056_4,PE_P0056,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2022-09-20,,False
+PE_R0057_1,PE_P0057,CORP_C000247,company,Employee,"Analyst, Finance",2004-04-21,2008-03-28,False
+PE_R0057_2,PE_P0057,CORP_C000564,company,Employee,Senior Finance,2008-05-08,2012-06-02,False
+PE_R0057_3,PE_P0057,CORP_C000827,company,Employee,"Manager, Strategy",2012-08-10,2017-08-03,False
+PE_R0057_4,PE_P0057,CORP_C000365,company,Employee,"Director, Strategy",2017-09-17,2020-08-25,False
+PE_R0057_5,PE_P0057,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2020-09-21,,False
+PE_R0058_1,PE_P0058,CORP_C000162,company,Employee,"Analyst, Finance",2009-05-14,2013-05-11,False
+PE_R0058_2,PE_P0058,CORP_C000872,company,Employee,Senior Finance,2013-07-14,2017-08-07,False
+PE_R0058_3,PE_P0058,CORP_C000027,company,Employee,"Manager, Strategy",2017-10-19,2021-09-17,False
+PE_R0058_4,PE_P0058,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2021-10-27,,False
+PE_R0059_1,PE_P0059,CORP_C000516,company,Employee,"Analyst, Finance",2009-01-24,2012-02-17,False
+PE_R0059_2,PE_P0059,CORP_C000764,company,Employee,Senior Finance,2012-04-21,2016-04-25,False
+PE_R0059_3,PE_P0059,CORP_C000662,company,Employee,"Manager, Strategy",2016-06-08,2018-06-19,False
+PE_R0059_4,PE_P0059,CORP_C000175,company,Employee,"Director, Strategy",2018-07-28,2020-07-05,False
+PE_R0059_5,PE_P0059,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2020-09-06,,False
+PE_R0060_1,PE_P0060,CORP_C000509,company,Employee,"Analyst, Finance",2011-06-17,2015-05-20,False
+PE_R0060_2,PE_P0060,CORP_C000579,company,Employee,Senior Finance,2015-07-28,2019-07-29,False
+PE_R0060_3,PE_P0060,CORP_C000322,company,Employee,"Manager, Strategy",2019-08-28,2023-08-12,False
+PE_R0060_4,PE_P0060,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2023-10-14,,False
+PE_R0061_1,PE_P0061,CORP_C000763,company,Employee,"Analyst, Finance",2007-05-15,2011-04-19,False
+PE_R0061_2,PE_P0061,CORP_C000966,company,Employee,Senior Finance,2011-06-27,2014-06-18,False
+PE_R0061_3,PE_P0061,CORP_C000687,company,Employee,"Manager, Strategy",2014-09-01,2018-08-14,False
+PE_R0061_4,PE_P0061,CORP_C000270,company,Employee,"Director, Strategy",2018-10-17,2022-09-24,False
+PE_R0061_5,PE_P0061,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2022-11-05,,False
+PE_R0062_1,PE_P0062,CORP_C000686,company,Employee,"Analyst, Finance",2013-07-01,2016-06-02,False
+PE_R0062_2,PE_P0062,CORP_C000385,company,Employee,Senior Finance,2016-07-19,2020-07-31,False
+PE_R0062_3,PE_P0062,CORP_C000532,company,Employee,"Manager, Strategy",2020-08-27,2024-08-14,False
+PE_R0062_4,PE_P0062,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2024-10-02,,False
+PE_R0063_1,PE_P0063,CORP_C000449,company,Employee,"Analyst, Finance",2007-01-01,2011-01-20,False
+PE_R0063_2,PE_P0063,CORP_C000825,company,Employee,Senior Finance,2011-03-30,2015-03-22,False
+PE_R0063_3,PE_P0063,CORP_C000234,company,Employee,"Manager, Strategy",2015-05-21,2017-05-17,False
+PE_R0063_4,PE_P0063,CORP_C000791,company,Employee,"Director, Strategy",2017-07-02,2022-07-24,False
+PE_R0063_5,PE_P0063,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2022-09-06,,False
+PE_R0064_1,PE_P0064,CORP_C000605,company,Employee,"Analyst, Finance",2015-05-31,2019-05-26,False
+PE_R0064_2,PE_P0064,CORP_C000506,company,Employee,Senior Finance,2019-06-24,2021-07-16,False
+PE_R0064_3,PE_P0064,CORP_C000544,company,Employee,"Manager, Strategy",2021-09-16,2024-09-24,False
+PE_R0064_4,PE_P0064,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2024-10-28,,False
+PE_R0065_1,PE_P0065,CORP_C000573,company,Employee,"Analyst, Finance",2008-06-15,2013-06-25,False
+PE_R0065_2,PE_P0065,CORP_C000242,company,Employee,Senior Finance,2013-07-10,2017-06-10,False
+PE_R0065_3,PE_P0065,CORP_C000950,company,Employee,"Manager, Strategy",2017-08-07,2019-07-24,False
+PE_R0065_4,PE_P0065,CORP_C000150,company,Employee,"Director, Strategy",2019-09-06,2023-09-15,False
+PE_R0065_5,PE_P0065,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2023-10-05,,False
+PE_R0066_1,PE_P0066,CORP_C000696,company,Employee,"Analyst, Finance",2011-06-13,2015-07-15,False
+PE_R0066_2,PE_P0066,CORP_C000607,company,Employee,Senior Finance,2015-08-18,2019-09-14,False
+PE_R0066_3,PE_P0066,CORP_C000755,company,Employee,"Manager, Strategy",2019-09-30,2021-09-24,False
+PE_R0066_4,PE_P0066,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-10-30,,False
+PE_R0067_1,PE_P0067,CORP_C000420,company,Employee,"Analyst, Finance",2000-03-21,2004-02-23,False
+PE_R0067_2,PE_P0067,CORP_C000880,company,Employee,Senior Finance,2004-04-05,2009-05-02,False
+PE_R0067_3,PE_P0067,CORP_C000268,company,Employee,"Manager, Strategy",2009-06-03,2015-06-18,False
+PE_R0067_4,PE_P0067,CORP_C000195,company,Employee,"Director, Strategy",2015-08-22,2020-08-03,False
+PE_R0067_5,PE_P0067,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2020-10-13,,False
+PE_R0068_1,PE_P0068,CORP_C000710,company,Employee,"Analyst, Finance",2013-03-19,2017-04-19,False
+PE_R0068_2,PE_P0068,CORP_C000819,company,Employee,Senior Finance,2017-06-02,2020-05-03,False
+PE_R0068_3,PE_P0068,CORP_C000773,company,Employee,"Manager, Strategy",2020-07-01,2022-07-14,False
+PE_R0068_4,PE_P0068,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2022-09-01,,False
+PE_R0069_1,PE_P0069,CORP_C000541,company,Employee,"Analyst, Finance",2009-06-03,2013-06-10,False
+PE_R0069_2,PE_P0069,CORP_C000236,company,Employee,Senior Finance,2013-07-02,2017-06-07,False
+PE_R0069_3,PE_P0069,CORP_C000200,company,Employee,"Manager, Strategy",2017-07-30,2022-08-04,False
+PE_R0069_4,PE_P0069,CORP_C000409,company,Employee,"Director, Strategy",2022-09-27,2024-10-01,False
+PE_R0069_5,PE_P0069,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2024-10-21,,False
+PE_R0070_1,PE_P0070,CORP_C000632,company,Employee,"Analyst, Finance",2007-02-27,2013-03-01,False
+PE_R0070_2,PE_P0070,CORP_C000382,company,Employee,Senior Finance,2013-05-10,2019-06-08,False
+PE_R0070_3,PE_P0070,CORP_C000085,company,Employee,"Manager, Strategy",2019-07-11,2023-08-05,False
+PE_R0070_4,PE_P0070,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2023-08-29,,False
+PE_R0071_1,PE_P0071,CORP_C000981,company,Employee,"Analyst, Finance",2007-07-19,2011-06-27,False
+PE_R0071_2,PE_P0071,CORP_C000078,company,Employee,Senior Finance,2011-08-22,2015-07-24,False
+PE_R0071_3,PE_P0071,CORP_C000222,company,Employee,"Manager, Strategy",2015-09-02,2018-07-30,False
+PE_R0071_4,PE_P0071,CORP_C000757,company,Employee,"Director, Strategy",2018-09-12,2022-09-17,False
+PE_R0071_5,PE_P0071,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2022-10-16,,False
+PE_R0072_1,PE_P0072,CORP_C000102,company,Employee,"Analyst, Finance",2008-04-20,2012-05-03,False
+PE_R0072_2,PE_P0072,CORP_C000417,company,Employee,Senior Finance,2012-06-22,2017-07-03,False
+PE_R0072_3,PE_P0072,CORP_C000900,company,Employee,"Manager, Strategy",2017-09-10,2020-08-05,False
+PE_R0072_4,PE_P0072,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2020-09-02,,False
+PE_R0073_1,PE_P0073,CORP_C000722,company,Employee,"Analyst, Finance",2010-01-10,2016-02-02,False
+PE_R0073_2,PE_P0073,CORP_C000691,company,Employee,Senior Finance,2016-02-19,2018-03-11,False
+PE_R0073_3,PE_P0073,CORP_C000408,company,Employee,"Manager, Strategy",2018-03-28,2020-04-28,False
+PE_R0073_4,PE_P0073,CORP_C000599,company,Employee,"Director, Strategy",2020-07-08,2024-07-24,False
+PE_R0073_5,PE_P0073,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2024-09-21,,False
+PE_R0074_1,PE_P0074,CORP_C000616,company,Employee,"Analyst, Finance",2007-07-21,2011-08-17,False
+PE_R0074_2,PE_P0074,CORP_C000839,company,Employee,Senior Finance,2011-09-02,2015-08-10,False
+PE_R0074_3,PE_P0074,CORP_C000371,company,Employee,"Manager, Strategy",2015-09-09,2021-09-17,False
+PE_R0074_4,PE_P0074,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2021-10-15,,False
+PE_R0075_1,PE_P0075,CORP_C000942,company,Employee,"Analyst, Finance",2007-08-26,2009-07-27,False
+PE_R0075_2,PE_P0075,CORP_C000468,company,Employee,Senior Finance,2009-08-24,2015-08-06,False
+PE_R0075_3,PE_P0075,CORP_C000866,company,Employee,"Manager, Strategy",2015-09-26,2018-09-16,False
+PE_R0075_4,PE_P0075,CORP_C000887,company,Employee,"Director, Strategy",2018-10-10,2022-09-26,False
+PE_R0075_5,PE_P0075,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-11-01,,False
+PE_R0076_1,PE_P0076,CORP_C000604,company,Employee,"Analyst, Finance",2010-05-17,2014-05-05,False
+PE_R0076_2,PE_P0076,CORP_C000460,company,Employee,Senior Finance,2014-07-06,2020-07-10,False
+PE_R0076_3,PE_P0076,CORP_C000634,company,Employee,"Manager, Strategy",2020-09-04,2024-08-29,False
+PE_R0076_4,PE_P0076,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2024-09-25,,False
+PE_R0077_1,PE_P0077,CORP_C000198,company,Employee,"Analyst, Finance",2007-06-22,2009-05-20,False
+PE_R0077_2,PE_P0077,CORP_C000134,company,Employee,Senior Finance,2009-06-08,2013-05-09,False
+PE_R0077_3,PE_P0077,CORP_C000261,company,Employee,"Manager, Strategy",2013-07-09,2016-07-11,False
+PE_R0077_4,PE_P0077,CORP_C000977,company,Employee,"Director, Strategy",2016-08-19,2022-08-31,False
+PE_R0077_5,PE_P0077,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2022-09-29,,False
+PE_R0078_1,PE_P0078,CORP_C000569,company,Employee,"Analyst, Finance",2013-06-26,2016-06-13,False
+PE_R0078_2,PE_P0078,CORP_C000328,company,Employee,Senior Finance,2016-07-11,2019-07-13,False
+PE_R0078_3,PE_P0078,CORP_C000907,company,Employee,"Manager, Strategy",2019-08-05,2024-08-31,False
+PE_R0078_4,PE_P0078,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2024-11-02,,False
+PE_R0079_1,PE_P0079,CORP_C000677,company,Employee,"Analyst, Finance",2007-06-25,2011-06-05,False
+PE_R0079_2,PE_P0079,CORP_C000639,company,Employee,Senior Finance,2011-06-20,2014-05-22,False
+PE_R0079_3,PE_P0079,CORP_C000521,company,Employee,"Manager, Strategy",2014-07-25,2018-07-27,False
+PE_R0079_4,PE_P0079,CORP_C000355,company,Employee,"Director, Strategy",2018-09-25,2022-10-03,False
+PE_R0079_5,PE_P0079,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2022-10-17,,False
+PE_R0080_1,PE_P0080,CORP_C000205,company,Employee,"Analyst, Finance",2012-02-27,2015-03-11,False
+PE_R0080_2,PE_P0080,CORP_C000572,company,Employee,Senior Finance,2015-04-12,2017-05-11,False
+PE_R0080_3,PE_P0080,CORP_C000293,company,Employee,"Manager, Strategy",2017-05-30,2021-07-01,False
+PE_R0080_4,PE_P0080,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2021-09-06,,False
+PE_R0081_1,PE_P0081,CORP_C000708,company,Employee,"Analyst, Finance",2006-06-15,2009-06-11,False
+PE_R0081_2,PE_P0081,CORP_C000808,company,Employee,Senior Finance,2009-06-25,2013-07-04,False
+PE_R0081_3,PE_P0081,CORP_C000863,company,Employee,"Manager, Strategy",2013-08-22,2017-07-28,False
+PE_R0081_4,PE_P0081,CORP_C000638,company,Employee,"Director, Strategy",2017-09-12,2023-09-08,False
+PE_R0081_5,PE_P0081,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2023-11-05,,False
+PE_R0082_1,PE_P0082,CORP_C000438,company,Employee,"Analyst, Finance",2011-05-22,2015-06-17,False
+PE_R0082_2,PE_P0082,CORP_C000592,company,Employee,Senior Finance,2015-07-23,2020-07-05,False
+PE_R0082_3,PE_P0082,CORP_C000918,company,Employee,"Manager, Strategy",2020-08-30,2022-07-29,False
+PE_R0082_4,PE_P0082,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2022-09-02,,False
+PE_R0083_1,PE_P0083,CORP_C000764,company,Employee,"Analyst, Finance",2006-08-01,2010-08-08,False
+PE_R0083_2,PE_P0083,CORP_C000552,company,Employee,Senior Finance,2010-09-19,2014-08-27,False
+PE_R0083_3,PE_P0083,CORP_C000262,company,Employee,"Manager, Strategy",2014-09-10,2019-09-02,False
+PE_R0083_4,PE_P0083,CORP_C000438,company,Employee,"Director, Strategy",2019-11-03,2023-10-08,False
+PE_R0083_5,PE_P0083,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2023-10-28,,False
+PE_R0084_1,PE_P0084,CORP_C000687,company,Employee,"Analyst, Finance",2010-04-29,2016-05-21,False
+PE_R0084_2,PE_P0084,CORP_C000268,company,Employee,Senior Finance,2016-06-05,2020-07-02,False
+PE_R0084_3,PE_P0084,CORP_C000256,company,Employee,"Manager, Strategy",2020-08-16,2022-09-08,False
+PE_R0084_4,PE_P0084,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2022-10-27,,False
+PE_R0085_1,PE_P0085,CORP_C000792,company,Employee,"Analyst, Finance",2010-05-09,2012-04-15,False
+PE_R0085_2,PE_P0085,CORP_C000306,company,Employee,Senior Finance,2012-05-06,2016-05-23,False
+PE_R0085_3,PE_P0085,CORP_C000932,company,Employee,"Manager, Strategy",2016-07-08,2020-07-27,False
+PE_R0085_4,PE_P0085,CORP_C000594,company,Employee,"Director, Strategy",2020-10-07,2023-10-04,False
+PE_R0085_5,PE_P0085,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2023-11-04,,False
+PE_R0086_1,PE_P0086,CORP_C000108,company,Employee,"Analyst, Finance",2009-05-18,2013-04-27,False
+PE_R0086_2,PE_P0086,CORP_C000173,company,Employee,Senior Finance,2013-06-10,2017-05-21,False
+PE_R0086_3,PE_P0086,CORP_C000278,company,Employee,"Manager, Strategy",2017-07-22,2021-07-26,False
+PE_R0086_4,PE_P0086,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2021-09-25,,False
+PE_R0087_1,PE_P0087,CORP_C000764,company,Employee,"Analyst, Finance",2002-02-08,2007-01-30,False
+PE_R0087_2,PE_P0087,CORP_C000254,company,Employee,Senior Finance,2007-03-25,2011-04-22,False
+PE_R0087_3,PE_P0087,CORP_C000932,company,Employee,"Manager, Strategy",2011-05-30,2015-06-28,False
+PE_R0087_4,PE_P0087,CORP_C000394,company,Employee,"Director, Strategy",2015-09-08,2021-08-16,False
+PE_R0087_5,PE_P0087,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2021-09-20,,False
+PE_R0088_1,PE_P0088,CORP_C000917,company,Employee,"Analyst, Finance",2010-05-11,2014-05-09,False
+PE_R0088_2,PE_P0088,CORP_C000518,company,Employee,Senior Finance,2014-07-09,2017-06-25,False
+PE_R0088_3,PE_P0088,CORP_C000495,company,Employee,"Manager, Strategy",2017-09-03,2021-08-18,False
+PE_R0088_4,PE_P0088,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2021-09-15,,False
+PE_R0089_1,PE_P0089,CORP_C000246,company,Employee,"Analyst, Finance",2005-06-09,2009-06-02,False
+PE_R0089_2,PE_P0089,CORP_C000011,company,Employee,Senior Finance,2009-07-31,2012-06-29,False
+PE_R0089_3,PE_P0089,CORP_C000226,company,Employee,"Manager, Strategy",2012-08-25,2018-07-29,False
+PE_R0089_4,PE_P0089,CORP_C000590,company,Employee,"Director, Strategy",2018-08-25,2023-08-09,False
+PE_R0089_5,PE_P0089,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2023-08-30,,False
+PE_R0090_1,PE_P0090,CORP_C000858,company,Employee,"Analyst, Finance",2011-05-29,2016-06-04,False
+PE_R0090_2,PE_P0090,CORP_C000654,company,Employee,Senior Finance,2016-08-01,2018-07-16,False
+PE_R0090_3,PE_P0090,CORP_C000718,company,Employee,"Manager, Strategy",2018-08-18,2022-07-20,False
+PE_R0090_4,PE_P0090,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-09-13,,False
+PE_R0091_1,PE_P0091,CORP_C000119,company,Employee,"Analyst, Finance",2005-01-26,2011-02-11,False
+PE_R0091_2,PE_P0091,CORP_C000215,company,Employee,Senior Finance,2011-04-04,2014-03-10,False
+PE_R0091_3,PE_P0091,CORP_C000483,company,Employee,"Manager, Strategy",2014-04-13,2019-05-09,False
+PE_R0091_4,PE_P0091,CORP_C000922,company,Employee,"Director, Strategy",2019-05-31,2022-06-22,False
+PE_R0091_5,PE_P0091,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2022-08-27,,False
+PE_R0092_1,PE_P0092,CORP_C000781,company,Employee,"Analyst, Finance",2011-05-26,2015-06-13,False
+PE_R0092_2,PE_P0092,CORP_C000533,company,Employee,Senior Finance,2015-07-14,2019-07-15,False
+PE_R0092_3,PE_P0092,CORP_C000964,company,Employee,"Manager, Strategy",2019-09-28,2021-09-22,False
+PE_R0092_4,PE_P0092,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2021-11-05,,False
+PE_R0093_1,PE_P0093,CORP_C000444,company,Employee,"Analyst, Finance",2003-01-30,2008-02-14,False
+PE_R0093_2,PE_P0093,CORP_C000148,company,Employee,Senior Finance,2008-04-27,2014-05-02,False
+PE_R0093_3,PE_P0093,CORP_C000879,company,Employee,"Manager, Strategy",2014-06-13,2017-07-04,False
+PE_R0093_4,PE_P0093,CORP_C000675,company,Employee,"Director, Strategy",2017-09-04,2021-08-13,False
+PE_R0093_5,PE_P0093,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2021-09-16,,False
+PE_R0094_1,PE_P0094,CORP_C000348,company,Employee,"Analyst, Finance",2007-04-14,2012-04-18,False
+PE_R0094_2,PE_P0094,CORP_C000572,company,Employee,Senior Finance,2012-06-17,2017-06-05,False
+PE_R0094_3,PE_P0094,CORP_C000309,company,Employee,"Manager, Strategy",2017-06-20,2021-07-19,False
+PE_R0094_4,PE_P0094,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2021-09-27,,False
+PE_R0095_1,PE_P0095,CORP_C000644,company,Employee,"Analyst, Finance",2006-03-01,2011-02-25,False
+PE_R0095_2,PE_P0095,CORP_C000920,company,Employee,Senior Finance,2011-04-24,2013-04-26,False
+PE_R0095_3,PE_P0095,CORP_C000074,company,Employee,"Manager, Strategy",2013-06-06,2016-06-10,False
+PE_R0095_4,PE_P0095,CORP_C000844,company,Employee,"Director, Strategy",2016-08-06,2020-09-06,False
+PE_R0095_5,PE_P0095,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2020-09-30,,False
+PE_R0096_1,PE_P0096,CORP_C000498,company,Employee,"Analyst, Finance",2006-04-22,2012-05-05,False
+PE_R0096_2,PE_P0096,CORP_C000995,company,Employee,Senior Finance,2012-06-28,2018-07-21,False
+PE_R0096_3,PE_P0096,CORP_C000294,company,Employee,"Manager, Strategy",2018-08-08,2022-08-24,False
+PE_R0096_4,PE_P0096,PE_FIRM_NORTHWIND,sponsor,Deal Team,Investment Associate,2022-11-05,,False
+PE_R0097_1,PE_P0097,CORP_C000855,company,Employee,"Analyst, Finance",2007-05-17,2012-05-10,False
+PE_R0097_2,PE_P0097,CORP_C000394,company,Employee,Senior Finance,2012-06-29,2014-06-18,False
+PE_R0097_3,PE_P0097,CORP_C000107,company,Employee,"Manager, Strategy",2014-07-02,2017-07-23,False
+PE_R0097_4,PE_P0097,CORP_C000780,company,Employee,"Director, Strategy",2017-09-02,2021-08-17,False
+PE_R0097_5,PE_P0097,PE_FIRM_NORTHWIND,sponsor,Deal Team,Vice President,2021-10-02,,False
+PE_R0098_1,PE_P0098,CORP_C000095,company,Employee,"Analyst, Finance",2009-06-18,2012-07-19,False
+PE_R0098_2,PE_P0098,CORP_C000873,company,Employee,Senior Finance,2012-08-06,2017-07-24,False
+PE_R0098_3,PE_P0098,CORP_C000822,company,Employee,"Manager, Strategy",2017-09-21,2021-10-09,False
+PE_R0098_4,PE_P0098,PE_FIRM_NORTHWIND,sponsor,Deal Team,Principal,2021-11-03,,False
+PE_R0099_1,PE_P0099,CORP_C000731,company,Employee,"Analyst, Finance",2007-03-21,2012-03-02,False
+PE_R0099_2,PE_P0099,CORP_C000499,company,Employee,Senior Finance,2012-04-13,2016-03-17,False
+PE_R0099_3,PE_P0099,CORP_C000428,company,Employee,"Manager, Strategy",2016-05-31,2019-06-11,False
+PE_R0099_4,PE_P0099,CORP_C000538,company,Employee,"Director, Strategy",2019-08-18,2023-09-09,False
+PE_R0099_5,PE_P0099,PE_FIRM_NORTHWIND,sponsor,Deal Team,Operating Partner,2023-10-17,,False
+PE_R0100_1,PE_P0100,CORP_C000987,company,Employee,"Analyst, Finance",2005-06-12,2010-05-13,False
+PE_R0100_2,PE_P0100,CORP_C000047,company,Employee,Senior Finance,2010-06-03,2016-06-22,False
+PE_R0100_3,PE_P0100,CORP_C000690,company,Employee,"Manager, Strategy",2016-08-28,2022-09-09,False
+PE_R0100_4,PE_P0100,PE_FIRM_NORTHWIND,sponsor,Deal Team,Partner,2022-09-28,,False

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "request_id": "4d7a00c0-5027-4e1c-8d17-2d3321cfd79f",
+  "search_limit_hops": 2,
+  "scoring_version": "corporate-affinity-v5",
+  "unchanged_from_v5_paths_and_scores": 5,
+  "oracle_query_id": "01c861cc-040d-3905-0005-5ee314883f8a",
+  "native_transaction_ids": [
+    "01c861c7-040d-3905-0005-5ee314880a0e",
+    "01c861c8-040d-3905-0005-5ee314880ece",
+    "01c861c8-040d-3905-0005-5ee314880f0a"
+  ],
+  "natural_reasons": true,
+  "bold_recommendation": true,
+  "default_limits_boilerplate_removed": true,
+  "references_preserved": true,
+  "three_hop_deployed": false,
+  "three_hop_status": "Deferred: full-team native queries timed out; temporary medium-engine benchmark awaiting approval.",
+  "answer": "**Eamon Q. Galloway** (PE_P0016) is the best place to start. This is the strongest route found to Malik G. Varga, who is the Head of Data at Aspenview Materials (title: Vice President, Data Analytics). The route goes through Fiona A. Vance, who has shared an office with Malik at Aspenview since 2019. None of these five has a direct work history with Malik, so each route needs one person in the middle to make the introduction.\n\n97 people on our team have a route of two hops or fewer to Malik. These are the top five:\n\n| Connection | Target | Hops | Strength (normalized) | Reason |\n|---|---|---|---|---|\n| **Eamon Q. Galloway** (PE_P0016) | Malik G. Varga | 2 | 0.2270 | Eamon worked with Fiona A. Vance at Willowmont Retail Group from 2013 to 2017. Fiona later shared an office with Malik at Aspenview Materials from 2019 to 2026. |\n| **Teodor V. Rasmussen** (PE_P0099) | Malik G. Varga | 2 | 0.2022 | Teodor shared an office with Damon J. Carrow at Copperdale Materials from 2016 to 2018. Damon later worked with Malik at Aspenview Materials from 2018 to 2026. |\n| **Edith B. Sandoval** (PE_P0079) | Malik G. Varga | 2 | 0.1971 | Edith worked with Thea Y. Northcott at Everwind Health Group from 2018 to 2022. Thea later worked in the same city as Malik at Aspenview Materials from 2022 to 2026. |\n| **Colin A. Mbeki-Shaw** (PE_P0078) | Malik G. Varga | 2 | 0.1967 | Colin worked in the same city as Rohan Y. Ambrose at Summitdale Consumer Brands from 2021 to 2024. Rohan then worked with Malik at Aspenview Materials from 2024 to 2026. |\n| **Vikram K. Castellan** (PE_P0062) | Malik G. Varga | 2 | 0.1950 | Vikram worked with Carmen U. Galloway at Crestpoint Industries from 2013 to 2016. Carmen later shared an office with Malik at Aspenview Materials from 2018 to 2026. |\n\nThe top five scores are close together. Fiona and Carmen have the strongest ties to Malik, since both have shared his office for years. Eamon's and Vikram's ties to them are older and don't show a shared office.\n\n**Execution reference**\n- request_id: 4d7a00c0-5027-4e1c-8d17-2d3321cfd79f\n- RAI transaction IDs: 01c861c7-040d-3905-0005-5ee314880a0e, 01c861c8-040d-3905-0005-5ee314880ece, 01c861c8-040d-3905-0005-5ee314880f0a"
+}

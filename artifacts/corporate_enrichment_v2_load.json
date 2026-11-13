@@ -1,0 +1,30 @@
+{
+  "version": "corporate-affinity-v2",
+  "seed": 74130,
+  "as_of": "2026-10-01",
+  "synthetic": true,
+  "generation_only": "Office assignments and explicit friendships; no generated connection scores or centrality",
+  "duckdb_version": "2.0.0",
+  "tables": {
+    "OFFICE_V2": {
+      "rows": 20898,
+      "sha256": "7a2dc655ce3d9d2525182c82738d578c07199e559b8bcf84a2de6ad376df9bf9",
+      "bytes": 126044
+    },
+    "WORKPLACE_V2": {
+      "rows": 3372048,
+      "sha256": "f09a13b1336703619b8426aaf7394e638cb437f6b5882ead9323202a60e8a7f8",
+      "bytes": 63566894
+    },
+    "FRIENDSHIP_V2": {
+      "rows": 1910282,
+      "sha256": "74323619d55df2d79fca07a2a8597e8725f30b5ad9f0e0fc2ca70a0eca392114",
+      "bytes": 18643064
+    }
+  },
+  "office_assignments_missing": 0,
+  "remote_roles": 338352,
+  "friendships_involving_pe": 323,
+  "leadership_cohort": 2100,
+  "career_fields_match_original": true
+}

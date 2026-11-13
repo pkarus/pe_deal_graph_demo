@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "strongest": [
+    {
+      "connection_id": "CORP_P000900001",
+      "connection": "Source",
+      "target_id": "CORP_P000900003",
+      "target": "Target",
+      "strength": 0.393425087513481,
+      "raw_strength": 0.02395786979946,
+      "reason": "Source \u2192 Intermediary: Representative employment: AB: 2022-10-01 to 2026-10-01 (1461 days; Same office); total shared years=4.0; effective shared years=3.5997262149212874; Deferred; not used in scoring; employment contribution=0.15478329948498987, friendship contribution=0.0, raw strength=0.15478329948498987; normalized strength=0.6272360700035359; Intermediary \u2192 Target: Representative employment: BT: 2022-10-01 to 2026-10-01 (1461 days; Same office); total shared years=4.0; effective shared years=3.5997262149212874; Deferred; not used in scoring; employment contribution=0.15478329948498987, friendship contribution=0.0, raw strength=0.15478329948498987; normalized strength=0.6272360700035359",
+      "hops": 2,
+      "minimum_hops": 1,
+      "path": "CORP_P000900001|CORP_P000900002|CORP_P000900003"
+    }
+  ],
+  "shortest": [
+    {
+      "connection_id": "CORP_P000900001",
+      "connection": "Source",
+      "target_id": "CORP_P000900003",
+      "target": "Target",
+      "strength": 0.158283924632977,
+      "raw_strength": 0.000627692934387,
+      "reason": "Source \u2192 Target: Representative employment: AT: 2006-10-01 to 2007-10-01 (365 days; Different, remote or unknown locations; company-only evidence); total shared years=0.999315537303217; effective shared years=0.024982888432580425; Deferred; not used in scoring; employment contribution=0.0006276929343866844, friendship contribution=0.0, raw strength=0.0006276929343866844; normalized strength=0.15828392463297736",
+      "hops": 1,
+      "minimum_hops": 1,
+      "path": "CORP_P000900001|CORP_P000900003"
+    }
+  ],
+  "transactions": [
+    {
+      "ID": "01c86071-040d-2d7a-0005-5ee31479e912",
+      "STATE": "COMPLETED"
+    },
+    {
+      "ID": "01c86071-040d-2d7a-0005-5ee31479e7fe",
+      "STATE": "COMPLETED"
+    }
+  ]
+}

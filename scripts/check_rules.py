@@ -14,17 +14,238 @@ Exit code 0 when every executed check passes.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import runpy
 import sys
 import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from pe_deal_graph import settings as _cfg  # noqa: E402  (database/schema/role/engine names)
 GOLDEN = json.loads((ROOT / "data" / "golden" / "expected.json").read_text())
 Q = GOLDEN["questions"]
 CAST = GOLDEN["cast"]
 RESULTS: list[tuple[bool, str, str, str]] = []
+TARGET_OUTPUT = f'{_cfg.DATABASE}.{_cfg.BASE_SCHEMA}_TARGETS'
+TARGET_META = TARGET_OUTPUT + '_META'
+TARGET_EVIDENCE = ROOT / 'artifacts/target_rules_deployment.json'
+
+
+def target_oracle_rows():
+    """Independent CSV oracle; no graph construction or saved target snapshot."""
+    oracle = runpy.run_path(str(ROOT / 'data/oracle.py'))
+    data = oracle['Data']()
+    scored = oracle['q_score'](data, oracle['Thesis'](data))
+    companies = [dict(id=r['company_id'], score=r['score'], tier=r['tier'],
+                      fit_points=r['fit'], readiness_points=r['readiness'], access_points=r['access'])
+                 for r in scored['all_scored']]
+    components = [dict(company=r['company_id'], code=c['component'], points=c['points'])
+                  for r in scored['all_scored'] for c in r['components']]
+    mappings, raw_mappings, exclusions = [], [], []
+    for company in scored['all_scored']:
+        cid = company['company_id']
+        rows = oracle['decision_makers'](data, cid)
+        ceos = {r['person_id'] for r in rows if r['kind'] == 'CEO'}
+        for row in rows:
+            mapping = dict(target=cid, person=row['person_id'], kind=row['kind'])
+            raw_mappings.append(mapping)
+            # The independent helper covers every current owner, whereas the
+            # existing model explicitly requires majority ownership and non-CEO.
+            if row['kind'] == 'OWNER_DESIGNEE':
+                majority = any(o['stake_type'] == 'majority' and row['person_id'] in {
+                    role['person_id'] for role in data.current_roles_at(data.fund[o['fund_id']]['sponsor_id'], {'Deal Team'})}
+                    for o in data.current_ownerships(cid))
+                if row['person_id'] in ceos or not majority:
+                    exclusions.append(dict(mapping, reason='CEO duplicate' if row['person_id'] in ceos else 'not a majority owner'))
+                    continue
+            mappings.append(mapping)
+    tier_a = {r['company_id'] for r in scored['answer']['tier_a']}
+    # Tier A comparison is against the raw independent helper, with no adjustment.
+    return dict(companies=companies, components=components, mappings=mappings,
+                tier_a_ids=sorted(tier_a), tier_a_mappings=[r for r in raw_mappings if r['target'] in tier_a],
+                raw_oracle_mapping_count=len(raw_mappings), explicit_model_scope_exclusions=exclusions)
+
+
+def validate_target_rows(companies, eligible, mappings, components):
+    """Reject missing, extra, duplicate, wrongly scored, or misclassified rows."""
+    expected = target_oracle_rows()
+    def compare(label, actual, want, fields):
+        rows = [tuple(r[k] for k in fields) for r in actual]
+        wanted = [tuple(r[k] for k in fields) for r in want]
+        if len(rows) != len(set(rows)) or sorted(rows) != sorted(wanted):
+            raise RuntimeError(f'{label} differs from independent oracle: '
+                               f'missing={sorted(set(wanted)-set(rows))[:10]}, '
+                               f'extra={sorted(set(rows)-set(wanted))[:10]}, duplicates={len(rows)-len(set(rows))}')
+    compare('eligible target IDs', eligible, expected['companies'], ('id',))
+    compare('Act-1 scores/tiers/pillars', companies, expected['companies'],
+            ('id', 'score', 'tier', 'fit_points', 'readiness_points', 'access_points'))
+    compare('score components', components, expected['components'], ('company', 'code', 'points'))
+    compare('all eligible DecisionMaker mappings', mappings, expected['mappings'], ('target', 'person', 'kind'))
+    tier_a_ids = {r['id'] for r in companies if r['tier'] == 'A'}
+    tier_a_mappings = [r for r in mappings if r['target'] in tier_a_ids]
+    compare('Tier A DecisionMaker mappings (raw oracle)', tier_a_mappings, expected['tier_a_mappings'], ('target', 'person', 'kind'))
+    return dict(passed=True, eligible_targets=len(eligible), decision_makers=len(mappings),
+                tier_a_targets=len(tier_a_ids), tier_a_decision_makers=len(tier_a_mappings),
+                score_components=len(components), tier_a_mappings=tier_a_mappings,
+                raw_oracle_mapping_count=expected['raw_oracle_mapping_count'],
+                explicit_model_scope_exclusions=expected['explicit_model_scope_exclusions'])
+
+
+def read_target_outputs(session):
+    from pe_cortex_agent import read_rows
+    return dict(
+        companies=read_rows(session, f'SELECT ID,SCORE,TIER,FIT_POINTS,READINESS_POINTS,ACCESS_POINTS FROM {TARGET_OUTPUT}.COMPANY WHERE SCORE IS NOT NULL ORDER BY ID'),
+        eligible=read_rows(session, f'SELECT ID FROM {TARGET_OUTPUT}.ELIGIBLETARGET ORDER BY ID'),
+        mappings=read_rows(session, f'SELECT TARGET,PERSON,KIND FROM {TARGET_OUTPUT}.DECISIONMAKER ORDER BY TARGET,PERSON,KIND'),
+        components=read_rows(session, f'SELECT COMPANY,CODE,POINTS FROM {TARGET_OUTPUT}.SCORECOMPONENT ORDER BY COMPANY,CODE'))
+
+
+def target_deployment_config():
+    return dict(schema=TARGET_OUTPUT, meta_schema=TARGET_META, role=f'{_cfg.DEPLOY_ROLE}', auto_deploy=False,
+                schedules={'target_baseline': dict(interval_s=0, run_on_deploy=False)},
+                outputs=dict(type='table', schedule='target_baseline', reasoner='logic'))
+
+
+def deploy_target_rules(*, execute=False, refresh=False, output_path=None):
+    """Deploy missing target rules separately; never refresh either graph deployment."""
+    if not execute:
+        expected = target_oracle_rows()
+        print(json.dumps(dict(deployment=target_deployment_config(),
+                              expected_counts={k:len(expected[k]) for k in ('companies','mappings','tier_a_ids','tier_a_mappings')},
+                              oracle_scope_note=expected['explicit_model_scope_exclusions']), indent=2))
+        return
+    import os
+    from unittest.mock import patch
+    from relationalai.config import create_config, DeploymentConfig
+    from relationalai.config.config import ambient_model_config
+    from relationalai.semantics.backends.sql.orchestrator import PlanTable, SnowflakeOrchestrator
+    from relationalai.semantics.backends.sql.snowflake_backend import SnowflakeBackend
+    import check_graphs as graphs
+    import pe_cortex_agent as agent
+    if any(k.startswith('pe_deal_graph.model') for k in sys.modules):
+        raise RuntimeError('Target deployment requires a fresh process')
+    path = Path(output_path or TARGET_EVIDENCE)
+    if path.exists():
+        raise RuntimeError('Preserve existing target deployment evidence; choose a new --json path')
+    os.environ['PE_DEAL_GRAPH_BUILD_PROFILE'] = 'copied-target-rules'
+    os.environ['PE_DEAL_GRAPH_PROBE_FIXTURE'] = 'baseline'
+    os.environ['PE_DEAL_GRAPH_FINALE'] = '0'
+    cfg = create_config()
+    if cfg.reasoners.logic.name != graphs.COMMUNITY_ENGINE or cfg.data.ensure_change_tracking:
+        raise RuntimeError('Experiment reasoner/source preservation configuration changed')
+    cfg.compiler.safe_recursion = False
+    cfg.oplog.enabled = False
+    cfg.execution.retries.enabled = False
+    cfg.deployment = DeploymentConfig(**target_deployment_config())
+    conn = cfg.get_default_connection()
+    conn.role, conn.warehouse = f'{_cfg.DEPLOY_ROLE}', f'{_cfg.WAREHOUSE}'
+    conn.database, conn.schema_ = f'{_cfg.DATABASE}', f'{_cfg.BASE_SCHEMA}_DEPLOY_SRC'
+    session = conn._create_new_session()
+    evidence = dict(status='preflight', deployment=target_deployment_config(),
+                    diagnosis='Graph-only build profiles omit thesis_fit, scoring, and decision_makers; declarations alone created empty outputs.',
+                    rule_semantics='Unchanged existing Act-1 and DecisionMaker builders. No graphs module imported.',
+                    refresh_requested=refresh)
+    def save(): path.write_text(json.dumps(evidence, indent=2, default=str)+'\n')
+    before = None
+    try:
+        cfg = create_config(snowflake_session=session, **cfg.model_dump())
+        before = agent.preservation(session)
+        evidence['preservation_before'] = before
+        evidence['agents_before'] = agent.read_rows(session, 'SHOW AGENTS IN ACCOUNT')
+        evidence['oracle'] = target_oracle_rows()
+        save()
+        # The validated graph deployment used these exact input values.
+        reference_path = ROOT/'artifacts/people_communities_refresh_fixed.json'
+        if reference_path.exists():  # only on a setup that has this earlier local evidence
+            reference = json.loads(reference_path.read_text())
+            if any(before[k] != v for k,v in reference['final_preservation_snapshot'].items()):
+                raise RuntimeError('Protected source or distance baseline changed')
+        session.sql(f'USE ROLE {_cfg.ADMIN_ROLE}').collect()
+        names = {r['name'] for r in session.sql(f'SHOW SCHEMAS IN DATABASE {_cfg.DATABASE}').collect()}
+        if any(s.split('.')[1] in names for s in (TARGET_OUTPUT,TARGET_META)):
+            raise RuntimeError('Target schemas already exist; refusing overwrite')
+        for schema in (TARGET_OUTPUT,TARGET_META):
+            session.sql(f'CREATE SCHEMA {schema}').collect()
+            session.sql(f'GRANT USAGE, CREATE TABLE, CREATE VIEW, CREATE PROCEDURE, CREATE TASK, CREATE TAG ON SCHEMA {schema} TO ROLE {_cfg.DEPLOY_ROLE}').collect()
+        session.sql(f'USE ROLE {_cfg.DEPLOY_ROLE}').collect()
+        def engine_state():
+            rows = session.sql('SELECT STATUS FROM RELATIONALAI.API.REASONERS WHERE NAME=?', params=[graphs.COMMUNITY_ENGINE]).collect()
+            if len(rows)!=1: raise RuntimeError('Existing experiment engine missing')
+            return rows[0][0]
+        state = engine_state()
+        evidence.update(engine_state_before=state, engine_resume_requests=0)
+        if state == 'SUSPENDED':
+            session.sql('CALL RELATIONALAI.API.RESUME_REASONER_ASYNC(?,?)', params=['LOGIC',graphs.COMMUNITY_ENGINE]).collect()
+            evidence['engine_resume_requests']=1
+            save()
+            deadline=time.monotonic()+900
+            while state!='READY' and time.monotonic()<deadline:
+                print('Waiting for the existing experiment engine...',flush=True)
+                time.sleep(10);state=engine_state()
+        if state!='READY':raise RuntimeError('Existing experiment engine is not ready')
+        with ambient_model_config(cfg):
+            from pe_deal_graph.model import core, rules
+        if 'pe_deal_graph.model.graphs' in sys.modules:
+            raise RuntimeError('Graph definitions must not be loaded')
+        evidence['enabled_builders']=[f.__name__ for f in rules._builders]
+        original=PlanTable.write_entries
+        def scoped_plan(manager,meta,entries):
+            if meta!=TARGET_META or len(entries)!=1:raise RuntimeError('Unexpected target plan')
+            entry=entries[0]
+            if entry.reasoner!='logic' or entry.schedule_name!='target_baseline' or entry.parameters.get('engine_name')!=graphs.COMMUNITY_ENGINE:
+                raise RuntimeError('Target plan reasoner/engine/schedule changed')
+            if any(not s.startswith((TARGET_OUTPUT+'.',TARGET_META+'.')) for s in entry.target_table_names.split(',')):
+                raise RuntimeError('Target plan would write outside its schema')
+            for source in entry.parameters['source_table_names']:
+                if not(source.startswith(agent.SOURCE+'.') or source.startswith(TARGET_META+'.') or source in {
+                        agent.DISTANCE+'.ROLE_HISTORY_NORMALIZED',agent.DISTANCE+'.OWNERSHIP_NORMALIZED'}):
+                    raise RuntimeError('Unexpected target source: '+source)
+            evidence['plan']=dict(parameters=entry.parameters,targets=entry.target_table_names,
+                                  sql_sha256=hashlib.sha256(entry.sql_statements.encode()).hexdigest())
+            save()
+            return original(manager,meta,entries)
+        def existing_schema(backend,schema_name,**kw):
+            if schema_name not in (TARGET_OUTPUT,TARGET_META):raise RuntimeError('Unexpected deployment schema')
+            return False
+        def preserve_streams(orchestrator,prior_sources,deploy_objects):
+            sources={s for e in orchestrator._pending_entries for s in e.source_tables}
+            streams={r[0] for r in session.sql('SELECT FQ_OBJECT_NAME FROM RELATIONALAI.API.DATA_STREAMS').collect()}
+            if prior_sources or sources & streams:raise RuntimeError('Deployment would delete existing streams')
+            return '-- No existing streams are deleted.'
+        with patch.object(PlanTable,'write_entries',scoped_plan), \
+             patch.object(SnowflakeBackend,'create_schema_if_not_exists',existing_schema), \
+             patch.object(SnowflakeOrchestrator,'_delete_stale_logic_streams',preserve_streams):
+            core.model.deploy(wait=False,force=False)
+        evidence['export_identifier_fix']=graphs.install_community_export_fix(session,meta_schema=TARGET_META)
+        evidence['status']='deployed; not refreshed';save()
+        if refresh:
+            evidence['status']='target refresh requested';save()
+            evidence['refresh']=graphs.refresh_manual_task(session,TARGET_META,'REFRESH_TARGET_BASELINE')
+            save()
+            if evidence['refresh']['STATE']!='SUCCEEDED':raise RuntimeError('Target refresh failed; no automatic retry')
+            evidence['outputs']=read_target_outputs(session)
+            save()
+            # Read the saved rows back before independent validation.
+            evidence['validation']=validate_target_rows(**json.loads(path.read_text())['outputs'])
+            evidence['status']='target outputs persisted and oracle validated'
+        evidence['task_after']=agent.read_rows(session,f'SHOW TASKS IN SCHEMA {TARGET_META}')
+        save()
+    except Exception as exc:
+        evidence['status']='failed'
+        evidence['error']=f'{type(exc).__name__}: {exc}'
+        save()
+        raise
+    finally:
+        if before is not None:
+            evidence['preservation_after']=agent.preservation(session)
+            evidence['preservation_passed']=before==evidence['preservation_after']
+            save()
+        session.close()
+    if not evidence['preservation_passed']:raise RuntimeError('Protected graph deployment/source state changed')
+    print(json.dumps({'status':evidence['status'],'validation':evidence.get('validation'),
+                      'preservation_passed':evidence['preservation_passed']},indent=2))
 
 
 def cid(key: str) -> str:
@@ -236,7 +457,16 @@ def main(argv=None) -> int:
     ap.add_argument("--graphs", action="store_true", help="import graphs.py (R10) for graph-dependent rules")
     ap.add_argument("--finale", action="store_true", help="enable the Finale rules and check the re-score")
     ap.add_argument("--only", default="score,knows,flow,conflict", help="comma list of sections")
+    ap.add_argument('--deploy-target-rules',action='store_true',help='Separate persisted target-rule deployment; no graph execution')
+    ap.add_argument('--execute',action='store_true')
+    ap.add_argument('--refresh',action='store_true')
+    ap.add_argument('--json',help='Target deployment evidence path')
     args = ap.parse_args(argv)
+    if args.deploy_target_rules:
+        if args.graphs or args.finale:ap.error('Target-only deployment cannot load graph/Finale rules')
+        deploy_target_rules(execute=args.execute,refresh=args.refresh,output_path=args.json)
+        return 0
+    if args.execute or args.refresh or args.json:ap.error('Deployment options require --deploy-target-rules')
     import pe_deal_graph.model.core as core
     import pe_deal_graph.model.rules as R
     if args.graphs:

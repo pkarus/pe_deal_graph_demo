@@ -1,0 +1,35 @@
+{
+  "name": "ui-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@types/cytoscape": "^3.31.0",
+    "@types/cytoscape-cxtmenu": "^3.4.5",
+    "@types/cytoscape-dagre": "^2.3.4",
+    "cytoscape": "^3.33.1",
+    "cytoscape-cxtmenu": "^3.5.0",
+    "cytoscape-dagre": "^2.5.0",
+    "cytoscape-fcose": "^2.2.0",
+    "mobx": "^6.15.0",
+    "mobx-react-lite": "^4.1.1",
+    "next": "16.1.7",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.7",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

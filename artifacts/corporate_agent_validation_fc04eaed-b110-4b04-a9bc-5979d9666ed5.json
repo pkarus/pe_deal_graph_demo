@@ -1,0 +1,295 @@
+{
+  "request_id": "fc04eaed-b110-4b04-a9bc-5979d9666ed5",
+  "status": "PASS",
+  "returned_paths_verified": 1,
+  "total_connections": 1,
+  "unfiltered_oracle_connections": 1,
+  "oracle_query_id": "01c8604e-040d-3184-0005-5ee31478d7ee",
+  "transactions": [
+    {
+      "id": "01c8604c-040d-3184-0005-5ee31478bd82",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 1196,
+      "created_on": "2026-11-12 20:28:14.562000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c8604c-040d-3184-0005-5ee31478bd52",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 375,
+      "created_on": "2026-11-12 20:28:10.622000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    },
+    {
+      "id": "01c8604b-040d-3184-0005-5ee31478bb26",
+      "state": "COMPLETED",
+      "engine_name": "alaa_pe_deal_graph_experiment",
+      "duration": 17760,
+      "created_on": "2026-11-12 20:27:47.178000-08:00",
+      "engine_status": "READY",
+      "size": "HIGHMEM_X64_S"
+    }
+  ],
+  "pyrel_code": "connection, target = Person.ref(), Person.ref()\nhops = Integer.ref()\nminimum_hops = Integer.ref()\nstrength = Float.ref()\npath = String.ref()\nreason = String.ref()\ndistance = graph.distance(from_=center)\nquery = model.where(\n    distance(target, connection, minimum_hops),\n    Sources(connection),\n    best_route(connection, hops, strength, path, reason),\n    minimum_hops <= 2,\n    hops <= 2,\n    strength >= 0.1\n).select(\n    connection.id.alias(\"connection_id\"), connection.name.alias(\"connection\"),\n    target.id.alias(\"target_id\"), target.name.alias(\"target\"),\n    strength.alias(\"strength\"), reason.alias(\"reason\"),\n    hops.alias(\"hops\"), minimum_hops.alias(\"minimum_hops\"), path.alias(\"path\")\n)",
+  "pyrel_sha256": "f55f87aa0a1c6e1266ce8f46db211de1bc34c598e5bd47d79160a40ad554db38",
+  "result": {
+    "algorithm": "native RAI Graph.distance + PyRel employment and strongest-route rules",
+    "all_routes_enumerated": false,
+    "as_of": "2026-10-01",
+    "direct_connections": 0,
+    "direct_connections_definition": "Starting people in this result with a direct modeled edge, even if a stronger two-hop witness was selected",
+    "displayed": 1,
+    "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+    "friendship_policy": "Deferred; preserved facts do not affect scores or create edges",
+    "network_context": {
+      "affects_strength": false,
+      "available": true,
+      "metadata": {
+        "as_of": "2026-10-01",
+        "betweenness_is_global": false,
+        "betweenness_method": "Native RAI exact UNWEIGHTED betweenness on the score-thresholded cohort topology",
+        "betweenness_pivots": 2100,
+        "community_count": 51,
+        "community_method": "Native RAI weighted Louvain, seed 42, max_levels 5",
+        "computed_at": "2026-11-13T04:27:25.723535+00:00",
+        "edge_count": 7110,
+        "independent_validation": {
+          "all_node_betweenness_verified": 2100,
+          "betweenness_absolute_tolerance": 0.0005,
+          "betweenness_relative_tolerance": 1e-07,
+          "degree_and_weighted_degree_verified": true,
+          "max_betweenness_absolute_error": 0.00029840803472325206,
+          "native_raw_pair_count_factor": 1,
+          "note": "Louvain partitions can vary; verify coverage and weighted modularity, not identical labels",
+          "status": "PASS",
+          "weighted_modularity": 0.6651945443990497
+        },
+        "isolated_people": 27,
+        "min_strength": 0.45,
+        "node_count": 2100,
+        "nontrivial_community_count": 24,
+        "run_id": "f9448f78-410d-4b0f-af9a-b9846ddaec47",
+        "scope": "Leadership cohort: all 100 PE employees, 1000 current CEOs, 1000 synthetic Heads of Data",
+        "seconds": 53.22,
+        "transactions": [
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c8604b-040d-2d7a-0005-5ee31478aa32",
+            "STATE": "COMPLETED"
+          },
+          {
+            "ENGINE_NAME": "alaa_pe_deal_graph_experiment",
+            "ID": "01c8604a-040d-2d7a-0005-5ee31478a7a6",
+            "STATE": "COMPLETED"
+          }
+        ],
+        "version": "corporate-affinity-v3"
+      },
+      "missing_people_mean": "Outside the defined cohort, not zero centrality",
+      "people": [
+        {
+          "betweenness": 2438.679694000001,
+          "community_id": "2",
+          "degree": 6,
+          "person_id": "CORP_P000000373",
+          "weighted_degree": 3.437790008300355
+        },
+        {
+          "betweenness": 0,
+          "community_id": "31",
+          "degree": 0,
+          "person_id": "PE_P0001",
+          "weighted_degree": 0
+        }
+      ]
+    },
+    "pyrel_sha256": "f55f87aa0a1c6e1266ce8f46db211de1bc34c598e5bd47d79160a40ad554db38",
+    "ranking": "Strongest bounded score across paths up to two hops, then fewest hops; one deterministic witness per source",
+    "request_id": "fc04eaed-b110-4b04-a9bc-5979d9666ed5",
+    "route_formula": "One hop = edge strength; two hops = 0.85 \u00d7 minimum leg strength",
+    "rows": [
+      {
+        "connection": "Anika B. Bergstrom",
+        "connection_id": "PE_P0001",
+        "edge_decomposition": [
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.004368780178844,
+            "career_fraction": 0.173919911539373,
+            "career_mean_years": 17.33196440793977,
+            "context_multiplier": 0.789349946530647,
+            "duration_component": 0.502389880511803,
+            "duration_contribution": 0.276314434281491,
+            "evidence": "Representative employment: Everfield Retail Group (Synthetic): 2014-03-11 to 2017-03-16 (1101 days; Different, remote or unknown locations; company-only evidence); total shared years=3.0143737166324436; duration=0.5023898805118026; recency=0.6226158038147139; location=0.5; career fraction=0.17391991153937286; total=0.3965614253195296",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 13.620807665982204,
+            "left_id": "CORP_P000193779",
+            "left_name": "Lionel J. Marchetti",
+            "periods": [
+              {
+                "bucket": 3,
+                "days": 935,
+                "decay_factor": 0.6,
+                "end_date": "2016-10-01T00:00:00.000",
+                "recency_band": "10\u201315 years",
+                "recency_days": 561,
+                "spatial_days": 467.5,
+                "spatial_factor": 0.5,
+                "start_date": "2014-03-11T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000776_CITY_4",
+                    "city_b": "CORP_C000776_CITY_0",
+                    "company": "Everfield Retail Group (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000776_O14",
+                    "office_b": "CORP_C000776_O1",
+                    "role_a": "CORP_R0000657303",
+                    "role_b": "PE_R0001_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 2,
+                "days": 166,
+                "decay_factor": 0.75,
+                "end_date": "2017-03-16T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 124.5,
+                "spatial_days": 83,
+                "spatial_factor": 0.5,
+                "start_date": "2016-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000776_CITY_4",
+                    "city_b": "CORP_C000776_CITY_0",
+                    "company": "Everfield Retail Group (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000776_O14",
+                    "office_b": "CORP_C000776_O1",
+                    "role_a": "CORP_R0000657303",
+                    "role_b": "PE_R0001_3",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 3.014373716632444,
+            "recency_contribution": 0.078198969820809,
+            "recency_factor": 0.622615803814714,
+            "right_career_years": 21.04312114989733,
+            "right_id": "PE_P0001",
+            "right_name": "Anika B. Bergstrom",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.037679241038385,
+            "spatial_factor": 0.5,
+            "strength": 0.39656142531953,
+            "synthetic": true
+          },
+          {
+            "as_of": "2026-10-01",
+            "career_contribution": 0.01087334501007,
+            "career_fraction": 0.294338417312146,
+            "career_mean_years": 17.143052703627653,
+            "context_multiplier": 0.838062010393551,
+            "duration_component": 0.738832878790596,
+            "duration_contribution": 0.406358083334828,
+            "evidence": "Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2023-03-18 (1843 days; Different, remote or unknown locations; company-only evidence); total shared years=5.045859000684462; duration=0.7388328787905957; recency=0.7933803581117743; location=0.5; career fraction=0.2943384173121456; total=0.6191877677441013",
+            "formula": "D \u00d7 (0.55 + 0.25 \u00d7 R + 0.15 \u00d7 L + 0.05 \u00d7 C); D = shared_years\u00b2 / (shared_years\u00b2 + 9); R = day-weighted recency; L = day-weighted location; C = min(shared_years / mean_career_years, 1)",
+            "left_career_years": 20.6652977412731,
+            "left_id": "CORP_P000000373",
+            "left_name": "Soren T. Bellamy",
+            "periods": [
+              {
+                "bucket": 2,
+                "days": 1310,
+                "decay_factor": 0.75,
+                "end_date": "2021-10-01T00:00:00.000",
+                "recency_band": "5\u201310 years",
+                "recency_days": 982.5,
+                "spatial_days": 655,
+                "spatial_factor": 0.5,
+                "start_date": "2018-03-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_2",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O7",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000657304",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              },
+              {
+                "bucket": 1,
+                "days": 533,
+                "decay_factor": 0.9,
+                "end_date": "2023-03-18T00:00:00.000",
+                "recency_band": "2\u20135 years",
+                "recency_days": 479.7,
+                "spatial_days": 266.5,
+                "spatial_factor": 0.5,
+                "start_date": "2021-10-01T00:00:00.000",
+                "supporting_employment": [
+                  {
+                    "city_a": "CORP_C000175_CITY_7",
+                    "city_b": "CORP_C000175_CITY_2",
+                    "company": "Riverwell Materials (Synthetic)",
+                    "evidence_spatial_factor": 0.5,
+                    "office_a": "CORP_C000175_O21",
+                    "office_b": "CORP_C000175_O7",
+                    "role_a": "CORP_R0000001642",
+                    "role_b": "CORP_R0000657304",
+                    "spatial_basis": "Different, remote or unknown locations; company-only evidence"
+                  }
+                ]
+              }
+            ],
+            "raw_years": 5.045859000684462,
+            "recency_contribution": 0.146543873489909,
+            "recency_factor": 0.793380358111774,
+            "right_career_years": 13.620807665982204,
+            "right_id": "CORP_P000193779",
+            "right_name": "Lionel J. Marchetti",
+            "scoring_version": "corporate-affinity-v3",
+            "spatial_contribution": 0.055412465909295,
+            "spatial_factor": 0.5,
+            "strength": 0.619187767744101,
+            "synthetic": true
+          }
+        ],
+        "hops": 2,
+        "minimum_hops": 2,
+        "path": "PE_P0001|CORP_P000193779|CORP_P000000373",
+        "reason": "Anika B. Bergstrom \u2192 Lionel J. Marchetti: Representative employment: Everfield Retail Group (Synthetic): 2014-03-11 to 2017-03-16 (1101 days; Different, remote or unknown locations; company-only evidence); total shared years=3.0143737166324436; duration=0.5023898805118026; recency=0.6226158038147139; location=0.5; career fraction=0.17391991153937286; total=0.3965614253195296; Lionel J. Marchetti \u2192 Soren T. Bellamy: Representative employment: Riverwell Materials (Synthetic): 2018-03-01 to 2023-03-18 (1843 days; Different, remote or unknown locations; company-only evidence); total shared years=5.045859000684462; duration=0.7388328787905957; recency=0.7933803581117743; location=0.5; career fraction=0.2943384173121456; total=0.6191877677441013",
+        "strength": 0.3370772115216,
+        "target": "Soren T. Bellamy",
+        "target_id": "CORP_P000000373"
+      }
+    ],
+    "scope": "Exact paths up to two hops; no claim about longer paths or global disconnection",
+    "scoring_version": "corporate-affinity-v3",
+    "search_limit_hops": 2,
+    "seconds": 55.49,
+    "sources_searched": 1,
+    "status": "OK",
+    "strength_is_probability": false,
+    "synthetic_data": true,
+    "total_connections": 1,
+    "total_connections_definition": "Number of starting people with a qualifying selected witness; NOT a count of all routes",
+    "transaction_ids": [
+      "01c8604b-040d-3184-0005-5ee31478bb26",
+      "01c8604c-040d-3184-0005-5ee31478bd52",
+      "01c8604c-040d-3184-0005-5ee31478bd82"
+    ]
+  }
+}

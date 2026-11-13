@@ -1,0 +1,58 @@
+{
+  "left_id": "CORP_P000264831",
+  "right_id": "PE_P0001",
+  "left_name": "Nikhil X. Ilves",
+  "right_name": "Anika B. Bergstrom",
+  "left_career_years": 15.181382614647502,
+  "right_career_years": 21.04312114989733,
+  "raw_years": 3.98631074606434,
+  "effective_years": 1.99315537303217,
+  "career_mean_years": 18.112251882272417,
+  "career_fraction": 0.110044592245484,
+  "duration_component": 0.03972668341047,
+  "time_score": 0.074885637827977,
+  "friendship_score": 0.0,
+  "employment_contribution": 0.074885637827977,
+  "friendship_contribution": 0.0,
+  "strength": 0.523117963076106,
+  "raw_strength": 0.074885637827977,
+  "friendship_status": "Deferred; not used in scoring",
+  "friendship_source": "Not used",
+  "evidence": "Representative employment: Redgate Communications (Synthetic): 2017-06-28 to 2021-06-23 (1456 days; Same office); total shared years=3.9863107460643397; effective shared years=1.9931553730321698; Deferred; not used in scoring; employment contribution=0.07488563782797708, friendship contribution=0.0, raw strength=0.07488563782797708; normalized strength=0.5231179630761065",
+  "scoring_version": "corporate-affinity-v5",
+  "as_of": "2026-10-01",
+  "formula": "Normalized strength = sqrt(sqrt(raw_strength)); raw_strength = 0.50 \u00d7 min(effective_years / mean_career_years, 1) + 0.50 \u00d7 min(effective_years / 10, 1)\u00b2; effective_years = unioned shared days \u00d7 location \u00d7 original recency bands / 365.25; friendship deferred",
+  "periods": [
+    {
+      "start_date": "2017-06-28T00:00:00.000",
+      "end_date": "2021-06-23T00:00:00.000",
+      "days": 1456,
+      "bucket": 2,
+      "recency_band": "5\u201310 years",
+      "decay_factor": 0.5,
+      "spatial_factor": 1.0,
+      "weighted_days": 728.0,
+      "supporting_employment": [
+        {
+          "role_a": "CORP_R0000896385",
+          "role_b": "PE_R0001_4",
+          "company": "Redgate Communications (Synthetic)",
+          "office_a": "CORP_C000855_O7",
+          "office_b": "CORP_C000855_O7",
+          "city_a": "CORP_C000855_CITY_2",
+          "city_b": "CORP_C000855_CITY_2",
+          "spatial_basis": "Same office",
+          "evidence_spatial_factor": 1.0
+        }
+      ]
+    }
+  ],
+  "synthetic": true,
+  "transaction_ids": [
+    "01c86075-040d-2d7a-0005-5ee3147a0e5a",
+    "01c86074-040d-2d7a-0005-5ee3147a0c72"
+  ],
+  "computed_at": "2026-11-13T05:09:28.988808+00:00",
+  "computation_seconds": 48.43,
+  "cached": false
+}
