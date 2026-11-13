@@ -60,7 +60,7 @@ def find_people(session,person,company,title,team_only):
             'total_matches':result[0]['total_matches'] if result else 0,
             'synthetic_data':True,'team_firm':'Northwind Equity Partners (Synthetic)',
             'query_reference':EXAMPLE,
-            'query_context':'Person, model, graph, center, Sources, best_route, shortest_route, Integer, Float, String. Create query only; the tool executes it.'}
+            'query_context':'Person, Company, Employment, OurTeamMember, Connection, IntroductionRoute, model, graph, center, Sources, best_route, shortest_route, Integer, Float, String. Create query only; the tool executes it.'}
 
 
 def network_context(session,person_ids,as_of=AS_OF):

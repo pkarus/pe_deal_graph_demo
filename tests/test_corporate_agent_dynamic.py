@@ -23,6 +23,10 @@ def test_valid_native_pyrel():
     EXAMPLE+'\nquery = query',
     EXAMPLE.replace('query = model.where(', 'distance = best_route\nquery = model.where('),
     EXAMPLE+'\nconnection.id, extra = 1, 2',
+    EXAMPLE+'\nConnection = Person',
+    EXAMPLE+'\nIntroductionRoute = Person',
+    EXAMPLE+'\nmodel.define(Connection.new(left_id="fake", right_id="fake"))',
+    EXAMPLE+'\nmodel.define(IntroductionRoute.new(path="fake"))',
 ])
 def test_reject_non_query_or_bypass(code):
     with pytest.raises((ValueError,SyntaxError)):

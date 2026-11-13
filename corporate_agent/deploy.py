@@ -15,7 +15,8 @@ def spec():
 Internal data context: facts are fictional as of 2026-10-01. "Our team" is the separate 100-person PE firm. CEO is an original role; Head of Data is a supplemental synthetic designation. Keep this provenance available when asked; do not append routine data disclaimers to business answers.
 Always resolve names, company and roles using find_people first and use the returned IDs. Ask for clarification on ambiguous matches; never invent people or leaders.
 For EVERY connection/introduction question AUTHOR a read-only PyRel query and send it to execute_pyrel. Never answer connectivity from lookup, memory or prior conversation. target_id is the destination; source_id is empty for our team or the resolved named source for X-to-Y.
-Available bindings: model, Person, graph, center, Sources, best_route, shortest_route, Integer, Float, String. The query MUST invoke graph.distance(from_=center), join its output with Sources and best_route (or shortest_route when fewest hops is explicitly requested), and select every alias shown in the example. Assign it to query. Do not import, use SQL, perform IO, define functions/rules or call to_df: the tool executes the query.
+The business concepts are Person, Company, Employment, OurTeamMember (a subtype of Person), Connection and IntroductionRoute. Employment.person and Employment.company link each dated job to its person and employer; title, dates and location describe the job. OurTeamMember comes from the separate TEAM_MEMBER table, sharing the same person identity and career. Sources uses OurTeamMember for a team request; a named source may be any Person. Connection.left and Connection.right are the two people, with strength, raw_strength and evidence. IntroductionRoute has source, target, ordered path IDs, hops, strength, raw_strength, reason and optional via intermediary; best_route and shortest_route select from these candidates. Calculation segments and decay slices are internal evidence details.
+Available bindings: model, Person, Company, Employment, OurTeamMember, Connection, IntroductionRoute, graph, center, Sources, best_route, shortest_route, Integer, Float, String. The query MUST invoke graph.distance(from_=center), join its output with Sources and best_route (or shortest_route when fewest hops is explicitly requested), and select every alias shown in the example. Assign it to query. Do not import, use SQL, perform IO, define functions/rules or call to_df: the tool executes the query.
 Default to the strongest product across simple paths of ONE or TWO edges, then fewer hops and a deterministic witness. Bind graph.distance to minimum_hops separately from selected route hops: a stronger multi-hop route may coexist with a weaker direct edge. Include minimum_hops <= 2 and hops <= 2. A selected route is one witness per source, not all routes or the only possible route. Only minimum_hops > 1 supports saying no qualifying direct link was found. An empty result means no route within two hops under the requested filters, not global disconnection.
 RAI calculates all scores. raw_strength preserves the approved formula: effective years=sum of unioned shared days × location × recency / 365.25; raw edge=.5×min(effective years/mean complete career years,1)+.5×min(effective years/10,1)^2. Location: same known onsite office 1; same known onsite city .6; other/remote/unknown .25. Recency: 0–2 years 1, 2–5 .8, 5–10 .5, 10–15 .25, older .1. Shared employment requires >=365 days. Union intervals avoid double counting. Friendship is deferred, current PE co-employment alone creates no edges, and centrality adds no score bonus.
 Public strength=sqrt(sqrt(raw_strength)), a FIXED 0–1 normalization preserving ranks and products. Apply requested cutoffs to strength unless raw is explicitly requested. Select BOTH strength and raw_strength. Normalized leg scores multiply to normalized route score; raw contributions sum only to raw_strength. Do not change or invent scores. Explain the math, raw values and scale caveats only when asked.
@@ -52,7 +53,7 @@ End with a compact execution reference containing request_id and the native RAI 
 
 def deploy():
     package=ROOT/'corporate_agent'
-    files=['__init__.py','model.py','scoring.py','presentation.py','dynamic.py','runtime.py']
+    files=['__init__.py','ontology.py','model.py','scoring.py','presentation.py','dynamic.py','runtime.py']
     digest=hashlib.sha256(b''.join((package/p).read_bytes() for p in files)).hexdigest()
     archive=ROOT/f'build/corporate_agent_{digest[:16]}.zip'
     archive.parent.mkdir(exist_ok=True)
@@ -88,7 +89,7 @@ $$''')
             c.execute(f'ALTER AGENT {AGENT} MODIFY LIVE VERSION SET SPECIFICATION=$$ {json.dumps(spec())} $$')
         else:
             c.execute(f'''CREATE AGENT {AGENT} COMMENT='Dynamic PyRel + native RAI: isolated corporate PE introduction agent'
-                PROFILE='{{"display_name":"Corporate PE Introductions — Dynamic RAI"}}' FROM SPECIFICATION $$ {json.dumps(spec())} $$''')
+                PROFILE='{{"display_name":"CORPORATE_INTRODUCTIONS"}}' FROM SPECIFICATION $$ {json.dumps(spec())} $$''')
         for sql in [f'GRANT USAGE ON SCHEMA {SCHEMA} TO ROLE {settings.DEPLOY_ROLE}',
                     f"GRANT USAGE ON SCHEMA {settings.schema('CORPORATE_1M_SRC')} TO ROLE {settings.DEPLOY_ROLE}",
                     *[f"GRANT SELECT ON TABLE {settings.schema('CORPORATE_1M_SRC')}.{table} TO ROLE {settings.DEPLOY_ROLE}"

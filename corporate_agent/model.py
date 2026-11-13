@@ -14,14 +14,23 @@ class IntroductionGraph(ScoredNetwork):
         candidate=self.candidate=m.Relationship(f'{p:source} has candidate {Integer:hops} score {Float:strength} route {String:path} reason {String:why}')
         a,b,t=p.ref(),p.ref(),p.ref()
         w1,w2=Float.ref(),Float.ref();why1,why2=String.ref(),String.ref()
+        route=self.introduction_route
         m.where(self.sources(a),self.focus(t),a!=t,self.tie(a,w1,t),self.reason(a,why1,t)).define(
             candidate(a,1,w1,strings.concat(a.id,'|',t.id),strings.concat(a.name,' → ',t.name,': ',why1)))
-        m.where(self.sources(a),self.focus(t),a!=t,a!=b,b!=t,self.tie(a,w1,b),self.tie(b,w2,t),
-                self.reason(a,why1,b),self.reason(b,why2,t)).define(
-            candidate(a,2,w1*w2,strings.concat(a.id,'|',b.id,'|',t.id),
-                strings.concat(a.name,' → ',b.name,': ',why1,'; ',b.name,' → ',t.name,': ',why2)))
+        indirect_path=strings.concat(a.id,'|',b.id,'|',t.id)
+        indirect=(self.sources(a),self.focus(t),a!=t,a!=b,b!=t,self.tie(a,w1,b),self.tie(b,w2,t),
+                  self.reason(a,why1,b),self.reason(b,why2,t))
+        m.where(*indirect).define(candidate(a,2,w1*w2,indirect_path,
+            strings.concat(a.name,' → ',b.name,': ',why1,'; ',b.name,' → ',t.name,': ',why2)))
         h,w,path,why=Integer.ref(),Float.ref(),String.ref(),String.ref()
         conditions=candidate(a,h,w,path,why)
+        # The business concept is a derived view of the existing candidates.
+        # Ranking keeps its original dependency path without joining the
+        # additional route properties back into candidate selection.
+        m.where(conditions,self.focus(t)).define(
+            route.new(path=path,source=a,target=t,hops=h,raw_strength=w,reason=why))
+        m.define(route.strength(normalize_strength(route.raw_strength)))
+        m.where(*indirect).define(route.lookup(path=indirect_path).via(b))
         maximum=aggs.max(w).per(a).where(conditions)
         fewest_at_score=aggs.min(h).per(a,w).where(conditions)
         witness=aggs.min(path).per(a,h,w).where(conditions)

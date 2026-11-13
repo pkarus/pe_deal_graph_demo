@@ -61,3 +61,16 @@ WHEN presenting results, THE SYSTEM SHALL label normalized scores, retain raw sc
 
 
 V5 completion evidence: `artifacts/corporate_affinity_v5_acceptance.json`. Native RAI normalization endpoints and 11 scoring scenarios passed; all 7,188 checked real edges retained identical raw components and ranking. The 951 cohort raw edges and all 2,100 degree/betweenness values remained unchanged. All three live Cortex question types returned the same v4 paths/raw scores and correctly labeled normalized table values; SQL oracles, full decomposition, raw/normalized route products, native transaction logs and parent CALLs passed. Current/historical inspector data, normalized filtering, 19 unit tests, TypeScript and production build passed. The local normalization labels and a normalized Cortex Preview table were observed in Safari; complete local edge rendering was not rechecked while the user was actively using Agent Studio. Full browser-observation details and API verification are recorded in the viewer artifact.
+
+
+## Amendment — explicit corporate business ontology (2026-11-13)
+
+Status: implementing; authorized by the user, including deployment and synchronization to `PE-Usecase`.
+
+WHEN modeling corporate introductions, THE SYSTEM SHALL expose Person, Company, Employment, OurTeamMember, Connection and IntroductionRoute as the six business concepts. OurTeamMember SHALL extend Person and retain the same person identity, with membership grounded in the separate TEAM_MEMBER table. Employment SHALL explicitly link one Person and one Company; dates, job title and workplace attributes SHALL describe the employment. The PE firm SHALL be an employer Company. Existing source tables SHALL remain unchanged. Connection SHALL expose the existing scored person pair and its evidence. IntroductionRoute SHALL expose each existing candidate path with typed source/target, optional intermediary, ordered IDs, hops, raw/normalized strength and reason. These two computed concepts SHALL introduce no new scoring factors or routes.
+
+WHEN selecting default introduction sources, THE SYSTEM SHALL use OurTeamMember. A named source SHALL remain any requested Person. Membership semantics and the 100-person set SHALL remain unchanged; the older demo's Deal Team/Operating Partner restriction SHALL NOT be introduced.
+
+WHEN scoring and traversing, THE SYSTEM SHALL retain every v5 eligibility rule, arithmetic component, decay band, normalization, tie break, two-hop scope and cohort threshold. SharedEmployment, SharedSegment and DecaySlice SHALL remain internal scoring/evidence concepts. Calculation edges SHALL continue to connect only people. Job links SHALL NOT create graph edges by themselves.
+
+Acceptance: native schema inspection, exact SQL comparison of 100 member identities and 450 typed employment links, preserved controlled scoring and strongest/shortest routes, all 7,188 saved neighborhood edges, all 951 cohort edges and 2,100 structural metric rows, a live deployed agent response with independent path/component validation, explorer smoke checks, and a normal update to PE-Usecase with matching source and casual README documentation.

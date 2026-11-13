@@ -40,6 +40,10 @@ The API returns a clear error when the reasoner is unavailable; it never falls b
 - **Communities & bridges** shows a validated native RAI snapshot. Color indicates community, node size indicates cohort betweenness and edge width indicates relationship strength.
 - Names can repeat; person IDs distinguish records. All people, locations and friendships are synthetic.
 
+## People and employment
+
+The shared ontology contains Person, Company, Employment, OurTeamMember, Connection and IntroductionRoute. “Our PE team” is the OurTeamMember subset of Person, backed by the separate team roster. Each Employment links its person and company and carries the job dates, title and location. The graph displays Connection instances between people; clicking one opens the employment evidence and score breakdown. IntroductionRoute describes the paths returned by the agent. The neighborhood view remains a one-hop view.
+
 ## Where computation happens
 
 `corporate_agent/scoring.py` is the single shared scoring model for this explorer and the Snowflake agent. `pe_deal_graph/corporate_graph.py` adds native RAI `Graph.distance` to obtain exact one-hop incident neighborhoods. Python formats results and Cytoscape draws them.

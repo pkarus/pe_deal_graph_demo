@@ -18,7 +18,7 @@ app=FastAPI(title='Corporate People Graph — RAI',version='5.0')
 app.add_middleware(CORSMiddleware,allow_origins=['http://localhost:3000','http://127.0.0.1:3000'],allow_methods=['GET'],allow_headers=['*'])
 CACHE=ROOT/'pyrel_semantic_graph_explorer/.runtime/affinity-v5';CACHE.mkdir(parents=True,exist_ok=True)
 LOCK=threading.Lock()
-FINGERPRINT=hashlib.sha256(b''.join((ROOT/p).read_bytes() for p in ['corporate_agent/scoring.py','corporate_agent/presentation.py','pe_deal_graph/corporate_graph.py','data/corporate_enrichment_v2/MANIFEST.json'])+SOURCE.encode()).hexdigest()
+FINGERPRINT=hashlib.sha256(b''.join((ROOT/p).read_bytes() for p in ['corporate_agent/ontology.py','corporate_agent/scoring.py','corporate_agent/presentation.py','pe_deal_graph/corporate_graph.py','data/corporate_enrichment_v2/MANIFEST.json'])+SOURCE.encode()).hexdigest()
 
 def read(sql,params=()):
     with connect() as con:

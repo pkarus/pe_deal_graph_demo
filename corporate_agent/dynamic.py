@@ -22,8 +22,8 @@ query = model.where(
     hops.alias("hops"), minimum_hops.alias("minimum_hops"), path.alias("path")
 )'''
 
-GLOBALS={'Person','Integer','Float','String','graph','center','model','Sources','best_route','shortest_route'}
-ATTRS={'ref','distance','where','select','alias','in_','id','name'}
+GLOBALS={'Person','Company','Employment','OurTeamMember','Connection','IntroductionRoute','Integer','Float','String','graph','center','model','Sources','best_route','shortest_route'}
+ATTRS={'ref','distance','where','select','alias','in_','id','name','person','company','employment','title','start_date','end_date','office_id','city_id','work_mode','connection','left','right','left_id','right_id','source','target','via','path','hops','strength','raw_strength','evidence','reason'}
 NODE_TYPES=(ast.Module,ast.Assign,ast.Name,ast.Load,ast.Store,ast.Tuple,ast.List,ast.Call,
             ast.Attribute,ast.keyword,ast.Constant,ast.Compare,ast.Eq,ast.NotEq,ast.LtE,
             ast.Lt,ast.Gt,ast.GtE,ast.UnaryOp,ast.USub)
@@ -86,6 +86,8 @@ def validate_code(code):
 def build_query(context,code):
     from relationalai.semantics import Integer,Float,String
     namespace={'__builtins__':{},'model':context.model,'Person':context.person,
+               'Company':context.company,'Employment':context.employment,'OurTeamMember':context.our_team_member,
+               'Connection':context.connection,'IntroductionRoute':context.introduction_route,
                'graph':context.graph,'center':context.focus,'Sources':context.sources,
                'best_route':context.best_route,'shortest_route':context.shortest_route,
                'Integer':Integer,'Float':Float,'String':String}

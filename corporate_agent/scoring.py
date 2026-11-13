@@ -11,6 +11,7 @@ import uuid
 from relationalai.semantics import Model,String,Date,Float,Integer
 from relationalai.semantics.reasoners.graph import Graph
 from relationalai.semantics.std import aggregates as aggs,datetime as dt,floats,math,strings
+from .ontology import CorporateOntology, properties
 
 VERSION='corporate-affinity-v5'
 RAW_SCORING_VERSION='corporate-affinity-v4'
@@ -47,11 +48,6 @@ def decay_bands(as_of):
             (4,EPOCH,ago(15),.1,'15+ years')]
 
 
-def properties(model,concept,fields):
-    for name,kind in fields:
-        setattr(concept,name,model.Property(f'{concept} has {kind:{name}}'))
-
-
 class ScoredNetwork:
     def __init__(self,person_id=DEFAULT_PERSON,source_id='',*,mode='introductions',min_strength=0.,
                  as_of=AS_OF,config=None,source=SOURCE,inputs=None):
@@ -62,6 +58,11 @@ class ScoredNetwork:
         self.as_of=as_of=validate_as_of(as_of);self.person_id=person_id;self.mode=mode
         self.execution_id=uuid.uuid4().hex
         self.model=m=Model('corporate_affinity_v5_'+self.execution_id,config=config)
+        self.ontology=domain=CorporateOntology(m)
+        self.person=person=domain.person
+        self.company=employer=domain.company
+        self.employment=self.role=role=domain.employment
+        self.our_team_member=domain.our_team_member
         # inputs is used only by native-engine fixtures; production uses Snowflake base tables.
         def table(name,fqn):
             value=inputs[name] if inputs is not None else fqn
@@ -94,9 +95,6 @@ class ScoredNetwork:
             m.define(pivot(person_id))
             m.where(pivot(aw.PERSON_ID),aw.ORG_ID==bw.ORG_ID,aw.ORG_ID!='PE_FIRM_NORTHWIND').define(eligible(bw.PERSON_ID))
         role_scope=(eligible(work.PERSON_ID),work.START_DATE<as_of)
-        role=self.role=m.Concept('CareerRole',identify_by={'id':String})
-        properties(m,role,[(n,String) for n in ['person_id','org_id','office_id','city_id','work_mode']]+
-          [(n,Integer) for n in ['start_day','end_day','career_days']]+[('recorded_end',Date)])
         r=role.new(id=work.ROLE_ID)
         m.where(*role_scope).define(r)
         # Never reuse the .new constructor for nullable property bindings:
@@ -105,31 +103,38 @@ class ScoredNetwork:
         for name,col in [('person_id',work.PERSON_ID),('org_id',work.ORG_ID),('office_id',work.OFFICE_ID),
                          ('city_id',work.CITY_ID),('work_mode',work.WORK_MODE)]:
             m.where(*role_scope).define(getattr(r,name)(col))
-        m.where(*role_scope).define(r.start_day(dt.date.period_days(EPOCH,work.START_DATE)))
+        m.where(*role_scope).define(r.start_date(work.START_DATE),r.start_day(dt.date.period_days(EPOCH,work.START_DATE)))
         m.where(*role_scope,work.END_DATE<=as_of).define(r.end_day(dt.date.period_days(EPOCH,work.END_DATE)))
         m.where(*role_scope,work.END_DATE>as_of).define(r.end_day((as_of-EPOCH).days))
-        m.where(*role_scope).define(r.recorded_end(work.END_DATE))
-        m.where(m.not_(role.recorded_end)).define(role.end_day((as_of-EPOCH).days))
+        m.where(*role_scope).define(r.end_date(work.END_DATE))
+        m.where(m.not_(role.end_date)).define(role.end_day((as_of-EPOCH).days))
+        # Typed business links share the same source IDs used by the scoring rules.
+        domain.connect(m,team)
+        m.define(employer.lookup(id=company.COMPANY_ID).name(company.NAME))
+        if inputs is None:
+            firm=table('firm',source+'.PE_FIRM')
+            m.define(employer.lookup(id=firm.COMPANY_ID).name(firm.NAME))
+            # WORKPLACE_V2 intentionally contains scoring facts only. Job titles
+            # stay in the original career tables and bind independently of dates.
+            for fqn in [CORPORATE+'.ROLE_HISTORY',source+'.TEAM_ROLE_HISTORY']:
+                titles=m.Table(fqn)
+                m.define(role.lookup(id=titles.ROLE_ID).title(titles.TITLE))
         # Union-of-intervals career length, including concurrent records exactly once.
         a,b=role.ref(),role.ref()
         before=m.Relationship(f'{role:r} has prior ordered role {role:previous}')
-        m.where(a.person_id==b.person_id,b.start_day<a.start_day).define(before(a,b))
-        m.where(a.person_id==b.person_id,b.start_day==a.start_day,b.id<a.id).define(before(a,b))
+        m.where(a.person==b.person,b.start_day<a.start_day).define(before(a,b))
+        m.where(a.person==b.person,b.start_day==a.start_day,b.id<a.id).define(before(a,b))
         previous_end=aggs.max(b.end_day).per(a).where(before(a,b))|a.start_day
         m.define(a.career_days(math.maximum(0,a.end_day-math.maximum(a.start_day,previous_end))))
 
-        edge=self.edge=m.Concept('ScoredConnection',identify_by={'left_id':String,'right_id':String})
-        person=self.person=m.Concept('Person',identify_by={'id':String})
-        properties(m,person,[('name',String),('career_years',Float)])
-        properties(m,edge,[(n,Float) for n in ['raw_years','effective_years','career_fraction','duration_component',
-          'time_score','friendship_score','employment_contribution','friendship_contribution','strength','raw_strength','career_mean_years']]+
-          [('friendship_status',String),('friendship_source',String),('evidence',String),('left',person),('right',person)])
+        edge=self.edge=self.connection=domain.connection
+        self.introduction_route=domain.introduction_route
         overlap=self.overlap=m.Concept('SharedEmployment',identify_by={'role_a':role,'role_b':role})
         properties(m,overlap,[('edge',edge),('start_day',Integer),('end_day',Integer),('days',Integer),
           ('spatial_factor',Float),('spatial_basis',String),('company',String),('evidence',String)])
         oa,ob=role.ref(),role.ref()
         start=math.maximum(oa.start_day,ob.start_day);end=math.minimum(oa.end_day,ob.end_day)
-        common=(oa.person_id<ob.person_id,oa.org_id==ob.org_id,oa.org_id!='PE_FIRM_NORTHWIND',end-start>=365)
+        common=(oa.person.id<ob.person.id,oa.company==ob.company,oa.company.id!='PE_FIRM_NORTHWIND',end-start>=365)
         o=overlap.new(role_a=oa,role_b=ob)
         if mode in ['cohort','pair']:m.where(*common,anchors(oa.person_id),anchors(ob.person_id)).define(o)
         else:
@@ -141,7 +146,7 @@ class ScoredNetwork:
           o.start_day(math.maximum(o.role_a.start_day,o.role_b.start_day)),
           o.end_day(math.minimum(o.role_a.end_day,o.role_b.end_day)))
         m.define(o.days(o.end_day-o.start_day))
-        m.where(company.COMPANY_ID==o.role_a.org_id).define(o.company(company.NAME))
+        m.define(o.company(o.role_a.company.name))
         onsite=(o.role_a.work_mode=='ONSITE',o.role_b.work_mode=='ONSITE')
         same_office=m.Relationship(f'{overlap} has matching known onsite offices')
         same_city=m.Relationship(f'{overlap} has matching known onsite cities')
@@ -159,14 +164,17 @@ class ScoredNetwork:
         # Preserve friendship facts for later; they neither create edges nor
         # affect scores. Compatibility fields explicitly identify this policy.
         m.define(edge.friendship_score(0.),edge.friendship_status('Deferred; not used in scoring'),edge.friendship_source('Not used'))
-        m.define(person.new(id=edge.left_id),person.new(id=edge.right_id))
+        # Employment already establishes each endpoint's Person identity.
+        # Do not define people from their derived edges: that would introduce
+        # a recursion through Employment.person back into scored connections.
         m.where(anchors(anchor_id)).define(person.new(id=anchor_id))
         m.define(edge.left(person.lookup(id=edge.left_id)),edge.right(person.lookup(id=edge.right_id)))
+        m.define(edge.left.connection(edge),edge.right.connection(edge))
         for name,fqn in [('people',CORPORATE+'.PERSON'),('team',source+'.TEAM_MEMBER')]:
             data=table(name,fqn)
             m.define(person.lookup(id=data.PERSON_ID).name(data.FULL_NAME))
         pr=person.ref();rr=role.ref()
-        career_days=aggs.sum(rr.career_days).per(pr).where(rr.person_id==pr.id)|0
+        career_days=aggs.sum(rr.career_days).per(pr).where(rr.person(pr))|0
         m.define(pr.career_years(floats.float(career_days)/365.25))
         m.define(edge.career_mean_years((edge.left.career_years+edge.right.career_years)/2.))
 
@@ -227,7 +235,7 @@ class ScoredNetwork:
         m.where(person.id==person_id).define(self.focus(person))
         self.sources=m.Relationship(f'{person} is a requested source')
         if source_id:m.where(person.id==source_id).define(self.sources(person))
-        else:m.define(self.sources(person.lookup(id=team.PERSON_ID)))
+        else:m.where(self.our_team_member(person)).define(self.sources(person))
 
     def edge_query(self,person_ids=None,min_strength=0.):
         e=self.edge;m=self.model

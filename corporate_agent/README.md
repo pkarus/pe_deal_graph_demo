@@ -4,6 +4,16 @@ Agent: `ALAA_RELAPP_PERSISTENCE.PE_DEAL_GRAPH_EXPERIMENT_CORPORATE_AGENT.CORPORA
 
 The agent resolves people with SQL, authors restricted read-only PyRel, and sends it to `EXECUTE_PYREL`. The supplied query invokes native RAI `Graph.distance` and the shared introduction rules. All production relationship scores, paths, communities and centrality are computed in RAI. Python formats and orders returned values; independent SQL/Python oracles are test code and are excluded from deployment.
 
+## People, employers and our team
+
+`ontology.py` defines six business concepts: Person, Company, Employment, OurTeamMember, Connection and IntroductionRoute. OurTeamMember extends Person, so a team member keeps the same person ID, employment history and connections. Membership comes from the separate TEAM_MEMBER table. A named-source question can still start from any Person.
+
+Employment links directly to `Person` through `Employment.person` and to `Company` through `Employment.company`. Person and Company both expose their jobs through `.employment`. Each job carries its source dates, title, office, city and work mode. The PE firm is also a Company; titles come from the original corporate and PE career tables. The model loads the relevant careers for the requested scope, including complete careers for score normalization.
+
+`scoring.py` uses those typed person/employer links to calculate shared employment. Connection links two people through `.left` and `.right`, with raw and normalized strengths and supporting evidence. `Person.connection` exposes their connections. SharedEmployment, SharedSegment and DecaySlice are internal calculation details. The graph reasoners operate on people and their calculated connections. Default introduction sources are selected through the OurTeamMember subtype.
+
+IntroductionRoute describes each eligible candidate path: `.source`, `.target`, ordered `.path` IDs, `.hops`, `.strength`, `.raw_strength` and `.reason`. Its optional `.via` relationship identifies the intermediary on a two-hop route. A route can start from any named Person or, by default, one of OurTeamMember. The existing strongest/shortest rules select a route per source from these candidates, preserving product scoring and deterministic tie breaks. Route identity is local to the requested target, as-of date and model execution.
+
 ## Shared scores: corporate-affinity-v5
 
 `scoring.py` is the single scoring model used by the agent and local explorer. All dates are clipped to an as-of date, no later than the synthetic snapshot **2026-10-01**.
@@ -88,12 +98,14 @@ With the tested roles, information-schema history exposes parent tool CALLs; nat
 
 ## Release evidence
 
+Local ontology checks cover team membership and job links against Snowflake, scores and routes, both reference neighborhoods, and cohort metrics. Run `python -m scripts.validate_corporate_ontology domain`, then `fixtures`, `neighborhoods` and `cohort`, using the configured RAI engine and your locally retained `artifacts/corporate_ontology_baseline.json.gz` from the prior v5 validation. Generated baselines, acceptance reports and account-specific execution records stay local.
+
 Current acceptance: `artifacts/corporate_affinity_v5_acceptance.json`. It references native normalization/scoring/routing fixtures, independent SQL checks, current/historical decomposition, real Cortex requests and native transaction logs. `artifacts/affinity_v5_normalization_comparison.json` checks unchanged raw scores, factors, routes, ranking and cohort graph against v4. V2/v4 evidence remains intact; rejected v3 is inactive.
 
 Both raw and normalized values are retained in the audit and exposed by the local inspector. Native RAI computes both scales; Python formats results and performs independent validation only. Live requests take a few minutes; accepted request IDs are in the manifest.
 
-## 2026-11-13 presentation and investigation update
+## Responses and route scope
 
-The agent now requests natural employment explanations, bold recommendations, and execution references, with generic limitations only on request. The local explorer explicitly shows that its display limit selects the strongest N connections. The v5 relationship formula and normalization remain unchanged.
+The agent requests natural employment explanations, bold recommendations, and execution references, with generic limitations only on request. The local explorer explicitly shows that its display limit selects the strongest N connections. The v5 relationship formula and normalization remain unchanged.
 
 Three-hop work is preserved under `experiments/three_hop_agent`. Controlled native fixtures passed, but full-team execution exceeded current limits. The deployed runtime remains the validated **two-hop** implementation; three-hop rollout is not complete.
